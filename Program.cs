@@ -1,6 +1,7 @@
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using linc.Data;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using linc.Models.ConfigModels;
+using linc.Services;
+using linc.Utility;
 
 namespace linc
 {
@@ -12,15 +13,16 @@ namespace linc
             var configuration = builder.Configuration;
             var services = builder.Services;
 
-            var connectionString = configuration.GetConnectionString("DefaultConnection") ?? 
-                    throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+            //services.AddOptions();
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+            // Options -->
+            services.Configure<EmailConfig>(configuration.GetSection(nameof(EmailConfig)));
 
-            services.AddDefaultIdentity<IdentityUser>(options => 
-                    options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            // Services -->
+            services.AddTransient<IEmailSender, EmailSender>();
+
+            // Database -->
+            services.AddDatabase(configuration);
 
             // Add services to the container.
             services.AddControllersWithViews();
