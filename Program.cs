@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using linc.Models.ConfigModels;
 using linc.Data;
 
 namespace linc
@@ -11,6 +12,8 @@ namespace linc
             var builder = WebApplication.CreateBuilder(args);
             var configuration = builder.Configuration;
             var services = builder.Services;
+
+            services.Configure<EmailConfig>(configuration.GetSection(nameof(EmailConfig)));
 
             var connectionString = configuration.GetConnectionString("DefaultConnection") ?? 
                     throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
