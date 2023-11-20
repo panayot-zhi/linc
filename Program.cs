@@ -1,3 +1,7 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using linc.Data;
+
 namespace linc
 {
     public class Program
@@ -5,9 +9,21 @@ namespace linc
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            var configuration = builder.Configuration;
+            var services = builder.Services;
+
+            var connectionString = configuration.GetConnectionString("DefaultConnection") ?? 
+                    throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+
+            services.AddDefaultIdentity<IdentityUser>(options => 
+                    options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<ApplicationDbContext>();
 
             // Add services to the container.
-            builder.Services.AddControllersWithViews();
+            services.AddControllersWithViews();
 
             var app = builder.Build();
 
@@ -23,12 +39,14 @@ namespace linc
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+
+            app.MapRazorPages();
 
             app.Run();
         }
