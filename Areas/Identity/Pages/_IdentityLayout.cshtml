@@ -34,11 +34,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
-                <li class="nav-item"><a id="index" class="nav-link" asp-controller="Home" asp-action="Index" title="Към началната страница">Начало</a></li>
-                <li class="nav-item"><a id="about" class="nav-link" asp-controller="Home" asp-action="About" title="Информация за целите и обхвата на списанието">За списанието</a></li>
-                <li class="nav-item"><a id="team" class="nav-link" asp-controller="Home" asp-action="Team" title="Преглед на редколегия">Екип</a></li>
-                <li class="nav-item"><a id="codex" class="nav-link" asp-controller="Home" asp-action="Codex" title="Преглед на етичния кодекс на списанието">Етичeн кодекс</a></li>
-                <li class="nav-item"><a id="submit" class="nav-link" asp-controller="Home" asp-action="Submit" title="Изпратете материал за рецензия">Изпращане на текст</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" asp-controller="Home" asp-action="Index" title="Към началната страница">Начало</a></li>
+                <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="About" title="Информация за целите и обхвата на списанието">За списанието</a></li>
+                <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Team" title="Преглед на редколегия">Екип</a></li>
+                <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Codex" title="Преглед на етичния кодекс на списанието">Етичeн кодекс</a></li>
+                <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Submit" title="Изпратете материал за рецензия">Изпращане на текст</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Индекс</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -61,7 +61,11 @@
     </div>
 </nav>
 
-    @RenderBody()
+<section class="py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        @RenderBody()
+    </div>
+</section>
 
 <!-- Footer-->
 <footer class="py-5 bg-dark">
@@ -78,6 +82,10 @@
 <script src="~/js/site.js" asp-append-version="true"></script>
 
 @await RenderSectionAsync("Scripts", required: false)
+
+<script>
+
+</script>
 
 </body>
 </html>
