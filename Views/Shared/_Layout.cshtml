@@ -151,7 +151,23 @@
     </header>
     <!-- End Header -->
 
-    @RenderBody()
+    @if (IsSectionDefined("Hero"))
+    {
+        @await RenderSectionAsync("Hero")
+    }
+
+    <!-- ======= #main ======= -->
+    <main id="main" @*data-aos="fade-up"*@>
+        
+        @if (IsSectionDefined("Breadcrumbs"))
+        {
+            @await RenderSectionAsync("Breadcrumbs")
+        }
+        
+        @RenderBody()
+
+    </main>
+    <!-- End #main -->
 
     <!-- ======= Footer ======= -->
     <footer id="footer">
