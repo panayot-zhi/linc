@@ -154,16 +154,15 @@
     @if (IsSectionDefined("Hero"))
     {
         @await RenderSectionAsync("Hero")
+    } 
+    else if (IsSectionDefined("Breadcrumbs"))
+    {
+        @await RenderSectionAsync("Breadcrumbs")
     }
 
     <!-- ======= #main ======= -->
     <main id="main" @*data-aos="fade-up"*@>
-        
-        @if (IsSectionDefined("Breadcrumbs"))
-        {
-            @await RenderSectionAsync("Breadcrumbs")
-        }
-        
+
         @RenderBody()
 
     </main>
