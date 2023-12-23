@@ -18,7 +18,6 @@
 	<ItemGroup>
 		<None Include="appsettings.Development.json" />
 		<None Include="appsettings.Production.json" />
-		<None Include="F:\projects\.netCore\linc\.editorconfig" />
 	</ItemGroup>
 
 	<ItemGroup>
