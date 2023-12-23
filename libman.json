@@ -28,6 +28,84 @@
         "font/bootstrap-icons.json",
         "font/bootstrap-icons.min.css"
       ]
+    },
+    {
+      "provider": "cdnjs",
+      "library": "aos@2.3.4",
+      "destination": "wwwroot/lib/aos/",
+      "files": [
+        "aos.js",
+        "aos.css"
+      ]
+    },
+    {
+      "provider": "cdnjs",
+      "library": "boxicons@2.1.4",
+      "destination": "wwwroot/lib/boxicons/",
+      "files": [
+        "css/animations.css",
+        "css/animations.min.css",
+        "css/boxicons.css",
+        "css/boxicons.min.css",
+        "css/transformations.css",
+        "css/transformations.min.css",
+        "fonts/boxicons.eot",
+        "fonts/boxicons.svg",
+        "fonts/boxicons.ttf",
+        "fonts/boxicons.woff",
+        "fonts/boxicons.woff2",
+        "dist/boxicons.js",
+        "dist/boxicons.min.js"
+      ]
+    },
+    {
+      "provider": "cdnjs",
+      "library": "glightbox@3.2.0",
+      "destination": "wwwroot/lib/glightbox/",
+      "files": [
+        "js/glightbox.min.js",
+        "css/glightbox.css",
+        "css/glightbox.min.css",
+        "js/glightbox.js"
+      ]
+    },
+    {
+      "provider": "cdnjs",
+      "library": "Swiper@11.0.5",
+      "destination": "wwwroot/lib/Swiper/",
+      "files": [
+        "swiper-bundle.min.js",
+        "swiper-bundle.min.css",
+        "swiper-bundle.css",
+        "swiper-bundle.js"
+      ]
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "@srexi/purecounterjs@1.5.0",
+      "destination": "wwwroot/lib/purecounterjs/",
+      "files": [
+        "dist/purecounter_vanilla.js",
+        "dist/purecounter_vanilla.min.js"
+      ]
+    },
+    {
+      "provider": "unpkg",
+      "library": "isotope-layout@3.0.6",
+      "destination": "wwwroot/lib/isotope-layout/",
+      "files": [
+        "dist/isotope.pkgd.js",
+        "dist/isotope.pkgd.min.js"
+      ]
+    },
+    {
+      "provider": "cdnjs",
+      "library": "waypoints@4.0.1",
+      "destination": "wwwroot/lib/waypoints/",
+      "files": [
+        "noframework.waypoints.min.js",
+        "noframework.waypoints.js"
+      ]
     }
   ]
 }
