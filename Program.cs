@@ -12,33 +12,24 @@ public class Program
         var builder = WebApplication.CreateBuilder(args);
         var configuration = builder.Configuration;
         var services = builder.Services;
+        var environment = builder.Environment;
+        var host = builder.Host;
 
-        //services.AddOptions();
+        services
+            .AddDatabase(configuration)
+            .AddApplicationIdentity()
+            .AddAuthentications(configuration)
+            .AddCookies()
+            .AddServices()
+            .AddCachingProfiles()
+            .AddRoutes()
+            .AddConfigurations(configuration);
 
-        // Options -->
-        services.Configure<EmailConfig>(configuration.GetSection(nameof(EmailConfig)));
-
-        // Services -->
-        services.AddTransient<IEmailSender, EmailSender>();
-
-        // Database -->
-        services.AddDatabase(configuration);
-
-        // Add services to the container.
-        services.AddControllersWithViews();
-
-        // Lower case url paths.
-        // Dashed parameters
-        services.AddRouting(option =>
-        {
-            option.ConstraintMap["slugify"] = typeof(SlugifyParameterTransformer);
-            option.LowercaseUrls = true;
-        });
 
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
-        if (!app.Environment.IsDevelopment())
+        if (!environment.IsDevelopment())
         {
             // The default HSTS value is 30 days.
             // You may want to change this for production scenarios,
