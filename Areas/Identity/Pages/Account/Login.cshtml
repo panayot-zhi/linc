@@ -34,7 +34,7 @@
                 <div>
                     <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
                 </div>
-                <div>
+                <div class="py-3">
                     <p>
                         <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
                     </p>
@@ -81,5 +81,10 @@
 </div>
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+<partial name="_ValidationScriptsPartial" />
+    <script>
+        $(document).ready(function () {
+            $("#login").addClass('active');
+        })
+    </script>
 }
