@@ -25,7 +25,6 @@ public class Program
             .AddRoutes()
             .AddConfigurations(configuration);
 
-
         var app = builder.Build();
 
         // Configure the HTTP request pipeline.
