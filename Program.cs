@@ -3,54 +3,55 @@ using linc.Models.ConfigModels;
 using linc.Services;
 using linc.Utility;
 
-namespace linc
+namespace linc;
+
+public class Program
 {
-    public class Program
+    public static void Main(string[] args)
     {
-        public static void Main(string[] args)
+        var builder = WebApplication.CreateBuilder(args);
+        var configuration = builder.Configuration;
+        var services = builder.Services;
+        var environment = builder.Environment;
+        var host = builder.Host;
+
+        services
+            .AddDatabase(configuration)
+            .AddApplicationIdentity()
+            .AddAuthentications(configuration)
+            .AddCookies()
+            .AddServices()
+            .AddCachingProfiles()
+            .AddRoutes()
+            .AddConfigurations(configuration);
+
+        var app = builder.Build();
+
+        // Configure the HTTP request pipeline.
+        if (!environment.IsDevelopment())
         {
-            var builder = WebApplication.CreateBuilder(args);
-            var configuration = builder.Configuration;
-            var services = builder.Services;
-
-            //services.AddOptions();
-
-            // Options -->
-            services.Configure<EmailConfig>(configuration.GetSection(nameof(EmailConfig)));
-
-            // Services -->
-            services.AddTransient<IEmailSender, EmailSender>();
-
-            // Database -->
-            services.AddDatabase(configuration);
-
-            // Add services to the container.
-            services.AddControllersWithViews();
-
-            var app = builder.Build();
-
-            // Configure the HTTP request pipeline.
-            if (!app.Environment.IsDevelopment())
-            {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
-
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-
-            app.UseRouting();
-            app.UseAuthentication();
-            app.UseAuthorization();
-
-            app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
-
-            app.MapRazorPages();
-
-            app.Run();
+            // The default HSTS value is 30 days.
+            // You may want to change this for production scenarios,
+            // see https://aka.ms/aspnetcore-hsts.
+            app.UseHsts();
         }
+
+        app.UseResponseCaching();
+        app.UseExceptionHandler("/Home/Error");
+        app.UseStatusCodePagesWithReExecute("/Home/Error", "?code={0}");
+        app.UseHttpsRedirection();
+        app.UseStaticFiles();
+
+        app.UseRouting();
+        app.UseAuthentication();
+        app.UseAuthorization();
+
+        app.MapControllerRoute(
+            name: "default",
+            pattern: "{controller=Home}/{action=Index}/{id?}");
+
+        app.MapRazorPages();
+
+        app.Run();
     }
 }
