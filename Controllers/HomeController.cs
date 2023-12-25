@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Net;
 using linc.Utility;
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Localization;
 
 namespace linc.Controllers
 {
@@ -44,6 +45,21 @@ namespace linc.Controllers
         public IActionResult Submit()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult SetLanguage(string culture, string returnUrl = "/")
+        {
+            Response.Cookies.Append(
+                SiteCookieName.Language,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions
+                {
+                    Expires = DateTimeOffset.UtcNow.AddYears(1)
+                }
+            );
+
+            return LocalRedirect(returnUrl);
         }
 
         [ResponseCache(CacheProfileName = "NoCache")]
