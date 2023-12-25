@@ -118,6 +118,11 @@ namespace linc.Controllers
                     _logger.LogWarning("404 NotFound: " + path);
 
                     // TODO: List here any cases where we need response body brevity
+                    if (path.EndsWith(".js.map"))
+                    {
+                        return StatusCode((int)HttpStatusCode.NotFound, path);
+                    }
+
                     var acceptHeaders = Request.Headers["Accept"];
                     if (acceptHeaders.Any(header => header.Contains("image/*")))
                     {
