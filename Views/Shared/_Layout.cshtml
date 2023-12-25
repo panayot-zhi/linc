@@ -21,8 +21,9 @@
     <!-- Vendor CSS Files -->
     @* TODO: Heavily revise if all of these are necessary *@
     <link href="~/lib/aos/aos.css" rel="stylesheet">
+    <link href="~/lib/flag-icons/css/flag-icons.min.css" rel="stylesheet">
     <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="~/lib/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet">
     <link href="~/lib/boxicons/css/boxicons.min.css" rel="stylesheet">
     <link href="~/lib/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="~/lib/swiper/swiper-bundle.min.css" rel="stylesheet">
@@ -56,18 +57,15 @@
                 </i>
             </div>
             <div class="social-links d-none d-md-flex align-items-center">
-                <a href="#" class="twitter">
-                    <i class="bi bi-twitter"></i>
-                </a>
-                <a href="#" class="facebook">
-                    <i class="bi bi-facebook"></i>
-                </a>
-                <a href="#" class="instagram">
-                    <i class="bi bi-instagram"></i>
-                </a>
-                <a href="#" class="linkedin">
-                    <i class="bi bi-linkedin"></i>
-                </a>
+                <form id="set_language" asp-controller="Home" asp-action="SetLanguage">
+                    <button id="language_bg" name="culture" value="bg" type="submit" class="btn btn-link">
+                        <i class="fi fi-bg"></i>
+                    </button>
+                    <button id="language_en" name="culture" value="en" type="submit" class="btn btn-link">
+                        <i class="fi fi-eu"></i>
+                    </button>
+                </form>
+
             </div>
         </div>
     </section>
