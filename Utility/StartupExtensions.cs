@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using linc.Services;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using linc.Models.ConfigModels;
+using linc.Resources;
 
 namespace linc.Utility;
 
@@ -188,8 +189,13 @@ public static class StartupExtensions
         var connectionString = configuration.GetConnectionString("DefaultConnection") ??
                                throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
-        services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+        services.AddDbContext<ApplicationDbContext>(
+            contextLifetime: ServiceLifetime.Scoped,
+            optionsAction: options =>
+                options
+                    .EnableDetailedErrors()
+                    .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
+                    .UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
         return services;
     }
@@ -251,8 +257,14 @@ public static class StartupExtensions
     public static IServiceCollection AddServices(this IServiceCollection services)
     {
         services.AddTransient<IEmailSender, EmailSender>();
+        services.AddTransient<ISharedViewLocalizer, SharedViewLocalizer>();
 
         return services;
     }
 
+    public static void EnsureMigrationOfContext<T>(this IApplicationBuilder app) where T : DbContext
+    {
+        var context = app.ApplicationServices.GetRequiredService<T>();
+        context.Database.Migrate();
+    }
 }

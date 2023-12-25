@@ -1,3 +1,4 @@
+using linc.Data;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using linc.Models.ConfigModels;
 using linc.Services;
@@ -18,12 +19,12 @@ public class Program
         services
             .AddDatabase(configuration)
             .AddApplicationIdentity()
+            .AddConfigurations(configuration)
             .AddAuthentications(configuration)
             .AddCookies()
             .AddServices()
             .AddCachingProfiles()
-            .AddRoutes()
-            .AddConfigurations(configuration);
+            .AddRoutes();
 
         var app = builder.Build();
 
@@ -41,6 +42,8 @@ public class Program
         app.UseStatusCodePagesWithReExecute("/Home/Error", "?code={0}");
         app.UseHttpsRedirection();
         app.UseStaticFiles();
+
+        //app.EnsureMigrationOfContext<ApplicationDbContext>();
 
         app.UseRouting();
         app.UseAuthentication();

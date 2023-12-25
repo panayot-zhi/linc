@@ -10,6 +10,6 @@
 
         public string Password { get; init; }
 
-        public bool Debug { get; init; }
+        public bool CopyToAdmin { get; init; }
     }
 }
