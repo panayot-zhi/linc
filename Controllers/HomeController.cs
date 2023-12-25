@@ -5,20 +5,25 @@ using System.Net;
 using linc.Utility;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.Extensions.Localization;
 
 namespace linc.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private IStringLocalizer<SharedResource> _localizer;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, 
+            IStringLocalizer<SharedResource> localizer)
         {
             _logger = logger;
+            _localizer = localizer;
         }
 
         public IActionResult Index()
         {
+            ViewBag.Title = _localizer["Index_Title"];
             return View();
         }
 

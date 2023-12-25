@@ -1,8 +1,14 @@
 ﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.AspNetCore.Mvc.Localization
 @using Microsoft.AspNetCore.Localization
 
+@{
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var currentCulture = requestCulture.RequestCulture.UICulture.Name;
+}
+
 <!DOCTYPE html>
-<html lang="@(ViewData["Lang"] ?? "bg")">
+<html lang="@currentCulture">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -46,17 +52,12 @@
 
 </head>
 
-@{
-    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
-    var currentCulture = requestCulture.RequestCulture.UICulture.Name;
-}
-
 <body>
     <!-- ======= Top Bar ======= -->
     <section id="topbar" class="d-flex align-items-center">
         <div class="container d-flex justify-content-end justify-content-sm-between">
             <div class="d-none d-sm-flex align-items-center">
-                <span>Лингвистика, Интерпретация, Концепции</span>
+                <span>@Localizer["Logo_Long"]</span>
             </div>
             <div class="d-flex align-items-center">
                 <form id="set_language" asp-controller="Home" asp-action="SetLanguage">
@@ -77,7 +78,7 @@
         <div class="container d-flex align-items-center justify-content-between">
 
             <h1 class="logo">
-                <a href="/">LInC<span>.</span></a>
+                <a href="/">@Localizer["Logo_Short"]<span>.</span></a>
             </h1>
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt=""></a>-->

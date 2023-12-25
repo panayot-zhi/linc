@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using linc.Resources;
 
 namespace linc.Utility;
 
@@ -281,6 +282,7 @@ public static class StartupExtensions
     public static IServiceCollection AddServices(this IServiceCollection services)
     {
         services.AddTransient<IEmailSender, EmailSender>();
+        services.AddTransient<ISharedViewLocalizer, SharedViewLocalizer>();
 
         return services;
     }

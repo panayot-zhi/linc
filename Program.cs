@@ -1,4 +1,5 @@
 using linc.Utility;
+using Microsoft.AspNetCore.Mvc.Razor;
 
 namespace linc;
 
@@ -17,10 +18,18 @@ public class Program
             .AddApplicationIdentity()
             .AddConfigurations(configuration)
             .AddAuthentications(configuration)
+            .AddLocalization(options => options.ResourcesPath = "Resources")
             .AddCookies()
             .AddServices()
             .AddCachingProfiles()
             .AddRoutes();
+
+        builder.Services.AddMvc()
+            .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
+            .AddDataAnnotationsLocalization(options => {
+                options.DataAnnotationLocalizerProvider = (_, factory) =>
+                    factory.Create(typeof(SharedResource));
+            });
 
         var app = builder.Build();
 
