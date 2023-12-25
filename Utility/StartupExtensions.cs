@@ -97,7 +97,7 @@ public static class StartupExtensions
             // no cookie policy enforces this
             // if you logged in - you gave consent
             options.Cookie.IsEssential = true;
-            options.Cookie.Name = ".netCore.linc.identity.external";
+            options.Cookie.Name = SiteCookieName.IdentityExternal;
             options.Cookie.SameSite = SameSiteMode.None;
             options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
 
@@ -129,7 +129,7 @@ public static class StartupExtensions
             // no cookie policy enforces this
             // if you logged in - you gave consent
             options.Cookie.IsEssential = true;
-            options.Cookie.Name = ".netCore.linc.identity";
+            options.Cookie.Name = SiteCookieName.Identity;
             options.Cookie.SameSite = SameSiteMode.Strict;
             options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
 
@@ -162,7 +162,7 @@ public static class StartupExtensions
         {
             options.Cookie.HttpOnly = true;
             options.Cookie.IsEssential = false;
-            options.Cookie.Name = ".netCore.linc.tempData";
+            options.Cookie.Name = SiteCookieName.TempData;
             options.Cookie.SameSite = SameSiteMode.Strict;
             options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
         });
@@ -172,7 +172,7 @@ public static class StartupExtensions
         {
             options.Cookie.HttpOnly = true;
             options.Cookie.IsEssential = true;
-            options.Cookie.Name = ".netCore.linc.antiForgery";
+            options.Cookie.Name = SiteCookieName.AntiForgery;
             options.Cookie.SameSite = SameSiteMode.Strict;
             options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
 
