@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using linc.Services;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using linc.Models.ConfigModels;
-using linc.Resources;
 
 namespace linc.Utility;
 
@@ -203,7 +202,7 @@ public static class StartupExtensions
     public static IServiceCollection AddApplicationIdentity(this IServiceCollection services)
     {
         services.AddIdentity<ApplicationUser, IdentityRole>()
-            .AddErrorDescriber<LocalizedIdentityErrorDescriber>()
+            //.AddErrorDescriber<LocalizedIdentityErrorDescriber>()
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders()
             .AddDefaultUI();
@@ -257,7 +256,6 @@ public static class StartupExtensions
     public static IServiceCollection AddServices(this IServiceCollection services)
     {
         services.AddTransient<IEmailSender, EmailSender>();
-        services.AddTransient<ISharedViewLocalizer, SharedViewLocalizer>();
 
         return services;
     }
