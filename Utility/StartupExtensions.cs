@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using linc.Data;
-using Microsoft.AspNetCore.Mvc;
+﻿using linc.Data;
 using linc.Services;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using linc.Models.ConfigModels;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 
 namespace linc.Utility;
 
@@ -83,6 +84,30 @@ public static class StartupExtensions
     public static IServiceCollection AddConfigurations(this IServiceCollection services, IConfiguration configuration)
     {
         services.Configure<EmailConfig>(configuration.GetSection(nameof(EmailConfig)));
+
+        // var cultureInfo = new CultureInfo("bg");
+
+        // NOTE: Soon...
+        //cultureInfo.NumberFormat.CurrencySymbol = "€";
+        // cultureInfo.NumberFormat.CurrencyDecimalSeparator = ".";
+
+        // CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+        // CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
+        services.Configure<RequestLocalizationOptions>(options =>
+        {
+            var supportedCultures = new[] { "bg", "en" };
+            options.SetDefaultCulture(supportedCultures.First())
+                .AddSupportedCultures(supportedCultures)
+                .AddSupportedUICultures(supportedCultures);
+
+            var cookieProvider = options.RequestCultureProviders
+                .OfType<CookieRequestCultureProvider>()
+                .First();
+
+            cookieProvider.CookieName = SiteCookieName.Language;
+            options.ApplyCurrentCultureToResponseHeaders = true;
+        });
 
         return services;
     }

@@ -1,4 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.AspNetCore.Localization
+
 <!DOCTYPE html>
 <html lang="@(ViewData["Lang"] ?? "bg")">
 <head>
@@ -44,6 +46,11 @@
 
 </head>
 
+@{
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var currentCulture = requestCulture.RequestCulture.UICulture.Name;
+}
+
 <body>
     <!-- ======= Top Bar ======= -->
     <section id="topbar" class="d-flex align-items-center">
@@ -53,6 +60,7 @@
             </div>
             <div class="d-flex align-items-center">
                 <form id="set_language" asp-controller="Home" asp-action="SetLanguage">
+                    @* <span>@currentCulture</span> *@
                     <button id="language_bg" name="culture" value="bg" type="submit" class="btn">
                         <i class="fi fi-bg"></i>
                     </button>

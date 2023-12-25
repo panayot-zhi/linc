@@ -1,7 +1,3 @@
-using linc.Data;
-using Microsoft.AspNetCore.Identity.UI.Services;
-using linc.Models.ConfigModels;
-using linc.Services;
 using linc.Utility;
 
 namespace linc;
@@ -38,6 +34,7 @@ public class Program
         }
 
         app.UseResponseCaching();
+        app.UseRequestLocalization();
         app.UseExceptionHandler("/Home/Error");
         app.UseStatusCodePagesWithReExecute("/Home/Error", "?code={0}");
         app.UseHttpsRedirection();
