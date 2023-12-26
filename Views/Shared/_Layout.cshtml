@@ -1,6 +1,10 @@
 ﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
-@using Microsoft.AspNetCore.Mvc.Localization
 @using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Identity
+@using linc.Data
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 
 @{
     var requestCulture = Context.Features.Get<IRequestCultureFeature>();
@@ -86,10 +90,10 @@
             <nav id="navbar" class="navbar">
                 <ul>
                     <li>
-                        <a class="nav-link scrollto " asp-controller="Home" asp-action="Index" asp-fragment="hero">Home</a>
+                        <a class="nav-link scrollto " asp-controller="Home" asp-action="Index" asp-fragment="hero">@Localizer["Home_NavItem"]</a>
                     </li>
                     <li>
-                        <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="about">About</a>
+                        <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="about">@Localizer["About_NavItem"]</a>
                     </li>
                     <li>
                         <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="services">Services</a>
@@ -98,7 +102,7 @@
                         <a class="nav-link scrollto " asp-controller="Home" asp-action="Index" asp-fragment="portfolio">Portfolio</a>
                     </li>
                     <li>
-                        <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="team">Team</a>
+                        <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="team">@Localizer["Team_NavItem"]</a>
                     </li>
                     <li class="dropdown">
                         <a href="#">
@@ -142,10 +146,29 @@
                         </ul>
                     </li>
                     <li>
-                        <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="contact">Contact</a>
+                        <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="contact">@Localizer["Contact_NavItem"]</a>
                     </li>
 
-                    <partial name="_LoginPartial" />
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <li>
+                            <a id="manage" class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@UserManager.GetUserName(User)</a>
+                        </li>
+                        <li>
+                            <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                <button id="logout" type="submit" class="nav-link btn btn-link text-dark">@Localizer["Logout_NavItem"]</button>
+                            </form>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a class="nav-link" id="register" asp-area="Identity" asp-page="/Account/Register">@Localizer["Register_NavItem"]</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" id="login" asp-area="Identity" asp-page="/Account/Login">@Localizer["Login_NavItem"]</a>
+                        </li>
+                    }
 
                 </ul>
 
@@ -309,10 +332,11 @@
     </a>
 
     <!-- Vendor JS Files -->
-    <script src="~/lib/jquery/jquery.js"></script>
-
     @* TODO: Heavily revise if all of these are necessary *@
-    <script src="~/lib/purecounterjs/dist/purecounter_vanilla.js"></script>
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/lib/purecounterjs/dist/purecounter_vanilla.min.js"></script>
     <script src="~/lib/aos/aos.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/glightbox/js/glightbox.min.js"></script>
