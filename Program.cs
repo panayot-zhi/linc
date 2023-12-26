@@ -15,21 +15,14 @@ public class Program
 
         services
             .AddDatabase(configuration)
-            .AddApplicationIdentity()
             .AddConfigurations(configuration)
             .AddAuthentications(configuration)
-            .AddLocalization(options => options.ResourcesPath = "Resources")
+            .AddApplicationIdentity()
+            .AddCachingProfiles()
+            .AddLocalizations()
             .AddCookies()
             .AddServices()
-            .AddCachingProfiles()
             .AddRoutes();
-
-        builder.Services.AddMvc()
-            .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
-            .AddDataAnnotationsLocalization(options => {
-                options.DataAnnotationLocalizerProvider = (_, factory) =>
-                    factory.Create(typeof(SharedResource));
-            });
 
         var app = builder.Build();
 

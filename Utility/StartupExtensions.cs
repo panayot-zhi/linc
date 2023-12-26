@@ -7,11 +7,55 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using linc.Resources;
+using Microsoft.AspNetCore.Mvc.Razor;
 
 namespace linc.Utility;
 
 public static class StartupExtensions
 {
+    public static IServiceCollection AddApplicationIdentity(this IServiceCollection services)
+    {
+        services.AddIdentity<ApplicationUser, IdentityRole>()
+            //.AddErrorDescriber<LocalizedIdentityErrorDescriber>()
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders()
+            .AddDefaultUI();
+
+        services.Configure<IdentityOptions>(options =>
+        {
+            // Store settings
+            options.Stores.MaxLengthForKeys = 127;
+
+            // Password Strength settings
+            options.Password.RequireDigit = true;
+            options.Password.RequiredLength = 6;
+            options.Password.RequireNonAlphanumeric = false;
+            options.Password.RequireUppercase = true;
+            options.Password.RequireLowercase = false;
+            options.Password.RequiredUniqueChars = 4;
+
+            // Lockout settings
+            options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+            options.Lockout.MaxFailedAccessAttempts = 7;
+            options.Lockout.AllowedForNewUsers = true;
+
+            // User settings
+            options.User.RequireUniqueEmail = true;
+            options.User.AllowedUserNameCharacters = Constants.AllowedUserNameCharacters;
+
+            // SignIn options
+            options.SignIn.RequireConfirmedEmail = true;
+        });
+
+        services.AddRazorPages(options =>
+        {
+            options.Conventions.AuthorizeAreaFolder("Identity", "/Account/Manage");
+            options.Conventions.AuthorizeAreaPage("Identity", "/Account/Logout");
+        });
+
+        return services;
+    }
+
     public static IServiceCollection AddAuthentications(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddAuthentication();
@@ -193,6 +237,16 @@ public static class StartupExtensions
             options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
         });
 
+        // .netCore.linc.language
+        services.Configure<RequestLocalizationOptions>(options =>
+        {
+            var cookieProvider = options.RequestCultureProviders
+                .OfType<CookieRequestCultureProvider>()
+                .First();
+
+            cookieProvider.CookieName = SiteCookieName.Language;
+        });
+
         // .netCore.linc.antiForgery
         services.AddAntiforgery(options =>
         {
@@ -225,45 +279,26 @@ public static class StartupExtensions
         return services;
     }
 
-    public static IServiceCollection AddApplicationIdentity(this IServiceCollection services)
+    public static IServiceCollection AddLocalizations(this IServiceCollection services)
     {
-        services.AddIdentity<ApplicationUser, IdentityRole>()
-            //.AddErrorDescriber<LocalizedIdentityErrorDescriber>()
-            .AddEntityFrameworkStores<ApplicationDbContext>()
-            .AddDefaultTokenProviders()
-            .AddDefaultUI();
-
-        services.Configure<IdentityOptions>(options =>
+        services.Configure<RequestLocalizationOptions>(options =>
         {
-            // Store settings
-            options.Stores.MaxLengthForKeys = 127;
+            var supportedCultures = new[] { "bg", "en" };
+            options.SetDefaultCulture(supportedCultures.First())
+                .AddSupportedCultures(supportedCultures)
+                .AddSupportedUICultures(supportedCultures);
 
-            // Password Strength settings
-            options.Password.RequireDigit = true;
-            options.Password.RequiredLength = 6;
-            options.Password.RequireNonAlphanumeric = false;
-            options.Password.RequireUppercase = true;
-            options.Password.RequireLowercase = false;
-            options.Password.RequiredUniqueChars = 4;
-
-            // Lockout settings
-            options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
-            options.Lockout.MaxFailedAccessAttempts = 7;
-            options.Lockout.AllowedForNewUsers = true;
-
-            // User settings
-            options.User.RequireUniqueEmail = true;
-            options.User.AllowedUserNameCharacters = Constants.AllowedUserNameCharacters;
-
-            // SignIn options
-            options.SignIn.RequireConfirmedEmail = true;
+            options.ApplyCurrentCultureToResponseHeaders = true;
         });
 
-        services.AddRazorPages(options =>
-        {
-            options.Conventions.AuthorizeAreaFolder("Identity", "/Account/Manage");
-            options.Conventions.AuthorizeAreaPage("Identity", "/Account/Logout");
-        });
+        services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+        services.AddMvc()
+            .AddViewLocalization()
+            .AddDataAnnotationsLocalization(options => {
+                options.DataAnnotationLocalizerProvider = (_, factory) =>
+                    factory.Create(typeof(SharedResource));
+            });
 
         return services;
     }
