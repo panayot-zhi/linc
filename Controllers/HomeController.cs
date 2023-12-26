@@ -4,20 +4,26 @@ using System.Diagnostics;
 using System.Net;
 using linc.Utility;
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.Extensions.Localization;
 
 namespace linc.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private IStringLocalizer<SharedResource> _localizer;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, 
+            IStringLocalizer<SharedResource> localizer)
         {
             _logger = logger;
+            _localizer = localizer;
         }
 
         public IActionResult Index()
         {
+            ViewBag.Title = _localizer["Index_Title"];
             return View();
         }
 
@@ -44,6 +50,21 @@ namespace linc.Controllers
         public IActionResult Submit()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult SetLanguage(string culture, string returnUrl = "/")
+        {
+            Response.Cookies.Append(
+                SiteCookieName.Language,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions
+                {
+                    Expires = DateTimeOffset.UtcNow.AddYears(1)
+                }
+            );
+
+            return LocalRedirect(returnUrl);
         }
 
         [ResponseCache(CacheProfileName = "NoCache")]
@@ -102,6 +123,11 @@ namespace linc.Controllers
                     _logger.LogWarning("404 NotFound: " + path);
 
                     // TODO: List here any cases where we need response body brevity
+                    if (path.EndsWith(".js.map"))
+                    {
+                        return StatusCode((int)HttpStatusCode.NotFound, path);
+                    }
+
                     var acceptHeaders = Request.Headers["Accept"];
                     if (acceptHeaders.Any(header => header.Contains("image/*")))
                     {

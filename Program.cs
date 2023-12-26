@@ -1,8 +1,5 @@
-using linc.Data;
-using Microsoft.AspNetCore.Identity.UI.Services;
-using linc.Models.ConfigModels;
-using linc.Services;
 using linc.Utility;
+using Microsoft.AspNetCore.Mvc.Razor;
 
 namespace linc;
 
@@ -18,12 +15,13 @@ public class Program
 
         services
             .AddDatabase(configuration)
-            .AddApplicationIdentity()
             .AddConfigurations(configuration)
             .AddAuthentications(configuration)
+            .AddApplicationIdentity()
+            .AddCachingProfiles()
+            .AddLocalizations()
             .AddCookies()
             .AddServices()
-            .AddCachingProfiles()
             .AddRoutes();
 
         var app = builder.Build();
@@ -38,6 +36,7 @@ public class Program
         }
 
         app.UseResponseCaching();
+        app.UseRequestLocalization();
         app.UseExceptionHandler("/Home/Error");
         app.UseStatusCodePagesWithReExecute("/Home/Error", "?code={0}");
         app.UseHttpsRedirection();

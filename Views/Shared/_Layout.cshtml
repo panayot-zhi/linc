@@ -1,6 +1,14 @@
 ﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.AspNetCore.Localization
+
+@{
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var currentCulture = requestCulture.RequestCulture.UICulture.Name;
+}
+
 <!DOCTYPE html>
-<html lang="@(ViewData["Lang"] ?? "bg")">
+<html lang="@currentCulture">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -21,8 +29,9 @@
     <!-- Vendor CSS Files -->
     @* TODO: Heavily revise if all of these are necessary *@
     <link href="~/lib/aos/aos.css" rel="stylesheet">
+    <link href="~/lib/flag-icons/css/flag-icons.min.css" rel="stylesheet">
     <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="~/lib/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet">
     <link href="~/lib/boxicons/css/boxicons.min.css" rel="stylesheet">
     <link href="~/lib/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="~/lib/swiper/swiper-bundle.min.css" rel="stylesheet">
@@ -46,28 +55,20 @@
 <body>
     <!-- ======= Top Bar ======= -->
     <section id="topbar" class="d-flex align-items-center">
-        <div class="container d-flex justify-content-center justify-content-md-between">
-            <div class="contact-info d-flex align-items-center">
-                <i class="bi bi-envelope d-flex align-items-center">
-                    <a href="mailto:contact@example.com">contact@example.com</a>
-                </i>
-                <i class="bi bi-phone d-flex align-items-center ms-4">
-                    <span>+1 5589 55488 55</span>
-                </i>
+        <div class="container d-flex justify-content-end justify-content-sm-between">
+            <div class="d-none d-sm-flex align-items-center">
+                <span>@Localizer["Logo_Long"]</span>
             </div>
-            <div class="social-links d-none d-md-flex align-items-center">
-                <a href="#" class="twitter">
-                    <i class="bi bi-twitter"></i>
-                </a>
-                <a href="#" class="facebook">
-                    <i class="bi bi-facebook"></i>
-                </a>
-                <a href="#" class="instagram">
-                    <i class="bi bi-instagram"></i>
-                </a>
-                <a href="#" class="linkedin">
-                    <i class="bi bi-linkedin"></i>
-                </a>
+            <div class="d-flex align-items-center">
+                <form id="set_language" asp-controller="Home" asp-action="SetLanguage">
+                    @* <span>@currentCulture</span> *@
+                    <button id="language_bg" name="culture" value="bg" type="submit" class="btn">
+                        <i class="fi fi-bg"></i>
+                    </button>
+                    <button id="language_en" name="culture" value="en" type="submit" class="btn">
+                        <i class="fi fi-eu"></i>
+                    </button>
+                </form>
             </div>
         </div>
     </section>
@@ -77,7 +78,7 @@
         <div class="container d-flex align-items-center justify-content-between">
 
             <h1 class="logo">
-                <a href="/">LInC<span>.</span></a>
+                <a href="/">@Localizer["Logo_Short"]<span>.</span></a>
             </h1>
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt=""></a>-->
