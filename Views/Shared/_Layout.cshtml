@@ -19,8 +19,8 @@
 
     @* TODO: SEO here *@
     <title>@ViewData["Title"] - linc</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
+    <meta content="@ViewData["Description"]" name="description">
+    <meta content="@ViewData["Keywords"]" name="keywords">
 
     @* TODO: favicon *@
     <!-- Favicons -->
@@ -28,7 +28,12 @@
     <link href="~/img/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    @* font-family: 'Piazzolla', serif; *@
+    @* font-family: 'Roboto', sans-serif; *@
+    @* font-family: 'Tinos', serif; *@
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Piazzolla:ital,opsz,wght@0,8..30,300;0,8..30,400;0,8..30,500;0,8..30,600;0,8..30,700;1,8..30,300;1,8..30,400;1,8..30,500;1,8..30,600;1,8..30,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     @* TODO: Heavily revise if all of these are necessary *@
@@ -65,7 +70,7 @@
             </div>
             <div class="d-flex align-items-center">
                 <form id="set_language" asp-controller="Home" asp-action="SetLanguage">
-                    @* <span>@currentCulture</span> *@
+                    <span>CurrentCulture: @currentCulture</span>
                     <button id="language_bg" name="culture" value="bg" type="submit" class="btn">
                         <i class="fi fi-bg"></i>
                     </button>
@@ -96,52 +101,61 @@
                         <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="about">@Localizer["About_NavItem"]</a>
                     </li>
                     <li>
-                        <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="services">Services</a>
+                        <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="services">@Localizer["Services_NavItem"]</a>
                     </li>
                     <li>
-                        <a class="nav-link scrollto " asp-controller="Home" asp-action="Index" asp-fragment="portfolio">Portfolio</a>
+                        <a class="nav-link scrollto " asp-controller="Home" asp-action="Index" asp-fragment="portfolio">@Localizer["Portfolio_NavItem"]</a>
                     </li>
                     <li>
                         <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="team">@Localizer["Team_NavItem"]</a>
                     </li>
                     <li class="dropdown">
                         <a href="#">
-                            <span>Drop Down</span> <i class="bi bi-chevron-down"></i>
+                            <span>@Localizer["Index_NavItem"]</span> <i class="bi bi-chevron-down"></i>
                         </a>
                         <ul>
-                            <li>
-                                <a href="#">Drop Down 1</a>
-                            </li>
                             <li class="dropdown">
                                 <a href="#">
-                                    <span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i>
+                                    <span>@Localizer["IndexArchive_NavItem"]</span> 
+                                    <i class="bi bi-chevron-right"></i>
                                 </a>
                                 <ul>
-                                    <li>
-                                        <a href="#">Deep Drop Down 1</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Deep Drop Down 2</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Deep Drop Down 3</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Deep Drop Down 4</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Deep Drop Down 5</a>
-                                    </li>
+                                    @{
+                                        const int beginYear = 2020;
+                                        var currentYear = DateTime.Now.Year;
+                                        var year = currentYear;
+
+                                        do
+                                        {
+                                            <li>
+                                                <a href="#">@year</a>
+                                            </li>
+
+                                        } while (--year >= beginYear);
+
+                                    }
                                 </ul>
                             </li>
                             <li>
-                                <a href="#">Drop Down 2</a>
+                                <a href="#">@Localizer["IndexArticles_NavItem"]</a>
                             </li>
                             <li>
-                                <a href="#">Drop Down 3</a>
+                                <a href="#">@Localizer["IndexAnalyses_NavItem"]</a>
                             </li>
                             <li>
-                                <a href="#">Drop Down 4</a>
+                                <a href="#">@Localizer["IndexSurveys_NavItem"]</a>
+                            </li>
+                            <li>
+                                <a href="#">@Localizer["IndexDiscussions_NavItem"]</a>
+                            </li>
+                            <li>
+                                <a href="#">@Localizer["IndexReviews_NavItem"]</a>
+                            </li>
+                            <li>
+                                <a href="#">@Localizer["IndexChronicles_NavItem"]</a>
+                            </li>
+                            <li>
+                                <a href="#">@Localizer["IndexForeign_NavItem"]</a>
                             </li>
                         </ul>
                     </li>
@@ -155,7 +169,7 @@
                             <a id="manage" class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@UserManager.GetUserName(User)</a>
                         </li>
                         <li>
-                            <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                            <form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                                 <button id="logout" type="submit" class="nav-link btn btn-link text-dark">@Localizer["Logout_NavItem"]</button>
                             </form>
                         </li>
