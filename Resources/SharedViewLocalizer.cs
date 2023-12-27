@@ -10,7 +10,7 @@ namespace linc.Resources
         public SharedViewLocalizer(IStringLocalizerFactory factory)
         {
             var type = typeof(SharedResource);
-            var assemblyName = new AssemblyName(type.GetTypeInfo().Assembly.FullName);
+            var assemblyName = new AssemblyName(type.Assembly.FullName);
             _localizer = factory.Create(nameof(SharedResource), assemblyName.Name);
         }
 
