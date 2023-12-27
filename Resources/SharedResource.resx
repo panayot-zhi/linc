@@ -126,4 +126,7 @@
   <data name="Logo_Short" xml:space="preserve">
     <value>ЛИнК</value>
   </data>
+  <data name="Welcome_Message" xml:space="preserve">
+    <value>Добре дошли на &lt;span&gt;ЛИнК.uni-plovdiv.bg&lt;/span&gt;</value>
+  </data>
 </root>
