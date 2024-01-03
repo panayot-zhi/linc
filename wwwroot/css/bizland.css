@@ -10,7 +10,7 @@
 # General
 --------------------------------------------------------------*/
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: "Tinos", serif;
   color: #444444;
 }
 
@@ -179,7 +179,7 @@ h6 {
   line-height: 1;
   font-weight: 600;
   letter-spacing: 0.8px;
-  font-family: "Poppins", sans-serif;
+  font-family: "Piazzolla", serif;
 }
 
 #header .logo a {
@@ -486,7 +486,7 @@ h6 {
   font-weight: 700;
   line-height: 56px;
   color: #222222;
-  font-family: "Poppins", sans-serif;
+  font-family: "Piazzolla", serif;
 }
 
 #hero h1 span {
@@ -814,7 +814,7 @@ section {
   text-transform: uppercase;
   display: block;
   font-weight: 600;
-  font-family: "Poppins", sans-serif;
+  font-family: "Piazzolla", serif;
   color: #222222;
 }
 
@@ -1353,7 +1353,7 @@ section {
   font-size: 36px;
   color: #106eea;
   font-weight: 600;
-  font-family: "Poppins", sans-serif;
+  font-family: "Piazzolla", serif;
   margin-bottom: 20px;
 }
 
@@ -1457,7 +1457,7 @@ section {
 .faq .faq-list .question {
   display: block;
   position: relative;
-  font-family: #106eea;
+  font-family: "Roboto", sans-serif;
   font-size: 18px;
   line-height: 24px;
   font-weight: 400;
