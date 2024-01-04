@@ -41,7 +41,7 @@ public static class StartupExtensions
 
             // User settings
             options.User.RequireUniqueEmail = true;
-            options.User.AllowedUserNameCharacters = Constants.AllowedUserNameCharacters;
+            options.User.AllowedUserNameCharacters = SiteConstant.AllowedUserNameCharacters;
 
             // SignIn options
             options.SignIn.RequireConfirmedEmail = true;
@@ -317,7 +317,7 @@ public static class StartupExtensions
     public static IServiceCollection AddServices(this IServiceCollection services)
     {
         services.AddTransient<IEmailSender, EmailSender>();
-        services.AddTransient<ISharedViewLocalizer, SharedViewLocalizer>();
+        //services.AddTransient<ISharedViewLocalizer, SharedViewLocalizer>();
 
         return services;
     }
