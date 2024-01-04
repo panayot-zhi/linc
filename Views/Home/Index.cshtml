@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
-    ViewData["Title"] = Localizer["Index_Title"];
+    ViewData["Title"] = HtmlLocalizer["Index_Title"];
 }
 
 @section Hero {
@@ -9,10 +9,10 @@
     <section id="hero" class="d-flex align-items-center">
         <div class="container" data-aos="zoom-out" data-aos-delay="100">
             <h1>@HtmlLocalizer["Welcome_Message"]</h1>
-            <h2>Short descriptive sentence about the platform's mission</h2>
+            <h2>@HtmlLocalizer["Welcome_Description"] :: Short descriptive sentence about the platform's mission</h2>
             <div class="d-flex">
-                <a href="#about" class="btn-get-started scrollto">Get Started</a>
-                @* <a href="https://www.youtube.com/watch?v=ouH107WFcQk" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a> *@
+                <a href="#about" class="btn-get-started scrollto">@HtmlLocalizer["GetStarted_Message"]</a>
+                @* <a href="https://www.youtube.com/watch?v=ouH107WFcQk" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>@HtmlLocalizer["WatchVideo_Message"]</span></a> *@
             </div>
         </div>
     </section>
@@ -77,46 +77,90 @@
     </div>
 </section>
 <!-- End Featured Services Section -->
+
 <!-- ======= About Section ======= -->
 <section id="about" class="about section-bg">
     <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-            <h2>About</h2>
-            <h3>Find Out More <span>About Us</span></h3>
-            <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+            <h2>За нас</h2>
+            <h3>Научете повече <span>за списанието</span></h3>
+            <p>
+                „Език, интерпретация, концепции“ @*TODO: (pISSN …………, eISSN …………)*@ е списание на Филологическия факултет на Пловдивския университет „Паисий Хилендарски“.
+            </p>
+            <p>
+                Годишно излизат <span>два броя</span>, единият от които е <span>тематичен</span>.
+            </p>
         </div>
 
         <div class="row">
             <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
-                <img src="~/img/about.jpg" class="img-fluid" alt="">
+                <img src="~/img/linc_cover_page_clean.svg" class="img-fluid" alt="">
             </div>
             <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="100">
-                <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
+                <h3>Цели и обхват на списанието</h3>
                 <p class="fst-italic">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                    magna aliqua.
+                    „Език, интерпретация, концепции“ публикува статии по проблеми на теорията, историята и социологията на езика и литературата, културологични, 
+                    медийни и компаративистки изследвания, проучвания относно диалозите между изкуствата, трудове върху стратегиите и практиките в хуманитарното образование, 
+                    рецензии за академични книги.
                 </p>
                 <ul>
                     <li>
-                        <i class="bx bx-store-alt"></i>
+                        <i class="bx bxs-megaphone"></i>
                         <div>
-                            <h5>Ullamco laboris nisi ut aliquip consequat</h5>
-                            <p>Magni facilis facilis repellendus cum excepturi quaerat praesentium libre trade</p>
+                            <h5>Мисия</h5>
+                            <p>
+                                Списанието предоставя трибуна на изследователи с различни методологически нагласи, от различни поколения и идентифициращи се с различни културни традиции и контексти.
+                            </p>
                         </div>
                     </li>
                     <li>
-                        <i class="bx bx-images"></i>
+                        <i class="bx bxs-conversation"></i>
                         <div>
-                            <h5>Magnam soluta odio exercitationem reprehenderi</h5>
-                            <p>Quo totam dolorum at pariatur aut distinctio dolorum laudantium illo direna pasata redi</p>
+                            <h5>Рецензиране</h5>
+                            <p>
+                                Текстовете, постъпили в редакцията на списанието, подлежат на двойно анонимно рецензиране от двама независими рецензенти – експерти в съответната научна област.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="bx bx-book-add"></i>
+                        <div>
+                            <h5>Публикуване на ръкопис</h5>
+                            <p>
+                                Публикуването в „Език, интерпретация, концепции“ е безплатно за авторите и за институциите, към които те принадлежат.
+                                Достъпът до онлайн формата на изданието е свободен, безплатен и до целия текстови обем.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="bx bx-group"></i>
+                        <div>
+                            <h5>Редколегия</h5>
+                            <p>
+                                В редакторския екип на изданието участват преподаватели от факултета, а членове на редакционния борд са изявени изследователи от различни страни и научни организации.
+                            </p>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="bx bx-globe"></i>
+                        <div>
+                            <h5>Съдържание</h5>
+                            <p>
+                                Публикациите в „Език, интерпретация, концепции“ са на български или английски език и могат да бъдат полезни на специалисти от различни сфери на хуманитаристиката.
+                            </p>
                         </div>
                     </li>
                 </ul>
                 <p>
-                    Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                    velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum
+                    Изданието се стреми да формира пространство на толерантния и стойностен интелектуален дебат върху проблемите, занимаващи съвременните изследователи хуманитаристи, 
+                    да популяризира постиженията на български и чужди учени, да се съобразява с потребностите на читателска аудитория със специфични интереси и подготвеност.
+                </p>
+                <p>
+                    Списанието се финансира от Пловдивския университет и се издава от Университетско издателство „Паисий Хилендарски“.
+                </p>
+                <p>
+                    Лиценз: CC BY-NC-ND 4.0 / Attribution-NonCommercial-NoDerivatives 4.0 International
                 </p>
             </div>
         </div>
@@ -124,6 +168,7 @@
     </div>
 </section>
 <!-- End About Section -->
+
 <!-- ======= Skills Section ======= -->
 <section id="skills" class="skills">
     <div class="container" data-aos="fade-up">
@@ -185,6 +230,7 @@
     </div>
 </section>
 <!-- End Skills Section -->
+
 <!-- ======= Counts Section ======= -->
 <section id="counts" class="counts">
     <div class="container" data-aos="fade-up">
@@ -228,6 +274,7 @@
     </div>
 </section>
 <!-- End Counts Section -->
+
 <!-- ======= Clients Section ======= -->
 <section id="clients" class="clients section-bg">
     <div class="container" data-aos="zoom-in">
@@ -263,6 +310,7 @@
     </div>
 </section>
 <!-- End Clients Section -->
+
 <!-- ======= Services Section ======= -->
 <section id="services" class="services">
     <div class="container" data-aos="fade-up">
@@ -351,6 +399,7 @@
     </div>
 </section>
 <!-- End Services Section -->
+
 <!-- ======= Testimonials Section ======= -->
 <section id="testimonials" class="testimonials">
     <div class="container" data-aos="zoom-in">
@@ -430,6 +479,7 @@
     </div>
 </section>
 <!-- End Testimonials Section -->
+
 <!-- ======= Portfolio Section ======= -->
 <section id="portfolio" class="portfolio">
     <div class="container" data-aos="fade-up">
@@ -584,6 +634,7 @@
     </div>
 </section>
 <!-- End Portfolio Section -->
+
 <!-- ======= Team Section ======= -->
 <section id="team" class="team section-bg">
     <div class="container" data-aos="fade-up">
@@ -705,8 +756,9 @@
     </div>
 </section>
 <!-- End Team Section -->
+
 <!-- ======= Pricing Section ======= -->
-<section id="pricing" class="pricing">
+@*<section id="pricing" class="pricing">
     <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -789,8 +841,9 @@
         </div>
 
     </div>
-</section>
+</section>*@
 <!-- End Pricing Section -->
+
 <!-- ======= Frequently Asked Questions Section ======= -->
 <section id="faq" class="faq section-bg">
     <div class="container" data-aos="fade-up">
