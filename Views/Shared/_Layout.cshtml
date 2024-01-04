@@ -66,7 +66,7 @@
     <section id="topbar" class="d-flex align-items-center">
         <div class="container d-flex justify-content-end justify-content-sm-between">
             <div class="d-none d-sm-flex align-items-center">
-                <span>@Localizer["Logo_Long"]</span>
+                <span>@HtmlLocalizer["Logo_Long"]</span>
             </div>
             <div class="d-flex align-items-center">
                 <form id="set_language" asp-controller="Home" asp-action="SetLanguage">
@@ -87,7 +87,7 @@
         <div class="container d-flex align-items-center justify-content-between">
 
             <h1 class="logo">
-                <a href="/">@Localizer["Logo_Short"]<span>.</span></a>
+                <a href="/">@HtmlLocalizer["Logo_Short"]<span>.</span></a>
             </h1>
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt=""></a>-->
@@ -95,28 +95,28 @@
             <nav id="navbar" class="navbar">
                 <ul>
                     <li>
-                        <a class="nav-link scrollto " asp-controller="Home" asp-action="Index" asp-fragment="hero" title="@Localizer["Home_NavItem_Title"]">@Localizer["Home_NavItem"]</a>
+                        <a class="nav-link scrollto " asp-controller="Home" asp-action="Index" asp-fragment="hero" title="@HtmlLocalizer["Home_NavItem_Title"]">@HtmlLocalizer["Home_NavItem"]</a>
                     </li>
                     <li>
-                        <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="about" title="@Localizer["About_NavItem_Title"]">@Localizer["About_NavItem"]</a>
+                        <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="about" title="@HtmlLocalizer["About_NavItem_Title"]">@HtmlLocalizer["About_NavItem"]</a>
                     </li>
                     <li>
-                        <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="services" title="@Localizer["Services_NavItem_Title"]">@Localizer["Services_NavItem"]</a>
+                        <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="services" title="@HtmlLocalizer["Services_NavItem_Title"]">@HtmlLocalizer["Services_NavItem"]</a>
                     </li>
                     <li>
-                        <a class="nav-link scrollto " asp-controller="Home" asp-action="Index" asp-fragment="portfolio" title="@Localizer["Portfolio_NavItem_Title"]">@Localizer["Portfolio_NavItem"]</a>
+                        <a class="nav-link scrollto " asp-controller="Home" asp-action="Index" asp-fragment="portfolio" title="@HtmlLocalizer["Portfolio_NavItem_Title"]">@HtmlLocalizer["Portfolio_NavItem"]</a>
                     </li>
                     <li>
-                        <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="team" title="@Localizer["Team_NavItem_Title"]">@Localizer["Team_NavItem"]</a>
+                        <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="team" title="@HtmlLocalizer["Team_NavItem_Title"]">@HtmlLocalizer["Team_NavItem"]</a>
                     </li>
                     <li class="dropdown">
                         <a href="#">
-                            <span>@Localizer["Index_NavItem"]</span> <i class="bi bi-chevron-down"></i>
+                            <span>@HtmlLocalizer["Index_NavItem"]</span> <i class="bi bi-chevron-down"></i>
                         </a>
                         <ul>
                             <li class="dropdown">
                                 <a href="#">
-                                    <span>@Localizer["IndexArchive_NavItem"]</span> 
+                                    <span>@HtmlLocalizer["IndexArchive_NavItem"]</span> 
                                     <i class="bi bi-chevron-right"></i>
                                 </a>
                                 <ul>
@@ -128,7 +128,7 @@
                                         do
                                         {
                                             <li>
-                                                <a href="#" title="@Localizer["IndexArchiveYear_NavItem_Title"]">@year</a>
+                                                <a href="#" title="@HtmlLocalizer["IndexArchiveYear_NavItem_Title"]">@year</a>
                                             </li>
 
                                         } while (--year >= beginYear);
@@ -137,39 +137,39 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="#" title="@Localizer["IndexArticles_NavItem_Title"]">@Localizer["IndexArticles_NavItem"]</a>
+                                <a href="#" title="@HtmlLocalizer["IndexArticles_NavItem_Title"]">@HtmlLocalizer["IndexArticles_NavItem"]</a>
                             </li>
                             <li>
-                                <a href="#" title="@Localizer["IndexAnalyses_NavItem_Title"]">@Localizer["IndexAnalyses_NavItem"]</a>
+                                <a href="#" title="@HtmlLocalizer["IndexAnalyses_NavItem_Title"]">@HtmlLocalizer["IndexAnalyses_NavItem"]</a>
                             </li>
                             <li>
-                                <a href="#" title="@Localizer["IndexSurveys_NavItem_Title"]">@Localizer["IndexSurveys_NavItem"]</a>
+                                <a href="#" title="@HtmlLocalizer["IndexSurveys_NavItem_Title"]">@HtmlLocalizer["IndexSurveys_NavItem"]</a>
                             </li>
                             <li>
-                                <a href="#" title="@Localizer["IndexDiscussions_NavItem_Title"]">@Localizer["IndexDiscussions_NavItem"]</a>
+                                <a href="#" title="@HtmlLocalizer["IndexDiscussions_NavItem_Title"]">@HtmlLocalizer["IndexDiscussions_NavItem"]</a>
                             </li>
                             <li>
-                                <a href="#" title="@Localizer["IndexReviews_NavItem_Title"]">@Localizer["IndexReviews_NavItem"]</a>
+                                <a href="#" title="@HtmlLocalizer["IndexReviews_NavItem_Title"]">@HtmlLocalizer["IndexReviews_NavItem"]</a>
                             </li>
                             <li>
-                                <a href="#" title="@Localizer["IndexChronicles_NavItem_Title"]">@Localizer["IndexChronicles_NavItem"]</a>
+                                <a href="#" title="@HtmlLocalizer["IndexChronicles_NavItem_Title"]">@HtmlLocalizer["IndexChronicles_NavItem"]</a>
                             </li>
                             <li>
-                                <a href="#" title="@Localizer["IndexForeign_NavItem_Title"]">@Localizer["IndexForeign_NavItem"]</a>
+                                <a href="#" title="@HtmlLocalizer["IndexForeign_NavItem_Title"]">@HtmlLocalizer["IndexForeign_NavItem"]</a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="contact" title="@Localizer["Contact_NavItem_Title"]">@Localizer["Contact_NavItem"]</a>
+                        <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="contact" title="@HtmlLocalizer["Contact_NavItem_Title"]">@HtmlLocalizer["Contact_NavItem"]</a>
                     </li>
 
                     @if (SignInManager.IsSignedIn(User))
                     {
                         <li>
-                            <a id="manage" class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="@Localizer["Manage_NavItem_Title"]">@UserManager.GetUserName(User)</a>
+                            <a id="manage" class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="@HtmlLocalizer["Manage_NavItem_Title"]">@UserManager.GetUserName(User)</a>
                         </li>
                         <li>
-                            <a class="nav-link submit-link" href="#logoutForm" title="@Localizer["Logout_NavItem_Title"]">@Localizer["Logout_NavItem"]</a>
+                            <a class="nav-link submit-link" href="#logoutForm" title="@HtmlLocalizer["Logout_NavItem_Title"]">@HtmlLocalizer["Logout_NavItem"]</a>
                             <form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" 
                                   asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
                             </form>
@@ -178,10 +178,10 @@
                     else
                     {
                         <li>
-                            <a class="nav-link" id="register" asp-area="Identity" asp-page="/Account/Register" title="@Localizer["Register_NavItem_Title"]">@Localizer["Register_NavItem"]</a>
+                            <a class="nav-link" id="register" asp-area="Identity" asp-page="/Account/Register" title="@HtmlLocalizer["Register_NavItem_Title"]">@HtmlLocalizer["Register_NavItem"]</a>
                         </li>
                         <li>
-                            <a class="nav-link" id="login" asp-area="Identity" asp-page="/Account/Login" title="@Localizer["Login_NavItem_Title"]">@Localizer["Login_NavItem"]</a>
+                            <a class="nav-link" id="login" asp-area="Identity" asp-page="/Account/Login" title="@HtmlLocalizer["Login_NavItem_Title"]">@HtmlLocalizer["Login_NavItem"]</a>
                         </li>
                     }
 
