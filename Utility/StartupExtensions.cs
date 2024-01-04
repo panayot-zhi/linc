@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using linc.Resources;
 using Microsoft.AspNetCore.Mvc.Razor;
 
 namespace linc.Utility;
