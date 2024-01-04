@@ -33,11 +33,11 @@ public static class SiteRolesHelper
     /// </summary>
     public static readonly Dictionary<Guid, string> DatabaseRolesSeed = new()
     {
-        {new Guid("00000000-0000-0000-0000-000000000000"), AdministratorRoleName},
-        {new Guid("5e1199d7-7725-4900-aa34-5496365bf5a0"), HeadEditorRoleName},
-        {new Guid("05cbe4c7-108e-40bc-bee7-65438875026e"), EditorRoleName},
-        {new Guid("6b1acea8-2d26-4c82-b6ad-7281b7d621ae"), UserPlusRoleName},
-        {new Guid("90667439-9058-4956-96e6-d23bac481443"), UserRoleName}
+        {Guid.Parse(SiteConstant.ZeroGuid), AdministratorRoleName},
+        {Guid.Parse("5e1199d7-7725-4900-aa34-5496365bf5a0"), HeadEditorRoleName},
+        {Guid.Parse("05cbe4c7-108e-40bc-bee7-65438875026e"), EditorRoleName},
+        {Guid.Parse("6b1acea8-2d26-4c82-b6ad-7281b7d621ae"), UserPlusRoleName},
+        {Guid.Parse("90667439-9058-4956-96e6-d23bac481443"), UserRoleName}
     };
 
     public static SiteRole GetRole(string role)
