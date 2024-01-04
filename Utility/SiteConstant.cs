@@ -1,7 +1,12 @@
 ﻿namespace linc.Utility;
 
-public static class Constants
+public static class SiteConstant
 {
+    public const string AdministratorEmail = "admin-linc@uni-plovdiv.bg";
+    public const string AdministratorUserName = "p.ivanov";
+    public const string AdministratorFirstName = "Panayot";
+    public const string AdministratorLastName = "Ivanov";
+
     public const string CyrillicNamePattern = "^[\\u0400-\\u04FF][\\u0400-\\u04FF-]+[\\u0400-\\u04FF]$";
 
     public const string AllowedUserNameLatinCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
