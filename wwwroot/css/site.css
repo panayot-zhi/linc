@@ -6,3 +6,7 @@ a.scrollto {
 a.submit-link {
     /* keep */
 }
+
+.section-title p span {
+    color: #106eea;
+}
