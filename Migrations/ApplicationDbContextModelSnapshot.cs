@@ -63,7 +63,6 @@ namespace linc.Migrations
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("GoogleAvatarPath")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("InternalAvatarPath")

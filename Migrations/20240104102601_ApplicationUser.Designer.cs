@@ -11,7 +11,7 @@ using linc.Data;
 namespace linc.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231224112945_ApplicationUser")]
+    [Migration("20240104102601_ApplicationUser")]
     partial class ApplicationUser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -65,7 +65,6 @@ namespace linc.Migrations
                         .HasColumnType("varchar(255)");
 
                     b.Property<string>("GoogleAvatarPath")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("InternalAvatarPath")

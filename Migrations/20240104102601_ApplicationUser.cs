@@ -89,7 +89,7 @@ namespace linc.Migrations
                 name: "GoogleAvatarPath",
                 table: "AspNetUsers",
                 type: "longtext",
-                nullable: false)
+                nullable: true)
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.AddColumn<string>(
