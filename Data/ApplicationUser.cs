@@ -37,7 +37,7 @@ namespace linc.Data
         public string? TwitterAvatarPath { get; set; }
 
         [PersonalData]
-        public string GoogleAvatarPath { get; set; }
+        public string? GoogleAvatarPath { get; set; }
 
         [PersonalData]
         public string? InternalAvatarPath { get; set; }
