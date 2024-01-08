@@ -1,11 +1,11 @@
-﻿using linc.Models;
+﻿using System.Net;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
-using System.Net;
-using linc.Utility;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Localization;
+using linc.Models.ViewModels.Home;
+using linc.Models.ViewModels;
+using linc.Utility;
 
 namespace linc.Controllers
 {
@@ -24,7 +24,14 @@ namespace linc.Controllers
         public IActionResult Index()
         {
             ViewBag.Title = _localizer["Index_Title"];
-            return View();
+
+            // TODO: Expand and fill this model with information
+            var viewModel = new IndexViewModel()
+            {
+                CountsViewModel = new()
+            };
+
+            return View(viewModel);
         }
 
         public IActionResult About()
