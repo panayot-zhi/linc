@@ -321,9 +321,12 @@ public static class StartupExtensions
         return services;
     }
 
-    public static void EnsureMigrationOfContext<T>(this IApplicationBuilder app) where T : DbContext
+    public static void ApplyDatabaseMigrations(this IHost app)
     {
-        var context = app.ApplicationServices.GetRequiredService<T>();
-        context.Database.Migrate();
+        using (var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope())
+        using (var dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>())
+        {
+            dbContext.Database.Migrate();
+        }
     }
 }

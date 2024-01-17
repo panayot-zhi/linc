@@ -1,5 +1,7 @@
+using linc.Data;
 using linc.Utility;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.EntityFrameworkCore;
 
 namespace linc;
 
@@ -34,6 +36,8 @@ public class Program
             // see https://aka.ms/aspnetcore-hsts.
             app.UseHsts();
         }
+
+        app.ApplyDatabaseMigrations();
 
         app.UseResponseCaching();
         app.UseRequestLocalization();
