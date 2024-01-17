@@ -28,7 +28,8 @@ namespace linc.Controllers
             // TODO: Expand and fill this model with information
             var viewModel = new IndexViewModel()
             {
-                CountsViewModel = new()
+                CountsViewModel = new(),
+                ReviewsViewModel = new()
             };
 
             return View(viewModel);
