@@ -10,3 +10,7 @@ a.submit-link {
 .section-title p span {
     color: #106eea;
 }
+
+.team .member .member-img {
+    text-align: center;
+}

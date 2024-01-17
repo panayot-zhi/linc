@@ -8,7 +8,7 @@
 
 @{
     var requestCulture = Context.Features.Get<IRequestCultureFeature>();
-    var currentCulture = requestCulture.RequestCulture.UICulture.Name;
+    var currentCulture = requestCulture?.RequestCulture.UICulture.Name ?? "bg";
 }
 
 <!DOCTYPE html>
@@ -89,25 +89,23 @@
             <h1 class="logo">
                 <a href="/">@HtmlLocalizer["Logo_Short"]<span>.</span></a>
             </h1>
-            <!-- Uncomment below if you prefer to use an image logo -->
-            <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt=""></a>-->
 
             <nav id="navbar" class="navbar">
                 <ul>
                     <li>
-                        <a class="nav-link scrollto " asp-controller="Home" asp-action="Index" asp-fragment="hero" title="@HtmlLocalizer["Home_NavItem_Title"]">@HtmlLocalizer["Home_NavItem"]</a>
+                        <a class="nav-link scrollto " asp-controller="Home" asp-action="Index" asp-fragment="hero">@HtmlLocalizer["Home_NavItem"]</a>
                     </li>
                     <li>
-                        <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="about" title="@HtmlLocalizer["About_NavItem_Title"]">@HtmlLocalizer["About_NavItem"]</a>
+                        <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="about">@HtmlLocalizer["About_NavItem"]</a>
                     </li>
                     <li>
-                        <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="services" title="@HtmlLocalizer["Services_NavItem_Title"]">@HtmlLocalizer["Services_NavItem"]</a>
+                        <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="services">@HtmlLocalizer["Services_NavItem"]</a>
                     </li>
                     <li>
-                        <a class="nav-link scrollto " asp-controller="Home" asp-action="Index" asp-fragment="portfolio" title="@HtmlLocalizer["Portfolio_NavItem_Title"]">@HtmlLocalizer["Portfolio_NavItem"]</a>
+                        <a class="nav-link scrollto " asp-controller="Home" asp-action="Index" asp-fragment="portfolio">@HtmlLocalizer["Portfolio_NavItem"]</a>
                     </li>
                     <li>
-                        <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="team" title="@HtmlLocalizer["Team_NavItem_Title"]">@HtmlLocalizer["Team_NavItem"]</a>
+                        <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="team">@HtmlLocalizer["Team_NavItem"]</a>
                     </li>
                     <li class="dropdown">
                         <a href="#">
@@ -121,14 +119,14 @@
                                 </a>
                                 <ul>
                                     @{
-                                        const int beginYear = 2020;
+                                        const int beginYear = 2024;
                                         var currentYear = DateTime.Now.Year;
                                         var year = currentYear;
 
                                         do
                                         {
                                             <li>
-                                                <a href="#" title="@HtmlLocalizer["IndexArchiveYear_NavItem_Title"]">@year</a>
+                                                <a href="#">@year</a>
                                             </li>
 
                                         } while (--year >= beginYear);
@@ -137,25 +135,25 @@
                                 </ul>
                             </li>
                             <li>
-                                <a href="#" title="@HtmlLocalizer["IndexArticles_NavItem_Title"]">@HtmlLocalizer["IndexArticles_NavItem"]</a>
+                                <a href="#">@HtmlLocalizer["IndexArticles_NavItem"]</a>
                             </li>
                             <li>
-                                <a href="#" title="@HtmlLocalizer["IndexAnalyses_NavItem_Title"]">@HtmlLocalizer["IndexAnalyses_NavItem"]</a>
+                                <a href="#">@HtmlLocalizer["IndexAnalyses_NavItem"]</a>
                             </li>
                             <li>
-                                <a href="#" title="@HtmlLocalizer["IndexSurveys_NavItem_Title"]">@HtmlLocalizer["IndexSurveys_NavItem"]</a>
+                                <a href="#">@HtmlLocalizer["IndexSurveys_NavItem"]</a>
                             </li>
                             <li>
-                                <a href="#" title="@HtmlLocalizer["IndexDiscussions_NavItem_Title"]">@HtmlLocalizer["IndexDiscussions_NavItem"]</a>
+                                <a href="#">@HtmlLocalizer["IndexDiscussions_NavItem"]</a>
                             </li>
                             <li>
-                                <a href="#" title="@HtmlLocalizer["IndexReviews_NavItem_Title"]">@HtmlLocalizer["IndexReviews_NavItem"]</a>
+                                <a href="#">@HtmlLocalizer["IndexReviews_NavItem"]</a>
                             </li>
                             <li>
-                                <a href="#" title="@HtmlLocalizer["IndexChronicles_NavItem_Title"]">@HtmlLocalizer["IndexChronicles_NavItem"]</a>
+                                <a href="#">@HtmlLocalizer["IndexChronicles_NavItem"]</a>
                             </li>
                             <li>
-                                <a href="#" title="@HtmlLocalizer["IndexForeign_NavItem_Title"]">@HtmlLocalizer["IndexForeign_NavItem"]</a>
+                                <a href="#">@HtmlLocalizer["IndexForeign_NavItem"]</a>
                             </li>
                         </ul>
                     </li>
@@ -215,38 +213,30 @@
 
     <!-- ======= Footer ======= -->
     <footer id="footer">
-
-        <div class="footer-newsletter">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <h4>Join Our Newsletter</h4>
-                        <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-                        <form action="" method="post">
-                            <input type="email" name="email"><input type="submit" value="Subscribe">
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
+        @if (IsSectionDefined("Newsletter"))
+        {
+            @await RenderSectionAsync("Newsletter")
+        }
 
         <div class="footer-top">
             <div class="container">
                 <div class="row">
 
                     <div class="col-lg-3 col-md-6 footer-contact">
-                        <h3>BizLand<span>.</span></h3>
+                        <h3>Адрес на редакцията<span>.</span></h3>
                         <p>
-                            A108 Adam Street <br>
-                            New York, NY 535022<br>
-                            United States <br><br>
-                            <strong>Phone:</strong> +1 5589 55488 55<br>
-                            <strong>Email:</strong> info@example.com<br>
+                            @HtmlLocalizer["Footer_Address_Street"],<br>
+                            @HtmlLocalizer["Footer_Address_City"],<br>
+                            @HtmlLocalizer["Footer_Address_Country"] <br><br>
+                            <strong>@HtmlLocalizer["Admin_Label"]:</strong> admin-linc@uni-plovdiv.bg<br>
+                            @* <strong>@HtmlLocalizer["Phone_Label"]:</strong> +359 876 72 72 78<br> *@
+                            <strong>@HtmlLocalizer["Email_Label"]:</strong> review-linc@uni-plovdiv.bg<br>
                         </p>
                     </div>
 
                     <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>Useful Links</h4>
+                        <h4>@HtmlLocalizer["Footer_UsefulLinks_Title"]</h4>
                         <ul>
                             <li>
                                 <i class="bx bx-chevron-right"></i> <a href="#">Home</a>
@@ -292,10 +282,10 @@
                         <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
                         <div class="social-links mt-3">
                             <a href="#" class="twitter">
-                                <i class="bx bxl-twitter"></i>
+                                <i class="bi bi-twitter-x"></i>
                             </a>
                             <a href="#" class="facebook">
-                                <i class="bx bxl-facebook"></i>
+                                <i class="bi bi-facebook"></i>
                             </a>
                             <a href="#" class="instagram">
                                 <i class="bx bxl-instagram"></i>
