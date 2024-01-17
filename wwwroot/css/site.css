@@ -14,3 +14,8 @@ a.submit-link {
 .team .member .member-img {
     text-align: center;
 }
+
+.about-cover-page-wrapper {
+    display: flex;
+    align-items: center;
+}
