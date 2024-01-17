@@ -12,7 +12,7 @@ namespace linc.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private IStringLocalizer<SharedResource> _localizer;
+        private readonly IStringLocalizer<SharedResource> _localizer;
 
         public HomeController(ILogger<HomeController> logger, 
             IStringLocalizer<SharedResource> localizer)
