@@ -1,13 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
+		<TargetFramework>net6.0</TargetFramework>
+		<CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
 		<UserSecretsId>f8208029-8cdf-4ff3-96d8-2cd03262847d</UserSecretsId>
+		<SatelliteResourceLanguages>bg;en</SatelliteResourceLanguages>
 		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
 		<DockerfileContext>.</DockerfileContext>
+		<Authors>Panayot Ivanov</Authors>
 		<Version>1.0.0</Version>
+		<Company />
 	</PropertyGroup>
 
 	<ItemGroup>
