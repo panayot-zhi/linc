@@ -4,6 +4,7 @@ public static class SiteConstant
 {
     public const string ZeroGuid = "00000000-0000-0000-0000-000000000000";
 
+    public const string ReviewsEmail = "review-linc@uni-plovdiv.bg";
     public const string AdministratorEmail = "admin-linc@uni-plovdiv.bg";
     public const string AdministratorUserName = "p.ivanov";
     public const string AdministratorFirstName = "Panayot";
