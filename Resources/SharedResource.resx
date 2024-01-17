@@ -117,6 +117,51 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="About_NavItem" xml:space="preserve">
+    <value>За списанието</value>
+  </data>
+  <data name="Admin_Label" xml:space="preserve">
+    <value>Администратор</value>
+  </data>
+  <data name="Email_Label" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Footer_Address_City" xml:space="preserve">
+    <value>Пловдив 4000, ПУ „Паисий Хилендарски“</value>
+  </data>
+  <data name="Footer_Address_Country" xml:space="preserve">
+    <value>България</value>
+  </data>
+  <data name="Footer_Address_Street" xml:space="preserve">
+    <value>„Цар Асен“ 24, ет. 3, кабинет 325</value>
+  </data>
+  <data name="Home_NavItem" xml:space="preserve">
+    <value>Начало</value>
+  </data>
+  <data name="IndexAnalyses_NavItem" xml:space="preserve">
+    <value>Анализи</value>
+  </data>
+  <data name="IndexArticles_NavItem" xml:space="preserve">
+    <value>Статии</value>
+  </data>
+  <data name="IndexChronicles_NavItem" xml:space="preserve">
+    <value>Хроника</value>
+  </data>
+  <data name="IndexDiscussions_NavItem" xml:space="preserve">
+    <value>Дискусии</value>
+  </data>
+  <data name="IndexForeign_NavItem" xml:space="preserve">
+    <value>Чуждестранни</value>
+  </data>
+  <data name="IndexReviews_NavItem" xml:space="preserve">
+    <value>Преглед</value>
+  </data>
+  <data name="IndexSurveys_NavItem" xml:space="preserve">
+    <value>Анкети</value>
+  </data>
+  <data name="Index_NavItem" xml:space="preserve">
+    <value>Индекс</value>
+  </data>
   <data name="Index_Title" xml:space="preserve">
     <value>Начало</value>
   </data>
@@ -125,6 +170,75 @@
   </data>
   <data name="Logo_Short" xml:space="preserve">
     <value>ЛИнК</value>
+  </data>
+  <data name="Phone_Label" xml:space="preserve">
+    <value>Телефон</value>
+  </data>
+  <data name="Portfolio_NavItem" xml:space="preserve">
+    <value>Брове</value>
+  </data>
+  <data name="Services_NavItem" xml:space="preserve">
+    <value>Кодекс</value>
+  </data>
+  <data name="Team_B.Yanev_Member" xml:space="preserve">
+    <value>доц. д-р Борян Янев</value>
+  </data>
+  <data name="Team_B.Yanev_MemberDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Team_Description" xml:space="preserve">
+    <value>В редакторския екип на изданието участват преподаватели от факултета, а членове на редакционния борд са изявени изследователи от различни страни и научни организации.</value>
+  </data>
+  <data name="Team_F.Boykova_Member" xml:space="preserve">
+    <value>доц. д-р Фани Бойкова</value>
+  </data>
+  <data name="Team_F.Boykova_MemberDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Team_I.Peleva_Member" xml:space="preserve">
+    <value>проф. дфн Инна Пелева</value>
+  </data>
+  <data name="Team_I.Peleva_MemberDescription" xml:space="preserve">
+    <value>Главен редактор „Литература и култура“</value>
+  </data>
+  <data name="Team_M.Vlashki_Member" xml:space="preserve">
+    <value>доц. д-р Младен Влашки</value>
+  </data>
+  <data name="Team_M.Vlashki_MemberDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Team_NavItem" xml:space="preserve">
+    <value>Екип</value>
+  </data>
+  <data name="Team_S.Mathewson_Member" xml:space="preserve">
+    <value>доц. д-р Снежа Цонева-Матюсън</value>
+  </data>
+  <data name="Team_S.Mathewson_MemberDescription" xml:space="preserve">
+    <value>Главен редактор „Език и култура“</value>
+  </data>
+  <data name="Team_SubTitle" xml:space="preserve">
+    <value>Екип на &lt;span&gt;списанието&lt;/span&gt;</value>
+  </data>
+  <data name="Team_Title" xml:space="preserve">
+    <value>Екип</value>
+  </data>
+  <data name="Team_V.Markovska_Member" xml:space="preserve">
+    <value>проф. д-р Вера Маровска</value>
+  </data>
+  <data name="Team_V.Markovska_MemberDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Team_Y.Rowland_Member" xml:space="preserve">
+    <value>доц. д-р Яна Роуланд</value>
+  </data>
+  <data name="Team_Y.Rowland_MemberDescription" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Team_Z.Ivanov_Member" xml:space="preserve">
+    <value>доц. д-р Живко Иванов</value>
+  </data>
+  <data name="Team_Z.Ivanov_MemberDescription" xml:space="preserve">
+    <value />
   </data>
   <data name="Welcome_Message" xml:space="preserve">
     <value>Добре дошли на &lt;span&gt;ЛИнК.uni-plovdiv.bg&lt;/span&gt;</value>
