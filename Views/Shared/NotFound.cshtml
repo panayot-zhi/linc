@@ -4,10 +4,10 @@
 @* TODO: Localize *@
 
 @{
-    ViewData["Title"] = Model.StatusCode + " - Грешка на сървъра";
+    ViewData["Title"] = "404 - Страницата не съществува";
 }
 
-@section Breadcrumbs
+@section Breadcrumbs 
 {
     <!-- ======= Breadcrumbs Section ======= -->
     <section class="breadcrumbs">
@@ -32,15 +32,15 @@
 
             <div class="col-lg-8">
                 <div class="d-flex justify-content-center">
-                    <img src="~/img/internal-server-error.jpg" alt="500 - Internal Server Error">
+                    <img src="~/img/not-found-error.jpg" alt="404 - Not Found">
                 </div>
             </div>
 
             <div class="col-lg-4">
                 <div class="portfolio-description">
-                    <h2>За съжаление се натъкнахте на проблем, чиято причина е изцяло по наша вина.</h2>
+                    <h2>Поисканата от Вас страница не беше намерена.</h2>
                     <p>
-                        Не би трябвало да виждате тази странца, моля, обърнете се към администратора на системата по email за да може да отстрани проблема възможно най-бързо.
+                        Ако мислите, че страницата липсва или това е вътрешен проблем, моля, обърнете се към администратора на системата по email за да отстрани проблема възможно най-бързо.
                     </p>
                     <p>
                         Моля, при забелязани грешки и други неизправности по системата, свържете се с администратора на системата посредством бутона по-долу.
@@ -49,18 +49,6 @@
             </div>
 
         </div>
-        
-        <environment exclude="Production">
-            <div class="row gy-4">
-
-                <div class="col-lg-12">
-                    <h2>@Model.Error</h2>
-                    <h4>@Model.ShortMessage</h4>
-                    <pre>@Model.StackTrace</pre>
-                </div>
-
-            </div>
-        </environment>
 
     </div>
 </section><!-- End Portfolio Details Section -->
@@ -71,7 +59,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-6">
-                    <h4>@Model.ShortMessage</h4>
+                    <h4>@Model.Path</h4>
                     <p>@Model.RequestId</p>
                     <a href="mailto:@SiteConstant.AdministratorEmail" class="btn btn-danger">Докладвай за нередност</a>
                 </div>

@@ -4,7 +4,7 @@
 @* TODO: Localize *@
 
 @{
-    ViewData["Title"] = Model.StatusCode + " - Грешка на сървъра";
+    ViewData["Title"] = "400 - Грешка във Вашите данни";
 }
 
 @section Breadcrumbs
@@ -32,35 +32,23 @@
 
             <div class="col-lg-8">
                 <div class="d-flex justify-content-center">
-                    <img src="~/img/internal-server-error.jpg" alt="500 - Internal Server Error">
+                    <img src="~/img/bad-request-error.jpg" alt="400 - Bad Request">
                 </div>
             </div>
 
             <div class="col-lg-4">
                 <div class="portfolio-description">
-                    <h2>За съжаление се натъкнахте на проблем, чиято причина е изцяло по наша вина.</h2>
+                    <h2>За съжаление се натъкнахме на проблем, докато обработвахме данните Ви.</h2>
                     <p>
-                        Не би трябвало да виждате тази странца, моля, обърнете се към администратора на системата по email за да може да отстрани проблема възможно най-бързо.
+                        Моля, прегледайте данните, които сте ни изпратили и се уверете, че са коректни и че никой не ги е манипулирал преди да пристигнат до нас.
                     </p>
                     <p>
-                        Моля, при забелязани грешки и други неизправности по системата, свържете се с администратора на системата посредством бутона по-долу.
+                        Ако смятате, че не трябва да виждате тази страница, моля, свържете се с администратора на системата посредством бутона по-долу.
                     </p>
                 </div>
             </div>
 
         </div>
-        
-        <environment exclude="Production">
-            <div class="row gy-4">
-
-                <div class="col-lg-12">
-                    <h2>@Model.Error</h2>
-                    <h4>@Model.ShortMessage</h4>
-                    <pre>@Model.StackTrace</pre>
-                </div>
-
-            </div>
-        </environment>
 
     </div>
 </section><!-- End Portfolio Details Section -->
@@ -71,7 +59,7 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-6">
-                    <h4>@Model.ShortMessage</h4>
+                    <h4>@Model.Path</h4>
                     <p>@Model.RequestId</p>
                     <a href="mailto:@SiteConstant.AdministratorEmail" class="btn btn-danger">Докладвай за нередност</a>
                 </div>

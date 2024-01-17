@@ -1,7 +1,4 @@
-using linc.Data;
 using linc.Utility;
-using Microsoft.AspNetCore.Mvc.Razor;
-using Microsoft.EntityFrameworkCore;
 
 namespace linc;
 

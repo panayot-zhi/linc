@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Diagnostics;
+using System.Net;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Localization;
@@ -68,7 +69,7 @@ namespace linc.Controllers
                 CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
                 new CookieOptions
                 {
-                    Expires = DateTimeOffset.UtcNow.AddYears(1)
+                    Expires = DateTimeOffset.UtcNow.AddYears(7)
                 }
             );
 
@@ -78,6 +79,8 @@ namespace linc.Controllers
         [ResponseCache(CacheProfileName = "NoCache")]
         public IActionResult Error(string code)
         {
+            var errorViewModel = GetErrorViewModel(code);
+
             if (Request.IsAjax())
             {
                 if ("401".Equals(code))
@@ -93,23 +96,28 @@ namespace linc.Controllers
                     return StatusCode(candidate);
                 }
 
-                _logger.LogWarning($"Processed an AJAX error with an unknown status code ({code}). Returning 500: Internal Server Error");
+                _logger.LogWarning("Processed an AJAX error with an unknown status code ({StatusCode}) for request (#{RequestId}) bound for path '{Path}'. Returning 500: Internal Server Error",
+                    errorViewModel.StatusCode, errorViewModel.RequestId, errorViewModel.Path);
 
                 return StatusCode(500);
             }
-
-            var statusCodeReExecuteFeature = HttpContext.Features.Get<IStatusCodeReExecuteFeature>();
 
             switch (code)
             {
                 case "400":
                 {
-                    return View("Error"); // return View("BadRequest");
+                    _logger.LogWarning("400 BadRequest (#{RequestId}): {Path}",
+                        errorViewModel.RequestId, errorViewModel.Path);
+
+                    return View("BadRequest", errorViewModel);
                 }
                 case "401":
                 {
                     if (User.Identity is { IsAuthenticated: true })
                     {
+                        _logger.LogWarning("401 Unauthorized (#{RequestId}): {Path}",
+                            errorViewModel.RequestId, errorViewModel.Path);
+
                         return Unauthorized();
                     }
 
@@ -117,20 +125,21 @@ namespace linc.Controllers
                 }
                 case "403":
                 {
-                    return View("Error"); // return View("Forbidden");
+                    _logger.LogWarning("403 Forbidden (#{RequestId}): {Path}",
+                        errorViewModel.RequestId, errorViewModel.Path);
+
+                    return View("Forbidden", errorViewModel);
                 }
                 case "404":
                 {
-                    var path = "Could not resolve path.";
-                    if (statusCodeReExecuteFeature != null)
-                    {
-                        path = statusCodeReExecuteFeature.GetFullPath();
-                        ViewData["Path"] = path;
-                    }
+                    var path = errorViewModel.Path;
 
-                    _logger.LogWarning("404 NotFound: " + path);
+                    _logger.LogWarning("404 NotFound (#{RequestId}): {Path}",
+                        errorViewModel.RequestId, errorViewModel.Path);
 
-                    // TODO: List here any cases where we need response body brevity
+                    // NOTE: List here any cases where
+                    // we need response body brevity
+                    
                     if (path.EndsWith(".js.map"))
                     {
                         return StatusCode((int)HttpStatusCode.NotFound, path);
@@ -142,23 +151,28 @@ namespace linc.Controllers
                         return StatusCode((int)HttpStatusCode.NotFound, path);
                     }
 
-                    return View("Error"); // return View("NotFound");
+                    return View("NotFound", errorViewModel);
                 }
             }
+
+            // NOTE: try to get some more exception details from the request
 
             var exceptionHandlerPathFeature = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
 
             if (string.IsNullOrEmpty(code))
             {
-                code = "500"; // internal server error
+                code = "500";
             }
 
-            var errorViewModel = GetErrorViewModel(exceptionHandlerPathFeature, code);
+            errorViewModel = GetErrorViewModel(code, exceptionHandlerPathFeature);
+
+            _logger.LogError("500 InternalServerError (#{RequestId}) at '{Path}': {ErrorMessage}",
+                errorViewModel.RequestId, errorViewModel.Path, errorViewModel.Error);
 
             return View(errorViewModel);
         }
 
-        protected ErrorViewModel GetErrorViewModel(IExceptionHandlerPathFeature? exceptionHandlerPathFeature, string code)
+        protected ErrorViewModel GetErrorViewModel(string code, IExceptionHandlerPathFeature? exceptionHandlerPathFeature = null)
         {
             var statusCodeReExecuteFeature = HttpContext.Features.Get<IStatusCodeReExecuteFeature>();
 
@@ -167,6 +181,11 @@ namespace linc.Controllers
                 RequestId = HttpContext.TraceIdentifier,
                 StatusCode = code
             };
+
+            if (Activity.Current is { Id: { } })
+            {
+                errorViewModel.RequestId = Activity.Current.Id;
+            }
 
             if (statusCodeReExecuteFeature != null)
             {
