@@ -201,6 +201,27 @@
   <data name="Footer_Redaction_Label" xml:space="preserve">
     <value>Редакция</value>
   </data>
+  <data name="Footer_Services_Title" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Footer_UsefulLinks_Codex" xml:space="preserve">
+    <value>Етичен кодекс</value>
+  </data>
+  <data name="Footer_UsefulLinks_Cookies" xml:space="preserve">
+    <value>Ползване на бисквитки</value>
+  </data>
+  <data name="Footer_UsefulLinks_PrivacyPolicy" xml:space="preserve">
+    <value>Политика за поверителност</value>
+  </data>
+  <data name="Footer_UsefulLinks_SubmitGuidance" xml:space="preserve">
+    <value>Процедура по публикуване</value>
+  </data>
+  <data name="Footer_UsefulLinks_TermsOfService" xml:space="preserve">
+    <value>Условия за ползване</value>
+  </data>
+  <data name="Footer_UsefulLinks_Title" xml:space="preserve">
+    <value>Полезни връзки</value>
+  </data>
   <data name="HomeIndex_Title" xml:space="preserve">
     <value>Начало</value>
   </data>
@@ -219,25 +240,25 @@
   <data name="NavItem_Index" xml:space="preserve">
     <value>Индекс</value>
   </data>
-  <data name="NavItem_IndexAnalyses" xml:space="preserve">
+  <data name="Category_Analyses" xml:space="preserve">
     <value>Анализи</value>
   </data>
-  <data name="NavItem_IndexArticles" xml:space="preserve">
+  <data name="Category_Articles" xml:space="preserve">
     <value>Статии</value>
   </data>
-  <data name="NavItem_IndexChronicles" xml:space="preserve">
+  <data name="Category_Chronicles" xml:space="preserve">
     <value>Хроника</value>
   </data>
-  <data name="NavItem_IndexDiscussions" xml:space="preserve">
+  <data name="Category_Discussions" xml:space="preserve">
     <value>Дискусии</value>
   </data>
-  <data name="NavItem_IndexForeign" xml:space="preserve">
+  <data name="Category_Foreign" xml:space="preserve">
     <value>Чуждестранни</value>
   </data>
-  <data name="NavItem_IndexReviews" xml:space="preserve">
+  <data name="Category_Reviews" xml:space="preserve">
     <value>Преглед</value>
   </data>
-  <data name="NavItem_IndexSurveys" xml:space="preserve">
+  <data name="Category_Surveys" xml:space="preserve">
     <value>Анкети</value>
   </data>
   <data name="NavItem_Portfolio" xml:space="preserve">
@@ -335,5 +356,8 @@
   </data>
   <data name="Welcome_Message" xml:space="preserve">
     <value>Добре дошли на &lt;span&gt;ЛИнК.uni-plovdiv.bg&lt;/span&gt;</value>
+  </data>
+  <data name="Reviews_Message" xml:space="preserve">
+    <value>* процент на постъпилите ръкописи в редакцията спрямо одобрените/публикувани ръкописи в списанието</value>
   </data>
 </root>
