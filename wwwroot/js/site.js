@@ -7,8 +7,9 @@
     "use strict";
 
     // Bind Submit targets href form
-    $(".submit-link").on('click', doSubmit);
     $("form").on('submit', onSubmit);
+    $(".submit-link").on('click', doSubmit);    
+    $("[contenteditable=\"true\"]").on('keydown', onSaveContentEditable);
 
     function doSubmit(e) {
         e.preventDefault();
@@ -26,6 +27,18 @@
         if (form.valid()) {
             let preloader = document.getElementById('preloader');
             preloader.hidden = false;
+        }
+    }
+
+    function onSaveContentEditable(e) {
+        if (e.which === 13 && e.shiftKey === false) {
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+
+            console.log("Save");
+
+            return false;
         }
     }
 
