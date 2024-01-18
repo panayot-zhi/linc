@@ -15,6 +15,17 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="backups\**" />
+	  <Compile Remove="release\**" />
+	  <Content Remove="backups\**" />
+	  <Content Remove="release\**" />
+	  <EmbeddedResource Remove="backups\**" />
+	  <EmbeddedResource Remove="release\**" />
+	  <None Remove="backups\**" />
+	  <None Remove="release\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<Content Remove="appsettings.Development.json" />
 		<Content Remove="appsettings.Production.json" />
 	</ItemGroup>
