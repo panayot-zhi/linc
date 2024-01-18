@@ -12,7 +12,7 @@ namespace linc.Models.ViewModels
 
         public string Error { get; set; }
 
-        public string? StackTrace { get; set; }
+        public string StackTrace { get; set; }
 
     }
 }

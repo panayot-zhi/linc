@@ -9,7 +9,5 @@
         public string Sender { get; init; }
 
         public string Password { get; init; }
-
-        public bool CopyToAdmin { get; init; }
     }
 }

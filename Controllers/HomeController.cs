@@ -172,7 +172,7 @@ namespace linc.Controllers
             return View(errorViewModel);
         }
 
-        protected ErrorViewModel GetErrorViewModel(string code, IExceptionHandlerPathFeature? exceptionHandlerPathFeature = null)
+        protected ErrorViewModel GetErrorViewModel(string code, IExceptionHandlerPathFeature exceptionHandlerPathFeature = null)
         {
             var statusCodeReExecuteFeature = HttpContext.Features.Get<IStatusCodeReExecuteFeature>();
 

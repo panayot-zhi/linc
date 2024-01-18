@@ -4,7 +4,7 @@ namespace linc.Utility;
 
 public static class HelperFunctions
 {
-    public static string GatherInternals(this Exception? ex, int introspectionLevel = 3)
+    public static string GatherInternals(this Exception ex, int introspectionLevel = 3)
     {
         if (ex == null)
         {
