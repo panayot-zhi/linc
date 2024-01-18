@@ -5,6 +5,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<TargetFramework>net6.0</TargetFramework>
 		<CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+		<ResolveStaticWebAssetsInputsDependsOn>RemoveIdentityAssets</ResolveStaticWebAssetsInputsDependsOn>
 		<UserSecretsId>f8208029-8cdf-4ff3-96d8-2cd03262847d</UserSecretsId>
 		<SatelliteResourceLanguages>bg;en</SatelliteResourceLanguages>
 		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
@@ -55,6 +56,12 @@
 		<PackageReference Include="System.Net.Http" Version="4.3.4" />
 		<PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" />
 	</ItemGroup>
+
+	<Target Name="RemoveIdentityAssets">
+		<ItemGroup>
+			<StaticWebAsset Remove="@(StaticWebAsset)" Condition="%(SourceId) == 'Microsoft.AspNetCore.Identity.UI'" />
+		</ItemGroup>
+	</Target>
 
 	<ItemGroup>
 	  <Compile Update="Resources\SharedResource.Designer.cs">
