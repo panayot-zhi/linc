@@ -19,3 +19,7 @@ a.submit-link {
     display: flex;
     align-items: center;
 }
+
+.desc-bottom .gslide-image img {
+    background: white;
+}
