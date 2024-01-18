@@ -1,8 +1,10 @@
 ﻿@using linc
+@using linc.Services
 @using linc.Models.ViewModels
 @using linc.Models.ViewModels.Home
 @using Microsoft.AspNetCore.Mvc.Localization
 
+@inject ContentService ContentService
 @inject IHtmlLocalizer<SharedResource> HtmlLocalizer
 
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

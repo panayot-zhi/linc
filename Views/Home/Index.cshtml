@@ -2,7 +2,7 @@
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 
 @{
-    ViewData["Title"] = HtmlLocalizer["Index_Title"];
+    ViewData["Title"] = HtmlLocalizer["HomeIndex_Title"];
 }
 
 @section Hero {
@@ -12,15 +12,14 @@
             
             @* TODO: можем ли да регистрираме линк.uni-plovdiv.bg *@
 
-            <h1>@HtmlLocalizer["Welcome_Message"]</h1>
+            <h1>@HtmlLocalizer["Welcome_Message"]</h1>  @* TODO: да се попълни с кратко обобщение на мисията *@
             <h2>@HtmlLocalizer["Welcome_Description"] :: Short descriptive sentence about the platform's mission</h2>
             <div class="d-flex">
                 <a href="#about" class="btn-get-started scrollto">@HtmlLocalizer["GetStarted_Message"]</a>
                 @* <a href="https://www.youtube.com/watch?v=ouH107WFcQk" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>@HtmlLocalizer["WatchVideo_Message"]</span></a> *@
             </div>
         </div>
-    </section>
-    <!-- End Hero -->
+    </section><!-- End Hero -->
 }
 
 <partial name="_Featured"/> 
