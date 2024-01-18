@@ -357,7 +357,25 @@
   <data name="Welcome_Message" xml:space="preserve">
     <value>Добре дошли на &lt;span&gt;ЛИнК.uni-plovdiv.bg&lt;/span&gt;</value>
   </data>
+  <data name="Copyright_Label" xml:space="preserve">
+    <value>Всички права запазени</value>
+  </data>
+  <data name="Footer_Social_Description" xml:space="preserve">
+    <value>Открийте нас и нашите автори в мрежата.</value>
+  </data>
+  <data name="Footer_Social_Title" xml:space="preserve">
+    <value>Партньори</value>
+  </data>
+  <data name="Footer_Suggestions_Title" xml:space="preserve">
+    <value>Препоръчани</value>
+  </data>
+  <data name="NavItem_Contact" xml:space="preserve">
+    <value>Изпрати</value>
+  </data>
   <data name="Reviews_Message" xml:space="preserve">
     <value>* процент на постъпилите ръкописи в редакцията спрямо одобрените/публикувани ръкописи в списанието</value>
+  </data>
+  <data name="Version_Label" xml:space="preserve">
+    <value>версия</value>
   </data>
 </root>

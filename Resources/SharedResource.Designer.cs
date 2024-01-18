@@ -313,6 +313,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Всички права запазени.
+        /// </summary>
+        public static string Copyright_Label {
+            get {
+                return ResourceManager.GetString("Copyright_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Пловдив 4000, ПУ „Паисий Хилендарски“.
         /// </summary>
         public static string Footer_Address_City {
@@ -381,6 +390,33 @@ namespace linc.Resources {
         public static string Footer_Services_Title {
             get {
                 return ResourceManager.GetString("Footer_Services_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Открийте нас и нашите автори в мрежата..
+        /// </summary>
+        public static string Footer_Social_Description {
+            get {
+                return ResourceManager.GetString("Footer_Social_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Партньори.
+        /// </summary>
+        public static string Footer_Social_Title {
+            get {
+                return ResourceManager.GetString("Footer_Social_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Препоръчани.
+        /// </summary>
+        public static string Footer_Suggestions_Title {
+            get {
+                return ResourceManager.GetString("Footer_Suggestions_Title", resourceCulture);
             }
         }
         
@@ -471,6 +507,15 @@ namespace linc.Resources {
         public static string NavItem_About {
             get {
                 return ResourceManager.GetString("NavItem_About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изпрати.
+        /// </summary>
+        public static string NavItem_Contact {
+            get {
+                return ResourceManager.GetString("NavItem_Contact", resourceCulture);
             }
         }
         
@@ -777,6 +822,15 @@ namespace linc.Resources {
         public static string Team_Z_Ivanov_MemberDescription {
             get {
                 return ResourceManager.GetString("Team_Z.Ivanov_MemberDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to версия.
+        /// </summary>
+        public static string Version_Label {
+            get {
+                return ResourceManager.GetString("Version_Label", resourceCulture);
             }
         }
         
