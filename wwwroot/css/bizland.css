@@ -890,15 +890,20 @@ section {
   text-align: center;
 }
 
+.clients .container {
+  padding: 15px 0;
+}
+
 .clients img {
   max-width: 45%;
+  max-height: 140px;
   transition: all 0.4s ease-in-out;
   display: inline-block;
   padding: 15px 0;
 }
 
 .clients img:hover {
-  transform: scale(1.15);
+  transform: scale(1.35);
 }
 
 @media (max-width: 768px) {
