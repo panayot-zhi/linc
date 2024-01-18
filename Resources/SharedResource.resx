@@ -117,12 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="About_NavItem" xml:space="preserve">
-    <value>За списанието</value>
-  </data>
-  <data name="Admin_Label" xml:space="preserve">
-    <value>Администратор</value>
-  </data>
   <data name="Board_Aleksander.Mikołajczak_Member" xml:space="preserve">
     <value>Проф. дн Александър Войчех Миколайчак</value>
   </data>
@@ -186,9 +180,6 @@
   <data name="Board_Vanya.Georgieva_MemberWork" xml:space="preserve">
     <value>Технически сътрудник &lt;br/&gt;катедра Българска литература и теория на литературата&lt;br/&gt;ПУ „Паисий Хилендарски“</value>
   </data>
-  <data name="Email_Label" xml:space="preserve">
-    <value>Email</value>
-  </data>
   <data name="Footer_Address_City" xml:space="preserve">
     <value>Пловдив 4000, ПУ „Паисий Хилендарски“</value>
   </data>
@@ -198,34 +189,19 @@
   <data name="Footer_Address_Street" xml:space="preserve">
     <value>„Цар Асен“ 24, ет. 3, кабинет 325</value>
   </data>
-  <data name="Home_NavItem" xml:space="preserve">
-    <value>Начало</value>
+  <data name="Footer_Admin_Label" xml:space="preserve">
+    <value>Администратор</value>
   </data>
-  <data name="IndexAnalyses_NavItem" xml:space="preserve">
-    <value>Анализи</value>
+  <data name="Footer_Email_Label" xml:space="preserve">
+    <value>Email</value>
   </data>
-  <data name="IndexArticles_NavItem" xml:space="preserve">
-    <value>Статии</value>
+  <data name="Footer_Phone_Label" xml:space="preserve">
+    <value>Телефон</value>
   </data>
-  <data name="IndexChronicles_NavItem" xml:space="preserve">
-    <value>Хроника</value>
+  <data name="Footer_Redaction_Label" xml:space="preserve">
+    <value>Редакция</value>
   </data>
-  <data name="IndexDiscussions_NavItem" xml:space="preserve">
-    <value>Дискусии</value>
-  </data>
-  <data name="IndexForeign_NavItem" xml:space="preserve">
-    <value>Чуждестранни</value>
-  </data>
-  <data name="IndexReviews_NavItem" xml:space="preserve">
-    <value>Преглед</value>
-  </data>
-  <data name="IndexSurveys_NavItem" xml:space="preserve">
-    <value>Анкети</value>
-  </data>
-  <data name="Index_NavItem" xml:space="preserve">
-    <value>Индекс</value>
-  </data>
-  <data name="Index_Title" xml:space="preserve">
+  <data name="HomeIndex_Title" xml:space="preserve">
     <value>Начало</value>
   </data>
   <data name="Logo_Long" xml:space="preserve">
@@ -234,14 +210,44 @@
   <data name="Logo_Short" xml:space="preserve">
     <value>ЛИнК</value>
   </data>
-  <data name="Phone_Label" xml:space="preserve">
-    <value>Телефон</value>
+  <data name="NavItem_About" xml:space="preserve">
+    <value>За списанието</value>
   </data>
-  <data name="Portfolio_NavItem" xml:space="preserve">
+  <data name="NavItem_Home" xml:space="preserve">
+    <value>Начало</value>
+  </data>
+  <data name="NavItem_Index" xml:space="preserve">
+    <value>Индекс</value>
+  </data>
+  <data name="NavItem_IndexAnalyses" xml:space="preserve">
+    <value>Анализи</value>
+  </data>
+  <data name="NavItem_IndexArticles" xml:space="preserve">
+    <value>Статии</value>
+  </data>
+  <data name="NavItem_IndexChronicles" xml:space="preserve">
+    <value>Хроника</value>
+  </data>
+  <data name="NavItem_IndexDiscussions" xml:space="preserve">
+    <value>Дискусии</value>
+  </data>
+  <data name="NavItem_IndexForeign" xml:space="preserve">
+    <value>Чуждестранни</value>
+  </data>
+  <data name="NavItem_IndexReviews" xml:space="preserve">
+    <value>Преглед</value>
+  </data>
+  <data name="NavItem_IndexSurveys" xml:space="preserve">
+    <value>Анкети</value>
+  </data>
+  <data name="NavItem_Portfolio" xml:space="preserve">
     <value>Брове</value>
   </data>
-  <data name="Services_NavItem" xml:space="preserve">
+  <data name="NavItem_Services" xml:space="preserve">
     <value>Кодекс</value>
+  </data>
+  <data name="NavItem_Team" xml:space="preserve">
+    <value>Екип</value>
   </data>
   <data name="SiteRole_Administrator" xml:space="preserve">
     <value>Администратор</value>
@@ -296,9 +302,6 @@
   </data>
   <data name="Team_M.Vlashki_MemberDescription" xml:space="preserve">
     <value />
-  </data>
-  <data name="Team_NavItem" xml:space="preserve">
-    <value>Екип</value>
   </data>
   <data name="Team_S.Mathewson_Member" xml:space="preserve">
     <value>доц. д-р Снежа Цонева-Матюсън</value>
