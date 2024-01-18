@@ -316,6 +316,7 @@ public static class StartupExtensions
     public static IServiceCollection AddServices(this IServiceCollection services)
     {
         services.AddTransient<IEmailSender, EmailSender>();
+        services.AddTransient<ContentService>();
         //services.AddTransient<ISharedViewLocalizer, SharedViewLocalizer>();
 
         return services;

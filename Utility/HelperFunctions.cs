@@ -4,6 +4,8 @@ namespace linc.Utility;
 
 public static class HelperFunctions
 {
+    private static readonly Random RandomNumberGenerator = new();
+
     public static string GatherInternals(this Exception ex, int introspectionLevel = 3)
     {
         if (ex == null)
@@ -28,7 +30,7 @@ public static class HelperFunctions
     {
         if (request == null)
         {
-            throw new ArgumentNullException(nameof(request), "Request object is Null.");
+            throw new ArgumentNullException(nameof(request));
         }
 
         if (!string.IsNullOrEmpty(httpVerb))
@@ -42,4 +44,14 @@ public static class HelperFunctions
         return request.Headers["X-Requested-With"] == "XMLHttpRequest";
     }
 
+    public static void Shuffle<T>(this IList<T> list)
+    {
+        var n = list.Count;
+        while (n > 1)
+        {
+            n--;
+            var k = RandomNumberGenerator.Next(n + 1);
+            (list[k], list[n]) = (list[n], list[k]);
+        }
+    }
 }
