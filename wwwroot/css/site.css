@@ -1,4 +1,20 @@
 
+/* 
+    Display the Great Britain flag as a language for english
+*/
+
+.fi-en {
+    background-image: url(../lib/flag-icons/flags/4x3/gb.svg);
+}
+
+.fi-en.fis {
+    background-image: url(../lib/flag-icons/flags/1x1/gb.svg);
+}
+
+/* 
+    These are used from javascript
+*/
+
 a.scrollto {
     /* keep */
 }
