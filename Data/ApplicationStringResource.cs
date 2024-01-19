@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace linc.Data;
 
@@ -12,9 +13,11 @@ public class ApplicationStringResource
 
     [Required]
     [MaxLength(255)]
+    [JsonPropertyName("key")]
     public string Key { get; set; }
 
     [Required]
+    [JsonPropertyName("value")]
     public string Value { get; set; }
 
     [Required]

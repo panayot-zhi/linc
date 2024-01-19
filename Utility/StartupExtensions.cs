@@ -4,6 +4,7 @@ using linc.Models.ConfigModels;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using linc.Contracts;
@@ -298,8 +299,20 @@ public static class StartupExtensions
 
         services.AddLocalization(options => options.ResourcesPath = "Resources");
 
-        services.AddMvc()
+        services.AddMvc(options =>
+            {
+                // what dis for
+                options.Conventions.Add(
+                    new RouteTokenTransformerConvention(
+                        new SlugifyParameterTransformer()));
+            })
             .AddViewLocalization()
+            .AddRazorPagesOptions(options =>
+            {
+                options.Conventions.Add(
+                    new PageRouteTransformerConvention(
+                            new SlugifyParameterTransformer()));
+            })
             .AddDataAnnotationsLocalization(options => {
                 options.DataAnnotationLocalizerProvider = (_, factory) =>
                     factory.Create(typeof(SharedResource));

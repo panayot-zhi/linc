@@ -64,7 +64,7 @@ namespace linc.Controllers
         [Ajax]
         [HttpPost]
         [SiteAuthorize(SiteRole.Editor)]
-        public async Task<IActionResult> SetStringResource(ApplicationStringResource stringResource)
+        public async Task<IActionResult> SetStringResource([FromBody][Bind("Key,Value")] ApplicationStringResource stringResource)
         {
             if (!ModelState.IsValid)
             {
@@ -77,6 +77,7 @@ namespace linc.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult SetLanguage(string culture, string returnUrl = "/")
         {
             Response.Cookies.Append(

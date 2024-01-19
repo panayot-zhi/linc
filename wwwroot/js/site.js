@@ -8,7 +8,7 @@
 
     // Bind Submit targets href form
     $("form").on('submit', onSubmit);
-    $(".submit-link").on('click', doSubmit);    
+    $(".submit-link").on('click', doSubmit);
     $("[contenteditable=\"true\"]").on('keydown', onSaveContentEditable);
 
     function doSubmit(e) {
@@ -32,11 +32,36 @@
 
     function onSaveContentEditable(e) {
         if (e.which === 13 && e.shiftKey === false) {
+
             e.preventDefault();
             e.stopPropagation();
             e.stopImmediatePropagation();
 
-            console.log("Save");
+            if (!confirm("Сигурни ли сте че искате да запазите?")) {
+                return false;
+            }
+
+            let request = {
+                key: e.target.id,
+                value: e.target.innerHTML
+            };
+
+            $.ajax({
+
+                type: "POST",
+                contentType: "application/json",
+                url: "/home/set-string-resource",
+                data: JSON.stringify(request),
+
+                success: function (response) {
+                    window.location.reload(true);
+                },
+
+                error: function (xhr, status, error) {
+                    console.error('Error:', error);
+                }
+
+            })
 
             return false;
         }

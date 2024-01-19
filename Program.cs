@@ -52,7 +52,8 @@ public class Program
 
         app.MapControllerRoute(
             name: "default",
-            pattern: "{controller=Home}/{action=Index}/{id?}");
+            pattern: "{controller:slugify=Home}/{action:slugify=Index}/{id?}"
+        );
 
         app.MapRazorPages();
         app.Run();
