@@ -12,6 +12,10 @@
     $("[contenteditable=\"true\"]").on('blur', onBlurContentEditable);
     $("[contenteditable=\"true\"]").on('focus', onFocusContentEditable);
     $("[contenteditable=\"true\"]").on('keydown', onSaveContentEditable);
+    $("a[href=\"#\"]").on('click', (e) => {
+        e.preventDefault();
+        return false;
+    });
 
     window.currentEditingElementId = null;
 

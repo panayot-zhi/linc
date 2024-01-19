@@ -117,3 +117,11 @@ a.submit-link {
 .content-editable {
     /* background: #e7f1fd; */
 }
+
+.navbar li.divider hr {
+    margin: 5px 0;
+}
+
+.form-floating {
+    margin: 15px 0;
+}

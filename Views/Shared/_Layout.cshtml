@@ -113,30 +113,15 @@
                     </li>
                     <li class="dropdown">
                         <a href="#">
-                            <span>@HtmlLocalizer["NavItem_Index"]</span> <i class="bi bi-chevron-down"></i>
+                            <span>@HtmlLocalizer["NavItem_Index"]</span> 
+                            <i class="bi bi-chevron-down"></i>
                         </a>
                         <ul>
-                            <li class="dropdown">
-                                <a href="#">
-                                    <span>@HtmlLocalizer["NavItem_IndexArchive"]</span> 
-                                    <i class="bi bi-chevron-right"></i>
-                                </a>
-                                <ul>
-                                    @{
-                                        const int beginYear = 2024;
-                                        var currentYear = DateTime.Now.Year;
-                                        var year = currentYear;
-
-                                        do
-                                        {
-                                            <li>
-                                                <a href="#">@year</a>
-                                            </li>
-
-                                        } while (--year >= beginYear);
-
-                                    }
-                                </ul>
+                            <li>
+                                <a href="#">@HtmlLocalizer["Category_All"]</a>
+                            </li>
+                            <li class="divider">
+                                <hr />
                             </li>
                             <li>
                                 <a href="#">@HtmlLocalizer["Category_Articles"]</a>
@@ -159,6 +144,31 @@
                             <li>
                                 <a href="#">@HtmlLocalizer["Category_Foreign"]</a>
                             </li>
+                            <li class="divider">
+                                <hr />
+                            </li>
+                            <li class="dropdown">
+                                <a href="#">
+                                    <span>@HtmlLocalizer["NavItem_IndexByYears"]</span>
+                                    <i class="bi bi-chevron-right"></i>
+                                </a>
+                                <ul>
+                                    @{
+                                        const int beginYear = 2024;
+                                        var currentYear = DateTime.Now.Year;
+                                        var year = currentYear;
+
+                                        do
+                                        {
+                                            <li>
+                                                <a href="#">@year</a>
+                                            </li>
+
+                                        } while (--year >= beginYear);
+
+                                    }
+                                </ul>
+                            </li>
                         </ul>
                     </li>
                     <li>
@@ -167,8 +177,28 @@
 
                     @if (SignInManager.IsSignedIn(User))
                     {
-                        <li>
-                            <a id="manage" class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index">@UserManager.GetUserName(User)</a>
+                        <li class="dropdown">
+                            <a href="#">
+                                <span>@UserManager.GetUserName(User)</span>
+                                <i class="bi bi-chevron-down"></i>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a id="manage" asp-area="Identity" asp-page="/Account/Manage/Index">@HtmlLocalizer["NavItem_MyProfile"]</a>
+                                </li>
+                                @if (User.IsAtLeast(SiteRole.Editor))
+                                {
+                                    <li>
+                                        <a href="#">@HtmlLocalizer["NavItem_Submissions"]</a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <a href="#">@HtmlLocalizer["NavItem_MySubmissions"]</a>
+                                    </li>
+                                }
+                            </ul>
                         </li>
                         <li>
                             <a class="nav-link submit-link" href="#logoutForm">@HtmlLocalizer["NavItem_Logout"]</a>
@@ -209,8 +239,19 @@
 
     <!-- ======= #main ======= -->
     <main id="main" @*data-aos="fade-up"*@>
-
-        @RenderBody()
+        
+        @if ("Identity".Equals(ViewData["Area"]))
+        {
+            <section class="identity">
+                <div class="container">
+                    @RenderBody()
+                </div>
+            </section>
+        }
+        else
+        {
+            @RenderBody()
+        }
 
     </main>
     <!-- End #main -->
@@ -221,6 +262,10 @@
         @if (IsSectionDefined("Newsletter"))
         {
             @await RenderSectionAsync("Newsletter")
+        } 
+        else if ("Identity".Equals(ViewData["Area"]))
+        {
+            <partial name="_Newsletter"/>
         }
 
         <div class="footer-top">

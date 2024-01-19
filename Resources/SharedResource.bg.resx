@@ -279,32 +279,17 @@
   <data name="Team_B.Yanev_Member" xml:space="preserve">
     <value>доц. д-р Борян Янев</value>
   </data>
-  <data name="Team_B.Yanev_MemberDescription" xml:space="preserve">
-    <value />
-  </data>
   <data name="Team_F.Boykova_Member" xml:space="preserve">
     <value>доц. д-р Фани Бойкова</value>
-  </data>
-  <data name="Team_F.Boykova_MemberDescription" xml:space="preserve">
-    <value />
   </data>
   <data name="Team_I.Peleva_Member" xml:space="preserve">
     <value>проф. дфн Инна Пелева</value>
   </data>
-  <data name="Team_I.Peleva_MemberDescription" xml:space="preserve">
-    <value>Главен редактор „Литература и култура“</value>
-  </data>
   <data name="Team_M.Vlashki_Member" xml:space="preserve">
     <value>доц. д-р Младен Влашки</value>
   </data>
-  <data name="Team_M.Vlashki_MemberDescription" xml:space="preserve">
-    <value />
-  </data>
   <data name="Team_S.Mathewson_Member" xml:space="preserve">
     <value>доц. д-р Снежа Цонева-Матюсън</value>
-  </data>
-  <data name="Team_S.Mathewson_MemberDescription" xml:space="preserve">
-    <value>Главен редактор „Език и култура“</value>
   </data>
   <data name="Team_SubTitle" xml:space="preserve">
     <value>Екип на &lt;span&gt;списанието&lt;/span&gt;</value>
@@ -315,20 +300,11 @@
   <data name="Team_V.Markovska_Member" xml:space="preserve">
     <value>проф. д-р Вера Маровска</value>
   </data>
-  <data name="Team_V.Markovska_MemberDescription" xml:space="preserve">
-    <value />
-  </data>
   <data name="Team_Y.Rowland_Member" xml:space="preserve">
     <value>доц. д-р Яна Роуланд</value>
   </data>
-  <data name="Team_Y.Rowland_MemberDescription" xml:space="preserve">
-    <value />
-  </data>
   <data name="Team_Z.Ivanov_Member" xml:space="preserve">
     <value>доц. д-р Живко Иванов</value>
-  </data>
-  <data name="Team_Z.Ivanov_MemberDescription" xml:space="preserve">
-    <value />
   </data>
   <data name="Welcome_Message" xml:space="preserve">
     <value>Добре дошли на &lt;span&gt;ЛИнК.uni-plovdiv.bg&lt;/span&gt;</value>
@@ -375,9 +351,6 @@
   <data name="AboutSection_Content_Title" xml:space="preserve">
     <value>Съдържание</value>
   </data>
-  <data name="AboutSection_Description_SecondRow" xml:space="preserve">
-    <value>Годишно излизат &lt;span&gt;два броя&lt;/span&gt;, единият от които е &lt;span&gt;тематичен&lt;/span&gt;.</value>
-  </data>
   <data name="AboutSection_Goals_Title" xml:space="preserve">
     <value>Цели и обхват на списанието</value>
   </data>
@@ -389,6 +362,9 @@
   </data>
   <data name="AboutSection_Review_Title" xml:space="preserve">
     <value>Рецензиране</value>
+  </data>
+  <data name="Category_All" xml:space="preserve">
+    <value>Всички</value>
   </data>
   <data name="CodexSection_Authors_Title" xml:space="preserve">
     <value>АВТОРЪТ</value>
@@ -443,6 +419,36 @@
   </data>
   <data name="Issue_Number_Label" xml:space="preserve">
     <value>Брой №</value>
+  </data>
+  <data name="NavItem_IndexByYears" xml:space="preserve">
+    <value>По години</value>
+  </data>
+  <data name="NavItem_Index_Archive" xml:space="preserve">
+    <value>Архив</value>
+  </data>
+  <data name="NavItem_Login" xml:space="preserve">
+    <value>Вход</value>
+  </data>
+  <data name="NavItem_Logout" xml:space="preserve">
+    <value>Изход</value>
+  </data>
+  <data name="NavItem_MyProfile" xml:space="preserve">
+    <value>Профил</value>
+  </data>
+  <data name="NavItem_MySubmissions" xml:space="preserve">
+    <value>Моите ръкописи</value>
+  </data>
+  <data name="NavItem_Register" xml:space="preserve">
+    <value>Регистрация</value>
+  </data>
+  <data name="NavItem_Submissions" xml:space="preserve">
+    <value>Ръкописи</value>
+  </data>
+  <data name="NewsletterSection_SubscribeButton_Label" xml:space="preserve">
+    <value>Абонирай се</value>
+  </data>
+  <data name="NewsletterSection_Title" xml:space="preserve">
+    <value>Абонирайте се за нашия бюлетин</value>
   </data>
   <data name="PortfolioSection_Filter_All" xml:space="preserve">
     <value>Всички</value>
