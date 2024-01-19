@@ -5,19 +5,21 @@
     <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-            <h2>Изпращане</h2>
-            <h3>Изпращане на ръкопис</h3>
-            <p>Процедура по приемане, рецензиране и публикуване на текст.</p>
+            <h2>@HtmlLocalizer["ContactSection_Title"]</h2>
+            <h3>@HtmlLocalizer["ContactSection_SubTitle"]</h3>
+            <p contenteditable-for="ContactSection_Description">
+                Процедура по приемане, рецензиране и публикуване на текст.
+            </p>
         </div>
 
         <div class="row" data-aos="fade-up" data-aos-delay="100">
             <div class="col-lg-6">
                 <div class="info-box mb-4">
-                    <i class="bx bx-map"></i>
-                    <h3 class="title"><a href="mailto:@SiteConstant.ReviewsEmail">Адрес на Издателя</a></h3>
+                    <i class="bx bx-map"></i> @* TODO: OPen Google Maps with Plovdiv University location *@
+                    <h3 class="title"><a href="#">@HtmlLocalizer["ContactSection_Address_Title"]</a></h3>
                     <p>
-                        Пловдив 4000, Пловдивско университетско издателство, „Цар Асен“ 24 <br/>
-                        Email за ръкописи: <a href="mailto:@SiteConstant.ReviewsEmail">@SiteConstant.ReviewsEmail</a>
+                        @HtmlLocalizer["ContactSection_Address_Location"] <br />
+                        @HtmlLocalizer["ContactSection_Review_Email"]: <a href="mailto:@SiteConstant.ReviewsEmail">@SiteConstant.ReviewsEmail</a>
                     </p>
                 </div>
             </div>
@@ -25,8 +27,8 @@
             <div class="col-lg-3 col-md-6">
                 <div class="info-box  mb-4">
                     <i class="bx bx-planet"></i>
-                    <h3 class="title"><a href="#codex">Етичен кодекс</a></h3>
-                    <p>
+                    <h3 class="title"><a href="#codex">@HtmlLocalizer["ContactSection_Codex_Title"]</a></h3>
+                    <p contenteditable-for="ContactSection_Codex_Description">
                         Запознайте се с нашия етичен кодекс, преди да изпратите ръкопис.
                     </p>
                 </div>
@@ -35,8 +37,8 @@
             <div class="col-lg-3 col-md-6">
                 <div class="info-box  mb-4">
                     <i class='bx bx-list-check'></i>
-                    <h3 class="title"><a asp-controller="Home" asp-action="Submit">Технически изисквания</a></h3>
-                    <p>
+                    <h3 class="title"><a asp-controller="Home" asp-action="Submit">@HtmlLocalizer["ContactSection_Submit_Title"]</a></h3>
+                    <p contenteditable-for="ContactSection_Submit_Description">
                         Запознайте се с техническите изисквания към ръкописите, които приемаме.
                     </p>
                 </div>
@@ -52,22 +54,13 @@
 
             <div class="col-lg-6">
                 <div class="php-email-form">
-                    <p class="text-end" contenteditable-for="test">
+                    <p class="text-end" contenteditable-for="ContactSection_Submit_Guideliness">
                         Предложеният за публикуване текст се изпраща като прикачен файл към email до редакцията на списанието 
                         заедно с декларация за съгласието си статията/студията да бъде издадена.
                         Файлът трябва да е с разширение .doc, .docx.
-                        @* Предложеният за публикуване текст се разглежда от съответния редакторски екип (езиковедски или литературоведски). *@
-                        @* Ако статията/студията отговаря на профила на изданието и е съобразена с посочените на сайта ни технически изисквания, *@
-                        @* главният редактор след заличаване на данните на автора (име, институционална принадлежност и т.н.) я изпраща за анонимно рецензиране. *@
-                        @* Ако един от двамата рецензенти препоръча текстът да не бъде публикуван, а другият подкрепи издаването му, *@
-                        @* главният редактор се обръща към трети рецензент, чиято оценка решава дали списанието ще помести разработката. *@
-                        @* Редактор информира автора за въпроси, бележки и препоръки, формулирани от рецензентите, *@
-                        @* и работи с автора по евентуални промени в научното изложение. След коректорския прочит и *@
-                        @* странирането на текста авторът отново го получава за последни (малки) корекции и за да потвърди съгласието си статията/студията *@
-                        @* да бъде издадена в окончателния ѝ одобрен от Редакцията вид. *@
                     </p>
                     <div class="text-end">
-                        <a class="btn" href="#">Изпращане на ръкопис</a>
+                        <a class="btn" href="#">@HtmlLocalizer["ContactSection_SubmitButton_Label"]</a>
                     </div>
                 </div>
             </div>

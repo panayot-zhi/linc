@@ -1,4 +1,5 @@
-﻿using linc.Contracts;
+﻿using System.Diagnostics;
+using linc.Contracts;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
@@ -29,6 +30,8 @@ namespace linc.Utility
         public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
             output.Attributes.Add("id", DatabaseLocalizationKey);
+
+            /* TODO: Switch edit mode here by another parameter! */
             if (ViewContext.HttpContext.User.IsAtLeast(SiteRole.Editor))
             {
                 output.Attributes.Add("contenteditable", "true");

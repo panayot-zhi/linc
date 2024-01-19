@@ -111,7 +111,7 @@
                 },
 
                 error: function (xhr, status, error) {
-                    console.error('Error:', error);
+                    alert(`Възникна грешка при запис, моля свържете се с администратор: ${status} - ${error}`);
                 }
 
             });

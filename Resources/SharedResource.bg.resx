@@ -120,17 +120,11 @@
   <data name="Board_Aleksander.Mikołajczak_Member" xml:space="preserve">
     <value>Проф. дн Александър Войчех Миколайчак</value>
   </data>
-  <data name="Board_Aleksander.Mikołajczak_MemberDescription" xml:space="preserve">
-    <value>TODO: Кратко описание за члена на редакционния борд. В края да се включи и връзка до допълнителна информация, която е предоставил (напр. orcid).</value>
-  </data>
   <data name="Board_Aleksander.Mikołajczak_MemberWork" xml:space="preserve">
     <value>Университет „Адам Мицкевич“, Познан, Полша</value>
   </data>
   <data name="Board_Elisabeth.Cheauré_Member" xml:space="preserve">
     <value>Проф. д-р Елизабет Шоре</value>
-  </data>
-  <data name="Board_Elisabeth.Cheauré_MemberDescription" xml:space="preserve">
-    <value>TODO: Кратко описание за члена на редакционния борд. В края да се включи и връзка до допълнителна информация, която е предоставил (напр. orcid).</value>
   </data>
   <data name="Board_Elisabeth.Cheauré_MemberWork" xml:space="preserve">
     <value>Университет „Алберт Лудвиг“, Фрайбург, Германия</value>
@@ -138,17 +132,11 @@
   <data name="Board_Hüseyin.Mevsim_Member" xml:space="preserve">
     <value>Проф. д-р Хюсеин Мевсим</value>
   </data>
-  <data name="Board_Hüseyin.Mevsim_MemberDescription" xml:space="preserve">
-    <value>TODO: Кратко описание за члена на редакционния борд. В края да се включи и връзка до допълнителна информация, която е предоставил (напр. orcid).</value>
-  </data>
   <data name="Board_Hüseyin.Mevsim_MemberWork" xml:space="preserve">
     <value>Анкарски университет, Турция</value>
   </data>
   <data name="Board_Nikolay.Aretov_Member" xml:space="preserve">
     <value>Проф. дфн Николай Аретов</value>
-  </data>
-  <data name="Board_Nikolay.Aretov_MemberDescription" xml:space="preserve">
-    <value>TODO: Кратко описание за члена на редакционния борд. В края да се включи и връзка до допълнителна информация, която е предоставил (напр. orcid).</value>
   </data>
   <data name="Board_Nikolay.Aretov_MemberWork" xml:space="preserve">
     <value>Институт за литература – Българска академия на науките, София, България</value>
@@ -156,26 +144,17 @@
   <data name="Board_Saverio.Tomaiuolo_Member" xml:space="preserve">
     <value>Доц. д-р Саверио Томайоло</value>
   </data>
-  <data name="Board_Saverio.Tomaiuolo_MemberDescription" xml:space="preserve">
-    <value>TODO: Кратко описание за члена на редакционния борд. В края да се включи и връзка до допълнителна информация, която е предоставил (напр. orcid).</value>
-  </data>
   <data name="Board_Saverio.Tomaiuolo_MemberWork" xml:space="preserve">
     <value>Университет на Касино и Южен Лацио, Италия</value>
   </data>
   <data name="Board_Suman.Gupta_Member" xml:space="preserve">
     <value>Проф. д-р Суман Гупта</value>
   </data>
-  <data name="Board_Suman.Gupta_MemberDescription" xml:space="preserve">
-    <value>TODO: Кратко описание за члена на редакционния борд. В края да се включи и връзка до допълнителна информация, която е предоставил (напр. orcid).</value>
-  </data>
   <data name="Board_Suman.Gupta_MemberWork" xml:space="preserve">
     <value>Open University, Милтън Кийнс, Великобритания</value>
   </data>
   <data name="Board_Vanya.Georgieva_Member" xml:space="preserve">
     <value>гл. ас. д-р Ваня Георгиева</value>
-  </data>
-  <data name="Board_Vanya.Georgieva_MemberDescription" xml:space="preserve">
-    <value>TODO: Кратко описание на техническия сътрудник както и допълнителна информация, която е предоставил (напр. orcid).</value>
   </data>
   <data name="Board_Vanya.Georgieva_MemberWork" xml:space="preserve">
     <value>Технически сътрудник &lt;br/&gt;катедра Българска литература и теория на литературата&lt;br/&gt;ПУ „Паисий Хилендарски“</value>
@@ -303,9 +282,6 @@
   <data name="Team_B.Yanev_MemberDescription" xml:space="preserve">
     <value />
   </data>
-  <data name="Team_Description" xml:space="preserve">
-    <value>В редакторския екип на изданието участват преподаватели от факултета, а членове на редакционния борд са изявени изследователи от различни страни и научни организации.</value>
-  </data>
   <data name="Team_F.Boykova_Member" xml:space="preserve">
     <value>доц. д-р Фани Бойкова</value>
   </data>
@@ -422,5 +398,65 @@
   </data>
   <data name="CodexSection_Reviewers_Title" xml:space="preserve">
     <value>РЕЦЕНЗЕНТЪТ</value>
+  </data>
+  <data name="CodexSection_SubTitle" xml:space="preserve">
+    <value>Прочетете за нашия &lt;span&gt;Етичен кодекс&lt;/span&gt;</value>
+  </data>
+  <data name="CodexSection_Title" xml:space="preserve">
+    <value>Кодекс</value>
+  </data>
+  <data name="ContactSection_Address_Location" xml:space="preserve">
+    <value>Пловдив 4000, Пловдивско университетско издателство, „Цар Асен“ 24</value>
+  </data>
+  <data name="ContactSection_Address_Title" xml:space="preserve">
+    <value>Адрес на Издателя</value>
+  </data>
+  <data name="ContactSection_Codex_Title" xml:space="preserve">
+    <value>Етичен кодекс</value>
+  </data>
+  <data name="ContactSection_Review_Email" xml:space="preserve">
+    <value>Email за ръкописи</value>
+  </data>
+  <data name="ContactSection_SubmitButton_Label" xml:space="preserve">
+    <value>Изпрати ръкопис</value>
+  </data>
+  <data name="ContactSection_Submit_Title" xml:space="preserve">
+    <value>Технически изисквания</value>
+  </data>
+  <data name="ContactSection_SubTitle" xml:space="preserve">
+    <value>Изпращане на ръкопис</value>
+  </data>
+  <data name="ContactSection_Title" xml:space="preserve">
+    <value>Изпращане</value>
+  </data>
+  <data name="FaqSection_SubTitle" xml:space="preserve">
+    <value>Често Задавани &lt;span&gt;Въпроси&lt;/span&gt;</value>
+  </data>
+  <data name="FaqSection_Title" xml:space="preserve">
+    <value>Ч.З.В.</value>
+  </data>
+  <data name="Issue_IndexPage_Label" xml:space="preserve">
+    <value>Съдържание</value>
+  </data>
+  <data name="Issue_MoreInformation_Label" xml:space="preserve">
+    <value>Допълнителна информация</value>
+  </data>
+  <data name="Issue_Number_Label" xml:space="preserve">
+    <value>Брой №</value>
+  </data>
+  <data name="PortfolioSection_Filter_All" xml:space="preserve">
+    <value>Всички</value>
+  </data>
+  <data name="PortfolioSection_SubTitle" xml:space="preserve">
+    <value>Прегледайте досегашните &lt;span&gt;издания&lt;/span&gt; на списанието</value>
+  </data>
+  <data name="PortfolioSection_Title" xml:space="preserve">
+    <value>Броеве</value>
+  </data>
+  <data name="ServicesSection_SubTitle" xml:space="preserve">
+    <value>Нашите &lt;span&gt;силни страни&lt;/span&gt;</value>
+  </data>
+  <data name="ServicesSection_Title" xml:space="preserve">
+    <value>За нас</value>
   </data>
 </root>
