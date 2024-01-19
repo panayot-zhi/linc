@@ -15,13 +15,31 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         Options = options;
     }
 
+
+
+    public DbSet<ApplicationLanguage> Languages { get; set; }
+
+    public DbSet<ApplicationStringResource> StringResources { get; set; }
+
+
+    
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
 
-        // Customize the ASP.NET Identity model and override the defaults if needed.
-        // For example, you can rename the ASP.NET Identity table names and more.
-        // Add your customizations after calling base.OnModelCreating(builder);
+        // Generate database entries for supported cultures
+
+        foreach (var supportedCulture in SiteConstant.SupportedCultures)
+        {
+            builder.Entity<ApplicationLanguage>()
+                .HasData(new ApplicationLanguage
+                {
+                    Id = supportedCulture.Key,
+                    Culture = supportedCulture.Value
+                });
+        }
+
+        // Seed administrator
 
         builder.Entity<ApplicationUser>()
             .HasData(new ApplicationUser
@@ -49,6 +67,8 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
                 LastUpdated = DateTime.Parse("2024-01-01"),
             });
 
+        // Seed roles
+
         foreach (var (id, name) in SiteRolesHelper.DatabaseRolesSeed)
         {
             builder.Entity<IdentityRole>()
@@ -60,6 +80,8 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
                     Name = name
                 });
         }
+
+        // Grant admin to me
 
         builder.Entity<IdentityUserRole<string>>()
             .HasData(new IdentityUserRole<string>()

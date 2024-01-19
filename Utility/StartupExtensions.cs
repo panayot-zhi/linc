@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Mvc.Razor;
+using linc.Contracts;
 
 namespace linc.Utility;
 
@@ -87,9 +87,14 @@ public static class StartupExtensions
         return services;
     }
 
-    public static IServiceCollection AddCachingProfiles(this IServiceCollection services)
+    public static IServiceCollection AddCaching(this IServiceCollection services)
     {
         services.AddResponseCaching();
+        services.AddMemoryCache(options =>
+        {
+            // aim for roughly 20M symbols
+            options.SizeLimit = (long) 2e7;
+        });
 
         services.AddControllersWithViews(options =>
         {
@@ -280,9 +285,10 @@ public static class StartupExtensions
 
     public static IServiceCollection AddLocalizations(this IServiceCollection services)
     {
+        var supportedCultures = SiteConstant.SupportedCultures.Values.ToArray();
+
         services.Configure<RequestLocalizationOptions>(options =>
         {
-            var supportedCultures = new[] { "bg", "en" };
             options.SetDefaultCulture(supportedCultures.First())
                 .AddSupportedCultures(supportedCultures)
                 .AddSupportedUICultures(supportedCultures);
@@ -315,8 +321,9 @@ public static class StartupExtensions
 
     public static IServiceCollection AddServices(this IServiceCollection services)
     {
+        services.AddScoped<ILocalizationService, LocalizationService>();
+        services.AddTransient<IContentService, ContentService>();
         services.AddTransient<IEmailSender, EmailSender>();
-        services.AddTransient<ContentService>();
         //services.AddTransient<ISharedViewLocalizer, SharedViewLocalizer>();
 
         return services;

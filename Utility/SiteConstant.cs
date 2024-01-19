@@ -1,7 +1,16 @@
-﻿namespace linc.Utility;
+﻿using System.Collections.ObjectModel;
+
+namespace linc.Utility;
 
 public static class SiteConstant
 {
+    public static readonly Dictionary<int, string> SupportedCultures = new() {
+        // NOTE: Key is database id
+        // value is the culture
+        {1, "bg"}, 
+        {2, "en"}
+    };
+
     public const string ZeroGuid = "00000000-0000-0000-0000-000000000000";
 
     public const string ReviewsEmail = "review-linc@uni-plovdiv.bg";

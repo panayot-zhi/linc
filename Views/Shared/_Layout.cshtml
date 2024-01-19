@@ -75,12 +75,12 @@
             <div class="d-flex align-items-center">
                 <form id="set_language" asp-controller="Home" asp-action="SetLanguage">
                     <span>CurrentCulture: @currentCulture</span>
-                    <button id="language_bg" name="culture" value="bg" type="submit" class="btn">
-                        <i class="fi fi-bg"></i>
-                    </button>
-                    <button id="language_en" name="culture" value="en" type="submit" class="btn">
-                        <i class="fi fi-eu"></i>
-                    </button>
+                    @foreach (var supportedCulture in SiteConstant.SupportedCultures.Values)
+                    {
+                        <button id="language_@supportedCulture" name="culture" value="@supportedCulture" type="submit" class="btn">
+                            <i class="fi fi-@supportedCulture"></i>
+                        </button>
+                    }
                 </form>
             </div>
         </div>

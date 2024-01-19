@@ -1,4 +1,5 @@
 using linc.Utility;
+using Serilog;
 
 namespace linc;
 
@@ -12,12 +13,14 @@ public class Program
         var environment = builder.Environment;
         var host = builder.Host;
 
+        host.UseSerilog(ConfigureLogger);
+
         services
             .AddDatabase(configuration)
             .AddConfigurations(configuration)
             .AddAuthentications(configuration)
             .AddApplicationIdentity()
-            .AddCachingProfiles()
+            .AddCaching()
             .AddLocalizations()
             .AddCookies()
             .AddServices()
@@ -43,8 +46,6 @@ public class Program
         app.UseHttpsRedirection();
         app.UseStaticFiles();
 
-        //app.EnsureMigrationOfContext<ApplicationDbContext>();
-
         app.UseRouting();
         app.UseAuthentication();
         app.UseAuthorization();
@@ -54,7 +55,12 @@ public class Program
             pattern: "{controller=Home}/{action=Index}/{id?}");
 
         app.MapRazorPages();
-
         app.Run();
+    }
+
+    private static void ConfigureLogger(HostBuilderContext hostBuilderContext, LoggerConfiguration loggerConfiguration)
+    {
+        // NOTE: Read configuration from appsettings.json
+        loggerConfiguration.ReadFrom.Configuration(hostBuilderContext.Configuration);
     }
 }

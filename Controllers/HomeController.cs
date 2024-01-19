@@ -1,9 +1,10 @@
 ﻿using System.Diagnostics;
 using System.Net;
+using linc.Contracts;
+using linc.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Localization;
-using Microsoft.Extensions.Localization;
 using linc.Models.ViewModels.Home;
 using linc.Models.ViewModels;
 using linc.Utility;
@@ -13,19 +14,18 @@ namespace linc.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly IStringLocalizer<SharedResource> _localizer;
+        private readonly ILocalizationService _localizationService;
+        
 
-        public HomeController(ILogger<HomeController> logger, 
-            IStringLocalizer<SharedResource> localizer)
+        public HomeController(ILogger<HomeController> logger,
+            ILocalizationService localizationService)
         {
             _logger = logger;
-            _localizer = localizer;
+            _localizationService = localizationService;
         }
 
         public IActionResult Index()
         {
-            ViewBag.Title = _localizer["Index_Title"];
-
             // TODO: Expand and fill this model with information
             var viewModel = new IndexViewModel()
             {
@@ -59,6 +59,21 @@ namespace linc.Controllers
         public IActionResult Submit()
         {
             return View();
+        }
+
+        [Ajax]
+        [HttpPost]
+        [SiteAuthorize(SiteRole.Editor)]
+        public async Task<IActionResult> SetStringResource(ApplicationStringResource stringResource)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            await _localizationService.SetStringResource(stringResource.Key, stringResource.Value);
+
+            return Ok();
         }
 
         [HttpPost]
