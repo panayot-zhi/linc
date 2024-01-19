@@ -61,6 +61,78 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Съдържание.
+        /// </summary>
+        public static string AboutSection_Content_Title {
+            get {
+                return ResourceManager.GetString("AboutSection_Content_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Годишно излизат &lt;span&gt;два броя&lt;/span&gt;, единият от които е &lt;span&gt;тематичен&lt;/span&gt;..
+        /// </summary>
+        public static string AboutSection_Description_SecondRow {
+            get {
+                return ResourceManager.GetString("AboutSection_Description_SecondRow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Цели и обхват на списанието.
+        /// </summary>
+        public static string AboutSection_Goals_Title {
+            get {
+                return ResourceManager.GetString("AboutSection_Goals_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Мисия.
+        /// </summary>
+        public static string AboutSection_Mission_Title {
+            get {
+                return ResourceManager.GetString("AboutSection_Mission_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Публикуване на ръкопис.
+        /// </summary>
+        public static string AboutSection_Publish_Title {
+            get {
+                return ResourceManager.GetString("AboutSection_Publish_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Рецензиране.
+        /// </summary>
+        public static string AboutSection_Review_Title {
+            get {
+                return ResourceManager.GetString("AboutSection_Review_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Научете повече &lt;span&gt;за списанието&lt;/span&gt;.
+        /// </summary>
+        public static string AboutSection_SubTitle {
+            get {
+                return ResourceManager.GetString("AboutSection_SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to За списанието.
+        /// </summary>
+        public static string AboutSection_Title {
+            get {
+                return ResourceManager.GetString("AboutSection_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Проф. дн Александър Войчех Миколайчак.
         /// </summary>
         public static string Board_Aleksander_Mikołajczak_Member {
@@ -322,6 +394,42 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Български &amp; Английски.
+        /// </summary>
+        public static string FeaturedSection_International_Title {
+            get {
+                return ResourceManager.GetString("FeaturedSection_International_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Анонимно рецензиране.
+        /// </summary>
+        public static string FeaturedSection_Review_Title {
+            get {
+                return ResourceManager.GetString("FeaturedSection_Review_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изпращане на ръкопис.
+        /// </summary>
+        public static string FeaturedSection_Submit_Title {
+            get {
+                return ResourceManager.GetString("FeaturedSection_Submit_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Реномирана редколегия.
+        /// </summary>
+        public static string FeaturedSection_Team_Title {
+            get {
+                return ResourceManager.GetString("FeaturedSection_Team_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Пловдив 4000, ПУ „Паисий Хилендарски“.
         /// </summary>
         public static string Footer_Address_City {
@@ -471,6 +579,15 @@ namespace linc.Resources {
         public static string Footer_UsefulLinks_Title {
             get {
                 return ResourceManager.GetString("Footer_UsefulLinks_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Научи повече.
+        /// </summary>
+        public static string GetStarted_Message {
+            get {
+                return ResourceManager.GetString("GetStarted_Message", resourceCulture);
             }
         }
         

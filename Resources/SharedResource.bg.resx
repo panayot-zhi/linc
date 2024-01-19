@@ -378,4 +378,52 @@
   <data name="Version_Label" xml:space="preserve">
     <value>версия</value>
   </data>
+  <data name="AboutSection_SubTitle" xml:space="preserve">
+    <value>Научете повече &lt;span&gt;за списанието&lt;/span&gt;</value>
+  </data>
+  <data name="AboutSection_Title" xml:space="preserve">
+    <value>За списанието</value>
+  </data>
+  <data name="FeaturedSection_International_Title" xml:space="preserve">
+    <value>Български &amp; Английски</value>
+  </data>
+  <data name="FeaturedSection_Review_Title" xml:space="preserve">
+    <value>Анонимно рецензиране</value>
+  </data>
+  <data name="FeaturedSection_Submit_Title" xml:space="preserve">
+    <value>Изпращане на ръкопис</value>
+  </data>
+  <data name="FeaturedSection_Team_Title" xml:space="preserve">
+    <value>Реномирана редколегия</value>
+  </data>
+  <data name="GetStarted_Message" xml:space="preserve">
+    <value>Научи повече</value>
+  </data>
+  <data name="AboutSection_Content_Title" xml:space="preserve">
+    <value>Съдържание</value>
+  </data>
+  <data name="AboutSection_Description_SecondRow" xml:space="preserve">
+    <value>Годишно излизат &lt;span&gt;два броя&lt;/span&gt;, единият от които е &lt;span&gt;тематичен&lt;/span&gt;.</value>
+  </data>
+  <data name="AboutSection_Goals_Title" xml:space="preserve">
+    <value>Цели и обхват на списанието</value>
+  </data>
+  <data name="AboutSection_Mission_Title" xml:space="preserve">
+    <value>Мисия</value>
+  </data>
+  <data name="AboutSection_Publish_Title" xml:space="preserve">
+    <value>Публикуване на ръкопис</value>
+  </data>
+  <data name="AboutSection_Review_Title" xml:space="preserve">
+    <value>Рецензиране</value>
+  </data>
+  <data name="CodexSection_Authors_Title" xml:space="preserve">
+    <value>АВТОРЪТ</value>
+  </data>
+  <data name="CodexSection_Editors_Title" xml:space="preserve">
+    <value>РЕДАКТОРСКИЯТ ЕКИП</value>
+  </data>
+  <data name="CodexSection_Reviewers_Title" xml:space="preserve">
+    <value>РЕЦЕНЗЕНТЪТ</value>
+  </data>
 </root>

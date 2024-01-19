@@ -126,6 +126,33 @@
   <data name="Logo_Short" xml:space="preserve">
     <value>LInC</value>
   </data>
+  <data name="SiteRole_Administrator" xml:space="preserve">
+    <value>Administrator</value>
+  </data>
+  <data name="SiteRole_Administrators" xml:space="preserve">
+    <value>Administrators</value>
+  </data>
+  <data name="SiteRole_Editor" xml:space="preserve">
+    <value>Editor</value>
+  </data>
+  <data name="SiteRole_Editors" xml:space="preserve">
+    <value>Editors</value>
+  </data>
+  <data name="SiteRole_EditorsBoard" xml:space="preserve">
+    <value>Editors Board</value>
+  </data>
+  <data name="SiteRole_HeadEditor" xml:space="preserve">
+    <value>Head Editor</value>
+  </data>
+  <data name="SiteRole_HeadEditors" xml:space="preserve">
+    <value>Head Editors</value>
+  </data>
+  <data name="SiteRole_User" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="SiteRole_Users" xml:space="preserve">
+    <value>Users</value>
+  </data>
   <data name="Welcome_Message" xml:space="preserve">
     <value>Welcome to &lt;span&gt;LInC.uni-plovdiv.bg&lt;/span&gt;</value>
   </data>
