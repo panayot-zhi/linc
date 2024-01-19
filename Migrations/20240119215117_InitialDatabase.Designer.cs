@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using linc.Data;
 
@@ -10,9 +11,10 @@ using linc.Data;
 namespace linc.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240119215117_InitialDatabase")]
+    partial class InitialDatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,18 +41,6 @@ namespace linc.Migrations
                         .HasDatabaseName("ix_languages_culture");
 
                     b.ToTable("languages", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Culture = "bg"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Culture = "en"
-                        });
                 });
 
             modelBuilder.Entity("linc.Data.ApplicationStringResource", b =>
@@ -218,32 +208,6 @@ namespace linc.Migrations
                         .HasDatabaseName("UserNameIndex");
 
                     b.ToTable("asp_net_users", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "00000000-0000-0000-0000-000000000000",
-                            AccessFailedCount = 0,
-                            AvatarType = 1,
-                            ConcurrencyStamp = "00000000-0000-0000-0000-000000000000",
-                            DateCreated = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "System administrator. / Администратор на системата.",
-                            DisplayEmail = true,
-                            DisplayNameType = 2,
-                            Email = "admin-linc@uni-plovdiv.bg",
-                            EmailConfirmed = true,
-                            FirstName = "Panayot",
-                            LastName = "Ivanov",
-                            LastUpdated = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            LockoutEnabled = false,
-                            NormalizedEmail = "ADMIN-LINC@UNI-PLOVDIV.BG",
-                            NormalizedUserName = "P.IVANOV",
-                            PasswordHash = "CHANGE_ME",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "00000000-0000-0000-0000-000000000000",
-                            TwoFactorEnabled = false,
-                            UserName = "p.ivanov"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -275,43 +239,6 @@ namespace linc.Migrations
                         .HasDatabaseName("RoleNameIndex");
 
                     b.ToTable("asp_net_roles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "00000000-0000-0000-0000-000000000000",
-                            ConcurrencyStamp = "000000000000-0000-0000-0000-00000000",
-                            Name = "ADMINISTRATOR",
-                            NormalizedName = "ADMINISTRATOR"
-                        },
-                        new
-                        {
-                            Id = "5e1199d7-7725-4900-aa34-5496365bf5a0",
-                            ConcurrencyStamp = "0a5fb5636945-43aa-0094-5277-7d9911e5",
-                            Name = "HEAD_EDITOR",
-                            NormalizedName = "HEAD_EDITOR"
-                        },
-                        new
-                        {
-                            Id = "05cbe4c7-108e-40bc-bee7-65438875026e",
-                            ConcurrencyStamp = "e62057883456-7eeb-cb04-e801-7c4ebc50",
-                            Name = "EDITOR",
-                            NormalizedName = "EDITOR"
-                        },
-                        new
-                        {
-                            Id = "6b1acea8-2d26-4c82-b6ad-7281b7d621ae",
-                            ConcurrencyStamp = "ea126d7b1827-da6b-28c4-62d2-8aeca1b6",
-                            Name = "USER_PLUS",
-                            NormalizedName = "USER_PLUS"
-                        },
-                        new
-                        {
-                            Id = "90667439-9058-4956-96e6-d23bac481443",
-                            ConcurrencyStamp = "344184cab32d-6e69-6594-8509-93476609",
-                            Name = "USER",
-                            NormalizedName = "USER"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -419,13 +346,6 @@ namespace linc.Migrations
                         .HasDatabaseName("ix_asp_net_user_roles_role_id");
 
                     b.ToTable("asp_net_user_roles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = "00000000-0000-0000-0000-000000000000",
-                            RoleId = "00000000-0000-0000-0000-000000000000"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>

@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace linc.Migrations
 {
-    public partial class DatabaseSeed : Migration
+    public partial class SeedDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.InsertData(
-                table: "AspNetRoles",
-                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                table: "asp_net_roles",
+                columns: new[] { "id", "concurrency_stamp", "name", "normalized_name" },
                 values: new object[,]
                 {
                     { "00000000-0000-0000-0000-000000000000", "000000000000-0000-0000-0000-00000000", "ADMINISTRATOR", "ADMINISTRATOR" },
@@ -22,51 +22,70 @@ namespace linc.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "AspNetUsers",
-                columns: new[] { "Id", "AccessFailedCount", "AvatarType", "ConcurrencyStamp", "DateCreated", "Description", "DisplayEmail", "DisplayNameType", "Email", "EmailConfirmed", "FacebookAvatarPath", "FirstName", "GoogleAvatarPath", "InternalAvatarPath", "LastName", "LastUpdated", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwitterAvatarPath", "TwoFactorEnabled", "UserName" },
+                table: "asp_net_users",
+                columns: new[] { "id", "access_failed_count", "avatar_type", "concurrency_stamp", "date_created", "description", "display_email", "display_name_type", "email", "email_confirmed", "facebook_avatar_path", "first_name", "google_avatar_path", "internal_avatar_path", "last_name", "last_updated", "lockout_enabled", "lockout_end", "normalized_email", "normalized_user_name", "password_hash", "phone_number", "phone_number_confirmed", "security_stamp", "twitter_avatar_path", "two_factor_enabled", "user_name" },
                 values: new object[] { "00000000-0000-0000-0000-000000000000", 0, 1, "00000000-0000-0000-0000-000000000000", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "System administrator. / Администратор на системата.", true, 2, "admin-linc@uni-plovdiv.bg", true, null, "Panayot", null, null, "Ivanov", new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), false, null, "ADMIN-LINC@UNI-PLOVDIV.BG", "P.IVANOV", "CHANGE_ME", null, false, "00000000-0000-0000-0000-000000000000", null, false, "p.ivanov" });
 
             migrationBuilder.InsertData(
-                table: "AspNetUserRoles",
-                columns: new[] { "RoleId", "UserId" },
+                table: "languages",
+                columns: new[] { "id", "culture" },
+                values: new object[,]
+                {
+                    { 1, "bg" },
+                    { 2, "en" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "asp_net_user_roles",
+                columns: new[] { "role_id", "user_id" },
                 values: new object[] { "00000000-0000-0000-0000-000000000000", "00000000-0000-0000-0000-000000000000" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DeleteData(
-                table: "AspNetRoles",
-                keyColumn: "Id",
+                table: "asp_net_roles",
+                keyColumn: "id",
                 keyValue: "05cbe4c7-108e-40bc-bee7-65438875026e");
 
             migrationBuilder.DeleteData(
-                table: "AspNetRoles",
-                keyColumn: "Id",
+                table: "asp_net_roles",
+                keyColumn: "id",
                 keyValue: "5e1199d7-7725-4900-aa34-5496365bf5a0");
 
             migrationBuilder.DeleteData(
-                table: "AspNetRoles",
-                keyColumn: "Id",
+                table: "asp_net_roles",
+                keyColumn: "id",
                 keyValue: "6b1acea8-2d26-4c82-b6ad-7281b7d621ae");
 
             migrationBuilder.DeleteData(
-                table: "AspNetRoles",
-                keyColumn: "Id",
+                table: "asp_net_roles",
+                keyColumn: "id",
                 keyValue: "90667439-9058-4956-96e6-d23bac481443");
 
             migrationBuilder.DeleteData(
-                table: "AspNetUserRoles",
-                keyColumns: new[] { "RoleId", "UserId" },
+                table: "asp_net_user_roles",
+                keyColumns: new[] { "role_id", "user_id" },
                 keyValues: new object[] { "00000000-0000-0000-0000-000000000000", "00000000-0000-0000-0000-000000000000" });
 
             migrationBuilder.DeleteData(
-                table: "AspNetRoles",
-                keyColumn: "Id",
+                table: "languages",
+                keyColumn: "id",
+                keyValue: 1);
+
+            migrationBuilder.DeleteData(
+                table: "languages",
+                keyColumn: "id",
+                keyValue: 2);
+
+            migrationBuilder.DeleteData(
+                table: "asp_net_roles",
+                keyColumn: "id",
                 keyValue: "00000000-0000-0000-0000-000000000000");
 
             migrationBuilder.DeleteData(
-                table: "AspNetUsers",
-                keyColumn: "Id",
+                table: "asp_net_users",
+                keyColumn: "id",
                 keyValue: "00000000-0000-0000-0000-000000000000");
         }
     }

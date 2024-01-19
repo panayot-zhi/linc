@@ -278,6 +278,7 @@ public static class StartupExtensions
             optionsAction: options =>
                 options
                     .EnableDetailedErrors()
+                    .UseSnakeCaseNamingConvention()
                     .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
                     .UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
