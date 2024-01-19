@@ -9,7 +9,21 @@
     // Bind Submit targets href form
     $("form").on('submit', onSubmit);
     $(".submit-link").on('click', doSubmit);
+    $("[contenteditable=\"true\"]").on('blur', onBlurContentEditable);
+    $("[contenteditable=\"true\"]").on('focus', onFocusContentEditable);
     $("[contenteditable=\"true\"]").on('keydown', onSaveContentEditable);
+
+    window.currentEditingElementId = null;
+
+    window.showPreloader = function () {
+        let preloader = document.getElementById('preloader');
+        preloader.hidden = false;
+    }
+
+    window.hidePreloader = function () {
+        let preloader = document.getElementById('preloader');
+        preloader.hidden = true;
+    }
 
     function doSubmit(e) {
         e.preventDefault();
@@ -25,8 +39,45 @@
         let form = $(e.target);
 
         if (form.valid()) {
-            let preloader = document.getElementById('preloader');
-            preloader.hidden = false;
+            window.showPreloader();
+        }
+    }
+
+    // I copy-pasted this from sumwhere
+    // please work, I don wanna debug u
+    function prettyPrintHTML(html) {
+
+        var tab = '\t';
+        var result = '';
+        var indent = '';
+
+        html.split(/>\s*</).forEach(function (element) {
+            if (element.match(/^\/\w/)) {
+                indent = indent.substring(tab.length);
+            }
+
+            result += indent + '<' + element + '>\r\n';
+
+            if (element.match(/^<?\w[^>]*[^\/]$/) && !element.startsWith("input")) {
+                indent += tab;
+            }
+        });
+
+        return result.substring(1, result.length - 3);
+
+    }
+
+    function onBlurContentEditable(e) {
+        e.target.innerHTML = e.target.innerText;
+        window.currentEditingElementId = null;
+    }
+
+    function onFocusContentEditable(e) {
+
+        // NOTE: enter this function only once on click per element
+        if (window.currentEditingElementId !== e.target.id) {
+            window.currentEditingElementId = e.target.id;
+            e.target.innerText = prettyPrintHTML(e.target.innerHTML);            
         }
     }
 
@@ -40,6 +91,8 @@
             if (!confirm("Сигурни ли сте че искате да запазите?")) {
                 return false;
             }
+
+            window.showPreloader();
 
             let request = {
                 key: e.target.id,
@@ -61,7 +114,7 @@
                     console.error('Error:', error);
                 }
 
-            })
+            });
 
             return false;
         }
