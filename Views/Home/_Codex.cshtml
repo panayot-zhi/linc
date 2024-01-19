@@ -3,9 +3,9 @@
     <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-            <h2>Кодекс</h2>
-            <h3>Прочетете за нашия <span>Етичен кодекс</span></h3>
-            <p>
+            <h2>@HtmlLocalizer["CodexSection_Title"]Кодекс</h2>
+            <h3>@HtmlLocalizer["CodexSection_SubTitle"]Прочетете за нашия <span>Етичен кодекс</span></h3>
+            <p contenteditable-for="CodexSection_Description">
                 Издателят и редакторският екип на „Език, интерпретация, концепции“ се ръководят от нормите и 
                 утвърдените международни стандарти в научната публикационна дейност, отразени в документите на 
                 <a href="http://publicationethics.org/" target="_blank">Committee on Publication Ethics</a>
@@ -17,11 +17,11 @@
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-editors" aria-expanded="false" aria-controls="collapse-editors">
-                            РЕДАКТОРСКИЯТ ЕКИП
+                            @HtmlLocalizer["CodexSection_Editors_Title"]
                         </button>
                     </h2>
                     <div id="collapse-editors" class="accordion-collapse collapse" data-bs-parent="#code-of-ethics">
-                        <div class="accordion-body">
+                        <div class="accordion-body" contenteditable-for="CodexSection_Editors_Content">
                             <ul class="mx-2">
                                 <li>
                                     съобразява работата си с насоките на <a href="https://publicationethics.org/files/Code_of_conduct_for_journal_editors_Mar11.pdf" target="_blank">Code of Conduct and Best Practice Guidelines for Journal Editors</a>;
@@ -75,11 +75,11 @@
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                            АВТОРЪТ
+                            @HtmlLocalizer["CodexSection_Authors_Title"]
                         </button>
                     </h2>
                     <div id="flush-collapseTwo" class="accordion-collapse collapse show" data-bs-parent="#code-of-ethics">
-                        <div class="accordion-body">
+                        <div class="accordion-body" contenteditable-for="CodexSection_Authors_Content">
                             <ul class="mx-2">
                                 <li>
                                     може да предложи на списанието <strong>само своя собствена разработка</strong>, която не е публикувана и не е депозирана в друго издание;
@@ -121,11 +121,11 @@
                 <div class="accordion-item">
                     <h2 class="accordion-header">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                            РЕЦЕНЗЕНТЪТ
+                            @HtmlLocalizer["CodexSection_Reviewers_Title"]
                         </button>
                     </h2>
                     <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#code-of-ethics">
-                        <div class="accordion-body">
+                        <div class="accordion-body" contenteditable-for="CodexSection_Reviewers_Content">
                             <ul class="mx-2">
                                 <li>
                                     съобразява работата си с насоките на  Ethical Guidelines for Peer Reviewers (<a href="https://publicationethics.org/resources/guidelines/cope-ethical-guidelines-peer-reviewers">https://publicationethics.org/resources/guidelines/cope-ethical-guidelines-peer-reviewers</a>);

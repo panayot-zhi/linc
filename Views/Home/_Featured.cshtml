@@ -9,11 +9,12 @@
                         <i class="bx bx-file"></i>
                     </div>
                     <h4 class="title">
-                        <a class="scrollto" asp-controller="Home" asp-action="Index" asp-fragment="contact">Изпращане на ръкопис</a>
+                        <a class="scrollto" asp-controller="Home" asp-action="Index" asp-fragment="contact">@HtmlLocalizer["FeaturedSection_Submit_Title"]</a>
                     </h4>
-                    <p class="description">
+                    <p class="description" contenteditable-for="FeaturedSection_Submit_Description">
                         Изпращането става на email адресът на редакцията. Моля, уверете се, 
-                        че преди това сте се запознали с техническите изисквания за него и с нашия Етичен кодекс.</p>
+                        че преди това сте се запознали с техническите изисквания за него и с нашия Етичен кодекс.
+                    </p>
                 </div>
             </div>
 
@@ -23,9 +24,9 @@
                         <i class="bx bx-list-check"></i>
                     </div>
                     <h4 class="title">
-                        <a class="scrollto" asp-controller="Home" asp-action="Index" asp-fragment="team">Анонимно рецензиране</a>
+                        <a class="scrollto" asp-controller="Home" asp-action="Index" asp-fragment="team">@HtmlLocalizer["FeaturedSection_Review_Title"]</a>
                     </h4>
-                    <p class="description">
+                    <p class="description" contenteditable-for="FeaturedSection_Review_Description">
                         Ръкописът подлежи на анонимизиране от нашите редактори и се изпраща до двама независими рецензента.
                     </p>
                 </div>
@@ -37,9 +38,9 @@
                         <i class="bx bxs-graduation"></i>
                     </div>
                     <h4 class="title">
-                        <a class="scrollto" asp-controller="Home" asp-action="Index" asp-fragment="team">Реномирана редколегия</a>
+                        <a class="scrollto" asp-controller="Home" asp-action="Index" asp-fragment="team">@HtmlLocalizer["FeaturedSection_Team_Title"]</a>
                     </h4>
-                    <p class="description">
+                    <p class="description" contenteditable-for="FeaturedSection_Team_Description">
                         В редакторския екип на изданието участват преподаватели от факултета, а членове на редакционния борд 
                         са изявени изследователи от различни страни и научни организации.
                     </p>
@@ -52,9 +53,9 @@
                         <i class="bx bx-world"></i>
                     </div>
                     <h4 class="title">
-                        <a class="scrollto" asp-controller="Home" asp-action="Index" asp-fragment="about">Български & Английски</a>
+                        <a class="scrollto" asp-controller="Home" asp-action="Index" asp-fragment="about">@HtmlLocalizer["FeaturedSection_International_Title"]</a>
                     </h4>
-                    <p class="description">
+                    <p class="description" contenteditable-for="FeaturedSection_International_Description">
                         Публикациите в „Език, интерпретация, концепции“ са на български или английски език и 
                         могат да бъдат полезни на специалисти от различни сфери на хуманитаристиката.
                     </p>

@@ -372,9 +372,6 @@
   <data name="NavItem_Contact" xml:space="preserve">
     <value>Изпрати</value>
   </data>
-  <data name="Reviews_Message" xml:space="preserve">
-    <value>* процент на постъпилите ръкописи в редакцията спрямо одобрените/публикувани ръкописи в списанието</value>
-  </data>
   <data name="Version_Label" xml:space="preserve">
     <value>версия</value>
   </data>
