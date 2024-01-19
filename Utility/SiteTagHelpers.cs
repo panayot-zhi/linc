@@ -26,7 +26,7 @@ namespace linc.Utility
             _localizationService = localizationService;
         }
 
-        public override void Process(TagHelperContext context, TagHelperOutput output)
+        public override async Task ProcessAsync(TagHelperContext context, TagHelperOutput output)
         {
             output.Attributes.Add("id", DatabaseLocalizationKey);
             if (ViewContext.HttpContext.User.IsAtLeast(SiteRole.Editor))
@@ -47,14 +47,28 @@ namespace linc.Utility
             }
 
             var resource = _localizationService[DatabaseLocalizationKey];
-            if (resource.IsResourceNotFound)
-            {
-                output.Content.SetHtmlContent("Lorem ipsum dolor sit amet");
-            }
-            else
+            if (!resource.IsResourceNotFound)
             {
                 output.Content.SetHtmlContent(resource);
+                return;
+                
             }
+
+            if (!output.Content.IsEmptyOrWhiteSpace)
+            {
+                 await base.ProcessAsync(context, output);
+                 return;
+            }
+
+            var childContent = await output.GetChildContentAsync();
+            if (!childContent.IsEmptyOrWhiteSpace)
+            {
+                await base.ProcessAsync(context, output);
+                return;
+            }
+
+            // we need some content after all, fill some gibberish
+            output.Content.SetHtmlContent("Lorem ipsum dolor sit amet");
         }
     }
 }
