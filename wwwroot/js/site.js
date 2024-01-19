@@ -43,7 +43,7 @@
 
             let request = {
                 key: e.target.id,
-                value: e.target.innerHTML
+                value: e.target.innerText
             };
 
             $.ajax({

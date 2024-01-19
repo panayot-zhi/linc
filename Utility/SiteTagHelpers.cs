@@ -32,6 +32,18 @@ namespace linc.Utility
             if (ViewContext.HttpContext.User.IsAtLeast(SiteRole.Editor))
             {
                 output.Attributes.Add("contenteditable", "true");
+                
+                var classAttributeValue = "content-editable";
+                var classAttribute = output.Attributes["class"];
+                if (classAttribute is { Value: { } })
+                {
+                    classAttributeValue += " " + classAttribute.Value;
+                    output.Attributes.SetAttribute("class", classAttributeValue);
+                }
+                else
+                {
+                    output.Attributes.Add("class", classAttributeValue);
+                }
             }
 
             var resource = _localizationService[DatabaseLocalizationKey];
