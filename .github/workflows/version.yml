@@ -23,9 +23,9 @@ jobs:
         SOURCE_BRANCH="${{ github.head_ref }}"
         echo "Source branch is '$SOURCE_BRANCH'."
         
-        if [[ "$SOURCE_BRANCH" == "release/*" ]]; then
+        if [[ "$SOURCE_BRANCH" == release/* ]]; then
           echo "Incrementing major version for release branch"
-        elif [[ "$SOURCE_BRANCH" == "feature/*" ]]; then
+        elif [[ "$SOURCE_BRANCH" == feature/* ]]; then
           echo "Incrementing minor version for feature branch"
           awk '/<Version>[0-9]+\.[0-9]+\.[0-9]+<\/Version>/ {
               match($0, /^([ \t]*)<Version>([0-9]+)\.([0-9]+)\.([0-9]+)<\/Version>/, arr)
@@ -33,7 +33,7 @@ jobs:
               $0 = arr[1] "<Version>" new_version "</Version>"
           } {print}' linc.csproj > tmpfile && mv tmpfile linc.csproj
           echo "NEW_VERSION=$new_version" >> $GITHUB_ENV
-        elif [[ "$SOURCE_BRANCH" == "bugfix/*" ]]; then
+        elif [[ "$SOURCE_BRANCH" == bugfix/* ]]; then
           echo "Incrementing patch version for bugfix branch"
         else
           echo "Branch is not part of version automation."
