@@ -15,4 +15,10 @@ jobs:
 
     - name: Check source branch and increment version
       run: |
-         awk --help
+          ls -a
+          awk '/<Version>[0-9]+\.[0-9]+\.[0-9]+<\/Version>/ {
+              match($0, /^([ \t]*)<Version>([0-9]+)\.([0-9]+)\.([0-9]+)<\/Version>/, arr)
+              new_version=arr[2] "." arr[3]+1 "." arr[4]              
+              $0 = arr[1] "<Version>" new_version "</Version>"
+          } {print}' linc.csproj > tmpfile && mv tmpfile linc.csproj
+          echo "NEW_VERSION=$new_version" >> $GITHUB_ENV
