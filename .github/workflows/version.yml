@@ -1,51 +1,18 @@
 name: Auto Version Increment on Merge
 
 on:
-  pull_request:
-    types: [closed]
+  push:    
     branches:
       - master
 
 jobs:
-  version-increment:
-    if: github.event.pull_request.merged == true
+  version-increment:    
     runs-on: ubuntu-latest
     steps:
     
     - name: Set up environment
       run: sudo apt-get update && sudo apt-get install -y gawk
-      
-    - name: Checkout code
-      uses: actions/checkout@v2    
 
     - name: Check source branch and increment version
       run: |
-        SOURCE_BRANCH="${{ github.head_ref }}"
-        echo "Source branch is '$SOURCE_BRANCH'."
-        
-        if [[ "$SOURCE_BRANCH" == release/* ]]; then
-          echo "Incrementing major version for release branch"
-        elif [[ "$SOURCE_BRANCH" == feature/* ]]; then
-          echo "Incrementing minor version for feature branch"
-          
-          awk '/<Version>[0-9]+\.[0-9]+\.[0-9]+<\/Version>/ {
-              match($0, /^([ \t]*)<Version>([0-9]+)\.([0-9]+)\.([0-9]+)<\/Version>/, arr)
-              new_version=arr[2] "." arr[3]+1 "." arr[4]
-              print "New version is: " new_version
-              $0 = arr[1] "<Version>" new_version "</Version>"
-          } {print}' linc.csproj > tmpfile && mv tmpfile linc.csproj
-          echo "NEW_VERSION=$new_version" >> $GITHUB_ENV
-        elif [[ "$SOURCE_BRANCH" == bugfix/* ]]; then
-          echo "Incrementing patch version for bugfix branch"
-        else
-          echo "Branch is not part of version automation."
-        fi      
-
-    - name: Commit and push changes
-      uses: EndBug/add-and-commit@v9
-      if: env.NEW_VERSION != ''
-      with:
-        author_name: Admin-Linc
-        author_email: admin-linc@uni-plovdiv.bg
-        message: 'Auto-incremented version number to ${{ env.NEW_VERSION }}'
-        add: '*.csproj'
+         awk --help
