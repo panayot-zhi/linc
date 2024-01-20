@@ -40,9 +40,10 @@ jobs:
         fi      
 
     - name: Commit and push changes
-      run: |
-        git config --global user.name 'Linc Administrator'
-        git config --global user.email 'admin-linc@uni-plovdiv.bg'
-        git add --all
-        git commit -m "Auto-incremented version number to ${{ env.NEW_VERSION }}"
-        git push
+      uses: EndBug/add-and-commit@v9
+      if: env.NEW_VERSION != ''
+      with:
+        author_name: Admin-Linc
+        author_email: admin-linc@uni-plovdiv.bg
+        message: 'Auto-incremented version number to ${{ env.NEW_VERSION }}'
+        add: '*.csproj'
