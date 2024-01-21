@@ -23,9 +23,3 @@ jobs:
     - name: test2
       id: test2
       run: echo ${{ steps.vars.outputs.NEW_VERSION }}
-    
-        
-        # Replacing the version in the .csproj file
-        sed -i "s/<Version>$current_version<\/Version>/<Version>$new_version<\/Version>/" "$csproj_file"
-        
-        echo "Updated version to $new_version and set as environment variable."
