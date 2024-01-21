@@ -17,8 +17,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
-    - name: Set up environment
-      run: sudo apt-get update && sudo apt-get install -y gawk
+    #- name: Set up environment
+    #  run: sudo apt-get update && sudo apt-get install -y gawk
 
     # TODO: this is stupid, use $NEW_VERSION for the actual version
     - name: Check source branch and increment version
@@ -32,13 +32,4 @@ jobs:
         
         # Extracting the version number from the line
         current_version=$(echo $version_line | sed -n 's/.*<Version>\(.*\)<\/Version>.*/\1/p')
-        echo current_version 
-
-    - name: Commit and push changes
-      uses: EndBug/add-and-commit@v9
-      if: env.NEW_VERSION != ''
-      with:
-        author_name: Admin-Linc
-        author_email: admin-linc@uni-plovdiv.bg
-        message: 'Auto-incremented version number to ${{ env.NEW_VERSION }}'
-        add: '*.csproj'
+        echo current_version
