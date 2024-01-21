@@ -16,36 +16,14 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     
-    #- name: Set up environment
-    #  run: sudo apt-get update && sudo apt-get install -y gawk
+    - name: test1
+      id: test1
+      run: echo "NEW_VERSION=test" >> $GITHUB_OUTPUT
 
-    # TODO: this is stupid, use $NEW_VERSION for the actual version
-    - name: Check source branch and increment version
-      run: |
-        SOURCE_BRANCH="${{ github.head_ref }}"
-        # File path to the .csproj file
-        csproj_file="linc.csproj"
-        
-        # Extracting the version line from the .csproj file
-        version_line=$(grep '<Version>' "$csproj_file")
-        
-        # Extracting the version number from the line
-        current_version=$(echo $version_line | sed -n 's/.*<Version>\(.*\)<\/Version>.*/\1/p')
-        
-        # Splitting the version into major, minor, and patch numbers
-        IFS='.' read -r -a version_parts <<< "$current_version"
-        major=${version_parts[0]}
-        minor=${version_parts[1]}
-        patch=${version_parts[2]}
-        
-        # Incrementing the major version
-        let major+=1
-        
-        # Constructing the new version
-        new_version="$major.$minor.$patch"
-        
-        # Setting the new version as an environment variable
-        export NEW_VERSION=$new_version
+    - name: test2
+      id: test2
+      run: echo ${{ steps.vars.outputs.NEW_VERSION }}
+    
         
         # Replacing the version in the .csproj file
         sed -i "s/<Version>$current_version<\/Version>/<Version>$new_version<\/Version>/" "$csproj_file"
