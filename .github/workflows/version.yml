@@ -1,8 +1,9 @@
 name: Auto Version Increment on Merge
 
 on:
-  pull_request:
-    types: [closed]
+  #pull_request:
+  push:
+    #types: [closed]
     branches:
       - master
 
@@ -23,27 +24,15 @@ jobs:
     - name: Check source branch and increment version
       run: |
         SOURCE_BRANCH="${{ github.head_ref }}"
-        echo "Source branch is '$SOURCE_BRANCH'."
+        # File path to the .csproj file
+        csproj_file="linc.csproj"
         
-        if [[ "$SOURCE_BRANCH" == release/* ]]; then
-          echo "Incrementing major version for release branch"
-          echo "NEW_VERSION=true" >> $GITHUB_ENV
-        elif [[ "$SOURCE_BRANCH" == feature/* ]]; then
-          echo "Incrementing minor version for feature branch"
-          echo "NEW_VERSION=true" >> $GITHUB_ENV
-          
-          awk '/<Version>[0-9]+\.[0-9]+\.[0-9]+<\/Version>/ {
-              match($0, /^([ \t]*)<Version>([0-9]+)\.([0-9]+)\.([0-9]+)<\/Version>/, arr)
-              new_version=arr[2] "." arr[3]+1 "." arr[4]
-              $0 = arr[1] "<Version>" new_version "</Version>"
-          } {print}' linc.csproj > tmpfile && mv tmpfile linc.csproj
-          
-        elif [[ "$SOURCE_BRANCH" == bugfix/* ]]; then
-          echo "Incrementing patch version for bugfix branch"
-          echo "NEW_VERSION=true" >> $GITHUB_ENV
-        else
-          echo "Branch is not part of version automation."
-        fi      
+        # Extracting the version line from the .csproj file
+        version_line=$(grep '<Version>' "$csproj_file")
+        
+        # Extracting the version number from the line
+        current_version=$(echo $version_line | sed -n 's/.*<Version>\(.*\)<\/Version>.*/\1/p')
+        echo current_version 
 
     - name: Commit and push changes
       uses: EndBug/add-and-commit@v9
