@@ -15,11 +15,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    
-    - name: test1
-      id: test1
-      run: echo "NEW_VERSION=test" >> $GITHUB_OUTPUT
-
-    - name: test2
-      id: test2
-      run: echo ${{ steps.vars.outputs.NEW_VERSION }}
+    - name: Set color
+      id: random-color-generator
+      run: echo "SELECTED_COLOR=green" >> $GITHUB_OUTPUT
+    - name: Get color
+      run: echo "The selected color is ${{ steps.random-color-generator.outputs.SELECTED_COLOR }}"
