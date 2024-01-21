@@ -31,4 +31,23 @@ jobs:
         
         # Extracting the version number from the line
         current_version=$(echo $version_line | sed -n 's/.*<Version>\(.*\)<\/Version>.*/\1/p')
-        echo current_version
+        
+        # Splitting the version into major, minor, and patch numbers
+        IFS='.' read -r -a version_parts <<< "$current_version"
+        major=${version_parts[0]}
+        minor=${version_parts[1]}
+        patch=${version_parts[2]}
+        
+        # Incrementing the major version
+        let major+=1
+        
+        # Constructing the new version
+        new_version="$major.$minor.$patch"
+        
+        # Setting the new version as an environment variable
+        export NEW_VERSION=$new_version
+        
+        # Replacing the version in the .csproj file
+        sed -i "s/<Version>$current_version<\/Version>/<Version>$new_version<\/Version>/" "$csproj_file"
+        
+        echo "Updated version to $new_version and set as environment variable."
