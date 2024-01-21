@@ -1,9 +1,8 @@
-name: Auto Version Increment on Merge
+name: GitFlow Version Increment on Merge
 
 on:
-  #pull_request:
-  push:
-    #types: [closed]
+  pull_request:
+    types: [closed]
     branches:
       - master
 
@@ -12,11 +11,58 @@ permissions:
   
 jobs:
   version-increment:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - name: Set color
-      id: random-color-generator
-      run: echo "SELECTED_COLOR=green" >> $GITHUB_OUTPUT
-    - name: Get color
-      run: echo "The selected color is ${{ steps.random-color-generator.outputs.SELECTED_COLOR }}"
+
+    - name: Check source branch and increment version
+      id: update-version
+      run: |
+
+        csproj_file="linc.csproj"
+        SOURCE_BRANCH="${{ github.head_ref }}"
+        echo "Source branch is '$SOURCE_BRANCH' for '$csproj_file'."
+
+        # Extracting the version line from the .csproj file
+        version_line=$(grep '<Version>' "$csproj_file")
+
+        # Extracting the version number from the line
+        current_version=$(echo $version_line | sed -n 's/.*<Version>\(.*\)<\/Version>.*/\1/p')
+
+        # Splitting the version into major, minor, and patch numbers
+        IFS='.' read -r -a version_parts <<< "$current_version"
+        major=${version_parts[0]}
+        minor=${version_parts[1]}
+        patch=${version_parts[2]}
+
+        if [[ "$SOURCE_BRANCH" == release/* ]]; then
+            let major+=1
+            new_version="$major.$minor.$patch"
+            echo "NEW_VERSION=$new_version" >> $GITHUB_OUTPUT
+            sed -i "s/<Version>$current_version<\/Version>/<Version>$new_version<\/Version>/" "$csproj_file"
+            echo "Updated major version for release branch."
+        elif [[ "$SOURCE_BRANCH" == feature/* ]]; then
+            let minor+=1
+            new_version="$major.$minor.$patch"
+            echo "NEW_VERSION=$new_version" >> $GITHUB_OUTPUT
+            sed -i "s/<Version>$current_version<\/Version>/<Version>$new_version<\/Version>/" "$csproj_file"
+            echo "Updated major version for release branch."
+        elif [[ "$SOURCE_BRANCH" == bugfix/* ]]; then
+            let patch+=1
+            new_version="$major.$minor.$patch"
+            echo "NEW_VERSION=$new_version" >> $GITHUB_OUTPUT
+            sed -i "s/<Version>$current_version<\/Version>/<Version>$new_version<\/Version>/" "$csproj_file"
+            echo "Updated major version for release branch."
+        else
+            echo "Branch is not part of version automation."
+        fi      
+
+    - name: Commit and push changes
+      if: ${{ steps.update-version.outputs.NEW_VERSION }}
+      run: |
+          git config --global user.name 'Admin-Linc'
+          git config --global user.email 'admin-linc@uni-plovdiv.bg'
+          git add --all
+          git commit -am "Auto-incremented version to ${{ steps.update-version.outputs.NEW_VERSION }}"
+          git push
