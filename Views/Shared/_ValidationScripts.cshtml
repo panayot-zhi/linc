@@ -1,6 +1,17 @@
-﻿<script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
+﻿@using Microsoft.AspNetCore.Localization
+
+@{
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var currentCulture = requestCulture?.RequestCulture.UICulture.Name ?? "bg";
+}
+
+<script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
 <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-<script src="~/lib/jquery-validate/localization/messages_bg.min.js"></script>
+
+@if (!"en".Equals(currentCulture))  // this is the default culture for the library
+{
+    <script src="@Url.Content($"~/lib/jquery-validate/localization/messages_{currentCulture}.min.js")"></script>
+}
 
 <script>
 
