@@ -138,6 +138,32 @@
         "flags/4x3/bg.svg",
         "flags/4x3/eu.svg"
       ]
+    },
+    {
+      "provider": "cdnjs",
+      "library": "flag-icons@7.1.0",
+      "destination": "wwwroot/lib/flag-icons/",
+      "files": [
+        "css/flag-icons.min.css",
+        "flags/1x1/sh.svg",
+        "flags/4x3/gb-eng.svg",
+        "flags/4x3/sh.svg",
+        "flags/4x3/gb.svg"
+      ]
     }
+  ,
+{
+  "provider": "cdnjs",
+  "library": "flag-icons@7.1.0",
+  "destination": "wwwroot/lib/flag-icons/",
+  "files": [
+    "css/flag-icons.min.css",
+    "css/flag-icons.css",
+    "flags/1x1/bg.svg",
+    "flags/1x1/gb.svg",
+    "flags/4x3/bg.svg",
+    "flags/4x3/gb.svg"
   ]
+}
+]
 }
