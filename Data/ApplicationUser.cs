@@ -9,12 +9,14 @@ namespace linc.Data
     {
         [PersonalData]
         [MaxLength(1024)]
-        public string? Description { get; set; }
+        public string Description { get; set; }
 
+        [Required]
         [MaxLength(255)]
         [ProtectedPersonalData]
         public string FirstName { get; set; }
 
+        [Required]
         [MaxLength(255)]
         [ProtectedPersonalData]
         public string LastName { get; set; }
@@ -31,16 +33,16 @@ namespace linc.Data
         public UserAvatarType AvatarType { get; set; }
 
         [PersonalData]
-        public string? FacebookAvatarPath { get; set; }
+        public string FacebookAvatarPath { get; set; }
 
         [PersonalData]
-        public string? TwitterAvatarPath { get; set; }
+        public string TwitterAvatarPath { get; set; }
 
         [PersonalData]
         public string GoogleAvatarPath { get; set; }
 
         [PersonalData]
-        public string? InternalAvatarPath { get; set; }
+        public string InternalAvatarPath { get; set; }
 
         #endregion
 

@@ -1,0 +1,73 @@
+﻿<!-- ======= Portfolio Section ======= -->
+<section id="portfolio" class="portfolio">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>@HtmlLocalizer["PortfolioSection_Title"]</h2>
+            <h3>@HtmlLocalizer["PortfolioSection_SubTitle"]</h3>
+            <p contenteditable-for="PortfolioSection_Description">
+                Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.
+            </p>
+        </div>
+
+        <div class="row" data-aos="fade-up" data-aos-delay="100">
+            <div class="col-lg-12 d-flex justify-content-center">
+                <ul id="portfolio-flters">
+                    <li data-filter="*" class="filter-active">@HtmlLocalizer["PortfolioSection_Filter_All"]</li>
+                    <li data-filter=".filter-2024">2024</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+            
+            <div class="col-lg-4 col-md-6 portfolio-item filter-other">
+                <img src="~/img/linc_title_page.svg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                    <h4>@HtmlLocalizer["Issue_Number_Label"] №4</h4>
+                    <p>@(new DateTime(2024, 1, 16).ToString("dddd, dd MMMM yyyy"))</p>
+                    <a href="~/img/linc_blue.svg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="@HtmlLocalizer["Issue_IndexPage_Label"]">
+                        <i class="bx bx-zoom-in"></i>
+                    </a>
+                    @* TODO: Link to actual page here *@
+                    <a href="#" class="details-link" title="@HtmlLocalizer["Issue_MoreInformation_Label"]">
+                        <i class="bx bx-book-open"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 portfolio-item filter-2024">
+                <img src="~/img/linc_cover_page.svg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                    <h4>@HtmlLocalizer["Issue_Number_Label"] №1</h4>
+                    <p>@(new DateTime(2024, 1, 16).ToString("dddd, dd MMMM yyyy"))</p>
+                    <a href="~/img/linc_title_page.svg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="@HtmlLocalizer["Issue_IndexPage_Label"]">
+                        <i class="bx bx-zoom-in"></i>
+                    </a>
+                    @* TODO: Link to actual page here *@
+                    <a href="#" class="details-link" title="@HtmlLocalizer["Issue_MoreInformation_Label"]">
+                        <i class="bx bx-book-open"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="col-lg-4 col-md-6 portfolio-item filter-other">
+                <img src="~/img/linc_title_page.svg" class="img-fluid" alt="">
+                <div class="portfolio-info">
+                    <h4>@HtmlLocalizer["Issue_Number_Label"] №2</h4>
+                    <p>@(new DateTime(2024, 10, 25).ToString("dddd, dd MMMM yyyy"))</p>
+                    <a href="~/img/linc_blue.svg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="@HtmlLocalizer["Issue_IndexPage_Label"]">
+                        <i class="bx bx-zoom-in"></i>
+                    </a>
+                    @* TODO: Link to actual page here *@
+                    <a href="#" class="details-link" title="@HtmlLocalizer["Issue_MoreInformation_Label"]">
+                        <i class="bx bx-book-open"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+<!-- End Portfolio Section -->

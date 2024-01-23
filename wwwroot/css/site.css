@@ -1,0 +1,127 @@
+
+/* 
+    Display the Great Britain flag as a language for english
+*/
+
+.fi-en {
+    background-image: url(../lib/flag-icons/flags/4x3/gb.svg);
+}
+
+.fi-en.fis {
+    background-image: url(../lib/flag-icons/flags/1x1/gb.svg);
+}
+
+/* 
+    These are used from javascript
+*/
+
+a.scrollto {
+    /* keep */
+}
+
+a.submit-link {
+    /* keep */
+}
+
+.skills-content {
+    /* keep */
+}
+
+.section-title p span {
+    color: #106eea;
+}
+
+.team .member .member-img {
+    text-align: center;
+}
+
+.about-cover-page-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.desc-bottom .gslide-image img {
+    background: white;
+}
+
+.contact .title a {
+    color: #111;
+}
+
+/*--------------------------------------------------------------
+# Codex
+--------------------------------------------------------------*/
+.codex .icon-box {
+    text-align: center;
+    border: 1px solid #e2eefd;
+    padding: 80px 20px;
+    transition: all ease-in-out 0.3s;
+    background: #fff;
+}
+
+.codex .icon-box .icon {
+    margin: 0 auto;
+    width: 64px;
+    height: 64px;
+    background: #f1f6fe;
+    border-radius: 4px;
+    border: 1px solid #deebfd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    transition: ease-in-out 0.3s;
+}
+
+.codex .icon-box .icon i {
+    color: #3b8af2;
+    font-size: 28px;
+    transition: ease-in-out 0.3s;
+}
+
+.codex .icon-box h4 {
+    font-weight: 700;
+    margin-bottom: 15px;
+    font-size: 24px;
+}
+
+.codex .icon-box h4 a {
+    color: #222222;
+    transition: ease-in-out 0.3s;
+}
+
+.codex .icon-box p {
+    line-height: 24px;
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
+.codex .icon-box:hover {
+    border-color: #fff;
+    box-shadow: 0px 0 25px 0 rgba(16, 110, 234, 0.1);
+}
+
+.codex .icon-box:hover h4 a,
+.codex .icon-box:hover .icon i {
+    color: #106eea;
+}
+
+.codex .icon-box:hover .icon {
+    border-color: #106eea;
+}
+
+.codex ul li {
+    padding: 5px 0;
+}
+
+.content-editable {
+    /* background: #e7f1fd; */
+}
+
+.navbar li.divider hr {
+    margin: 5px 0;
+}
+
+.form-floating {
+    margin: 15px 0;
+}

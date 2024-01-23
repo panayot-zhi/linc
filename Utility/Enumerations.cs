@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace linc.Utility;
+﻿namespace linc.Utility;
 
 public enum UserAvatarType
 {
@@ -17,15 +15,17 @@ public enum UserAvatarType
 
 public enum UserDisplayNameType
 {
-    [Display(Name = "Псевдоним")]
     UserName,
-
-    [Display(Name = "Имена")]
     Names,
-
-    [Display(Name = "Имена и псевдоним")]
     NamesAndUserName,
-
-    [Display(Name = "Да се показва само 'Анонимен'")]
     Anonymous
+}
+
+public enum SiteRole
+{
+    Administrator = SiteRolesHelper.AdministratorWeight,
+    HeadEditor = SiteRolesHelper.HeadEditorWeight,
+    Editor = SiteRolesHelper.EditorWeight,
+    UserPlus = SiteRolesHelper.UserPlusWeight,
+    User = SiteRolesHelper.UserWeight
 }

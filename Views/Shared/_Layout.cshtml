@@ -1,28 +1,50 @@
 ﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Identity
+@using linc.Data
+@using linc.Utility
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var currentCulture = requestCulture?.RequestCulture.UICulture.Name ?? "bg";
+}
+
 <!DOCTYPE html>
-<html lang="@(ViewData["Lang"] ?? "bg")">
+<html lang="@currentCulture">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     @* TODO: SEO here *@
     <title>@ViewData["Title"] - linc</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
+    <meta content="@ViewData["Description"]" name="description">
+    <meta content="@ViewData["Keywords"]" name="keywords">
 
-    @* TODO: favicon *@
+    @* TODO: трябва да се смени favicon-ата *@
+
     <!-- Favicons -->
     <link href="~/img/favicon.png" rel="icon">
     <link href="~/img/apple-touch-icon.png" rel="apple-touch-icon">
+    
+    @* TODO: ревизирай фонтовете на сайта *@
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+    @* font-family: 'Piazzolla', serif; *@
+    @* font-family: 'Roboto', sans-serif; *@
+    @* font-family: 'Tinos', serif; *@
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Piazzolla:ital,opsz,wght@0,8..30,300;0,8..30,400;0,8..30,500;0,8..30,600;0,8..30,700;1,8..30,300;1,8..30,400;1,8..30,500;1,8..30,600;1,8..30,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
     @* TODO: Heavily revise if all of these are necessary *@
     <link href="~/lib/aos/aos.css" rel="stylesheet">
+    <link href="~/lib/flag-icons/css/flag-icons.min.css" rel="stylesheet">
     <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="~/lib/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/lib/bootstrap-icons/font/bootstrap-icons.min.css" rel="stylesheet">
     <link href="~/lib/boxicons/css/boxicons.min.css" rel="stylesheet">
     <link href="~/lib/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="~/lib/swiper/swiper-bundle.min.css" rel="stylesheet">
@@ -46,28 +68,20 @@
 <body>
     <!-- ======= Top Bar ======= -->
     <section id="topbar" class="d-flex align-items-center">
-        <div class="container d-flex justify-content-center justify-content-md-between">
-            <div class="contact-info d-flex align-items-center">
-                <i class="bi bi-envelope d-flex align-items-center">
-                    <a href="mailto:contact@example.com">contact@example.com</a>
-                </i>
-                <i class="bi bi-phone d-flex align-items-center ms-4">
-                    <span>+1 5589 55488 55</span>
-                </i>
+        <div class="container d-flex justify-content-end justify-content-sm-between">
+            <div class="d-none d-sm-flex align-items-center">
+                <span>@HtmlLocalizer["Logo_Long"]</span>
             </div>
-            <div class="social-links d-none d-md-flex align-items-center">
-                <a href="#" class="twitter">
-                    <i class="bi bi-twitter"></i>
-                </a>
-                <a href="#" class="facebook">
-                    <i class="bi bi-facebook"></i>
-                </a>
-                <a href="#" class="instagram">
-                    <i class="bi bi-instagram"></i>
-                </a>
-                <a href="#" class="linkedin">
-                    <i class="bi bi-linkedin"></i>
-                </a>
+            <div class="d-flex align-items-center">
+                <form id="set_language" asp-controller="Home" asp-action="SetLanguage">
+                    <span>CurrentCulture: @currentCulture</span>
+                    @foreach (var supportedCulture in SiteConstant.SupportedCultures.Values)
+                    {
+                        <button id="language_@supportedCulture" name="culture" value="@supportedCulture" type="submit" class="btn">
+                            <i class="fi fi-@supportedCulture"></i>
+                        </button>
+                    }
+                </form>
             </div>
         </div>
     </section>
@@ -77,74 +91,131 @@
         <div class="container d-flex align-items-center justify-content-between">
 
             <h1 class="logo">
-                <a href="/">LInC<span>.</span></a>
+                <a href="/">@HtmlLocalizer["Logo_Short"]<span>.</span></a>
             </h1>
-            <!-- Uncomment below if you prefer to use an image logo -->
-            <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt=""></a>-->
 
             <nav id="navbar" class="navbar">
                 <ul>
                     <li>
-                        <a class="nav-link scrollto " asp-controller="Home" asp-action="Index" asp-fragment="hero">Home</a>
+                        <a class="nav-link scrollto " asp-controller="Home" asp-action="Index" asp-fragment="hero">@HtmlLocalizer["NavItem_Home"]</a>
                     </li>
                     <li>
-                        <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="about">About</a>
+                        <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="about">@HtmlLocalizer["NavItem_About"]</a>
                     </li>
                     <li>
-                        <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="services">Services</a>
+                        <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="codex">@HtmlLocalizer["NavItem_Services"]</a>
                     </li>
                     <li>
-                        <a class="nav-link scrollto " asp-controller="Home" asp-action="Index" asp-fragment="portfolio">Portfolio</a>
+                        <a class="nav-link scrollto " asp-controller="Home" asp-action="Index" asp-fragment="portfolio">@HtmlLocalizer["NavItem_Portfolio"]</a>
                     </li>
                     <li>
-                        <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="team">Team</a>
+                        <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="team">@HtmlLocalizer["NavItem_Team"]</a>
                     </li>
                     <li class="dropdown">
                         <a href="#">
-                            <span>Drop Down</span> <i class="bi bi-chevron-down"></i>
+                            <span>@HtmlLocalizer["NavItem_Index"]</span> 
+                            <i class="bi bi-chevron-down"></i>
                         </a>
                         <ul>
                             <li>
-                                <a href="#">Drop Down 1</a>
+                                <a href="#">@HtmlLocalizer["Category_All"]</a>
+                            </li>
+                            <li class="divider">
+                                <hr />
+                            </li>
+                            <li>
+                                <a href="#">@HtmlLocalizer["Category_Articles"]</a>
+                            </li>
+                            <li>
+                                <a href="#">@HtmlLocalizer["Category_Analyses"]</a>
+                            </li>
+                            <li>
+                                <a href="#">@HtmlLocalizer["Category_Surveys"]</a>
+                            </li>
+                            <li>
+                                <a href="#">@HtmlLocalizer["Category_Discussions"]</a>
+                            </li>
+                            <li>
+                                <a href="#">@HtmlLocalizer["Category_Reviews"]</a>
+                            </li>
+                            <li>
+                                <a href="#">@HtmlLocalizer["Category_Chronicles"]</a>
+                            </li>
+                            <li>
+                                <a href="#">@HtmlLocalizer["Category_Foreign"]</a>
+                            </li>
+                            <li class="divider">
+                                <hr />
                             </li>
                             <li class="dropdown">
                                 <a href="#">
-                                    <span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i>
+                                    <span>@HtmlLocalizer["NavItem_IndexByYears"]</span>
+                                    <i class="bi bi-chevron-right"></i>
                                 </a>
                                 <ul>
-                                    <li>
-                                        <a href="#">Deep Drop Down 1</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Deep Drop Down 2</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Deep Drop Down 3</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Deep Drop Down 4</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Deep Drop Down 5</a>
-                                    </li>
+                                    @{
+                                        const int beginYear = 2024;
+                                        var currentYear = DateTime.Now.Year;
+                                        var year = currentYear;
+
+                                        do
+                                        {
+                                            <li>
+                                                <a href="#">@year</a>
+                                            </li>
+
+                                        } while (--year >= beginYear);
+
+                                    }
                                 </ul>
-                            </li>
-                            <li>
-                                <a href="#">Drop Down 2</a>
-                            </li>
-                            <li>
-                                <a href="#">Drop Down 3</a>
-                            </li>
-                            <li>
-                                <a href="#">Drop Down 4</a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="contact">Contact</a>
+                        <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="contact">@HtmlLocalizer["NavItem_Contact"]</a>
                     </li>
 
-                    <partial name="_LoginPartial" />
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <li class="dropdown">
+                            <a href="#">
+                                <span>@UserManager.GetUserName(User)</span>
+                                <i class="bi bi-chevron-down"></i>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a id="manage" asp-area="Identity" asp-page="/Account/Manage/Index">@HtmlLocalizer["NavItem_MyProfile"]</a>
+                                </li>
+                                @if (User.IsAtLeast(SiteRole.Editor))
+                                {
+                                    <li>
+                                        <a href="#">@HtmlLocalizer["NavItem_Submissions"]</a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <a href="#">@HtmlLocalizer["NavItem_MySubmissions"]</a>
+                                    </li>
+                                }
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="nav-link submit-link" href="#logoutForm">@HtmlLocalizer["NavItem_Logout"]</a>
+                            <form id="logoutForm" asp-area="Identity" asp-page="/Account/Logout" 
+                                  asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                            </form>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a class="nav-link" id="register" asp-area="Identity" asp-page="/Account/Register">@HtmlLocalizer["NavItem_Register"]</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" id="login" asp-area="Identity" asp-page="/Account/Login">@HtmlLocalizer["NavItem_Login"]</a>
+                        </li>
+                    }
 
                 </ul>
 
@@ -168,137 +239,152 @@
 
     <!-- ======= #main ======= -->
     <main id="main" @*data-aos="fade-up"*@>
-
-        @RenderBody()
+        
+        @if ("Identity".Equals(ViewData["Area"]))
+        {
+            <section class="identity">
+                <div class="container">
+                    @RenderBody()
+                </div>
+            </section>
+        }
+        else
+        {
+            @RenderBody()
+        }
 
     </main>
     <!-- End #main -->
 
     <!-- ======= Footer ======= -->
     <footer id="footer">
-
-        <div class="footer-newsletter">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <h4>Join Our Newsletter</h4>
-                        <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-                        <form action="" method="post">
-                            <input type="email" name="email"><input type="submit" value="Subscribe">
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
+        @if (IsSectionDefined("Newsletter"))
+        {
+            @await RenderSectionAsync("Newsletter")
+        } 
+        else if ("Identity".Equals(ViewData["Area"]))
+        {
+            <partial name="_Newsletter"/>
+        }
 
         <div class="footer-top">
             <div class="container">
                 <div class="row">
 
                     <div class="col-lg-3 col-md-6 footer-contact">
-                        <h3>BizLand<span>.</span></h3>
+                        <h3>Адрес на редакцията<span>.</span></h3>
                         <p>
-                            A108 Adam Street <br>
-                            New York, NY 535022<br>
-                            United States <br><br>
-                            <strong>Phone:</strong> +1 5589 55488 55<br>
-                            <strong>Email:</strong> info@example.com<br>
+                            @HtmlLocalizer["Footer_Address_Street"],<br>
+                            @HtmlLocalizer["Footer_Address_City"],<br>
+                            @HtmlLocalizer["Footer_Address_Country"] <br><br>
+                            <strong>@HtmlLocalizer["Footer_Admin_Label"]:</strong> @SiteConstant.AdministratorEmail<br>
+                            @* <strong>@HtmlLocalizer["Footer_Phone_Label"]:</strong> +359 876 72 72 78<br> *@
+                            <strong>@HtmlLocalizer["Footer_Redaction_Label"]:</strong> @SiteConstant.ReviewsEmail<br>
                         </p>
                     </div>
 
                     <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>Useful Links</h4>
+                        <h4>@HtmlLocalizer["Footer_UsefulLinks_Title"]</h4>
+                        @* TODO: Link these to pages *@
                         <ul>
                             <li>
-                                <i class="bx bx-chevron-right"></i> <a href="#">Home</a>
+                                <i class="bx bx-chevron-right"></i> <a href="#">@HtmlLocalizer["Footer_UsefulLinks_Codex"]</a>
                             </li>
                             <li>
-                                <i class="bx bx-chevron-right"></i> <a href="#">About us</a>
+                                <i class="bx bx-chevron-right"></i> <a href="#">@HtmlLocalizer["Footer_UsefulLinks_SubmitGuidance"]</a>
                             </li>
                             <li>
-                                <i class="bx bx-chevron-right"></i> <a href="#">Services</a>
+                                <i class="bx bx-chevron-right"></i> <a href="#">@HtmlLocalizer["Footer_UsefulLinks_TermsOfService"]</a>
                             </li>
                             <li>
-                                <i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a>
+                                <i class="bx bx-chevron-right"></i> <a href="#">@HtmlLocalizer["Footer_UsefulLinks_PrivacyPolicy"]</a>
                             </li>
                             <li>
-                                <i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a>
+                                <i class="bx bx-chevron-right"></i> <a href="#">@HtmlLocalizer["Footer_UsefulLinks_Cookies"]</a>
                             </li>
                         </ul>
                     </div>
 
                     <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>Our Services</h4>
+                        <h4>@HtmlLocalizer["Footer_Suggestions_Title"]</h4>
                         <ul>
-                            <li>
-                                <i class="bx bx-chevron-right"></i> <a href="#">Web Design</a>
-                            </li>
-                            <li>
-                                <i class="bx bx-chevron-right"></i> <a href="#">Web Development</a>
-                            </li>
-                            <li>
-                                <i class="bx bx-chevron-right"></i> <a href="#">Product Management</a>
-                            </li>
-                            <li>
-                                <i class="bx bx-chevron-right"></i> <a href="#">Marketing</a>
-                            </li>
-                            <li>
-                                <i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a>
-                            </li>
+                            @foreach (var suggestion in ContentService.GetSuggestions())
+                            {
+                                <li>
+                                    <i class="bx bx-chevron-right"></i> <a href="@suggestion.Href">@suggestion.Content</a>
+                                </li>
+                            }
                         </ul>
                     </div>
 
                     <div class="col-lg-3 col-md-6 footer-links">
-                        <h4>Our Social Networks</h4>
-                        <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
-                        <div class="social-links mt-3">
+                        <h4>@HtmlLocalizer["Footer_Social_Title"]</h4>
+                        <p>@HtmlLocalizer["Footer_Social_Description"]</p>
+                        
+                        @* TODO: Допълнителни сайтове/социални мрежи *@
+
+                        <ul>
+                            <li>
+                                <i class="bx bx-chevron-right"></i> <a href="https://litmis.eu/">ЛИТЕРАТУРНА МИСЪЛ</a>
+                            </li>
+                            <li>
+                                <i class="bx bx-chevron-right"></i> <a href="https://slovo.uni-plovdiv.bg/">Филологически факултет на Пловдивски университет</a>
+                            </li>
+                            <li>
+                                <i class="bx bx-chevron-right"></i> <a href="https://liternet.bg/">LiterNet</a>
+                            </li>
+                        </ul>
+                        @*<div class="social-links mt-3">
                             <a href="#" class="twitter">
-                                <i class="bx bxl-twitter"></i>
+                                <i class="bi bi-twitter-x"></i>
                             </a>
                             <a href="#" class="facebook">
-                                <i class="bx bxl-facebook"></i>
+                                <i class="bi bi-facebook"></i>
                             </a>
                             <a href="#" class="instagram">
                                 <i class="bx bxl-instagram"></i>
                             </a>
                             <a href="#" class="google-plus">
-                                <i class="bx bxl-skype"></i>
+                                <i class="bx bxl-google-plus"></i>
                             </a>
                             <a href="#" class="linkedin">
                                 <i class="bx bxl-linkedin"></i>
                             </a>
-                        </div>
+                        </div>*@
                     </div>
 
                 </div>
             </div>
         </div>
+        
+        <cache expires-after="@TimeSpan.FromDays(30)">
+            <div class="container py-4">
+                <div class="copyright">
 
-        <div class="container py-4">
-            <div class="copyright">
+                    @{
+                        var version = typeof(Program)
+                            .Assembly
+                            .GetName()
+                            .Version?
+                            .ToString() ?? "0.0.1"; // NOTE: Indicates a problem!
+                    }
 
-                @{
-                    var version = typeof(Program)
-                    .Assembly
-                    .GetName()
-                    .Version?
-                    .ToString() ?? "0.0.1"; // NOTE: Indicates a problem!
-                }
-
-                p.ivanov; версия: @version
-                &copy; Copyright
-                <strong>
-                    <span>BizLand</span>
-                </strong> Theme. All Rights Reserved
+                    @SiteConstant.AdministratorUserName; @HtmlLocalizer["Version_Label"]: @version
+                    2024 &copy; Copyright
+                    <strong>
+                        <span>BizLand</span>
+                    </strong> Theme. @HtmlLocalizer["Copyright_Label"]
+                </div>
+                <div class="credits">
+                    <!-- All the links in the footer should remain intact. -->
+                    <!-- You can delete the links only if you purchased the pro version. -->
+                    <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/bizland-bootstrap-business-template/ -->
+                    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                </div>
             </div>
-            <div class="credits">
-                <!-- All the links in the footer should remain intact. -->
-                <!-- You can delete the links only if you purchased the pro version. -->
-                <!-- Licensing information: https://bootstrapmade.com/license/ -->
-                <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/bizland-bootstrap-business-template/ -->
-                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-            </div>
-        </div>
+        </cache>
     </footer>
     <!-- End Footer -->
 
@@ -308,10 +394,11 @@
     </a>
 
     <!-- Vendor JS Files -->
-    <script src="~/lib/jquery/jquery.js"></script>
-
     @* TODO: Heavily revise if all of these are necessary *@
-    <script src="~/lib/purecounterjs/dist/purecounter_vanilla.js"></script>
+    <script src="~/lib/jquery/jquery.min.js"></script>
+    <script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/lib/purecounterjs/dist/purecounter_vanilla.min.js"></script>
     <script src="~/lib/aos/aos.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/glightbox/js/glightbox.min.js"></script>

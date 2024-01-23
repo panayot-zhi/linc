@@ -1,7 +1,5 @@
-using Microsoft.AspNetCore.Identity.UI.Services;
-using linc.Models.ConfigModels;
-using linc.Services;
 using linc.Utility;
+using Serilog;
 
 namespace linc;
 
@@ -15,15 +13,18 @@ public class Program
         var environment = builder.Environment;
         var host = builder.Host;
 
+        host.UseSerilog(ConfigureLogger);
+
         services
             .AddDatabase(configuration)
-            .AddApplicationIdentity()
+            .AddConfigurations(configuration)
             .AddAuthentications(configuration)
+            .AddApplicationIdentity()
+            .AddCaching()
+            .AddLocalizations()
             .AddCookies()
             .AddServices()
-            .AddCachingProfiles()
-            .AddRoutes()
-            .AddConfigurations(configuration);
+            .AddRoutes();
 
         var app = builder.Build();
 
@@ -36,7 +37,10 @@ public class Program
             app.UseHsts();
         }
 
+        app.ApplyDatabaseMigrations();
+
         app.UseResponseCaching();
+        app.UseRequestLocalization();
         app.UseExceptionHandler("/Home/Error");
         app.UseStatusCodePagesWithReExecute("/Home/Error", "?code={0}");
         app.UseHttpsRedirection();
@@ -48,10 +52,16 @@ public class Program
 
         app.MapControllerRoute(
             name: "default",
-            pattern: "{controller=Home}/{action=Index}/{id?}");
+            pattern: "{controller:slugify=Home}/{action:slugify=Index}/{id?}"
+        );
 
         app.MapRazorPages();
-
         app.Run();
+    }
+
+    private static void ConfigureLogger(HostBuilderContext hostBuilderContext, LoggerConfiguration loggerConfiguration)
+    {
+        // NOTE: Read configuration from appsettings.json
+        loggerConfiguration.ReadFrom.Configuration(hostBuilderContext.Configuration);
     }
 }
