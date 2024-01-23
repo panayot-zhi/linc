@@ -7,7 +7,7 @@
     "use strict";
 
     // Bind Submit targets href form
-    $("form").on('submit', onSubmit);
+    //$("form").on('submit', onSubmit);
     $(".submit-link").on('click', doSubmit);
     $("[contenteditable=\"true\"]").on('blur', onBlurContentEditable);
     $("[contenteditable=\"true\"]").on('focus', onFocusContentEditable);
