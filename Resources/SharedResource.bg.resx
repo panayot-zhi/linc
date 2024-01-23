@@ -241,7 +241,7 @@
     <value>Анкети</value>
   </data>
   <data name="NavItem_Portfolio" xml:space="preserve">
-    <value>Брове</value>
+    <value>Броеве</value>
   </data>
   <data name="NavItem_Services" xml:space="preserve">
     <value>Кодекс</value>
@@ -459,10 +459,10 @@
   <data name="PortfolioSection_Title" xml:space="preserve">
     <value>Броеве</value>
   </data>
-  <data name="ServicesSection_SubTitle" xml:space="preserve">
-    <value>Нашите &lt;span&gt;силни страни&lt;/span&gt;</value>
+  <data name="CategoriesSection_SubTitle" xml:space="preserve">
+    <value>Разгледайте списанието по &lt;span&gt;категории&lt;/span&gt;</value>
   </data>
-  <data name="ServicesSection_Title" xml:space="preserve">
-    <value>За нас</value>
+  <data name="CategoriesSection_Title" xml:space="preserve">
+    <value>Категории</value>
   </data>
 </root>
