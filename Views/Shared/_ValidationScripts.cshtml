@@ -1,0 +1,20 @@
+﻿<script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/lib/jquery-validate/localization/messages_bg.min.js"></script>
+
+<script>
+
+    const validationCustomSettings = {
+        validClass: "is-valid",
+        errorClass: "is-invalid",
+    };
+
+    jQuery.validator.setDefaults(validationCustomSettings);
+    jQuery.validator.unobtrusive.options = validationCustomSettings;
+    
+    window.addEventListener('load', () => {
+        // enable server-side display of validation errors
+        $(".input-validation-error").addClass("is-invalid");
+    });    
+
+</script>
