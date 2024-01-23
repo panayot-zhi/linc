@@ -121,7 +121,10 @@ a.submit-link {
 
 .testimonial-item .content-editable {
     background: none;
-    border: solid;
+}
+
+.featured-services .icon-box:hover .description.content-editable {
+    color: #000;
 }
 
 .navbar li.divider hr {

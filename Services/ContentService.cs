@@ -1,6 +1,7 @@
 ﻿using linc.Contracts;
 using linc.Data;
 using linc.Models.ViewModels;
+using linc.Models.ViewModels.Home;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace linc.Services;
@@ -21,6 +22,18 @@ public class ContentService : IContentService
         _configuration = configuration;
         _httpContextAccessor = httpContextAccessor;
         _linkGenerator = linkGenerator;
+    }
+
+    public IndexViewModel GetIndexViewModel()
+    {
+        // TODO: Expand and fill this model with information
+        var viewModel = new IndexViewModel()
+        {
+            CountsViewModel = new(),
+            ReviewsViewModel = new()
+        };
+
+        return viewModel;
     }
 
     public List<SuggestionsViewModel> GetSuggestions(int count = 5)

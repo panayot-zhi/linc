@@ -15,25 +15,30 @@ namespace linc.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ILocalizationService _localizationService;
-        
+        private readonly IContentService _contentService;
+
 
         public HomeController(ILogger<HomeController> logger,
-            ILocalizationService localizationService)
+            ILocalizationService localizationService, IContentService contentService)
         {
             _logger = logger;
             _localizationService = localizationService;
+            _contentService = contentService;
         }
 
         public IActionResult Index()
         {
-            // TODO: Expand and fill this model with information
-            var viewModel = new IndexViewModel()
-            {
-                CountsViewModel = new(),
-                ReviewsViewModel = new()
-            };
+            var viewModel = _contentService.GetIndexViewModel();
 
             return View(viewModel);
+        }
+
+        [SiteAuthorize(SiteRole.Editor)]
+        public IActionResult Edit()
+        {
+            var viewModel = _contentService.GetIndexViewModel();
+            ViewData["Editable"] = true;
+            return View("Index", viewModel);
         }
 
         public IActionResult About()

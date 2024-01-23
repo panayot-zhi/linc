@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace linc.Utility;
 
@@ -53,5 +54,15 @@ public static class HelperFunctions
             var k = RandomNumberGenerator.Next(n + 1);
             (list[k], list[n]) = (list[n], list[k]);
         }
+    }
+
+    public static T Get<T>(this ViewDataDictionary viedDataDictionary, string key)
+    {
+        if(viedDataDictionary.TryGetValue(key, out var value))
+        {
+            return (T) value;
+        }
+
+        return default;
     }
 }

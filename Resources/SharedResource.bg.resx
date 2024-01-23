@@ -433,7 +433,7 @@
     <value>Изход</value>
   </data>
   <data name="NavItem_MyProfile" xml:space="preserve">
-    <value>Профил</value>
+    <value>Моят профил</value>
   </data>
   <data name="NavItem_MySubmissions" xml:space="preserve">
     <value>Моите ръкописи</value>
@@ -442,7 +442,7 @@
     <value>Регистрация</value>
   </data>
   <data name="NavItem_Submissions" xml:space="preserve">
-    <value>Ръкописи</value>
+    <value>Управление на ръкописи</value>
   </data>
   <data name="NewsletterSection_SubscribeButton_Label" xml:space="preserve">
     <value>Абонирай се</value>
@@ -464,5 +464,11 @@
   </data>
   <data name="CategoriesSection_Title" xml:space="preserve">
     <value>Категории</value>
+  </data>
+  <data name="NavItem_EditIndex" xml:space="preserve">
+    <value>Редактиране на заглавна страница</value>
+  </data>
+  <data name="NavItem_StopEditIndex" xml:space="preserve">
+    <value>Прекрати редакцията</value>
   </data>
 </root>

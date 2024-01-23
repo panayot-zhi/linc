@@ -31,8 +31,8 @@ namespace linc.Utility
         {
             output.Attributes.Add("id", DatabaseLocalizationKey);
 
-            /* TODO: Switch edit mode here by another parameter! */
-            if (ViewContext.HttpContext.User.IsAtLeast(SiteRole.Editor))
+            var editable = ViewContext.ViewData.Get<bool?>("Editable") == true;
+            if (ViewContext.HttpContext.User.IsAtLeast(SiteRole.Editor) && editable)
             {
                 output.Attributes.Add("contenteditable", "true");
                 

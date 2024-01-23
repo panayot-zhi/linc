@@ -188,6 +188,19 @@
                                 </li>
                                 @if (User.IsAtLeast(SiteRole.Editor))
                                 {
+                                    if (ViewData.Get<bool?>("Editable") == true)
+                                    {
+                                        <li>
+                                            <a asp-controller="Home" asp-action="Index">@HtmlLocalizer["NavItem_StopEditIndex"]</a>
+                                        </li>
+                                    }
+                                    else
+                                    {
+                                        <li>
+                                            <a asp-controller="Home" asp-action="Edit">@HtmlLocalizer["NavItem_EditIndex"]</a>
+                                        </li>
+                                    }
+
                                     <li>
                                         <a href="#">@HtmlLocalizer["NavItem_Submissions"]</a>
                                     </li>
@@ -371,10 +384,10 @@
                     }
 
                     @SiteConstant.AdministratorUserName; @HtmlLocalizer["Version_Label"]: @version
-                    2024 &copy; Copyright
+                    - 2024 &copy; Copyright
                     <strong>
                         <span>BizLand</span>
-                    </strong> Theme. @HtmlLocalizer["Copyright_Label"]
+                    </strong> Theme. @HtmlLocalizer["Copyright_Label"].
                 </div>
                 <div class="credits">
                     <!-- All the links in the footer should remain intact. -->
