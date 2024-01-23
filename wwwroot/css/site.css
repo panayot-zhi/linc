@@ -115,7 +115,13 @@ a.submit-link {
 }
 
 .content-editable {
-    /* background: #e7f1fd; */
+    background: #e7f1fd;
+    border: solid;
+}
+
+.testimonial-item .content-editable {
+    background: none;
+    border: solid;
 }
 
 .navbar li.divider hr {
