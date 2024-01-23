@@ -1,4 +1,4 @@
-name: GitFlow Version Increment on Merge
+name: GitFlow Version Increment on Merge to master
 
 on:
   pull_request:
@@ -38,22 +38,28 @@ jobs:
 
         if [[ "$SOURCE_BRANCH" == release/* ]]; then
             let major+=1
+            minor=0
+            patch=0
+            
             new_version="$major.$minor.$patch"
             echo "NEW_VERSION=$new_version" >> $GITHUB_OUTPUT
             sed -i "s/<Version>$current_version<\/Version>/<Version>$new_version<\/Version>/" "$csproj_file"
             echo "Updated major version for release branch."
         elif [[ "$SOURCE_BRANCH" == feature/* ]]; then
             let minor+=1
+            #patch=0
+            
             new_version="$major.$minor.$patch"
             echo "NEW_VERSION=$new_version" >> $GITHUB_OUTPUT
             sed -i "s/<Version>$current_version<\/Version>/<Version>$new_version<\/Version>/" "$csproj_file"
-            echo "Updated major version for release branch."
-        elif [[ "$SOURCE_BRANCH" == bugfix/* ]]; then
+            echo "Updated minor version for feature branch."
+        elif [[ "$SOURCE_BRANCH" == bugfix/* || "$SOURCE_BRANCH" == hotfix/* ]]; then
             let patch+=1
+            
             new_version="$major.$minor.$patch"
             echo "NEW_VERSION=$new_version" >> $GITHUB_OUTPUT
             sed -i "s/<Version>$current_version<\/Version>/<Version>$new_version<\/Version>/" "$csproj_file"
-            echo "Updated major version for release branch."
+            echo "Updated patch version for bugfix/hotfix branches."
         else
             echo "Branch is not part of version automation."
         fi      
