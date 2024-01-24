@@ -77,7 +77,7 @@
                     <environment exclude="Production">
                         @* <span class="me-2">Session: @Context.Session.GetString("Hi")</span> *@
                         <span class="me-2">Editable: @(TempData.Peek("Editable") ?? "False")</span>
-                        <span class="me-2">Languague: @currentCulture</span>
+                        <span class="me-2">Language: @currentCulture</span>
                     </environment>
                     @foreach (var supportedCulture in SiteConstant.SupportedCultures.Values)
                     {
@@ -249,47 +249,51 @@
         </div>
 
     </header>
+    
+    @if (!IsSectionDefined("SubHeader"))
+    {
+            <!-- ======= Sub-Header ======= -->
+            <header id="sub-header" class="d-flex align-items-center">
+                <div class="container d-flex align-items-center justify-content-center">
+                    <nav id="sub-navbar" class="navbar">
+                        <ul>
+                            <li>
+                                <a href="#">@HtmlLocalizer["NavItem_Index"]</a>
+                            </li>
+                            <li class="divider">
+                                |
+                            </li>
+                            <li>
+                                <a href="#">@HtmlLocalizer["Category_Articles"]</a>
+                            </li>
+                            <li>
+                                <a href="#">@HtmlLocalizer["Category_Analyses"]</a>
+                            </li>
+                            <li>
+                                <a href="#">@HtmlLocalizer["Category_Surveys"]</a>
+                            </li>
+                            <li>
+                                <a href="#">@HtmlLocalizer["Category_Discussions"]</a>
+                            </li>
+                            <li>
+                                <a href="#">@HtmlLocalizer["Category_Reviews"]</a>
+                            </li>
+                            <li>
+                                <a href="#">@HtmlLocalizer["Category_Chronicles"]</a>
+                            </li>
+                            <li>
+                                <a href="#">@HtmlLocalizer["Category_Foreign"]</a>
+                            </li>
+                            <li class="divider">
+                                <hr />
+                            </li>
+                        </ul>
 
-    <!-- ======= Sub-Header ======= -->
-    <header id="sub-header" class="d-flex align-items-center">
-        <div class="container d-flex align-items-center justify-content-center">
-            <nav id="sub-navbar" class="navbar">
-                <ul>
-                    <li>
-                        <a href="#">@HtmlLocalizer["NavItem_Index"]</a>
-                    </li>
-                    <li class="divider">
-                        |
-                    </li>
-                    <li>
-                        <a href="#">@HtmlLocalizer["Category_Articles"]</a>
-                    </li>
-                    <li>
-                        <a href="#">@HtmlLocalizer["Category_Analyses"]</a>
-                    </li>
-                    <li>
-                        <a href="#">@HtmlLocalizer["Category_Surveys"]</a>
-                    </li>
-                    <li>
-                        <a href="#">@HtmlLocalizer["Category_Discussions"]</a>
-                    </li>
-                    <li>
-                        <a href="#">@HtmlLocalizer["Category_Reviews"]</a>
-                    </li>
-                    <li>
-                        <a href="#">@HtmlLocalizer["Category_Chronicles"]</a>
-                    </li>
-                    <li>
-                        <a href="#">@HtmlLocalizer["Category_Foreign"]</a>
-                    </li>
-                    <li class="divider">
-                        <hr />
-                    </li>
-                </ul>
+                    </nav>
+                </div>
+            </header>
+    }
 
-            </nav>
-        </div>
-    </header>
     <!-- End Header -->
 
     @if (IsSectionDefined("Hero"))
@@ -350,22 +354,29 @@
 
                     <div class="col-lg-3 col-md-6 footer-links">
                         <h4>@HtmlLocalizer["Footer_UsefulLinks_Title"]</h4>
-                        @* TODO: Link these to pages *@
+                        @* TODO: Ponder upon using one page for terms and conditions that includes Privacy and Cookies section? *@
+                        @* 
+                            A Privacy Policy is legally required, while a Terms and Conditions agreement is not. 
+                            A Terms and Conditions agreement spells out how users can interact with your site or service, 
+                            while a Privacy Policy lets users know how you will interact with their personal information.
+                        https://www.termsfeed.com/blog/privacy-policies-vs-terms-conditions
+                        *@
                         <ul>
                             <li>
-                                <i class="bx bx-chevron-right"></i> <a href="#">@HtmlLocalizer["Footer_UsefulLinks_Codex"]</a>
+                                <i class="bx bx-chevron-right"></i> 
+                                <a class="scrollto" asp-controller="Home" asp-action="Index" asp-fragment="codex">@HtmlLocalizer["Footer_UsefulLinks_Codex"]</a>
                             </li>
                             <li>
-                                <i class="bx bx-chevron-right"></i> <a href="#">@HtmlLocalizer["Footer_UsefulLinks_SubmitGuidance"]</a>
+                                <i class="bx bx-chevron-right"></i> <a asp-controller="Home" asp-action="Submit">@HtmlLocalizer["Footer_UsefulLinks_SubmitGuidance"]</a>
                             </li>
                             <li>
-                                <i class="bx bx-chevron-right"></i> <a href="#">@HtmlLocalizer["Footer_UsefulLinks_TermsOfService"]</a>
+                                <i class="bx bx-chevron-right"></i> <a asp-controller="Home" asp-action="Terms">@HtmlLocalizer["Footer_UsefulLinks_TermsOfService"]</a>
                             </li>
                             <li>
-                                <i class="bx bx-chevron-right"></i> <a href="#">@HtmlLocalizer["Footer_UsefulLinks_PrivacyPolicy"]</a>
+                                <i class="bx bx-chevron-right"></i> <a asp-controller="Home" asp-action="Privacy">@HtmlLocalizer["Footer_UsefulLinks_PrivacyPolicy"]</a>
                             </li>
                             <li>
-                                <i class="bx bx-chevron-right"></i> <a href="#">@HtmlLocalizer["Footer_UsefulLinks_Cookies"]</a>
+                                <i class="bx bx-chevron-right"></i> <a asp-controller="Home" asp-action="Cookies">@HtmlLocalizer["Footer_UsefulLinks_Cookies"]</a>
                             </li>
                         </ul>
                     </div>

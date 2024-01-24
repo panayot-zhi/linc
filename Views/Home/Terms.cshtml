@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = HtmlLocalizer["HomeTerms_Title"];
+}
+
+@section Breadcrumbs {
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>@HtmlLocalizer["HomeTerms_Title"]</h2>
+                <ol>
+                    <li>
+                        <a href="/">@HtmlLocalizer["NavItem_Home"]</a>
+                    </li>
+                    <li>@HtmlLocalizer["NavItem_Terms"]</li>
+                </ol>
+            </div>
+
+        </div>
+    </section>
+    <!-- End Breadcrumbs -->
+}
+
+<section id="terms-page">
+    <div class="container">
+        <p contenteditable-for="HomeTerms_Description">
+            Use this page to detail your site's terms and conditions of use of the website.
+        </p>
+    </div>
+</section>
