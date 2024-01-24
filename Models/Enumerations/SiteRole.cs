@@ -1,26 +1,5 @@
 ﻿namespace linc.Utility;
 
-public enum UserAvatarType
-{
-    Default,    // Anonymous
-
-    Gravatar,
-
-    Facebook,
-    Twitter,
-    Google,
-
-    Internal
-}
-
-public enum UserDisplayNameType
-{
-    UserName,
-    Names,
-    NamesAndUserName,
-    Anonymous
-}
-
 public enum SiteRole
 {
     Administrator = SiteRolesHelper.AdministratorWeight,
