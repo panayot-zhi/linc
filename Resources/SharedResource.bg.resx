@@ -471,6 +471,9 @@
   <data name="NavItem_EditModeDisable" xml:space="preserve">
     <value>Прекрати редакция</value>
   </data>
+  <data name="NavItem_Categories" xml:space="preserve">
+    <value>Категории</value>
+  </data>
   <data name="NewsletterSection_Description" xml:space="preserve">
     <value>Абонирайте се за уведомления, когато нов брой на списанието излезе от печат</value>
   </data>

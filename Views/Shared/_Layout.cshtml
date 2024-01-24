@@ -108,6 +108,9 @@
                         <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="about">@HtmlLocalizer["NavItem_About"]</a>
                     </li>
                     <li>
+                        <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="services">@HtmlLocalizer["NavItem_Categories"]</a>
+                    </li>
+                    <li>
                         <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="codex">@HtmlLocalizer["NavItem_Services"]</a>
                     </li>
                     <li>
@@ -116,66 +119,68 @@
                     <li>
                         <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="team">@HtmlLocalizer["NavItem_Team"]</a>
                     </li>
-                    <li class="dropdown">
-                        <a class="nav-link" href="#">
-                            <span>@HtmlLocalizer["NavItem_Index"]</span> 
-                            <i class="bi bi-chevron-down"></i>
-                        </a>
-                        <ul>
-                            <li>
-                                <a href="#">@HtmlLocalizer["Category_All"]</a>
-                            </li>
-                            <li class="divider">
-                                <hr />
-                            </li>
-                            <li>
-                                <a href="#">@HtmlLocalizer["Category_Articles"]</a>
-                            </li>
-                            <li>
-                                <a href="#">@HtmlLocalizer["Category_Analyses"]</a>
-                            </li>
-                            <li>
-                                <a href="#">@HtmlLocalizer["Category_Surveys"]</a>
-                            </li>
-                            <li>
-                                <a href="#">@HtmlLocalizer["Category_Discussions"]</a>
-                            </li>
-                            <li>
-                                <a href="#">@HtmlLocalizer["Category_Reviews"]</a>
-                            </li>
-                            <li>
-                                <a href="#">@HtmlLocalizer["Category_Chronicles"]</a>
-                            </li>
-                            <li>
-                                <a href="#">@HtmlLocalizer["Category_Foreign"]</a>
-                            </li>
-                            <li class="divider">
-                                <hr />
-                            </li>
-                            <li class="dropdown">
-                                <a class="nav-link" href="#">
-                                    <span>@HtmlLocalizer["NavItem_IndexByYears"]</span>
-                                    <i class="bi bi-chevron-right"></i>
-                                </a>
-                                <ul>
-                                    @{
-                                        const int beginYear = 2024;
-                                        var currentYear = DateTime.Now.Year;
-                                        var year = currentYear;
+                    @*
+                        <li class="dropdown">
+                            <a class="nav-link" href="#">
+                                <span>@HtmlLocalizer["NavItem_Index"]</span> 
+                                <i class="bi bi-chevron-down"></i>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="#">@HtmlLocalizer["Category_All"]</a>
+                                </li>
+                                <li class="divider">
+                                    <hr />
+                                </li>
+                                <li>
+                                    <a href="#">@HtmlLocalizer["Category_Articles"]</a>
+                                </li>
+                                <li>
+                                    <a href="#">@HtmlLocalizer["Category_Analyses"]</a>
+                                </li>
+                                <li>
+                                    <a href="#">@HtmlLocalizer["Category_Surveys"]</a>
+                                </li>
+                                <li>
+                                    <a href="#">@HtmlLocalizer["Category_Discussions"]</a>
+                                </li>
+                                <li>
+                                    <a href="#">@HtmlLocalizer["Category_Reviews"]</a>
+                                </li>
+                                <li>
+                                    <a href="#">@HtmlLocalizer["Category_Chronicles"]</a>
+                                </li>
+                                <li>
+                                    <a href="#">@HtmlLocalizer["Category_Foreign"]</a>
+                                </li>
+                                <li class="divider">
+                                    <hr />
+                                </li>
+                                <li class="dropdown">
+                                    <a class="nav-link" href="#">
+                                        <span>@HtmlLocalizer["NavItem_IndexByYears"]</span>
+                                        <i class="bi bi-chevron-right"></i>
+                                    </a>
+                                    <ul>
+                                        @{
+                                            const int beginYear = 2024;
+                                            var currentYear = DateTime.Now.Year;
+                                            var year = currentYear;
 
-                                        do
-                                        {
-                                            <li>
-                                                <a href="#">@year</a>
-                                            </li>
+                                            do
+                                            {
+                                                <li>
+                                                    <a href="#">@year</a>
+                                                </li>
 
-                                        } while (--year >= beginYear);
+                                            } while (--year >= beginYear);
 
-                                    }
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
+                                        }
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        *@
                     <li>
                         <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="contact">@HtmlLocalizer["NavItem_Contact"]</a>
                     </li>
@@ -239,9 +244,50 @@
 
                 <i class="bi bi-list mobile-nav-toggle"></i>
 
-            </nav>
-            <!-- .navbar -->
+            </nav><!-- .navbar -->
 
+        </div>
+
+    </header>
+
+    <!-- ======= Sub-Header ======= -->
+    <header id="sub-header" class="d-flex align-items-center">
+        <div class="container d-flex align-items-center justify-content-center">
+            <nav id="sub-navbar" class="navbar">
+                <ul>
+                    <li>
+                        <a href="#">@HtmlLocalizer["NavItem_Index"]</a>
+                    </li>
+                    <li class="divider">
+                        |
+                    </li>
+                    <li>
+                        <a href="#">@HtmlLocalizer["Category_Articles"]</a>
+                    </li>
+                    <li>
+                        <a href="#">@HtmlLocalizer["Category_Analyses"]</a>
+                    </li>
+                    <li>
+                        <a href="#">@HtmlLocalizer["Category_Surveys"]</a>
+                    </li>
+                    <li>
+                        <a href="#">@HtmlLocalizer["Category_Discussions"]</a>
+                    </li>
+                    <li>
+                        <a href="#">@HtmlLocalizer["Category_Reviews"]</a>
+                    </li>
+                    <li>
+                        <a href="#">@HtmlLocalizer["Category_Chronicles"]</a>
+                    </li>
+                    <li>
+                        <a href="#">@HtmlLocalizer["Category_Foreign"]</a>
+                    </li>
+                    <li class="divider">
+                        <hr />
+                    </li>
+                </ul>
+
+            </nav>
         </div>
     </header>
     <!-- End Header -->
