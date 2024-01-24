@@ -216,7 +216,7 @@
   <data name="NavItem_Home" xml:space="preserve">
     <value>Начало</value>
   </data>
-  <data name="NavItem_Index" xml:space="preserve">
+  <data name="NavItem_Library" xml:space="preserve">
     <value>Индекс</value>
   </data>
   <data name="Category_Analyses" xml:space="preserve">
@@ -420,10 +420,10 @@
   <data name="Issue_Number_Label" xml:space="preserve">
     <value>Брой №</value>
   </data>
-  <data name="NavItem_IndexByYears" xml:space="preserve">
+  <data name="NavItem_Library_ByYears" xml:space="preserve">
     <value>По години</value>
   </data>
-  <data name="NavItem_Index_Archive" xml:space="preserve">
+  <data name="NavItem_Library_Archive" xml:space="preserve">
     <value>Архив</value>
   </data>
   <data name="NavItem_Login" xml:space="preserve">
