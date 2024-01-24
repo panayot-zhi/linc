@@ -1,4 +1,5 @@
 ﻿using linc.Contracts;
+using linc.Models.Enumerations;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;

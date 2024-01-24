@@ -1,4 +1,4 @@
-﻿namespace linc.Utility;
+﻿namespace linc.Models.Enumerations;
 
 public enum UserAvatarType
 {

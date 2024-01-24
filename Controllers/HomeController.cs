@@ -3,6 +3,7 @@ using System.Net;
 using linc.Data;
 using linc.Utility;
 using linc.Contracts;
+using linc.Models.Enumerations;
 using linc.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Diagnostics;

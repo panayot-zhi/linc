@@ -1,4 +1,6 @@
-﻿namespace linc.Utility;
+﻿using linc.Utility;
+
+namespace linc.Models.Enumerations;
 
 public enum SiteRole
 {

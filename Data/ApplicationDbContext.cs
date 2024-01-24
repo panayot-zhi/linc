@@ -1,4 +1,5 @@
-﻿using linc.Utility;
+﻿using linc.Models.Enumerations;
+using linc.Utility;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;

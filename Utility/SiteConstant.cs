@@ -1,6 +1,4 @@
-﻿using System.Collections.ObjectModel;
-
-namespace linc.Utility;
+﻿namespace linc.Utility;
 
 public static class SiteConstant
 {
@@ -19,7 +17,7 @@ public static class SiteConstant
     public const string AdministratorFirstName = "Panayot";
     public const string AdministratorLastName = "Ivanov";
 
-    public const string CyrillicNamePattern = "^[\\u0400-\\u04FF][\\u0400-\\u04FF-]+[\\u0400-\\u04FF]$";
+    //public const string CyrillicNamePattern = "^[\\u0400-\\u04FF][\\u0400-\\u04FF-]+[\\u0400-\\u04FF]$";
 
     public const string AllowedUserNameLatinCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     public const string AllowedUserNameCyrillicCharacters = "абвгдежзийклмнопрстуфхцчшщъьюяАБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЬЮЯ";
