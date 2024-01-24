@@ -76,7 +76,7 @@
                 <form id="set_language" asp-controller="Home" asp-action="SetLanguage">
                     <environment exclude="Production">
                         @* <span class="me-2">Session: @Context.Session.GetString("Hi")</span> *@
-                        <span class="me-2">Editable: @TempData.Peek("Editable")</span>
+                        <span class="me-2">Editable: @(TempData.Peek("Editable") ?? "False")</span>
                         <span class="me-2">Languague: @currentCulture</span>
                     </environment>
                     @foreach (var supportedCulture in SiteConstant.SupportedCultures.Values)
