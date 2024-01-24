@@ -117,8 +117,29 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Category_All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="Category_Analyses" xml:space="preserve">
+    <value>Analyses</value>
+  </data>
   <data name="Category_Articles" xml:space="preserve">
     <value>Articles</value>
+  </data>
+  <data name="Category_Chronicles" xml:space="preserve">
+    <value>Chronicles</value>
+  </data>
+  <data name="Category_Discussions" xml:space="preserve">
+    <value>Discussions</value>
+  </data>
+  <data name="Category_Foreign" xml:space="preserve">
+    <value>Foreign</value>
+  </data>
+  <data name="Category_Reviews" xml:space="preserve">
+    <value>Reviews</value>
+  </data>
+  <data name="Category_Surveys" xml:space="preserve">
+    <value>Surveys</value>
   </data>
   <data name="Index_Title" xml:space="preserve">
     <value>Home</value>
