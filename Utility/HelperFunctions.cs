@@ -1,10 +1,13 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace linc.Utility;
 
 public static class HelperFunctions
 {
-    public static string GatherInternals(this Exception? ex, int introspectionLevel = 3)
+    private static readonly Random RandomNumberGenerator = new();
+
+    public static string GatherInternals(this Exception ex, int introspectionLevel = 3)
     {
         if (ex == null)
         {
@@ -28,7 +31,7 @@ public static class HelperFunctions
     {
         if (request == null)
         {
-            throw new ArgumentNullException(nameof(request), "Request object is Null.");
+            throw new ArgumentNullException(nameof(request));
         }
 
         if (!string.IsNullOrEmpty(httpVerb))
@@ -42,4 +45,24 @@ public static class HelperFunctions
         return request.Headers["X-Requested-With"] == "XMLHttpRequest";
     }
 
+    public static void Shuffle<T>(this IList<T> list)
+    {
+        var n = list.Count;
+        while (n > 1)
+        {
+            n--;
+            var k = RandomNumberGenerator.Next(n + 1);
+            (list[k], list[n]) = (list[n], list[k]);
+        }
+    }
+
+    public static T Get<T>(this ViewDataDictionary viedDataDictionary, string key)
+    {
+        if(viedDataDictionary.TryGetValue(key, out var value))
+        {
+            return (T) value;
+        }
+
+        return default;
+    }
 }

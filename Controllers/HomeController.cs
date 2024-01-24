@@ -1,37 +1,60 @@
-﻿using linc.Models;
-using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Net;
+using linc.Data;
 using linc.Utility;
+using linc.Contracts;
+using linc.Models.Enumerations;
+using linc.Models.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Authorization;
 
 namespace linc.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly ILocalizationService _localizationService;
+        private readonly IContentService _contentService;
 
-        public HomeController(ILogger<HomeController> logger)
+
+        public HomeController(ILogger<HomeController> logger,
+            ILocalizationService localizationService, IContentService contentService)
         {
             _logger = logger;
+            _localizationService = localizationService;
+            _contentService = contentService;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var viewModel = _contentService.GetIndexViewModel();
+            return View(viewModel);
         }
 
-        public IActionResult About()
+        [SiteAuthorize(SiteRole.Editor)]
+        public IActionResult Edit()
+        {
+            if (TempData.ContainsKey("Editable"))
+            {
+                TempData.Remove("Editable");
+            }
+            else
+            {
+                TempData.Add("Editable", "True");
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Submit()
         {
             return View();
         }
 
-        public IActionResult Team()
-        {
-            return View();
-        }
-
-        public IActionResult Codex()
+        public IActionResult Terms()
         {
             return View();
         }
@@ -41,14 +64,47 @@ namespace linc.Controllers
             return View();
         }
 
-        public IActionResult Submit()
+        public IActionResult Cookies()
         {
             return View();
+        }
+
+        [Ajax]
+        [HttpPost]
+        [SiteAuthorize(SiteRole.Editor)]
+        public async Task<IActionResult> SetStringResource([FromBody][Bind("Key,Value")] ApplicationStringResource stringResource)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            await _localizationService.SetStringResource(stringResource.Key, stringResource.Value);
+
+            return Ok();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SetLanguage(string culture, string returnUrl = "/")
+        {
+            Response.Cookies.Append(
+                SiteCookieName.Language,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions
+                {
+                    Expires = DateTimeOffset.UtcNow.AddYears(7)
+                }
+            );
+
+            return LocalRedirect(returnUrl);
         }
 
         [ResponseCache(CacheProfileName = "NoCache")]
         public IActionResult Error(string code)
         {
+            var errorViewModel = GetErrorViewModel(code);
+
             if (Request.IsAjax())
             {
                 if ("401".Equals(code))
@@ -64,23 +120,28 @@ namespace linc.Controllers
                     return StatusCode(candidate);
                 }
 
-                _logger.LogWarning($"Processed an AJAX error with an unknown status code ({code}). Returning 500: Internal Server Error");
+                _logger.LogWarning("Processed an AJAX error with an unknown status code ({StatusCode}) for request (#{RequestId}) bound for path '{Path}'. Returning 500: Internal Server Error",
+                    errorViewModel.StatusCode, errorViewModel.RequestId, errorViewModel.Path);
 
                 return StatusCode(500);
             }
-
-            var statusCodeReExecuteFeature = HttpContext.Features.Get<IStatusCodeReExecuteFeature>();
 
             switch (code)
             {
                 case "400":
                 {
-                    return View("Error"); // return View("BadRequest");
+                    _logger.LogWarning("400 BadRequest (#{RequestId}): {Path}",
+                        errorViewModel.RequestId, errorViewModel.Path);
+
+                    return View("BadRequest", errorViewModel);
                 }
                 case "401":
                 {
                     if (User.Identity is { IsAuthenticated: true })
                     {
+                        _logger.LogWarning("401 Unauthorized (#{RequestId}): {Path}",
+                            errorViewModel.RequestId, errorViewModel.Path);
+
                         return Unauthorized();
                     }
 
@@ -88,43 +149,54 @@ namespace linc.Controllers
                 }
                 case "403":
                 {
-                    return View("Error"); // return View("Forbidden");
+                    _logger.LogWarning("403 Forbidden (#{RequestId}): {Path}",
+                        errorViewModel.RequestId, errorViewModel.Path);
+
+                    return View("Forbidden", errorViewModel);
                 }
                 case "404":
                 {
-                    var path = "Could not resolve path.";
-                    if (statusCodeReExecuteFeature != null)
+                    var path = errorViewModel.Path;
+
+                    _logger.LogWarning("404 NotFound (#{RequestId}): {Path}",
+                        errorViewModel.RequestId, errorViewModel.Path);
+
+                    // NOTE: List here any cases where
+                    // we need response body brevity
+                    
+                    if (path.EndsWith(".js.map"))
                     {
-                        path = statusCodeReExecuteFeature.GetFullPath();
-                        ViewData["Path"] = path;
+                        return StatusCode((int)HttpStatusCode.NotFound, path);
                     }
 
-                    _logger.LogWarning("404 NotFound: " + path);
-
-                    // TODO: List here any cases where we need response body brevity
                     var acceptHeaders = Request.Headers["Accept"];
                     if (acceptHeaders.Any(header => header.Contains("image/*")))
                     {
                         return StatusCode((int)HttpStatusCode.NotFound, path);
                     }
 
-                    return View("Error"); // return View("NotFound");
+                    return View("NotFound", errorViewModel);
                 }
             }
+
+            // NOTE: try to get some more exception details from the request
 
             var exceptionHandlerPathFeature = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
 
             if (string.IsNullOrEmpty(code))
             {
-                code = "500"; // internal server error
+                code = "500";
             }
 
-            var errorViewModel = GetErrorViewModel(exceptionHandlerPathFeature, code);
+            errorViewModel = GetErrorViewModel(code, exceptionHandlerPathFeature);
+
+            _logger.LogError("500 InternalServerError (#{RequestId}) at '{Path}': {ErrorMessage}",
+                errorViewModel.RequestId, errorViewModel.Path, errorViewModel.Error);
 
             return View(errorViewModel);
         }
 
-        protected ErrorViewModel GetErrorViewModel(IExceptionHandlerPathFeature? exceptionHandlerPathFeature, string code)
+        protected ErrorViewModel GetErrorViewModel(string code, IExceptionHandlerPathFeature exceptionHandlerPathFeature = null)
         {
             var statusCodeReExecuteFeature = HttpContext.Features.Get<IStatusCodeReExecuteFeature>();
 
@@ -133,6 +205,11 @@ namespace linc.Controllers
                 RequestId = HttpContext.TraceIdentifier,
                 StatusCode = code
             };
+
+            if (Activity.Current is { Id: { } })
+            {
+                errorViewModel.RequestId = Activity.Current.Id;
+            }
 
             if (statusCodeReExecuteFeature != null)
             {

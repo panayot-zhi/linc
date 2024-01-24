@@ -14,7 +14,7 @@
         <p>
             <strong>Deleting this data will permanently remove your account, and this cannot be recovered.</strong>
         </p>
-        <form id="download-data" asp-page="DownloadPersonalData" method="post">
+        <form class="pb-3" id="download-data" asp-page="DownloadPersonalData" method="post">
             <button class="btn btn-primary" type="submit">Download</button>
         </form>
         <p>
@@ -24,5 +24,5 @@
 </div>
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+    <partial name="_ValidationScripts" />
 }

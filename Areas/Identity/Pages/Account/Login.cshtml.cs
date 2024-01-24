@@ -2,19 +2,13 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 using linc.Data;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
+using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace linc.Areas.Identity.Pages.Account
 {
@@ -29,63 +23,30 @@ namespace linc.Areas.Identity.Pages.Account
             _logger = logger;
         }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         [BindProperty]
         public InputModel Input { get; set; }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         public string ReturnUrl { get; set; }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         [TempData]
         public string ErrorMessage { get; set; }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         public class InputModel
         {
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
             [Required]
-            [EmailAddress]
-            public string Email { get; set; }
+            public string UserName { get; set; }
 
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
             [Required]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
             [Display(Name = "Remember me?")]
             public bool RememberMe { get; set; }
         }
 
-        public async Task OnGetAsync(string returnUrl = null)
+        public async Task<IActionResult> OnGetAsync(string returnUrl = null)
         {
             if (!string.IsNullOrEmpty(ErrorMessage))
             {
@@ -94,12 +55,19 @@ namespace linc.Areas.Identity.Pages.Account
 
             returnUrl ??= Url.Content("~/");
 
+            if (User.Identity is { IsAuthenticated: true })
+            {
+                return LocalRedirect(returnUrl);
+            }
+
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
             ReturnUrl = returnUrl;
+
+            return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
@@ -108,34 +76,77 @@ namespace linc.Areas.Identity.Pages.Account
 
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
-                if (result.Succeeded)
-                {
-                    _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
-                }
-                if (result.RequiresTwoFactor)
-                {
-                    return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
-                }
-                if (result.IsLockedOut)
-                {
-                    _logger.LogWarning("User account locked out.");
-                    return RedirectToPage("./Lockout");
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return Page();
-                }
+                // validation failed, 
+                // redisplay form
+                return Page();
             }
 
+            SignInResult result;
+            var user = await GetUserFromInputAsync(Input.UserName);
+            if (user == null)
+            {
+                result = SignInResult.Failed;
+            }
+            else
+            {
+                result = await _signInManager.PasswordSignInAsync(user, Input.Password, Input.RememberMe, lockoutOnFailure: true);
+            }
+
+            if (result.Succeeded)
+            {
+                // ReSharper disable once PossibleNullReferenceException
+                _logger.LogInformation("User '{UserName}' logged in.", user.UserName);
+                return LocalRedirect(returnUrl);
+            }
+
+            if (result.RequiresTwoFactor)
+            {
+                return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, Input.RememberMe });
+            }
+
+            if (result.IsLockedOut)
+            {
+                // ReSharper disable once PossibleNullReferenceException
+                _logger.LogWarning("User '{UserName}' account locked out.", user.UserName);
+                return RedirectToPage("./Lockout");
+            }
+
+            if (result.IsNotAllowed)
+            {
+                // TODO: i18n
+                ModelState.AddModelError(string.Empty, "Изпратихме Ви писмо, което съдържа връзка за потвърждение на email адресът Ви. " +
+                                                       "Моля, преди да влезете в сайта, потвърдете електронна си поща.");
+                return Page();
+            }
+
+            // TODO: i18n
             // If we got this far, something failed, redisplay form
+            ModelState.AddModelError(string.Empty, "Invalid login attempt.");
             return Page();
+        }
+
+        private async Task<ApplicationUser> GetUserFromInputAsync(string input)
+        {
+            var userManager = _signInManager.UserManager;
+            var byName = await userManager.FindByNameAsync(input);
+            if (byName != null)
+            {
+                _logger.LogInformation($"User '{byName.UserName}' recognized by username.");
+                return byName;
+            }
+
+            var byEmail = await userManager.FindByEmailAsync(input);
+            if (byEmail != null)
+            {
+                _logger.LogInformation($"User {byEmail.UserName} recognized by email.");
+                return byEmail;
+            }
+
+            _logger.LogWarning("User cannot be recognized neither by username nor by email.");
+
+            return null;
         }
     }
 }

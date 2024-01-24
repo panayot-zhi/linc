@@ -1,0 +1,66 @@
+﻿@using linc.Utility
+@using linc.Models.Enumerations
+@model LibraryViewModel
+@{
+    ViewData["Title"] = HtmlLocalizer["LibraryIndex_Title"];
+}
+
+@section Breadcrumbs {
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>@ViewData["Title"]</h2>
+                <ol>
+                    <li>
+                        <a href="/">@HtmlLocalizer["NavItem_Home"]</a>
+                    </li>
+                    @if (Model.Category == IndexCategory.All)
+                    {
+                        <li>@HtmlLocalizer["NavItem_Library"]</li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a asp-controller="Library" asp-action="Index" asp-route-id="All">@HtmlLocalizer["NavItem_Library"]</a>
+                        </li>
+                        <li>
+                            @(EnumHelper<IndexCategory>.GetDisplayName(Model.Category))
+                        </li>
+                    }
+                </ol>
+            </div>
+
+        </div>
+    </section>
+    <!-- End Breadcrumbs -->
+}
+
+<section id="library-page">
+    <div class="container">
+        <p>
+            Use this page to list category @(EnumHelper<IndexCategory>.GetDisplayName(Model.Category)).
+        </p>
+    </div>
+</section>
+
+@section Newsletter {
+    <div class="footer-newsletter">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#index-@Model.Category.ToString().ToLower()").addClass('active');
+        })
+    </script>
+}

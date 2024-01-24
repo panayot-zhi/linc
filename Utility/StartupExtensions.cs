@@ -1,15 +1,61 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using linc.Data;
-using Microsoft.AspNetCore.Mvc;
+﻿using linc.Data;
 using linc.Services;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using linc.Models.ConfigModels;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using linc.Contracts;
 
 namespace linc.Utility;
 
 public static class StartupExtensions
 {
+    public static IServiceCollection AddApplicationIdentity(this IServiceCollection services)
+    {
+        services.AddIdentity<ApplicationUser, IdentityRole>()
+            //.AddErrorDescriber<LocalizedIdentityErrorDescriber>()
+            .AddEntityFrameworkStores<ApplicationDbContext>()
+            .AddDefaultTokenProviders()
+            .AddDefaultUI();
+
+        services.Configure<IdentityOptions>(options =>
+        {
+            // Store settings
+            options.Stores.MaxLengthForKeys = 127;
+
+            // Password Strength settings
+            options.Password.RequireDigit = true;
+            options.Password.RequiredLength = 6;
+            options.Password.RequireNonAlphanumeric = false;
+            options.Password.RequireUppercase = true;
+            options.Password.RequireLowercase = false;
+            options.Password.RequiredUniqueChars = 4;
+
+            // Lockout settings
+            options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+            options.Lockout.MaxFailedAccessAttempts = 7;
+            options.Lockout.AllowedForNewUsers = true;
+
+            // User settings
+            options.User.RequireUniqueEmail = true;
+            options.User.AllowedUserNameCharacters = SiteConstant.AllowedUserNameCharacters;
+
+            // SignIn options
+            options.SignIn.RequireConfirmedEmail = true;
+        });
+
+        services.AddRazorPages(options =>
+        {
+            options.Conventions.AuthorizeAreaFolder("Identity", "/Account/Manage");
+            options.Conventions.AuthorizeAreaPage("Identity", "/Account/Logout");
+        });
+
+        return services;
+    }
+
     public static IServiceCollection AddAuthentications(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddAuthentication();
@@ -42,9 +88,15 @@ public static class StartupExtensions
         return services;
     }
 
-    public static IServiceCollection AddCachingProfiles(this IServiceCollection services)
+    public static IServiceCollection AddCaching(this IServiceCollection services)
     {
         services.AddResponseCaching();
+        services.AddDistributedMemoryCache();
+        services.AddMemoryCache(options =>
+        {
+            // aim for roughly 20M symbols
+            options.SizeLimit = (long) 2e7;
+        });
 
         services.AddControllersWithViews(options =>
         {
@@ -84,6 +136,30 @@ public static class StartupExtensions
     {
         services.Configure<EmailConfig>(configuration.GetSection(nameof(EmailConfig)));
 
+        // var cultureInfo = new CultureInfo("bg");
+
+        // NOTE: Soon...
+        //cultureInfo.NumberFormat.CurrencySymbol = "€";
+        // cultureInfo.NumberFormat.CurrencyDecimalSeparator = ".";
+
+        // CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+        // CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
+        services.Configure<RequestLocalizationOptions>(options =>
+        {
+            var supportedCultures = new[] { "bg", "en" };
+            options.SetDefaultCulture(supportedCultures.First())
+                .AddSupportedCultures(supportedCultures)
+                .AddSupportedUICultures(supportedCultures);
+
+            var cookieProvider = options.RequestCultureProviders
+                .OfType<CookieRequestCultureProvider>()
+                .First();
+
+            cookieProvider.CookieName = SiteCookieName.Language;
+            options.ApplyCurrentCultureToResponseHeaders = true;
+        });
+
         return services;
     }
 
@@ -97,7 +173,7 @@ public static class StartupExtensions
             // no cookie policy enforces this
             // if you logged in - you gave consent
             options.Cookie.IsEssential = true;
-            options.Cookie.Name = ".netCore.linc.identity.external";
+            options.Cookie.Name = SiteCookieName.IdentityExternal;
             options.Cookie.SameSite = SameSiteMode.None;
             options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
 
@@ -129,7 +205,7 @@ public static class StartupExtensions
             // no cookie policy enforces this
             // if you logged in - you gave consent
             options.Cookie.IsEssential = true;
-            options.Cookie.Name = ".netCore.linc.identity";
+            options.Cookie.Name = SiteCookieName.Identity;
             options.Cookie.SameSite = SameSiteMode.Strict;
             options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
 
@@ -157,22 +233,49 @@ public static class StartupExtensions
 
         });
 
+        // .netCore.linc.language
+        services.Configure<RequestLocalizationOptions>(options =>
+        {
+            var cookieProvider = options.RequestCultureProviders
+                .OfType<CookieRequestCultureProvider>()
+                .First();
+
+            cookieProvider.CookieName = SiteCookieName.Language;
+        });
+
         // .netCore.linc.tempData
         services.Configure<CookieTempDataProviderOptions>(options =>
         {
             options.Cookie.HttpOnly = true;
-            options.Cookie.IsEssential = false;
-            options.Cookie.Name = ".netCore.linc.tempData";
+            options.Cookie.IsEssential = true;
+            options.Cookie.Name = SiteCookieName.TempData;
             options.Cookie.SameSite = SameSiteMode.Strict;
             options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+            
+            options.Cookie.Expiration = TimeSpan.FromHours(1);
+
         });
+
+        // .netCore.linc.session
+        // services.AddSession(options =>
+        // {
+        //     options.IdleTimeout = TimeSpan.FromHours(1);
+        //
+        //
+        //     options.Cookie.HttpOnly = true;
+        //     options.Cookie.IsEssential = false;
+        //     options.Cookie.Name = SiteCookieName.Session;
+        //     options.Cookie.SameSite = SameSiteMode.Strict;
+        //     options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+        //
+        // });
 
         // .netCore.linc.antiForgery
         services.AddAntiforgery(options =>
         {
             options.Cookie.HttpOnly = true;
             options.Cookie.IsEssential = true;
-            options.Cookie.Name = ".netCore.linc.antiForgery";
+            options.Cookie.Name = SiteCookieName.AntiForgery;
             options.Cookie.SameSite = SameSiteMode.Strict;
             options.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
 
@@ -188,51 +291,53 @@ public static class StartupExtensions
         var connectionString = configuration.GetConnectionString("DefaultConnection") ??
                                throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
-        services.AddDbContext<ApplicationDbContext>(options =>
-            options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+        services.AddDbContext<ApplicationDbContext>(
+            contextLifetime: ServiceLifetime.Scoped,
+            optionsAction: options =>
+                options
+                    .EnableDetailedErrors()
+                    .UseSnakeCaseNamingConvention()
+                    .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
+                    .UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
         return services;
     }
 
-    public static IServiceCollection AddApplicationIdentity(this IServiceCollection services)
+    public static IServiceCollection AddLocalizations(this IServiceCollection services)
     {
-        services.AddIdentity<ApplicationUser, IdentityRole>()
-            .AddErrorDescriber<LocalizedIdentityErrorDescriber>()
-            .AddEntityFrameworkStores<ApplicationDbContext>()
-            .AddDefaultTokenProviders()
-            .AddDefaultUI();
+        var supportedCultures = SiteConstant.SupportedCultures.Values.ToArray();
 
-        services.Configure<IdentityOptions>(options =>
+        services.Configure<RequestLocalizationOptions>(options =>
         {
-            // Store settings
-            options.Stores.MaxLengthForKeys = 127;
+            options.SetDefaultCulture(supportedCultures.First())
+                .AddSupportedCultures(supportedCultures)
+                .AddSupportedUICultures(supportedCultures);
 
-            // Password Strength settings
-            options.Password.RequireDigit = true;
-            options.Password.RequiredLength = 6;
-            options.Password.RequireNonAlphanumeric = false;
-            options.Password.RequireUppercase = true;
-            options.Password.RequireLowercase = false;
-            options.Password.RequiredUniqueChars = 4;
-
-            // Lockout settings
-            options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
-            options.Lockout.MaxFailedAccessAttempts = 7;
-            options.Lockout.AllowedForNewUsers = true;
-
-            // User settings
-            options.User.RequireUniqueEmail = true;
-            options.User.AllowedUserNameCharacters = Constants.AllowedUserNameCharacters;
-
-            // SignIn options
-            options.SignIn.RequireConfirmedEmail = true;
+            options.ApplyCurrentCultureToResponseHeaders = true;
         });
 
-        services.AddRazorPages(options =>
-        {
-            options.Conventions.AuthorizeAreaFolder("Identity", "/Account/Manage");
-            options.Conventions.AuthorizeAreaPage("Identity", "/Account/Logout");
-        });
+        services.AddLocalization(options => options.ResourcesPath = "Resources");
+
+        services.AddMvc(options =>
+            {
+                // what dis for
+                options.Conventions.Add(
+                    new RouteTokenTransformerConvention(
+                        new SlugifyParameterTransformer()));
+            })
+            .AddViewLocalization()
+            .AddCookieTempDataProvider()
+            //.AddSessionStateTempDataProvider()
+            .AddRazorPagesOptions(options =>
+            {
+                options.Conventions.Add(
+                    new PageRouteTransformerConvention(
+                            new SlugifyParameterTransformer()));
+            })
+            .AddDataAnnotationsLocalization(options => {
+                options.DataAnnotationLocalizerProvider = (_, factory) =>
+                    factory.Create(typeof(SharedResource));
+            });
 
         return services;
     }
@@ -250,9 +355,20 @@ public static class StartupExtensions
 
     public static IServiceCollection AddServices(this IServiceCollection services)
     {
+        services.AddScoped<ILocalizationService, LocalizationService>();
+        services.AddTransient<IContentService, ContentService>();
         services.AddTransient<IEmailSender, EmailSender>();
+        //services.AddTransient<ISharedViewLocalizer, SharedViewLocalizer>();
 
         return services;
     }
 
+    public static void ApplyDatabaseMigrations(this IHost app)
+    {
+        using (var serviceScope = app.Services.GetRequiredService<IServiceScopeFactory>().CreateScope())
+        using (var dbContext = serviceScope.ServiceProvider.GetRequiredService<ApplicationDbContext>())
+        {
+            dbContext.Database.Migrate();
+        }
+    }
 }

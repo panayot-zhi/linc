@@ -1,0 +1,105 @@
+﻿@using linc.Utility
+@using linc.Models.Enumerations
+@model ReviewsViewModel
+
+<!-- ======= Skills Section ======= -->
+<section id="skills" class="skills">
+    <div class="container" data-aos="fade-up">
+
+        <div class="row skills-content">
+
+            <div class="col-lg-6">
+
+                <div class="progress">
+                    <span class="skill">
+                        @(EnumHelper<IndexCategory>.GetDisplayName(IndexCategory.Articles)) 
+                        <i class="val">@Model.ReviewedArticlesPercent%</i>
+                    </span>
+                    <div class="progress-bar-wrap">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="@Model.ReviewedArticlesPercent" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+
+                <div class="progress">
+                    <span class="skill">
+                        @(EnumHelper<IndexCategory>.GetDisplayName(IndexCategory.Analyses)) 
+                        <i class="val">@Model.ReviewedAnalysesPercent%</i>
+                    </span>
+                    <div class="progress-bar-wrap">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="@Model.ReviewedAnalysesPercent" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+
+                <div class="progress">
+                    <span class="skill">
+                        @(EnumHelper<IndexCategory>.GetDisplayName(IndexCategory.Surveys)) 
+                        <i class="val">@Model.ReviewedSurveysPercent%</i>
+                    </span>
+                    <div class="progress-bar-wrap">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="@Model.ReviewedSurveysPercent" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-lg-6">
+
+                <div class="progress">
+                    <span class="skill">
+                        @(EnumHelper<IndexCategory>.GetDisplayName(IndexCategory.Discussions)) 
+                        <i class="val">@Model.ReviewedDiscussionsPercent%</i>
+                    </span>
+                    <div class="progress-bar-wrap">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="@Model.ReviewedDiscussionsPercent" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+
+                <div class="progress">
+                    <span class="skill">
+                        @(EnumHelper<IndexCategory>.GetDisplayName(IndexCategory.Reviews)) 
+                        <i class="val">@Model.ReviewedReviewsPercent%</i>
+                    </span>
+                    <div class="progress-bar-wrap">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="@Model.ReviewedReviewsPercent" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+
+                <div class="progress">
+                    <span class="skill">
+                        @(EnumHelper<IndexCategory>.GetDisplayName(IndexCategory.Chronicles))
+                        <i class="val">@Model.ReviewedChroniclesPercent%</i>
+                    </span>
+                    <div class="progress-bar-wrap">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="@Model.ReviewedChroniclesPercent" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="col-lg-6">
+
+                <div class="progress">
+                    <span class="skill">
+                        @(EnumHelper<IndexCategory>.GetDisplayName(IndexCategory.Foreign))
+                        <i class="val">@Model.ReviewedForeignPercent%</i>
+                    </span>
+                    <div class="progress-bar-wrap">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="@Model.ReviewedForeignPercent" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        
+        <div class="row">
+            <p class="text-end">
+                <small contenteditable-for="Reviews_Message">
+                    * процент на постъпилите ръкописи в редакцията спрямо одобрените/публикувани ръкописи в списанието
+                </small>
+            </p>
+        </div>
+
+    </div>
+</section>
+<!-- End Skills Section -->

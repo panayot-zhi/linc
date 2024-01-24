@@ -19,101 +19,196 @@ namespace linc.Migrations
                 .HasAnnotation("ProductVersion", "6.0.23")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
+            modelBuilder.Entity("linc.Data.ApplicationLanguage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Culture")
+                        .HasMaxLength(12)
+                        .HasColumnType("varchar(12)")
+                        .HasColumnName("culture");
+
+                    b.HasKey("Id")
+                        .HasName("pk_languages");
+
+                    b.HasIndex("Culture")
+                        .IsUnique()
+                        .HasDatabaseName("ix_languages_culture");
+
+                    b.ToTable("languages", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Culture = "bg"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Culture = "en"
+                        });
+                });
+
+            modelBuilder.Entity("linc.Data.ApplicationStringResource", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("key");
+
+                    b.Property<int>("LanguageId")
+                        .HasColumnType("int")
+                        .HasColumnName("language_id");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasColumnType("longtext")
+                        .HasColumnName("value");
+
+                    b.HasKey("Id")
+                        .HasName("pk_string_resources");
+
+                    b.HasIndex("Key")
+                        .HasDatabaseName("ix_string_resources_key");
+
+                    b.HasIndex("LanguageId")
+                        .HasDatabaseName("ix_string_resources_language_id");
+
+                    b.ToTable("string_resources", (string)null);
+                });
+
             modelBuilder.Entity("linc.Data.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("id");
 
                     b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("access_failed_count");
 
                     b.Property<int>("AvatarType")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("avatar_type");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("longtext");
+                        .HasColumnType("longtext")
+                        .HasColumnName("concurrency_stamp");
 
                     b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("date_created");
 
                     b.Property<string>("Description")
                         .HasMaxLength(1024)
-                        .HasColumnType("varchar(1024)");
+                        .HasColumnType("varchar(1024)")
+                        .HasColumnName("description");
 
                     b.Property<bool>("DisplayEmail")
-                        .HasColumnType("tinyint(1)");
+                        .HasColumnType("tinyint(1)")
+                        .HasColumnName("display_email");
 
                     b.Property<int>("DisplayNameType")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("display_name_type");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
-                        .HasColumnType("varchar(256)");
+                        .HasColumnType("varchar(256)")
+                        .HasColumnName("email");
 
                     b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("tinyint(1)");
+                        .HasColumnType("tinyint(1)")
+                        .HasColumnName("email_confirmed");
 
                     b.Property<string>("FacebookAvatarPath")
-                        .HasColumnType("longtext");
+                        .HasColumnType("longtext")
+                        .HasColumnName("facebook_avatar_path");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("first_name");
 
                     b.Property<string>("GoogleAvatarPath")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("longtext")
+                        .HasColumnName("google_avatar_path");
 
                     b.Property<string>("InternalAvatarPath")
-                        .HasColumnType("longtext");
+                        .HasColumnType("longtext")
+                        .HasColumnName("internal_avatar_path");
 
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("last_name");
 
                     b.Property<DateTime>("LastUpdated")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("last_updated");
 
                     b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("tinyint(1)");
+                        .HasColumnType("tinyint(1)")
+                        .HasColumnName("lockout_enabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("lockout_end");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
-                        .HasColumnType("varchar(256)");
+                        .HasColumnType("varchar(256)")
+                        .HasColumnName("normalized_email");
 
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256)
-                        .HasColumnType("varchar(256)");
+                        .HasColumnType("varchar(256)")
+                        .HasColumnName("normalized_user_name");
 
                     b.Property<string>("PasswordHash")
-                        .HasColumnType("longtext");
+                        .HasColumnType("longtext")
+                        .HasColumnName("password_hash");
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("longtext");
+                        .HasColumnType("longtext")
+                        .HasColumnName("phone_number");
 
                     b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("tinyint(1)");
+                        .HasColumnType("tinyint(1)")
+                        .HasColumnName("phone_number_confirmed");
 
                     b.Property<string>("SecurityStamp")
-                        .HasColumnType("longtext");
+                        .HasColumnType("longtext")
+                        .HasColumnName("security_stamp");
 
                     b.Property<string>("TwitterAvatarPath")
-                        .HasColumnType("longtext");
+                        .HasColumnType("longtext")
+                        .HasColumnName("twitter_avatar_path");
 
                     b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("tinyint(1)");
+                        .HasColumnType("tinyint(1)")
+                        .HasColumnName("two_factor_enabled");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
-                        .HasColumnType("varchar(256)");
+                        .HasColumnType("varchar(256)")
+                        .HasColumnName("user_name");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_asp_net_users");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -122,139 +217,253 @@ namespace linc.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex");
 
-                    b.ToTable("AspNetUsers", (string)null);
+                    b.ToTable("asp_net_users", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "00000000-0000-0000-0000-000000000000",
+                            AccessFailedCount = 0,
+                            AvatarType = 1,
+                            ConcurrencyStamp = "00000000-0000-0000-0000-000000000000",
+                            DateCreated = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "System administrator. / Администратор на системата.",
+                            DisplayEmail = true,
+                            DisplayNameType = 2,
+                            Email = "admin-linc@uni-plovdiv.bg",
+                            EmailConfirmed = true,
+                            FirstName = "Panayot",
+                            LastName = "Ivanov",
+                            LastUpdated = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN-LINC@UNI-PLOVDIV.BG",
+                            NormalizedUserName = "P.IVANOV",
+                            PasswordHash = "CHANGE_ME",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "00000000-0000-0000-0000-000000000000",
+                            TwoFactorEnabled = false,
+                            UserName = "p.ivanov"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("id");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("longtext");
+                        .HasColumnType("longtext")
+                        .HasColumnName("concurrency_stamp");
 
                     b.Property<string>("Name")
                         .HasMaxLength(256)
-                        .HasColumnType("varchar(256)");
+                        .HasColumnType("varchar(256)")
+                        .HasColumnName("name");
 
                     b.Property<string>("NormalizedName")
                         .HasMaxLength(256)
-                        .HasColumnType("varchar(256)");
+                        .HasColumnType("varchar(256)")
+                        .HasColumnName("normalized_name");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_asp_net_roles");
 
                     b.HasIndex("NormalizedName")
                         .IsUnique()
                         .HasDatabaseName("RoleNameIndex");
 
-                    b.ToTable("AspNetRoles", (string)null);
+                    b.ToTable("asp_net_roles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "00000000-0000-0000-0000-000000000000",
+                            ConcurrencyStamp = "000000000000-0000-0000-0000-00000000",
+                            Name = "ADMINISTRATOR",
+                            NormalizedName = "ADMINISTRATOR"
+                        },
+                        new
+                        {
+                            Id = "5e1199d7-7725-4900-aa34-5496365bf5a0",
+                            ConcurrencyStamp = "0a5fb5636945-43aa-0094-5277-7d9911e5",
+                            Name = "HEAD_EDITOR",
+                            NormalizedName = "HEAD_EDITOR"
+                        },
+                        new
+                        {
+                            Id = "05cbe4c7-108e-40bc-bee7-65438875026e",
+                            ConcurrencyStamp = "e62057883456-7eeb-cb04-e801-7c4ebc50",
+                            Name = "EDITOR",
+                            NormalizedName = "EDITOR"
+                        },
+                        new
+                        {
+                            Id = "6b1acea8-2d26-4c82-b6ad-7281b7d621ae",
+                            ConcurrencyStamp = "ea126d7b1827-da6b-28c4-62d2-8aeca1b6",
+                            Name = "USER_PLUS",
+                            NormalizedName = "USER_PLUS"
+                        },
+                        new
+                        {
+                            Id = "90667439-9058-4956-96e6-d23bac481443",
+                            ConcurrencyStamp = "344184cab32d-6e69-6594-8509-93476609",
+                            Name = "USER",
+                            NormalizedName = "USER"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("id");
 
                     b.Property<string>("ClaimType")
-                        .HasColumnType("longtext");
+                        .HasColumnType("longtext")
+                        .HasColumnName("claim_type");
 
                     b.Property<string>("ClaimValue")
-                        .HasColumnType("longtext");
+                        .HasColumnType("longtext")
+                        .HasColumnName("claim_value");
 
                     b.Property<string>("RoleId")
                         .IsRequired()
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("role_id");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_asp_net_role_claims");
 
-                    b.HasIndex("RoleId");
+                    b.HasIndex("RoleId")
+                        .HasDatabaseName("ix_asp_net_role_claims_role_id");
 
-                    b.ToTable("AspNetRoleClaims", (string)null);
+                    b.ToTable("asp_net_role_claims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("id");
 
                     b.Property<string>("ClaimType")
-                        .HasColumnType("longtext");
+                        .HasColumnType("longtext")
+                        .HasColumnName("claim_type");
 
                     b.Property<string>("ClaimValue")
-                        .HasColumnType("longtext");
+                        .HasColumnType("longtext")
+                        .HasColumnName("claim_value");
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("user_id");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .HasName("pk_asp_net_user_claims");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .HasDatabaseName("ix_asp_net_user_claims_user_id");
 
-                    b.ToTable("AspNetUserClaims", (string)null);
+                    b.ToTable("asp_net_user_claims", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
                         .HasMaxLength(127)
-                        .HasColumnType("varchar(127)");
+                        .HasColumnType("varchar(127)")
+                        .HasColumnName("login_provider");
 
                     b.Property<string>("ProviderKey")
                         .HasMaxLength(127)
-                        .HasColumnType("varchar(127)");
+                        .HasColumnType("varchar(127)")
+                        .HasColumnName("provider_key");
 
                     b.Property<string>("ProviderDisplayName")
-                        .HasColumnType("longtext");
+                        .HasColumnType("longtext")
+                        .HasColumnName("provider_display_name");
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("user_id");
 
-                    b.HasKey("LoginProvider", "ProviderKey");
+                    b.HasKey("LoginProvider", "ProviderKey")
+                        .HasName("pk_asp_net_user_logins");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("UserId")
+                        .HasDatabaseName("ix_asp_net_user_logins_user_id");
 
-                    b.ToTable("AspNetUserLogins", (string)null);
+                    b.ToTable("asp_net_user_logins", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
                     b.Property<string>("UserId")
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("user_id");
 
                     b.Property<string>("RoleId")
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("role_id");
 
-                    b.HasKey("UserId", "RoleId");
+                    b.HasKey("UserId", "RoleId")
+                        .HasName("pk_asp_net_user_roles");
 
-                    b.HasIndex("RoleId");
+                    b.HasIndex("RoleId")
+                        .HasDatabaseName("ix_asp_net_user_roles_role_id");
 
-                    b.ToTable("AspNetUserRoles", (string)null);
+                    b.ToTable("asp_net_user_roles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "00000000-0000-0000-0000-000000000000",
+                            RoleId = "00000000-0000-0000-0000-000000000000"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
                     b.Property<string>("UserId")
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("user_id");
 
                     b.Property<string>("LoginProvider")
                         .HasMaxLength(127)
-                        .HasColumnType("varchar(127)");
+                        .HasColumnType("varchar(127)")
+                        .HasColumnName("login_provider");
 
                     b.Property<string>("Name")
                         .HasMaxLength(127)
-                        .HasColumnType("varchar(127)");
+                        .HasColumnType("varchar(127)")
+                        .HasColumnName("name");
 
                     b.Property<string>("Value")
-                        .HasColumnType("longtext");
+                        .HasColumnType("longtext")
+                        .HasColumnName("value");
 
-                    b.HasKey("UserId", "LoginProvider", "Name");
+                    b.HasKey("UserId", "LoginProvider", "Name")
+                        .HasName("pk_asp_net_user_tokens");
 
-                    b.ToTable("AspNetUserTokens", (string)null);
+                    b.ToTable("asp_net_user_tokens", (string)null);
+                });
+
+            modelBuilder.Entity("linc.Data.ApplicationStringResource", b =>
+                {
+                    b.HasOne("linc.Data.ApplicationLanguage", "Language")
+                        .WithMany("StringResources")
+                        .HasForeignKey("LanguageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_string_resources_languages_language_id");
+
+                    b.Navigation("Language");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -263,7 +472,8 @@ namespace linc.Migrations
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_asp_net_role_claims_asp_net_roles_role_id");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -272,7 +482,8 @@ namespace linc.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_asp_net_user_claims_asp_net_users_user_id");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -281,7 +492,8 @@ namespace linc.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_asp_net_user_logins_asp_net_users_user_id");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
@@ -290,13 +502,15 @@ namespace linc.Migrations
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_asp_net_user_roles_asp_net_roles_role_id");
 
                     b.HasOne("linc.Data.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_asp_net_user_roles_asp_net_users_user_id");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -305,7 +519,13 @@ namespace linc.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .IsRequired()
+                        .HasConstraintName("fk_asp_net_user_tokens_asp_net_users_user_id");
+                });
+
+            modelBuilder.Entity("linc.Data.ApplicationLanguage", b =>
+                {
+                    b.Navigation("StringResources");
                 });
 #pragma warning restore 612, 618
         }
