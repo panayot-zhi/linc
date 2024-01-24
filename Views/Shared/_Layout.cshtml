@@ -74,10 +74,15 @@
             </div>
             <div class="d-flex align-items-center">
                 <form id="set_language" asp-controller="Home" asp-action="SetLanguage">
-                    <span>CurrentCulture: @currentCulture</span>
+                    <environment exclude="Production">
+                        @* <span class="me-2">Session: @Context.Session.GetString("Hi")</span> *@
+                        <span class="me-2">Editable: @TempData.Peek("Editable")</span>
+                        <span class="me-2">Languague: @currentCulture</span>
+                    </environment>
                     @foreach (var supportedCulture in SiteConstant.SupportedCultures.Values)
                     {
-                        <button id="language_@supportedCulture" name="culture" value="@supportedCulture" type="submit" class="btn">
+                        <button id="language_@supportedCulture" name="culture" value="@supportedCulture" type="submit"
+                                class="btn @(supportedCulture == currentCulture ? "active" : "")">
                             <i class="fi fi-@supportedCulture"></i>
                         </button>
                     }
@@ -188,16 +193,16 @@
                                 </li>
                                 @if (User.IsAtLeast(SiteRole.Editor))
                                 {
-                                    if (ViewData.Get<bool?>("Editable") == true)
+                                    if (TempData.ContainsKey("Editable"))
                                     {
                                         <li>
-                                            <a asp-controller="Home" asp-action="Index">@HtmlLocalizer["NavItem_StopEditIndex"]</a>
+                                            <a asp-controller="Home" asp-action="Edit">@HtmlLocalizer["NavItem_EditModeDisable"]</a>
                                         </li>
                                     }
                                     else
                                     {
                                         <li>
-                                            <a asp-controller="Home" asp-action="Edit">@HtmlLocalizer["NavItem_EditIndex"]</a>
+                                            <a asp-controller="Home" asp-action="Edit">@HtmlLocalizer["NavItem_EditModeEnable"]</a>
                                         </li>
                                     }
 

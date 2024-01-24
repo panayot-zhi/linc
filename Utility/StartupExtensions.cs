@@ -91,6 +91,7 @@ public static class StartupExtensions
     public static IServiceCollection AddCaching(this IServiceCollection services)
     {
         services.AddResponseCaching();
+        services.AddDistributedMemoryCache();
         services.AddMemoryCache(options =>
         {
             // aim for roughly 20M symbols
@@ -232,16 +233,6 @@ public static class StartupExtensions
 
         });
 
-        // .netCore.linc.tempData
-        services.Configure<CookieTempDataProviderOptions>(options =>
-        {
-            options.Cookie.HttpOnly = true;
-            options.Cookie.IsEssential = false;
-            options.Cookie.Name = SiteCookieName.TempData;
-            options.Cookie.SameSite = SameSiteMode.Strict;
-            options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-        });
-
         // .netCore.linc.language
         services.Configure<RequestLocalizationOptions>(options =>
         {
@@ -251,6 +242,33 @@ public static class StartupExtensions
 
             cookieProvider.CookieName = SiteCookieName.Language;
         });
+
+        // .netCore.linc.tempData
+        services.Configure<CookieTempDataProviderOptions>(options =>
+        {
+            options.Cookie.HttpOnly = true;
+            options.Cookie.IsEssential = true;
+            options.Cookie.Name = SiteCookieName.TempData;
+            options.Cookie.SameSite = SameSiteMode.Strict;
+            options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+            
+            options.Cookie.Expiration = TimeSpan.FromHours(1);
+
+        });
+
+        // .netCore.linc.session
+        // services.AddSession(options =>
+        // {
+        //     options.IdleTimeout = TimeSpan.FromHours(1);
+        //
+        //
+        //     options.Cookie.HttpOnly = true;
+        //     options.Cookie.IsEssential = false;
+        //     options.Cookie.Name = SiteCookieName.Session;
+        //     options.Cookie.SameSite = SameSiteMode.Strict;
+        //     options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+        //
+        // });
 
         // .netCore.linc.antiForgery
         services.AddAntiforgery(options =>
@@ -308,6 +326,8 @@ public static class StartupExtensions
                         new SlugifyParameterTransformer()));
             })
             .AddViewLocalization()
+            .AddCookieTempDataProvider()
+            //.AddSessionStateTempDataProvider()
             .AddRazorPagesOptions(options =>
             {
                 options.Conventions.Add(

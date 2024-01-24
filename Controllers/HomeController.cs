@@ -1,16 +1,17 @@
 ﻿using System.Diagnostics;
 using System.Net;
-using linc.Contracts;
 using linc.Data;
+using linc.Utility;
+using linc.Contracts;
+using linc.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Localization;
-using linc.Models.ViewModels.Home;
-using linc.Models.ViewModels;
-using linc.Utility;
+using Microsoft.AspNetCore.Authorization;
 
 namespace linc.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -29,29 +30,30 @@ namespace linc.Controllers
         public IActionResult Index()
         {
             var viewModel = _contentService.GetIndexViewModel();
-
             return View(viewModel);
         }
 
         [SiteAuthorize(SiteRole.Editor)]
         public IActionResult Edit()
         {
-            var viewModel = _contentService.GetIndexViewModel();
-            ViewData["Editable"] = true;
-            return View("Index", viewModel);
+            if (TempData.ContainsKey("Editable"))
+            {
+                TempData.Remove("Editable");
+            }
+            else
+            {
+                TempData.Add("Editable", "True");
+            }
+
+            return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult About()
+        public IActionResult Submit()
         {
             return View();
         }
 
-        public IActionResult Team()
-        {
-            return View();
-        }
-
-        public IActionResult Codex()
+        public IActionResult Terms()
         {
             return View();
         }
@@ -61,7 +63,7 @@ namespace linc.Controllers
             return View();
         }
 
-        public IActionResult Submit()
+        public IActionResult Cookies()
         {
             return View();
         }

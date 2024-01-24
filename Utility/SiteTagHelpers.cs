@@ -1,10 +1,7 @@
-﻿using System.Diagnostics;
-using linc.Contracts;
+﻿using linc.Contracts;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
-using Microsoft.Extensions.Localization;
 
 namespace linc.Utility
 {
@@ -31,7 +28,8 @@ namespace linc.Utility
         {
             output.Attributes.Add("id", DatabaseLocalizationKey);
 
-            var editable = ViewContext.ViewData.Get<bool?>("Editable") == true;
+            //var editable = ViewContext.ViewData.Get<bool?>("Editable") == true;
+            var editable = ViewContext.TempData.ContainsKey("Editable");
             if (ViewContext.HttpContext.User.IsAtLeast(SiteRole.Editor) && editable)
             {
                 output.Attributes.Add("contenteditable", "true");
