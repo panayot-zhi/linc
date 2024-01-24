@@ -442,7 +442,7 @@
     <value>Регистрация</value>
   </data>
   <data name="NavItem_Submissions" xml:space="preserve">
-    <value>Управление на ръкописи</value>
+    <value>Ръкописи</value>
   </data>
   <data name="NewsletterSection_SubscribeButton_Label" xml:space="preserve">
     <value>Абонирай се</value>
