@@ -1,4 +1,7 @@
-﻿<!-- ======= Services Section ======= -->
+﻿@using linc.Models.Enumerations
+@using linc.Utility
+
+<!-- ======= Services Section ======= -->
 <section id="services" class="services section-bg">
     <div class="container" data-aos="fade-up">
 
@@ -18,8 +21,9 @@
                         <i class="bx bx-file"></i>
                     </div>
                     <h4>
-                        @* TODO: Link to corresponding Index item *@
-                        <a href="">@HtmlLocalizer["Category_Articles"]</a>
+                        <a asp-controller="Library" asp-action="Index" asp-route-id="Articles">
+                            @(EnumHelper<IndexCategory>.GetDisplayName(IndexCategory.Articles))
+                        </a>
                     </h4>
                     <p contenteditable-for="Category_Articles_Description">
                         Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi
@@ -33,8 +37,9 @@
                         <i class="bx bx-left-indent"></i>
                     </div>
                     <h4>
-                        @* TODO: Link to corresponding Index item *@
-                        <a href="">@HtmlLocalizer["Category_Analyses"]</a>
+                        <a asp-controller="Library" asp-action="Index" asp-route-id="Analyses">
+                            @(EnumHelper<IndexCategory>.GetDisplayName(IndexCategory.Analyses))
+                        </a>
                     </h4>
                     <p contenteditable-for="Category_Analyses_Description">
                         Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi
@@ -48,8 +53,9 @@
                         <i class="bx bx-task"></i>
                     </div>
                     <h4>
-                        @* TODO: Link to corresponding Index item *@
-                        <a href="">@HtmlLocalizer["Category_Surveys"]</a>
+                        <a asp-controller="Library" asp-action="Index" asp-route-id="Surveys">
+                            @(EnumHelper<IndexCategory>.GetDisplayName(IndexCategory.Surveys))
+                        </a>
                     </h4>
                     <p contenteditable-for="Category_Surveys_Description">
                         Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi
@@ -63,8 +69,9 @@
                         <i class="bx bx-chat"></i>
                     </div>
                     <h4>
-                        @* TODO: Link to corresponding Index item *@
-                        <a href="">@HtmlLocalizer["Category_Discussions"]</a>
+                        <a asp-controller="Library" asp-action="Index" asp-route-id="Discussions">
+                            @(EnumHelper<IndexCategory>.GetDisplayName(IndexCategory.Discussions))
+                        </a>
                     </h4>
                     <p contenteditable-for="Category_Discussions_Description">
                         Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi
@@ -78,8 +85,9 @@
                         <i class="bx bx-message-edit"></i>
                     </div>
                     <h4>
-                        @* TODO: Link to corresponding Index item *@
-                        <a href="">@HtmlLocalizer["Category_Reviews"]</a>
+                        <a asp-controller="Library" asp-action="Index" asp-route-id="Reviews">
+                            @(EnumHelper<IndexCategory>.GetDisplayName(IndexCategory.Reviews))
+                        </a>
                     </h4>
                     <p contenteditable-for="Category_Reviews_Description">
                         Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi
@@ -93,8 +101,9 @@
                         <i class="bx bx-history"></i>
                     </div>
                     <h4>
-                        @* TODO: Link to corresponding Index item *@
-                        <a href="">@HtmlLocalizer["Category_Chronicles"]</a>
+                        <a asp-controller="Library" asp-action="Index" asp-route-id="Chronicles">
+                            @(EnumHelper<IndexCategory>.GetDisplayName(IndexCategory.Chronicles))
+                        </a>
                     </h4>
                     <p contenteditable-for="Category_Chronicles_Description">
                         Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi
@@ -108,8 +117,9 @@
                         <i class="bx bx-world"></i>
                     </div>
                     <h4>
-                        @* TODO: Link to corresponding Index item *@
-                        <a href="">@HtmlLocalizer["Category_Foreign"]</a>
+                        <a asp-controller="Library" asp-action="Index" asp-route-id="Foreign">
+                            @(EnumHelper<IndexCategory>.GetDisplayName(IndexCategory.Foreign))
+                        </a>
                     </h4>
                     <p contenteditable-for="Category_Foreign_Description">
                         Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi

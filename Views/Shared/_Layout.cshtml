@@ -120,68 +120,6 @@
                     <li>
                         <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="team">@HtmlLocalizer["NavItem_Team"]</a>
                     </li>
-                    @*
-                        <li class="dropdown">
-                            <a class="nav-link" href="#">
-                                <span>@HtmlLocalizer["NavItem_Index"]</span> 
-                                <i class="bi bi-chevron-down"></i>
-                            </a>
-                            <ul>
-                                <li>
-                                    <a href="#">@HtmlLocalizer["Category_All"]</a>
-                                </li>
-                                <li class="divider">
-                                    <hr />
-                                </li>
-                                <li>
-                                    <a href="#">@HtmlLocalizer["Category_Articles"]</a>
-                                </li>
-                                <li>
-                                    <a href="#">@HtmlLocalizer["Category_Analyses"]</a>
-                                </li>
-                                <li>
-                                    <a href="#">@HtmlLocalizer["Category_Surveys"]</a>
-                                </li>
-                                <li>
-                                    <a href="#">@HtmlLocalizer["Category_Discussions"]</a>
-                                </li>
-                                <li>
-                                    <a href="#">@HtmlLocalizer["Category_Reviews"]</a>
-                                </li>
-                                <li>
-                                    <a href="#">@HtmlLocalizer["Category_Chronicles"]</a>
-                                </li>
-                                <li>
-                                    <a href="#">@HtmlLocalizer["Category_Foreign"]</a>
-                                </li>
-                                <li class="divider">
-                                    <hr />
-                                </li>
-                                <li class="dropdown">
-                                    <a class="nav-link" href="#">
-                                        <span>@HtmlLocalizer["NavItem_IndexByYears"]</span>
-                                        <i class="bi bi-chevron-right"></i>
-                                    </a>
-                                    <ul>
-                                        @{
-                                            const int beginYear = 2024;
-                                            var currentYear = DateTime.Now.Year;
-                                            var year = currentYear;
-
-                                            do
-                                            {
-                                                <li>
-                                                    <a href="#">@year</a>
-                                                </li>
-
-                                            } while (--year >= beginYear);
-
-                                        }
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        *@
                     <li>
                         <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="contact">@HtmlLocalizer["NavItem_Contact"]</a>
                     </li>
@@ -253,46 +191,57 @@
     
     @if (!IsSectionDefined("SubHeader"))
     {
-            <!-- ======= Sub-Header ======= -->
-            <header id="sub-header" class="d-flex align-items-center">
-                <div class="container d-flex align-items-center justify-content-center">
-                    <nav id="sub-navbar" class="navbar">
-                        <ul>
-                            <li>
-                                <a href="#">@HtmlLocalizer["NavItem_Index"]</a>
-                            </li>
-                            <li class="divider">
-                                |
-                            </li>
-                            <li>
-                                <a href="#">@HtmlLocalizer["Category_Articles"]</a>
-                            </li>
-                            <li>
-                                <a href="#">@HtmlLocalizer["Category_Analyses"]</a>
-                            </li>
-                            <li>
-                                <a href="#">@HtmlLocalizer["Category_Surveys"]</a>
-                            </li>
-                            <li>
-                                <a href="#">@HtmlLocalizer["Category_Discussions"]</a>
-                            </li>
-                            <li>
-                                <a href="#">@HtmlLocalizer["Category_Reviews"]</a>
-                            </li>
-                            <li>
-                                <a href="#">@HtmlLocalizer["Category_Chronicles"]</a>
-                            </li>
-                            <li>
-                                <a href="#">@HtmlLocalizer["Category_Foreign"]</a>
-                            </li>
-                            <li class="divider">
-                                <hr />
-                            </li>
-                        </ul>
+        <!-- ======= Sub-Header ======= -->
+        <header id="sub-header" class="d-flex align-items-center">
+            <div class="container d-flex align-items-center justify-content-center">
+                <nav id="sub-navbar" class="navbar">
+                    <ul>
+                        <li>
+                            <a id="index-@IndexCategory.All.ToString().ToLower()" asp-controller="Library" asp-action="Index">@HtmlLocalizer["NavItem_Library"]</a>
+                        </li>
+                        <li class="divider">
+                            |
+                        </li>
+                        <li>
+                            <a id="index-@IndexCategory.Articles.ToString().ToLower()" asp-controller="Library" asp-action="Index" asp-route-id="Articles">
+                                @(EnumHelper<IndexCategory>.GetDisplayName(IndexCategory.Articles))
+                            </a>
+                        </li>
+                        <li>
+                            <a id="index-@IndexCategory.Analyses.ToString().ToLower()" asp-controller="Library" asp-action="Index" asp-route-id="Analyses">
+                                @(EnumHelper<IndexCategory>.GetDisplayName(IndexCategory.Analyses))
+                            </a>
+                        </li>
+                        <li>
+                            <a id="index-@IndexCategory.Surveys.ToString().ToLower()" asp-controller="Library" asp-action="Index" asp-route-id="Surveys">
+                                @(EnumHelper<IndexCategory>.GetDisplayName(IndexCategory.Surveys))
+                            </a>
+                        </li>
+                        <li>
+                            <a id="index-@IndexCategory.Discussions.ToString().ToLower()" asp-controller="Library" asp-action="Index" asp-route-id="Discussions">
+                                @(EnumHelper<IndexCategory>.GetDisplayName(IndexCategory.Discussions))
+                            </a>
+                        </li>
+                        <li>
+                            <a id="index-@IndexCategory.Reviews.ToString().ToLower()" asp-controller="Library" asp-action="Index" asp-route-id="Reviews">
+                                @(EnumHelper<IndexCategory>.GetDisplayName(IndexCategory.Reviews))
+                            </a>
+                        </li>
+                        <li>
+                            <a id="index-@IndexCategory.Chronicles.ToString().ToLower()" asp-controller="Library" asp-action="Index" asp-route-id="Chronicles">
+                                @(EnumHelper<IndexCategory>.GetDisplayName(IndexCategory.Chronicles))
+                            </a>
+                        </li>
+                        <li>
+                            <a id="index-@IndexCategory.Foreign.ToString().ToLower()" asp-controller="Library" asp-action="Index" asp-route-id="Foreign">
+                                @(EnumHelper<IndexCategory>.GetDisplayName(IndexCategory.Foreign))
+                            </a>
+                        </li>
+                    </ul>
 
-                    </nav>
-                </div>
-            </header>
+                </nav>
+            </div>
+        </header>
     }
 
     <!-- End Header -->

@@ -1,5 +1,8 @@
-﻿@{
-    ViewData["Title"] = HtmlLocalizer["HomeCookies_Title"];
+﻿@using linc.Utility
+@using linc.Models.Enumerations
+@model LibraryViewModel
+@{
+    ViewData["Title"] = HtmlLocalizer["LibraryIndex_Title"];
 }
 
 @section Breadcrumbs {
@@ -13,7 +16,10 @@
                     <li>
                         <a href="/">@HtmlLocalizer["NavItem_Home"]</a>
                     </li>
-                    <li>@HtmlLocalizer["NavItem_Cookies"]</li>
+                    <li>
+                        <a asp-controller="Library" asp-action="Index">@HtmlLocalizer["NavItem_Library"]</a>
+                    </li>
+                    <li>@(EnumHelper<IndexCategory>.GetDisplayName(Model.Category))</li>
                 </ol>
             </div>
 
@@ -22,10 +28,10 @@
     <!-- End Breadcrumbs -->
 }
 
-<section id="cookies-page">
+<section id="library-page">
     <div class="container">
         <p>
-            Use this page to detail your site's cookies usage.
+            Use this page to list category @(EnumHelper<IndexCategory>.GetDisplayName(Model.Category)).
         </p>
     </div>
 </section>

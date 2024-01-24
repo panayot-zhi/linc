@@ -1,4 +1,6 @@
-﻿@model ReviewsViewModel
+﻿@using linc.Utility
+@using linc.Models.Enumerations
+@model ReviewsViewModel
 
 <!-- ======= Skills Section ======= -->
 <section id="skills" class="skills">
@@ -9,21 +11,30 @@
             <div class="col-lg-6">
 
                 <div class="progress">
-                    <span class="skill">@HtmlLocalizer["Category_Articles"] <i class="val">@Model.ReviewedArticlesPercent%</i></span>
+                    <span class="skill">
+                        @(EnumHelper<IndexCategory>.GetDisplayName(IndexCategory.Articles)) 
+                        <i class="val">@Model.ReviewedArticlesPercent%</i>
+                    </span>
                     <div class="progress-bar-wrap">
                         <div class="progress-bar" role="progressbar" aria-valuenow="@Model.ReviewedArticlesPercent" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                 </div>
 
                 <div class="progress">
-                    <span class="skill">@HtmlLocalizer["Category_Analyses"] <i class="val">@Model.ReviewedAnalysesPercent%</i></span>
+                    <span class="skill">
+                        @(EnumHelper<IndexCategory>.GetDisplayName(IndexCategory.Analyses)) 
+                        <i class="val">@Model.ReviewedAnalysesPercent%</i>
+                    </span>
                     <div class="progress-bar-wrap">
                         <div class="progress-bar" role="progressbar" aria-valuenow="@Model.ReviewedAnalysesPercent" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                 </div>
 
                 <div class="progress">
-                    <span class="skill">@HtmlLocalizer["Category_Surveys"] <i class="val">@Model.ReviewedSurveysPercent%</i></span>
+                    <span class="skill">
+                        @(EnumHelper<IndexCategory>.GetDisplayName(IndexCategory.Surveys)) 
+                        <i class="val">@Model.ReviewedSurveysPercent%</i>
+                    </span>
                     <div class="progress-bar-wrap">
                         <div class="progress-bar" role="progressbar" aria-valuenow="@Model.ReviewedSurveysPercent" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
@@ -34,21 +45,30 @@
             <div class="col-lg-6">
 
                 <div class="progress">
-                    <span class="skill">@HtmlLocalizer["Category_Discussions"] <i class="val">@Model.ReviewedDiscussionsPercent%</i></span>
+                    <span class="skill">
+                        @(EnumHelper<IndexCategory>.GetDisplayName(IndexCategory.Discussions)) 
+                        <i class="val">@Model.ReviewedDiscussionsPercent%</i>
+                    </span>
                     <div class="progress-bar-wrap">
                         <div class="progress-bar" role="progressbar" aria-valuenow="@Model.ReviewedDiscussionsPercent" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                 </div>
 
                 <div class="progress">
-                    <span class="skill">@HtmlLocalizer["Category_Reviews"] <i class="val">@Model.ReviewedReviewsPercent%</i></span>
+                    <span class="skill">
+                        @(EnumHelper<IndexCategory>.GetDisplayName(IndexCategory.Reviews)) 
+                        <i class="val">@Model.ReviewedReviewsPercent%</i>
+                    </span>
                     <div class="progress-bar-wrap">
                         <div class="progress-bar" role="progressbar" aria-valuenow="@Model.ReviewedReviewsPercent" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                 </div>
 
                 <div class="progress">
-                    <span class="skill">@HtmlLocalizer["Category_Chronicles"] <i class="val">@Model.ReviewedChroniclesPercent%</i></span>
+                    <span class="skill">
+                        @(EnumHelper<IndexCategory>.GetDisplayName(IndexCategory.Chronicles))
+                        <i class="val">@Model.ReviewedChroniclesPercent%</i>
+                    </span>
                     <div class="progress-bar-wrap">
                         <div class="progress-bar" role="progressbar" aria-valuenow="@Model.ReviewedChroniclesPercent" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
@@ -59,7 +79,10 @@
             <div class="col-lg-6">
 
                 <div class="progress">
-                    <span class="skill">@HtmlLocalizer["Category_Foreign"] <i class="val">@Model.ReviewedForeignPercent%</i></span>
+                    <span class="skill">
+                        @(EnumHelper<IndexCategory>.GetDisplayName(IndexCategory.Foreign))
+                        <i class="val">@Model.ReviewedForeignPercent%</i>
+                    </span>
                     <div class="progress-bar-wrap">
                         <div class="progress-bar" role="progressbar" aria-valuenow="@Model.ReviewedForeignPercent" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
