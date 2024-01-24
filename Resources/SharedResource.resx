@@ -333,6 +333,12 @@
   <data name="HomePrivacy_Title" xml:space="preserve">
     <value>Политика за поверителност</value>
   </data>
+  <data name="HomeSubmit_SubmitButton_Description" xml:space="preserve">
+    <value>Моля, изпратете ни прикачен ръкопис и декларация със съгласие за публикуването му.</value>
+  </data>
+  <data name="HomeSubmit_SubmitButton_Label" xml:space="preserve">
+    <value>Изпрати ръкопис</value>
+  </data>
   <data name="HomeSubmit_Title" xml:space="preserve">
     <value>Изпращане на текст</value>
   </data>
@@ -347,6 +353,9 @@
   </data>
   <data name="Issue_Number_Label" xml:space="preserve">
     <value>Брой №</value>
+  </data>
+  <data name="LibraryIndex_Title" xml:space="preserve">
+    <value>Библиотека</value>
   </data>
   <data name="Logo_Long" xml:space="preserve">
     <value>Лингвистика, Интерпретация, Концепции</value>
@@ -410,6 +419,9 @@
   </data>
   <data name="NavItem_Submissions" xml:space="preserve">
     <value>Ръкописи</value>
+  </data>
+  <data name="NavItem_Submit" xml:space="preserve">
+    <value>Изпращане</value>
   </data>
   <data name="NavItem_Team" xml:space="preserve">
     <value>Екип</value>

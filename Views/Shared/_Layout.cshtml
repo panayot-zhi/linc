@@ -103,25 +103,25 @@
             <nav id="navbar" class="navbar">
                 <ul>
                     <li>
-                        <a class="nav-link scrollto " asp-controller="Home" asp-action="Index" asp-fragment="hero">@HtmlLocalizer["NavItem_Home"]</a>
+                        <a id="nav-home" class="nav-link scrollto " asp-controller="Home" asp-action="Index" asp-fragment="">@HtmlLocalizer["NavItem_Home"]</a>
                     </li>
                     <li>
-                        <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="about">@HtmlLocalizer["NavItem_About"]</a>
+                        <a id="nav-about" class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="about">@HtmlLocalizer["NavItem_About"]</a>
                     </li>
                     <li>
-                        <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="services">@HtmlLocalizer["NavItem_Categories"]</a>
+                        <a id="nav-services" class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="services">@HtmlLocalizer["NavItem_Categories"]</a>
                     </li>
                     <li>
-                        <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="codex">@HtmlLocalizer["NavItem_Services"]</a>
+                        <a id="nav-codex" class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="codex">@HtmlLocalizer["NavItem_Services"]</a>
                     </li>
                     <li>
-                        <a class="nav-link scrollto " asp-controller="Home" asp-action="Index" asp-fragment="portfolio">@HtmlLocalizer["NavItem_Portfolio"]</a>
+                        <a id="nav-portfolio" class="nav-link scrollto " asp-controller="Home" asp-action="Index" asp-fragment="portfolio">@HtmlLocalizer["NavItem_Portfolio"]</a>
                     </li>
                     <li>
-                        <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="team">@HtmlLocalizer["NavItem_Team"]</a>
+                        <a id="nav-team" class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="team">@HtmlLocalizer["NavItem_Team"]</a>
                     </li>
                     <li>
-                        <a class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="contact">@HtmlLocalizer["NavItem_Contact"]</a>
+                        <a id="nav-contact" class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="contact">@HtmlLocalizer["NavItem_Contact"]</a>
                     </li>
 
                     @if (SignInManager.IsSignedIn(User))
@@ -197,7 +197,7 @@
                 <nav id="sub-navbar" class="navbar">
                     <ul>
                         <li>
-                            <a id="index-@IndexCategory.All.ToString().ToLower()" asp-controller="Library" asp-action="Index">@HtmlLocalizer["NavItem_Library"]</a>
+                            <a id="index-@IndexCategory.All.ToString().ToLower()" asp-controller="Library" asp-action="Index" asp-route-id="All">@HtmlLocalizer["NavItem_Library"]</a>
                         </li>
                         <li class="divider">
                             |

@@ -16,10 +16,19 @@
                     <li>
                         <a href="/">@HtmlLocalizer["NavItem_Home"]</a>
                     </li>
-                    <li>
-                        <a asp-controller="Library" asp-action="Index">@HtmlLocalizer["NavItem_Library"]</a>
-                    </li>
-                    <li>@(EnumHelper<IndexCategory>.GetDisplayName(Model.Category))</li>
+                    @if (Model.Category == IndexCategory.All)
+                    {
+                        <li>@HtmlLocalizer["NavItem_Library"]</li>
+                    }
+                    else
+                    {
+                        <li>
+                            <a asp-controller="Library" asp-action="Index" asp-route-id="All">@HtmlLocalizer["NavItem_Library"]</a>
+                        </li>
+                        <li>
+                            @(EnumHelper<IndexCategory>.GetDisplayName(Model.Category))
+                        </li>
+                    }
                 </ol>
             </div>
 
@@ -35,3 +44,23 @@
         </p>
     </div>
 </section>
+
+@section Newsletter {
+    <div class="footer-newsletter">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <p></p>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#index-@Model.Category.ToString().ToLower()").addClass('active');
+        })
+    </script>
+}

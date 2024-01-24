@@ -709,6 +709,24 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Моля, изпратете ни прикачен ръкопис и декларация със съгласие за публикуването му..
+        /// </summary>
+        public static string HomeSubmit_SubmitButton_Description {
+            get {
+                return ResourceManager.GetString("HomeSubmit_SubmitButton_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изпрати ръкопис.
+        /// </summary>
+        public static string HomeSubmit_SubmitButton_Label {
+            get {
+                return ResourceManager.GetString("HomeSubmit_SubmitButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Изпращане на текст.
         /// </summary>
         public static string HomeSubmit_Title {
@@ -750,6 +768,15 @@ namespace linc.Resources {
         public static string Issue_Number_Label {
             get {
                 return ResourceManager.GetString("Issue_Number_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Библиотека.
+        /// </summary>
+        public static string LibraryIndex_Title {
+            get {
+                return ResourceManager.GetString("LibraryIndex_Title", resourceCulture);
             }
         }
         
@@ -939,6 +966,15 @@ namespace linc.Resources {
         public static string NavItem_Submissions {
             get {
                 return ResourceManager.GetString("NavItem_Submissions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изпращане.
+        /// </summary>
+        public static string NavItem_Submit {
+            get {
+                return ResourceManager.GetString("NavItem_Submit", resourceCulture);
             }
         }
         
