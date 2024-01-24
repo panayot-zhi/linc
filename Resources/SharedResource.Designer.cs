@@ -70,15 +70,6 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Годишно излизат &lt;span&gt;два броя&lt;/span&gt;, единият от които е &lt;span&gt;тематичен&lt;/span&gt;..
-        /// </summary>
-        public static string AboutSection_Description_SecondRow {
-            get {
-                return ResourceManager.GetString("AboutSection_Description_SecondRow", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Цели и обхват на списанието.
         /// </summary>
         public static string AboutSection_Goals_Title {
@@ -142,15 +133,6 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO: Кратко описание за члена на редакционния борд. В края да се включи и връзка до допълнителна информация, която е предоставил (напр. orcid)..
-        /// </summary>
-        public static string Board_Aleksander_Mikołajczak_MemberDescription {
-            get {
-                return ResourceManager.GetString("Board_Aleksander.Mikołajczak_MemberDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Университет „Адам Мицкевич“, Познан, Полша.
         /// </summary>
         public static string Board_Aleksander_Mikołajczak_MemberWork {
@@ -165,15 +147,6 @@ namespace linc.Resources {
         public static string Board_Elisabeth_Cheauré_Member {
             get {
                 return ResourceManager.GetString("Board_Elisabeth.Cheauré_Member", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to TODO: Кратко описание за члена на редакционния борд. В края да се включи и връзка до допълнителна информация, която е предоставил (напр. orcid)..
-        /// </summary>
-        public static string Board_Elisabeth_Cheauré_MemberDescription {
-            get {
-                return ResourceManager.GetString("Board_Elisabeth.Cheauré_MemberDescription", resourceCulture);
             }
         }
         
@@ -196,15 +169,6 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO: Кратко описание за члена на редакционния борд. В края да се включи и връзка до допълнителна информация, която е предоставил (напр. orcid)..
-        /// </summary>
-        public static string Board_Hüseyin_Mevsim_MemberDescription {
-            get {
-                return ResourceManager.GetString("Board_Hüseyin.Mevsim_MemberDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Анкарски университет, Турция.
         /// </summary>
         public static string Board_Hüseyin_Mevsim_MemberWork {
@@ -219,15 +183,6 @@ namespace linc.Resources {
         public static string Board_Nikolay_Aretov_Member {
             get {
                 return ResourceManager.GetString("Board_Nikolay.Aretov_Member", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to TODO: Кратко описание за члена на редакционния борд. В края да се включи и връзка до допълнителна информация, която е предоставил (напр. orcid)..
-        /// </summary>
-        public static string Board_Nikolay_Aretov_MemberDescription {
-            get {
-                return ResourceManager.GetString("Board_Nikolay.Aretov_MemberDescription", resourceCulture);
             }
         }
         
@@ -250,15 +205,6 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO: Кратко описание за члена на редакционния борд. В края да се включи и връзка до допълнителна информация, която е предоставил (напр. orcid)..
-        /// </summary>
-        public static string Board_Saverio_Tomaiuolo_MemberDescription {
-            get {
-                return ResourceManager.GetString("Board_Saverio.Tomaiuolo_MemberDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Университет на Касино и Южен Лацио, Италия.
         /// </summary>
         public static string Board_Saverio_Tomaiuolo_MemberWork {
@@ -273,15 +219,6 @@ namespace linc.Resources {
         public static string Board_Suman_Gupta_Member {
             get {
                 return ResourceManager.GetString("Board_Suman.Gupta_Member", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to TODO: Кратко описание за члена на редакционния борд. В края да се включи и връзка до допълнителна информация, която е предоставил (напр. orcid)..
-        /// </summary>
-        public static string Board_Suman_Gupta_MemberDescription {
-            get {
-                return ResourceManager.GetString("Board_Suman.Gupta_MemberDescription", resourceCulture);
             }
         }
         
@@ -304,20 +241,38 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TODO: Кратко описание на техническия сътрудник както и допълнителна информация, която е предоставил (напр. orcid)..
-        /// </summary>
-        public static string Board_Vanya_Georgieva_MemberDescription {
-            get {
-                return ResourceManager.GetString("Board_Vanya.Georgieva_MemberDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Технически сътрудник &lt;br/&gt;катедра Българска литература и теория на литературата&lt;br/&gt;ПУ „Паисий Хилендарски“.
         /// </summary>
         public static string Board_Vanya_Georgieva_MemberWork {
             get {
                 return ResourceManager.GetString("Board_Vanya.Georgieva_MemberWork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Разгледайте списанието по &lt;span&gt;категории&lt;/span&gt;.
+        /// </summary>
+        public static string CategoriesSection_SubTitle {
+            get {
+                return ResourceManager.GetString("CategoriesSection_SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Категории.
+        /// </summary>
+        public static string CategoriesSection_Title {
+            get {
+                return ResourceManager.GetString("CategoriesSection_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Всички.
+        /// </summary>
+        public static string Category_All {
+            get {
+                return ResourceManager.GetString("Category_All", resourceCulture);
             }
         }
         
@@ -385,11 +340,146 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to АВТОРЪТ.
+        /// </summary>
+        public static string CodexSection_Authors_Title {
+            get {
+                return ResourceManager.GetString("CodexSection_Authors_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to РЕДАКТОРСКИЯТ ЕКИП.
+        /// </summary>
+        public static string CodexSection_Editors_Title {
+            get {
+                return ResourceManager.GetString("CodexSection_Editors_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to РЕЦЕНЗЕНТЪТ.
+        /// </summary>
+        public static string CodexSection_Reviewers_Title {
+            get {
+                return ResourceManager.GetString("CodexSection_Reviewers_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Прочетете за нашия &lt;span&gt;Етичен кодекс&lt;/span&gt;.
+        /// </summary>
+        public static string CodexSection_SubTitle {
+            get {
+                return ResourceManager.GetString("CodexSection_SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Кодекс.
+        /// </summary>
+        public static string CodexSection_Title {
+            get {
+                return ResourceManager.GetString("CodexSection_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пловдив 4000, Пловдивско университетско издателство, „Цар Асен“ 24.
+        /// </summary>
+        public static string ContactSection_Address_Location {
+            get {
+                return ResourceManager.GetString("ContactSection_Address_Location", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Адрес на Издателя.
+        /// </summary>
+        public static string ContactSection_Address_Title {
+            get {
+                return ResourceManager.GetString("ContactSection_Address_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Етичен кодекс.
+        /// </summary>
+        public static string ContactSection_Codex_Title {
+            get {
+                return ResourceManager.GetString("ContactSection_Codex_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email за ръкописи.
+        /// </summary>
+        public static string ContactSection_Review_Email {
+            get {
+                return ResourceManager.GetString("ContactSection_Review_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Технически изисквания.
+        /// </summary>
+        public static string ContactSection_Submit_Title {
+            get {
+                return ResourceManager.GetString("ContactSection_Submit_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изпрати ръкопис.
+        /// </summary>
+        public static string ContactSection_SubmitButton_Label {
+            get {
+                return ResourceManager.GetString("ContactSection_SubmitButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изпращане на ръкопис.
+        /// </summary>
+        public static string ContactSection_SubTitle {
+            get {
+                return ResourceManager.GetString("ContactSection_SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изпращане.
+        /// </summary>
+        public static string ContactSection_Title {
+            get {
+                return ResourceManager.GetString("ContactSection_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Всички права запазени.
         /// </summary>
         public static string Copyright_Label {
             get {
                 return ResourceManager.GetString("Copyright_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Често Задавани &lt;span&gt;Въпроси&lt;/span&gt;.
+        /// </summary>
+        public static string FaqSection_SubTitle {
+            get {
+                return ResourceManager.GetString("FaqSection_SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ч.З.В..
+        /// </summary>
+        public static string FaqSection_Title {
+            get {
+                return ResourceManager.GetString("FaqSection_Title", resourceCulture);
             }
         }
         
@@ -592,11 +682,74 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Използване на бисквитки.
+        /// </summary>
+        public static string HomeCookies_Title {
+            get {
+                return ResourceManager.GetString("HomeCookies_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Начало.
         /// </summary>
         public static string HomeIndex_Title {
             get {
                 return ResourceManager.GetString("HomeIndex_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Политика за поверителност.
+        /// </summary>
+        public static string HomePrivacy_Title {
+            get {
+                return ResourceManager.GetString("HomePrivacy_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изпращане на текст.
+        /// </summary>
+        public static string HomeSubmit_Title {
+            get {
+                return ResourceManager.GetString("HomeSubmit_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Условия за ползване.
+        /// </summary>
+        public static string HomeTerms_Title {
+            get {
+                return ResourceManager.GetString("HomeTerms_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Съдържание.
+        /// </summary>
+        public static string Issue_IndexPage_Label {
+            get {
+                return ResourceManager.GetString("Issue_IndexPage_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Допълнителна информация.
+        /// </summary>
+        public static string Issue_MoreInformation_Label {
+            get {
+                return ResourceManager.GetString("Issue_MoreInformation_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Брой №.
+        /// </summary>
+        public static string Issue_Number_Label {
+            get {
+                return ResourceManager.GetString("Issue_Number_Label", resourceCulture);
             }
         }
         
@@ -628,11 +781,47 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Категории.
+        /// </summary>
+        public static string NavItem_Categories {
+            get {
+                return ResourceManager.GetString("NavItem_Categories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Изпрати.
         /// </summary>
         public static string NavItem_Contact {
             get {
                 return ResourceManager.GetString("NavItem_Contact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Бисквитки.
+        /// </summary>
+        public static string NavItem_Cookies {
+            get {
+                return ResourceManager.GetString("NavItem_Cookies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Прекрати редакция.
+        /// </summary>
+        public static string NavItem_EditModeDisable {
+            get {
+                return ResourceManager.GetString("NavItem_EditModeDisable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Режим редакция.
+        /// </summary>
+        public static string NavItem_EditModeEnable {
+            get {
+                return ResourceManager.GetString("NavItem_EditModeEnable", resourceCulture);
             }
         }
         
@@ -648,18 +837,90 @@ namespace linc.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Индекс.
         /// </summary>
-        public static string NavItem_Index {
+        public static string NavItem_Library {
             get {
-                return ResourceManager.GetString("NavItem_Index", resourceCulture);
+                return ResourceManager.GetString("NavItem_Library", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Брове.
+        ///   Looks up a localized string similar to Архив.
+        /// </summary>
+        public static string NavItem_Library_Archive {
+            get {
+                return ResourceManager.GetString("NavItem_Library_Archive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to По години.
+        /// </summary>
+        public static string NavItem_Library_ByYears {
+            get {
+                return ResourceManager.GetString("NavItem_Library_ByYears", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Вход.
+        /// </summary>
+        public static string NavItem_Login {
+            get {
+                return ResourceManager.GetString("NavItem_Login", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изход.
+        /// </summary>
+        public static string NavItem_Logout {
+            get {
+                return ResourceManager.GetString("NavItem_Logout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Моят профил.
+        /// </summary>
+        public static string NavItem_MyProfile {
+            get {
+                return ResourceManager.GetString("NavItem_MyProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Моите ръкописи.
+        /// </summary>
+        public static string NavItem_MySubmissions {
+            get {
+                return ResourceManager.GetString("NavItem_MySubmissions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Броеве.
         /// </summary>
         public static string NavItem_Portfolio {
             get {
                 return ResourceManager.GetString("NavItem_Portfolio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Поверителност.
+        /// </summary>
+        public static string NavItem_Privacy {
+            get {
+                return ResourceManager.GetString("NavItem_Privacy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Регистрация.
+        /// </summary>
+        public static string NavItem_Register {
+            get {
+                return ResourceManager.GetString("NavItem_Register", resourceCulture);
             }
         }
         
@@ -673,6 +934,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ръкописи.
+        /// </summary>
+        public static string NavItem_Submissions {
+            get {
+                return ResourceManager.GetString("NavItem_Submissions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Екип.
         /// </summary>
         public static string NavItem_Team {
@@ -682,11 +952,65 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to * процент на постъпилите ръкописи в редакцията спрямо одобрените/публикувани ръкописи в списанието.
+        ///   Looks up a localized string similar to Правила и условия.
         /// </summary>
-        public static string Reviews_Message {
+        public static string NavItem_Terms {
             get {
-                return ResourceManager.GetString("Reviews_Message", resourceCulture);
+                return ResourceManager.GetString("NavItem_Terms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Абонирайте се за уведомления, когато нов брой на списанието излезе от печат.
+        /// </summary>
+        public static string NewsletterSection_Description {
+            get {
+                return ResourceManager.GetString("NewsletterSection_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Абонирай се.
+        /// </summary>
+        public static string NewsletterSection_SubscribeButton_Label {
+            get {
+                return ResourceManager.GetString("NewsletterSection_SubscribeButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Абонирайте се за нашия бюлетин.
+        /// </summary>
+        public static string NewsletterSection_Title {
+            get {
+                return ResourceManager.GetString("NewsletterSection_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Всички.
+        /// </summary>
+        public static string PortfolioSection_Filter_All {
+            get {
+                return ResourceManager.GetString("PortfolioSection_Filter_All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Прегледайте досегашните &lt;span&gt;издания&lt;/span&gt; на списанието.
+        /// </summary>
+        public static string PortfolioSection_SubTitle {
+            get {
+                return ResourceManager.GetString("PortfolioSection_SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Броеве.
+        /// </summary>
+        public static string PortfolioSection_Title {
+            get {
+                return ResourceManager.GetString("PortfolioSection_Title", resourceCulture);
             }
         }
         
@@ -781,38 +1105,11 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string Team_B_Yanev_MemberDescription {
-            get {
-                return ResourceManager.GetString("Team_B.Yanev_MemberDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to В редакторския екип на изданието участват преподаватели от факултета, а членове на редакционния борд са изявени изследователи от различни страни и научни организации..
-        /// </summary>
-        public static string Team_Description {
-            get {
-                return ResourceManager.GetString("Team_Description", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to доц. д-р Фани Бойкова.
         /// </summary>
         public static string Team_F_Boykova_Member {
             get {
                 return ResourceManager.GetString("Team_F.Boykova_Member", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string Team_F_Boykova_MemberDescription {
-            get {
-                return ResourceManager.GetString("Team_F.Boykova_MemberDescription", resourceCulture);
             }
         }
         
@@ -826,15 +1123,6 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Главен редактор „Литература и култура“.
-        /// </summary>
-        public static string Team_I_Peleva_MemberDescription {
-            get {
-                return ResourceManager.GetString("Team_I.Peleva_MemberDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to доц. д-р Младен Влашки.
         /// </summary>
         public static string Team_M_Vlashki_Member {
@@ -844,29 +1132,11 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string Team_M_Vlashki_MemberDescription {
-            get {
-                return ResourceManager.GetString("Team_M.Vlashki_MemberDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to доц. д-р Снежа Цонева-Матюсън.
         /// </summary>
         public static string Team_S_Mathewson_Member {
             get {
                 return ResourceManager.GetString("Team_S.Mathewson_Member", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Главен редактор „Език и култура“.
-        /// </summary>
-        public static string Team_S_Mathewson_MemberDescription {
-            get {
-                return ResourceManager.GetString("Team_S.Mathewson_MemberDescription", resourceCulture);
             }
         }
         
@@ -898,15 +1168,6 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string Team_V_Markovska_MemberDescription {
-            get {
-                return ResourceManager.GetString("Team_V.Markovska_MemberDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to доц. д-р Яна Роуланд.
         /// </summary>
         public static string Team_Y_Rowland_Member {
@@ -916,29 +1177,11 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string Team_Y_Rowland_MemberDescription {
-            get {
-                return ResourceManager.GetString("Team_Y.Rowland_MemberDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to доц. д-р Живко Иванов.
         /// </summary>
         public static string Team_Z_Ivanov_Member {
             get {
                 return ResourceManager.GetString("Team_Z.Ivanov_Member", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string Team_Z_Ivanov_MemberDescription {
-            get {
-                return ResourceManager.GetString("Team_Z.Ivanov_MemberDescription", resourceCulture);
             }
         }
         

@@ -117,6 +117,27 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AboutSection_Content_Title" xml:space="preserve">
+    <value>Съдържание</value>
+  </data>
+  <data name="AboutSection_Goals_Title" xml:space="preserve">
+    <value>Цели и обхват на списанието</value>
+  </data>
+  <data name="AboutSection_Mission_Title" xml:space="preserve">
+    <value>Мисия</value>
+  </data>
+  <data name="AboutSection_Publish_Title" xml:space="preserve">
+    <value>Публикуване на ръкопис</value>
+  </data>
+  <data name="AboutSection_Review_Title" xml:space="preserve">
+    <value>Рецензиране</value>
+  </data>
+  <data name="AboutSection_SubTitle" xml:space="preserve">
+    <value>Научете повече &lt;span&gt;за списанието&lt;/span&gt;</value>
+  </data>
+  <data name="AboutSection_Title" xml:space="preserve">
+    <value>За списанието</value>
+  </data>
   <data name="Board_Aleksander.Mikołajczak_Member" xml:space="preserve">
     <value>Проф. дн Александър Войчех Миколайчак</value>
   </data>
@@ -159,6 +180,96 @@
   <data name="Board_Vanya.Georgieva_MemberWork" xml:space="preserve">
     <value>Технически сътрудник &lt;br/&gt;катедра Българска литература и теория на литературата&lt;br/&gt;ПУ „Паисий Хилендарски“</value>
   </data>
+  <data name="CategoriesSection_SubTitle" xml:space="preserve">
+    <value>Разгледайте списанието по &lt;span&gt;категории&lt;/span&gt;</value>
+  </data>
+  <data name="CategoriesSection_Title" xml:space="preserve">
+    <value>Категории</value>
+  </data>
+  <data name="Category_All" xml:space="preserve">
+    <value>Всички</value>
+  </data>
+  <data name="Category_Analyses" xml:space="preserve">
+    <value>Анализи</value>
+  </data>
+  <data name="Category_Articles" xml:space="preserve">
+    <value>Статии</value>
+  </data>
+  <data name="Category_Chronicles" xml:space="preserve">
+    <value>Хроника</value>
+  </data>
+  <data name="Category_Discussions" xml:space="preserve">
+    <value>Дискусии</value>
+  </data>
+  <data name="Category_Foreign" xml:space="preserve">
+    <value>Чуждестранни</value>
+  </data>
+  <data name="Category_Reviews" xml:space="preserve">
+    <value>Преглед</value>
+  </data>
+  <data name="Category_Surveys" xml:space="preserve">
+    <value>Анкети</value>
+  </data>
+  <data name="CodexSection_Authors_Title" xml:space="preserve">
+    <value>АВТОРЪТ</value>
+  </data>
+  <data name="CodexSection_Editors_Title" xml:space="preserve">
+    <value>РЕДАКТОРСКИЯТ ЕКИП</value>
+  </data>
+  <data name="CodexSection_Reviewers_Title" xml:space="preserve">
+    <value>РЕЦЕНЗЕНТЪТ</value>
+  </data>
+  <data name="CodexSection_SubTitle" xml:space="preserve">
+    <value>Прочетете за нашия &lt;span&gt;Етичен кодекс&lt;/span&gt;</value>
+  </data>
+  <data name="CodexSection_Title" xml:space="preserve">
+    <value>Кодекс</value>
+  </data>
+  <data name="ContactSection_Address_Location" xml:space="preserve">
+    <value>Пловдив 4000, Пловдивско университетско издателство, „Цар Асен“ 24</value>
+  </data>
+  <data name="ContactSection_Address_Title" xml:space="preserve">
+    <value>Адрес на Издателя</value>
+  </data>
+  <data name="ContactSection_Codex_Title" xml:space="preserve">
+    <value>Етичен кодекс</value>
+  </data>
+  <data name="ContactSection_Review_Email" xml:space="preserve">
+    <value>Email за ръкописи</value>
+  </data>
+  <data name="ContactSection_SubmitButton_Label" xml:space="preserve">
+    <value>Изпрати ръкопис</value>
+  </data>
+  <data name="ContactSection_Submit_Title" xml:space="preserve">
+    <value>Технически изисквания</value>
+  </data>
+  <data name="ContactSection_SubTitle" xml:space="preserve">
+    <value>Изпращане на ръкопис</value>
+  </data>
+  <data name="ContactSection_Title" xml:space="preserve">
+    <value>Изпращане</value>
+  </data>
+  <data name="Copyright_Label" xml:space="preserve">
+    <value>Всички права запазени</value>
+  </data>
+  <data name="FaqSection_SubTitle" xml:space="preserve">
+    <value>Често Задавани &lt;span&gt;Въпроси&lt;/span&gt;</value>
+  </data>
+  <data name="FaqSection_Title" xml:space="preserve">
+    <value>Ч.З.В.</value>
+  </data>
+  <data name="FeaturedSection_International_Title" xml:space="preserve">
+    <value>Български &amp; Английски</value>
+  </data>
+  <data name="FeaturedSection_Review_Title" xml:space="preserve">
+    <value>Анонимно рецензиране</value>
+  </data>
+  <data name="FeaturedSection_Submit_Title" xml:space="preserve">
+    <value>Изпращане на ръкопис</value>
+  </data>
+  <data name="FeaturedSection_Team_Title" xml:space="preserve">
+    <value>Реномирана редколегия</value>
+  </data>
   <data name="Footer_Address_City" xml:space="preserve">
     <value>Пловдив 4000, ПУ „Паисий Хилендарски“</value>
   </data>
@@ -183,6 +294,15 @@
   <data name="Footer_Services_Title" xml:space="preserve">
     <value />
   </data>
+  <data name="Footer_Social_Description" xml:space="preserve">
+    <value>Открийте нас и нашите автори в мрежата.</value>
+  </data>
+  <data name="Footer_Social_Title" xml:space="preserve">
+    <value>Партньори</value>
+  </data>
+  <data name="Footer_Suggestions_Title" xml:space="preserve">
+    <value>Препоръчани</value>
+  </data>
   <data name="Footer_UsefulLinks_Codex" xml:space="preserve">
     <value>Етичен кодекс</value>
   </data>
@@ -201,8 +321,32 @@
   <data name="Footer_UsefulLinks_Title" xml:space="preserve">
     <value>Полезни връзки</value>
   </data>
+  <data name="GetStarted_Message" xml:space="preserve">
+    <value>Научи повече</value>
+  </data>
+  <data name="HomeCookies_Title" xml:space="preserve">
+    <value>Използване на бисквитки</value>
+  </data>
   <data name="HomeIndex_Title" xml:space="preserve">
     <value>Начало</value>
+  </data>
+  <data name="HomePrivacy_Title" xml:space="preserve">
+    <value>Политика за поверителност</value>
+  </data>
+  <data name="HomeSubmit_Title" xml:space="preserve">
+    <value>Изпращане на текст</value>
+  </data>
+  <data name="HomeTerms_Title" xml:space="preserve">
+    <value>Условия за ползване</value>
+  </data>
+  <data name="Issue_IndexPage_Label" xml:space="preserve">
+    <value>Съдържание</value>
+  </data>
+  <data name="Issue_MoreInformation_Label" xml:space="preserve">
+    <value>Допълнителна информация</value>
+  </data>
+  <data name="Issue_Number_Label" xml:space="preserve">
+    <value>Брой №</value>
   </data>
   <data name="Logo_Long" xml:space="preserve">
     <value>Лингвистика, Интерпретация, Концепции</value>
@@ -213,41 +357,83 @@
   <data name="NavItem_About" xml:space="preserve">
     <value>За списанието</value>
   </data>
+  <data name="NavItem_Categories" xml:space="preserve">
+    <value>Категории</value>
+  </data>
+  <data name="NavItem_Contact" xml:space="preserve">
+    <value>Изпрати</value>
+  </data>
+  <data name="NavItem_Cookies" xml:space="preserve">
+    <value>Бисквитки</value>
+  </data>
+  <data name="NavItem_EditModeDisable" xml:space="preserve">
+    <value>Прекрати редакция</value>
+  </data>
+  <data name="NavItem_EditModeEnable" xml:space="preserve">
+    <value>Режим редакция</value>
+  </data>
   <data name="NavItem_Home" xml:space="preserve">
     <value>Начало</value>
   </data>
   <data name="NavItem_Library" xml:space="preserve">
     <value>Индекс</value>
   </data>
-  <data name="Category_Analyses" xml:space="preserve">
-    <value>Анализи</value>
+  <data name="NavItem_Library_Archive" xml:space="preserve">
+    <value>Архив</value>
   </data>
-  <data name="Category_Articles" xml:space="preserve">
-    <value>Статии</value>
+  <data name="NavItem_Library_ByYears" xml:space="preserve">
+    <value>По години</value>
   </data>
-  <data name="Category_Chronicles" xml:space="preserve">
-    <value>Хроника</value>
+  <data name="NavItem_Login" xml:space="preserve">
+    <value>Вход</value>
   </data>
-  <data name="Category_Discussions" xml:space="preserve">
-    <value>Дискусии</value>
+  <data name="NavItem_Logout" xml:space="preserve">
+    <value>Изход</value>
   </data>
-  <data name="Category_Foreign" xml:space="preserve">
-    <value>Чуждестранни</value>
+  <data name="NavItem_MyProfile" xml:space="preserve">
+    <value>Моят профил</value>
   </data>
-  <data name="Category_Reviews" xml:space="preserve">
-    <value>Преглед</value>
-  </data>
-  <data name="Category_Surveys" xml:space="preserve">
-    <value>Анкети</value>
+  <data name="NavItem_MySubmissions" xml:space="preserve">
+    <value>Моите ръкописи</value>
   </data>
   <data name="NavItem_Portfolio" xml:space="preserve">
     <value>Броеве</value>
   </data>
+  <data name="NavItem_Privacy" xml:space="preserve">
+    <value>Поверителност</value>
+  </data>
+  <data name="NavItem_Register" xml:space="preserve">
+    <value>Регистрация</value>
+  </data>
   <data name="NavItem_Services" xml:space="preserve">
     <value>Кодекс</value>
   </data>
+  <data name="NavItem_Submissions" xml:space="preserve">
+    <value>Ръкописи</value>
+  </data>
   <data name="NavItem_Team" xml:space="preserve">
     <value>Екип</value>
+  </data>
+  <data name="NavItem_Terms" xml:space="preserve">
+    <value>Правила и условия</value>
+  </data>
+  <data name="NewsletterSection_Description" xml:space="preserve">
+    <value>Абонирайте се за уведомления, когато нов брой на списанието излезе от печат</value>
+  </data>
+  <data name="NewsletterSection_SubscribeButton_Label" xml:space="preserve">
+    <value>Абонирай се</value>
+  </data>
+  <data name="NewsletterSection_Title" xml:space="preserve">
+    <value>Абонирайте се за нашия бюлетин</value>
+  </data>
+  <data name="PortfolioSection_Filter_All" xml:space="preserve">
+    <value>Всички</value>
+  </data>
+  <data name="PortfolioSection_SubTitle" xml:space="preserve">
+    <value>Прегледайте досегашните &lt;span&gt;издания&lt;/span&gt; на списанието</value>
+  </data>
+  <data name="PortfolioSection_Title" xml:space="preserve">
+    <value>Броеве</value>
   </data>
   <data name="SiteRole_Administrator" xml:space="preserve">
     <value>Администратор</value>
@@ -306,199 +492,10 @@
   <data name="Team_Z.Ivanov_Member" xml:space="preserve">
     <value>доц. д-р Живко Иванов</value>
   </data>
-  <data name="Welcome_Message" xml:space="preserve">
-    <value>Добре дошли на &lt;span&gt;ЛИнК.uni-plovdiv.bg&lt;/span&gt;</value>
-  </data>
-  <data name="Copyright_Label" xml:space="preserve">
-    <value>Всички права запазени</value>
-  </data>
-  <data name="Footer_Social_Description" xml:space="preserve">
-    <value>Открийте нас и нашите автори в мрежата.</value>
-  </data>
-  <data name="Footer_Social_Title" xml:space="preserve">
-    <value>Партньори</value>
-  </data>
-  <data name="Footer_Suggestions_Title" xml:space="preserve">
-    <value>Препоръчани</value>
-  </data>
-  <data name="NavItem_Contact" xml:space="preserve">
-    <value>Изпрати</value>
-  </data>
   <data name="Version_Label" xml:space="preserve">
     <value>версия</value>
   </data>
-  <data name="AboutSection_SubTitle" xml:space="preserve">
-    <value>Научете повече &lt;span&gt;за списанието&lt;/span&gt;</value>
-  </data>
-  <data name="AboutSection_Title" xml:space="preserve">
-    <value>За списанието</value>
-  </data>
-  <data name="FeaturedSection_International_Title" xml:space="preserve">
-    <value>Български &amp; Английски</value>
-  </data>
-  <data name="FeaturedSection_Review_Title" xml:space="preserve">
-    <value>Анонимно рецензиране</value>
-  </data>
-  <data name="FeaturedSection_Submit_Title" xml:space="preserve">
-    <value>Изпращане на ръкопис</value>
-  </data>
-  <data name="FeaturedSection_Team_Title" xml:space="preserve">
-    <value>Реномирана редколегия</value>
-  </data>
-  <data name="GetStarted_Message" xml:space="preserve">
-    <value>Научи повече</value>
-  </data>
-  <data name="AboutSection_Content_Title" xml:space="preserve">
-    <value>Съдържание</value>
-  </data>
-  <data name="AboutSection_Goals_Title" xml:space="preserve">
-    <value>Цели и обхват на списанието</value>
-  </data>
-  <data name="AboutSection_Mission_Title" xml:space="preserve">
-    <value>Мисия</value>
-  </data>
-  <data name="AboutSection_Publish_Title" xml:space="preserve">
-    <value>Публикуване на ръкопис</value>
-  </data>
-  <data name="AboutSection_Review_Title" xml:space="preserve">
-    <value>Рецензиране</value>
-  </data>
-  <data name="Category_All" xml:space="preserve">
-    <value>Всички</value>
-  </data>
-  <data name="CodexSection_Authors_Title" xml:space="preserve">
-    <value>АВТОРЪТ</value>
-  </data>
-  <data name="CodexSection_Editors_Title" xml:space="preserve">
-    <value>РЕДАКТОРСКИЯТ ЕКИП</value>
-  </data>
-  <data name="CodexSection_Reviewers_Title" xml:space="preserve">
-    <value>РЕЦЕНЗЕНТЪТ</value>
-  </data>
-  <data name="CodexSection_SubTitle" xml:space="preserve">
-    <value>Прочетете за нашия &lt;span&gt;Етичен кодекс&lt;/span&gt;</value>
-  </data>
-  <data name="CodexSection_Title" xml:space="preserve">
-    <value>Кодекс</value>
-  </data>
-  <data name="ContactSection_Address_Location" xml:space="preserve">
-    <value>Пловдив 4000, Пловдивско университетско издателство, „Цар Асен“ 24</value>
-  </data>
-  <data name="ContactSection_Address_Title" xml:space="preserve">
-    <value>Адрес на Издателя</value>
-  </data>
-  <data name="ContactSection_Codex_Title" xml:space="preserve">
-    <value>Етичен кодекс</value>
-  </data>
-  <data name="ContactSection_Review_Email" xml:space="preserve">
-    <value>Email за ръкописи</value>
-  </data>
-  <data name="ContactSection_SubmitButton_Label" xml:space="preserve">
-    <value>Изпрати ръкопис</value>
-  </data>
-  <data name="ContactSection_Submit_Title" xml:space="preserve">
-    <value>Технически изисквания</value>
-  </data>
-  <data name="ContactSection_SubTitle" xml:space="preserve">
-    <value>Изпращане на ръкопис</value>
-  </data>
-  <data name="ContactSection_Title" xml:space="preserve">
-    <value>Изпращане</value>
-  </data>
-  <data name="FaqSection_SubTitle" xml:space="preserve">
-    <value>Често Задавани &lt;span&gt;Въпроси&lt;/span&gt;</value>
-  </data>
-  <data name="FaqSection_Title" xml:space="preserve">
-    <value>Ч.З.В.</value>
-  </data>
-  <data name="Issue_IndexPage_Label" xml:space="preserve">
-    <value>Съдържание</value>
-  </data>
-  <data name="Issue_MoreInformation_Label" xml:space="preserve">
-    <value>Допълнителна информация</value>
-  </data>
-  <data name="Issue_Number_Label" xml:space="preserve">
-    <value>Брой №</value>
-  </data>
-  <data name="NavItem_Library_ByYears" xml:space="preserve">
-    <value>По години</value>
-  </data>
-  <data name="NavItem_Library_Archive" xml:space="preserve">
-    <value>Архив</value>
-  </data>
-  <data name="NavItem_Login" xml:space="preserve">
-    <value>Вход</value>
-  </data>
-  <data name="NavItem_Logout" xml:space="preserve">
-    <value>Изход</value>
-  </data>
-  <data name="NavItem_MyProfile" xml:space="preserve">
-    <value>Моят профил</value>
-  </data>
-  <data name="NavItem_MySubmissions" xml:space="preserve">
-    <value>Моите ръкописи</value>
-  </data>
-  <data name="NavItem_Register" xml:space="preserve">
-    <value>Регистрация</value>
-  </data>
-  <data name="NavItem_Submissions" xml:space="preserve">
-    <value>Ръкописи</value>
-  </data>
-  <data name="NewsletterSection_SubscribeButton_Label" xml:space="preserve">
-    <value>Абонирай се</value>
-  </data>
-  <data name="NewsletterSection_Title" xml:space="preserve">
-    <value>Абонирайте се за нашия бюлетин</value>
-  </data>
-  <data name="PortfolioSection_Filter_All" xml:space="preserve">
-    <value>Всички</value>
-  </data>
-  <data name="PortfolioSection_SubTitle" xml:space="preserve">
-    <value>Прегледайте досегашните &lt;span&gt;издания&lt;/span&gt; на списанието</value>
-  </data>
-  <data name="PortfolioSection_Title" xml:space="preserve">
-    <value>Броеве</value>
-  </data>
-  <data name="CategoriesSection_SubTitle" xml:space="preserve">
-    <value>Разгледайте списанието по &lt;span&gt;категории&lt;/span&gt;</value>
-  </data>
-  <data name="CategoriesSection_Title" xml:space="preserve">
-    <value>Категории</value>
-  </data>
-  <data name="NavItem_EditModeEnable" xml:space="preserve">
-    <value>Режим редакция</value>
-  </data>
-  <data name="NavItem_EditModeDisable" xml:space="preserve">
-    <value>Прекрати редакция</value>
-  </data>
-  <data name="HomeCookies_Title" xml:space="preserve">
-    <value>Използване на бисквитки</value>
-  </data>
-  <data name="HomePrivacy_Title" xml:space="preserve">
-    <value>Политика за поверителност</value>
-  </data>
-  <data name="HomeTerms_Title" xml:space="preserve">
-    <value>Условия за ползване</value>
-  </data>
-  <data name="NavItem_Categories" xml:space="preserve">
-    <value>Категории</value>
-  </data>
-  <data name="NavItem_Cookies" xml:space="preserve">
-    <value>Бисквитки</value>
-  </data>
-  <data name="NavItem_Privacy" xml:space="preserve">
-    <value>Поверителност</value>
-  </data>
-  <data name="NavItem_Terms" xml:space="preserve">
-    <value>Правила и условия</value>
-  </data>
-  <data name="NewsletterSection_Description" xml:space="preserve">
-    <value>Абонирайте се за уведомления, когато нов брой на списанието излезе от печат</value>
-  </data>
-  <data name="Category_All" xml:space="preserve">
-    <value>Всички</value>
-  </data>
-  <data name="HomeSubmit_Title" xml:space="preserve">
-    <value>Изпращане на текст</value>
+  <data name="Welcome_Message" xml:space="preserve">
+    <value>Добре дошли на &lt;span&gt;ЛИнК.uni-plovdiv.bg&lt;/span&gt;</value>
   </data>
 </root>
