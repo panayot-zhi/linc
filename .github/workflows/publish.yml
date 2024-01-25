@@ -66,7 +66,7 @@ jobs:
     - name: Start Service
       uses: garygrossgarten/github-action-ssh@release
       with:
-        command: sudo systemctl start deploymentTest.service
+        command: sudo systemctl start test.linc.service
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USER }}
         privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
