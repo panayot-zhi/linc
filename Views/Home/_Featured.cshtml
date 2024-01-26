@@ -1,4 +1,13 @@
-﻿<!-- ======= Featured Services Section ======= -->
+﻿@using linc.Utility
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var currentCulture = requestCulture?.RequestCulture.UICulture.Name ?? "bg";
+}
+
+<!-- ======= Featured Services Section ======= -->
 <section id="featured-services" class="featured-services">
     <div class="container" data-aos="fade-up">
 
@@ -12,8 +21,8 @@
                         <a class="scrollto" asp-controller="Home" asp-action="Index" asp-fragment="contact">@HtmlLocalizer["FeaturedSection_Submit_Title"]</a>
                     </h4>
                     <p class="description" contenteditable-for="FeaturedSection_Submit_Description">
-                        Изпращането става на email адресът на редакцията. Моля, уверете се, 
-                        че преди това сте се запознали с техническите изисквания за него и с нашия Етичен кодекс.
+                        Изпратете ръкописа си на редакционния email адрес <a target="_blank" class="nav-link" href="mailto:@SiteConstant.ReviewsEmail">@SiteConstant.ReviewsEmail</a>.
+                        Преди това се запознайте с <a target="_blank" class="nav-link" href="@Url.Content($"~/docs/{currentCulture}/{SiteConstant.TechnicalRequirementsFileName}")">техническите изисквания</a> към предлаганите за публикуване текстове и с <a class="nav-link scrollto" href="#codex">Етичния кодекс на списанието</a>.
                     </p>
                 </div>
             </div>
