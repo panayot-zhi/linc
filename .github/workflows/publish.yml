@@ -40,7 +40,14 @@ jobs:
       run: dotnet test --no-build --configuration Release --verbosity normal
 
     - name: Publish Release
-      run: dotnet publish /p:PublishProfile=Properties/PublishProfiles/FolderProfile.pubxml --configuration Release
+      run: |
+
+        csproj_file="linc.csproj"
+        version_line=$(grep '<Version>' "$csproj_file")
+        current_version=$(echo $version_line | sed -n 's/.*<Version>\(.*\)<\/Version>.*/\1/p')
+        current_version+=".${{ github.run_number }}"
+
+        dotnet publish /p:PublishProfile=Properties/PublishProfiles/FolderProfile.pubxml /p:Version=$current_version --configuration Release
 
     - name: List Result
       run: cd release && ls -la
