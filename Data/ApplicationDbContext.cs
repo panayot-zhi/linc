@@ -8,14 +8,10 @@ namespace linc.Data;
 
 public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 {
+    public const string AutoUpdateProperty = "LastUpdated";
+    public const string AutoCreateProperty = "DateCreated";
+
     public readonly DbContextOptions<ApplicationDbContext> Options;
-
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-        : base(options)
-    {
-        Options = options;
-    }
-
 
 
     public DbSet<ApplicationLanguage> Languages { get; set; }
@@ -23,7 +19,57 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     public DbSet<ApplicationStringResource> StringResources { get; set; }
 
 
-    
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        : base(options)
+    {
+        Options = options;
+    }
+
+    public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
+    {
+        TrackCreatedEntities();
+        TrackUpdatedEntities();
+
+        return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+    }
+
+    protected void TrackUpdatedEntities()
+    {
+        var editedEntities = ChangeTracker.Entries().Where(entry => entry.State == EntityState.Modified).ToList();
+
+        editedEntities.ForEach(entry =>
+        {
+            if (entry.HasProperty(AutoUpdateProperty))
+            {
+                entry.Property(AutoUpdateProperty).CurrentValue = DateTime.UtcNow;
+            }
+
+            if (entry.HasProperty(AutoCreateProperty))
+            {
+                entry.Property(AutoCreateProperty).IsModified = false;
+            }
+        });
+    }
+
+    protected void TrackCreatedEntities()
+    {
+        var addedEntities = ChangeTracker.Entries().Where(entry => entry.State == EntityState.Added).ToList();
+
+        var now = DateTime.UtcNow;
+        addedEntities.ForEach(entry =>
+        {
+            if (entry.HasProperty(AutoCreateProperty))
+            {
+                entry.Property(AutoCreateProperty).CurrentValue = now;
+            }
+
+            if (entry.HasProperty(AutoUpdateProperty))
+            {
+                entry.Property(AutoUpdateProperty).CurrentValue = now;
+            }
+        });
+    }
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);

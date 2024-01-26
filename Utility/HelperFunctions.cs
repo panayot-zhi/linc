@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace linc.Utility;
 
@@ -25,6 +26,11 @@ public static class HelperFunctions
     public static string GetFullPath(this IStatusCodeReExecuteFeature me)
     {
         return $"{me.OriginalPathBase}{me.OriginalPath}{me.OriginalQueryString}";
+    }
+
+    public static bool HasProperty(this EntityEntry entry, string property)
+    {
+        return entry.Properties.Any(x => x.Metadata.Name == property);
     }
 
     public static bool IsAjax(this HttpRequest request, string httpVerb = "")
