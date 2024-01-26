@@ -108,7 +108,8 @@
 
             let request = {
                 key: e.target.id,
-                value: e.target.innerText
+                value: e.target.innerText,
+                editedById: "xxx"
             };
 
             $.ajax({
@@ -123,6 +124,7 @@
                 },
 
                 error: function (xhr, status, error) {
+                    window.hidePreloader();
                     alert(`Възникна грешка при запис, моля свържете се с администратор: ${status} - ${error}`);
                 }
 
