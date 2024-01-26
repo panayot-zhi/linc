@@ -1,5 +1,5 @@
-﻿using linc.Contracts;
-using linc.Data;
+﻿using linc.Data;
+using linc.Contracts;
 using linc.Models.ViewModels;
 using linc.Models.ViewModels.Home;
 using Microsoft.Extensions.Caching.Memory;
@@ -50,6 +50,26 @@ public class ContentService : IContentService
         // }
         //
         // result.Shuffle();
+
+        return result;
+    }
+
+    public string GetVersion()
+    {
+        var result = "0.0.1";
+
+        var assembly = typeof(Program).Assembly.GetName();
+        if (assembly.Version is not null)
+        {
+            result = assembly.Version.ToString();
+        }
+
+        var assemblyFileName = Environment.GetCommandLineArgs().FirstOrDefault();
+        if (!string.IsNullOrEmpty(assemblyFileName))
+        {
+            var buildDate = File.GetLastWriteTime(assemblyFileName);
+            result += $" - {buildDate:MMMM dd, yyyy}";
+        }
 
         return result;
     }

@@ -79,12 +79,11 @@ namespace linc.Utility
             }
             catch(Exception ex)
             {
-                var currentCulture = Thread.CurrentThread.CurrentCulture;
-                var currentUiCulture = Thread.CurrentThread.CurrentUICulture;
+                var currentCulture = Thread.CurrentThread.CurrentUICulture;
 
                 var logger = Log.Logger.ForContext<IndexCategory>();
-                logger.Error(ex, "Could not find key for '{ResourceKey}' for the current culture ({Culture}/UI:{UICulture})",
-                    resourceKey, currentCulture, currentUiCulture);
+                logger.Error(ex, "Could not find key for '{ResourceKey}' for the current culture ({Culture})",
+                    resourceKey, currentCulture);
             }
 
             // Fallback with the key name
