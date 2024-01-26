@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 
 namespace linc.Controllers
 {
@@ -16,16 +17,20 @@ namespace linc.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILocalizationService _localizationService;
         private readonly IContentService _contentService;
 
 
         public HomeController(ILogger<HomeController> logger,
-            ILocalizationService localizationService, IContentService contentService)
+            UserManager<ApplicationUser> userManager,
+            ILocalizationService localizationService, 
+            IContentService contentService)
         {
             _logger = logger;
             _localizationService = localizationService;
             _contentService = contentService;
+            _userManager = userManager;
         }
 
         public IActionResult Index()
@@ -72,14 +77,16 @@ namespace linc.Controllers
         [Ajax]
         [HttpPost]
         [SiteAuthorize(SiteRole.Editor)]
-        public async Task<IActionResult> SetStringResource([FromBody][Bind("Key,Value")] ApplicationStringResource stringResource)
+        public async Task<IActionResult> SetStringResource([FromBody][Bind("Key,Value,EditedById")] ApplicationStringResource stringResource)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
 
-            await _localizationService.SetStringResource(stringResource.Key, stringResource.Value);
+            var userId = _userManager.GetUserId(User);
+
+            await _localizationService.SetStringResource(stringResource.Key, stringResource.Value, userId);
 
             return Ok();
         }

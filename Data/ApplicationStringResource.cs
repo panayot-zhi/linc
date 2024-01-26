@@ -25,4 +25,13 @@ public class ApplicationStringResource
     public int LanguageId { get; set; }
 
     public ApplicationLanguage Language { get; set; }
+
+    [Required]
+    [ForeignKey(nameof(EditedBy))]
+    [JsonPropertyName("editedById")]
+    public string EditedById { get; set; }
+    
+    public ApplicationUser EditedBy { get; set; }
+    
+    public DateTime LastEdited { get; set; }
 }

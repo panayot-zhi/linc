@@ -21,6 +21,6 @@ namespace linc.Contracts
         /// <returns>The formatted string resource as a <see cref="LocalizedHtmlString"/>.</returns>
         LocalizedHtmlString this[string name, params object[] arguments] { get; }
 
-        Task SetStringResource(string resourceKey, string value);
+        Task SetStringResource(string resourceKey, string value, string userId);
     }
 }

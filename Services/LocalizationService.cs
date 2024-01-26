@@ -53,7 +53,7 @@ namespace linc.Services
             return dbItem.Value;
         }
 
-        public async Task SetStringResource(string resourceKey, string value)
+        public async Task SetStringResource(string resourceKey, string value, string userId)
         {
             var currentCulture = Thread.CurrentThread.CurrentUICulture.Name;
             var languageId = SiteConstant.SupportedCultures.First(x =>
@@ -68,7 +68,9 @@ namespace linc.Services
                 {
                     Key = resourceKey,
                     Value = value,
-                    LanguageId = languageId
+                    LanguageId = languageId,
+                    EditedById = userId,
+                    LastEdited = DateTime.UtcNow
                 };
 
                 await _context.StringResources.AddAsync(newEntry);
@@ -87,7 +89,10 @@ namespace linc.Services
 
             // Attach entity always, otherwise we read only
             _context.StringResources.Attach(dbItem);
+
             dbItem.Value = value;
+            dbItem.EditedById = userId;
+            dbItem.LastEdited = DateTime.UtcNow;
 
             await _context.SaveChangesAsync();
 
