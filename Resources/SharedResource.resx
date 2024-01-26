@@ -184,7 +184,7 @@
     <value>Разгледайте списанието по &lt;span&gt;категории&lt;/span&gt;</value>
   </data>
   <data name="CategoriesSection_Title" xml:space="preserve">
-    <value>Категории</value>
+    <value>Рубрики</value>
   </data>
   <data name="Category_All" xml:space="preserve">
     <value>Всички</value>
@@ -223,7 +223,7 @@
     <value>Прочетете за нашия &lt;span&gt;Етичен кодекс&lt;/span&gt;</value>
   </data>
   <data name="CodexSection_Title" xml:space="preserve">
-    <value>Кодекс</value>
+    <value>Етичен Кодекс</value>
   </data>
   <data name="ContactSection_Address_Location" xml:space="preserve">
     <value>Пловдив 4000, Пловдивско университетско издателство, „Цар Асен“ 24</value>

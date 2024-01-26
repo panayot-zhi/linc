@@ -259,7 +259,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Категории.
+        ///   Looks up a localized string similar to Рубрики.
         /// </summary>
         public static string CategoriesSection_Title {
             get {
@@ -376,7 +376,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Кодекс.
+        ///   Looks up a localized string similar to Етичен Кодекс.
         /// </summary>
         public static string CodexSection_Title {
             get {
