@@ -383,20 +383,12 @@
             </div>
         </div>
         
-        <cache expires-after="@TimeSpan.FromDays(30)">
+        <cache expires-after="@TimeSpan.FromDays(30)" vary-by-culture="true">
             <div class="container py-4">
                 <div class="copyright">
-
-                    @{
-                        var version = typeof(Program)
-                            .Assembly
-                            .GetName()
-                            .Version?
-                            .ToString() ?? "0.0.1"; // NOTE: Indicates a problem!
-                    }
-
-                    @SiteConstant.AdministratorUserName; @HtmlLocalizer["Version_Label"]: @version
-                    - 2024 &copy; Copyright
+                    @SiteConstant.AdministratorUserName; @HtmlLocalizer["Version_Label"]: 
+                    v.@ContentService.GetVersion()
+                    &copy; Copyright
                     <strong>
                         <span>BizLand</span>
                     </strong> Theme. @HtmlLocalizer["Copyright_Label"].
