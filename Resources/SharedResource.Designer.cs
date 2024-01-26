@@ -124,7 +124,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Проф. дн Александър Войчех Миколайчак.
+        ///   Looks up a localized string similar to Проф. дн Александер Войчех Миколайчак.
         /// </summary>
         public static string Board_Aleksander_Mikołajczak_Member {
             get {
@@ -412,20 +412,20 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Декларация за съгласие.
+        /// </summary>
+        public static string ContactSection_PublicationAgreement_Title {
+            get {
+                return ResourceManager.GetString("ContactSection_PublicationAgreement_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email за ръкописи.
         /// </summary>
         public static string ContactSection_Review_Email {
             get {
                 return ResourceManager.GetString("ContactSection_Review_Email", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Технически изисквания.
-        /// </summary>
-        public static string ContactSection_Submit_Title {
-            get {
-                return ResourceManager.GetString("ContactSection_Submit_Title", resourceCulture);
             }
         }
         
@@ -444,6 +444,15 @@ namespace linc.Resources {
         public static string ContactSection_SubTitle {
             get {
                 return ResourceManager.GetString("ContactSection_SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Технически изисквания.
+        /// </summary>
+        public static string ContactSection_TechnicalRequirements_Title {
+            get {
+                return ResourceManager.GetString("ContactSection_TechnicalRequirements_Title", resourceCulture);
             }
         }
         
@@ -475,7 +484,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ч.З.В..
+        ///   Looks up a localized string similar to Въпроси.
         /// </summary>
         public static string FaqSection_Title {
             get {
@@ -808,7 +817,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Категории.
+        ///   Looks up a localized string similar to Рубрики.
         /// </summary>
         public static string NavItem_Categories {
             get {

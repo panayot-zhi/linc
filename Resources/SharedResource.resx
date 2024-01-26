@@ -139,7 +139,7 @@
     <value>За списанието</value>
   </data>
   <data name="Board_Aleksander.Mikołajczak_Member" xml:space="preserve">
-    <value>Проф. дн Александър Войчех Миколайчак</value>
+    <value>Проф. дн Александер Войчех Миколайчак</value>
   </data>
   <data name="Board_Aleksander.Mikołajczak_MemberWork" xml:space="preserve">
     <value>Университет „Адам Мицкевич“, Познан, Полша</value>
@@ -234,17 +234,20 @@
   <data name="ContactSection_Codex_Title" xml:space="preserve">
     <value>Етичен кодекс</value>
   </data>
+  <data name="ContactSection_PublicationAgreement_Title" xml:space="preserve">
+    <value>Декларация за съгласие</value>
+  </data>
   <data name="ContactSection_Review_Email" xml:space="preserve">
     <value>Email за ръкописи</value>
   </data>
   <data name="ContactSection_SubmitButton_Label" xml:space="preserve">
     <value>Изпрати ръкопис</value>
   </data>
-  <data name="ContactSection_Submit_Title" xml:space="preserve">
-    <value>Технически изисквания</value>
-  </data>
   <data name="ContactSection_SubTitle" xml:space="preserve">
     <value>Изпращане на ръкопис</value>
+  </data>
+  <data name="ContactSection_TechnicalRequirements_Title" xml:space="preserve">
+    <value>Технически изисквания</value>
   </data>
   <data name="ContactSection_Title" xml:space="preserve">
     <value>Изпращане</value>
@@ -256,7 +259,7 @@
     <value>Често Задавани &lt;span&gt;Въпроси&lt;/span&gt;</value>
   </data>
   <data name="FaqSection_Title" xml:space="preserve">
-    <value>Ч.З.В.</value>
+    <value>Въпроси</value>
   </data>
   <data name="FeaturedSection_International_Title" xml:space="preserve">
     <value>Български &amp; Английски</value>
@@ -367,7 +370,7 @@
     <value>За списанието</value>
   </data>
   <data name="NavItem_Categories" xml:space="preserve">
-    <value>Категории</value>
+    <value>Рубрики</value>
   </data>
   <data name="NavItem_Contact" xml:space="preserve">
     <value>Изпрати</value>
