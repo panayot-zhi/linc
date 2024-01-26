@@ -93,4 +93,9 @@
 	  </EmbeddedResource>
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="wwwroot\docs\bg\" />
+	  <Folder Include="wwwroot\docs\en\" />
+	</ItemGroup>
+
 </Project>

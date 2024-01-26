@@ -9,6 +9,7 @@ public static class SiteConstant
         {2, "en"}
     };
 
+    public const string TechnicalRequirementsFileName = "technical_requirements.doc";
     public const string ZeroGuid = "00000000-0000-0000-0000-000000000000";
 
     public const string ReviewsEmail = "review-linc@uni-plovdiv.bg";
