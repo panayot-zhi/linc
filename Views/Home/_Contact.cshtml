@@ -1,4 +1,11 @@
 ﻿@using linc.Utility
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var currentCulture = requestCulture?.RequestCulture.UICulture.Name ?? "bg";
+}
 
 <!-- ======= Contact Section ======= -->
 <section id="contact" class="contact">
@@ -6,7 +13,7 @@
 
         <div class="section-title">
             <h2>@HtmlLocalizer["ContactSection_Title"]</h2>
-            <h3>@HtmlLocalizer["ContactSection_SubTitle"]</h3>
+            @* <h3>@HtmlLocalizer["ContactSection_SubTitle"]</h3> *@
             <p contenteditable-for="ContactSection_Description">
                 Процедура по приемане, рецензиране и публикуване на текст.
             </p>
@@ -26,20 +33,28 @@
 
             <div class="col-lg-3 col-md-6">
                 <div class="info-box  mb-4">
-                    <i class="bx bx-planet"></i>
-                    <h3 class="title"><a href="#codex">@HtmlLocalizer["ContactSection_Codex_Title"]</a></h3>
-                    <p contenteditable-for="ContactSection_Codex_Description">
-                        Запознайте се с нашия етичен кодекс, преди да изпратите ръкопис.
+                    <i class="bx bxs-download"></i>
+                    <h3 class="title">
+                        <a href="@Url.Content($"~/docs/{currentCulture}/{SiteConstant.TechnicalRequirementsFileName}")">
+                            @HtmlLocalizer["ContactSection_TechnicalRequirements_Title"]
+                        </a>
+                    </h3>
+                    <p contenteditable-for="ContactSection_Submit_Description">
+                        Запознайте се с техническите изисквания към предложените за публикуване текстове.
                     </p>
                 </div>
             </div>
 
             <div class="col-lg-3 col-md-6">
                 <div class="info-box  mb-4">
-                    <i class='bx bx-list-check'></i>
-                    <h3 class="title"><a asp-controller="Home" asp-action="Submit">@HtmlLocalizer["ContactSection_Submit_Title"]</a></h3>
-                    <p contenteditable-for="ContactSection_Submit_Description">
-                        Запознайте се с техническите изисквания към ръкописите, които приемаме.
+                    <i class="bx bxs-download"></i>
+                    <h3 class="title">
+                        <a href="@Url.Content($"~/docs/{SiteConstant.PublicationAgreementFileName}")">
+                            @HtmlLocalizer["ContactSection_PublicationAgreement_Title"]
+                        </a>
+                    </h3>
+                    <p contenteditable-for="ContactSection_Codex_Description">
+                        Изпратете подписана декларация за съгласие статията да бъде издадена.
                     </p>
                 </div>
             </div>
@@ -55,12 +70,14 @@
             <div class="col-lg-6">
                 <div class="php-email-form">
                     <p class="text-end" contenteditable-for="ContactSection_Submit_Guideliness">
-                        Предложеният за публикуване текст се изпраща като прикачен файл към email до редакцията на списанието 
-                        заедно с декларация за съгласието си статията/студията да бъде издадена.
+                        Предложеният за публикуване текст се изпраща като прикачен файл към email до Редакцията на списанието 
+                        заедно с подписана декларация за съгласие статията/студията да бъде издадена.
+                        <br/>
+                        <br/>
                         Файлът трябва да е с разширение .doc, .docx.
                     </p>
                     <div class="text-end">
-                        <a class="btn" asp-controller="Home" asp-action="Submit">@HtmlLocalizer["ContactSection_SubmitButton_Label"]</a>
+                        <a class="btn" target="_blank" href="mailto:@SiteConstant.ReviewsEmail">@HtmlLocalizer["ContactSection_SubmitButton_Label"]</a>
                     </div>
                 </div>
             </div>
