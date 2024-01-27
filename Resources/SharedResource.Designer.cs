@@ -781,6 +781,69 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Използвайте външен акаунт за вход..
+        /// </summary>
+        public static string LoginPage_ExternalAccount_Title {
+            get {
+                return ResourceManager.GetString("LoginPage_ExternalAccount_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Забравена парола?.
+        /// </summary>
+        public static string LoginPage_ForgotPassword {
+            get {
+                return ResourceManager.GetString("LoginPage_ForgotPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Използвайте вътрешен акаунт за вход..
+        /// </summary>
+        public static string LoginPage_LocalAccount_Title {
+            get {
+                return ResourceManager.GetString("LoginPage_LocalAccount_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Вход.
+        /// </summary>
+        public static string LoginPage_LoginButton_Label {
+            get {
+                return ResourceManager.GetString("LoginPage_LoginButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Няма конфигурирани външни услуги за вход..
+        /// </summary>
+        public static string LoginPage_NoExternalAccountsConfigured {
+            get {
+                return ResourceManager.GetString("LoginPage_NoExternalAccountsConfigured", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Регистрирай нов потребител.
+        /// </summary>
+        public static string LoginPage_Register {
+            get {
+                return ResourceManager.GetString("LoginPage_Register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изпрати нов email за потвърждение.
+        /// </summary>
+        public static string LoginPage_ResendConfirmation {
+            get {
+                return ResourceManager.GetString("LoginPage_ResendConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Вход.
         /// </summary>
         public static string LoginPage_Title {

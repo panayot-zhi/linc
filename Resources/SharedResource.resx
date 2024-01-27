@@ -357,6 +357,27 @@
   <data name="LibraryIndex_Title" xml:space="preserve">
     <value>Библиотека</value>
   </data>
+  <data name="LoginPage_ExternalAccount_Title" xml:space="preserve">
+    <value>Използвайте външен акаунт за вход.</value>
+  </data>
+  <data name="LoginPage_ForgotPassword" xml:space="preserve">
+    <value>Забравена парола?</value>
+  </data>
+  <data name="LoginPage_LocalAccount_Title" xml:space="preserve">
+    <value>Използвайте вътрешен акаунт за вход.</value>
+  </data>
+  <data name="LoginPage_LoginButton_Label" xml:space="preserve">
+    <value>Вход</value>
+  </data>
+  <data name="LoginPage_NoExternalAccountsConfigured" xml:space="preserve">
+    <value>Няма конфигурирани външни услуги за вход.</value>
+  </data>
+  <data name="LoginPage_Register" xml:space="preserve">
+    <value>Регистрирай нов потребител</value>
+  </data>
+  <data name="LoginPage_ResendConfirmation" xml:space="preserve">
+    <value>Изпрати нов email за потвърждение</value>
+  </data>
   <data name="LoginPage_Title" xml:space="preserve">
     <value>Вход</value>
   </data>
