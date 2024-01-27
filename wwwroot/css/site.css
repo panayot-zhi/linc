@@ -142,3 +142,8 @@ a.submit-link {
 .featured-services .description a.nav-link {
     display: inline;
 }
+
+.identity section {
+    padding: 20px 0;
+    overflow: hidden;
+}
