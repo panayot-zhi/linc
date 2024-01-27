@@ -74,7 +74,7 @@
                 <span>@HtmlLocalizer["Logo_Long"]</span>
             </div>
             <div class="d-flex align-items-center">
-                <form id="set_language" asp-controller="Home" asp-action="SetLanguage">
+                <form id="set_language" asp-controller="Home" asp-action="SetLanguage" asp-route-returnUrl="@Context.Request.Path">
                     <environment exclude="Production">
                         @* <span class="me-2">Session: @Context.Session.GetString("Hi")</span> *@
                         <span class="me-2">Editable: @(TempData.Peek("Editable") ?? "False")</span>
