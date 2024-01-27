@@ -781,7 +781,34 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Използвайте външен акаунт за вход..
+        ///   Looks up a localized string similar to Парола.
+        /// </summary>
+        public static string LoginModel_Password {
+            get {
+                return ResourceManager.GetString("LoginModel_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Запомни ме?.
+        /// </summary>
+        public static string LoginModel_RememberMe {
+            get {
+                return ResourceManager.GetString("LoginModel_RememberMe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email / Псевдоним.
+        /// </summary>
+        public static string LoginModel_UserName {
+            get {
+                return ResourceManager.GetString("LoginModel_UserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Външна услуга за вход.
         /// </summary>
         public static string LoginPage_ExternalAccount_Title {
             get {
@@ -799,7 +826,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Използвайте вътрешен акаунт за вход..
+        ///   Looks up a localized string similar to Регистриран потребител.
         /// </summary>
         public static string LoginPage_LocalAccount_Title {
             get {
@@ -817,7 +844,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Няма конфигурирани външни услуги за вход..
+        ///   Looks up a localized string similar to Няма конфигурирани външни услуги за вход към момента..
         /// </summary>
         public static string LoginPage_NoExternalAccountsConfigured {
             get {

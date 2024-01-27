@@ -35,14 +35,16 @@ namespace linc.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
+            [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+            [Display(Name = "LoginModel_UserName", ResourceType = typeof(Resources.SharedResource))]
             public string UserName { get; set; }
 
-            [Required]
+            [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+            [Display(Name = "LoginModel_Password", ResourceType = typeof(Resources.SharedResource))]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
-            [Display(Name = "Remember me?")]
+            [Display(Name = "LoginModel_RememberMe", ResourceType = typeof(Resources.SharedResource))]
             public bool RememberMe { get; set; }
         }
 
