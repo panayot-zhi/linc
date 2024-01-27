@@ -133,7 +133,7 @@
     <value>Рецензиране</value>
   </data>
   <data name="AboutSection_SubTitle" xml:space="preserve">
-    <value>Научете повече &lt;span&gt;за списанието&lt;/span&gt;</value>
+    <value>За списанието</value>
   </data>
   <data name="AboutSection_Title" xml:space="preserve">
     <value>За списанието</value>
@@ -184,7 +184,7 @@
     <value>Разгледайте списанието по &lt;span&gt;категории&lt;/span&gt;</value>
   </data>
   <data name="CategoriesSection_Title" xml:space="preserve">
-    <value>Рубрики</value>
+    <value>Категории</value>
   </data>
   <data name="Category_All" xml:space="preserve">
     <value>Всички</value>
@@ -294,9 +294,6 @@
   <data name="Footer_Redaction_Label" xml:space="preserve">
     <value>Редакция</value>
   </data>
-  <data name="Footer_Services_Title" xml:space="preserve">
-    <value />
-  </data>
   <data name="Footer_Social_Description" xml:space="preserve">
     <value>Открийте нас и нашите автори в мрежата.</value>
   </data>
@@ -360,6 +357,9 @@
   <data name="LibraryIndex_Title" xml:space="preserve">
     <value>Библиотека</value>
   </data>
+  <data name="LoginPage_Title" xml:space="preserve">
+    <value>Вход</value>
+  </data>
   <data name="Logo_Long" xml:space="preserve">
     <value>Лингвистика, Интерпретация, Концепции</value>
   </data>
@@ -370,7 +370,10 @@
     <value>За списанието</value>
   </data>
   <data name="NavItem_Categories" xml:space="preserve">
-    <value>Рубрики</value>
+    <value>Категории</value>
+  </data>
+  <data name="NavItem_Codex" xml:space="preserve">
+    <value>Кодекс</value>
   </data>
   <data name="NavItem_Contact" xml:space="preserve">
     <value>Изпрати</value>
@@ -388,10 +391,13 @@
     <value>Начало</value>
   </data>
   <data name="NavItem_Library" xml:space="preserve">
-    <value>Индекс</value>
+    <value>Библиотека</value>
   </data>
-  <data name="NavItem_Library_Archive" xml:space="preserve">
-    <value>Архив</value>
+  <data name="NavItem_Library_ByAuthors" xml:space="preserve">
+    <value>По автори</value>
+  </data>
+  <data name="NavItem_Library_ByCategories" xml:space="preserve">
+    <value>По категории</value>
   </data>
   <data name="NavItem_Library_ByYears" xml:space="preserve">
     <value>По години</value>
@@ -417,9 +423,6 @@
   <data name="NavItem_Register" xml:space="preserve">
     <value>Регистрация</value>
   </data>
-  <data name="NavItem_Services" xml:space="preserve">
-    <value>Кодекс</value>
-  </data>
   <data name="NavItem_Submissions" xml:space="preserve">
     <value>Ръкописи</value>
   </data>
@@ -439,7 +442,7 @@
     <value>Абонирай се</value>
   </data>
   <data name="NewsletterSection_Title" xml:space="preserve">
-    <value>Абонирайте се за нашия бюлетин</value>
+    <value>Абонирайте се за нови издания</value>
   </data>
   <data name="PortfolioSection_Filter_All" xml:space="preserve">
     <value>Всички</value>

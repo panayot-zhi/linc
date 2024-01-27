@@ -106,7 +106,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Научете повече &lt;span&gt;за списанието&lt;/span&gt;.
+        ///   Looks up a localized string similar to За списанието.
         /// </summary>
         public static string AboutSection_SubTitle {
             get {
@@ -259,7 +259,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Рубрики.
+        ///   Looks up a localized string similar to Категории.
         /// </summary>
         public static string CategoriesSection_Title {
             get {
@@ -592,15 +592,6 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string Footer_Services_Title {
-            get {
-                return ResourceManager.GetString("Footer_Services_Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Открийте нас и нашите автори в мрежата..
         /// </summary>
         public static string Footer_Social_Description {
@@ -790,6 +781,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Вход.
+        /// </summary>
+        public static string LoginPage_Title {
+            get {
+                return ResourceManager.GetString("LoginPage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Лингвистика, Интерпретация, Концепции.
         /// </summary>
         public static string Logo_Long {
@@ -817,11 +817,20 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Рубрики.
+        ///   Looks up a localized string similar to Категории.
         /// </summary>
         public static string NavItem_Categories {
             get {
                 return ResourceManager.GetString("NavItem_Categories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Кодекс.
+        /// </summary>
+        public static string NavItem_Codex {
+            get {
+                return ResourceManager.GetString("NavItem_Codex", resourceCulture);
             }
         }
         
@@ -871,7 +880,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Индекс.
+        ///   Looks up a localized string similar to Библиотека.
         /// </summary>
         public static string NavItem_Library {
             get {
@@ -880,11 +889,20 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Архив.
+        ///   Looks up a localized string similar to По автори.
         /// </summary>
-        public static string NavItem_Library_Archive {
+        public static string NavItem_Library_ByAuthors {
             get {
-                return ResourceManager.GetString("NavItem_Library_Archive", resourceCulture);
+                return ResourceManager.GetString("NavItem_Library_ByAuthors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to По категории.
+        /// </summary>
+        public static string NavItem_Library_ByCategories {
+            get {
+                return ResourceManager.GetString("NavItem_Library_ByCategories", resourceCulture);
             }
         }
         
@@ -961,15 +979,6 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Кодекс.
-        /// </summary>
-        public static string NavItem_Services {
-            get {
-                return ResourceManager.GetString("NavItem_Services", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Ръкописи.
         /// </summary>
         public static string NavItem_Submissions {
@@ -1024,7 +1033,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Абонирайте се за нашия бюлетин.
+        ///   Looks up a localized string similar to Абонирайте се за нови издания.
         /// </summary>
         public static string NewsletterSection_Title {
             get {

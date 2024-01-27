@@ -112,7 +112,7 @@
                         <a id="nav-services" class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="services">@HtmlLocalizer["NavItem_Categories"]</a>
                     </li>
                     <li>
-                        <a id="nav-codex" class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="codex">@HtmlLocalizer["NavItem_Services"]</a>
+                        <a id="nav-codex" class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="codex">@HtmlLocalizer["NavItem_Codex"]</a>
                     </li>
                     <li>
                         <a id="nav-portfolio" class="nav-link scrollto " asp-controller="Home" asp-action="Index" asp-fragment="portfolio">@HtmlLocalizer["NavItem_Portfolio"]</a>
@@ -314,19 +314,27 @@
                         <ul>
                             <li>
                                 <i class="bx bx-chevron-right"></i> 
-                                <a class="scrollto" asp-controller="Home" asp-action="Index" asp-fragment="codex">@HtmlLocalizer["Footer_UsefulLinks_Codex"]</a>
+                                <a class="scrollto" asp-controller="Home" asp-action="Index" asp-fragment="codex">
+                                    @HtmlLocalizer["Footer_UsefulLinks_Codex"]
+                                </a>
                             </li>
                             <li>
-                                <i class="bx bx-chevron-right"></i> <a asp-controller="Home" asp-action="Submit">@HtmlLocalizer["Footer_UsefulLinks_SubmitGuidance"]</a>
+                                <i class="bx bx-chevron-right"></i> 
+                                <a class="scrollto" asp-controller="Home" asp-action="Index" asp-fragment="contact">
+                                    @HtmlLocalizer["Footer_UsefulLinks_SubmitGuidance"]
+                                </a>
                             </li>
                             <li>
-                                <i class="bx bx-chevron-right"></i> <a asp-controller="Home" asp-action="Terms">@HtmlLocalizer["Footer_UsefulLinks_TermsOfService"]</a>
+                                <i class="bx bx-chevron-right"></i> 
+                                <a asp-controller="Home" asp-action="Terms">@HtmlLocalizer["Footer_UsefulLinks_TermsOfService"]</a>
                             </li>
                             <li>
-                                <i class="bx bx-chevron-right"></i> <a asp-controller="Home" asp-action="Privacy">@HtmlLocalizer["Footer_UsefulLinks_PrivacyPolicy"]</a>
+                                <i class="bx bx-chevron-right"></i> 
+                                <a asp-controller="Home" asp-action="Privacy">@HtmlLocalizer["Footer_UsefulLinks_PrivacyPolicy"]</a>
                             </li>
                             <li>
-                                <i class="bx bx-chevron-right"></i> <a asp-controller="Home" asp-action="Cookies">@HtmlLocalizer["Footer_UsefulLinks_Cookies"]</a>
+                                <i class="bx bx-chevron-right"></i> 
+                                <a asp-controller="Home" asp-action="Cookies">@HtmlLocalizer["Footer_UsefulLinks_Cookies"]</a>
                             </li>
                         </ul>
                     </div>

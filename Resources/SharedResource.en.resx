@@ -117,6 +117,75 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AboutSection_Content_Title" xml:space="preserve">
+    <value>Content</value>
+  </data>
+  <data name="AboutSection_Goals_Title" xml:space="preserve">
+    <value>Goals and scope of the journal</value>
+  </data>
+  <data name="AboutSection_Mission_Title" xml:space="preserve">
+    <value>Mission</value>
+  </data>
+  <data name="AboutSection_Publish_Title" xml:space="preserve">
+    <value>Submit a publication</value>
+  </data>
+  <data name="AboutSection_Review_Title" xml:space="preserve">
+    <value>Review</value>
+  </data>
+  <data name="AboutSection_SubTitle" xml:space="preserve">
+    <value>Learn more about &lt;span&gt;the journal&lt;/span&gt;</value>
+  </data>
+  <data name="AboutSection_Title" xml:space="preserve">
+    <value>About the journal</value>
+  </data>
+  <data name="Board_Aleksander.Mikołajczak_Member" xml:space="preserve">
+    <value>Проф. дн Александер Войчех Миколайчак</value>
+  </data>
+  <data name="Board_Aleksander.Mikołajczak_MemberWork" xml:space="preserve">
+    <value>Университет „Адам Мицкевич“, Познан, Полша</value>
+  </data>
+  <data name="Board_Elisabeth.Cheauré_Member" xml:space="preserve">
+    <value>Проф. д-р Елизабет Шоре</value>
+  </data>
+  <data name="Board_Elisabeth.Cheauré_MemberWork" xml:space="preserve">
+    <value>Университет „Алберт Лудвиг“, Фрайбург, Германия</value>
+  </data>
+  <data name="Board_Hüseyin.Mevsim_Member" xml:space="preserve">
+    <value>Проф. д-р Хюсеин Мевсим</value>
+  </data>
+  <data name="Board_Hüseyin.Mevsim_MemberWork" xml:space="preserve">
+    <value>Анкарски университет, Турция</value>
+  </data>
+  <data name="Board_Nikolay.Aretov_Member" xml:space="preserve">
+    <value>Проф. дфн Николай Аретов</value>
+  </data>
+  <data name="Board_Nikolay.Aretov_MemberWork" xml:space="preserve">
+    <value>Институт за литература – Българска академия на науките, София, България</value>
+  </data>
+  <data name="Board_Saverio.Tomaiuolo_Member" xml:space="preserve">
+    <value>Доц. д-р Саверио Томайоло</value>
+  </data>
+  <data name="Board_Saverio.Tomaiuolo_MemberWork" xml:space="preserve">
+    <value>Университет на Касино и Южен Лацио, Италия</value>
+  </data>
+  <data name="Board_Suman.Gupta_Member" xml:space="preserve">
+    <value>Проф. д-р Суман Гупта</value>
+  </data>
+  <data name="Board_Suman.Gupta_MemberWork" xml:space="preserve">
+    <value>Open University, Милтън Кийнс, Великобритания</value>
+  </data>
+  <data name="Board_Vanya.Georgieva_Member" xml:space="preserve">
+    <value>гл. ас. д-р Ваня Георгиева</value>
+  </data>
+  <data name="Board_Vanya.Georgieva_MemberWork" xml:space="preserve">
+    <value>Технически сътрудник &lt;br/&gt;катедра Българска литература и теория на литературата&lt;br/&gt;ПУ „Паисий Хилендарски“</value>
+  </data>
+  <data name="CategoriesSection_SubTitle" xml:space="preserve">
+    <value>Browse by &lt;span&gt;categories&lt;/span&gt;</value>
+  </data>
+  <data name="CategoriesSection_Title" xml:space="preserve">
+    <value>Categories</value>
+  </data>
   <data name="Category_All" xml:space="preserve">
     <value>All</value>
   </data>
@@ -141,14 +210,254 @@
   <data name="Category_Surveys" xml:space="preserve">
     <value>Surveys</value>
   </data>
+  <data name="CodexSection_Authors_Title" xml:space="preserve">
+    <value>THE AUTHOR</value>
+  </data>
+  <data name="CodexSection_Editors_Title" xml:space="preserve">
+    <value>THE EDITORIAL TEAM</value>
+  </data>
+  <data name="CodexSection_Reviewers_Title" xml:space="preserve">
+    <value>THE REVIEWER</value>
+  </data>
+  <data name="CodexSection_SubTitle" xml:space="preserve">
+    <value>Read about our &lt;span&gt;Code of ethics&lt;/span&gt;</value>
+  </data>
+  <data name="CodexSection_Title" xml:space="preserve">
+    <value>Code of Ethics</value>
+  </data>
+  <data name="ContactSection_Address_Location" xml:space="preserve">
+    <value>Plovdiv 4000, Plovdiv University Publishing House, King Asen St 24</value>
+  </data>
+  <data name="ContactSection_Address_Title" xml:space="preserve">
+    <value>Publisher's address</value>
+  </data>
+  <data name="ContactSection_Codex_Title" xml:space="preserve">
+    <value>Code of Ethics</value>
+  </data>
+  <data name="ContactSection_PublicationAgreement_Title" xml:space="preserve">
+    <value>Publication Agreement</value>
+  </data>
+  <data name="ContactSection_Review_Email" xml:space="preserve">
+    <value>Review Email</value>
+  </data>
+  <data name="ContactSection_SubmitButton_Label" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="ContactSection_SubTitle" xml:space="preserve">
+    <value>Submit a publication</value>
+  </data>
+  <data name="ContactSection_TechnicalRequirements_Title" xml:space="preserve">
+    <value>Technical Requirements</value>
+  </data>
+  <data name="ContactSection_Title" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="Copyright_Label" xml:space="preserve">
+    <value>All rights reserved</value>
+  </data>
+  <data name="FaqSection_SubTitle" xml:space="preserve">
+    <value>Frequently Asked &lt;span&gt;Questions&lt;/span&gt;</value>
+  </data>
+  <data name="FaqSection_Title" xml:space="preserve">
+    <value>Questions</value>
+  </data>
+  <data name="FeaturedSection_International_Title" xml:space="preserve">
+    <value>Bulgarian &amp; English</value>
+  </data>
+  <data name="FeaturedSection_Review_Title" xml:space="preserve">
+    <value>Anonymous review</value>
+  </data>
+  <data name="FeaturedSection_Submit_Title" xml:space="preserve">
+    <value>Submit a publication</value>
+  </data>
+  <data name="FeaturedSection_Team_Title" xml:space="preserve">
+    <value>Renowned editorial board</value>
+  </data>
+  <data name="Footer_Address_City" xml:space="preserve">
+    <value>Plovdiv 4000, PU Paisii Hilendarski</value>
+  </data>
+  <data name="Footer_Address_Country" xml:space="preserve">
+    <value>Bulgaria</value>
+  </data>
+  <data name="Footer_Address_Street" xml:space="preserve">
+    <value>King Asen St 24, fl. 3, room 325</value>
+  </data>
+  <data name="Footer_Admin_Label" xml:space="preserve">
+    <value>Administrator</value>
+  </data>
+  <data name="Footer_Email_Label" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Footer_Phone_Label" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="Footer_Redaction_Label" xml:space="preserve">
+    <value>Editorial office</value>
+  </data>
+  <data name="Footer_Social_Description" xml:space="preserve">
+    <value>Find us and our authors across the web.</value>
+  </data>
+  <data name="Footer_Social_Title" xml:space="preserve">
+    <value>Partners</value>
+  </data>
+  <data name="Footer_Suggestions_Title" xml:space="preserve">
+    <value>Suggested</value>
+  </data>
+  <data name="Footer_UsefulLinks_Codex" xml:space="preserve">
+    <value>Code of Ethics</value>
+  </data>
+  <data name="Footer_UsefulLinks_Cookies" xml:space="preserve">
+    <value>Cookies usage</value>
+  </data>
+  <data name="Footer_UsefulLinks_PrivacyPolicy" xml:space="preserve">
+    <value>Privacy policy</value>
+  </data>
+  <data name="Footer_UsefulLinks_SubmitGuidance" xml:space="preserve">
+    <value>Submit procedure</value>
+  </data>
+  <data name="Footer_UsefulLinks_TermsOfService" xml:space="preserve">
+    <value>Terms of use</value>
+  </data>
+  <data name="Footer_UsefulLinks_Title" xml:space="preserve">
+    <value>Useful links</value>
+  </data>
+  <data name="GetStarted_Message" xml:space="preserve">
+    <value>Learn more</value>
+  </data>
+  <data name="HomeCookies_Title" xml:space="preserve">
+    <value>Usage of cookies</value>
+  </data>
+  <data name="HomeIndex_Title" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="HomePrivacy_Title" xml:space="preserve">
+    <value>Privacy policy</value>
+  </data>
+  <data name="HomeSubmit_SubmitButton_Description" xml:space="preserve">
+    <value>Please, send us your publication and a signed declaration of agreement to publish.</value>
+  </data>
+  <data name="HomeSubmit_SubmitButton_Label" xml:space="preserve">
+    <value>Send publication</value>
+  </data>
+  <data name="HomeSubmit_Title" xml:space="preserve">
+    <value>Submit a publication</value>
+  </data>
+  <data name="HomeTerms_Title" xml:space="preserve">
+    <value>Terms of use</value>
+  </data>
   <data name="Index_Title" xml:space="preserve">
     <value>Home</value>
+  </data>
+  <data name="Issue_IndexPage_Label" xml:space="preserve">
+    <value>Contents</value>
+  </data>
+  <data name="Issue_MoreInformation_Label" xml:space="preserve">
+    <value>More information</value>
+  </data>
+  <data name="Issue_Number_Label" xml:space="preserve">
+    <value>Issue #</value>
+  </data>
+  <data name="LibraryIndex_Title" xml:space="preserve">
+    <value>Library</value>
+  </data>
+  <data name="LoginPage_Title" xml:space="preserve">
+    <value>Log in</value>
   </data>
   <data name="Logo_Long" xml:space="preserve">
     <value>Linguistics, Interpretations, Concepts</value>
   </data>
   <data name="Logo_Short" xml:space="preserve">
     <value>LInC</value>
+  </data>
+  <data name="NavItem_About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="NavItem_Categories" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="NavItem_Codex" xml:space="preserve">
+    <value>Codex</value>
+  </data>
+  <data name="NavItem_Contact" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="NavItem_Cookies" xml:space="preserve">
+    <value>Cookies</value>
+  </data>
+  <data name="NavItem_EditModeDisable" xml:space="preserve">
+    <value>Stop editing</value>
+  </data>
+  <data name="NavItem_EditModeEnable" xml:space="preserve">
+    <value>Start editing</value>
+  </data>
+  <data name="NavItem_Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="NavItem_Library" xml:space="preserve">
+    <value>Library</value>
+  </data>
+  <data name="NavItem_Library_Archive" xml:space="preserve">
+    <value>Archive</value>
+  </data>
+  <data name="NavItem_Library_ByAuthors" xml:space="preserve">
+    <value>By authors</value>
+  </data>
+  <data name="NavItem_Library_ByCategories" xml:space="preserve">
+    <value>By categories</value>
+  </data>
+  <data name="NavItem_Library_ByYears" xml:space="preserve">
+    <value>By years</value>
+  </data>
+  <data name="NavItem_Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="NavItem_Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="NavItem_MyProfile" xml:space="preserve">
+    <value>My profile</value>
+  </data>
+  <data name="NavItem_MySubmissions" xml:space="preserve">
+    <value>My submissions</value>
+  </data>
+  <data name="NavItem_Portfolio" xml:space="preserve">
+    <value>Issues</value>
+  </data>
+  <data name="NavItem_Privacy" xml:space="preserve">
+    <value>Privacy</value>
+  </data>
+  <data name="NavItem_Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="NavItem_Submissions" xml:space="preserve">
+    <value>Submissions</value>
+  </data>
+  <data name="NavItem_Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
+  <data name="NavItem_Team" xml:space="preserve">
+    <value>Team</value>
+  </data>
+  <data name="NavItem_Terms" xml:space="preserve">
+    <value>Terms of use</value>
+  </data>
+  <data name="NewsletterSection_Description" xml:space="preserve">
+    <value>Subscribe to notifications when a new issue comes out</value>
+  </data>
+  <data name="NewsletterSection_SubscribeButton_Label" xml:space="preserve">
+    <value>Subscribe</value>
+  </data>
+  <data name="NewsletterSection_Title" xml:space="preserve">
+    <value>Subscribe for new issues</value>
+  </data>
+  <data name="PortfolioSection_Filter_All" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="PortfolioSection_SubTitle" xml:space="preserve">
+    <value>Browse previous &lt;span&gt;issues&lt;/span&gt;</value>
+  </data>
+  <data name="PortfolioSection_Title" xml:space="preserve">
+    <value>Issues</value>
   </data>
   <data name="SiteRole_Administrator" xml:space="preserve">
     <value>Administrator</value>
@@ -176,6 +485,39 @@
   </data>
   <data name="SiteRole_Users" xml:space="preserve">
     <value>Users</value>
+  </data>
+  <data name="Team_B.Yanev_Member" xml:space="preserve">
+    <value>доц. д-р Борян Янев</value>
+  </data>
+  <data name="Team_F.Boykova_Member" xml:space="preserve">
+    <value>доц. д-р Фани Бойкова</value>
+  </data>
+  <data name="Team_I.Peleva_Member" xml:space="preserve">
+    <value>проф. дфн Инна Пелева</value>
+  </data>
+  <data name="Team_M.Vlashki_Member" xml:space="preserve">
+    <value>доц. д-р Младен Влашки</value>
+  </data>
+  <data name="Team_S.Mathewson_Member" xml:space="preserve">
+    <value>доц. д-р Снежа Цонева-Матюсън</value>
+  </data>
+  <data name="Team_SubTitle" xml:space="preserve">
+    <value>Journal's &lt;span&gt;team&lt;/span&gt;</value>
+  </data>
+  <data name="Team_Title" xml:space="preserve">
+    <value>Team</value>
+  </data>
+  <data name="Team_V.Markovska_Member" xml:space="preserve">
+    <value>проф. д-р Вера Маровска</value>
+  </data>
+  <data name="Team_Y.Rowland_Member" xml:space="preserve">
+    <value>доц. д-р Яна Роуланд</value>
+  </data>
+  <data name="Team_Z.Ivanov_Member" xml:space="preserve">
+    <value>доц. д-р Живко Иванов</value>
+  </data>
+  <data name="Version_Label" xml:space="preserve">
+    <value>version</value>
   </data>
   <data name="Welcome_Message" xml:space="preserve">
     <value>Welcome to &lt;span&gt;LInC.uni-plovdiv.bg&lt;/span&gt;</value>
