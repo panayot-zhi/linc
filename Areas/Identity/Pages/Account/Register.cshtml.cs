@@ -5,7 +5,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Text.Encodings.Web;
+using linc.Contracts;
 using linc.Data;
+using linc.Services;
 using linc.Utility;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -26,6 +28,7 @@ namespace linc.Areas.Identity.Pages.Account
         private readonly IUserStore<ApplicationUser> _userStore;
         private readonly IUserEmailStore<ApplicationUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
+        private readonly ILocalizationService _localizer;
         private readonly IEmailSender _emailSender;
 
         public RegisterModel(
@@ -34,6 +37,7 @@ namespace linc.Areas.Identity.Pages.Account
             RoleManager<IdentityRole> roleManager,
             IUserStore<ApplicationUser> userStore,
             ILogger<RegisterModel> logger,
+            ILocalizationService localizer,
             IEmailSender emailSender)
         {
             _userManager = userManager;
@@ -41,6 +45,7 @@ namespace linc.Areas.Identity.Pages.Account
             _emailStore = GetEmailStore();
             _signInManager = signInManager;
             _emailSender = emailSender;
+            _localizer = localizer;
             _roleManager = roleManager;
             _logger = logger;
         }
@@ -54,42 +59,42 @@ namespace linc.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Display(Name = "Име")]
-            [Required(ErrorMessage = "Моля, въведете име.")]
-            [MaxLength(255, ErrorMessage = "Въведеното име надвишава позволеният размер ({1}).")]
+            [Display(Name = "RegisterModel_FirstName", ResourceType = typeof(Resources.SharedResource))]
+            [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+            [MaxLength(255, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
             // [RegularExpression(SiteConstant.CyrillicNamePattern, ErrorMessage = "Моля, въведете име на кирилица.")]
             public string FirstName { get; set; }
 
-            [Display(Name = "Фамилия")]
-            [Required(ErrorMessage = "Моля, въведете фамилия.")]
-            [MaxLength(255, ErrorMessage = "Въведеното име надвишава позволеният размер ({1}).")]
+            [Display(Name = "RegisterModel_LastName", ResourceType = typeof(Resources.SharedResource))]
+            [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+            [MaxLength(255, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
             // [RegularExpression(SiteConstant.CyrillicNamePattern, ErrorMessage = "Моля, въведете име на кирилица.")]
             public string LastName { get; set; }
 
-            [Display(Name = "Псевдоним")]
-            [MaxLength(126, ErrorMessage = "Въведеният псевдоним надвишава позволеният размер ({1}).")]
-            [Required(ErrorMessage = "Моля, въведете псевдоним.")]
+            [Display(Name = "RegisterModel_UserName", ResourceType = typeof(Resources.SharedResource))]
+            [MaxLength(127, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+            [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
             public string UserName { get; set; }
 
-            [Display(Name = "Email")]
-            [Required(ErrorMessage = "Моля, въведете email адрес.")]
-            [EmailAddress(ErrorMessage = "Моля, въведете валиден email адрес.")]
-            [MaxLength(255, ErrorMessage = "Въведеният email надвишава позволеният размер ({1}).")]
+            [Display(Name = "RegisterModel_Email", ResourceType = typeof(Resources.SharedResource))]
+            [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+            [EmailAddress(ErrorMessageResourceName = "EmailAddressAttribute_Invalid", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+            [MaxLength(255, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
             public string Email { get; set; }
 
-            [Required(ErrorMessage = "Моля, въведете парола.")]
-            [StringLength(100, ErrorMessage = "Полето за {0} трябва да е с поне {2} и най-много {1} символа дължина.", MinimumLength = 6)]
+            [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+            [StringLength(100, MinimumLength = 6, ErrorMessageResourceName = "StringLengthAttribute_ValidationErrorIncludingMinimum", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
             [DataType(DataType.Password)]
-            [Display(Name = "Парола")]
+            [Display(Name = "RegisterModel_Password", ResourceType = typeof(Resources.SharedResource))]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Потвърди")]
-            [Compare("Password", ErrorMessage = "Двете пароли не съвпадат.")]
+            [Display(Name = "RegisterModel_ConfirmPassword", ResourceType = typeof(Resources.SharedResource))]
+            [Compare("Password", ErrorMessageResourceName = "CompareAttribute_MustMatch", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
             public string ConfirmPassword { get; set; }
 
-            [Required(ErrorMessage = "За да се регистрирате се изисква да сте прочели и да приемате общите условия на сайта и политиката му за поверителност.")]
-            [Display(Name = "Прочетох и приемам Политиката за поверителност на сайта и Общите му условия")]
+            [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+            [Display(Name = "RegisterModel_PrivacyConsent", ResourceType = typeof(Resources.SharedResource))]
             public bool PrivacyConsent { get; set; }
         }
 
@@ -112,8 +117,7 @@ namespace linc.Areas.Identity.Pages.Account
 
             if (Input.PrivacyConsent != true)
             {
-                // TODO: i18n
-                ModelState.AddModelError(string.Empty, "За да се регистрирате се изисква да сте прочели и да приемате общите условия на сайта и политиката му за поверителност.");
+                ModelState.AddModelError(string.Empty, _localizer["RegisterModel_PrivacyConsent_ErrorMessage"].Value);
             }
 
             if (!ModelState.IsValid)
