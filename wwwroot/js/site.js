@@ -43,16 +43,20 @@
         let form = e.target;
         let $form = $(e.target);
 
-        // check with vanilla js
-        if (form.checkValidity()) {
-            window.showPreloader();
+        // check validity of the form 
+        // with jquery validate unobtrusive
+        if ($form.valid && !$form.valid()) {
             return;
         }
 
-        // check for jquery validate
-        if ($form.valid && $form.valid()) {
-            window.showPreloader();
+        // check validity of the form
+        // with vanilla javascript
+        if (!form.checkValidity()) {
+            return;
         }
+
+        // well - submit then
+        window.showPreloader();
     }
 
     // I copy-pasted this from sumwhere
