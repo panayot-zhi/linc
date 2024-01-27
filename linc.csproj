@@ -67,6 +67,11 @@
 	</Target>
 
 	<ItemGroup>
+	  <Compile Update="Resources\IdentityErrorMessage.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>IdentityErrorMessage.resx</DependentUpon>
+	  </Compile>
 	  <Compile Update="Resources\SharedResource.Designer.cs">
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
@@ -92,6 +97,10 @@
   </ItemGroup>
 
 	<ItemGroup>
+	  <EmbeddedResource Update="Resources\IdentityErrorMessage.resx">
+	    <Generator>PublicResXFileCodeGenerator</Generator>
+	    <LastGenOutput>IdentityErrorMessage.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
 	  <EmbeddedResource Update="Resources\SharedResource.resx">
 	    <Generator>PublicResXFileCodeGenerator</Generator>
 	    <LastGenOutput>SharedResource.Designer.cs</LastGenOutput>

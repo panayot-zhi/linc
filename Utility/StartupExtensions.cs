@@ -16,7 +16,7 @@ public static class StartupExtensions
     public static IServiceCollection AddApplicationIdentity(this IServiceCollection services)
     {
         services.AddIdentity<ApplicationUser, IdentityRole>()
-            //.AddErrorDescriber<LocalizedIdentityErrorDescriber>()
+            .AddErrorDescriber<LocalizedIdentityErrorDescriber>()
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders()
             .AddDefaultUI();
