@@ -88,7 +88,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &apos;{0}&apos; and &apos;{1}&apos; do not match..
+        ///   Looks up a localized string similar to &apos;{0}&apos; и &apos;{1}&apos; трябва да съвпадат..
         /// </summary>
         public static string CompareAttribute_MustMatch {
             get {
@@ -169,7 +169,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is not valid..
+        ///   Looks up a localized string similar to Полето {0} е невалидно..
         /// </summary>
         public static string CustomValidationAttribute_ValidationError {
             get {
@@ -205,7 +205,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The {0} field is not a valid e-mail address..
+        ///   Looks up a localized string similar to Полето {0} не е валиден e-mail адрес..
         /// </summary>
         public static string EmailAddressAttribute_Invalid {
             get {
@@ -259,7 +259,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The field {0} must be a string or array type with a maximum length of &apos;{1}&apos;..
+        ///   Looks up a localized string similar to Полето {0} трябва да е с максимална дължина &apos;{1}&apos;..
         /// </summary>
         public static string MaxLengthAttribute_ValidationError {
             get {
@@ -367,7 +367,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The maximum length must be a nonnegative integer..
+        ///   Looks up a localized string similar to Максималната дължина трябва да е неотрицателно число..
         /// </summary>
         public static string StringLengthAttribute_InvalidMaxLength {
             get {
@@ -376,7 +376,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The field {0} must be a string with a maximum length of {1}..
+        ///   Looks up a localized string similar to Полето {0} трябва да е с максимална дължина от {1}..
         /// </summary>
         public static string StringLengthAttribute_ValidationError {
             get {
@@ -385,7 +385,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The field {0} must be a string with a minimum length of {2} and a maximum length of {1}..
+        ///   Looks up a localized string similar to Полето {0} трябва да е с минимална дължина от {2} и максимална {1}..
         /// </summary>
         public static string StringLengthAttribute_ValidationErrorIncludingMinimum {
             get {

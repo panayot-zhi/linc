@@ -483,6 +483,64 @@
   <data name="PortfolioSection_Title" xml:space="preserve">
     <value>Броеве</value>
   </data>
+  <data name="RegisterModel_ConfirmPassword" xml:space="preserve">
+    <value>Потвърди</value>
+  </data>
+  <data name="RegisterModel_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="RegisterModel_FirstName" xml:space="preserve">
+    <value>Име</value>
+  </data>
+  <data name="RegisterModel_LastName" xml:space="preserve">
+    <value>Фамилия</value>
+  </data>
+  <data name="RegisterModel_Password" xml:space="preserve">
+    <value>Парола</value>
+  </data>
+  <data name="RegisterModel_PrivacyConsent" xml:space="preserve">
+    <value>Прочетох и приемам Политиката за поверителност на сайта и Общите му условия</value>
+  </data>
+  <data name="RegisterModel_PrivacyConsent_ErrorMessage" xml:space="preserve">
+    <value>За да се регистрирате се изисква да сте прочели и да приемате общите условия на сайта и политиката му за поверителност.</value>
+  </data>
+  <data name="RegisterModel_UserName" xml:space="preserve">
+    <value>Псевдоним</value>
+  </data>
+  <data name="RegisterPage_ExternalProviders" xml:space="preserve">
+    <value>Регистрация с външна услуга</value>
+  </data>
+  <data name="RegisterPage_ExternalProvider_Title" xml:space="preserve">
+    <value>Вход с {0}</value>
+  </data>
+  <data name="RegisterPage_NoExternalProviders" xml:space="preserve">
+    <value>Няма конфигурирани външни услуги за регистрация за сега.</value>
+  </data>
+  <data name="RegisterPage_RegisterButton_Label" xml:space="preserve">
+    <value>Регистрация</value>
+  </data>
+  <data name="RegisterPage_Requirements" xml:space="preserve">
+    <value>&lt;p&gt;&lt;small&gt;Да потвърдите email адресът, който сте Въвели. Ще Ви изпратим писмо за потвърждение.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Вашата парола трябва да съдържа:&lt;/small&gt;&lt;/p&gt;
+&lt;ul&gt;
+    &lt;li&gt;&lt;small&gt;символи &lt;span class="text-decoration-underline"&gt;единствено на латиница&lt;/span&gt;&lt;/small&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;small&gt;поне шест символа&lt;/small&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;small&gt;поне четири &lt;span class="text-decoration-underline"&gt;различни&lt;/span&gt; символа&lt;/small&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;small&gt;поне една главна буква&lt;/small&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;small&gt;поне една цифра&lt;/small&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;small&gt;Моля, не използвайте пароли, които използвате и другаде.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Всички настройки по потребителският Ви акаунт &lt;span class="text-decoration-underline"&gt;могат да бъдат променяни&lt;/span&gt; и след регистрация.&lt;/small&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="RegisterPage_Requirements_Title" xml:space="preserve">
+    <value>За да създадем Вашият потребителски акаунт е нужно</value>
+  </data>
+  <data name="RegisterPage_SubTitle" xml:space="preserve">
+    <value>Създаване на акаунт</value>
+  </data>
+  <data name="RegisterPage_Title" xml:space="preserve">
+    <value>Регистрация</value>
+  </data>
   <data name="SiteRole_Administrator" xml:space="preserve">
     <value>Администратор</value>
   </data>

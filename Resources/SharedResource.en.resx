@@ -489,6 +489,64 @@
   <data name="PortfolioSection_Title" xml:space="preserve">
     <value>Issues</value>
   </data>
+  <data name="RegisterModel_ConfirmPassword" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="RegisterModel_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="RegisterModel_FirstName" xml:space="preserve">
+    <value>First name</value>
+  </data>
+  <data name="RegisterModel_LastName" xml:space="preserve">
+    <value>Last name</value>
+  </data>
+  <data name="RegisterModel_Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="RegisterModel_PrivacyConsent" xml:space="preserve">
+    <value>I've read and accept the Privacy policy and the Terms and conditions of the site</value>
+  </data>
+  <data name="RegisterModel_PrivacyConsent_ErrorMessage" xml:space="preserve">
+    <value>To register, please, read and accept the Terms and conditions of the site as well as it's Privacy policy.</value>
+  </data>
+  <data name="RegisterModel_UserName" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="RegisterPage_ExternalProviders" xml:space="preserve">
+    <value>Register with an external service</value>
+  </data>
+  <data name="RegisterPage_ExternalProvider_Title" xml:space="preserve">
+    <value>Login with {0}</value>
+  </data>
+  <data name="RegisterPage_NoExternalProviders" xml:space="preserve">
+    <value>There are no configured external services available to register yet.</value>
+  </data>
+  <data name="RegisterPage_RegisterButton_Label" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="RegisterPage_Requirements" xml:space="preserve">
+    <value>&lt;p&gt;&lt;small&gt;To confirm your e-mail address. We will send you a confirmation letter on the email provided.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Your password must contain:&lt;/small&gt;&lt;/p&gt;
+&lt;ul&gt;
+    &lt;li&gt;&lt;small&gt;symbols in &lt;span class="text-decoration-underline"&gt;latin&lt;/span&gt; only&lt;/small&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;small&gt;at least six symbols&lt;/small&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;small&gt;at least four &lt;span class="text-decoration-underline"&gt;distinct&lt;/span&gt; symbols&lt;/small&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;small&gt;at least one capital letter&lt;/small&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;small&gt;at least one digit&lt;/small&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;small&gt;Please, don't reuse passwords.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;All user settings &lt;span class="text-decoration-underline"&gt;can be changed&lt;/span&gt; later on.&lt;/small&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="RegisterPage_Requirements_Title" xml:space="preserve">
+    <value>To create your account we require the following</value>
+  </data>
+  <data name="RegisterPage_SubTitle" xml:space="preserve">
+    <value>Create an account</value>
+  </data>
+  <data name="RegisterPage_Title" xml:space="preserve">
+    <value>Register</value>
+  </data>
   <data name="SiteRole_Administrator" xml:space="preserve">
     <value>Administrator</value>
   </data>

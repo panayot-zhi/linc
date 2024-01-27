@@ -127,7 +127,7 @@
     <value>The property {0}.{1} could not be found.</value>
   </data>
   <data name="CompareAttribute_MustMatch" xml:space="preserve">
-    <value>'{0}' and '{1}' do not match.</value>
+    <value>'{0}' и '{1}' трябва да съвпадат.</value>
   </data>
   <data name="CompareAttribute_UnknownProperty" xml:space="preserve">
     <value>Could not find a property named {0}.</value>
@@ -154,7 +154,7 @@
     <value>The custom validation type '{0}' must be public.</value>
   </data>
   <data name="CustomValidationAttribute_ValidationError" xml:space="preserve">
-    <value>{0} is not valid.</value>
+    <value>Полето {0} е невалидно.</value>
   </data>
   <data name="CustomValidationAttribute_ValidatorType_Required" xml:space="preserve">
     <value>The CustomValidationAttribute.ValidatorType was not specified.</value>
@@ -166,7 +166,7 @@
     <value>The {0} property has not been set.  Use the {1} method to get the value.</value>
   </data>
   <data name="EmailAddressAttribute_Invalid" xml:space="preserve">
-    <value>The {0} field is not a valid e-mail address.</value>
+    <value>Полето {0} не е валиден e-mail адрес.</value>
   </data>
   <data name="EnumDataTypeAttribute_TypeCannotBeNull" xml:space="preserve">
     <value>The type provided for EnumDataTypeAttribute cannot be null.</value>
@@ -184,7 +184,7 @@
     <value>MaxLengthAttribute must have a Length value that is greater than zero. Use MaxLength() without parameters to indicate that the string or array can have the maximum allowable length.</value>
   </data>
   <data name="MaxLengthAttribute_ValidationError" xml:space="preserve">
-    <value>The field {0} must be a string or array type with a maximum length of '{1}'.</value>
+    <value>Полето {0} трябва да е с максимална дължина '{1}'.</value>
   </data>
   <data name="MinLengthAttribute_InvalidMinLength" xml:space="preserve">
     <value>MinLengthAttribute must have a Length value that is zero or greater.</value>
@@ -220,13 +220,13 @@
     <value>Полето {0} е задължително.</value>
   </data>
   <data name="StringLengthAttribute_InvalidMaxLength" xml:space="preserve">
-    <value>The maximum length must be a nonnegative integer.</value>
+    <value>Максималната дължина трябва да е неотрицателно число.</value>
   </data>
   <data name="StringLengthAttribute_ValidationError" xml:space="preserve">
-    <value>The field {0} must be a string with a maximum length of {1}.</value>
+    <value>Полето {0} трябва да е с максимална дължина от {1}.</value>
   </data>
   <data name="StringLengthAttribute_ValidationErrorIncludingMinimum" xml:space="preserve">
-    <value>The field {0} must be a string with a minimum length of {2} and a maximum length of {1}.</value>
+    <value>Полето {0} трябва да е с минимална дължина от {2} и максимална {1}.</value>
   </data>
   <data name="UIHintImplementation_ControlParameterKeyIsNotAString" xml:space="preserve">
     <value>The key parameter at position {0} with value '{1}' is not a string. Every key control parameter must be a string.</value>
