@@ -243,6 +243,10 @@
   <data name="ContactSection_SubmitButton_Label" xml:space="preserve">
     <value>Submit</value>
   </data>
+  <data name="ContactSection_SubmitDescription" xml:space="preserve">
+    <value>&lt;p&gt;Please, read the &lt;a href="{0}"&gt;Technical requirements&lt;/a&gt; for publication prior to submitting and fill, sign and send along a &lt;a href="{1}"&gt;Publication agreement&lt;/a&gt; for your manuscript to be published.&lt;/p&gt;
+&lt;p&gt;Accepted file formats include .doc, .docx.&lt;/p&gt;</value>
+  </data>
   <data name="ContactSection_SubTitle" xml:space="preserve">
     <value>Submit a publication</value>
   </data>
@@ -323,6 +327,13 @@
   </data>
   <data name="Footer_UsefulLinks_Title" xml:space="preserve">
     <value>Useful links</value>
+  </data>
+  <data name="ForgotPasswordPage_Procedure" xml:space="preserve">
+    <value>&lt;p&gt;&lt;small&gt;You will receive an email with a reset link on the email provided.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Follow the link and enter your new password.&lt;/small&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="ForgotPasswordPage_Procedure_Title" xml:space="preserve">
+    <value>To reset your password:</value>
   </data>
   <data name="ForgotPasswordPage_ResetButton_Label" xml:space="preserve">
     <value>Reset</value>

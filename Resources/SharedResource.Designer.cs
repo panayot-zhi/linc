@@ -439,6 +439,16 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;p&gt;Моля, запознайте се с &lt;a href=&quot;{0}&quot;&gt;Техническите изисквания за публикуване&lt;/a&gt; преди да изпратите ръкописа си и попълнете, подпишете и изпратете заедно с ръкописа &lt;a href=&quot;{1}&quot;&gt;Декларация за съгласие&lt;/a&gt; статуята/студията да бъде издадена.&lt;/p&gt;
+        ///&lt;p&gt;Приеманите от редакцията файлове са с разширение .doc, .docx.&lt;/p&gt;.
+        /// </summary>
+        public static string ContactSection_SubmitDescription {
+            get {
+                return ResourceManager.GetString("ContactSection_SubmitDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Изпращане на ръкопис.
         /// </summary>
         public static string ContactSection_SubTitle {
@@ -678,6 +688,25 @@ namespace linc.Resources {
         public static string Footer_UsefulLinks_Title {
             get {
                 return ResourceManager.GetString("Footer_UsefulLinks_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;p&gt;&lt;small&gt;Ще Ви изпратим линк за възстановяване на email адресът, който въведете.&lt;/small&gt;&lt;/p&gt;
+        ///&lt;p&gt;&lt;small&gt;Последвайте връзката и въведете нова парола.&lt;/small&gt;&lt;/p&gt;.
+        /// </summary>
+        public static string ForgotPasswordPage_Procedure {
+            get {
+                return ResourceManager.GetString("ForgotPasswordPage_Procedure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to За да възстановим Вашата парола:.
+        /// </summary>
+        public static string ForgotPasswordPage_Procedure_Title {
+            get {
+                return ResourceManager.GetString("ForgotPasswordPage_Procedure_Title", resourceCulture);
             }
         }
         

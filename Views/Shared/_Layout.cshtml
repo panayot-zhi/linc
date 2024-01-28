@@ -285,7 +285,20 @@
         } 
         else if ("Identity".Equals(ViewData["Area"]))
         {
-            <partial name="_Newsletter"/>
+            <div class="footer-newsletter">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            @HtmlLocalizer["ContactSection_SubmitDescription", 
+                                Url.Content($"~/docs/{currentCulture}/{SiteConstant.TechnicalRequirementsFileName}"), 
+                                Url.Content($"~/docs/{SiteConstant.PublicationAgreementFileName}")]
+                            <div class="text-center">
+                                <a class="w-50 btn btn-lg btn-primary" target="_blank" href="mailto:@SiteConstant.ReviewsEmail">@HtmlLocalizer["ContactSection_SubmitButton_Label"]</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         }
 
         <div class="footer-top">
