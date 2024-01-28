@@ -56,6 +56,7 @@ namespace linc.Controllers
 
         public IActionResult Submit()
         {
+            throw new NotImplementedException();
             return View();
         }
 
@@ -108,13 +109,13 @@ namespace linc.Controllers
         }
 
         [ResponseCache(CacheProfileName = "NoCache")]
-        public IActionResult Error(string code)
+        public IActionResult Error(string id)
         {
-            var errorViewModel = GetErrorViewModel(code);
+            var errorViewModel = GetErrorViewModel(id);
 
             if (Request.IsAjax())
             {
-                if ("401".Equals(code))
+                if ("401".Equals(id))
                 {
                     if (User.Identity is { IsAuthenticated: false })
                     {
@@ -122,7 +123,7 @@ namespace linc.Controllers
                     }
                 }
 
-                if (int.TryParse(code, out var candidate))
+                if (int.TryParse(id, out var candidate))
                 {
                     return StatusCode(candidate);
                 }
@@ -133,7 +134,7 @@ namespace linc.Controllers
                 return StatusCode(500);
             }
 
-            switch (code)
+            switch (id)
             {
                 case "400":
                 {
@@ -190,12 +191,12 @@ namespace linc.Controllers
 
             var exceptionHandlerPathFeature = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
 
-            if (string.IsNullOrEmpty(code))
+            if (string.IsNullOrEmpty(id))
             {
-                code = "500";
+                id = "500";
             }
 
-            errorViewModel = GetErrorViewModel(code, exceptionHandlerPathFeature);
+            errorViewModel = GetErrorViewModel(id, exceptionHandlerPathFeature);
 
             _logger.LogError("500 InternalServerError (#{RequestId}) at '{Path}': {ErrorMessage}",
                 errorViewModel.RequestId, errorViewModel.Path, errorViewModel.Error);
@@ -218,18 +219,25 @@ namespace linc.Controllers
                 errorViewModel.RequestId = Activity.Current.Id;
             }
 
+            if (!string.IsNullOrEmpty(Request.Query["ReturnUrl"]))
+            {
+                errorViewModel.Path = Request.Query["ReturnUrl"];
+            }
+
             if (statusCodeReExecuteFeature != null)
             {
                 errorViewModel.Path = statusCodeReExecuteFeature.GetFullPath();
             }
-            else if (exceptionHandlerPathFeature != null)
+
+            if (exceptionHandlerPathFeature != null)
             {
                 var error = exceptionHandlerPathFeature.Error;
                 errorViewModel.Path = exceptionHandlerPathFeature.Path;
                 errorViewModel.Error = error.GatherInternals();
                 errorViewModel.ShortMessage = error.Message;
                 errorViewModel.StackTrace = error.StackTrace;
-            }
+            } 
+            
 
             return errorViewModel;
         }

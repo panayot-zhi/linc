@@ -189,7 +189,7 @@ public static class StartupExtensions
             // not set here, ASP.NET Core 
             // will default to 
             // /Account/AccessDenied
-            options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+            options.AccessDeniedPath = "/Home/Error/403";
 
             // allow obtaining new ticket
             // on a new user activity
@@ -224,7 +224,7 @@ public static class StartupExtensions
             // not set here, ASP.NET Core 
             // will default to 
             // /Account/AccessDenied
-            options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+            options.AccessDeniedPath = "/Home/Error/403";
 
             // allow obtaining new ticket
             // on a new user activity
