@@ -124,24 +124,6 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Нямате достъп до поисканата страница..
-        /// </summary>
-        public static string AccessDenied_Description {
-            get {
-                return ResourceManager.GetString("AccessDenied_Description", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ограничен достъп.
-        /// </summary>
-        public static string AccessDenied_Title {
-            get {
-                return ResourceManager.GetString("AccessDenied_Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Проф. дн Александер Войчех Миколайчак.
         /// </summary>
         public static string Board_Aleksander_Mikołajczak_Member {
