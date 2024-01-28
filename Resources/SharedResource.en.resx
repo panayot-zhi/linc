@@ -282,6 +282,9 @@
   <data name="Footer_Address_Street" xml:space="preserve">
     <value>King Asen St 24, fl. 3, room 325</value>
   </data>
+  <data name="Footer_Address_Title" xml:space="preserve">
+    <value>Editorial address</value>
+  </data>
   <data name="Footer_Admin_Label" xml:space="preserve">
     <value>Administrator</value>
   </data>
@@ -320,6 +323,15 @@
   </data>
   <data name="Footer_UsefulLinks_Title" xml:space="preserve">
     <value>Useful links</value>
+  </data>
+  <data name="ForgotPasswordPage_ResetButton_Label" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="ForgotPasswordPage_SubTitle" xml:space="preserve">
+    <value>Forgot password?</value>
+  </data>
+  <data name="ForgotPasswordPage_Title" xml:space="preserve">
+    <value>Password reset</value>
   </data>
   <data name="GetStarted_Message" xml:space="preserve">
     <value>Learn more</value>
@@ -392,6 +404,9 @@
   </data>
   <data name="LoginPage_Title" xml:space="preserve">
     <value>Log in</value>
+  </data>
+  <data name="Login_InvalidLoginAttempt" xml:space="preserve">
+    <value>Invalid login attempt.</value>
   </data>
   <data name="Logo_Long" xml:space="preserve">
     <value>Linguistics, Interpretations, Concepts</value>
@@ -546,6 +561,9 @@
   </data>
   <data name="RegisterPage_Title" xml:space="preserve">
     <value>Register</value>
+  </data>
+  <data name="Register_EmailConfirmation_Required" xml:space="preserve">
+    <value>We have sent you a letter of confirmation. Please, prior to entering, confirm your email with the link inside it.</value>
   </data>
   <data name="SiteRole_Administrator" xml:space="preserve">
     <value>Administrator</value>

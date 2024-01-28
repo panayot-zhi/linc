@@ -556,6 +556,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Адрес на редакцията.
+        /// </summary>
+        public static string Footer_Address_Title {
+            get {
+                return ResourceManager.GetString("Footer_Address_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Администратор.
         /// </summary>
         public static string Footer_Admin_Label {
@@ -673,6 +682,33 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Възстанови.
+        /// </summary>
+        public static string ForgotPasswordPage_ResetButton_Label {
+            get {
+                return ResourceManager.GetString("ForgotPasswordPage_ResetButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Забравена парола?.
+        /// </summary>
+        public static string ForgotPasswordPage_SubTitle {
+            get {
+                return ResourceManager.GetString("ForgotPasswordPage_SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Възстановяване на парола.
+        /// </summary>
+        public static string ForgotPasswordPage_Title {
+            get {
+                return ResourceManager.GetString("ForgotPasswordPage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Научи повече.
         /// </summary>
         public static string GetStarted_Message {
@@ -777,6 +813,15 @@ namespace linc.Resources {
         public static string LibraryIndex_Title {
             get {
                 return ResourceManager.GetString("LibraryIndex_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Невалиден опит за вход..
+        /// </summary>
+        public static string Login_InvalidLoginAttempt {
+            get {
+                return ResourceManager.GetString("Login_InvalidLoginAttempt", resourceCulture);
             }
         }
         
@@ -1155,6 +1200,15 @@ namespace linc.Resources {
         public static string PortfolioSection_Title {
             get {
                 return ResourceManager.GetString("PortfolioSection_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изпратихме Ви писмо, което съдържа връзка за потвърждение на email адресът Ви. Моля, преди да влезете в сайта, потвърдете електронна си поща..
+        /// </summary>
+        public static string Register_EmailConfirmation_Required {
+            get {
+                return ResourceManager.GetString("Register_EmailConfirmation_Required", resourceCulture);
             }
         }
         

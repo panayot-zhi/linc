@@ -7,7 +7,6 @@ using System.Text;
 using System.Text.Encodings.Web;
 using linc.Contracts;
 using linc.Data;
-using linc.Services;
 using linc.Utility;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -62,13 +61,11 @@ namespace linc.Areas.Identity.Pages.Account
             [Display(Name = "RegisterModel_FirstName", ResourceType = typeof(Resources.SharedResource))]
             [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
             [MaxLength(255, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
-            // [RegularExpression(SiteConstant.CyrillicNamePattern, ErrorMessage = "Моля, въведете име на кирилица.")]
             public string FirstName { get; set; }
 
             [Display(Name = "RegisterModel_LastName", ResourceType = typeof(Resources.SharedResource))]
             [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
             [MaxLength(255, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
-            // [RegularExpression(SiteConstant.CyrillicNamePattern, ErrorMessage = "Моля, въведете име на кирилица.")]
             public string LastName { get; set; }
 
             [Display(Name = "RegisterModel_UserName", ResourceType = typeof(Resources.SharedResource))]
@@ -152,6 +149,7 @@ namespace linc.Areas.Identity.Pages.Account
                     values: new { area = "Identity", userId = userId, code = code, returnUrl = ReturnUrl },
                     protocol: Request.Scheme);
 
+                // TODO: Email templates
                 await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                     $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
@@ -159,12 +157,11 @@ namespace linc.Areas.Identity.Pages.Account
                 {
                     return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = ReturnUrl });
                 }
-                else
-                {
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    return LocalRedirect(ReturnUrl);
-                }
+
+                await _signInManager.SignInAsync(user, isPersistent: false);
+                return LocalRedirect(ReturnUrl);
             }
+
             foreach (var error in result.Errors)
             {
                 ModelState.AddModelError(string.Empty, error.Description);
@@ -192,6 +189,7 @@ namespace linc.Areas.Identity.Pages.Account
             {
                 throw new NotSupportedException("The default UI requires a user store with email support.");
             }
+
             return (IUserEmailStore<ApplicationUser>)_userStore;
         }
     }

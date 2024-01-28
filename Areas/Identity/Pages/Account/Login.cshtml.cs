@@ -3,6 +3,7 @@
 #nullable disable
 
 using System.ComponentModel.DataAnnotations;
+using linc.Contracts;
 using linc.Data;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
@@ -15,11 +16,16 @@ namespace linc.Areas.Identity.Pages.Account
     public class LoginModel : PageModel
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly ILocalizationService _localizer;
         private readonly ILogger<LoginModel> _logger;
 
-        public LoginModel(SignInManager<ApplicationUser> signInManager, ILogger<LoginModel> logger)
+
+        public LoginModel(SignInManager<ApplicationUser> signInManager,
+            ILocalizationService localizer,
+            ILogger<LoginModel> logger)
         {
             _signInManager = signInManager;
+            _localizer = localizer;
             _logger = logger;
         }
 
@@ -117,15 +123,12 @@ namespace linc.Areas.Identity.Pages.Account
 
             if (result.IsNotAllowed)
             {
-                // TODO: i18n
-                ModelState.AddModelError(string.Empty, "Изпратихме Ви писмо, което съдържа връзка за потвърждение на email адресът Ви. " +
-                                                       "Моля, преди да влезете в сайта, потвърдете електронна си поща.");
+                ModelState.AddModelError(string.Empty, _localizer["Register_EmailConfirmation_Required"].Value);
                 return Page();
             }
 
-            // TODO: i18n
             // If we got this far, something failed, redisplay form
-            ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+            ModelState.AddModelError(string.Empty, _localizer["Login_InvalidLoginAttempt"].Value);
             return Page();
         }
 
