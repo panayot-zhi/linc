@@ -104,36 +104,52 @@
             e.stopPropagation();
             e.stopImmediatePropagation();
 
-            if (!confirm("Сигурни ли сте че искате да запазите?")) {
-                return false;
-            }
-
-            window.showPreloader();
-
-            let request = {
-                key: e.target.id,
-                value: e.target.innerText,
-                editedById: "xxx"
-            };
-
-            $.ajax({
-
-                type: "POST",
-                contentType: "application/json",
-                url: "/home/set-string-resource",
-                data: JSON.stringify(request),
-
-                success: function (response) {
-                    window.location.reload(true);
-                },
-
-                error: function (xhr, status, error) {
-                    window.hidePreloader();
-                    alert(`Възникна грешка при запис, моля свържете се с администратор: ${status} - ${error}`);
+            Swal.fire({
+                title: window.jsLocalizer["SetStringResource_Dialog_Title"],
+                text: window.jsLocalizer["SetStringResource_Dialog_Description"],
+                icon: "question",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+            }).then((result) => {
+                if (!result.isConfirmed) {
+                    return;
                 }
 
-            });
+                window.showPreloader();
 
+                let request = {
+                    key: e.target.id,
+                    value: e.target.innerText,
+                    editedById: "xxx"
+                };
+
+                $.ajax({
+
+                    type: "POST",
+                    contentType: "application/json",
+                    url: "/home/set-string-resource",
+                    data: JSON.stringify(request),
+
+                    success: function (response) {
+                        window.location.reload(true);
+                    },
+
+                    error: function (xhr, status, error) {
+                        window.hidePreloader();
+
+                        Swal.fire({
+                            icon: "error",
+                            title: window.jsLocalizer["AlertMessage_Error_Title"],
+                            html: window.jsLocalizer["SetStringResource_Error"] + `<br /> ${status} - ${error}`,
+                            footer: window.jsLocalizer["AlertMessage_Error_Footer"]
+                        });
+                    }
+
+                });
+
+            });
+            
             return false;
         }
     }
