@@ -2,25 +2,27 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using linc.Contracts;
 using linc.Data;
-using Microsoft.AspNetCore.Authorization;
+using linc.Models.Enumerations;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 
 namespace linc.Areas.Identity.Pages.Account
 {
-    public class ConfirmEmailModel : PageModel
+    public class ConfirmEmailModel : BasePageModel
     {
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly ILogger<ConfirmEmailModel> _logger;
 
-        public ConfirmEmailModel(UserManager<ApplicationUser> userManager)
+        public ConfirmEmailModel(UserManager<ApplicationUser> userManager, 
+            ILogger<ConfirmEmailModel> logger, 
+            ILocalizationService localizer)
+        : base(localizer)
         {
+            _logger = logger;
             _userManager = userManager;
         }
 
@@ -30,23 +32,43 @@ namespace linc.Areas.Identity.Pages.Account
         /// </summary>
         [TempData]
         public string StatusMessage { get; set; }
+
         public async Task<IActionResult> OnGetAsync(string userId, string code)
         {
             if (userId == null || code == null)
             {
-                return RedirectToPage("/Index");
+                return Redirect("/");
             }
 
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{userId}'.");
+                _logger.LogWarning("Failed to confirm user '{UserId}' email address with code [{Code}]: User not found",
+                    userId, code);
+
+                return NotFound();
             }
 
             code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
             var result = await _userManager.ConfirmEmailAsync(user, code);
-            StatusMessage = result.Succeeded ? "Thank you for confirming your email." : "Error confirming your email.";
+            if (result.Succeeded)
+            {
+                StatusMessage = LocalizationService["ConfirmEmail_SuccessMessage"].Value;
+                AddAlertMessage(LocalizationService["ConfirmEmail_SuccessMessage"],
+                    type: AlertMessageType.Success);
+            }
+            else
+            {
+                _logger.LogError("Failed to confirm user '{UserId}' email address with code [{Code}]: {ResultErrors}",
+                    userId, code, string.Join(",", result.Errors.Select(x => $"{x.Code} - {x.Description}")));
+                StatusMessage = LocalizationService["ConfirmEmail_ErrorMessage"].Value;
+                AddAlertMessage(LocalizationService["ConfirmEmail_ErrorMessage"],
+                    type: AlertMessageType.Error);
+            }
+
             return Page();
+
+            return Redirect("/");
         }
     }
 }
