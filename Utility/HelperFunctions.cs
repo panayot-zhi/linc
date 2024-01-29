@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Diagnostics;
+﻿using linc.Contracts;
+using linc.Models.Enumerations;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Newtonsoft.Json;
 
 namespace linc.Utility;
 
@@ -70,5 +73,33 @@ public static class HelperFunctions
         }
 
         return default;
+    }
+
+    public static void AddAlertMessage(
+        ITempDataDictionary tempData,
+        ILocalizationService localizationService,
+        string message,
+        string title = "",
+        string footer = "",
+        string position = "center",
+        string confirmButtonText = "OK",
+        AlertMessageType type = AlertMessageType.Info)
+    {
+        if (string.IsNullOrEmpty(title))
+        {
+            title = localizationService[$"AlertMessage_{type}_Title"].Value;
+        }
+
+        var alertMessage = JsonConvert.SerializeObject(new
+        {
+            html = message,
+            icon = type.ToString().ToLowerInvariant(),
+            title,
+            footer,
+            position,
+            confirmButtonText
+        });
+
+        tempData["AlertMessage"] = alertMessage;
     }
 }
