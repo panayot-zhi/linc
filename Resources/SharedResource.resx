@@ -138,6 +138,21 @@
   <data name="AboutSection_Title" xml:space="preserve">
     <value>За списанието</value>
   </data>
+  <data name="AlertMessage_Error_Title" xml:space="preserve">
+    <value>Грешка!</value>
+  </data>
+  <data name="AlertMessage_Info_Title" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AlertMessage_Question_Title" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AlertMessage_Success_Title" xml:space="preserve">
+    <value>Успех!</value>
+  </data>
+  <data name="AlertMessage_Warning_Title" xml:space="preserve">
+    <value>Внимание!</value>
+  </data>
   <data name="Board_Aleksander.Mikołajczak_Member" xml:space="preserve">
     <value>Проф. дн Александер Войчех Миколайчак</value>
   </data>
@@ -569,6 +584,9 @@
   </data>
   <data name="Register_EmailConfirmation_Required" xml:space="preserve">
     <value>Изпратихме Ви писмо, което съдържа връзка за потвърждение на email адресът Ви. Моля, преди да влезете в сайта, потвърдете електронна си поща.</value>
+  </data>
+  <data name="SetStringResource_Success" xml:space="preserve">
+    <value>Текстът беше запазен успешно.</value>
   </data>
   <data name="SiteRole_Administrator" xml:space="preserve">
     <value>Администратор</value>

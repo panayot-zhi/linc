@@ -124,6 +124,51 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Грешка!.
+        /// </summary>
+        public static string AlertMessage_Error_Title {
+            get {
+                return ResourceManager.GetString("AlertMessage_Error_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string AlertMessage_Info_Title {
+            get {
+                return ResourceManager.GetString("AlertMessage_Info_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string AlertMessage_Question_Title {
+            get {
+                return ResourceManager.GetString("AlertMessage_Question_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Успех!.
+        /// </summary>
+        public static string AlertMessage_Success_Title {
+            get {
+                return ResourceManager.GetString("AlertMessage_Success_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Внимание!.
+        /// </summary>
+        public static string AlertMessage_Warning_Title {
+            get {
+                return ResourceManager.GetString("AlertMessage_Warning_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Проф. дн Александер Войчех Миколайчак.
         /// </summary>
         public static string Board_Aleksander_Mikołajczak_Member {
@@ -1389,6 +1434,15 @@ namespace linc.Resources {
         public static string RegisterPage_Title {
             get {
                 return ResourceManager.GetString("RegisterPage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Текстът беше запазен успешно..
+        /// </summary>
+        public static string SetStringResource_Success {
+            get {
+                return ResourceManager.GetString("SetStringResource_Success", resourceCulture);
             }
         }
         
