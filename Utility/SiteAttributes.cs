@@ -15,7 +15,7 @@ namespace linc.Utility
         }
     }
 
-    [AttributeUsage(AttributeTargets.Method)]
+    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
     public class SiteAuthorizeAttribute : AuthorizeAttribute
     {
         /// <summary>

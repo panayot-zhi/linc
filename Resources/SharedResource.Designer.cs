@@ -106,7 +106,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Научете повече &lt;span&gt;за списанието&lt;/span&gt;.
+        ///   Looks up a localized string similar to За списанието.
         /// </summary>
         public static string AboutSection_SubTitle {
             get {
@@ -124,7 +124,70 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Проф. дн Александър Войчех Миколайчак.
+        ///   Looks up a localized string similar to Моля, &lt;a href=&quot;mailto:{0}&quot;&gt;свържете се с администратор&lt;/a&gt; за отстраняване на проблема. .
+        /// </summary>
+        public static string AlertMessage_Error_Footer {
+            get {
+                return ResourceManager.GetString("AlertMessage_Error_Footer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Грешка!.
+        /// </summary>
+        public static string AlertMessage_Error_Title {
+            get {
+                return ResourceManager.GetString("AlertMessage_Error_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string AlertMessage_Info_Title {
+            get {
+                return ResourceManager.GetString("AlertMessage_Info_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        public static string AlertMessage_Question_Title {
+            get {
+                return ResourceManager.GetString("AlertMessage_Question_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Успех!.
+        /// </summary>
+        public static string AlertMessage_Success_Title {
+            get {
+                return ResourceManager.GetString("AlertMessage_Success_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Можете да се &lt;a href=&quot;mailto:{0}&quot;&gt;свържете се с администратор&lt;/a&gt; за повече информация. .
+        /// </summary>
+        public static string AlertMessage_Warning_Footer {
+            get {
+                return ResourceManager.GetString("AlertMessage_Warning_Footer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Внимание!.
+        /// </summary>
+        public static string AlertMessage_Warning_Title {
+            get {
+                return ResourceManager.GetString("AlertMessage_Warning_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Проф. дн Александер Войчех Миколайчак.
         /// </summary>
         public static string Board_Aleksander_Mikołajczak_Member {
             get {
@@ -376,11 +439,38 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Кодекс.
+        ///   Looks up a localized string similar to Етичен Кодекс.
         /// </summary>
         public static string CodexSection_Title {
             get {
                 return ResourceManager.GetString("CodexSection_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Възникна грешка при опит да потвърдим email адресът Ви..
+        /// </summary>
+        public static string ConfirmEmail_ErrorMessage {
+            get {
+                return ResourceManager.GetString("ConfirmEmail_ErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email адресът Ви беше потвърден успешно!.
+        /// </summary>
+        public static string ConfirmEmail_SuccessMessage {
+            get {
+                return ResourceManager.GetString("ConfirmEmail_SuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Потвърждаване на email.
+        /// </summary>
+        public static string ConfirmEmailPage_Title {
+            get {
+                return ResourceManager.GetString("ConfirmEmailPage_Title", resourceCulture);
             }
         }
         
@@ -412,20 +502,20 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Декларация за съгласие.
+        /// </summary>
+        public static string ContactSection_PublicationAgreement_Title {
+            get {
+                return ResourceManager.GetString("ContactSection_PublicationAgreement_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email за ръкописи.
         /// </summary>
         public static string ContactSection_Review_Email {
             get {
                 return ResourceManager.GetString("ContactSection_Review_Email", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Технически изисквания.
-        /// </summary>
-        public static string ContactSection_Submit_Title {
-            get {
-                return ResourceManager.GetString("ContactSection_Submit_Title", resourceCulture);
             }
         }
         
@@ -439,11 +529,30 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;p&gt;Моля, запознайте се с &lt;a href=&quot;{0}&quot;&gt;Техническите изисквания за публикуване&lt;/a&gt; преди да изпратите ръкописа си и попълнете, подпишете и изпратете заедно с ръкописа &lt;a href=&quot;{1}&quot;&gt;Декларация за съгласие&lt;/a&gt; статуята/студията да бъде издадена.&lt;/p&gt;
+        ///&lt;p&gt;Приеманите от редакцията файлове са с разширение .doc, .docx.&lt;/p&gt;.
+        /// </summary>
+        public static string ContactSection_SubmitDescription {
+            get {
+                return ResourceManager.GetString("ContactSection_SubmitDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Изпращане на ръкопис.
         /// </summary>
         public static string ContactSection_SubTitle {
             get {
                 return ResourceManager.GetString("ContactSection_SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Технически изисквания.
+        /// </summary>
+        public static string ContactSection_TechnicalRequirements_Title {
+            get {
+                return ResourceManager.GetString("ContactSection_TechnicalRequirements_Title", resourceCulture);
             }
         }
         
@@ -475,7 +584,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ч.З.В..
+        ///   Looks up a localized string similar to Въпроси.
         /// </summary>
         public static string FaqSection_Title {
             get {
@@ -547,6 +656,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Адрес на редакцията.
+        /// </summary>
+        public static string Footer_Address_Title {
+            get {
+                return ResourceManager.GetString("Footer_Address_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Администратор.
         /// </summary>
         public static string Footer_Admin_Label {
@@ -579,15 +697,6 @@ namespace linc.Resources {
         public static string Footer_Redaction_Label {
             get {
                 return ResourceManager.GetString("Footer_Redaction_Label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        public static string Footer_Services_Title {
-            get {
-                return ResourceManager.GetString("Footer_Services_Title", resourceCulture);
             }
         }
         
@@ -669,6 +778,52 @@ namespace linc.Resources {
         public static string Footer_UsefulLinks_Title {
             get {
                 return ResourceManager.GetString("Footer_UsefulLinks_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;p&gt;&lt;small&gt;Ще Ви изпратим линк за възстановяване на email адресът, който въведете.&lt;/small&gt;&lt;/p&gt;
+        ///&lt;p&gt;&lt;small&gt;Последвайте връзката и въведете нова парола.&lt;/small&gt;&lt;/p&gt;.
+        /// </summary>
+        public static string ForgotPasswordPage_Procedure {
+            get {
+                return ResourceManager.GetString("ForgotPasswordPage_Procedure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to За да възстановим Вашата парола:.
+        /// </summary>
+        public static string ForgotPasswordPage_Procedure_Title {
+            get {
+                return ResourceManager.GetString("ForgotPasswordPage_Procedure_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Възстанови.
+        /// </summary>
+        public static string ForgotPasswordPage_ResetButton_Label {
+            get {
+                return ResourceManager.GetString("ForgotPasswordPage_ResetButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Забравена парола?.
+        /// </summary>
+        public static string ForgotPasswordPage_SubTitle {
+            get {
+                return ResourceManager.GetString("ForgotPasswordPage_SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Възстановяване на парола.
+        /// </summary>
+        public static string ForgotPasswordPage_Title {
+            get {
+                return ResourceManager.GetString("ForgotPasswordPage_Title", resourceCulture);
             }
         }
         
@@ -781,6 +936,114 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Невалиден опит за вход..
+        /// </summary>
+        public static string Login_InvalidLoginAttempt {
+            get {
+                return ResourceManager.GetString("Login_InvalidLoginAttempt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Парола.
+        /// </summary>
+        public static string LoginModel_Password {
+            get {
+                return ResourceManager.GetString("LoginModel_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Запомни ме?.
+        /// </summary>
+        public static string LoginModel_RememberMe {
+            get {
+                return ResourceManager.GetString("LoginModel_RememberMe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email / Псевдоним.
+        /// </summary>
+        public static string LoginModel_UserName {
+            get {
+                return ResourceManager.GetString("LoginModel_UserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Външна услуга за вход.
+        /// </summary>
+        public static string LoginPage_ExternalAccount_Title {
+            get {
+                return ResourceManager.GetString("LoginPage_ExternalAccount_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Забравена парола?.
+        /// </summary>
+        public static string LoginPage_ForgotPassword {
+            get {
+                return ResourceManager.GetString("LoginPage_ForgotPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Регистриран потребител.
+        /// </summary>
+        public static string LoginPage_LocalAccount_Title {
+            get {
+                return ResourceManager.GetString("LoginPage_LocalAccount_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Вход.
+        /// </summary>
+        public static string LoginPage_LoginButton_Label {
+            get {
+                return ResourceManager.GetString("LoginPage_LoginButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Няма конфигурирани външни услуги за вход към момента..
+        /// </summary>
+        public static string LoginPage_NoExternalAccountsConfigured {
+            get {
+                return ResourceManager.GetString("LoginPage_NoExternalAccountsConfigured", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Регистрирай нов потребител.
+        /// </summary>
+        public static string LoginPage_Register {
+            get {
+                return ResourceManager.GetString("LoginPage_Register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изпрати нов email за потвърждение.
+        /// </summary>
+        public static string LoginPage_ResendConfirmation {
+            get {
+                return ResourceManager.GetString("LoginPage_ResendConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Вход.
+        /// </summary>
+        public static string LoginPage_Title {
+            get {
+                return ResourceManager.GetString("LoginPage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Лингвистика, Интерпретация, Концепции.
         /// </summary>
         public static string Logo_Long {
@@ -813,6 +1076,15 @@ namespace linc.Resources {
         public static string NavItem_Categories {
             get {
                 return ResourceManager.GetString("NavItem_Categories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Кодекс.
+        /// </summary>
+        public static string NavItem_Codex {
+            get {
+                return ResourceManager.GetString("NavItem_Codex", resourceCulture);
             }
         }
         
@@ -862,7 +1134,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Индекс.
+        ///   Looks up a localized string similar to Библиотека.
         /// </summary>
         public static string NavItem_Library {
             get {
@@ -871,11 +1143,20 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Архив.
+        ///   Looks up a localized string similar to По автори.
         /// </summary>
-        public static string NavItem_Library_Archive {
+        public static string NavItem_Library_ByAuthors {
             get {
-                return ResourceManager.GetString("NavItem_Library_Archive", resourceCulture);
+                return ResourceManager.GetString("NavItem_Library_ByAuthors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to По категории.
+        /// </summary>
+        public static string NavItem_Library_ByCategories {
+            get {
+                return ResourceManager.GetString("NavItem_Library_ByCategories", resourceCulture);
             }
         }
         
@@ -952,15 +1233,6 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Кодекс.
-        /// </summary>
-        public static string NavItem_Services {
-            get {
-                return ResourceManager.GetString("NavItem_Services", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Ръкописи.
         /// </summary>
         public static string NavItem_Submissions {
@@ -1015,7 +1287,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Абонирайте се за нашия бюлетин.
+        ///   Looks up a localized string similar to Абонирайте се за нови издания.
         /// </summary>
         public static string NewsletterSection_Title {
             get {
@@ -1047,6 +1319,202 @@ namespace linc.Resources {
         public static string PortfolioSection_Title {
             get {
                 return ResourceManager.GetString("PortfolioSection_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изпратихме Ви писмо, което съдържа връзка за потвърждение на email адресът Ви. Моля, преди да влезете в сайта, потвърдете електронна си поща..
+        /// </summary>
+        public static string Register_EmailConfirmation_Required {
+            get {
+                return ResourceManager.GetString("Register_EmailConfirmation_Required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Потвърди.
+        /// </summary>
+        public static string RegisterModel_ConfirmPassword {
+            get {
+                return ResourceManager.GetString("RegisterModel_ConfirmPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string RegisterModel_Email {
+            get {
+                return ResourceManager.GetString("RegisterModel_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Име.
+        /// </summary>
+        public static string RegisterModel_FirstName {
+            get {
+                return ResourceManager.GetString("RegisterModel_FirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Фамилия.
+        /// </summary>
+        public static string RegisterModel_LastName {
+            get {
+                return ResourceManager.GetString("RegisterModel_LastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Парола.
+        /// </summary>
+        public static string RegisterModel_Password {
+            get {
+                return ResourceManager.GetString("RegisterModel_Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Прочетох и приемам Политиката за поверителност на сайта и Общите му условия.
+        /// </summary>
+        public static string RegisterModel_PrivacyConsent {
+            get {
+                return ResourceManager.GetString("RegisterModel_PrivacyConsent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to За да се регистрирате се изисква да сте прочели и да приемате общите условия на сайта и политиката му за поверителност..
+        /// </summary>
+        public static string RegisterModel_PrivacyConsent_ErrorMessage {
+            get {
+                return ResourceManager.GetString("RegisterModel_PrivacyConsent_ErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Псевдоним.
+        /// </summary>
+        public static string RegisterModel_UserName {
+            get {
+                return ResourceManager.GetString("RegisterModel_UserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Вход с {0}.
+        /// </summary>
+        public static string RegisterPage_ExternalProvider_Title {
+            get {
+                return ResourceManager.GetString("RegisterPage_ExternalProvider_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Регистрация с външна услуга.
+        /// </summary>
+        public static string RegisterPage_ExternalProviders {
+            get {
+                return ResourceManager.GetString("RegisterPage_ExternalProviders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Няма конфигурирани външни услуги за регистрация за сега..
+        /// </summary>
+        public static string RegisterPage_NoExternalProviders {
+            get {
+                return ResourceManager.GetString("RegisterPage_NoExternalProviders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Регистрация.
+        /// </summary>
+        public static string RegisterPage_RegisterButton_Label {
+            get {
+                return ResourceManager.GetString("RegisterPage_RegisterButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;p&gt;&lt;small&gt;Да потвърдите email адресът, който сте Въвели. Ще Ви изпратим писмо за потвърждение.&lt;/small&gt;&lt;/p&gt;
+        ///&lt;p&gt;&lt;small&gt;Вашата парола трябва да съдържа:&lt;/small&gt;&lt;/p&gt;
+        ///&lt;ul&gt;
+        ///    &lt;li&gt;&lt;small&gt;символи &lt;span class=&quot;text-decoration-underline&quot;&gt;единствено на латиница&lt;/span&gt;&lt;/small&gt;&lt;/li&gt;
+        ///    &lt;li&gt;&lt;small&gt;поне шест символа&lt;/small&gt;&lt;/li&gt;
+        ///    &lt;li&gt;&lt;small&gt;поне четири &lt;span class=&quot;text-decoration-underline&quot;&gt;различни&lt;/span&gt; символа&lt;/small&gt;&lt;/li&gt;
+        ///    &lt;li&gt;&lt;small&gt;поне една главна буква&lt;/small&gt;&lt;/li&gt;
+        ///    &lt;li&gt;&lt;small&gt;поне една цифра&lt; [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string RegisterPage_Requirements {
+            get {
+                return ResourceManager.GetString("RegisterPage_Requirements", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to За да създадем Вашият потребителски акаунт е нужно.
+        /// </summary>
+        public static string RegisterPage_Requirements_Title {
+            get {
+                return ResourceManager.GetString("RegisterPage_Requirements_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Създаване на акаунт.
+        /// </summary>
+        public static string RegisterPage_SubTitle {
+            get {
+                return ResourceManager.GetString("RegisterPage_SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Регистрация.
+        /// </summary>
+        public static string RegisterPage_Title {
+            get {
+                return ResourceManager.GetString("RegisterPage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Текста ще бъде запазен и видим за всички..
+        /// </summary>
+        public static string SetStringResource_Dialog_Description {
+            get {
+                return ResourceManager.GetString("SetStringResource_Dialog_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Сигурни ли сте?.
+        /// </summary>
+        public static string SetStringResource_Dialog_Title {
+            get {
+                return ResourceManager.GetString("SetStringResource_Dialog_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Възникна грешка при опит да се запази текста в системата..
+        /// </summary>
+        public static string SetStringResource_Error {
+            get {
+                return ResourceManager.GetString("SetStringResource_Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Текстът беше запазен успешно..
+        /// </summary>
+        public static string SetStringResource_Success {
+            get {
+                return ResourceManager.GetString("SetStringResource_Success", resourceCulture);
             }
         }
         

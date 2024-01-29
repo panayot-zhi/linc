@@ -133,13 +133,34 @@
     <value>Рецензиране</value>
   </data>
   <data name="AboutSection_SubTitle" xml:space="preserve">
-    <value>Научете повече &lt;span&gt;за списанието&lt;/span&gt;</value>
+    <value>За списанието</value>
   </data>
   <data name="AboutSection_Title" xml:space="preserve">
     <value>За списанието</value>
   </data>
+  <data name="AlertMessage_Error_Footer" xml:space="preserve">
+    <value>Моля, &lt;a href="mailto:{0}"&gt;свържете се с администратор&lt;/a&gt; за отстраняване на проблема. </value>
+  </data>
+  <data name="AlertMessage_Error_Title" xml:space="preserve">
+    <value>Грешка!</value>
+  </data>
+  <data name="AlertMessage_Info_Title" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AlertMessage_Question_Title" xml:space="preserve">
+    <value />
+  </data>
+  <data name="AlertMessage_Success_Title" xml:space="preserve">
+    <value>Успех!</value>
+  </data>
+  <data name="AlertMessage_Warning_Footer" xml:space="preserve">
+    <value>Можете да се &lt;a href="mailto:{0}"&gt;свържете се с администратор&lt;/a&gt; за повече информация. </value>
+  </data>
+  <data name="AlertMessage_Warning_Title" xml:space="preserve">
+    <value>Внимание!</value>
+  </data>
   <data name="Board_Aleksander.Mikołajczak_Member" xml:space="preserve">
-    <value>Проф. дн Александър Войчех Миколайчак</value>
+    <value>Проф. дн Александер Войчех Миколайчак</value>
   </data>
   <data name="Board_Aleksander.Mikołajczak_MemberWork" xml:space="preserve">
     <value>Университет „Адам Мицкевич“, Познан, Полша</value>
@@ -223,7 +244,16 @@
     <value>Прочетете за нашия &lt;span&gt;Етичен кодекс&lt;/span&gt;</value>
   </data>
   <data name="CodexSection_Title" xml:space="preserve">
-    <value>Кодекс</value>
+    <value>Етичен Кодекс</value>
+  </data>
+  <data name="ConfirmEmailPage_Title" xml:space="preserve">
+    <value>Потвърждаване на email</value>
+  </data>
+  <data name="ConfirmEmail_ErrorMessage" xml:space="preserve">
+    <value>Възникна грешка при опит да потвърдим email адресът Ви.</value>
+  </data>
+  <data name="ConfirmEmail_SuccessMessage" xml:space="preserve">
+    <value>Email адресът Ви беше потвърден успешно!</value>
   </data>
   <data name="ContactSection_Address_Location" xml:space="preserve">
     <value>Пловдив 4000, Пловдивско университетско издателство, „Цар Асен“ 24</value>
@@ -234,17 +264,24 @@
   <data name="ContactSection_Codex_Title" xml:space="preserve">
     <value>Етичен кодекс</value>
   </data>
+  <data name="ContactSection_PublicationAgreement_Title" xml:space="preserve">
+    <value>Декларация за съгласие</value>
+  </data>
   <data name="ContactSection_Review_Email" xml:space="preserve">
     <value>Email за ръкописи</value>
   </data>
   <data name="ContactSection_SubmitButton_Label" xml:space="preserve">
     <value>Изпрати ръкопис</value>
   </data>
-  <data name="ContactSection_Submit_Title" xml:space="preserve">
-    <value>Технически изисквания</value>
+  <data name="ContactSection_SubmitDescription" xml:space="preserve">
+    <value>&lt;p&gt;Моля, запознайте се с &lt;a href="{0}"&gt;Техническите изисквания за публикуване&lt;/a&gt; преди да изпратите ръкописа си и попълнете, подпишете и изпратете заедно с ръкописа &lt;a href="{1}"&gt;Декларация за съгласие&lt;/a&gt; статуята/студията да бъде издадена.&lt;/p&gt;
+&lt;p&gt;Приеманите от редакцията файлове са с разширение .doc, .docx.&lt;/p&gt;</value>
   </data>
   <data name="ContactSection_SubTitle" xml:space="preserve">
     <value>Изпращане на ръкопис</value>
+  </data>
+  <data name="ContactSection_TechnicalRequirements_Title" xml:space="preserve">
+    <value>Технически изисквания</value>
   </data>
   <data name="ContactSection_Title" xml:space="preserve">
     <value>Изпращане</value>
@@ -256,7 +293,7 @@
     <value>Често Задавани &lt;span&gt;Въпроси&lt;/span&gt;</value>
   </data>
   <data name="FaqSection_Title" xml:space="preserve">
-    <value>Ч.З.В.</value>
+    <value>Въпроси</value>
   </data>
   <data name="FeaturedSection_International_Title" xml:space="preserve">
     <value>Български &amp; Английски</value>
@@ -279,6 +316,9 @@
   <data name="Footer_Address_Street" xml:space="preserve">
     <value>„Цар Асен“ 24, ет. 3, кабинет 325</value>
   </data>
+  <data name="Footer_Address_Title" xml:space="preserve">
+    <value>Адрес на редакцията</value>
+  </data>
   <data name="Footer_Admin_Label" xml:space="preserve">
     <value>Администратор</value>
   </data>
@@ -290,9 +330,6 @@
   </data>
   <data name="Footer_Redaction_Label" xml:space="preserve">
     <value>Редакция</value>
-  </data>
-  <data name="Footer_Services_Title" xml:space="preserve">
-    <value />
   </data>
   <data name="Footer_Social_Description" xml:space="preserve">
     <value>Открийте нас и нашите автори в мрежата.</value>
@@ -320,6 +357,22 @@
   </data>
   <data name="Footer_UsefulLinks_Title" xml:space="preserve">
     <value>Полезни връзки</value>
+  </data>
+  <data name="ForgotPasswordPage_Procedure" xml:space="preserve">
+    <value>&lt;p&gt;&lt;small&gt;Ще Ви изпратим линк за възстановяване на email адресът, който въведете.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Последвайте връзката и въведете нова парола.&lt;/small&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="ForgotPasswordPage_Procedure_Title" xml:space="preserve">
+    <value>За да възстановим Вашата парола:</value>
+  </data>
+  <data name="ForgotPasswordPage_ResetButton_Label" xml:space="preserve">
+    <value>Възстанови</value>
+  </data>
+  <data name="ForgotPasswordPage_SubTitle" xml:space="preserve">
+    <value>Забравена парола?</value>
+  </data>
+  <data name="ForgotPasswordPage_Title" xml:space="preserve">
+    <value>Възстановяване на парола</value>
   </data>
   <data name="GetStarted_Message" xml:space="preserve">
     <value>Научи повече</value>
@@ -357,6 +410,42 @@
   <data name="LibraryIndex_Title" xml:space="preserve">
     <value>Библиотека</value>
   </data>
+  <data name="LoginModel_Password" xml:space="preserve">
+    <value>Парола</value>
+  </data>
+  <data name="LoginModel_RememberMe" xml:space="preserve">
+    <value>Запомни ме?</value>
+  </data>
+  <data name="LoginModel_UserName" xml:space="preserve">
+    <value>Email / Псевдоним</value>
+  </data>
+  <data name="LoginPage_ExternalAccount_Title" xml:space="preserve">
+    <value>Външна услуга за вход</value>
+  </data>
+  <data name="LoginPage_ForgotPassword" xml:space="preserve">
+    <value>Забравена парола?</value>
+  </data>
+  <data name="LoginPage_LocalAccount_Title" xml:space="preserve">
+    <value>Регистриран потребител</value>
+  </data>
+  <data name="LoginPage_LoginButton_Label" xml:space="preserve">
+    <value>Вход</value>
+  </data>
+  <data name="LoginPage_NoExternalAccountsConfigured" xml:space="preserve">
+    <value>Няма конфигурирани външни услуги за вход към момента.</value>
+  </data>
+  <data name="LoginPage_Register" xml:space="preserve">
+    <value>Регистрирай нов потребител</value>
+  </data>
+  <data name="LoginPage_ResendConfirmation" xml:space="preserve">
+    <value>Изпрати нов email за потвърждение</value>
+  </data>
+  <data name="LoginPage_Title" xml:space="preserve">
+    <value>Вход</value>
+  </data>
+  <data name="Login_InvalidLoginAttempt" xml:space="preserve">
+    <value>Невалиден опит за вход.</value>
+  </data>
   <data name="Logo_Long" xml:space="preserve">
     <value>Лингвистика, Интерпретация, Концепции</value>
   </data>
@@ -368,6 +457,9 @@
   </data>
   <data name="NavItem_Categories" xml:space="preserve">
     <value>Категории</value>
+  </data>
+  <data name="NavItem_Codex" xml:space="preserve">
+    <value>Кодекс</value>
   </data>
   <data name="NavItem_Contact" xml:space="preserve">
     <value>Изпрати</value>
@@ -385,10 +477,13 @@
     <value>Начало</value>
   </data>
   <data name="NavItem_Library" xml:space="preserve">
-    <value>Индекс</value>
+    <value>Библиотека</value>
   </data>
-  <data name="NavItem_Library_Archive" xml:space="preserve">
-    <value>Архив</value>
+  <data name="NavItem_Library_ByAuthors" xml:space="preserve">
+    <value>По автори</value>
+  </data>
+  <data name="NavItem_Library_ByCategories" xml:space="preserve">
+    <value>По категории</value>
   </data>
   <data name="NavItem_Library_ByYears" xml:space="preserve">
     <value>По години</value>
@@ -414,9 +509,6 @@
   <data name="NavItem_Register" xml:space="preserve">
     <value>Регистрация</value>
   </data>
-  <data name="NavItem_Services" xml:space="preserve">
-    <value>Кодекс</value>
-  </data>
   <data name="NavItem_Submissions" xml:space="preserve">
     <value>Ръкописи</value>
   </data>
@@ -436,7 +528,7 @@
     <value>Абонирай се</value>
   </data>
   <data name="NewsletterSection_Title" xml:space="preserve">
-    <value>Абонирайте се за нашия бюлетин</value>
+    <value>Абонирайте се за нови издания</value>
   </data>
   <data name="PortfolioSection_Filter_All" xml:space="preserve">
     <value>Всички</value>
@@ -446,6 +538,79 @@
   </data>
   <data name="PortfolioSection_Title" xml:space="preserve">
     <value>Броеве</value>
+  </data>
+  <data name="RegisterModel_ConfirmPassword" xml:space="preserve">
+    <value>Потвърди</value>
+  </data>
+  <data name="RegisterModel_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="RegisterModel_FirstName" xml:space="preserve">
+    <value>Име</value>
+  </data>
+  <data name="RegisterModel_LastName" xml:space="preserve">
+    <value>Фамилия</value>
+  </data>
+  <data name="RegisterModel_Password" xml:space="preserve">
+    <value>Парола</value>
+  </data>
+  <data name="RegisterModel_PrivacyConsent" xml:space="preserve">
+    <value>Прочетох и приемам Политиката за поверителност на сайта и Общите му условия</value>
+  </data>
+  <data name="RegisterModel_PrivacyConsent_ErrorMessage" xml:space="preserve">
+    <value>За да се регистрирате се изисква да сте прочели и да приемате общите условия на сайта и политиката му за поверителност.</value>
+  </data>
+  <data name="RegisterModel_UserName" xml:space="preserve">
+    <value>Псевдоним</value>
+  </data>
+  <data name="RegisterPage_ExternalProviders" xml:space="preserve">
+    <value>Регистрация с външна услуга</value>
+  </data>
+  <data name="RegisterPage_ExternalProvider_Title" xml:space="preserve">
+    <value>Вход с {0}</value>
+  </data>
+  <data name="RegisterPage_NoExternalProviders" xml:space="preserve">
+    <value>Няма конфигурирани външни услуги за регистрация за сега.</value>
+  </data>
+  <data name="RegisterPage_RegisterButton_Label" xml:space="preserve">
+    <value>Регистрация</value>
+  </data>
+  <data name="RegisterPage_Requirements" xml:space="preserve">
+    <value>&lt;p&gt;&lt;small&gt;Да потвърдите email адресът, който сте Въвели. Ще Ви изпратим писмо за потвърждение.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Вашата парола трябва да съдържа:&lt;/small&gt;&lt;/p&gt;
+&lt;ul&gt;
+    &lt;li&gt;&lt;small&gt;символи &lt;span class="text-decoration-underline"&gt;единствено на латиница&lt;/span&gt;&lt;/small&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;small&gt;поне шест символа&lt;/small&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;small&gt;поне четири &lt;span class="text-decoration-underline"&gt;различни&lt;/span&gt; символа&lt;/small&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;small&gt;поне една главна буква&lt;/small&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;small&gt;поне една цифра&lt;/small&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;small&gt;Моля, не използвайте пароли, които използвате и другаде.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Всички настройки по потребителският Ви акаунт &lt;span class="text-decoration-underline"&gt;могат да бъдат променяни&lt;/span&gt; и след регистрация.&lt;/small&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="RegisterPage_Requirements_Title" xml:space="preserve">
+    <value>За да създадем Вашият потребителски акаунт е нужно</value>
+  </data>
+  <data name="RegisterPage_SubTitle" xml:space="preserve">
+    <value>Създаване на акаунт</value>
+  </data>
+  <data name="RegisterPage_Title" xml:space="preserve">
+    <value>Регистрация</value>
+  </data>
+  <data name="Register_EmailConfirmation_Required" xml:space="preserve">
+    <value>Изпратихме Ви писмо, което съдържа връзка за потвърждение на email адресът Ви. Моля, преди да влезете в сайта, потвърдете електронна си поща.</value>
+  </data>
+  <data name="SetStringResource_Dialog_Description" xml:space="preserve">
+    <value>Текста ще бъде запазен и видим за всички.</value>
+  </data>
+  <data name="SetStringResource_Dialog_Title" xml:space="preserve">
+    <value>Сигурни ли сте?</value>
+  </data>
+  <data name="SetStringResource_Error" xml:space="preserve">
+    <value>Възникна грешка при опит да се запази текста в системата.</value>
+  </data>
+  <data name="SetStringResource_Success" xml:space="preserve">
+    <value>Текстът беше запазен успешно.</value>
   </data>
   <data name="SiteRole_Administrator" xml:space="preserve">
     <value>Администратор</value>

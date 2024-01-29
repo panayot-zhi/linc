@@ -140,6 +140,13 @@
         "localization/messages_bg.js",
         "localization/messages_bg.min.js"
       ]
+    },
+    {
+      "library": "sweetalert2@11.10.4",
+      "destination": "wwwroot/lib/sweetalert2/",
+      "files": [
+        "sweetalert2.all.min.js"
+      ]
     }
   ]
 }

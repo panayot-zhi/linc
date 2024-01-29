@@ -42,7 +42,7 @@ public class Program
         app.UseResponseCaching();
         app.UseRequestLocalization();
         app.UseExceptionHandler("/Home/Error");
-        app.UseStatusCodePagesWithReExecute("/Home/Error", "?code={0}");
+        app.UseStatusCodePagesWithReExecute("/Home/Error/{0}");
         app.UseHttpsRedirection();
         app.UseStaticFiles();
 

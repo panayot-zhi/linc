@@ -67,10 +67,20 @@
 	</Target>
 
 	<ItemGroup>
+	  <Compile Update="Resources\IdentityErrorMessage.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>IdentityErrorMessage.resx</DependentUpon>
+	  </Compile>
 	  <Compile Update="Resources\SharedResource.Designer.cs">
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>
 	    <DependentUpon>SharedResource.resx</DependentUpon>
+	  </Compile>
+	  <Compile Update="Resources\ValidationResource.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>ValidationResource.resx</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
@@ -87,10 +97,23 @@
   </ItemGroup>
 
 	<ItemGroup>
+	  <EmbeddedResource Update="Resources\IdentityErrorMessage.resx">
+	    <Generator>PublicResXFileCodeGenerator</Generator>
+	    <LastGenOutput>IdentityErrorMessage.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
 	  <EmbeddedResource Update="Resources\SharedResource.resx">
 	    <Generator>PublicResXFileCodeGenerator</Generator>
 	    <LastGenOutput>SharedResource.Designer.cs</LastGenOutput>
 	  </EmbeddedResource>
+	  <EmbeddedResource Update="Resources\ValidationResource.resx">
+	    <Generator>PublicResXFileCodeGenerator</Generator>
+	    <LastGenOutput>ValidationResource.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="wwwroot\docs\bg\" />
+	  <Folder Include="wwwroot\docs\en\" />
 	</ItemGroup>
 
 </Project>

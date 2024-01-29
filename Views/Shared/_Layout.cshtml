@@ -1,9 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
 @using Microsoft.AspNetCore.Localization
 @using Microsoft.AspNetCore.Identity
-@using linc.Data
 @using linc.Models.Enumerations
 @using linc.Utility
+@using linc.Data
 
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
@@ -17,6 +17,8 @@
 <html lang="@currentCulture">
 <head>
     <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     @* TODO: SEO here *@
@@ -64,6 +66,8 @@
     <!-- Site Overrides CSS File -->
     <link href="~/css/site.css" rel="stylesheet">
 
+    <partial name="_JsLocalizer"/>
+
 </head>
 
 <body>
@@ -74,7 +78,7 @@
                 <span>@HtmlLocalizer["Logo_Long"]</span>
             </div>
             <div class="d-flex align-items-center">
-                <form id="set_language" asp-controller="Home" asp-action="SetLanguage">
+                <form id="set_language" asp-controller="Home" asp-action="SetLanguage" asp-route-returnUrl="@Context.Request.Path">
                     <environment exclude="Production">
                         @* <span class="me-2">Session: @Context.Session.GetString("Hi")</span> *@
                         <span class="me-2">Editable: @(TempData.Peek("Editable") ?? "False")</span>
@@ -103,7 +107,7 @@
             <nav id="navbar" class="navbar">
                 <ul>
                     <li>
-                        <a id="nav-home" class="nav-link scrollto " asp-controller="Home" asp-action="Index" asp-fragment="">@HtmlLocalizer["NavItem_Home"]</a>
+                        <a id="nav-home" class="nav-link scrollto " asp-controller="Home" asp-action="Index" asp-fragment="hero">@HtmlLocalizer["NavItem_Home"]</a>
                     </li>
                     <li>
                         <a id="nav-about" class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="about">@HtmlLocalizer["NavItem_About"]</a>
@@ -112,7 +116,7 @@
                         <a id="nav-services" class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="services">@HtmlLocalizer["NavItem_Categories"]</a>
                     </li>
                     <li>
-                        <a id="nav-codex" class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="codex">@HtmlLocalizer["NavItem_Services"]</a>
+                        <a id="nav-codex" class="nav-link scrollto" asp-controller="Home" asp-action="Index" asp-fragment="codex">@HtmlLocalizer["NavItem_Codex"]</a>
                     </li>
                     <li>
                         <a id="nav-portfolio" class="nav-link scrollto " asp-controller="Home" asp-action="Index" asp-fragment="portfolio">@HtmlLocalizer["NavItem_Portfolio"]</a>
@@ -189,6 +193,7 @@
 
     </header>
     
+    @*
     @if (!IsSectionDefined("SubHeader"))
     {
         <!-- ======= Sub-Header ======= -->
@@ -243,6 +248,7 @@
             </div>
         </header>
     }
+    *@
 
     <!-- End Header -->
 
@@ -283,7 +289,20 @@
         } 
         else if ("Identity".Equals(ViewData["Area"]))
         {
-            <partial name="_Newsletter"/>
+            <div class="footer-newsletter">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            @HtmlLocalizer["ContactSection_SubmitDescription", 
+                                Url.Content($"~/docs/{currentCulture}/{SiteConstant.TechnicalRequirementsFileName}"), 
+                                Url.Content($"~/docs/{SiteConstant.PublicationAgreementFileName}")]
+                            <div class="text-center">
+                                <a class="w-50 btn btn-lg btn-primary" target="_blank" href="mailto:@SiteConstant.ReviewsEmail">@HtmlLocalizer["ContactSection_SubmitButton_Label"]</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         }
 
         <div class="footer-top">
@@ -291,7 +310,7 @@
                 <div class="row">
 
                     <div class="col-lg-3 col-md-6 footer-contact">
-                        <h3>Адрес на редакцията<span>.</span></h3>
+                        <h3>@HtmlLocalizer["Footer_Address_Title"]<span>.</span></h3>
                         <p>
                             @HtmlLocalizer["Footer_Address_Street"],<br>
                             @HtmlLocalizer["Footer_Address_City"],<br>
@@ -314,19 +333,27 @@
                         <ul>
                             <li>
                                 <i class="bx bx-chevron-right"></i> 
-                                <a class="scrollto" asp-controller="Home" asp-action="Index" asp-fragment="codex">@HtmlLocalizer["Footer_UsefulLinks_Codex"]</a>
+                                <a class="scrollto" asp-controller="Home" asp-action="Index" asp-fragment="codex">
+                                    @HtmlLocalizer["Footer_UsefulLinks_Codex"]
+                                </a>
                             </li>
                             <li>
-                                <i class="bx bx-chevron-right"></i> <a asp-controller="Home" asp-action="Submit">@HtmlLocalizer["Footer_UsefulLinks_SubmitGuidance"]</a>
+                                <i class="bx bx-chevron-right"></i> 
+                                <a class="scrollto" asp-controller="Home" asp-action="Index" asp-fragment="contact">
+                                    @HtmlLocalizer["Footer_UsefulLinks_SubmitGuidance"]
+                                </a>
                             </li>
                             <li>
-                                <i class="bx bx-chevron-right"></i> <a asp-controller="Home" asp-action="Terms">@HtmlLocalizer["Footer_UsefulLinks_TermsOfService"]</a>
+                                <i class="bx bx-chevron-right"></i> 
+                                <a asp-controller="Home" asp-action="Terms">@HtmlLocalizer["Footer_UsefulLinks_TermsOfService"]</a>
                             </li>
                             <li>
-                                <i class="bx bx-chevron-right"></i> <a asp-controller="Home" asp-action="Privacy">@HtmlLocalizer["Footer_UsefulLinks_PrivacyPolicy"]</a>
+                                <i class="bx bx-chevron-right"></i> 
+                                <a asp-controller="Home" asp-action="Privacy">@HtmlLocalizer["Footer_UsefulLinks_PrivacyPolicy"]</a>
                             </li>
                             <li>
-                                <i class="bx bx-chevron-right"></i> <a asp-controller="Home" asp-action="Cookies">@HtmlLocalizer["Footer_UsefulLinks_Cookies"]</a>
+                                <i class="bx bx-chevron-right"></i> 
+                                <a asp-controller="Home" asp-action="Cookies">@HtmlLocalizer["Footer_UsefulLinks_Cookies"]</a>
                             </li>
                         </ul>
                     </div>
@@ -415,9 +442,10 @@
     <script src="~/lib/jquery/jquery.min.js"></script>
     @* <script src="~/lib/jquery-validate/jquery.validate.min.js"></script> *@
     @* <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script> *@
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/sweetalert2/sweetalert2.all.min.js"></script>
     <script src="~/lib/purecounterjs/dist/purecounter_vanilla.min.js"></script>
     <script src="~/lib/aos/aos.js"></script>
-    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/glightbox/js/glightbox.min.js"></script>
     <script src="~/lib/isotope-layout/dist/isotope.pkgd.min.js"></script>
     <script src="~/lib/Swiper/swiper-bundle.min.js"></script>
@@ -430,6 +458,8 @@
     <script src="~/js/site.js"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
+
+    <partial name="_AlertMessage"/>
 
 </body>
 </html>
