@@ -66,7 +66,8 @@ namespace linc.Areas.Identity.Pages.Account
                     type: AlertMessageType.Error);
             }
 
-            return Page();
+            // Don't use the page
+            // return Page();
 
             return Redirect("/");
         }
