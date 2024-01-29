@@ -246,6 +246,9 @@
   <data name="CodexSection_Title" xml:space="preserve">
     <value>Code of Ethics</value>
   </data>
+  <data name="ConfirmEmailPage_Title" xml:space="preserve">
+    <value>Confirm email</value>
+  </data>
   <data name="ConfirmEmail_ErrorMessage" xml:space="preserve">
     <value>You have successfully confirmed your email address.</value>
   </data>

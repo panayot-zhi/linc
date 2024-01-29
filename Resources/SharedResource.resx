@@ -246,6 +246,9 @@
   <data name="CodexSection_Title" xml:space="preserve">
     <value>Етичен Кодекс</value>
   </data>
+  <data name="ConfirmEmailPage_Title" xml:space="preserve">
+    <value>Потвърждаване на email</value>
+  </data>
   <data name="ConfirmEmail_ErrorMessage" xml:space="preserve">
     <value>Възникна грешка при опит да потвърдим email адресът Ви.</value>
   </data>

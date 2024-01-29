@@ -466,6 +466,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Потвърждаване на email.
+        /// </summary>
+        public static string ConfirmEmailPage_Title {
+            get {
+                return ResourceManager.GetString("ConfirmEmailPage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Пловдив 4000, Пловдивско университетско издателство, „Цар Асен“ 24.
         /// </summary>
         public static string ContactSection_Address_Location {
