@@ -14,21 +14,19 @@ using Microsoft.AspNetCore.Identity;
 namespace linc.Controllers
 {
     [AllowAnonymous]
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         private readonly ILogger<HomeController> _logger;
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly ILocalizationService _localizationService;
         private readonly IContentService _contentService;
-
 
         public HomeController(ILogger<HomeController> logger,
             UserManager<ApplicationUser> userManager,
             ILocalizationService localizationService, 
             IContentService contentService)
+        : base(localizationService)
         {
             _logger = logger;
-            _localizationService = localizationService;
             _contentService = contentService;
             _userManager = userManager;
         }
@@ -57,7 +55,6 @@ namespace linc.Controllers
         public IActionResult Submit()
         {
             throw new NotImplementedException();
-            return View();
         }
 
         public IActionResult Terms()
@@ -87,7 +84,10 @@ namespace linc.Controllers
 
             var userId = _userManager.GetUserId(User);
 
-            await _localizationService.SetStringResource(stringResource.Key, stringResource.Value, userId);
+            await LocalizationService.SetStringResource(stringResource.Key, stringResource.Value, userId);
+
+            AddAlertMessage(LocalizationService["SetStringResource_Success"],
+                type: AlertMessageType.Success);
 
             return Ok();
         }
