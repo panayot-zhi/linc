@@ -448,6 +448,24 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Възникна грешка при опит да потвърдим email адресът Ви..
+        /// </summary>
+        public static string ConfirmEmail_ErrorMessage {
+            get {
+                return ResourceManager.GetString("ConfirmEmail_ErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email адресът Ви беше потвърден успешно!.
+        /// </summary>
+        public static string ConfirmEmail_SuccessMessage {
+            get {
+                return ResourceManager.GetString("ConfirmEmail_SuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Пловдив 4000, Пловдивско университетско издателство, „Цар Асен“ 24.
         /// </summary>
         public static string ContactSection_Address_Location {

@@ -246,6 +246,12 @@
   <data name="CodexSection_Title" xml:space="preserve">
     <value>Етичен Кодекс</value>
   </data>
+  <data name="ConfirmEmail_ErrorMessage" xml:space="preserve">
+    <value>Възникна грешка при опит да потвърдим email адресът Ви.</value>
+  </data>
+  <data name="ConfirmEmail_SuccessMessage" xml:space="preserve">
+    <value>Email адресът Ви беше потвърден успешно!</value>
+  </data>
   <data name="ContactSection_Address_Location" xml:space="preserve">
     <value>Пловдив 4000, Пловдивско университетско издателство, „Цар Асен“ 24</value>
   </data>

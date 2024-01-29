@@ -246,6 +246,12 @@
   <data name="CodexSection_Title" xml:space="preserve">
     <value>Code of Ethics</value>
   </data>
+  <data name="ConfirmEmail_ErrorMessage" xml:space="preserve">
+    <value>You have successfully confirmed your email address.</value>
+  </data>
+  <data name="ConfirmEmail_SuccessMessage" xml:space="preserve">
+    <value>Error occurred while trying to confirm your email address.</value>
+  </data>
   <data name="ContactSection_Address_Location" xml:space="preserve">
     <value>Plovdiv 4000, Plovdiv University Publishing House, King Asen St 24</value>
   </data>
