@@ -128,7 +128,7 @@ namespace linc.Controllers
                     return StatusCode(candidate);
                 }
 
-                _logger.LogWarning("Processed an AJAX error with an unknown status code ({StatusCode}) for request (#{RequestId}) bound for path '{Path}'. Returning 500: Internal Server Error",
+                _logger.LogWarning("Processed an AJAX error with an unknown status code ({StatusCode}) for request ({RequestId}) bound for path '{Path}'. Returning 500: Internal Server Error",
                     errorViewModel.StatusCode, errorViewModel.RequestId, errorViewModel.Path);
 
                 return StatusCode(500);
@@ -138,7 +138,7 @@ namespace linc.Controllers
             {
                 case "400":
                 {
-                    _logger.LogWarning("400 BadRequest (#{RequestId}): {Path}",
+                    _logger.LogWarning("400 BadRequest ({RequestId}): {Path}",
                         errorViewModel.RequestId, errorViewModel.Path);
 
                     return View("BadRequest", errorViewModel);
@@ -147,7 +147,7 @@ namespace linc.Controllers
                 {
                     if (User.Identity is { IsAuthenticated: true })
                     {
-                        _logger.LogWarning("401 Unauthorized (#{RequestId}): {Path}",
+                        _logger.LogWarning("401 Unauthorized ({RequestId}): {Path}",
                             errorViewModel.RequestId, errorViewModel.Path);
 
                         return Unauthorized();
@@ -157,7 +157,7 @@ namespace linc.Controllers
                 }
                 case "403":
                 {
-                    _logger.LogWarning("403 Forbidden (#{RequestId}): {Path}",
+                    _logger.LogWarning("403 Forbidden ({RequestId}): {Path}",
                         errorViewModel.RequestId, errorViewModel.Path);
 
                     return View("Forbidden", errorViewModel);
@@ -166,7 +166,7 @@ namespace linc.Controllers
                 {
                     var path = errorViewModel.Path;
 
-                    _logger.LogWarning("404 NotFound (#{RequestId}): {Path}",
+                    _logger.LogWarning("404 NotFound ({RequestId}): {Path}",
                         errorViewModel.RequestId, errorViewModel.Path);
 
                     // NOTE: List here any cases where
@@ -198,7 +198,7 @@ namespace linc.Controllers
 
             errorViewModel = GetErrorViewModel(id, exceptionHandlerPathFeature);
 
-            _logger.LogError("500 InternalServerError (#{RequestId}) at '{Path}': {ErrorMessage}",
+            _logger.LogError("500 InternalServerError ({RequestId}) at '{Path}': {ErrorMessage}",
                 errorViewModel.RequestId, errorViewModel.Path, errorViewModel.Error);
 
             return View(errorViewModel);
