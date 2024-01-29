@@ -138,6 +138,9 @@
   <data name="AboutSection_Title" xml:space="preserve">
     <value>About the journal</value>
   </data>
+  <data name="AlertMessage_Error_Footer" xml:space="preserve">
+    <value>Please, &lt;a href="mailto:{0}"&gt;contact administrator&lt;/a&gt; to look into the problem. </value>
+  </data>
   <data name="AlertMessage_Error_Title" xml:space="preserve">
     <value>Error!</value>
   </data>
@@ -149,6 +152,9 @@
   </data>
   <data name="AlertMessage_Success_Title" xml:space="preserve">
     <value>Success!</value>
+  </data>
+  <data name="AlertMessage_Warning_Footer" xml:space="preserve">
+    <value>You can &lt;a href="mailto:{0}"&gt;contact administrator&lt;/a&gt; for more information. </value>
   </data>
   <data name="AlertMessage_Warning_Title" xml:space="preserve">
     <value>Attention!</value>
@@ -590,6 +596,15 @@
   </data>
   <data name="Register_EmailConfirmation_Required" xml:space="preserve">
     <value>We have sent you a letter of confirmation. Please, prior to entering, confirm your email with the link inside it.</value>
+  </data>
+  <data name="SetStringResource_Dialog_Description" xml:space="preserve">
+    <value>The resource will be saved and visible for everybody.</value>
+  </data>
+  <data name="SetStringResource_Dialog_Title" xml:space="preserve">
+    <value>Are you sure?</value>
+  </data>
+  <data name="SetStringResource_Error" xml:space="preserve">
+    <value>An error occurred while trying to save the resource in the database.</value>
   </data>
   <data name="SetStringResource_Success" xml:space="preserve">
     <value>The resource has been saved successfully.</value>

@@ -138,6 +138,9 @@
   <data name="AboutSection_Title" xml:space="preserve">
     <value>За списанието</value>
   </data>
+  <data name="AlertMessage_Error_Footer" xml:space="preserve">
+    <value>Моля, &lt;a href="mailto:{0}"&gt;свържете се с администратор&lt;/a&gt; за отстраняване на проблема. </value>
+  </data>
   <data name="AlertMessage_Error_Title" xml:space="preserve">
     <value>Грешка!</value>
   </data>
@@ -149,6 +152,9 @@
   </data>
   <data name="AlertMessage_Success_Title" xml:space="preserve">
     <value>Успех!</value>
+  </data>
+  <data name="AlertMessage_Warning_Footer" xml:space="preserve">
+    <value>Можете да се &lt;a href="mailto:{0}"&gt;свържете се с администратор&lt;/a&gt; за повече информация. </value>
   </data>
   <data name="AlertMessage_Warning_Title" xml:space="preserve">
     <value>Внимание!</value>
@@ -584,6 +590,15 @@
   </data>
   <data name="Register_EmailConfirmation_Required" xml:space="preserve">
     <value>Изпратихме Ви писмо, което съдържа връзка за потвърждение на email адресът Ви. Моля, преди да влезете в сайта, потвърдете електронна си поща.</value>
+  </data>
+  <data name="SetStringResource_Dialog_Description" xml:space="preserve">
+    <value>Текста ще бъде запазен и видим за всички.</value>
+  </data>
+  <data name="SetStringResource_Dialog_Title" xml:space="preserve">
+    <value>Сигурни ли сте?</value>
+  </data>
+  <data name="SetStringResource_Error" xml:space="preserve">
+    <value>Възникна грешка при опит да се запази текста в системата.</value>
   </data>
   <data name="SetStringResource_Success" xml:space="preserve">
     <value>Текстът беше запазен успешно.</value>

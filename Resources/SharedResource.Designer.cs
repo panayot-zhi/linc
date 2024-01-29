@@ -124,6 +124,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Моля, &lt;a href=&quot;mailto:{0}&quot;&gt;свържете се с администратор&lt;/a&gt; за отстраняване на проблема. .
+        /// </summary>
+        public static string AlertMessage_Error_Footer {
+            get {
+                return ResourceManager.GetString("AlertMessage_Error_Footer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Грешка!.
         /// </summary>
         public static string AlertMessage_Error_Title {
@@ -156,6 +165,15 @@ namespace linc.Resources {
         public static string AlertMessage_Success_Title {
             get {
                 return ResourceManager.GetString("AlertMessage_Success_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Можете да се &lt;a href=&quot;mailto:{0}&quot;&gt;свържете се с администратор&lt;/a&gt; за повече информация. .
+        /// </summary>
+        public static string AlertMessage_Warning_Footer {
+            get {
+                return ResourceManager.GetString("AlertMessage_Warning_Footer", resourceCulture);
             }
         }
         
@@ -1434,6 +1452,33 @@ namespace linc.Resources {
         public static string RegisterPage_Title {
             get {
                 return ResourceManager.GetString("RegisterPage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Текста ще бъде запазен и видим за всички..
+        /// </summary>
+        public static string SetStringResource_Dialog_Description {
+            get {
+                return ResourceManager.GetString("SetStringResource_Dialog_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Сигурни ли сте?.
+        /// </summary>
+        public static string SetStringResource_Dialog_Title {
+            get {
+                return ResourceManager.GetString("SetStringResource_Dialog_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Възникна грешка при опит да се запази текста в системата..
+        /// </summary>
+        public static string SetStringResource_Error {
+            get {
+                return ResourceManager.GetString("SetStringResource_Error", resourceCulture);
             }
         }
         
