@@ -4,7 +4,6 @@
 @using linc.Models.Enumerations
 @using linc.Utility
 @using linc.Data
-@using System.Web
 
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
@@ -66,6 +65,8 @@
     
     <!-- Site Overrides CSS File -->
     <link href="~/css/site.css" rel="stylesheet">
+
+    <partial name="_JsLocalizer"/>
 
 </head>
 
@@ -441,10 +442,10 @@
     <script src="~/lib/jquery/jquery.min.js"></script>
     @* <script src="~/lib/jquery-validate/jquery.validate.min.js"></script> *@
     @* <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script> *@
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/sweetalert2/sweetalert2.all.min.js"></script>
     <script src="~/lib/purecounterjs/dist/purecounter_vanilla.min.js"></script>
     <script src="~/lib/aos/aos.js"></script>
-    <script src="~/lib/sweetalert2/sweetalert2.all.min.js"></script>
-    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/glightbox/js/glightbox.min.js"></script>
     <script src="~/lib/isotope-layout/dist/isotope.pkgd.min.js"></script>
     <script src="~/lib/Swiper/swiper-bundle.min.js"></script>
@@ -458,25 +459,7 @@
 
     @await RenderSectionAsync("Scripts", required: false)
 
-    <script>
-        window.addEventListener('DOMContentLoaded', (event) => {
-
-            let swalMessage;
-
-            @{
-                if (TempData.Peek("AlertMessage") is string alertMessage)
-                {
-                    @:let rawMessage = '@Html.Raw(HttpUtility.JavaScriptStringEncode(alertMessage))';
-                    @:swalMessage = JSON.parse(rawMessage);
-                    TempData.Remove("AlertMessage");
-                }
-            }
-
-            if (swalMessage) {
-                Swal.fire(swalMessage);
-            }
-        });
-    </script>
+    <partial name="_AlertMessage"/>
 
 </body>
 </html>

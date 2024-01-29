@@ -1,0 +1,21 @@
+﻿@using System.Web
+
+<script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+
+        let swalMessage;
+
+    @{
+        if (TempData.Peek("AlertMessage") is string alertMessage)
+        {
+            @:let rawMessage = '@Html.Raw(HttpUtility.JavaScriptStringEncode(alertMessage))';
+            @:swalMessage = JSON.parse(rawMessage);
+            TempData.Remove("AlertMessage");
+        }
+    }
+
+        if (swalMessage) {
+            Swal.fire(swalMessage);
+        }
+    });
+</script>
