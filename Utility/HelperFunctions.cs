@@ -90,6 +90,17 @@ public static class HelperFunctions
             title = localizationService[$"AlertMessage_{type}_Title"].Value;
         }
 
+        if (type == AlertMessageType.Error && string.IsNullOrEmpty(footer))
+        {
+            footer = localizationService["AlertMessage_Error_Footer", 
+                SiteConstant.AdministratorEmail].Value;
+        } 
+        else if (type == AlertMessageType.Warning && string.IsNullOrEmpty(footer))
+        {
+            footer = localizationService["AlertMessage_Warning_Footer", 
+                SiteConstant.AdministratorEmail].Value;
+        }
+
         var alertMessage = JsonConvert.SerializeObject(new
         {
             html = message,
