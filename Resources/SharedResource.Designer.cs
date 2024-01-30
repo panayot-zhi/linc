@@ -214,7 +214,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Университет „Алберт Лудвиг“, Фрайбург, Германия.
+        ///   Looks up a localized string similar to Университет „Алберт - Лудвиг“, Фрайбург, Германия.
         /// </summary>
         public static string Board_Elisabeth_Cheauré_MemberWork {
             get {
