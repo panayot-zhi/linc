@@ -141,7 +141,7 @@
                         Swal.fire({
                             icon: "error",
                             title: window.jsLocalizer["AlertMessage_Error_Title"],
-                            html: window.jsLocalizer["SetStringResource_Error"] + `<br /> ${status} - ${error}`,
+                            html: window.jsLocalizer["SetStringResource_Error"] + `<br /> ${error}`,
                             footer: window.jsLocalizer["AlertMessage_Error_Footer"]
                         });
                     }
