@@ -138,6 +138,15 @@
   <data name="AboutSection_Title" xml:space="preserve">
     <value>За списанието</value>
   </data>
+  <data name="AlertMessage_400Warning" xml:space="preserve">
+    <value>Данните, които изпращате са невалидни.</value>
+  </data>
+  <data name="AlertMessage_403Warning" xml:space="preserve">
+    <value>Достъпът до посикания ресурс е ограничен.</value>
+  </data>
+  <data name="AlertMessage_404Warning" xml:space="preserve">
+    <value>Ресурсът, който се опитвате да достъпите, не съществува.</value>
+  </data>
   <data name="AlertMessage_Error_Footer" xml:space="preserve">
     <value>Моля, &lt;a href="mailto:{0}"&gt;свържете се с администратор&lt;/a&gt; за отстраняване на проблема. </value>
   </data>

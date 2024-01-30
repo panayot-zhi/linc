@@ -124,6 +124,33 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Данните, които изпращате са невалидни..
+        /// </summary>
+        public static string AlertMessage_400Warning {
+            get {
+                return ResourceManager.GetString("AlertMessage_400Warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Достъпът до посикания ресурс е ограничен..
+        /// </summary>
+        public static string AlertMessage_403Warning {
+            get {
+                return ResourceManager.GetString("AlertMessage_403Warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ресурсът, който се опитвате да достъпите, не съществува..
+        /// </summary>
+        public static string AlertMessage_404Warning {
+            get {
+                return ResourceManager.GetString("AlertMessage_404Warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Моля, &lt;a href=&quot;mailto:{0}&quot;&gt;свържете се с администратор&lt;/a&gt; за отстраняване на проблема. .
         /// </summary>
         public static string AlertMessage_Error_Footer {
