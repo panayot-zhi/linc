@@ -147,3 +147,14 @@ a.submit-link {
     padding: 20px 0;
     overflow: hidden;
 }
+
+/*--------------------------------------------------------------
+# sweetalert2
+--------------------------------------------------------------*/
+.swal2-container button.swal2-styled.swal2-confirm {
+    background-color: #106eea;
+}
+
+.swal2-container button.swal2-styled.swal2-confirm:focus {
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, .25);
+}
