@@ -4,6 +4,7 @@ using linc.Utility;
 using Microsoft.AspNetCore.Mvc.Localization;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Localization;
+using Newtonsoft.Json.Linq;
 
 namespace linc.Services
 {
@@ -64,17 +65,7 @@ namespace linc.Services
             {
                 // NOTE: Resource could not be
                 // found in the cache or database
-                var newEntry = new ApplicationStringResource
-                {
-                    Key = resourceKey,
-                    Value = value,
-                    LanguageId = languageId,
-                    EditedById = userId,
-                    LastEdited = DateTime.UtcNow
-                };
-
-                await _context.StringResources.AddAsync(newEntry);
-                await _context.SaveChangesAsync();
+                await CreateStringResource(resourceKey, value, languageId, userId);
 
                 CacheStringResource(resourceKey, value, languageId);
 
@@ -83,20 +74,46 @@ namespace linc.Services
 
             // NOTE: we save in the cache registry only the value of the string resource
             // therefore we need to make another hop to the database to retrieve the entry
-            var dbItem = _context.StringResources.First(x =>
+            var dbItem = _context.StringResources.FirstOrDefault(x =>
                 x.Key.Trim().ToLower() == resourceKey.Trim().ToLower() &&
                 x.LanguageId == languageId);
 
-            // Attach entity always, otherwise we read only
-            _context.StringResources.Attach(dbItem);
+            // NOTE: Resource could be found in the cache,
+            // but not in the database
+            if (dbItem is null)
+            {
+                dbItem = await CreateStringResource(resourceKey, value, languageId, userId);
+            }
+            else
+            {
+                // Attach entity always, otherwise we read only
+                _context.StringResources.Attach(dbItem);
 
-            dbItem.Value = value;
-            dbItem.EditedById = userId;
-            dbItem.LastEdited = DateTime.UtcNow;
+                dbItem.Value = value;
+                dbItem.EditedById = userId;
+                dbItem.LastEdited = DateTime.UtcNow;
 
-            await _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
+            }
 
             CacheStringResource(dbItem);
+        }
+
+        private async Task<ApplicationStringResource> CreateStringResource(string resourceKey, string resourceValue, int languageId, string userId)
+        {
+            var newEntry = new ApplicationStringResource
+            {
+                Key = resourceKey,
+                Value = resourceValue,
+                LanguageId = languageId,
+                EditedById = userId,
+                LastEdited = DateTime.UtcNow
+            };
+
+            await _context.StringResources.AddAsync(newEntry);
+            await _context.SaveChangesAsync();
+
+            return newEntry;
         }
 
         private void CacheStringResource(ApplicationStringResource stringResource)
