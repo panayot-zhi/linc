@@ -76,12 +76,21 @@ namespace linc.Controllers
         [SiteAuthorize(SiteRole.Editor)]
         public async Task<IActionResult> SetStringResource([FromBody][Bind("Key,Value,EditedById")] ApplicationStringResource stringResource)
         {
+            var userId = _userManager.GetUserId(User);
+
             if (!ModelState.IsValid)
             {
+                var modelStateErrors = ModelState
+                    .Where(modelState => modelState.Value?.Errors.Count > 0)
+                    .Select(modelState => 
+                        modelState.Key + ": " + string.Join(",", modelState.Value.Errors.Select(error => error.ErrorMessage)))
+                    .ToList();
+
+                _logger.LogError("Request from '{UserId}' contained invalid information: {@ModelStateErrors}",
+                    userId, modelStateErrors);
+
                 return BadRequest();
             }
-
-            var userId = _userManager.GetUserId(User);
 
             await LocalizationService.SetStringResource(stringResource.Key, stringResource.Value, userId);
 
