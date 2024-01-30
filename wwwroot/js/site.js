@@ -105,12 +105,14 @@
             e.stopImmediatePropagation();
 
             Swal.fire({
+
                 title: window.jsLocalizer["SetStringResource_Dialog_Title"],
                 text: window.jsLocalizer["SetStringResource_Dialog_Description"],
                 icon: "question",
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
+                cancelButtonColor: "#d33"
+
             }).then((result) => {
                 if (!result.isConfirmed) {
                     return;
