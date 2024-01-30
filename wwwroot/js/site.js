@@ -6,6 +6,47 @@
 (function () {
     "use strict";
 
+    $.ajaxSetup({
+        statusCode: {
+
+            400: function () {
+                Swal.fire({
+                    icon: "warning",
+                    title: window.jsLocalizer["AlertMessage_Warning_Title"],
+                    html: window.jsLocalizer["AlertMessage_400Warning"],
+                    footer: window.jsLocalizer["AlertMessage_Warning_Footer"]
+                });
+            },
+
+            401: function (xhr) {
+
+                // establish login location if server responded with it
+                let location = xhr.getResponseHeader("Location");
+
+                // challenge user to login at that location or the default one
+                window.location.href = location ?? "/identity/account/login"
+            },
+
+            403: function () {
+                Swal.fire({
+                    icon: "warning",
+                    title: window.jsLocalizer["AlertMessage_Warning_Title"],
+                    html: window.jsLocalizer["AlertMessage_403Warning"],
+                    footer: window.jsLocalizer["AlertMessage_Warning_Footer"]
+                });
+            },
+
+            404: function () {
+                Swal.fire({
+                    icon: "warning",
+                    title: window.jsLocalizer["AlertMessage_Warning_Title"],
+                    html: window.jsLocalizer["AlertMessage_404Warning"],
+                    footer: window.jsLocalizer["AlertMessage_Warning_Footer"]
+                });
+            }
+        }
+    });
+
     // Bind Submit targets href form
     $("form").on('submit', onSubmit);
     $(".submit-link").on('click', doSubmit);
@@ -106,11 +147,10 @@
 
             Swal.fire({
 
-                title: window.jsLocalizer["SetStringResource_Dialog_Title"],
-                text: window.jsLocalizer["SetStringResource_Dialog_Description"],
                 icon: "question",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
+                title: window.jsLocalizer["SetStringResource_Dialog_Title"],
+                text: window.jsLocalizer["SetStringResource_Dialog_Description"],                
+                showCancelButton: true,                
                 cancelButtonColor: "#d33"
 
             }).then((result) => {
