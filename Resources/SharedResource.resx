@@ -198,11 +198,17 @@
   <data name="Board_Saverio.Tomaiuolo_MemberWork" xml:space="preserve">
     <value>Университет на Касино и Южен Лацио, Италия</value>
   </data>
+  <data name="Board_SubTitle" xml:space="preserve">
+    <value>Борд на &lt;span&gt;редакторите&lt;/span&gt;</value>
+  </data>
   <data name="Board_Suman.Gupta_Member" xml:space="preserve">
     <value>Проф. д-р Суман Гупта</value>
   </data>
   <data name="Board_Suman.Gupta_MemberWork" xml:space="preserve">
     <value>Open University, Милтън Кийнс, Великобритания</value>
+  </data>
+  <data name="Board_Title" xml:space="preserve">
+    <value>Редакционен борд</value>
   </data>
   <data name="Board_Vanya.Georgieva_Member" xml:space="preserve">
     <value>гл. ас. д-р Ваня Георгиева</value>

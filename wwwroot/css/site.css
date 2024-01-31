@@ -158,3 +158,15 @@ a.submit-link {
 .swal2-container button.swal2-styled.swal2-confirm:focus {
     box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, .25);
 }
+
+/*--------------------------------------------------------------
+# Editor's board
+--------------------------------------------------------------*/
+section#board {
+    padding-bottom: 0;
+    padding-top: 40px;
+}
+
+section#testimonials {
+    margin-bottom: 60px;
+}

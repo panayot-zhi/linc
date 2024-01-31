@@ -304,6 +304,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Борд на &lt;span&gt;редакторите&lt;/span&gt;.
+        /// </summary>
+        public static string Board_SubTitle {
+            get {
+                return ResourceManager.GetString("Board_SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Проф. д-р Суман Гупта.
         /// </summary>
         public static string Board_Suman_Gupta_Member {
@@ -318,6 +327,15 @@ namespace linc.Resources {
         public static string Board_Suman_Gupta_MemberWork {
             get {
                 return ResourceManager.GetString("Board_Suman.Gupta_MemberWork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Редакционен борд.
+        /// </summary>
+        public static string Board_Title {
+            get {
+                return ResourceManager.GetString("Board_Title", resourceCulture);
             }
         }
         
