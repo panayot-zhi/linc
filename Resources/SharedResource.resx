@@ -322,26 +322,35 @@
   <data name="FeaturedSection_Team_Title" xml:space="preserve">
     <value>Реномирана редколегия</value>
   </data>
-  <data name="Footer_Address_City" xml:space="preserve">
-    <value>Пловдив 4000, ПУ „Паисий Хилендарски“</value>
-  </data>
-  <data name="Footer_Address_Country" xml:space="preserve">
-    <value>България</value>
-  </data>
-  <data name="Footer_Address_Street" xml:space="preserve">
-    <value>„Цар Асен“ 24, ет. 3, кабинет 325</value>
-  </data>
-  <data name="Footer_Address_Title" xml:space="preserve">
-    <value>Адрес на редакцията</value>
-  </data>
   <data name="Footer_Admin_Label" xml:space="preserve">
     <value>Администратор</value>
+  </data>
+  <data name="Footer_EditorsAddress_RowOne" xml:space="preserve">
+    <value>Пловдивски университет „Паисий Хилендарски“</value>
+  </data>
+  <data name="Footer_EditorsAddress_RowThree" xml:space="preserve">
+    <value>e -mail: {0}</value>
+  </data>
+  <data name="Footer_EditorsAddress_RowTwo" xml:space="preserve">
+    <value>Пловдив 4000, ул. „Цар Асен“ 24, ет. 3, кабинет 325</value>
+  </data>
+  <data name="Footer_EditorsAddress_Title" xml:space="preserve">
+    <value>Адрес на &lt;span&gt;редакцията&lt;/span&gt;</value>
   </data>
   <data name="Footer_Email_Label" xml:space="preserve">
     <value>Email</value>
   </data>
   <data name="Footer_Phone_Label" xml:space="preserve">
     <value>Телефон</value>
+  </data>
+  <data name="Footer_PublishersAddress_RowOne" xml:space="preserve">
+    <value>Пловдивско университетско издателство</value>
+  </data>
+  <data name="Footer_PublishersAddress_RowTwo" xml:space="preserve">
+    <value>Пловдив 4000, ул. „Цар Асен“ 24</value>
+  </data>
+  <data name="Footer_PublishersAddress_Title" xml:space="preserve">
+    <value>Адрес на &lt;span&gt;издателя&lt;/span&gt;</value>
   </data>
   <data name="Footer_Redaction_Label" xml:space="preserve">
     <value>Редакция</value>

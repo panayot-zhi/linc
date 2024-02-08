@@ -674,47 +674,47 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Пловдив 4000, ПУ „Паисий Хилендарски“.
-        /// </summary>
-        public static string Footer_Address_City {
-            get {
-                return ResourceManager.GetString("Footer_Address_City", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to България.
-        /// </summary>
-        public static string Footer_Address_Country {
-            get {
-                return ResourceManager.GetString("Footer_Address_Country", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to „Цар Асен“ 24, ет. 3, кабинет 325.
-        /// </summary>
-        public static string Footer_Address_Street {
-            get {
-                return ResourceManager.GetString("Footer_Address_Street", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Адрес на редакцията.
-        /// </summary>
-        public static string Footer_Address_Title {
-            get {
-                return ResourceManager.GetString("Footer_Address_Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Администратор.
         /// </summary>
         public static string Footer_Admin_Label {
             get {
                 return ResourceManager.GetString("Footer_Admin_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пловдивски университет „Паисий Хилендарски“.
+        /// </summary>
+        public static string Footer_EditorsAddress_RowOne {
+            get {
+                return ResourceManager.GetString("Footer_EditorsAddress_RowOne", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to e -mail: {0}.
+        /// </summary>
+        public static string Footer_EditorsAddress_RowThree {
+            get {
+                return ResourceManager.GetString("Footer_EditorsAddress_RowThree", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пловдив 4000, ул. „Цар Асен“ 24, ет. 3, кабинет 325.
+        /// </summary>
+        public static string Footer_EditorsAddress_RowTwo {
+            get {
+                return ResourceManager.GetString("Footer_EditorsAddress_RowTwo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Адрес на &lt;span&gt;редакцията&lt;/span&gt;.
+        /// </summary>
+        public static string Footer_EditorsAddress_Title {
+            get {
+                return ResourceManager.GetString("Footer_EditorsAddress_Title", resourceCulture);
             }
         }
         
@@ -733,6 +733,33 @@ namespace linc.Resources {
         public static string Footer_Phone_Label {
             get {
                 return ResourceManager.GetString("Footer_Phone_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пловдивско университетско издателство.
+        /// </summary>
+        public static string Footer_PublishersAddress_RowOne {
+            get {
+                return ResourceManager.GetString("Footer_PublishersAddress_RowOne", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пловдив 4000, ул. „Цар Асен“ 24.
+        /// </summary>
+        public static string Footer_PublishersAddress_RowTwo {
+            get {
+                return ResourceManager.GetString("Footer_PublishersAddress_RowTwo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Адрес на &lt;span&gt;издателя&lt;/span&gt;.
+        /// </summary>
+        public static string Footer_PublishersAddress_Title {
+            get {
+                return ResourceManager.GetString("Footer_PublishersAddress_Title", resourceCulture);
             }
         }
         
