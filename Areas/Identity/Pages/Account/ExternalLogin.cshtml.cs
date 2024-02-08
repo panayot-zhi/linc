@@ -21,6 +21,8 @@ using Microsoft.Extensions.Logging;
 
 namespace linc.Areas.Identity.Pages.Account
 {
+    // TODO: Configure external login
+
     [AllowAnonymous]
     public class ExternalLoginModel : PageModel
     {
