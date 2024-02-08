@@ -2,21 +2,58 @@
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @model LogoutModel
 @{
-    ViewData["Title"] = "Log out";
+    ViewData["Title"] = HtmlLocalizer["LogoutPage_Title"];
 }
 
-<header>
-    <h1>@ViewData["Title"]</h1>
-    @{
-        if (User.Identity?.IsAuthenticated ?? false)
-        {
-            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-                <button type="submit" class="nav-link btn btn-link text-dark">Click here to Logout</button>
-            </form>
-        }
-        else
-        {
-            <p>You have successfully logged out of the application.</p>
-        }
-    }
-</header>
+@section Breadcrumbs {
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>@HtmlLocalizer["LogoutPage_SubTitle"]</h2>
+                <ol>
+                    <li>
+                        <a href="/">@HtmlLocalizer["NavItem_Home"]</a>
+                    </li>
+                    <li>
+                        <a asp-area="Identity" asp-page="/Account/Manage/Index">@HtmlLocalizer["NavItem_MyProfile"]</a>
+                    </li>
+                    <li>@ViewData["Title"]</li>
+                </ol>
+            </div>
+
+        </div>
+    </section>
+    <!-- End Breadcrumbs -->
+}
+
+<div class="row">
+    <div class="col-lg-6 offset-lg-3">
+        <section class="text-center">
+            @{
+                if (User.Identity?.IsAuthenticated ?? false)
+                {
+                    <form asp-area="Identity" asp-page="/Account/Logout" method="post">
+                        <button type="submit" class="btn btn-link text-dark">@HtmlLocalizer["LogoutPage_Button_Label"]</button>
+                    </form>
+                }
+                else
+                {
+                    <div class="alert alert-info alert-dismissible" role="alert">
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="@HtmlLocalizer["Close_Label"]"></button>
+                        @HtmlLocalizer["LogoutPage_SuccessMessage"]
+                    </div>
+                }
+            }
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#manage").addClass('active');
+        })
+    </script>
+}
