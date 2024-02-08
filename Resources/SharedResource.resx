@@ -261,6 +261,15 @@
   <data name="CodexSection_Title" xml:space="preserve">
     <value>Етичен Кодекс</value>
   </data>
+  <data name="ConfirmEmailChange_ErrorMessage" xml:space="preserve">
+    <value>Грешка при потвърждение на email.</value>
+  </data>
+  <data name="ConfirmEmailChange_SuccessMessage" xml:space="preserve">
+    <value>Благодаря Ви! Новият Ви email адрес е потвърден успешно.</value>
+  </data>
+  <data name="ConfirmEmailChange_Title" xml:space="preserve">
+    <value>Потвърждение за смяна на email</value>
+  </data>
   <data name="ConfirmEmailPage_Title" xml:space="preserve">
     <value>Потвърждаване на email</value>
   </data>

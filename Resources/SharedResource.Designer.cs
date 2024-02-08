@@ -511,6 +511,33 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Грешка при потвърждение на email..
+        /// </summary>
+        public static string ConfirmEmailChange_ErrorMessage {
+            get {
+                return ResourceManager.GetString("ConfirmEmailChange_ErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Благодаря Ви! Новият Ви email адрес е потвърден успешно..
+        /// </summary>
+        public static string ConfirmEmailChange_SuccessMessage {
+            get {
+                return ResourceManager.GetString("ConfirmEmailChange_SuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Потвърждение за смяна на email.
+        /// </summary>
+        public static string ConfirmEmailChange_Title {
+            get {
+                return ResourceManager.GetString("ConfirmEmailChange_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Потвърждаване на email.
         /// </summary>
         public static string ConfirmEmailPage_Title {
