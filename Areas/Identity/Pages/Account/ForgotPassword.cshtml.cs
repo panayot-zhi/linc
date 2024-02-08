@@ -68,11 +68,11 @@ namespace linc.Areas.Identity.Pages.Account
                 _logger.LogWarning("An attempt was made to restore a forgotten password for a {ErrorType:l} user with email {Email}.",
                     user == null ? "non-existent" : "not confirmed", Input.Email);
 
+                // Don't reveal that the user does not exist or is not confirmed
+
                 AddAlertMessage(LocalizationService["ForgotPassword_InfoMessage"],
                     type: AlertMessageType.Info);
 
-                // Don't reveal that the user
-                // does not exist or is not confirmed
                 return Redirect("/");
             }
 
