@@ -1,4 +1,6 @@
-﻿using linc.Contracts;
+﻿using System.Security.Claims;
+using System.Security.Principal;
+using linc.Contracts;
 using linc.Models.Enumerations;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
@@ -112,5 +114,35 @@ public static class HelperFunctions
         });
 
         tempData["AlertMessage"] = alertMessage;
+    }
+
+    public static string GetUserId(this ClaimsPrincipal user)
+    {
+        return user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+    }
+
+    public static string GetUserName(this ClaimsPrincipal user)
+    {
+        return user.FindFirst(ClaimTypes.Name)?.Value;
+    }
+
+    public static string GetEmail(this ClaimsPrincipal user)
+    {
+        return user.FindFirst(ClaimTypes.Email)?.Value;
+    }
+
+    public static SiteRole? GetRole(this ClaimsPrincipal user)
+    {
+        var roleName = user.FindFirst(ClaimTypes.Role)?.Value;
+
+        if (Enum.TryParse(
+                value: roleName,
+                ignoreCase: false,
+                result: out SiteRole r))
+        {
+            return r;
+        }
+
+        return null;
     }
 }
