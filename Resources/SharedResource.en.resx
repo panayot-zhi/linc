@@ -246,6 +246,9 @@
   <data name="Category_Surveys" xml:space="preserve">
     <value>Surveys</value>
   </data>
+  <data name="Close_Label" xml:space="preserve">
+    <value>Close</value>
+  </data>
   <data name="CodexSection_Authors_Title" xml:space="preserve">
     <value>THE AUTHOR</value>
   </data>
@@ -274,10 +277,10 @@
     <value>Confirm email</value>
   </data>
   <data name="ConfirmEmail_ErrorMessage" xml:space="preserve">
-    <value>You have successfully confirmed your email address.</value>
+    <value>Error occurred while trying to confirm your email address.</value>
   </data>
   <data name="ConfirmEmail_SuccessMessage" xml:space="preserve">
-    <value>Error occurred while trying to confirm your email address.</value>
+    <value>You have successfully confirmed your email address.</value>
   </data>
   <data name="ContactSection_Address_Location" xml:space="preserve">
     <value>Plovdiv 4000, Plovdiv University Publishing House, King Asen St 24</value>
@@ -338,7 +341,7 @@
     <value>Paisii Hilendarski University of Plovdiv</value>
   </data>
   <data name="Footer_EditorsAddress_RowThree" xml:space="preserve">
-    <value>e -mail: {0}</value>
+    <value>e-mail:</value>
   </data>
   <data name="Footer_EditorsAddress_RowTwo" xml:space="preserve">
     <value>Plovdiv 4000, Tsar Asen 24, floor 3, office 325</value>
@@ -407,6 +410,9 @@
   <data name="ForgotPasswordPage_Title" xml:space="preserve">
     <value>Password reset</value>
   </data>
+  <data name="ForgotPassword_InfoMessage" xml:space="preserve">
+    <value>Please check your email to reset your password.</value>
+  </data>
   <data name="GetStarted_Message" xml:space="preserve">
     <value>Learn more</value>
   </data>
@@ -446,6 +452,12 @@
   <data name="LibraryIndex_Title" xml:space="preserve">
     <value>Library</value>
   </data>
+  <data name="LockoutPage_Title" xml:space="preserve">
+    <value>Account locked out</value>
+  </data>
+  <data name="Lockout_WarningMessage" xml:space="preserve">
+    <value>This account has been locked out, please try again later.</value>
+  </data>
   <data name="LoginModel_Password" xml:space="preserve">
     <value>Password</value>
   </data>
@@ -481,6 +493,18 @@
   </data>
   <data name="Login_InvalidLoginAttempt" xml:space="preserve">
     <value>Invalid login attempt.</value>
+  </data>
+  <data name="LogoutPage_Button_Label" xml:space="preserve">
+    <value>Click here to Logout</value>
+  </data>
+  <data name="LogoutPage_SubTitle" xml:space="preserve">
+    <value>Log out of your account</value>
+  </data>
+  <data name="LogoutPage_SuccessMessage" xml:space="preserve">
+    <value>You have successfully logged out of the application.</value>
+  </data>
+  <data name="LogoutPage_Title" xml:space="preserve">
+    <value>Log out</value>
   </data>
   <data name="Logo_Long" xml:space="preserve">
     <value>Linguistics, Interpretations, Concepts</value>
@@ -578,6 +602,9 @@
   <data name="PortfolioSection_Title" xml:space="preserve">
     <value>Issues</value>
   </data>
+  <data name="RegisterConfirmation_InfoMessage" xml:space="preserve">
+    <value>We've sent you a confirmation email. Please, follow the link inside it to confirm your account.</value>
+  </data>
   <data name="RegisterModel_ConfirmPassword" xml:space="preserve">
     <value>Confirm</value>
   </data>
@@ -638,6 +665,42 @@
   </data>
   <data name="Register_EmailConfirmation_Required" xml:space="preserve">
     <value>We have sent you a letter of confirmation. Please, prior to entering, confirm your email with the link inside it.</value>
+  </data>
+  <data name="ResendEmailConfirmationPage_Button_Label" xml:space="preserve">
+    <value>Resend</value>
+  </data>
+  <data name="ResendEmailConfirmationPage_Procedure" xml:space="preserve">
+    <value>&lt;p&gt;&lt;small&gt;We will resend you an email with confirmation link.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Please check your spam and trash folders for the letter.&lt;/small&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="ResendEmailConfirmationPage_Procedure_Title" xml:space="preserve">
+    <value>Your confirmation email has been lost?</value>
+  </data>
+  <data name="ResendEmailConfirmationPage_SubTitle" xml:space="preserve">
+    <value>Resend confirmation</value>
+  </data>
+  <data name="ResendEmailConfirmationPage_Title" xml:space="preserve">
+    <value>Resend email confirmation</value>
+  </data>
+  <data name="ResendEmailConfirmation_SuccessMessage" xml:space="preserve">
+    <value>Verification email was resent. Please check your email.</value>
+  </data>
+  <data name="ResetPasswordPage_Button_Label" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="ResetPasswordPage_Procedure" xml:space="preserve">
+    <value>&lt;p&gt;&lt;small&gt;Eneter the email address that you registered with.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Enter your new desired password and confirm it.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;You will be prompted to login afterwards again.&lt;/small&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="ResetPasswordPage_Procedure_Title" xml:space="preserve">
+    <value>Password reset procedure</value>
+  </data>
+  <data name="ResetPasswordPage_Title" xml:space="preserve">
+    <value>Reset password</value>
+  </data>
+  <data name="ResetPassword_SuccessMessage" xml:space="preserve">
+    <value>Your password has been reset. Please &lt;a href="/Identity/Account/Login"&gt;click here to log in&lt;/a&gt;.</value>
   </data>
   <data name="SetStringResource_Dialog_Description" xml:space="preserve">
     <value>The resource will be saved and visible for everybody.</value>

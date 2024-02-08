@@ -448,6 +448,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Затвори.
+        /// </summary>
+        public static string Close_Label {
+            get {
+                return ResourceManager.GetString("Close_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to АВТОРЪТ.
         /// </summary>
         public static string CodexSection_Authors_Title {
@@ -719,7 +728,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to e -mail: {0}.
+        ///   Looks up a localized string similar to e-mail:.
         /// </summary>
         public static string Footer_EditorsAddress_RowThree {
             get {
@@ -881,8 +890,17 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;p&gt;&lt;small&gt;Ще Ви изпратим линк за възстановяване на email адресът, който въведете.&lt;/small&gt;&lt;/p&gt;
-        ///&lt;p&gt;&lt;small&gt;Последвайте връзката и въведете нова парола.&lt;/small&gt;&lt;/p&gt;.
+        ///   Looks up a localized string similar to Моля, проверете пощенската си кутия за да възстановите паролата си..
+        /// </summary>
+        public static string ForgotPassword_InfoMessage {
+            get {
+                return ResourceManager.GetString("ForgotPassword_InfoMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;p&gt;&lt;small&gt;Ще Ви изпратим линк за възстановяване на email адреса, който въведете.&lt;/small&gt;&lt;/p&gt;
+        ///&lt;p&gt;&lt;small&gt;Последвайте връзката в писмото и въведете нова парола.&lt;/small&gt;&lt;/p&gt;.
         /// </summary>
         public static string ForgotPasswordPage_Procedure {
             get {
@@ -1035,6 +1053,24 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Този акаунт е заключен, моля, опитайте отново по-късно..
+        /// </summary>
+        public static string Lockout_WarningMessage {
+            get {
+                return ResourceManager.GetString("Lockout_WarningMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Заключен акаунт.
+        /// </summary>
+        public static string LockoutPage_Title {
+            get {
+                return ResourceManager.GetString("LockoutPage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Невалиден опит за вход..
         /// </summary>
         public static string Login_InvalidLoginAttempt {
@@ -1157,6 +1193,42 @@ namespace linc.Resources {
         public static string Logo_Short {
             get {
                 return ResourceManager.GetString("Logo_Short", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Натиснете тук за Изход.
+        /// </summary>
+        public static string LogoutPage_Button_Label {
+            get {
+                return ResourceManager.GetString("LogoutPage_Button_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изход от платформата.
+        /// </summary>
+        public static string LogoutPage_SubTitle {
+            get {
+                return ResourceManager.GetString("LogoutPage_SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Успешно излязохте от приложението..
+        /// </summary>
+        public static string LogoutPage_SuccessMessage {
+            get {
+                return ResourceManager.GetString("LogoutPage_SuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изход.
+        /// </summary>
+        public static string LogoutPage_Title {
+            get {
+                return ResourceManager.GetString("LogoutPage_Title", resourceCulture);
             }
         }
         
@@ -1431,6 +1503,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Изпратихме Ви писмо за потвърждение. Моля, последвайте линка в писмото за да потвърдите акаунта си..
+        /// </summary>
+        public static string RegisterConfirmation_InfoMessage {
+            get {
+                return ResourceManager.GetString("RegisterConfirmation_InfoMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Потвърди.
         /// </summary>
         public static string RegisterModel_ConfirmPassword {
@@ -1578,6 +1659,108 @@ namespace linc.Resources {
         public static string RegisterPage_Title {
             get {
                 return ResourceManager.GetString("RegisterPage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Писмото за потвърждение беше изпратено повторно. Моля, проверете електронната си поща..
+        /// </summary>
+        public static string ResendEmailConfirmation_SuccessMessage {
+            get {
+                return ResourceManager.GetString("ResendEmailConfirmation_SuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изпрати.
+        /// </summary>
+        public static string ResendEmailConfirmationPage_Button_Label {
+            get {
+                return ResourceManager.GetString("ResendEmailConfirmationPage_Button_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;p&gt;&lt;small&gt;Ще Ви изпратим ново писмо за потвърждение на email адреса, с който сте се регистрирали.&lt;/small&gt;&lt;/p&gt;
+        ///&lt;p&gt;&lt;small&gt;Моля, проверете спам папката и кошчето си за писмото.&lt;/small&gt;&lt;/p&gt;.
+        /// </summary>
+        public static string ResendEmailConfirmationPage_Procedure {
+            get {
+                return ResourceManager.GetString("ResendEmailConfirmationPage_Procedure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Писмото за потвърждение е загубено?.
+        /// </summary>
+        public static string ResendEmailConfirmationPage_Procedure_Title {
+            get {
+                return ResourceManager.GetString("ResendEmailConfirmationPage_Procedure_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Потвърждение на поща.
+        /// </summary>
+        public static string ResendEmailConfirmationPage_SubTitle {
+            get {
+                return ResourceManager.GetString("ResendEmailConfirmationPage_SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Повторно изпращане на имейл за потвърждение.
+        /// </summary>
+        public static string ResendEmailConfirmationPage_Title {
+            get {
+                return ResourceManager.GetString("ResendEmailConfirmationPage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Паролата Ви бе възстановена. Моля, &lt;a asp-page=&quot;/Identity/Account/Login&quot;&gt;влезте в платформата&lt;/a&gt;..
+        /// </summary>
+        public static string ResetPassword_SuccessMessage {
+            get {
+                return ResourceManager.GetString("ResetPassword_SuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Възстанови.
+        /// </summary>
+        public static string ResetPasswordPage_Button_Label {
+            get {
+                return ResourceManager.GetString("ResetPasswordPage_Button_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;p&gt;&lt;small&gt;Моля, въведете email адреса, с който сте се регистрирали.&lt;/small&gt;&lt;/p&gt;
+        ///&lt;p&gt;&lt;small&gt;Въведете новата си парола и я потвърдете.&lt;/small&gt;&lt;/p&gt;
+        ///&lt;p&gt;&lt;small&gt;Ще бъдете помолен/а да се впишете отново след процеса.&lt;/small&gt;&lt;/p&gt;.
+        /// </summary>
+        public static string ResetPasswordPage_Procedure {
+            get {
+                return ResourceManager.GetString("ResetPasswordPage_Procedure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Процедура по възстановяване.
+        /// </summary>
+        public static string ResetPasswordPage_Procedure_Title {
+            get {
+                return ResourceManager.GetString("ResetPasswordPage_Procedure_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Възстановяване на парола.
+        /// </summary>
+        public static string ResetPasswordPage_Title {
+            get {
+                return ResourceManager.GetString("ResetPasswordPage_Title", resourceCulture);
             }
         }
         
