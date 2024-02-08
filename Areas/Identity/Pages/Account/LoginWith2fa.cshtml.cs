@@ -15,6 +15,8 @@ using Microsoft.Extensions.Logging;
 
 namespace linc.Areas.Identity.Pages.Account
 {
+    // TODO: Configure 2fa authentication
+
     public class LoginWith2faModel : PageModel
     {
         private readonly SignInManager<ApplicationUser> _signInManager;

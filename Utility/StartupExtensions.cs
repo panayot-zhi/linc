@@ -174,8 +174,8 @@ public static class StartupExtensions
             // if you logged in - you gave consent
             options.Cookie.IsEssential = true;
             options.Cookie.Name = SiteCookieName.IdentityExternal;
-            options.Cookie.SameSite = SameSiteMode.None;
             options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+            options.Cookie.SameSite = SameSiteMode.Lax;
 
             // If the LoginPath is not set here,
             // ASP.NET Core will default to /Account/Login
@@ -206,8 +206,8 @@ public static class StartupExtensions
             // if you logged in - you gave consent
             options.Cookie.IsEssential = true;
             options.Cookie.Name = SiteCookieName.Identity;
-            options.Cookie.SameSite = SameSiteMode.Strict;
             options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+            options.Cookie.SameSite = SameSiteMode.Lax;
 
             // This interferes with the remember me feature
             //options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
@@ -249,9 +249,9 @@ public static class StartupExtensions
             options.Cookie.HttpOnly = true;
             options.Cookie.IsEssential = true;
             options.Cookie.Name = SiteCookieName.TempData;
-            options.Cookie.SameSite = SameSiteMode.Strict;
             options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
-            
+            options.Cookie.SameSite = SameSiteMode.Lax;
+
             options.Cookie.Expiration = TimeSpan.FromHours(1);
 
         });

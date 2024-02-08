@@ -2,23 +2,32 @@
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @model ResendEmailConfirmationModel
 @{
-    ViewData["Title"] = "Resend email confirmation";
+    ViewData["Title"] = HtmlLocalizer["ResendEmailConfirmationPage_Title"];
 }
 
-<h1>@ViewData["Title"]</h1>
-<h2>Enter your email.</h2>
-<hr />
 <div class="row">
-    <div class="col-md-4">
-        <form method="post">
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-floating">
-                <input asp-for="Input.Email" class="form-control" aria-required="true" />
-                <label asp-for="Input.Email" class="form-label"></label>
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
-            </div>
-            <button type="submit" class="w-100 btn btn-lg btn-primary">Resend</button>
-        </form>
+    <div class="col-lg-4">
+        <section>
+            <form method="post">
+                <h3>@HtmlLocalizer["ResendEmailConfirmationPage_SubTitle"]</h3>
+                <hr />
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-floating">
+                    <input asp-for="Input.Email" class="form-control" aria-required="true"/>
+                    <label asp-for="Input.Email" class="form-label"></label>
+                    <span asp-validation-for="Input.Email" class="invalid-feedback"></span>
+                </div>
+                <button type="submit" class="w-100 btn btn-lg btn-primary">@HtmlLocalizer["ResendEmailConfirmationPage_Button_Label"]</button>
+            </form>
+
+        </section>
+    </div>
+    <div class="col-lg-8">
+        <section>
+            <h3>@HtmlLocalizer["ResendEmailConfirmationPage_Procedure_Title"]</h3>
+            <hr>
+            @HtmlLocalizer["ResendEmailConfirmationPage_Procedure"]
+        </section>
     </div>
 </div>
 
@@ -26,7 +35,7 @@
     <partial name="_ValidationScripts" />
     <script>
         $(document).ready(function () {
-            $("#register").addClass('active');
+            $("#login").addClass('active');
         })
     </script>
 }

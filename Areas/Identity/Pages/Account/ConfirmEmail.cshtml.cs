@@ -26,24 +26,22 @@ namespace linc.Areas.Identity.Pages.Account
             _userManager = userManager;
         }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
-        [TempData]
         public string StatusMessage { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string userId, string code)
         {
             if (userId == null || code == null)
             {
+                _logger.LogWarning("{MethodName} received insufficient parameters: {@Parameters}", 
+                    nameof(OnGetAsync), new[] { userId, code });
+
                 return Redirect("/");
             }
 
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
             {
-                _logger.LogWarning("Failed to confirm user '{UserId}' email address with code [{Code}]: User not found",
+                _logger.LogWarning("Failed to confirm user {UserId} email address with code [{Code}]: User not found",
                     userId, code);
 
                 return NotFound();
@@ -59,7 +57,7 @@ namespace linc.Areas.Identity.Pages.Account
             }
             else
             {
-                _logger.LogError("Failed to confirm user '{UserId}' email address with code [{Code}]: {ResultErrors}",
+                _logger.LogError("Failed to confirm user {UserId} email address with code [{Code}]: {ResultErrors}",
                     userId, code, string.Join(",", result.Errors.Select(x => $"{x.Code} - {x.Description}")));
                 StatusMessage = LocalizationService["ConfirmEmail_ErrorMessage"].Value;
                 AddAlertMessage(LocalizationService["ConfirmEmail_ErrorMessage"],
@@ -69,7 +67,7 @@ namespace linc.Areas.Identity.Pages.Account
             // Don't use the page
             // return Page();
 
-            return Redirect("/");
+            return RedirectToPage("./Login");
         }
     }
 }
