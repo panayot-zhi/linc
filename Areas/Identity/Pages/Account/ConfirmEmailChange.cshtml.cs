@@ -44,7 +44,7 @@ namespace linc.Areas.Identity.Pages.Account
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
             {
-                _logger.LogWarning("Failed to confirm user's '{UserId}' email address ({Email}) change with code [{Code}]: User not found",
+                _logger.LogWarning("Failed to confirm user's {UserId} email address ({Email}) change with code [{Code}]: User not found",
                     userId, email, code);
 
                 return NotFound();
@@ -60,7 +60,7 @@ namespace linc.Areas.Identity.Pages.Account
             }
             else
             {
-                _logger.LogError("Failed to confirm user's '{UserId}' email address ({Email}) change with code [{Code}]: {ResultErrors}",
+                _logger.LogError("Failed to confirm user's {UserId} email address ({Email}) change with code [{Code}]: {ResultErrors}",
                     userId, email, code, string.Join(",", result.Errors.Select(x => $"{x.Code} - {x.Description}")));
                 StatusMessage = LocalizationService["ConfirmEmailChange_ErrorMessage"].Value;
                 AddAlertMessage(LocalizationService["ConfirmEmailChange_ErrorMessage"],

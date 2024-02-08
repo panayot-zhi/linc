@@ -82,7 +82,7 @@ namespace linc.Utility
                 var currentCulture = Thread.CurrentThread.CurrentUICulture;
 
                 var logger = Log.Logger.ForContext<IndexCategory>();
-                logger.Error(ex, "Could not find key for '{ResourceKey}' for the current culture ({Culture})",
+                logger.Error(ex, "Could not find key for {ResourceKey} for the current culture ({Culture})",
                     resourceKey, currentCulture);
             }
 

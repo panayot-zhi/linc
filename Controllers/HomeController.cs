@@ -86,7 +86,7 @@ namespace linc.Controllers
                         modelState.Key + ": " + string.Join(",", modelState.Value.Errors.Select(error => error.ErrorMessage)))
                     .ToList();
 
-                _logger.LogError("Request from '{UserId}' contained invalid information: {@ModelStateErrors}",
+                _logger.LogError("Request from {UserId} contained invalid information: {@ModelStateErrors}",
                     userId, modelStateErrors);
 
                 return BadRequest();
@@ -136,7 +136,7 @@ namespace linc.Controllers
                     return StatusCode(candidate);
                 }
 
-                _logger.LogWarning("Processed an AJAX error with an unknown status code ({StatusCode}) for request ({RequestId}) bound for path '{Path}'. Returning 500: Internal Server Error",
+                _logger.LogWarning("Processed an AJAX error with an unknown status code ({StatusCode}) for request ({RequestId}) bound for path {Path}. Returning 500: Internal Server Error",
                     errorViewModel.StatusCode, errorViewModel.RequestId, errorViewModel.Path);
 
                 return StatusCode(500);
@@ -206,7 +206,7 @@ namespace linc.Controllers
 
             errorViewModel = GetErrorViewModel(id, exceptionHandlerPathFeature);
 
-            _logger.LogError("500 InternalServerError ({RequestId}) at '{Path}': {ErrorMessage}",
+            _logger.LogError("500 InternalServerError ({RequestId}) at {Path}: {ErrorMessage}",
                 errorViewModel.RequestId, errorViewModel.Path, errorViewModel.Error);
 
             return View(errorViewModel);

@@ -148,7 +148,7 @@ namespace linc.Services
                 return;
             }
 
-            _logger.LogInformation("CacheItem with key '{ResourceKey}' has been evicted from the cache registry: {Reason}", 
+            _logger.LogInformation("CacheItem with key {ResourceKey} has been evicted from the cache registry: {Reason}", 
                 key, reason);
         }
 
