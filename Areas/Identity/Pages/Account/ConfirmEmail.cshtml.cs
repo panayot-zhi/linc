@@ -37,6 +37,9 @@ namespace linc.Areas.Identity.Pages.Account
         {
             if (userId == null || code == null)
             {
+                _logger.LogWarning("{MethodName} received insufficient parameters: {@Parameters}", 
+                    nameof(OnGetAsync), new[] { userId, code });
+
                 return Redirect("/");
             }
 
