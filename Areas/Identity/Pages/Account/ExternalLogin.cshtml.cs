@@ -2,29 +2,25 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 using System.Text;
 using System.Text.Encodings.Web;
-using System.Threading;
-using System.Threading.Tasks;
+using linc.Contracts;
 using linc.Data;
+using linc.Models.Enumerations;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using Microsoft.Extensions.Logging;
 
 namespace linc.Areas.Identity.Pages.Account
 {
     // TODO: Configure external login
 
     [AllowAnonymous]
-    public class ExternalLoginModel : PageModel
+    public class ExternalLoginModel : BasePageModel
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
@@ -38,7 +34,9 @@ namespace linc.Areas.Identity.Pages.Account
             UserManager<ApplicationUser> userManager,
             IUserStore<ApplicationUser> userStore,
             ILogger<ExternalLoginModel> logger,
+            ILocalizationService localizer,
             IEmailSender emailSender)
+        : base(localizer)
         {
             _signInManager = signInManager;
             _userManager = userManager;
@@ -118,7 +116,9 @@ namespace linc.Areas.Identity.Pages.Account
             var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false, bypassTwoFactor: true);
             if (result.Succeeded)
             {
-                _logger.LogInformation("{Name} logged in with {LoginProvider} provider.", info.Principal.Identity.Name, info.LoginProvider);
+                _logger.LogInformation("{Name} logged in with {LoginProvider} provider.", 
+                    info.Principal.Identity.Name, info.LoginProvider);
+
                 return LocalRedirect(returnUrl);
             }
             if (result.IsLockedOut)
@@ -179,13 +179,16 @@ namespace linc.Areas.Identity.Pages.Account
                         await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
                             $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-                        // If account confirmation is required, we need to show the link if we don't have a real email sender
                         if (_userManager.Options.SignIn.RequireConfirmedAccount)
                         {
-                            return RedirectToPage("./RegisterConfirmation", new { Email = Input.Email });
+                            AddAlertMessage(LocalizationService["RegisterConfirmation_InfoMessage"],
+                                type: AlertMessageType.Success);
+
+                            return Redirect("/");
                         }
 
                         await _signInManager.SignInAsync(user, isPersistent: false, info.LoginProvider);
+
                         return LocalRedirect(returnUrl);
                     }
                 }

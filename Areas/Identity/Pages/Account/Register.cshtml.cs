@@ -7,19 +7,19 @@ using System.Text;
 using System.Text.Encodings.Web;
 using linc.Contracts;
 using linc.Data;
+using linc.Models.Enumerations;
 using linc.Utility;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 
 namespace linc.Areas.Identity.Pages.Account
 {
     [AllowAnonymous]
-    public class RegisterModel : PageModel
+    public class RegisterModel : BasePageModel
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
@@ -27,7 +27,6 @@ namespace linc.Areas.Identity.Pages.Account
         private readonly IUserStore<ApplicationUser> _userStore;
         private readonly IUserEmailStore<ApplicationUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
-        private readonly ILocalizationService _localizer;
         private readonly IEmailSender _emailSender;
 
         public RegisterModel(
@@ -38,13 +37,13 @@ namespace linc.Areas.Identity.Pages.Account
             ILogger<RegisterModel> logger,
             ILocalizationService localizer,
             IEmailSender emailSender)
+        : base(localizer)
         {
             _userManager = userManager;
             _userStore = userStore;
             _emailStore = GetEmailStore();
             _signInManager = signInManager;
             _emailSender = emailSender;
-            _localizer = localizer;
             _roleManager = roleManager;
             _logger = logger;
         }
@@ -114,7 +113,7 @@ namespace linc.Areas.Identity.Pages.Account
 
             if (Input.PrivacyConsent != true)
             {
-                ModelState.AddModelError(string.Empty, _localizer["RegisterModel_PrivacyConsent_ErrorMessage"].Value);
+                ModelState.AddModelError(string.Empty, LocalizationService["RegisterModel_PrivacyConsent_ErrorMessage"].Value);
             }
 
             if (!ModelState.IsValid)
@@ -155,10 +154,14 @@ namespace linc.Areas.Identity.Pages.Account
 
                 if (_userManager.Options.SignIn.RequireConfirmedAccount)
                 {
-                    return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = ReturnUrl });
+                    AddAlertMessage(LocalizationService["RegisterConfirmation_InfoMessage"],
+                        type: AlertMessageType.Success);
+
+                    return Redirect("/");
                 }
 
                 await _signInManager.SignInAsync(user, isPersistent: false);
+
                 return LocalRedirect(ReturnUrl);
             }
 
@@ -167,7 +170,9 @@ namespace linc.Areas.Identity.Pages.Account
                 ModelState.AddModelError(string.Empty, error.Description);
             }
 
-            // If we got this far, something failed, redisplay form
+            // If we got this far,
+            // something failed,
+            // redisplay form
             return Page();
         }
 

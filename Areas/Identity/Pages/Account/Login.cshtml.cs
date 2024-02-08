@@ -8,24 +8,22 @@ using linc.Data;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace linc.Areas.Identity.Pages.Account
 {
-    public class LoginModel : PageModel
+    public class LoginModel : BasePageModel
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly ILocalizationService _localizer;
         private readonly ILogger<LoginModel> _logger;
 
 
         public LoginModel(SignInManager<ApplicationUser> signInManager,
             ILocalizationService localizer,
             ILogger<LoginModel> logger)
+        : base(localizer)
         {
             _signInManager = signInManager;
-            _localizer = localizer;
             _logger = logger;
         }
 
@@ -105,7 +103,8 @@ namespace linc.Areas.Identity.Pages.Account
             if (result.Succeeded)
             {
                 // ReSharper disable once PossibleNullReferenceException
-                _logger.LogInformation("User '{UserName}' logged in.", user.UserName);
+                _logger.LogInformation("User {UserName} logged in.", user.UserName);
+
                 return LocalRedirect(returnUrl);
             }
 
@@ -123,12 +122,12 @@ namespace linc.Areas.Identity.Pages.Account
 
             if (result.IsNotAllowed)
             {
-                ModelState.AddModelError(string.Empty, _localizer["Register_EmailConfirmation_Required"].Value);
+                ModelState.AddModelError(string.Empty, LocalizationService["Register_EmailConfirmation_Required"].Value);
                 return Page();
             }
 
             // If we got this far, something failed, redisplay form
-            ModelState.AddModelError(string.Empty, _localizer["Login_InvalidLoginAttempt"].Value);
+            ModelState.AddModelError(string.Empty, LocalizationService["Login_InvalidLoginAttempt"].Value);
             return Page();
         }
 
@@ -138,14 +137,14 @@ namespace linc.Areas.Identity.Pages.Account
             var byName = await userManager.FindByNameAsync(input);
             if (byName != null)
             {
-                _logger.LogInformation($"User '{byName.UserName}' recognized by username.");
+                _logger.LogInformation("User {Username} recognized by username.", byName.UserName);
                 return byName;
             }
 
             var byEmail = await userManager.FindByEmailAsync(input);
             if (byEmail != null)
             {
-                _logger.LogInformation($"User {byEmail.UserName} recognized by email.");
+                _logger.LogInformation("User {User} recognized by email ({Email}).", byEmail.UserName, byEmail.Email);
                 return byEmail;
             }
 
