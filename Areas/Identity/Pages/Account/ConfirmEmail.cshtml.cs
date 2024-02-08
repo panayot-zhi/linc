@@ -67,7 +67,7 @@ namespace linc.Areas.Identity.Pages.Account
             // Don't use the page
             // return Page();
 
-            return Redirect("/");
+            return RedirectToPage("./Login");
         }
     }
 }
