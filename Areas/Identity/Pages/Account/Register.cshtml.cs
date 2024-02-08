@@ -78,10 +78,10 @@ namespace linc.Areas.Identity.Pages.Account
             [MaxLength(255, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
             public string Email { get; set; }
 
-            [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
-            [StringLength(100, MinimumLength = 6, ErrorMessageResourceName = "StringLengthAttribute_ValidationErrorIncludingMinimum", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
             [DataType(DataType.Password)]
             [Display(Name = "RegisterModel_Password", ResourceType = typeof(Resources.SharedResource))]
+            [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+            [StringLength(100, MinimumLength = 6, ErrorMessageResourceName = "StringLengthAttribute_ValidationErrorIncludingMinimum", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
