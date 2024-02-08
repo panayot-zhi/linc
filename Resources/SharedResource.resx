@@ -198,11 +198,17 @@
   <data name="Board_Saverio.Tomaiuolo_MemberWork" xml:space="preserve">
     <value>Университет на Касино и Южен Лацио, Италия</value>
   </data>
+  <data name="Board_SubTitle" xml:space="preserve">
+    <value>Борд на &lt;span&gt;редакторите&lt;/span&gt;</value>
+  </data>
   <data name="Board_Suman.Gupta_Member" xml:space="preserve">
     <value>Проф. д-р Суман Гупта</value>
   </data>
   <data name="Board_Suman.Gupta_MemberWork" xml:space="preserve">
     <value>Open University, Милтън Кийнс, Великобритания</value>
+  </data>
+  <data name="Board_Title" xml:space="preserve">
+    <value>Редакционен борд</value>
   </data>
   <data name="Board_Vanya.Georgieva_Member" xml:space="preserve">
     <value>гл. ас. д-р Ваня Георгиева</value>
@@ -316,26 +322,35 @@
   <data name="FeaturedSection_Team_Title" xml:space="preserve">
     <value>Реномирана редколегия</value>
   </data>
-  <data name="Footer_Address_City" xml:space="preserve">
-    <value>Пловдив 4000, ПУ „Паисий Хилендарски“</value>
-  </data>
-  <data name="Footer_Address_Country" xml:space="preserve">
-    <value>България</value>
-  </data>
-  <data name="Footer_Address_Street" xml:space="preserve">
-    <value>„Цар Асен“ 24, ет. 3, кабинет 325</value>
-  </data>
-  <data name="Footer_Address_Title" xml:space="preserve">
-    <value>Адрес на редакцията</value>
-  </data>
   <data name="Footer_Admin_Label" xml:space="preserve">
     <value>Администратор</value>
+  </data>
+  <data name="Footer_EditorsAddress_RowOne" xml:space="preserve">
+    <value>Пловдивски университет „Паисий Хилендарски“</value>
+  </data>
+  <data name="Footer_EditorsAddress_RowThree" xml:space="preserve">
+    <value>e -mail: {0}</value>
+  </data>
+  <data name="Footer_EditorsAddress_RowTwo" xml:space="preserve">
+    <value>Пловдив 4000, ул. „Цар Асен“ 24, ет. 3, кабинет 325</value>
+  </data>
+  <data name="Footer_EditorsAddress_Title" xml:space="preserve">
+    <value>Адрес на &lt;span&gt;редакцията&lt;/span&gt;</value>
   </data>
   <data name="Footer_Email_Label" xml:space="preserve">
     <value>Email</value>
   </data>
   <data name="Footer_Phone_Label" xml:space="preserve">
     <value>Телефон</value>
+  </data>
+  <data name="Footer_PublishersAddress_RowOne" xml:space="preserve">
+    <value>Пловдивско университетско издателство</value>
+  </data>
+  <data name="Footer_PublishersAddress_RowTwo" xml:space="preserve">
+    <value>Пловдив 4000, ул. „Цар Асен“ 24</value>
+  </data>
+  <data name="Footer_PublishersAddress_Title" xml:space="preserve">
+    <value>Адрес на &lt;span&gt;издателя&lt;/span&gt;</value>
   </data>
   <data name="Footer_Redaction_Label" xml:space="preserve">
     <value>Редакция</value>

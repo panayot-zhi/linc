@@ -310,14 +310,16 @@
                 <div class="row">
 
                     <div class="col-lg-3 col-md-6 footer-contact">
-                        <h3>@HtmlLocalizer["Footer_Address_Title"]<span>.</span></h3>
+                        <h3>@HtmlLocalizer["Footer_EditorsAddress_Title"]:</h3>
                         <p>
-                            @HtmlLocalizer["Footer_Address_Street"],<br>
-                            @HtmlLocalizer["Footer_Address_City"],<br>
-                            @HtmlLocalizer["Footer_Address_Country"] <br><br>
-                            <strong>@HtmlLocalizer["Footer_Admin_Label"]:</strong> @SiteConstant.AdministratorEmail<br>
-                            @* <strong>@HtmlLocalizer["Footer_Phone_Label"]:</strong> +359 876 72 72 78<br> *@
-                            <strong>@HtmlLocalizer["Footer_Redaction_Label"]:</strong> @SiteConstant.ReviewsEmail<br>
+                            @HtmlLocalizer["Footer_EditorsAddress_RowOne"],<br>
+                            @HtmlLocalizer["Footer_EditorsAddress_RowTwo"],<br>
+                            @HtmlLocalizer["Footer_EditorsAddress_RowThree", SiteConstant.ReviewsEmail] <br><br>
+                        </p>
+                        <h3>@HtmlLocalizer["Footer_PublishersAddress_Title"]:</h3>
+                        <p>
+                            @HtmlLocalizer["Footer_PublishersAddress_RowOne"],<br>
+                            @HtmlLocalizer["Footer_PublishersAddress_RowTwo"],<br>
                         </p>
                     </div>
 

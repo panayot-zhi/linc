@@ -198,11 +198,17 @@
   <data name="Board_Saverio.Tomaiuolo_MemberWork" xml:space="preserve">
     <value>Университет на Касино и Южен Лацио, Италия</value>
   </data>
+  <data name="Board_SubTitle" xml:space="preserve">
+    <value>Board of &lt;span&gt;editors&lt;/span&gt;</value>
+  </data>
   <data name="Board_Suman.Gupta_Member" xml:space="preserve">
     <value>Проф. д-р Суман Гупта</value>
   </data>
   <data name="Board_Suman.Gupta_MemberWork" xml:space="preserve">
     <value>Open University, Милтън Кийнс, Великобритания</value>
+  </data>
+  <data name="Board_Title" xml:space="preserve">
+    <value>Editorial board</value>
   </data>
   <data name="Board_Vanya.Georgieva_Member" xml:space="preserve">
     <value>гл. ас. д-р Ваня Георгиева</value>
@@ -316,26 +322,35 @@
   <data name="FeaturedSection_Team_Title" xml:space="preserve">
     <value>Renowned editorial board</value>
   </data>
-  <data name="Footer_Address_City" xml:space="preserve">
-    <value>Plovdiv 4000, PU Paisii Hilendarski</value>
-  </data>
-  <data name="Footer_Address_Country" xml:space="preserve">
-    <value>Bulgaria</value>
-  </data>
-  <data name="Footer_Address_Street" xml:space="preserve">
-    <value>King Asen St 24, fl. 3, room 325</value>
-  </data>
-  <data name="Footer_Address_Title" xml:space="preserve">
-    <value>Editorial address</value>
-  </data>
   <data name="Footer_Admin_Label" xml:space="preserve">
     <value>Administrator</value>
+  </data>
+  <data name="Footer_EditorsAddress_RowOne" xml:space="preserve">
+    <value>Paisii Hilendarski University of Plovdiv</value>
+  </data>
+  <data name="Footer_EditorsAddress_RowThree" xml:space="preserve">
+    <value>e -mail: {0}</value>
+  </data>
+  <data name="Footer_EditorsAddress_RowTwo" xml:space="preserve">
+    <value>Plovdiv 4000, Tsar Asen 24, floor 3, office 325</value>
+  </data>
+  <data name="Footer_EditorsAddress_Title" xml:space="preserve">
+    <value>&lt;span&gt;Editorial&lt;/span&gt; address</value>
   </data>
   <data name="Footer_Email_Label" xml:space="preserve">
     <value>Email</value>
   </data>
   <data name="Footer_Phone_Label" xml:space="preserve">
     <value>Phone</value>
+  </data>
+  <data name="Footer_PublishersAddress_RowOne" xml:space="preserve">
+    <value>Plovdiv University Press</value>
+  </data>
+  <data name="Footer_PublishersAddress_RowTwo" xml:space="preserve">
+    <value>Plovdiv 4000, Tsar Asen 24</value>
+  </data>
+  <data name="Footer_PublishersAddress_Title" xml:space="preserve">
+    <value>Address of the &lt;span&gt;publisher&lt;/span&gt;</value>
   </data>
   <data name="Footer_Redaction_Label" xml:space="preserve">
     <value>Editorial office</value>
