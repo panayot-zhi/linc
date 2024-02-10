@@ -52,6 +52,63 @@ a.submit-link {
     color: #111;
 }
 
+.content-editable {
+    background: #e7f1fd;
+    border: solid;
+}
+
+.featured-services .icon-box:hover .description.content-editable {
+    color: #000;
+}
+
+.navbar li.divider hr {
+    margin: 5px 0;
+}
+
+.featured-services .description a.nav-link {
+    display: inline;
+}
+
+/*--------------------------------------------------------------
+# Identity
+--------------------------------------------------------------*/
+.identity section {
+    padding: 20px 0;
+    overflow: hidden;
+}
+
+.identity .form-group,
+.identity .form-floating {
+    margin: 15px 5px;
+}
+
+/*--------------------------------------------------------------
+# sweetalert2
+--------------------------------------------------------------*/
+.swal2-container button.swal2-styled.swal2-confirm {
+    background-color: #106eea;
+}
+
+.swal2-container button.swal2-styled.swal2-confirm:focus {
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, .25);
+}
+
+/*--------------------------------------------------------------
+# Editor's board
+--------------------------------------------------------------*/
+section#board {
+    padding-bottom: 0;
+    padding-top: 40px;
+}
+
+section#testimonials {
+    margin-bottom: 60px;
+}
+
+.testimonial-item .content-editable {
+    background: none;
+}
+
 /*--------------------------------------------------------------
 # Codex
 --------------------------------------------------------------*/
@@ -116,57 +173,4 @@ a.submit-link {
 
 .codex ul li {
     padding: 5px 0;
-}
-
-.content-editable {
-    background: #e7f1fd;
-    border: solid;
-}
-
-.testimonial-item .content-editable {
-    background: none;
-}
-
-.featured-services .icon-box:hover .description.content-editable {
-    color: #000;
-}
-
-.navbar li.divider hr {
-    margin: 5px 0;
-}
-
-.form-floating {
-    margin: 15px 5px;
-}
-
-.featured-services .description a.nav-link {
-    display: inline;
-}
-
-.identity section {
-    padding: 20px 0;
-    overflow: hidden;
-}
-
-/*--------------------------------------------------------------
-# sweetalert2
---------------------------------------------------------------*/
-.swal2-container button.swal2-styled.swal2-confirm {
-    background-color: #106eea;
-}
-
-.swal2-container button.swal2-styled.swal2-confirm:focus {
-    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, .25);
-}
-
-/*--------------------------------------------------------------
-# Editor's board
---------------------------------------------------------------*/
-section#board {
-    padding-bottom: 0;
-    padding-top: 40px;
-}
-
-section#testimonials {
-    margin-bottom: 60px;
 }
