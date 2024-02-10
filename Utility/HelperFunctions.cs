@@ -3,6 +3,8 @@ using System.Security.Principal;
 using linc.Contracts;
 using linc.Models.Enumerations;
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Newtonsoft.Json;
@@ -75,6 +77,19 @@ public static class HelperFunctions
         }
 
         return default;
+    }
+
+    public static void AddIdentityError(this ModelStateDictionary modelState, IdentityError error)
+    {
+        modelState.AddModelError(error.Code, error.Description);
+    }
+
+    public static void AddIdentityErrors(this ModelStateDictionary modelState, IEnumerable<IdentityError> errors)
+    {
+        foreach (var identityError in errors)
+        {
+            modelState.AddIdentityError(identityError);
+        }
     }
 
     public static void AddAlertMessage(
