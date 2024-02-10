@@ -131,18 +131,18 @@ public static class HelperFunctions
         return user.FindFirst(ClaimTypes.Email)?.Value;
     }
 
-    public static SiteRole? GetRole(this ClaimsPrincipal user)
+    public static SiteRole GetRole(this ClaimsPrincipal user)
     {
         var roleName = user.FindFirst(ClaimTypes.Role)?.Value;
 
         if (Enum.TryParse(
                 value: roleName,
-                ignoreCase: false,
+                ignoreCase: true,
                 result: out SiteRole r))
         {
             return r;
         }
 
-        return null;
+        throw new ArgumentOutOfRangeException();
     }
 }
