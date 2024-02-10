@@ -49,7 +49,7 @@ namespace linc.Utility
                     displayName = user.Names;
                     break;
                 case UserDisplayNameType.Anonymous:
-                    displayName = localizer["UserDisplayNameType_Anonymous"].Value;
+                    displayName = localizer["Anonymous_Label"].Value;
                     break;
                 case UserDisplayNameType.NamesAndUserName:
                     displayName = $"{user.Names} ({user.UserName})";
