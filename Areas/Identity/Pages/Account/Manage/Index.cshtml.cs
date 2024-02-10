@@ -104,37 +104,22 @@ namespace linc.Areas.Identity.Pages.Account.Manage
                 return Page();
             }
 
-            IdentityResult result;
-            var updateUser = false;
+            user.FirstName = Input.FirstName;
+            user.LastName = Input.LastName;
 
-            if (Input.FirstName != user.FirstName)
+            var result = await _userManager.UpdateAsync(user);
+            if (!result.Succeeded)
             {
-                user.FirstName = Input.FirstName;
-                updateUser = true;
-            }
-
-            if (Input.LastName != user.LastName)
-            {
-                user.LastName = Input.LastName;
-                updateUser = true;
-            }
-
-            if (updateUser)
-            {
-                result = await _userManager.UpdateAsync(user);
-                if (!result.Succeeded)
+                if (result.Errors.Any())
                 {
-                    if (result.Errors.Any())
-                    {
-                        ModelState.AddIdentityErrors(result.Errors);
-                        return Page();
-                    }
-
-                    StatusMessage = ErrorStatusMessage(
-                        LocalizationService["ManageIndex_SetNames_ErrorStatusMessage"]
-                    );
-                    return RedirectToPage();
+                    ModelState.AddIdentityErrors(result.Errors);
+                    return Page();
                 }
+
+                StatusMessage = ErrorStatusMessage(
+                    LocalizationService["ManageIndex_SetNames_ErrorStatusMessage"]
+                );
+                return RedirectToPage();
             }
 
             var username = await _userManager.GetUserNameAsync(user);
