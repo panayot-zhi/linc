@@ -1,0 +1,164 @@
+﻿using System.ComponentModel.DataAnnotations;
+using linc.Contracts;
+using linc.Data;
+using linc.Models.Enumerations;
+using linc.Utility;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+
+namespace linc.Areas.Identity.Pages.Account.Manage
+{
+    public partial class InfoModel : BasePageModel
+    {
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly IConfiguration _configuration;
+        private readonly IEmailSender _emailSender;
+
+        public InfoModel(
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
+            ILocalizationService localizer,
+            IConfiguration configuration,
+            IEmailSender emailSender)
+        : base(localizer)
+        {
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _emailSender = emailSender;
+            _configuration = configuration;
+        }
+
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
+        public string Username { get; set; }
+
+        public string Email { get; set; }
+
+        public string CurrentDisplayName { get; set; }
+
+        public bool IsEmailConfirmed { get; set; }
+
+        [BindProperty]
+        public InputModel Input { get; set; }
+
+        public class InputModel
+        {
+            [Display(Name = "Какво да се показва за Вас")]
+            public UserDisplayNameType DisplayNameType { get; set; }
+
+            [Display(Name = "Телефонен номер")]
+            [Phone(ErrorMessage = "Моля, въведете валиден телефонен номер.")]
+            [MaxLength(10, ErrorMessage = "Въведеният телефонен номер надвишава позволеният размер ({1} цифри).")]
+            public string PhoneNumber { get; set; }
+            
+            [Display(Name = "Кратко описание")]
+            [MaxLength(1024, ErrorMessage = "Въведеният телефонен номер надвишава позволеният размер ({1} символа).")]
+            public string Description { get; set; }
+        }
+
+        public async Task<IActionResult> OnGetAsync()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return NotFound($"Няма потребител с този идентификационен номер '{_userManager.GetUserId(User)}'.");
+            }
+
+            Input = new InputModel
+            {
+                DisplayNameType = user.DisplayNameType,
+                Description = user.Description,
+                PhoneNumber = user.PhoneNumber,
+            };
+
+            FirstName = user.FirstName;
+            LastName = user.LastName;
+            Email = user.Email;
+
+            CurrentDisplayName = user.GetDisplayName(LocalizationService);
+
+            IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
+
+            return Page();
+        }
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                return NotFound($"Няма потребител с този идентификационен номер '{_userManager.GetUserId(User)}'.");
+            }
+
+            FirstName = user.FirstName;
+            LastName = user.LastName;
+            Email = user.Email;
+
+            CurrentDisplayName = user.GetDisplayName(LocalizationService);
+
+            IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
+
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
+
+            IdentityResult result;
+
+            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+            if (Input.PhoneNumber != phoneNumber)
+            {
+                result = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
+                if (!result.Succeeded)
+                {
+                    if (result.Errors.Any())
+                    {
+                        foreach (var identityError in result.Errors)
+                        {
+                            ModelState.AddModelError(identityError.Code, identityError.Description);
+                        }
+
+                        return Page();
+                    }
+
+                    var userId = await _userManager.GetUserIdAsync(user);
+                    throw new InvalidOperationException($"Unexpected error occurred setting phone number for user with ID '{userId}'.");
+                }
+            }
+
+            user.DisplayNameType = Input.DisplayNameType;
+            user.Description = Input.Description;
+
+            result = await _userManager.UpdateAsync(user);
+            if (!result.Succeeded)
+            {
+                if (result.Errors.Any())
+                {
+                    foreach (var identityError in result.Errors)
+                    {
+                        ModelState.AddModelError(identityError.Code, identityError.Description);
+                    }
+
+                    return Page();
+                }
+
+                var userId = await _userManager.GetUserIdAsync(user);
+                throw new Exception($"Unexpected error occurred setting names for user with ID '{userId}'.");
+            }
+
+            await _signInManager.RefreshSignInAsync(user);
+            AddAlertMessage("Допълнителната информация беше обновена.", type: AlertMessageType.Success);
+            return RedirectToPage();
+        }
+
+        private async Task<string> SaveAvatarFileAsync(IFormFile formFile, string userId)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}
