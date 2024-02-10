@@ -115,34 +115,4 @@ public static class HelperFunctions
 
         tempData["AlertMessage"] = alertMessage;
     }
-
-    public static string GetUserId(this ClaimsPrincipal user)
-    {
-        return user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-    }
-
-    public static string GetUserName(this ClaimsPrincipal user)
-    {
-        return user.FindFirst(ClaimTypes.Name)?.Value;
-    }
-
-    public static string GetEmail(this ClaimsPrincipal user)
-    {
-        return user.FindFirst(ClaimTypes.Email)?.Value;
-    }
-
-    public static SiteRole GetRole(this ClaimsPrincipal user)
-    {
-        var roleName = user.FindFirst(ClaimTypes.Role)?.Value;
-
-        if (Enum.TryParse(
-                value: roleName,
-                ignoreCase: true,
-                result: out SiteRole r))
-        {
-            return r;
-        }
-
-        throw new ArgumentOutOfRangeException();
-    }
 }
