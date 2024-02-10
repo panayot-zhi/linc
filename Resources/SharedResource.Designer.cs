@@ -674,6 +674,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Текущо.
+        /// </summary>
+        public static string CurrentDisplayName_Label {
+            get {
+                return ResourceManager.GetString("CurrentDisplayName_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Често Задавани &lt;span&gt;Въпроси&lt;/span&gt;.
         /// </summary>
         public static string FaqSection_SubTitle {
@@ -1430,6 +1439,60 @@ namespace linc.Resources {
         public static string ManageNavItem_TwoFactorAuthentication {
             get {
                 return ResourceManager.GetString("ManageNavItem_TwoFactorAuthentication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Кратко описание.
+        /// </summary>
+        public static string ManagePreferences_Description {
+            get {
+                return ResourceManager.GetString("ManagePreferences_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Показвай email адресa ми.
+        /// </summary>
+        public static string ManagePreferences_DisplayEmail {
+            get {
+                return ResourceManager.GetString("ManagePreferences_DisplayEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Какво да се показва за Вас.
+        /// </summary>
+        public static string ManagePreferences_DisplayNameType {
+            get {
+                return ResourceManager.GetString("ManagePreferences_DisplayNameType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Допълнителни настройки.
+        /// </summary>
+        public static string ManagePreferences_Title {
+            get {
+                return ResourceManager.GetString("ManagePreferences_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Възникна грешка при опит да запазим преференциите Ви..
+        /// </summary>
+        public static string ManagePreferences_Update_ErrorStatusMessage {
+            get {
+                return ResourceManager.GetString("ManagePreferences_Update_ErrorStatusMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Вашите преференции бяха запазени..
+        /// </summary>
+        public static string ManagePreferences_Update_SuccessStatusMessage {
+            get {
+                return ResourceManager.GetString("ManagePreferences_Update_SuccessStatusMessage", resourceCulture);
             }
         }
         

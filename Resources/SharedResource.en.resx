@@ -322,6 +322,9 @@
   <data name="Copyright_Label" xml:space="preserve">
     <value>All rights reserved</value>
   </data>
+  <data name="CurrentDisplayName_Label" xml:space="preserve">
+    <value>Current</value>
+  </data>
   <data name="FaqSection_SubTitle" xml:space="preserve">
     <value>Frequently Asked &lt;span&gt;Questions&lt;/span&gt;</value>
   </data>
@@ -580,6 +583,24 @@
   </data>
   <data name="ManageNavItem_TwoFactorAuthentication" xml:space="preserve">
     <value>Two-factor authentication</value>
+  </data>
+  <data name="ManagePreferences_Description" xml:space="preserve">
+    <value>Short description</value>
+  </data>
+  <data name="ManagePreferences_DisplayEmail" xml:space="preserve">
+    <value>Show my email address</value>
+  </data>
+  <data name="ManagePreferences_DisplayNameType" xml:space="preserve">
+    <value>What to show for you</value>
+  </data>
+  <data name="ManagePreferences_Title" xml:space="preserve">
+    <value>Additional settings</value>
+  </data>
+  <data name="ManagePreferences_Update_ErrorStatusMessage" xml:space="preserve">
+    <value>Unexpected error occurred when updating your preferences.</value>
+  </data>
+  <data name="ManagePreferences_Update_SuccessStatusMessage" xml:space="preserve">
+    <value>Your preferences have been saved.</value>
   </data>
   <data name="ManageProfile_DisplayEmail" xml:space="preserve">
     <value>Show my email</value>

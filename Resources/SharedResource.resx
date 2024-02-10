@@ -322,6 +322,9 @@
   <data name="Copyright_Label" xml:space="preserve">
     <value>Всички права запазени</value>
   </data>
+  <data name="CurrentDisplayName_Label" xml:space="preserve">
+    <value>Текущо</value>
+  </data>
   <data name="FaqSection_SubTitle" xml:space="preserve">
     <value>Често Задавани &lt;span&gt;Въпроси&lt;/span&gt;</value>
   </data>
@@ -577,6 +580,24 @@
   </data>
   <data name="ManageNavItem_TwoFactorAuthentication" xml:space="preserve">
     <value>Двуфакторна автентикация</value>
+  </data>
+  <data name="ManagePreferences_Description" xml:space="preserve">
+    <value>Кратко описание</value>
+  </data>
+  <data name="ManagePreferences_DisplayEmail" xml:space="preserve">
+    <value>Показвай email адресa ми</value>
+  </data>
+  <data name="ManagePreferences_DisplayNameType" xml:space="preserve">
+    <value>Какво да се показва за Вас</value>
+  </data>
+  <data name="ManagePreferences_Title" xml:space="preserve">
+    <value>Допълнителни настройки</value>
+  </data>
+  <data name="ManagePreferences_Update_ErrorStatusMessage" xml:space="preserve">
+    <value>Възникна грешка при опит да запазим преференциите Ви.</value>
+  </data>
+  <data name="ManagePreferences_Update_SuccessStatusMessage" xml:space="preserve">
+    <value>Вашите преференции бяха запазени.</value>
   </data>
   <data name="ManageProfile_DisplayEmail" xml:space="preserve">
     <value>Показвай email адреса ми</value>
