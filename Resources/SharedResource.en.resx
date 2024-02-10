@@ -515,6 +515,12 @@
   <data name="Logo_Short" xml:space="preserve">
     <value>LInC</value>
   </data>
+  <data name="ManageIndex_Description" xml:space="preserve">
+    <value>&lt;p&gt;&lt;small&gt;Information in this is required for the LInC site to verify your identity.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Your nickname will be shown publicly to other users if you do not want your names to be shown.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;You can manage this preference from the &lt;a class="text-decoration-underline" asp-page="./Information"&gt;advanced settings here&lt;/a&gt;.&lt;/small&gt;&lt;/p&gt;
+&lt;p &gt;&lt;small&gt;If you decide to give your phone number, keep in mind that LInC &lt;b&gt;does not distribute your number to third parties and does not use it for marketing purposes&lt;/b&gt;. The phone number is used to secure your account, exclusively at your request.&lt;/small&gt;&lt;/p&gt;</value>
+  </data>
   <data name="ManageIndex_EmailVerificationPending" xml:space="preserve">
     <value>pending confirmation</value>
   </data>
@@ -529,6 +535,18 @@
   </data>
   <data name="ManageIndex_ReSendVerificationEmail" xml:space="preserve">
     <value>Resend verification email</value>
+  </data>
+  <data name="ManageIndex_SetNames_ErrorStatusMessage" xml:space="preserve">
+    <value>Unexpected error occurred when trying to set names.</value>
+  </data>
+  <data name="ManageIndex_SetPhoneNumber_ErrorStatusMessage" xml:space="preserve">
+    <value>Unexpected error when trying to set phone number.</value>
+  </data>
+  <data name="ManageIndex_SetUserName_ErrorStatusMessage" xml:space="preserve">
+    <value>Unexpected error when trying to set username.</value>
+  </data>
+  <data name="ManageIndex_SuccessStatusMessage" xml:space="preserve">
+    <value>Your profile has been updated.</value>
   </data>
   <data name="ManageIndex_Title" xml:space="preserve">
     <value>Profile</value>
@@ -549,7 +567,7 @@
     <value>External logins</value>
   </data>
   <data name="ManageNavItem_Information" xml:space="preserve">
-    <value>Information</value>
+    <value>Preferences</value>
   </data>
   <data name="ManageNavItem_PersonalData" xml:space="preserve">
     <value>Personal data</value>
@@ -562,6 +580,9 @@
   </data>
   <data name="ManageProfile_DisplayEmail" xml:space="preserve">
     <value>Show my email</value>
+  </data>
+  <data name="ManageProfile_Phone" xml:space="preserve">
+    <value>Phone</value>
   </data>
   <data name="ManageProfile_SuccessMessage" xml:space="preserve">
     <value>Your profile has been updated</value>
@@ -809,6 +830,15 @@
   </data>
   <data name="SiteRole_Users" xml:space="preserve">
     <value>Users</value>
+  </data>
+  <data name="StatusMessage_Error_Prefix" xml:space="preserve">
+    <value>Error:</value>
+  </data>
+  <data name="StatusMessage_Success_Prefix" xml:space="preserve">
+    <value>Success:</value>
+  </data>
+  <data name="StatusMessage_Warning_Prefix" xml:space="preserve">
+    <value>Warning:</value>
   </data>
   <data name="Team_B.Yanev_Member" xml:space="preserve">
     <value>доц. д-р Борян Янев</value>

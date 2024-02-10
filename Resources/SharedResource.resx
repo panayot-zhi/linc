@@ -512,6 +512,12 @@
   <data name="Logo_Short" xml:space="preserve">
     <value>ЛИнК</value>
   </data>
+  <data name="ManageIndex_Description" xml:space="preserve">
+    <value>&lt;p&gt;&lt;small&gt;Всички данни в тази форма са задължителни, за да може сайтът на Списание ЛИнК да удостовери самоличността Ви.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Псевдонимът Ви ще се показва публично на други потребители, ако не желаете да се показва Вашето име.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Можете да управлявате това от &lt;a class="text-decoration-underline" asp-page="./Information"&gt;допълнителните настройки тук&lt;/a&gt;.&lt;/small&gt;&lt;/p&gt;
+&lt;p &gt;&lt;small&gt;Ако решите да въведете телефон, имайте предвид, че Списание ЛИнК &lt;b&gt;не разпространява номерът Ви на трети страни и не го използва за маркетингови цели&lt;/b&gt;. Телефонният номер се използва за подсигуряване на профилът Ви, ексклузивно по Ваше желание.&lt;/small&gt;&lt;/p&gt;</value>
+  </data>
   <data name="ManageIndex_EmailVerificationPending" xml:space="preserve">
     <value>чака потвърждение</value>
   </data>
@@ -526,6 +532,18 @@
   </data>
   <data name="ManageIndex_ReSendVerificationEmail" xml:space="preserve">
     <value>Преизпрати верификационен email</value>
+  </data>
+  <data name="ManageIndex_SetNames_ErrorStatusMessage" xml:space="preserve">
+    <value>Възникна грешка при опит за промяна на имена.</value>
+  </data>
+  <data name="ManageIndex_SetPhoneNumber_ErrorStatusMessage" xml:space="preserve">
+    <value>Възнкина грешка при опит за промяна на телефонния номер.</value>
+  </data>
+  <data name="ManageIndex_SetUserName_ErrorStatusMessage" xml:space="preserve">
+    <value>Възнкина грешка при опит за промяна на псевдонима.</value>
+  </data>
+  <data name="ManageIndex_SuccessStatusMessage" xml:space="preserve">
+    <value>Информацията за профила Ви беше обновена.</value>
   </data>
   <data name="ManageIndex_Title" xml:space="preserve">
     <value>Профил</value>
@@ -546,7 +564,7 @@
     <value>Външен вход</value>
   </data>
   <data name="ManageNavItem_Information" xml:space="preserve">
-    <value>Информация</value>
+    <value>Преференции</value>
   </data>
   <data name="ManageNavItem_PersonalData" xml:space="preserve">
     <value>Вашите данни</value>
@@ -559,6 +577,9 @@
   </data>
   <data name="ManageProfile_DisplayEmail" xml:space="preserve">
     <value>Показвай email адреса ми</value>
+  </data>
+  <data name="ManageProfile_Phone" xml:space="preserve">
+    <value>Телефон</value>
   </data>
   <data name="ManageProfile_SuccessMessage" xml:space="preserve">
     <value>Информацията за профила Ви беше обновена.</value>
@@ -803,6 +824,15 @@
   </data>
   <data name="SiteRole_Users" xml:space="preserve">
     <value>Потребители</value>
+  </data>
+  <data name="StatusMessage_Error_Prefix" xml:space="preserve">
+    <value>Грешка:</value>
+  </data>
+  <data name="StatusMessage_Success_Prefix" xml:space="preserve">
+    <value>Успех:</value>
+  </data>
+  <data name="StatusMessage_Warning_Prefix" xml:space="preserve">
+    <value>Внимание:</value>
   </data>
   <data name="Team_B.Yanev_Member" xml:space="preserve">
     <value>доц. д-р Борян Янев</value>

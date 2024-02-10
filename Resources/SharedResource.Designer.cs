@@ -1242,6 +1242,18 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;p&gt;&lt;small&gt;Всички данни в тази форма са задължителни, за да може сайтът на Списание ЛИнК да удостовери самоличността Ви.&lt;/small&gt;&lt;/p&gt;
+        ///&lt;p&gt;&lt;small&gt;Псевдонимът Ви ще се показва публично на други потребители, ако не желаете да се показва Вашето име.&lt;/small&gt;&lt;/p&gt;
+        ///&lt;p&gt;&lt;small&gt;Можете да управлявате това от &lt;a class=&quot;text-decoration-underline&quot; asp-page=&quot;./Information&quot;&gt;допълнителните настройки тук&lt;/a&gt;.&lt;/small&gt;&lt;/p&gt;
+        ///&lt;p &gt;&lt;small&gt;Ако решите да въведете телефон, имайте предвид, че Списание ЛИнК &lt;b&gt;не разпространява номерът В [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string ManageIndex_Description {
+            get {
+                return ResourceManager.GetString("ManageIndex_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to чака потвърждение.
         /// </summary>
         public static string ManageIndex_EmailVerificationPending {
@@ -1283,6 +1295,42 @@ namespace linc.Resources {
         public static string ManageIndex_ReSendVerificationEmail {
             get {
                 return ResourceManager.GetString("ManageIndex_ReSendVerificationEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Възникна грешка при опит за промяна на имена..
+        /// </summary>
+        public static string ManageIndex_SetNames_ErrorStatusMessage {
+            get {
+                return ResourceManager.GetString("ManageIndex_SetNames_ErrorStatusMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Възнкина грешка при опит за промяна на телефонния номер..
+        /// </summary>
+        public static string ManageIndex_SetPhoneNumber_ErrorStatusMessage {
+            get {
+                return ResourceManager.GetString("ManageIndex_SetPhoneNumber_ErrorStatusMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Възнкина грешка при опит за промяна на псевдонима..
+        /// </summary>
+        public static string ManageIndex_SetUserName_ErrorStatusMessage {
+            get {
+                return ResourceManager.GetString("ManageIndex_SetUserName_ErrorStatusMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Информацията за профила Ви беше обновена..
+        /// </summary>
+        public static string ManageIndex_SuccessStatusMessage {
+            get {
+                return ResourceManager.GetString("ManageIndex_SuccessStatusMessage", resourceCulture);
             }
         }
         
@@ -1341,7 +1389,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Информация.
+        ///   Looks up a localized string similar to Преференции.
         /// </summary>
         public static string ManageNavItem_Information {
             get {
@@ -1382,6 +1430,15 @@ namespace linc.Resources {
         public static string ManageProfile_DisplayEmail {
             get {
                 return ResourceManager.GetString("ManageProfile_DisplayEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Телефон.
+        /// </summary>
+        public static string ManageProfile_Phone {
+            get {
+                return ResourceManager.GetString("ManageProfile_Phone", resourceCulture);
             }
         }
         
@@ -2085,6 +2142,33 @@ namespace linc.Resources {
         public static string SiteRole_Users {
             get {
                 return ResourceManager.GetString("SiteRole_Users", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Грешка:.
+        /// </summary>
+        public static string StatusMessage_Error_Prefix {
+            get {
+                return ResourceManager.GetString("StatusMessage_Error_Prefix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Успех:.
+        /// </summary>
+        public static string StatusMessage_Success_Prefix {
+            get {
+                return ResourceManager.GetString("StatusMessage_Success_Prefix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Внимание:.
+        /// </summary>
+        public static string StatusMessage_Warning_Prefix {
+            get {
+                return ResourceManager.GetString("StatusMessage_Warning_Prefix", resourceCulture);
             }
         }
         
