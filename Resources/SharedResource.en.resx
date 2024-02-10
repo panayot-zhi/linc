@@ -216,6 +216,9 @@
   <data name="Board_Vanya.Georgieva_MemberWork" xml:space="preserve">
     <value>Технически сътрудник &lt;br/&gt;катедра Българска литература и теория на литературата&lt;br/&gt;ПУ „Паисий Хилендарски“</value>
   </data>
+  <data name="Cancel_Button_Label" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="CategoriesSection_SubTitle" xml:space="preserve">
     <value>Browse by &lt;span&gt;categories&lt;/span&gt;</value>
   </data>
@@ -512,6 +515,24 @@
   <data name="Logo_Short" xml:space="preserve">
     <value>LInC</value>
   </data>
+  <data name="ManageIndex_EmailVerificationPending" xml:space="preserve">
+    <value>pending confirmation</value>
+  </data>
+  <data name="ManageIndex_EmailVerificationPending_Popover" xml:space="preserve">
+    <value>This email address is pending confirmation</value>
+  </data>
+  <data name="ManageIndex_EmailVerified" xml:space="preserve">
+    <value>confirmed</value>
+  </data>
+  <data name="ManageIndex_EmailVerified_Popover" xml:space="preserve">
+    <value>The email address has been confirmed</value>
+  </data>
+  <data name="ManageIndex_ReSendVerificationEmail" xml:space="preserve">
+    <value>Resend verification email</value>
+  </data>
+  <data name="ManageIndex_Title" xml:space="preserve">
+    <value>Profile</value>
+  </data>
   <data name="ManageNavItem_Administration" xml:space="preserve">
     <value>Administration</value>
   </data>
@@ -538,6 +559,12 @@
   </data>
   <data name="ManageNavItem_TwoFactorAuthentication" xml:space="preserve">
     <value>Two-factor authentication</value>
+  </data>
+  <data name="ManageProfile_DisplayEmail" xml:space="preserve">
+    <value>Show my email</value>
+  </data>
+  <data name="ManageProfile_SuccessMessage" xml:space="preserve">
+    <value>Your profile has been updated</value>
   </data>
   <data name="ManageProfile_Title" xml:space="preserve">
     <value>Change your account settings</value>
@@ -731,6 +758,12 @@
   </data>
   <data name="ResetPassword_SuccessMessage" xml:space="preserve">
     <value>Your password has been reset. Please &lt;a href="/Identity/Account/Login"&gt;click here to log in&lt;/a&gt;.</value>
+  </data>
+  <data name="Reset_Button_Label" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="Save_Button_Label" xml:space="preserve">
+    <value>Save</value>
   </data>
   <data name="SetStringResource_Dialog_Description" xml:space="preserve">
     <value>The resource will be saved and visible for everybody.</value>

@@ -358,6 +358,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Отказ.
+        /// </summary>
+        public static string Cancel_Button_Label {
+            get {
+                return ResourceManager.GetString("Cancel_Button_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Разгледайте списанието по &lt;span&gt;категории&lt;/span&gt;.
         /// </summary>
         public static string CategoriesSection_SubTitle {
@@ -1233,6 +1242,60 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to чака потвърждение.
+        /// </summary>
+        public static string ManageIndex_EmailVerificationPending {
+            get {
+                return ResourceManager.GetString("ManageIndex_EmailVerificationPending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email адресът все още не е потвърден.
+        /// </summary>
+        public static string ManageIndex_EmailVerificationPending_Popover {
+            get {
+                return ResourceManager.GetString("ManageIndex_EmailVerificationPending_Popover", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to потвърден.
+        /// </summary>
+        public static string ManageIndex_EmailVerified {
+            get {
+                return ResourceManager.GetString("ManageIndex_EmailVerified", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email адресът е потвърден.
+        /// </summary>
+        public static string ManageIndex_EmailVerified_Popover {
+            get {
+                return ResourceManager.GetString("ManageIndex_EmailVerified_Popover", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Преизпрати верификационен email.
+        /// </summary>
+        public static string ManageIndex_ReSendVerificationEmail {
+            get {
+                return ResourceManager.GetString("ManageIndex_ReSendVerificationEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Профил.
+        /// </summary>
+        public static string ManageIndex_Title {
+            get {
+                return ResourceManager.GetString("ManageIndex_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Администрация.
         /// </summary>
         public static string ManageNavItem_Administration {
@@ -1310,6 +1373,24 @@ namespace linc.Resources {
         public static string ManageNavItem_TwoFactorAuthentication {
             get {
                 return ResourceManager.GetString("ManageNavItem_TwoFactorAuthentication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Показвай email адреса ми.
+        /// </summary>
+        public static string ManageProfile_DisplayEmail {
+            get {
+                return ResourceManager.GetString("ManageProfile_DisplayEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Информацията за профила Ви беше обновена..
+        /// </summary>
+        public static string ManageProfile_SuccessMessage {
+            get {
+                return ResourceManager.GetString("ManageProfile_SuccessMessage", resourceCulture);
             }
         }
         
@@ -1808,6 +1889,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Изчисти.
+        /// </summary>
+        public static string Reset_Button_Label {
+            get {
+                return ResourceManager.GetString("Reset_Button_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Паролата Ви бе възстановена. Моля, &lt;a asp-page=&quot;/Identity/Account/Login&quot;&gt;влезте в платформата&lt;/a&gt;..
         /// </summary>
         public static string ResetPassword_SuccessMessage {
@@ -1851,6 +1941,15 @@ namespace linc.Resources {
         public static string ResetPasswordPage_Title {
             get {
                 return ResourceManager.GetString("ResetPasswordPage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Запази.
+        /// </summary>
+        public static string Save_Button_Label {
+            get {
+                return ResourceManager.GetString("Save_Button_Label", resourceCulture);
             }
         }
         

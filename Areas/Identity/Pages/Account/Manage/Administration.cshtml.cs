@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace linc.Areas.Identity.Pages.Account.Manage
 {
+    // TODO: Impersonate
+
     public class AdministrationModel : PageModel
     {
         private readonly UserManager<ApplicationUser> _userManager;

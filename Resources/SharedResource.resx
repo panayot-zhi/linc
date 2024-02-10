@@ -216,6 +216,9 @@
   <data name="Board_Vanya.Georgieva_MemberWork" xml:space="preserve">
     <value>Технически сътрудник &lt;br/&gt;катедра Българска литература и теория на литературата&lt;br/&gt;ПУ „Паисий Хилендарски“</value>
   </data>
+  <data name="Cancel_Button_Label" xml:space="preserve">
+    <value>Отказ</value>
+  </data>
   <data name="CategoriesSection_SubTitle" xml:space="preserve">
     <value>Разгледайте списанието по &lt;span&gt;категории&lt;/span&gt;</value>
   </data>
@@ -509,6 +512,24 @@
   <data name="Logo_Short" xml:space="preserve">
     <value>ЛИнК</value>
   </data>
+  <data name="ManageIndex_EmailVerificationPending" xml:space="preserve">
+    <value>чака потвърждение</value>
+  </data>
+  <data name="ManageIndex_EmailVerificationPending_Popover" xml:space="preserve">
+    <value>Email адресът все още не е потвърден</value>
+  </data>
+  <data name="ManageIndex_EmailVerified" xml:space="preserve">
+    <value>потвърден</value>
+  </data>
+  <data name="ManageIndex_EmailVerified_Popover" xml:space="preserve">
+    <value>Email адресът е потвърден</value>
+  </data>
+  <data name="ManageIndex_ReSendVerificationEmail" xml:space="preserve">
+    <value>Преизпрати верификационен email</value>
+  </data>
+  <data name="ManageIndex_Title" xml:space="preserve">
+    <value>Профил</value>
+  </data>
   <data name="ManageNavItem_Administration" xml:space="preserve">
     <value>Администрация</value>
   </data>
@@ -535,6 +556,12 @@
   </data>
   <data name="ManageNavItem_TwoFactorAuthentication" xml:space="preserve">
     <value>Двуфакторна автентикация</value>
+  </data>
+  <data name="ManageProfile_DisplayEmail" xml:space="preserve">
+    <value>Показвай email адреса ми</value>
+  </data>
+  <data name="ManageProfile_SuccessMessage" xml:space="preserve">
+    <value>Информацията за профила Ви беше обновена.</value>
   </data>
   <data name="ManageProfile_Title" xml:space="preserve">
     <value>Управление на потребителски профил</value>
@@ -725,6 +752,12 @@
   </data>
   <data name="ResetPassword_SuccessMessage" xml:space="preserve">
     <value>Паролата Ви бе възстановена. Моля, &lt;a asp-page="/Identity/Account/Login"&gt;влезте в платформата&lt;/a&gt;.</value>
+  </data>
+  <data name="Reset_Button_Label" xml:space="preserve">
+    <value>Изчисти</value>
+  </data>
+  <data name="Save_Button_Label" xml:space="preserve">
+    <value>Запази</value>
   </data>
   <data name="SetStringResource_Dialog_Description" xml:space="preserve">
     <value>Текста ще бъде запазен и видим за всички.</value>
