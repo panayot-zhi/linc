@@ -193,7 +193,7 @@
     <value>The field {0} must be a string or array type with a minimum length of '{1}'.</value>
   </data>
   <data name="PhoneAttribute_Invalid" xml:space="preserve">
-    <value>The {0} field is not a valid phone number.</value>
+    <value>Полето {0} не съдържа валиден телефонен номер.</value>
   </data>
   <data name="RangeAttribute_ArbitraryTypeNotIComparable" xml:space="preserve">
     <value>The type {0} must implement {1}.</value>
