@@ -1233,6 +1233,96 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Администрация.
+        /// </summary>
+        public static string ManageNavItem_Administration {
+            get {
+                return ResourceManager.GetString("ManageNavItem_Administration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Снимка.
+        /// </summary>
+        public static string ManageNavItem_Avatar {
+            get {
+                return ResourceManager.GetString("ManageNavItem_Avatar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Парола.
+        /// </summary>
+        public static string ManageNavItem_ChangePassword {
+            get {
+                return ResourceManager.GetString("ManageNavItem_ChangePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string ManageNavItem_Email {
+            get {
+                return ResourceManager.GetString("ManageNavItem_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Външен вход.
+        /// </summary>
+        public static string ManageNavItem_ExternalLogins {
+            get {
+                return ResourceManager.GetString("ManageNavItem_ExternalLogins", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Информация.
+        /// </summary>
+        public static string ManageNavItem_Information {
+            get {
+                return ResourceManager.GetString("ManageNavItem_Information", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Вашите данни.
+        /// </summary>
+        public static string ManageNavItem_PersonalData {
+            get {
+                return ResourceManager.GetString("ManageNavItem_PersonalData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Профил.
+        /// </summary>
+        public static string ManageNavItem_Profile {
+            get {
+                return ResourceManager.GetString("ManageNavItem_Profile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Двуфакторна автентикация.
+        /// </summary>
+        public static string ManageNavItem_TwoFactorAuthentication {
+            get {
+                return ResourceManager.GetString("ManageNavItem_TwoFactorAuthentication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Управление на потребителски профил.
+        /// </summary>
+        public static string ManageProfile_Title {
+            get {
+                return ResourceManager.GetString("ManageProfile_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to За списанието.
         /// </summary>
         public static string NavItem_About {
@@ -1864,11 +1954,29 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Роля.
+        /// </summary>
+        public static string SiteRole_Label {
+            get {
+                return ResourceManager.GetString("SiteRole_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Потребител.
         /// </summary>
         public static string SiteRole_User {
             get {
                 return ResourceManager.GetString("SiteRole_User", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Потребител +.
+        /// </summary>
+        public static string SiteRole_UserPlus {
+            get {
+                return ResourceManager.GetString("SiteRole_UserPlus", resourceCulture);
             }
         }
         
@@ -1968,6 +2076,15 @@ namespace linc.Resources {
         public static string Team_Z_Ivanov_Member {
             get {
                 return ResourceManager.GetString("Team_Z.Ivanov_Member", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Анонимен.
+        /// </summary>
+        public static string UserDisplayNameType_Anonymous {
+            get {
+                return ResourceManager.GetString("UserDisplayNameType_Anonymous", resourceCulture);
             }
         }
         

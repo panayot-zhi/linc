@@ -512,6 +512,36 @@
   <data name="Logo_Short" xml:space="preserve">
     <value>LInC</value>
   </data>
+  <data name="ManageNavItem_Administration" xml:space="preserve">
+    <value>Administration</value>
+  </data>
+  <data name="ManageNavItem_Avatar" xml:space="preserve">
+    <value>Picture</value>
+  </data>
+  <data name="ManageNavItem_ChangePassword" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="ManageNavItem_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="ManageNavItem_ExternalLogins" xml:space="preserve">
+    <value>External logins</value>
+  </data>
+  <data name="ManageNavItem_Information" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="ManageNavItem_PersonalData" xml:space="preserve">
+    <value>Personal data</value>
+  </data>
+  <data name="ManageNavItem_Profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="ManageNavItem_TwoFactorAuthentication" xml:space="preserve">
+    <value>Two-factor authentication</value>
+  </data>
+  <data name="ManageProfile_Title" xml:space="preserve">
+    <value>Change your account settings</value>
+  </data>
   <data name="NavItem_About" xml:space="preserve">
     <value>About</value>
   </data>
@@ -735,8 +765,14 @@
   <data name="SiteRole_HeadEditors" xml:space="preserve">
     <value>Head Editors</value>
   </data>
+  <data name="SiteRole_Label" xml:space="preserve">
+    <value>Role</value>
+  </data>
   <data name="SiteRole_User" xml:space="preserve">
     <value>User</value>
+  </data>
+  <data name="SiteRole_UserPlus" xml:space="preserve">
+    <value>User +</value>
   </data>
   <data name="SiteRole_Users" xml:space="preserve">
     <value>Users</value>
@@ -770,6 +806,9 @@
   </data>
   <data name="Team_Z.Ivanov_Member" xml:space="preserve">
     <value>доц. д-р Живко Иванов</value>
+  </data>
+  <data name="UserDisplayNameType_Anonymous" xml:space="preserve">
+    <value>Anonymous</value>
   </data>
   <data name="Version_Label" xml:space="preserve">
     <value>version</value>

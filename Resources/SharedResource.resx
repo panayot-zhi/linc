@@ -509,6 +509,36 @@
   <data name="Logo_Short" xml:space="preserve">
     <value>ЛИнК</value>
   </data>
+  <data name="ManageNavItem_Administration" xml:space="preserve">
+    <value>Администрация</value>
+  </data>
+  <data name="ManageNavItem_Avatar" xml:space="preserve">
+    <value>Снимка</value>
+  </data>
+  <data name="ManageNavItem_ChangePassword" xml:space="preserve">
+    <value>Парола</value>
+  </data>
+  <data name="ManageNavItem_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="ManageNavItem_ExternalLogins" xml:space="preserve">
+    <value>Външен вход</value>
+  </data>
+  <data name="ManageNavItem_Information" xml:space="preserve">
+    <value>Информация</value>
+  </data>
+  <data name="ManageNavItem_PersonalData" xml:space="preserve">
+    <value>Вашите данни</value>
+  </data>
+  <data name="ManageNavItem_Profile" xml:space="preserve">
+    <value>Профил</value>
+  </data>
+  <data name="ManageNavItem_TwoFactorAuthentication" xml:space="preserve">
+    <value>Двуфакторна автентикация</value>
+  </data>
+  <data name="ManageProfile_Title" xml:space="preserve">
+    <value>Управление на потребителски профил</value>
+  </data>
   <data name="NavItem_About" xml:space="preserve">
     <value>За списанието</value>
   </data>
@@ -729,8 +759,14 @@
   <data name="SiteRole_HeadEditors" xml:space="preserve">
     <value>Главни редактори</value>
   </data>
+  <data name="SiteRole_Label" xml:space="preserve">
+    <value>Роля</value>
+  </data>
   <data name="SiteRole_User" xml:space="preserve">
     <value>Потребител</value>
+  </data>
+  <data name="SiteRole_UserPlus" xml:space="preserve">
+    <value>Потребител +</value>
   </data>
   <data name="SiteRole_Users" xml:space="preserve">
     <value>Потребители</value>
@@ -764,6 +800,9 @@
   </data>
   <data name="Team_Z.Ivanov_Member" xml:space="preserve">
     <value>доц. д-р Живко Иванов</value>
+  </data>
+  <data name="UserDisplayNameType_Anonymous" xml:space="preserve">
+    <value>Анонимен</value>
   </data>
   <data name="Version_Label" xml:space="preserve">
     <value>версия</value>
