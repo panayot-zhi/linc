@@ -10,14 +10,14 @@
 <ul class="nav nav-pills flex-column">
     <li class="nav-item"><a class="nav-link @ManageNavPages.PageNavClass(ViewContext, ManageNavPages.Index)" id="profile" asp-page="./Index">@HtmlLocalizer["ManageNavItem_Profile"]</a></li>
     <li class="nav-item"><a class="nav-link @ManageNavPages.PageNavClass(ViewContext, ManageNavPages.Information)" id="information" asp-page="./Information">@HtmlLocalizer["ManageNavItem_Information"]</a></li>
-    <li class="nav-item"><a class="nav-link @ManageNavPages.PageNavClass(ViewContext, ManageNavPages.Avatar)" id="avatar" asp-page="./Avatar">@HtmlLocalizer["ManageNavItem_Avatar"]</a></li>
+    @* <li class="nav-item"><a class="nav-link @ManageNavPages.PageNavClass(ViewContext, ManageNavPages.Avatar)" id="avatar" asp-page="./Avatar">@HtmlLocalizer["ManageNavItem_Avatar"]</a></li> *@
     <li class="nav-item"><a class="nav-link @ManageNavPages.PageNavClass(ViewContext, ManageNavPages.Email)" id="email" asp-page="./Email">@HtmlLocalizer["ManageNavItem_Email"]</a></li>
     <li class="nav-item"><a class="nav-link @ManageNavPages.PageNavClass(ViewContext, ManageNavPages.ChangePassword)" id="change-password" asp-page="./ChangePassword">@HtmlLocalizer["ManageNavItem_ChangePassword"]</a></li>
     @if (hasExternalLogins)
     {
         <li id="external-logins" class="nav-item"><a class="nav-link @ManageNavPages.PageNavClass(ViewContext, ManageNavPages.ExternalLogins)" id="external-login" asp-page="./ExternalLogins">@HtmlLocalizer["ManageNavItem_ExternalLogins"]</a></li>
     }
-    <li class="nav-item"><a class="nav-link @ManageNavPages.PageNavClass(ViewContext, ManageNavPages.TwoFactorAuthentication)" id="two-factor" asp-page="./TwoFactorAuthentication">@HtmlLocalizer["ManageNavItem_TwoFactorAuthentication"]</a></li>
+    @* <li class="nav-item"><a class="nav-link @ManageNavPages.PageNavClass(ViewContext, ManageNavPages.TwoFactorAuthentication)" id="two-factor" asp-page="./TwoFactorAuthentication">@HtmlLocalizer["ManageNavItem_TwoFactorAuthentication"]</a></li> *@
     <li class="nav-item"><a class="nav-link @ManageNavPages.PageNavClass(ViewContext, ManageNavPages.PersonalData)" id="personal-data" asp-page="./PersonalData">@HtmlLocalizer["ManageNavItem_PersonalData"]</a></li>
     @if (User.Is(SiteRole.Administrator))
     {
