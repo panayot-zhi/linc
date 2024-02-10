@@ -9,65 +9,61 @@
 
 <div class="row">
     <div class="col-lg-4">
-        <section>
-            <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-                <h3>@HtmlLocalizer["RegisterPage_SubTitle"]</h3>
-                <hr/>
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-floating">
-                    <input asp-for="Input.FirstName" class="form-control" autocomplete="given-name" aria-required="true"/>
-                    <label asp-for="Input.FirstName"></label>
-                    <span asp-validation-for="Input.FirstName" class="invalid-feedback"></span>
+        <form id="registerForm" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+            <h3>@HtmlLocalizer["RegisterPage_SubTitle"]</h3>
+            <hr/>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-floating">
+                <input asp-for="Input.FirstName" class="form-control" autocomplete="given-name" aria-required="true"/>
+                <label asp-for="Input.FirstName"></label>
+                <span asp-validation-for="Input.FirstName" class="invalid-feedback"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Input.LastName" class="form-control" autocomplete="family-name" aria-required="true"/>
+                <label asp-for="Input.LastName"></label>
+                <span asp-validation-for="Input.LastName" class="invalid-feedback"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Input.UserName" class="form-control" autocomplete="username" aria-required="true"/>
+                <label asp-for="Input.UserName"></label>
+                <span asp-validation-for="Input.UserName" class="invalid-feedback"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Input.Email" class="form-control" autocomplete="email" aria-required="true"/>
+                <label asp-for="Input.Email"></label>
+                <span asp-validation-for="Input.Email" class="invalid-feedback"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true"/>
+                <label asp-for="Input.Password"></label>
+                <span asp-validation-for="Input.Password" class="invalid-feedback"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true"/>
+                <label asp-for="Input.ConfirmPassword"></label>
+                <span asp-validation-for="Input.ConfirmPassword" class="invalid-feedback"></span>
+            </div>
+            <div class="form-floating">
+                <div class="form-check">
+                    <input class="form-check-input" asp-for="Input.PrivacyConsent" aria-required="true" required/>
+                    <label class="form-check-label" asp-for="Input.PrivacyConsent">
+                        @Html.DisplayNameFor(m => m.Input.PrivacyConsent)
+                    </label>
+                    <span asp-validation-for="Input.PrivacyConsent" class="invalid-feedback"></span>
                 </div>
-                <div class="form-floating">
-                    <input asp-for="Input.LastName" class="form-control" autocomplete="family-name" aria-required="true"/>
-                    <label asp-for="Input.LastName"></label>
-                    <span asp-validation-for="Input.LastName" class="invalid-feedback"></span>
-                </div>
-                <div class="form-floating">
-                    <input asp-for="Input.UserName" class="form-control" autocomplete="username" aria-required="true"/>
-                    <label asp-for="Input.UserName"></label>
-                    <span asp-validation-for="Input.UserName" class="invalid-feedback"></span>
-                </div>
-                <div class="form-floating">
-                    <input asp-for="Input.Email" class="form-control" autocomplete="email" aria-required="true"/>
-                    <label asp-for="Input.Email"></label>
-                    <span asp-validation-for="Input.Email" class="invalid-feedback"></span>
-                </div>
-                <div class="form-floating">
-                    <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true"/>
-                    <label asp-for="Input.Password"></label>
-                    <span asp-validation-for="Input.Password" class="invalid-feedback"></span>
-                </div>
-                <div class="form-floating">
-                    <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true"/>
-                    <label asp-for="Input.ConfirmPassword"></label>
-                    <span asp-validation-for="Input.ConfirmPassword" class="invalid-feedback"></span>
-                </div>
-                <div class="form-floating">
-                    <div class="form-check">
-                        <input class="form-check-input" asp-for="Input.PrivacyConsent" aria-required="true" required/>
-                        <label class="form-check-label" asp-for="Input.PrivacyConsent">
-                            @Html.DisplayNameFor(m => m.Input.PrivacyConsent)
-                        </label>
-                        <span asp-validation-for="Input.PrivacyConsent" class="invalid-feedback"></span>
-                    </div>
-                </div>
-                <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">@HtmlLocalizer["RegisterPage_RegisterButton_Label"]</button>
-            </form>
-        </section>
+            </div>
+            <button id="registerSubmit" type="submit" class="w-100 btn btn-lg btn-primary">@HtmlLocalizer["RegisterPage_RegisterButton_Label"]</button>
+        </form>
     </div>
 
     <div class="col-lg-8">
+        <h3>@HtmlLocalizer["RegisterPage_Requirements_Title"]:</h3>
+        <hr>
+        @HtmlLocalizer["RegisterPage_Requirements"]
+
         <section>
-            <h3>@HtmlLocalizer["RegisterPage_Requirements_Title"]:</h3>
-            <hr>
-            @HtmlLocalizer["RegisterPage_Requirements"]
-        </section>
-        
-        <section class="text-center">
             <h3>@HtmlLocalizer["RegisterPage_ExternalProviders"]</h3>
-            <hr />
+            <hr/>
             @{
                 if ((Model.ExternalLogins?.Count ?? 0) == 0)
                 {
