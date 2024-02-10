@@ -14,21 +14,18 @@ namespace linc.Areas.Identity.Pages.Account.Manage
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly IConfiguration _configuration;
-        private readonly IEmailSender _emailSender;
+        private readonly ILogger<InfoModel> _logger;
 
         public InfoModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILocalizationService localizer,
-            IConfiguration configuration,
-            IEmailSender emailSender)
+            ILogger<InfoModel> logger)
         : base(localizer)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _emailSender = emailSender;
-            _configuration = configuration;
+            _logger = logger;
         }
 
         public string FirstName { get; set; }
@@ -46,34 +43,29 @@ namespace linc.Areas.Identity.Pages.Account.Manage
         [BindProperty]
         public InputModel Input { get; set; }
 
+        [TempData]
+        public string StatusMessage { get; set; }
+
         public class InputModel
         {
-            [Display(Name = "Какво да се показва за Вас")]
+            [Display(Name = "ManagePreferences_DisplayNameType", ResourceType = typeof(Resources.SharedResource))]
             public UserDisplayNameType DisplayNameType { get; set; }
 
-            [Display(Name = "Телефонен номер")]
-            [Phone(ErrorMessage = "Моля, въведете валиден телефонен номер.")]
-            [MaxLength(10, ErrorMessage = "Въведеният телефонен номер надвишава позволеният размер ({1} цифри).")]
-            public string PhoneNumber { get; set; }
-            
-            [Display(Name = "Кратко описание")]
-            [MaxLength(1024, ErrorMessage = "Въведеният телефонен номер надвишава позволеният размер ({1} символа).")]
+            [Display(Name = "ManagePreferences_Description", ResourceType = typeof(Resources.SharedResource))]
+            [MaxLength(1024, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
             public string Description { get; set; }
+
+            [Display(Name = "ManagePreferences_DisplayEmail", ResourceType = typeof(Resources.SharedResource))]
+            public bool DisplayEmail { get; set; }
         }
 
-        public async Task<IActionResult> OnGetAsync()
+        private async Task LoadAsync(ApplicationUser user)
         {
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
-            {
-                return NotFound($"Няма потребител с този идентификационен номер '{_userManager.GetUserId(User)}'.");
-            }
-
             Input = new InputModel
             {
+                DisplayEmail = user.DisplayEmail,
                 DisplayNameType = user.DisplayNameType,
                 Description = user.Description,
-                PhoneNumber = user.PhoneNumber,
             };
 
             FirstName = user.FirstName;
@@ -83,7 +75,21 @@ namespace linc.Areas.Identity.Pages.Account.Manage
             CurrentDisplayName = user.GetDisplayName(LocalizationService);
 
             IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
+        }
 
+        public async Task<IActionResult> OnGetAsync()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+            {
+                _logger.LogError("Unable to find user with ID {UserId}",
+                    _userManager.GetUserId(User));
+
+                return NotFound();
+            }
+
+            await LoadAsync(user);
+            
             return Page();
         }
 
@@ -92,73 +98,42 @@ namespace linc.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Няма потребител с този идентификационен номер '{_userManager.GetUserId(User)}'.");
+                _logger.LogError("Unable to find user with ID {UserId}",
+                    _userManager.GetUserId(User));
+
+                return NotFound();
             }
-
-            FirstName = user.FirstName;
-            LastName = user.LastName;
-            Email = user.Email;
-
-            CurrentDisplayName = user.GetDisplayName(LocalizationService);
-
-            IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
 
             if (!ModelState.IsValid)
             {
+                await LoadAsync(user);
                 return Page();
             }
 
-            IdentityResult result;
-
-            var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
-            if (Input.PhoneNumber != phoneNumber)
-            {
-                result = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
-                if (!result.Succeeded)
-                {
-                    if (result.Errors.Any())
-                    {
-                        foreach (var identityError in result.Errors)
-                        {
-                            ModelState.AddModelError(identityError.Code, identityError.Description);
-                        }
-
-                        return Page();
-                    }
-
-                    var userId = await _userManager.GetUserIdAsync(user);
-                    throw new InvalidOperationException($"Unexpected error occurred setting phone number for user with ID '{userId}'.");
-                }
-            }
-
+            user.DisplayEmail = Input.DisplayEmail;
             user.DisplayNameType = Input.DisplayNameType;
             user.Description = Input.Description;
 
-            result = await _userManager.UpdateAsync(user);
+            var result = await _userManager.UpdateAsync(user);
             if (!result.Succeeded)
             {
                 if (result.Errors.Any())
                 {
-                    foreach (var identityError in result.Errors)
-                    {
-                        ModelState.AddModelError(identityError.Code, identityError.Description);
-                    }
-
+                    ModelState.AddIdentityErrors(result.Errors);
                     return Page();
                 }
 
-                var userId = await _userManager.GetUserIdAsync(user);
-                throw new Exception($"Unexpected error occurred setting names for user with ID '{userId}'.");
+                StatusMessage = ErrorStatusMessage(
+                    LocalizationService["ManagePreferences_Update_ErrorStatusMessage"]
+                );
+                return RedirectToPage();
             }
 
             await _signInManager.RefreshSignInAsync(user);
-            AddAlertMessage("Допълнителната информация беше обновена.", type: AlertMessageType.Success);
+            StatusMessage = SuccessStatusMessage(
+                LocalizationService["ManagePreferences_Update_SuccessStatusMessage"]
+            );
             return RedirectToPage();
-        }
-
-        private async Task<string> SaveAvatarFileAsync(IFormFile formFile, string userId)
-        {
-            throw new NotImplementedException();
         }
     }
 }
