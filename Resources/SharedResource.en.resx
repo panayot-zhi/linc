@@ -168,6 +168,9 @@
   <data name="AlertMessage_Warning_Title" xml:space="preserve">
     <value>Attention!</value>
   </data>
+  <data name="Anonymous_Label" xml:space="preserve">
+    <value>Anonymous</value>
+  </data>
   <data name="Board_Aleksander.Mikołajczak_Member" xml:space="preserve">
     <value>Проф. дн Александер Войчех Миколайчак</value>
   </data>
@@ -518,7 +521,7 @@
   <data name="ManageIndex_Description" xml:space="preserve">
     <value>&lt;p&gt;&lt;small&gt;Information in this is required for the LInC site to verify your identity.&lt;/small&gt;&lt;/p&gt;
 &lt;p&gt;&lt;small&gt;Your nickname will be shown publicly to other users if you do not want your names to be shown.&lt;/small&gt;&lt;/p&gt;
-&lt;p&gt;&lt;small&gt;You can manage this preference from the &lt;a class="text-decoration-underline" asp-page="./Information"&gt;advanced settings here&lt;/a&gt;.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;You can manage this preference from the &lt;a class="text-decoration-underline" href="/identity/account/manage/information"&gt;advanced settings here&lt;/a&gt;.&lt;/small&gt;&lt;/p&gt;
 &lt;p &gt;&lt;small&gt;If you decide to give your phone number, keep in mind that LInC &lt;b&gt;does not distribute your number to third parties and does not use it for marketing purposes&lt;/b&gt;. The phone number is used to secure your account, exclusively at your request.&lt;/small&gt;&lt;/p&gt;</value>
   </data>
   <data name="ManageIndex_EmailVerificationPending" xml:space="preserve">
@@ -871,7 +874,16 @@
     <value>доц. д-р Живко Иванов</value>
   </data>
   <data name="UserDisplayNameType_Anonymous" xml:space="preserve">
-    <value>Anonymous</value>
+    <value>Show only 'Anonymous'</value>
+  </data>
+  <data name="UserDisplayNameType_Names" xml:space="preserve">
+    <value>Names</value>
+  </data>
+  <data name="UserDisplayNameType_NamesAndUserName" xml:space="preserve">
+    <value>Names and username</value>
+  </data>
+  <data name="UserDisplayNameType_UserName" xml:space="preserve">
+    <value>Username</value>
   </data>
   <data name="Version_Label" xml:space="preserve">
     <value>version</value>

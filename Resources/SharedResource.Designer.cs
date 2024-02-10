@@ -214,6 +214,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Анонимен.
+        /// </summary>
+        public static string Anonymous_Label {
+            get {
+                return ResourceManager.GetString("Anonymous_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Проф. дн Александер Войчех Миколайчак.
         /// </summary>
         public static string Board_Aleksander_Mikołajczak_Member {
@@ -1242,10 +1251,10 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;p&gt;&lt;small&gt;Всички данни в тази форма са задължителни, за да може сайтът на Списание ЛИнК да удостовери самоличността Ви.&lt;/small&gt;&lt;/p&gt;
+        ///   Looks up a localized string similar to &lt;p&gt;&lt;small&gt;Информацията в тази форма е нужна, за да може сайтът на Списание ЛИнК да удостовери самоличността Ви.&lt;/small&gt;&lt;/p&gt;
         ///&lt;p&gt;&lt;small&gt;Псевдонимът Ви ще се показва публично на други потребители, ако не желаете да се показва Вашето име.&lt;/small&gt;&lt;/p&gt;
-        ///&lt;p&gt;&lt;small&gt;Можете да управлявате това от &lt;a class=&quot;text-decoration-underline&quot; asp-page=&quot;./Information&quot;&gt;допълнителните настройки тук&lt;/a&gt;.&lt;/small&gt;&lt;/p&gt;
-        ///&lt;p &gt;&lt;small&gt;Ако решите да въведете телефон, имайте предвид, че Списание ЛИнК &lt;b&gt;не разпространява номерът В [rest of string was truncated]&quot;;.
+        ///&lt;p&gt;&lt;small&gt;Можете да управлявате това от &lt;a class=&quot;text-decoration-underline&quot; href=&quot;/identity/account/manage/information&quot;&gt;допълнителните настройки тук&lt;/a&gt;.&lt;/small&gt;&lt;/p&gt;
+        ///&lt;p &gt;&lt;small&gt;Ако решите да въведете телефон, имайте предвид, че Списание ЛИнК &lt;b&gt;не разпространяв [rest of string was truncated]&quot;;.
         /// </summary>
         public static string ManageIndex_Description {
             get {
@@ -2263,11 +2272,38 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Анонимен.
+        ///   Looks up a localized string similar to Да се показва само &apos;Анонимен&apos;.
         /// </summary>
         public static string UserDisplayNameType_Anonymous {
             get {
                 return ResourceManager.GetString("UserDisplayNameType_Anonymous", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Имена.
+        /// </summary>
+        public static string UserDisplayNameType_Names {
+            get {
+                return ResourceManager.GetString("UserDisplayNameType_Names", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Имена и псевдоним.
+        /// </summary>
+        public static string UserDisplayNameType_NamesAndUserName {
+            get {
+                return ResourceManager.GetString("UserDisplayNameType_NamesAndUserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Псевдоним.
+        /// </summary>
+        public static string UserDisplayNameType_UserName {
+            get {
+                return ResourceManager.GetString("UserDisplayNameType_UserName", resourceCulture);
             }
         }
         

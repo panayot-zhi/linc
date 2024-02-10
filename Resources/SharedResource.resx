@@ -168,6 +168,9 @@
   <data name="AlertMessage_Warning_Title" xml:space="preserve">
     <value>Внимание!</value>
   </data>
+  <data name="Anonymous_Label" xml:space="preserve">
+    <value>Анонимен</value>
+  </data>
   <data name="Board_Aleksander.Mikołajczak_Member" xml:space="preserve">
     <value>Проф. дн Александер Войчех Миколайчак</value>
   </data>
@@ -513,9 +516,9 @@
     <value>ЛИнК</value>
   </data>
   <data name="ManageIndex_Description" xml:space="preserve">
-    <value>&lt;p&gt;&lt;small&gt;Всички данни в тази форма са задължителни, за да може сайтът на Списание ЛИнК да удостовери самоличността Ви.&lt;/small&gt;&lt;/p&gt;
+    <value>&lt;p&gt;&lt;small&gt;Информацията в тази форма е нужна, за да може сайтът на Списание ЛИнК да удостовери самоличността Ви.&lt;/small&gt;&lt;/p&gt;
 &lt;p&gt;&lt;small&gt;Псевдонимът Ви ще се показва публично на други потребители, ако не желаете да се показва Вашето име.&lt;/small&gt;&lt;/p&gt;
-&lt;p&gt;&lt;small&gt;Можете да управлявате това от &lt;a class="text-decoration-underline" asp-page="./Information"&gt;допълнителните настройки тук&lt;/a&gt;.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Можете да управлявате това от &lt;a class="text-decoration-underline" href="/identity/account/manage/information"&gt;допълнителните настройки тук&lt;/a&gt;.&lt;/small&gt;&lt;/p&gt;
 &lt;p &gt;&lt;small&gt;Ако решите да въведете телефон, имайте предвид, че Списание ЛИнК &lt;b&gt;не разпространява номерът Ви на трети страни и не го използва за маркетингови цели&lt;/b&gt;. Телефонният номер се използва за подсигуряване на профилът Ви, ексклузивно по Ваше желание.&lt;/small&gt;&lt;/p&gt;</value>
   </data>
   <data name="ManageIndex_EmailVerificationPending" xml:space="preserve">
@@ -865,7 +868,16 @@
     <value>доц. д-р Живко Иванов</value>
   </data>
   <data name="UserDisplayNameType_Anonymous" xml:space="preserve">
-    <value>Анонимен</value>
+    <value>Да се показва само 'Анонимен'</value>
+  </data>
+  <data name="UserDisplayNameType_Names" xml:space="preserve">
+    <value>Имена</value>
+  </data>
+  <data name="UserDisplayNameType_NamesAndUserName" xml:space="preserve">
+    <value>Имена и псевдоним</value>
+  </data>
+  <data name="UserDisplayNameType_UserName" xml:space="preserve">
+    <value>Псевдоним</value>
   </data>
   <data name="Version_Label" xml:space="preserve">
     <value>версия</value>
