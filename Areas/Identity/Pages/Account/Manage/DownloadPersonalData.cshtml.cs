@@ -2,17 +2,12 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 using linc.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
 
 namespace linc.Areas.Identity.Pages.Account.Manage
 {
@@ -39,30 +34,41 @@ namespace linc.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                _logger.LogError("Unable to find user with ID {UserId}",
+                    _userManager.GetUserId(User));
+                return NotFound();
             }
 
-            _logger.LogInformation("User with ID '{UserId}' asked for their personal data.", _userManager.GetUserId(User));
+            _logger.LogInformation("User with ID {UserId} asked for their personal data.", 
+                _userManager.GetUserId(User));
 
             // Only include personal data for download
             var personalData = new Dictionary<string, string>();
-            var personalDataProps = typeof(IdentityUser).GetProperties().Where(
-                            prop => Attribute.IsDefined(prop, typeof(PersonalDataAttribute)));
-            foreach (var p in personalDataProps)
+            var personalDataProps = typeof(ApplicationUser).GetProperties()
+                .Where(x => Attribute.IsDefined(x, typeof(PersonalDataAttribute)));
+
+            foreach (var property in personalDataProps)
             {
-                personalData.Add(p.Name, p.GetValue(user)?.ToString() ?? "null");
+                personalData.Add(property.Name, property.GetValue(user)?.ToString() ?? "null");
             }
 
             var logins = await _userManager.GetLoginsAsync(user);
-            foreach (var l in logins)
+            foreach (var login in logins)
             {
-                personalData.Add($"{l.LoginProvider} external login provider key", l.ProviderKey);
+                personalData.Add($"{login.LoginProvider} external login provider key", login.ProviderKey);
             }
 
-            personalData.Add($"Authenticator Key", await _userManager.GetAuthenticatorKeyAsync(user));
+            personalData.Add("AuthenticatorKey", await _userManager.GetAuthenticatorKeyAsync(user));
+
+            var jsonSerializerSettings = new JsonSerializerOptions()
+            {
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                WriteIndented = true
+            };
 
             Response.Headers.Add("Content-Disposition", "attachment; filename=PersonalData.json");
-            return new FileContentResult(JsonSerializer.SerializeToUtf8Bytes(personalData), "application/json");
+            return new FileContentResult(JsonSerializer.SerializeToUtf8Bytes(personalData, jsonSerializerSettings), 
+                "application/json");
         }
     }
 }
