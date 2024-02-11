@@ -8,12 +8,13 @@ using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using linc.Contracts;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace linc.Utility;
 
 public static class StartupExtensions
 {
-    public static IServiceCollection AddApplicationIdentity(this IServiceCollection services)
+    public static IServiceCollection AddApplicationIdentity(this IServiceCollection services, IWebHostEnvironment environment)
     {
         services.AddIdentity<ApplicationUser, IdentityRole>()
             .AddErrorDescriber<LocalizedIdentityErrorDescriber>()
@@ -47,11 +48,16 @@ public static class StartupExtensions
             options.SignIn.RequireConfirmedEmail = true;
         });
 
-        services.AddRazorPages(options =>
+        var mvcBuilder = services.AddRazorPages(options =>
         {
             options.Conventions.AuthorizeAreaFolder("Identity", "/Account/Manage");
             options.Conventions.AuthorizeAreaPage("Identity", "/Account/Logout");
         });
+
+        if (environment.IsDevelopment())
+        {
+            mvcBuilder.AddRazorRuntimeCompilation();
+        }
 
         return services;
     }
