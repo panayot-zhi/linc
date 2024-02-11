@@ -48,6 +48,26 @@ public static class StartupExtensions
             options.SignIn.RequireConfirmedEmail = true;
         });
 
+        services.Configure<SecurityStampValidatorOptions>(options => // different class name
+        {
+            options.ValidationInterval = TimeSpan.FromMinutes(1);  // new property name
+            options.OnRefreshingPrincipal = context =>             // new property name
+            {
+                var originalUserNameClaim = context.CurrentPrincipal.FindFirst(UserHelper.ImpersonationOriginalUserNameKey);
+                var originalUserIdClaim = context.CurrentPrincipal.FindFirst(UserHelper.ImpersonationOriginalUserIdKey);
+                var isImpersonatingClaim = context.CurrentPrincipal.FindFirst(UserHelper.ImpersonationClaimFlagKey);
+                if (SiteConstant.True.Equals(isImpersonatingClaim?.Value) && 
+                    originalUserIdClaim != null && 
+                    originalUserNameClaim != null)
+                {
+                    context.NewPrincipal.Identities.First().AddClaim(originalUserIdClaim);
+                    context.NewPrincipal.Identities.First().AddClaim(originalUserNameClaim);
+                    context.NewPrincipal.Identities.First().AddClaim(isImpersonatingClaim);
+                }
+                return Task.FromResult(0);
+            };
+        });
+
         var mvcBuilder = services.AddRazorPages(options =>
         {
             options.Conventions.AuthorizeAreaFolder("Identity", "/Account/Manage");
