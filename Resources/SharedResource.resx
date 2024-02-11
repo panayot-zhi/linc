@@ -252,6 +252,9 @@
   <data name="Category_Surveys" xml:space="preserve">
     <value>Анкети</value>
   </data>
+  <data name="ChangeEmail_Button_Label" xml:space="preserve">
+    <value>Промени email</value>
+  </data>
   <data name="Close_Label" xml:space="preserve">
     <value>Затвори</value>
   </data>
@@ -324,6 +327,12 @@
   </data>
   <data name="CurrentDisplayName_Label" xml:space="preserve">
     <value>Текущо</value>
+  </data>
+  <data name="EmailModel_Email" xml:space="preserve">
+    <value>Email адрес</value>
+  </data>
+  <data name="EmailModel_NewEmail" xml:space="preserve">
+    <value>Нов email</value>
   </data>
   <data name="FaqSection_SubTitle" xml:space="preserve">
     <value>Често Задавани &lt;span&gt;Въпроси&lt;/span&gt;</value>
@@ -517,6 +526,18 @@
   </data>
   <data name="Logo_Short" xml:space="preserve">
     <value>ЛИнК</value>
+  </data>
+  <data name="ManageEmail_ChangeEmail_SuccessMessage" xml:space="preserve">
+    <value>Изпратихме линк за потвърждение на посочения email адрес. Моля, проверете пощенската си кутия.</value>
+  </data>
+  <data name="ManageEmail_ChangeEmail_WarningMessage" xml:space="preserve">
+    <value>Вашият email е непроменен.</value>
+  </data>
+  <data name="ManageEmail_ReSendVerificationEmail_SuccessMessage" xml:space="preserve">
+    <value>Имейлът за потвърждение бе изпратен повторно. Моля, проверете електронната си поща.</value>
+  </data>
+  <data name="ManageEmail_Title" xml:space="preserve">
+    <value>Управление на email</value>
   </data>
   <data name="ManageIndex_Description" xml:space="preserve">
     <value>&lt;p&gt;&lt;small&gt;Информацията в тази форма е нужна, за да може сайтът на списание ЛИнК да удостовери самоличността Ви.&lt;/small&gt;&lt;/p&gt;
@@ -916,5 +937,50 @@
   </data>
   <data name="Welcome_Message" xml:space="preserve">
     <value>Добре дошли на &lt;span&gt;ЛИнК.uni-plovdiv.bg&lt;/span&gt;</value>
+  </data>
+  <data name="EmailModel_OnPostChangeEmailAsync_test" xml:space="preserve">
+    <value>test</value>
+  </data>
+  <data name="ChangePasswordModel_ConfirmPassword" xml:space="preserve">
+    <value>Потвърди нова парола</value>
+  </data>
+  <data name="ChangePasswordModel_NewPassword" xml:space="preserve">
+    <value>Нова парола</value>
+  </data>
+  <data name="ChangePasswordModel_OldPassword" xml:space="preserve">
+    <value>Стара парола</value>
+  </data>
+  <data name="ManageEmail_Description" xml:space="preserve">
+    <value>&lt;p&gt;&lt;small&gt;Ако решите да промените email адреса си, &lt;span class="text-decoration-underline"&gt;ще трябва да го потвърдите чрез верификационен email отново&lt;/span&gt;, преди да можете да влезете в сайта.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Сайтът на списание LInC &lt;span class="text-decoration-underline"&gt;не използва email адреса Ви за маркетингови цели и промоции&lt;/span&gt;. Ще Ви изпратим уведомление за нов брой на списанието единствено, ако сте го &lt;a href="/identity/account/manage/information"&gt;указали във Вашите преференции&lt;/a&gt;.&lt;/small&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="ManageEmail_ReSendConfirmation_Description" xml:space="preserve">
+    <value>&lt;p&gt;&lt;small&gt;Има случаи, когато верификационният email не успява да достигне до Вашата поща. Моля, в случай, че не получите верификационен email до няколко минути, опитайте да го преизпратите.&lt;/small&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="ManageEmail_ReSendVerification_Confirmation" xml:space="preserve">
+    <value>Ще изпратим друг email с нова връзка за потвърждение. Моля, проверете папките си за спам и кошче за писмото.</value>
+  </data>
+  <data name="ManageEmail_ReSendVerification_Confirmation_Title" xml:space="preserve">
+    <value>Сигурни ли сте?</value>
+  </data>
+  <data name="ManagePassword_Description" xml:space="preserve">
+    <value>&lt;p&gt;&lt;small&gt;За да осигурим максимална сигурност на достъпът Ви до сайта изискваме от Вашата парола да съдържа:&lt;/small&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;small&gt;символи &lt;span class="text-decoration-underline"&gt;единствено на латиница&lt;/span&gt;&lt;/small&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;small&gt;поне шест символа&lt;/small&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;small&gt;поне четири &lt;span class="text-decoration-underline"&gt;различни&lt;/span&gt; символа&lt;/small&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;small&gt;поне една главна буква&lt;/small&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;small&gt;поне една цифра&lt;/small&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;small&gt;Моля, не използвайте пароли, които използвате и другаде.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Паролата Ви е ключът за достъп до сайта, пазете я в тайна!&lt;/small&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="ManagePassword_SubmitButton_Label" xml:space="preserve">
+    <value>Смени парола</value>
+  </data>
+  <data name="ManagePassword_Title" xml:space="preserve">
+    <value>Смяна на парола</value>
   </data>
 </root>

@@ -2,7 +2,6 @@
 using linc.Utility;
 using Microsoft.AspNetCore.Mvc.Localization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Newtonsoft.Json;
 
 namespace linc.Contracts;
 

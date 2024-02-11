@@ -466,6 +466,42 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Промени email.
+        /// </summary>
+        public static string ChangeEmail_Button_Label {
+            get {
+                return ResourceManager.GetString("ChangeEmail_Button_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Потвърди нова парола.
+        /// </summary>
+        public static string ChangePasswordModel_ConfirmPassword {
+            get {
+                return ResourceManager.GetString("ChangePasswordModel_ConfirmPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Нова парола.
+        /// </summary>
+        public static string ChangePasswordModel_NewPassword {
+            get {
+                return ResourceManager.GetString("ChangePasswordModel_NewPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Стара парола.
+        /// </summary>
+        public static string ChangePasswordModel_OldPassword {
+            get {
+                return ResourceManager.GetString("ChangePasswordModel_OldPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Затвори.
         /// </summary>
         public static string Close_Label {
@@ -679,6 +715,33 @@ namespace linc.Resources {
         public static string CurrentDisplayName_Label {
             get {
                 return ResourceManager.GetString("CurrentDisplayName_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email адрес.
+        /// </summary>
+        public static string EmailModel_Email {
+            get {
+                return ResourceManager.GetString("EmailModel_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Нов email.
+        /// </summary>
+        public static string EmailModel_NewEmail {
+            get {
+                return ResourceManager.GetString("EmailModel_NewEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to test.
+        /// </summary>
+        public static string EmailModel_OnPostChangeEmailAsync_test {
+            get {
+                return ResourceManager.GetString("EmailModel_OnPostChangeEmailAsync_test", resourceCulture);
             }
         }
         
@@ -1260,6 +1323,79 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Изпратихме линк за потвърждение на посочения email адрес. Моля, проверете пощенската си кутия..
+        /// </summary>
+        public static string ManageEmail_ChangeEmail_SuccessMessage {
+            get {
+                return ResourceManager.GetString("ManageEmail_ChangeEmail_SuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Вашият email е непроменен..
+        /// </summary>
+        public static string ManageEmail_ChangeEmail_WarningMessage {
+            get {
+                return ResourceManager.GetString("ManageEmail_ChangeEmail_WarningMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;p&gt;&lt;small&gt;Ако решите да промените email адреса си, &lt;span class=&quot;text-decoration-underline&quot;&gt;ще трябва да го потвърдите чрез верификационен email отново&lt;/span&gt;, преди да можете да влезете в сайта.&lt;/small&gt;&lt;/p&gt;
+        ///&lt;p&gt;&lt;small&gt;Сайтът на списание LInC &lt;span class=&quot;text-decoration-underline&quot;&gt;не използва email адреса Ви за маркетингови цели и промоции&lt;/span&gt;. Ще Ви изпратим уведомление за нов брой на списанието единствено, ако сте го &lt;a href=&quot;/identity/account/manage/information&quot;&gt;указали във Вашите преференции&lt;/a&gt;.&lt;/sm [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string ManageEmail_Description {
+            get {
+                return ResourceManager.GetString("ManageEmail_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;p&gt;&lt;small&gt;Има случаи, когато верификационният email не успява да достигне до Вашата поща. Моля, в случай, че не получите верификационен email до няколко минути, опитайте да го преизпратите.&lt;/small&gt;&lt;/p&gt;.
+        /// </summary>
+        public static string ManageEmail_ReSendConfirmation_Description {
+            get {
+                return ResourceManager.GetString("ManageEmail_ReSendConfirmation_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ще изпратим друг email с нова връзка за потвърждение. Моля, проверете папките си за спам и кошче за писмото..
+        /// </summary>
+        public static string ManageEmail_ReSendVerification_Confirmation {
+            get {
+                return ResourceManager.GetString("ManageEmail_ReSendVerification_Confirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Сигурни ли сте?.
+        /// </summary>
+        public static string ManageEmail_ReSendVerification_Confirmation_Title {
+            get {
+                return ResourceManager.GetString("ManageEmail_ReSendVerification_Confirmation_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Имейлът за потвърждение бе изпратен повторно. Моля, проверете електронната си поща..
+        /// </summary>
+        public static string ManageEmail_ReSendVerificationEmail_SuccessMessage {
+            get {
+                return ResourceManager.GetString("ManageEmail_ReSendVerificationEmail_SuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Управление на email.
+        /// </summary>
+        public static string ManageEmail_Title {
+            get {
+                return ResourceManager.GetString("ManageEmail_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;p&gt;&lt;small&gt;Информацията в тази форма е нужна, за да може сайтът на списание ЛИнК да удостовери самоличността Ви.&lt;/small&gt;&lt;/p&gt;
         ///&lt;p&gt;&lt;small&gt;Псевдонимът Ви ще се показва публично на други потребители, ако не желаете да се показва Вашето име.&lt;/small&gt;&lt;/p&gt;
         ///&lt;p&gt;&lt;small&gt;Можете да управлявате това от &lt;a class=&quot;text-decoration-underline&quot; href=&quot;/identity/account/manage/information&quot;&gt;допълнителните настройки тук&lt;/a&gt;.&lt;/small&gt;&lt;/p&gt;
@@ -1439,6 +1575,43 @@ namespace linc.Resources {
         public static string ManageNavItem_TwoFactorAuthentication {
             get {
                 return ResourceManager.GetString("ManageNavItem_TwoFactorAuthentication", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;p&gt;&lt;small&gt;За да осигурим максимална сигурност на достъпът Ви до сайта изискваме от Вашата парола да съдържа:&lt;/small&gt;&lt;/p&gt;
+        ///
+        ///&lt;ul&gt;
+        ///	&lt;li&gt;&lt;small&gt;символи &lt;span class=&quot;text-decoration-underline&quot;&gt;единствено на латиница&lt;/span&gt;&lt;/small&gt;&lt;/li&gt;
+        ///	&lt;li&gt;&lt;small&gt;поне шест символа&lt;/small&gt;&lt;/li&gt;
+        ///	&lt;li&gt;&lt;small&gt;поне четири &lt;span class=&quot;text-decoration-underline&quot;&gt;различни&lt;/span&gt; символа&lt;/small&gt;&lt;/li&gt;
+        ///	&lt;li&gt;&lt;small&gt;поне една главна буква&lt;/small&gt;&lt;/li&gt;
+        ///	&lt;li&gt;&lt;small&gt;поне една цифра&lt;/small&gt;&lt;/li&gt;
+        ///&lt;/ul&gt;
+        ///
+        ///&lt;p&gt;&lt;small&gt;Моля, не използвайте п [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string ManagePassword_Description {
+            get {
+                return ResourceManager.GetString("ManagePassword_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Смени парола.
+        /// </summary>
+        public static string ManagePassword_SubmitButton_Label {
+            get {
+                return ResourceManager.GetString("ManagePassword_SubmitButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Смяна на парола.
+        /// </summary>
+        public static string ManagePassword_Title {
+            get {
+                return ResourceManager.GetString("ManagePassword_Title", resourceCulture);
             }
         }
         

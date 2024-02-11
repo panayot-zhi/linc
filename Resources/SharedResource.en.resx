@@ -252,6 +252,18 @@
   <data name="Category_Surveys" xml:space="preserve">
     <value>Surveys</value>
   </data>
+  <data name="ChangeEmail_Button_Label" xml:space="preserve">
+    <value>Change email</value>
+  </data>
+  <data name="ChangePasswordModel_ConfirmPassword" xml:space="preserve">
+    <value>Confirm new password</value>
+  </data>
+  <data name="ChangePasswordModel_NewPassword" xml:space="preserve">
+    <value>New password</value>
+  </data>
+  <data name="ChangePasswordModel_OldPassword" xml:space="preserve">
+    <value>Old password</value>
+  </data>
   <data name="Close_Label" xml:space="preserve">
     <value>Close</value>
   </data>
@@ -324,6 +336,12 @@
   </data>
   <data name="CurrentDisplayName_Label" xml:space="preserve">
     <value>Current</value>
+  </data>
+  <data name="EmailModel_Email" xml:space="preserve">
+    <value>Email address</value>
+  </data>
+  <data name="EmailModel_NewEmail" xml:space="preserve">
+    <value>New email</value>
   </data>
   <data name="FaqSection_SubTitle" xml:space="preserve">
     <value>Frequently Asked &lt;span&gt;Questions&lt;/span&gt;</value>
@@ -521,6 +539,31 @@
   <data name="Logo_Short" xml:space="preserve">
     <value>LInC</value>
   </data>
+  <data name="ManageEmail_ChangeEmail_SuccessMessage" xml:space="preserve">
+    <value>Confirmation link to change email sent. Please check your email.</value>
+  </data>
+  <data name="ManageEmail_ChangeEmail_WarningMessage" xml:space="preserve">
+    <value>Your email is unchanged.</value>
+  </data>
+  <data name="ManageEmail_Description" xml:space="preserve">
+    <value>&lt;p&gt;&lt;small&gt;If you decide to change your email address, &lt;span class="text-decoration-underline"&gt;you will need to confirm it via a verification email again&lt;/span&gt; before you can enter the site.&lt;/ small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;LInC &lt;span class="text-decoration-underline"&gt;does not use your email address for marketing purposes and promotions&lt;/span&gt;. We will only send you a notification about a new issue, if you have &lt;a href="/identity/account/manage/information"&gt;specified it in your preferences&lt;/a&gt;.&lt;/small&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="ManageEmail_ReSendConfirmation_Description" xml:space="preserve">
+    <value>&lt;p&gt;&lt;small&gt;There are cases when the verification email fails to reach your mailbox. Please, in case you do not receive a verification email within a few minutes, try to resend it.&lt;/small&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="ManageEmail_ReSendVerificationEmail_SuccessMessage" xml:space="preserve">
+    <value>Verification email was re-sent. Please check your email.</value>
+  </data>
+  <data name="ManageEmail_ReSendVerification_Confirmation" xml:space="preserve">
+    <value>We will send another email with a new confirmation link. Please, check your spam and trash folders for it.</value>
+  </data>
+  <data name="ManageEmail_ReSendVerification_Confirmation_Title" xml:space="preserve">
+    <value>Are you sure?</value>
+  </data>
+  <data name="ManageEmail_Title" xml:space="preserve">
+    <value>Manage email</value>
+  </data>
   <data name="ManageIndex_Description" xml:space="preserve">
     <value>&lt;p&gt;&lt;small&gt;The information in this form is required for the LInC web site to verify your identity.&lt;/small&gt;&lt;/p&gt;
 &lt;p&gt;&lt;small&gt;Your nickname will be shown publicly to other users, if you do not want your names to be shown.&lt;/small&gt;&lt;/p&gt;
@@ -583,6 +626,26 @@
   </data>
   <data name="ManageNavItem_TwoFactorAuthentication" xml:space="preserve">
     <value>Two-factor authentication</value>
+  </data>
+  <data name="ManagePassword_Description" xml:space="preserve">
+    <value>&lt;p&gt;&lt;small&gt;In order to ensure maximum security of your access to the web site, we require your password to contain:&lt;/small&gt;&lt;/p&gt;
+
+ &lt;ul&gt;
+	 &lt;li&gt;&lt;small&gt;characters &lt;span class="text-decoration-underline"&gt;only in Latin&lt;/span&gt;&lt;/small&gt;&lt;/li&gt;
+	 &lt;li&gt;&lt;small&gt;at least six characters&lt;/small&gt;&lt;/li&gt;
+	 &lt;li&gt;&lt;small&gt;at least four &lt;span class="text-decoration-underline"&gt;different&lt;/span&gt; characters&lt;/small&gt;&lt;/li&gt;
+	 &lt;li&gt;&lt;small&gt;at least one capital letter&lt;/small&gt;&lt;/li&gt;
+	 &lt;li&gt;&lt;small&gt;at least one digit&lt;/small&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+
+ &lt;p&gt;&lt;small&gt;Please do not use passwords that you use elsewhere.&lt;/small&gt;&lt;/p&gt;
+ &lt;p&gt;&lt;small&gt;Your password is the key to accessing the site, keep it secret!&lt;/small&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="ManagePassword_SubmitButton_Label" xml:space="preserve">
+    <value>Update Password</value>
+  </data>
+  <data name="ManagePassword_Title" xml:space="preserve">
+    <value>Change Password</value>
   </data>
   <data name="ManagePreferences_Description" xml:space="preserve">
     <value>Short description</value>
