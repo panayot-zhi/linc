@@ -104,7 +104,6 @@ namespace linc.Areas.Identity.Pages.Account.Manage
             {
                 _logger.LogError("Unable to find user with ID {UserId}",
                     _userManager.GetUserId(User));
-
                 return NotFound();
             }
 
