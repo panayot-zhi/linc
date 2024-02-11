@@ -46,6 +46,13 @@
                 <span asp-validation-for="Input.PhoneNumber" class="invalid-feedback"></span>
             </div>
             *@
+            
+            <div class="form-check">
+                <input class="form-check-input" asp-for="Input.Subscribed" />
+                <label class="form-check-label" asp-for="Input.Subscribed">
+                    @Html.DisplayNameFor(x => x.Input.Subscribed)
+                </label>
+            </div>
 
             <hr />
             
@@ -63,11 +70,7 @@
     </div>
 
     <div class="col-md-6">
-        <p><small>Страница не събира лична информация, различна от тази, която ни предоставяте. Всички данни, които се съхраняват за Вас, можете да <a class="text-decoration-underline" href="/identity/account/manage/personal-data">изтеглите от тук</a> в машинно четим вид.</small></p>
-        <p><small>Всички данни от тази форма са <span class="text-decoration-underline">незадължителни за функционирането на сайтът</span> на Списание Страница.</small></p>
-        <p><small>При избор как да се показват личните Ви данни на сайта, винаги имате възможност за Вас да се показва единствено 'Анонимен'.</small></p>
-        <p><small>Ако желаете, можете да въведете кратко биографично описание с до 1000 символа за себе си.</small></p>
-        <p><small>Ако решите да въведете телефон, имайте предвид, че Списание Страница <b>не разпространява номерът Ви на трети страни и не го използва за маркетингови цели</b>. Телефонният номер се използва за подсигуряване на профилът Ви, ексклузивно по Ваше желание.</small></p>
+        @HtmlLocalizer["ManagePreferences_PageDescription"]
     </div>
 
 </div>

@@ -51,12 +51,15 @@ namespace linc.Areas.Identity.Pages.Account.Manage
             [Display(Name = "ManagePreferences_DisplayNameType", ResourceType = typeof(Resources.SharedResource))]
             public UserDisplayNameType DisplayNameType { get; set; }
 
+            [Display(Name = "ManagePreferences_DisplayEmail", ResourceType = typeof(Resources.SharedResource))]
+            public bool DisplayEmail { get; set; }
+
             [Display(Name = "ManagePreferences_Description", ResourceType = typeof(Resources.SharedResource))]
             [MaxLength(1024, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
             public string Description { get; set; }
 
-            [Display(Name = "ManagePreferences_DisplayEmail", ResourceType = typeof(Resources.SharedResource))]
-            public bool DisplayEmail { get; set; }
+            [Display(Name = "ManagePreferences_Subscribed", ResourceType = typeof(Resources.SharedResource))]
+            public bool Subscribed { get; set; }
         }
 
         private async Task LoadAsync(ApplicationUser user)
@@ -66,6 +69,7 @@ namespace linc.Areas.Identity.Pages.Account.Manage
                 DisplayEmail = user.DisplayEmail,
                 DisplayNameType = user.DisplayNameType,
                 Description = user.Description,
+                Subscribed = user.Subscribed
             };
 
             FirstName = user.FirstName;
@@ -113,6 +117,7 @@ namespace linc.Areas.Identity.Pages.Account.Manage
             user.DisplayEmail = Input.DisplayEmail;
             user.DisplayNameType = Input.DisplayNameType;
             user.Description = Input.Description;
+            user.Subscribed = Input.Subscribed;
 
             var result = await _userManager.UpdateAsync(user);
             if (!result.Succeeded)
