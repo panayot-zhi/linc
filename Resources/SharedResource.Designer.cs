@@ -1616,6 +1616,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Паролата Ви е променена..
+        /// </summary>
+        public static string ManagePassword_Update_SuccessMessage {
+            get {
+                return ResourceManager.GetString("ManagePassword_Update_SuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Кратко описание.
         /// </summary>
         public static string ManagePreferences_Description {
