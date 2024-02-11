@@ -519,10 +519,10 @@
     <value>ЛИнК</value>
   </data>
   <data name="ManageIndex_Description" xml:space="preserve">
-    <value>&lt;p&gt;&lt;small&gt;Информацията в тази форма е нужна, за да може сайтът на Списание ЛИнК да удостовери самоличността Ви.&lt;/small&gt;&lt;/p&gt;
+    <value>&lt;p&gt;&lt;small&gt;Информацията в тази форма е нужна, за да може сайтът на списание ЛИнК да удостовери самоличността Ви.&lt;/small&gt;&lt;/p&gt;
 &lt;p&gt;&lt;small&gt;Псевдонимът Ви ще се показва публично на други потребители, ако не желаете да се показва Вашето име.&lt;/small&gt;&lt;/p&gt;
 &lt;p&gt;&lt;small&gt;Можете да управлявате това от &lt;a class="text-decoration-underline" href="/identity/account/manage/information"&gt;допълнителните настройки тук&lt;/a&gt;.&lt;/small&gt;&lt;/p&gt;
-&lt;p &gt;&lt;small&gt;Ако решите да въведете телефон, имайте предвид, че Списание ЛИнК &lt;b&gt;не разпространява номерът Ви на трети страни и не го използва за маркетингови цели&lt;/b&gt;. Телефонният номер се използва за подсигуряване на профилът Ви, ексклузивно по Ваше желание.&lt;/small&gt;&lt;/p&gt;</value>
+&lt;p &gt;&lt;small&gt;Ако решите да въведете телефоннен номер, имайте предвид, че списание ЛИнК &lt;b&gt;не разпространява номерът Ви на трети страни и не го използва за маркетингови цели&lt;/b&gt;. Телефонният номер се използва за подсигуряване на профила Ви, ексклузивно по Ваше желание.&lt;/small&gt;&lt;/p&gt;</value>
   </data>
   <data name="ManageIndex_EmailVerificationPending" xml:space="preserve">
     <value>чака потвърждение</value>
@@ -593,7 +593,7 @@
   <data name="ManagePreferences_PageDescription" xml:space="preserve">
     <value>&lt;p&gt;&lt;small&gt;ЛИнК не събира лична информация, различна от тази, която ни предоставяте. Всички данни, които се съхраняват за Вас, можете да &lt;a class="text-decoration-underline" href="/identity/account/manage/personal-data"&gt;изтеглите от тук&lt;/a&gt; в машинно четим вид.&lt;/small&gt;&lt;/p&gt;
 &lt;p&gt;&lt;small&gt;Всички данни от тази форма са &lt;span class="text-decoration-underline"&gt;незадължителни за функционирането на сайтът&lt;/span&gt; на списание ЛИнК.&lt;/small&gt;&lt;/p&gt;
-&lt;p&gt;&lt;small&gt;При избор как да се показват личните Ви данни на сайта, винаги имате възможност за Вас да се показва единствено 'Анонимен'.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;При избор как да се показватe на сайта, винаги имате възможност за Вас да изберете да се показва единствено 'Анонимен'.&lt;/small&gt;&lt;/p&gt;
 &lt;p&gt;&lt;small&gt;Email адресът Ви няма да бъде показван публично на други потребители, освен ако изрично не посочите, че това е Вашето желание.&lt;/small&gt;&lt;/p&gt;
 &lt;p&gt;&lt;small&gt;Ако желаете, можете да въведете кратко биографично описание с до 1000 символа за себе си.&lt;/small&gt;&lt;/p&gt;
 &lt;p&gt;&lt;small&gt;Ако решите, можете да отбележите, че искате да бъдете уведомяван/а при нов брой на списанието по email.&lt;/small&gt;&lt;/p&gt;</value>

@@ -522,8 +522,8 @@
     <value>LInC</value>
   </data>
   <data name="ManageIndex_Description" xml:space="preserve">
-    <value>&lt;p&gt;&lt;small&gt;Information in this is required for the LInC site to verify your identity.&lt;/small&gt;&lt;/p&gt;
-&lt;p&gt;&lt;small&gt;Your nickname will be shown publicly to other users if you do not want your names to be shown.&lt;/small&gt;&lt;/p&gt;
+    <value>&lt;p&gt;&lt;small&gt;The information in this form is required for the LInC web site to verify your identity.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Your nickname will be shown publicly to other users, if you do not want your names to be shown.&lt;/small&gt;&lt;/p&gt;
 &lt;p&gt;&lt;small&gt;You can manage this preference from the &lt;a class="text-decoration-underline" href="/identity/account/manage/information"&gt;advanced settings here&lt;/a&gt;.&lt;/small&gt;&lt;/p&gt;
 &lt;p &gt;&lt;small&gt;If you decide to give your phone number, keep in mind that LInC &lt;b&gt;does not distribute your number to third parties and does not use it for marketing purposes&lt;/b&gt;. The phone number is used to secure your account, exclusively at your request.&lt;/small&gt;&lt;/p&gt;</value>
   </data>
@@ -591,18 +591,18 @@
     <value>Show my email address</value>
   </data>
   <data name="ManagePreferences_DisplayNameType" xml:space="preserve">
-    <value>What to show for you</value>
+    <value>What to show about you</value>
   </data>
   <data name="ManagePreferences_PageDescription" xml:space="preserve">
-    <value>&lt;p&gt;&lt;small&gt;LInC does not collect personal information other than that which you provide to us. All data stored about you can be &lt;a class="text-decoration-underline" href="/identity/account/manage/personal-data"&gt;downloaded here&lt;/a&gt; in a machine-readable form.&lt;/small&gt;&lt;/p&gt;
-&lt;p&gt;&lt;small&gt;All data from this form are &lt;span class="text-decoration-underline"&gt;optional for the functioning of the website&lt;/span&gt;.&lt;/small&gt;&lt;/p&gt;
-&lt;p&gt;&lt;small&gt;When choosing how to display your personal data on the site, you always have the option to display only 'Anonymous'.&lt;/small&gt;&lt;/p&gt;
+    <value>&lt;p&gt;&lt;small&gt;LInC does not collect personal information other than that which you provide to us. All data stored about you can be &lt;a class="text-decoration-underline" href="/identity/account/manage/personal-data"&gt;downloaded here&lt;/a&gt; in a machine-readable format.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;All the information in from is &lt;span class="text-decoration-underline"&gt;optional for the functioning of the website&lt;/span&gt;.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;When choosing how to display you on the web site, you always have the option to display only 'Anonymous'.&lt;/small&gt;&lt;/p&gt;
 &lt;p&gt;&lt;small&gt;Your email address will not be publicly displayed to other users unless you specifically indicate that this is your wish.&lt;/small&gt;&lt;/p&gt;
 &lt;p&gt;&lt;small&gt;If you want, you can enter a short bio description of up to 1000 characters about yourself.&lt;/small&gt;&lt;/p&gt;
-&lt;p&gt;&lt;small&gt;If you decide, you can indicate that you want to be notified when a new issue goes out of print by email.&lt;/small&gt;&lt;/p&gt;</value>
+&lt;p&gt;&lt;small&gt;If you decide, you can indicate that you want to be notified when a new issue comes out of print by email.&lt;/small&gt;&lt;/p&gt;</value>
   </data>
   <data name="ManagePreferences_Subscribed" xml:space="preserve">
-    <value>Subscribe for notifications (via email) when a new issue goes out</value>
+    <value>Subscribe me for notifications (by email) when a new issue comes out</value>
   </data>
   <data name="ManagePreferences_Title" xml:space="preserve">
     <value>Additional settings</value>
