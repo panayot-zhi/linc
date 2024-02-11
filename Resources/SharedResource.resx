@@ -950,6 +950,27 @@
   <data name="ChangePasswordModel_OldPassword" xml:space="preserve">
     <value>Стара парола</value>
   </data>
+  <data name="Delete_Button_Label" xml:space="preserve">
+    <value>Изтрий</value>
+  </data>
+  <data name="Download_Button_Label" xml:space="preserve">
+    <value>Свали</value>
+  </data>
+  <data name="ManageDeletePersonalData_DeleteButtonLabel" xml:space="preserve">
+    <value>Изтрий данните и затвори акаунта ми</value>
+  </data>
+  <data name="ManageDeletePersonalData_Description" xml:space="preserve">
+    <value>Изтриването на тези данни ще премахне завинаги Вашия акаунт и това не може да бъде възстановено.</value>
+  </data>
+  <data name="ManageDeletePersonalData_IncorrectPassword_ErrorMessage" xml:space="preserve">
+    <value>Невалидна парола.</value>
+  </data>
+  <data name="ManageDeletePersonalData_Title" xml:space="preserve">
+    <value>Изтриване на лични данни</value>
+  </data>
+  <data name="ManageDownloadPersonalData_Title" xml:space="preserve">
+    <value>Сваляне на лични данни</value>
+  </data>
   <data name="ManageEmail_Description" xml:space="preserve">
     <value>&lt;p&gt;&lt;small&gt;Ако решите да промените email адреса си, &lt;span class="text-decoration-underline"&gt;ще трябва да го потвърдите чрез верификационен email отново&lt;/span&gt;, преди да можете да влезете в сайта.&lt;/small&gt;&lt;/p&gt;
 &lt;p&gt;&lt;small&gt;Сайтът на списание LInC &lt;span class="text-decoration-underline"&gt;не използва email адреса Ви за маркетингови цели и промоции&lt;/span&gt;. Ще Ви изпратим уведомление за нов брой на списанието единствено, ако сте го &lt;a href="/identity/account/manage/information"&gt;указали във Вашите преференции&lt;/a&gt;.&lt;/small&gt;&lt;/p&gt;</value>
@@ -985,5 +1006,17 @@
   </data>
   <data name="ManagePassword_Update_SuccessMessage" xml:space="preserve">
     <value>Паролата Ви е променена.</value>
+  </data>
+  <data name="ManagePersonalData_Description" xml:space="preserve">
+    <value>Вашият потребителски акаунт съдържа лични данни, които сте ни предоставили. Тази страница Ви позволява да изтеглите или изтриете тези данни.</value>
+  </data>
+  <data name="ManagePersonalData_PageDescription" xml:space="preserve">
+    <value>&lt;p&gt;&lt;small&gt;Всички лични данни събирани в сайтът на Списание Страница могат да бъдат изтеглени и прегледани в &lt;a href="http://www.google.com/search?q=json" target="_blank"&gt;машинно четим формат (JSON)&lt;/a&gt;.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Страница не събира лична информация, различна от тази, която ни предоставяте. Във всеки един момент информацията, която пазим за Вас може да бъде прегледана и (виж по-долу) изтрита.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Изтриването на информация, задължителна за Вашата автентикация в системата ще доведе до &lt;b&gt;изтриване на потребителят Ви от системата&lt;/b&gt;.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;&lt;b&gt;Внимание! Ако изтриете потребителят си от системата, няма да можете да влизате в сайта и всяка асоциирана с Вас информация ще бъде изтрита!&lt;/b&gt;&lt;/small&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="ManagePersonalData_Title" xml:space="preserve">
+    <value>Лични данни</value>
   </data>
 </root>

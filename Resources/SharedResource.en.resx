@@ -337,6 +337,12 @@
   <data name="CurrentDisplayName_Label" xml:space="preserve">
     <value>Current</value>
   </data>
+  <data name="Delete_Button_Label" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Download_Button_Label" xml:space="preserve">
+    <value>Download</value>
+  </data>
   <data name="EmailModel_Email" xml:space="preserve">
     <value>Email address</value>
   </data>
@@ -539,6 +545,21 @@
   <data name="Logo_Short" xml:space="preserve">
     <value>LInC</value>
   </data>
+  <data name="ManageDeletePersonalData_DeleteButtonLabel" xml:space="preserve">
+    <value>Delete data and close my account</value>
+  </data>
+  <data name="ManageDeletePersonalData_Description" xml:space="preserve">
+    <value>Deleting this data will permanently remove your account, and this cannot be recovered.</value>
+  </data>
+  <data name="ManageDeletePersonalData_IncorrectPassword_ErrorMessage" xml:space="preserve">
+    <value>Incorrect password.</value>
+  </data>
+  <data name="ManageDeletePersonalData_Title" xml:space="preserve">
+    <value>Delete Personal Data</value>
+  </data>
+  <data name="ManageDownloadPersonalData_Title" xml:space="preserve">
+    <value>Download Your Data</value>
+  </data>
   <data name="ManageEmail_ChangeEmail_SuccessMessage" xml:space="preserve">
     <value>Confirmation link to change email sent. Please check your email.</value>
   </data>
@@ -649,6 +670,18 @@
   </data>
   <data name="ManagePassword_Update_SuccessMessage" xml:space="preserve">
     <value>Your password has been changed.</value>
+  </data>
+  <data name="ManagePersonalData_Description" xml:space="preserve">
+    <value>Your account contains personal data that you have given us. This page allows you to download or delete that data.</value>
+  </data>
+  <data name="ManagePersonalData_PageDescription" xml:space="preserve">
+    <value>&lt;p&gt;&lt;small&gt;All personal data collected on the Page Magazine site can be downloaded and viewed in &lt;a href="http://www.google.com/search?q=json" target="_blank"&gt;machine readable format (JSON)&lt;/a&gt;.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Site does not collect personal information other than what you provide to us. At any time, the information we hold about you can be reviewed and (see below) deleted.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Deletion of information required for your authentication in the system will result in &lt;b&gt;deletion of your user from the system&lt;/b&gt;.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;&lt;b&gt;Caution! If you delete your user from the system, you will not be able to enter the site and any information associated with you will be deleted!&lt;/b&gt;&lt;/small&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="ManagePersonalData_Title" xml:space="preserve">
+    <value>Personal data</value>
   </data>
   <data name="ManagePreferences_Description" xml:space="preserve">
     <value>Short description</value>

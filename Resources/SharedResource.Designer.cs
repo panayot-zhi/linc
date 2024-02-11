@@ -719,6 +719,24 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Изтрий.
+        /// </summary>
+        public static string Delete_Button_Label {
+            get {
+                return ResourceManager.GetString("Delete_Button_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Свали.
+        /// </summary>
+        public static string Download_Button_Label {
+            get {
+                return ResourceManager.GetString("Download_Button_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email адрес.
         /// </summary>
         public static string EmailModel_Email {
@@ -1323,6 +1341,51 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Изтрий данните и затвори акаунта ми.
+        /// </summary>
+        public static string ManageDeletePersonalData_DeleteButtonLabel {
+            get {
+                return ResourceManager.GetString("ManageDeletePersonalData_DeleteButtonLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изтриването на тези данни ще премахне завинаги Вашия акаунт и това не може да бъде възстановено..
+        /// </summary>
+        public static string ManageDeletePersonalData_Description {
+            get {
+                return ResourceManager.GetString("ManageDeletePersonalData_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Невалидна парола..
+        /// </summary>
+        public static string ManageDeletePersonalData_IncorrectPassword_ErrorMessage {
+            get {
+                return ResourceManager.GetString("ManageDeletePersonalData_IncorrectPassword_ErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изтриване на лични данни.
+        /// </summary>
+        public static string ManageDeletePersonalData_Title {
+            get {
+                return ResourceManager.GetString("ManageDeletePersonalData_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Сваляне на лични данни.
+        /// </summary>
+        public static string ManageDownloadPersonalData_Title {
+            get {
+                return ResourceManager.GetString("ManageDownloadPersonalData_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Изпратихме линк за потвърждение на посочения email адрес. Моля, проверете пощенската си кутия..
         /// </summary>
         public static string ManageEmail_ChangeEmail_SuccessMessage {
@@ -1621,6 +1684,35 @@ namespace linc.Resources {
         public static string ManagePassword_Update_SuccessMessage {
             get {
                 return ResourceManager.GetString("ManagePassword_Update_SuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Вашият потребителски акаунт съдържа лични данни, които сте ни предоставили. Тази страница Ви позволява да изтеглите или изтриете тези данни..
+        /// </summary>
+        public static string ManagePersonalData_Description {
+            get {
+                return ResourceManager.GetString("ManagePersonalData_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;p&gt;&lt;small&gt;Всички лични данни събирани в сайтът на Списание Страница могат да бъдат изтеглени и прегледани в &lt;a href=&quot;http://www.google.com/search?q=json&quot; target=&quot;_blank&quot;&gt;машинно четим формат (JSON)&lt;/a&gt;.&lt;/small&gt;&lt;/p&gt;
+        ///&lt;p&gt;&lt;small&gt;Страница не събира лична информация, различна от тази, която ни предоставяте. Във всеки един момент информацията, която пазим за Вас може да бъде прегледана и (виж по-долу) изтрита.&lt;/small&gt;&lt;/p&gt;
+        ///&lt;p&gt;&lt;small&gt;Изтриването на информация, задължителна за Вашата автентикация в системата ще дов [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string ManagePersonalData_PageDescription {
+            get {
+                return ResourceManager.GetString("ManagePersonalData_PageDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Лични данни.
+        /// </summary>
+        public static string ManagePersonalData_Title {
+            get {
+                return ResourceManager.GetString("ManagePersonalData_Title", resourceCulture);
             }
         }
         
