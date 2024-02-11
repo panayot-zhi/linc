@@ -2,44 +2,126 @@
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @model EmailModel
 @{
-    ViewData["Title"] = "Manage Email";
+    ViewData["Title"] = HtmlLocalizer["ManageEmail_Title"];
     ViewData["ActivePage"] = ManageNavPages.Email;
 }
 
-<h3>@ViewData["Title"]</h3>
-<partial name="_StatusMessage" for="StatusMessage" />
 <div class="row">
     <div class="col-md-6">
+
+        <partial name="Account/_StatusMessage" for="StatusMessage"/>
+
         <form id="email-form" method="post">
+
             <div asp-validation-summary="All" class="text-danger"></div>
+
             @if (Model.IsEmailConfirmed)
             {
-                <div class="form-floating input-group">
-                    <input asp-for="Email" class="form-control" disabled />
-                        <div class="input-group-append">
-                            <span class="h-100 input-group-text text-success font-weight-bold">✓</span>
-                        </div>
-                    <label asp-for="Email" class="form-label"></label>
+                <div class="form-group">
+                    <label asp-for="Email" class="form-label">
+                        @Html.DisplayNameFor(x => x.Email)
+                        (@HtmlLocalizer["ManageIndex_EmailVerified"])
+                    </label>
+                    
+                    <div class="input-group input-group-lg">
+                        <input asp-for="Email" class="form-control" aria-describedby="email-confirmed-indicator" disabled />
+                        <span class="input-group-text text-primary" id="email-confirmed-indicator"
+                              data-bs-container="body" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="right"
+                              data-bs-content="@HtmlLocalizer["ManageIndex_EmailVerified_Popover"]">
+                            <i class="bx bxs-check-shield"></i>
+                        </span>
+                    </div>
                 </div>
             }
             else
             {
-                <div class="form-floating">
-                    <input asp-for="Email" class="form-control" disabled />
-                    <label asp-for="Email" class="form-label"></label>
-                    <button id="email-verification" type="submit" asp-page-handler="SendVerificationEmail" class="btn btn-link">Send verification email</button>
+                <div class="form-group">
+                    <label asp-for="Email" class="form-label">
+                        @Html.DisplayNameFor(x => x.Email)
+                        (@HtmlLocalizer["ManageIndex_EmailVerificationPending"])
+                    </label>
+                    
+                    <div class="input-group input-group-lg">
+                        <input asp-for="Email" class="form-control" aria-describedby="email-confirmed-indicator" disabled />
+                        <span class="input-group-text text-danger" id="email-confirmed-indicator"
+                              data-bs-container="body" data-bs-toggle="popover" data-bs-trigger="hover" data-bs-placement="right"
+                              data-bs-content="@HtmlLocalizer["ManageIndex_EmailVerificationPending_Popover"]">
+                            <i class="bx bxs-shield-x"></i>
+                        </span>
+                    </div>
+
+                    <button id="email-verification" type="submit" asp-page-handler="SendVerificationEmail" formnovalidate class="btn btn-link">
+                        @HtmlLocalizer["ManageIndex_ReSendVerificationEmail"]
+                    </button>
                 </div>
             }
+
             <div class="form-floating">
-                <input asp-for="Input.NewEmail" class="form-control" autocomplete="email" aria-required="true" />
+                <input asp-for="Input.NewEmail" class="form-control" autocomplete="email" aria-required="true"/>
                 <label asp-for="Input.NewEmail" class="form-label"></label>
-                <span asp-validation-for="Input.NewEmail" class="text-danger"></span>
+                <span asp-validation-for="Input.NewEmail" class="invalid-feedback"></span>
             </div>
-            <button id="change-email-button" type="submit" asp-page-handler="ChangeEmail" class="w-100 btn btn-lg btn-primary">Change email</button>
+            
+            <hr />
+
+            <div class="text-end">
+                <button type="reset" class="btn btn-lg btn-outline-secondary">
+                    @HtmlLocalizer["Cancel_Button_Label"]
+                </button>
+
+                <button id="change-email-button" type="submit" class="w-50 btn btn-lg btn-primary" asp-page-handler="ChangeEmail">
+                    @HtmlLocalizer["ChangeEmail_Button_Label"]
+                </button>
+            </div>
+
         </form>
+    </div>
+    
+    <div class="col-md-6">
+        @HtmlLocalizer["ManageEmail_Description"]
+        
+        @if (!Model.IsEmailConfirmed)
+        {
+            @HtmlLocalizer["ManageEmail_ReSendConfirmation_Description"]
+        }
+
     </div>
 </div>
 
 @section Scripts {
     <partial name="_ValidationScripts" />
+
+    <script>
+
+        function onEmailVerificationClick(e) {
+            e.preventDefault();
+            
+            const form = this.form;
+            const formAction = this.getAttribute('formaction');
+
+            Swal.fire({
+
+                icon: "question",
+                title: window.jsLocalizer["ManageEmail_ReSendVerification_Confirmation_Title"],
+                text: window.jsLocalizer["ManageEmail_ReSendVerification_Confirmation"],
+                showCancelButton: true
+
+            }).then((result) => {
+                if (!result.isConfirmed) {
+                    return;
+                }
+
+                form.action = formAction;
+                form.submit();
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const emailVerificationButton = document.getElementById('email-verification');
+            if (emailVerificationButton) {
+                emailVerificationButton.addEventListener('click', onEmailVerificationClick);
+            }
+        });
+    
+    </script>
 }
