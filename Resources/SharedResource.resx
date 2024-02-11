@@ -590,6 +590,17 @@
   <data name="ManagePreferences_DisplayNameType" xml:space="preserve">
     <value>Какво да се показва за Вас</value>
   </data>
+  <data name="ManagePreferences_PageDescription" xml:space="preserve">
+    <value>&lt;p&gt;&lt;small&gt;ЛИнК не събира лична информация, различна от тази, която ни предоставяте. Всички данни, които се съхраняват за Вас, можете да &lt;a class="text-decoration-underline" href="/identity/account/manage/personal-data"&gt;изтеглите от тук&lt;/a&gt; в машинно четим вид.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Всички данни от тази форма са &lt;span class="text-decoration-underline"&gt;незадължителни за функционирането на сайтът&lt;/span&gt; на списание ЛИнК.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;При избор как да се показват личните Ви данни на сайта, винаги имате възможност за Вас да се показва единствено 'Анонимен'.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Email адресът Ви няма да бъде показван публично на други потребители, освен ако изрично не посочите, че това е Вашето желание.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Ако желаете, можете да въведете кратко биографично описание с до 1000 символа за себе си.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Ако решите, можете да отбележите, че искате да бъдете уведомяван/а при нов брой на списанието по email.&lt;/small&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="ManagePreferences_Subscribed" xml:space="preserve">
+    <value>Абонирай ме за известия (по email), когато излезе нов брой</value>
+  </data>
   <data name="ManagePreferences_Title" xml:space="preserve">
     <value>Допълнителни настройки</value>
   </data>

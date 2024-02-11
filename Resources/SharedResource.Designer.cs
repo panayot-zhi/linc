@@ -1470,6 +1470,26 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;p&gt;&lt;small&gt;ЛИнК не събира лична информация, различна от тази, която ни предоставяте. Всички данни, които се съхраняват за Вас, можете да &lt;a class=&quot;text-decoration-underline&quot; href=&quot;/identity/account/manage/personal-data&quot;&gt;изтеглите от тук&lt;/a&gt; в машинно четим вид.&lt;/small&gt;&lt;/p&gt;
+        ///&lt;p&gt;&lt;small&gt;Всички данни от тази форма са &lt;span class=&quot;text-decoration-underline&quot;&gt;незадължителни за функционирането на сайтът&lt;/span&gt; на списание ЛИнК.&lt;/small&gt;&lt;/p&gt;
+        ///&lt;p&gt;&lt;small&gt;При избор как да се показват личните Ви данни на сайта, винаги има [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string ManagePreferences_PageDescription {
+            get {
+                return ResourceManager.GetString("ManagePreferences_PageDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Абонирай ме за известия (по email), когато излезе нов брой.
+        /// </summary>
+        public static string ManagePreferences_Subscribed {
+            get {
+                return ResourceManager.GetString("ManagePreferences_Subscribed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Допълнителни настройки.
         /// </summary>
         public static string ManagePreferences_Title {
