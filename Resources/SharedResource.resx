@@ -168,6 +168,9 @@
   <data name="AlertMessage_Warning_Title" xml:space="preserve">
     <value>Внимание!</value>
   </data>
+  <data name="Anonymous_Label" xml:space="preserve">
+    <value>Анонимен</value>
+  </data>
   <data name="Board_Aleksander.Mikołajczak_Member" xml:space="preserve">
     <value>Проф. дн Александер Войчех Миколайчак</value>
   </data>
@@ -216,6 +219,9 @@
   <data name="Board_Vanya.Georgieva_MemberWork" xml:space="preserve">
     <value>Технически сътрудник &lt;br/&gt;катедра Българска литература и теория на литературата&lt;br/&gt;ПУ „Паисий Хилендарски“</value>
   </data>
+  <data name="Cancel_Button_Label" xml:space="preserve">
+    <value>Отказ</value>
+  </data>
   <data name="CategoriesSection_SubTitle" xml:space="preserve">
     <value>Разгледайте списанието по &lt;span&gt;категории&lt;/span&gt;</value>
   </data>
@@ -246,17 +252,131 @@
   <data name="Category_Surveys" xml:space="preserve">
     <value>Анкети</value>
   </data>
+  <data name="ChangeEmail_Button_Label" xml:space="preserve">
+    <value>Промени email</value>
+  </data>
   <data name="Close_Label" xml:space="preserve">
     <value>Затвори</value>
   </data>
+  <data name="CodexSection_Authors_Content" xml:space="preserve">
+    <value>&lt;ul class="mx-2"&gt;
+                                &lt;li&gt;
+                                    може да предложи на списанието &lt;strong&gt;само своя собствена разработка&lt;/strong&gt;, която не е публикувана и не е депозирана в друго издание;
+                                &lt;/li&gt;
+                                &lt;li&gt;
+                                    трябва да е изготвил текста си съобразно техническите изисквания към публикациите в „Лингвистика, интерпретация, концепции“;
+                                &lt;/li&gt;
+                                &lt;li&gt;
+                                    носи отговорност за достоверността на първичните данни, които функционализира в изследването си, и за оригиналността на предлагания труд;
+                                &lt;/li&gt;
+                                &lt;li&gt;
+                                    при следващо публикуване на текста вмества в него коректна библиографска отпратка към първата му публикация в „Лингвистика, интерпретация, концепции“;
+                                &lt;/li&gt;
+                                &lt;li&gt;
+                                    цитира точно и пълно всички източници, които са ползвани при създаването на научната статия;
+                                &lt;/li&gt;
+                                &lt;li&gt;
+                                    трябва да посочва институциите, организациите, проектите, личностите, които имат отношение към разработката му (чрез финансиране на проучвателната дейност, чийто резултат е тя, чрез предоставяне на специфична информация, условия за работа, достъп до непубличен архив и пр.);
+                                &lt;/li&gt;
+                                &lt;li&gt;
+                                    съобщава при възникване на конфликт на интереси;
+                                &lt;/li&gt;
+                                &lt;li&gt;
+                                    отговаря на въпросите на рецензентите, коментира бележките им и ако е необходимо, осъществява промени в текста си; при несъгласие с предложените опции за коригиране на труда има право да оттегли предложеното за публикация;
+                                &lt;/li&gt;
+                                &lt;li&gt;
+                                    информира своевременно Редакцията, ако след депозирането на текст открие сериозен пропуск или грешка в труда си;
+                                &lt;/li&gt;
+                                &lt;li&gt;
+                                    не оповестява подробности от съвместната си работа с редакторския екип в рамките на публикационния процес;
+                                &lt;/li&gt;
+                                &lt;li&gt;
+                                    спазва Етичния кодекс на изданието и общосподелените академични норми за колегиално поведение.
+                                &lt;/li&gt;
+                            &lt;/ul&gt;</value>
+  </data>
   <data name="CodexSection_Authors_Title" xml:space="preserve">
-    <value>АВТОРЪТ</value>
+    <value>АВТОРЪТ:</value>
+  </data>
+  <data name="CodexSection_Description" xml:space="preserve">
+    <value>Издателят и редакторският екип на „Лингвистика, интерпретация, концепции“ се ръководят от нормите и  утвърдените международни стандарти в научната публикационна дейност, отразени в документите на &lt;a href="http://publicationethics.org/" target="_blank"&gt;Committee on Publication Ethics&lt;/a&gt;</value>
+  </data>
+  <data name="CodexSection_Editors_Content" xml:space="preserve">
+    <value>&lt;ul class="mx-2"&gt;
+    &lt;li&gt;
+        съобразява работата си с насоките на &lt;a href="https://publicationethics.org/files/Code_of_conduct_for_journal_editors_Mar11.pdf" target="_blank"&gt;Code of Conduct and Best Practice Guidelines for Journal Editors&lt;/a&gt;;
+    &lt;/li&gt;
+    &lt;li&gt;
+        отговаря за цялостната научна стратегия на изданието, стреми се да привлича като автори изявени в своята област български и чужди учени, както и перспективни млади изследователи от различни страни и институции;
+    &lt;/li&gt;
+    &lt;li&gt;
+        ангажира като рецензенти експерти с авторитет и с безспорни заслуги в съответната научна област (член на редакторския екип не може да бъде рецензент);
+    &lt;/li&gt;
+    &lt;li&gt;
+        селектира съдържанието на списанието в съответствие с актуалните интереси на професионалната общност;
+    &lt;/li&gt;
+    &lt;li&gt;
+        осигурява представеност на разнообразни гледни точки, не ограничава свободата на изразяване на научни позиции и стимулира научния дебат в хуманитаристкото поле;
+    &lt;/li&gt;
+    &lt;li&gt;
+        води се от чисто научни критерии, цели и задачи при подбора на текстове; не допуска каквато и да форма на дискриминация по расови, етнически, религиозни, полови или възрастови белези;
+    &lt;/li&gt;
+    &lt;li&gt;
+        съблюдва политиката на списанието по отношение на авторските права, съобразена със Закона за авторското право и сродните му права на Република България и с добрите световни практики в съответната сфера (виж &lt;a href="/docs/publication_agreement.doc"&gt;Publication Agreement&lt;/a&gt;);
+    &lt;/li&gt;
+    &lt;li&gt;
+        противодейства спрямо неприемливите практики (постъпилите за разглеждане текстове се проверяват за плагиатство; гарантира се коректността в отношенията между съавтори чрез изискване на разделителен протокол, посочващ дяловете участие на всеки от авторите при изготвянето на конкретната статия/студия; следи се за възникване на евентуален конфликт на интереси);
+    &lt;/li&gt;
+    &lt;li&gt;
+        осигурява проверимост на работата по приемане, рецензиране и публикуване на текстове;
+    &lt;/li&gt;
+    &lt;li&gt;
+        стриктно съблюдава процедурите по двойно анонимно рецензиране на статиите, постъпили в Редакцията;
+    &lt;/li&gt;
+    &lt;li&gt;
+        информира своевременно автора за етапите на предпубликационната работа по статията/студията му и подпомага усъвършенстването на предоставения труд;
+    &lt;/li&gt;
+    &lt;li&gt;
+        осигурява конфиденциалност на отношенията с авторите и с рецензентите, както и на кореспонденцията, свързана с подобряване на качествата на един или друг текст;
+    &lt;/li&gt;
+    &lt;li&gt;
+        не използва за лично облагодетелстване информация, получена в процеса на работа с авторите и с рецензентите;
+    &lt;/li&gt;
+    &lt;li&gt;
+        при сигнал за някакъв вид некоректност във вече публикуван текст прави необходимото аудиторията да бъде информирана за проблемното съдържание (оповествява редакторската позиция по възникналия казус и/или опониращото мнение, и/или корективния текст на самия автор);
+    &lt;/li&gt;
+    &lt;li&gt;
+        в сътрудничество с издателя се грижи за електронния архив на изданието и перманентната видимост на публикуваните текстове на сайта на „Лингвистика, интерпретация, концепции“.
+    &lt;/li&gt;
+&lt;/ul&gt;</value>
   </data>
   <data name="CodexSection_Editors_Title" xml:space="preserve">
-    <value>РЕДАКТОРСКИЯТ ЕКИП</value>
+    <value>РЕДАКТОРСКИЯТ ЕКИП:</value>
+  </data>
+  <data name="CodexSection_Reviewers_Content" xml:space="preserve">
+    <value>&lt;ul class="mx-2"&gt;
+    &lt;li&gt;
+        съобразява работата си с насоките на &lt;a href="https://publicationethics.org/resources/guidelines/cope-ethical-guidelines-peer-reviewers" target="_blank"&gt;Ethical Guidelines for Peer Reviewers&lt;/a&gt;;
+    &lt;/li&gt;
+    &lt;li&gt;
+        ако предложеният за оценяване текст съдържа и тип информация, която не кореспондира с компетентностния профил на поканения за рецензент, той трябва да откаже ангажимента. Същото трябва да направи и ако прецени, че не би могъл да спази срока за предаване на рецензия (срокът е три седмици);
+    &lt;/li&gt;
+    &lt;li&gt;
+        трябва да се стреми към обективност на преценката, да формулира ясно позицията си (препоръчва за публикуване; препоръчва за публикуване след корекции; не препоръчва за публикуване), да аргументира забележките си към текста, да предложи корекциите, които според него биха подобрили качествата на труда;
+    &lt;/li&gt;
+    &lt;li&gt;
+        уведомява Редакцията при евентуално възникване на конфликт на интереси;
+    &lt;/li&gt;
+    &lt;li&gt;
+        спазва поверителността на информацията, получена при работата върху конкретен текст, не използва тази информация за лична изгода и не я обсъжда с лица извън редакторския екип;
+    &lt;/li&gt;
+    &lt;li&gt;
+        съобразява се с Етичния кодекс на изданието.
+    &lt;/li&gt;
+&lt;/ul&gt;</value>
   </data>
   <data name="CodexSection_Reviewers_Title" xml:space="preserve">
-    <value>РЕЦЕНЗЕНТЪТ</value>
+    <value>РЕЦЕНЗЕНТЪТ:</value>
   </data>
   <data name="CodexSection_SubTitle" xml:space="preserve">
     <value>Прочетете за нашия &lt;span&gt;Етичен кодекс&lt;/span&gt;</value>
@@ -315,6 +435,15 @@
   </data>
   <data name="Copyright_Label" xml:space="preserve">
     <value>Всички права запазени</value>
+  </data>
+  <data name="CurrentDisplayName_Label" xml:space="preserve">
+    <value>Текущо</value>
+  </data>
+  <data name="EmailModel_Email" xml:space="preserve">
+    <value>Email адрес</value>
+  </data>
+  <data name="EmailModel_NewEmail" xml:space="preserve">
+    <value>Нов email</value>
   </data>
   <data name="FaqSection_SubTitle" xml:space="preserve">
     <value>Често Задавани &lt;span&gt;Въпроси&lt;/span&gt;</value>
@@ -509,6 +638,122 @@
   <data name="Logo_Short" xml:space="preserve">
     <value>ЛИнК</value>
   </data>
+  <data name="ManageEmail_ChangeEmail_SuccessMessage" xml:space="preserve">
+    <value>Изпратихме линк за потвърждение на посочения email адрес. Моля, проверете пощенската си кутия.</value>
+  </data>
+  <data name="ManageEmail_ChangeEmail_WarningMessage" xml:space="preserve">
+    <value>Вашият email е непроменен.</value>
+  </data>
+  <data name="ManageEmail_ReSendVerificationEmail_SuccessMessage" xml:space="preserve">
+    <value>Имейлът за потвърждение бе изпратен повторно. Моля, проверете електронната си поща.</value>
+  </data>
+  <data name="ManageEmail_Title" xml:space="preserve">
+    <value>Управление на email</value>
+  </data>
+  <data name="ManageIndex_Description" xml:space="preserve">
+    <value>&lt;p&gt;&lt;small&gt;Информацията в тази форма е нужна, за да може сайтът на списание ЛИнК да удостовери самоличността Ви.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Псевдонимът Ви ще се показва публично на други потребители, ако не желаете да се показва Вашето име.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Можете да управлявате това от &lt;a class="text-decoration-underline" href="/identity/account/manage/information"&gt;допълнителните настройки тук&lt;/a&gt;.&lt;/small&gt;&lt;/p&gt;
+&lt;p &gt;&lt;small&gt;Ако решите да въведете телефоннен номер, имайте предвид, че списание ЛИнК &lt;b&gt;не разпространява номерът Ви на трети страни и не го използва за маркетингови цели&lt;/b&gt;. Телефонният номер се използва за подсигуряване на профила Ви, ексклузивно по Ваше желание.&lt;/small&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="ManageIndex_EmailVerificationPending" xml:space="preserve">
+    <value>чака потвърждение</value>
+  </data>
+  <data name="ManageIndex_EmailVerificationPending_Popover" xml:space="preserve">
+    <value>Email адресът все още не е потвърден</value>
+  </data>
+  <data name="ManageIndex_EmailVerified" xml:space="preserve">
+    <value>потвърден</value>
+  </data>
+  <data name="ManageIndex_EmailVerified_Popover" xml:space="preserve">
+    <value>Email адресът е потвърден</value>
+  </data>
+  <data name="ManageIndex_ReSendVerificationEmail" xml:space="preserve">
+    <value>Преизпрати верификационен email</value>
+  </data>
+  <data name="ManageIndex_SetNames_ErrorStatusMessage" xml:space="preserve">
+    <value>Възникна грешка при опит за промяна на имена.</value>
+  </data>
+  <data name="ManageIndex_SetPhoneNumber_ErrorStatusMessage" xml:space="preserve">
+    <value>Възнкина грешка при опит за промяна на телефонния номер.</value>
+  </data>
+  <data name="ManageIndex_SetUserName_ErrorStatusMessage" xml:space="preserve">
+    <value>Възнкина грешка при опит за промяна на псевдонима.</value>
+  </data>
+  <data name="ManageIndex_SuccessStatusMessage" xml:space="preserve">
+    <value>Информацията за профила Ви беше обновена.</value>
+  </data>
+  <data name="ManageIndex_Title" xml:space="preserve">
+    <value>Профил</value>
+  </data>
+  <data name="ManageNavItem_Administration" xml:space="preserve">
+    <value>Администрация</value>
+  </data>
+  <data name="ManageNavItem_Avatar" xml:space="preserve">
+    <value>Снимка</value>
+  </data>
+  <data name="ManageNavItem_ChangePassword" xml:space="preserve">
+    <value>Парола</value>
+  </data>
+  <data name="ManageNavItem_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="ManageNavItem_ExternalLogins" xml:space="preserve">
+    <value>Външен вход</value>
+  </data>
+  <data name="ManageNavItem_Information" xml:space="preserve">
+    <value>Преференции</value>
+  </data>
+  <data name="ManageNavItem_PersonalData" xml:space="preserve">
+    <value>Вашите данни</value>
+  </data>
+  <data name="ManageNavItem_Profile" xml:space="preserve">
+    <value>Профил</value>
+  </data>
+  <data name="ManageNavItem_TwoFactorAuthentication" xml:space="preserve">
+    <value>Двуфакторна автентикация</value>
+  </data>
+  <data name="ManagePreferences_Description" xml:space="preserve">
+    <value>Кратко описание</value>
+  </data>
+  <data name="ManagePreferences_DisplayEmail" xml:space="preserve">
+    <value>Показвай email адресa ми</value>
+  </data>
+  <data name="ManagePreferences_DisplayNameType" xml:space="preserve">
+    <value>Какво да се показва за Вас</value>
+  </data>
+  <data name="ManagePreferences_PageDescription" xml:space="preserve">
+    <value>&lt;p&gt;&lt;small&gt;ЛИнК не събира лична информация, различна от тази, която ни предоставяте. Всички данни, които се съхраняват за Вас, можете да &lt;a class="text-decoration-underline" href="/identity/account/manage/personal-data"&gt;изтеглите от тук&lt;/a&gt; в машинно четим вид.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Всички данни от тази форма са &lt;span class="text-decoration-underline"&gt;незадължителни за функционирането на сайтът&lt;/span&gt; на списание ЛИнК.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;При избор как да се показватe на сайта, винаги имате възможност за Вас да изберете да се показва единствено 'Анонимен'.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Email адресът Ви няма да бъде показван публично на други потребители, освен ако изрично не посочите, че това е Вашето желание.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Ако желаете, можете да въведете кратко биографично описание с до 1000 символа за себе си.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Ако решите, можете да отбележите, че искате да бъдете уведомяван/а при нов брой на списанието по email.&lt;/small&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="ManagePreferences_Subscribed" xml:space="preserve">
+    <value>Абонирай ме за известия (по email), когато излезе нов брой</value>
+  </data>
+  <data name="ManagePreferences_Title" xml:space="preserve">
+    <value>Допълнителни настройки</value>
+  </data>
+  <data name="ManagePreferences_Update_ErrorStatusMessage" xml:space="preserve">
+    <value>Възникна грешка при опит да запазим преференциите Ви.</value>
+  </data>
+  <data name="ManagePreferences_Update_SuccessStatusMessage" xml:space="preserve">
+    <value>Вашите преференции бяха запазени.</value>
+  </data>
+  <data name="ManageProfile_DisplayEmail" xml:space="preserve">
+    <value>Показвай email адреса ми</value>
+  </data>
+  <data name="ManageProfile_Phone" xml:space="preserve">
+    <value>Телефон</value>
+  </data>
+  <data name="ManageProfile_SuccessMessage" xml:space="preserve">
+    <value>Информацията за профила Ви беше обновена.</value>
+  </data>
+  <data name="ManageProfile_Title" xml:space="preserve">
+    <value>Управление на потребителски профил</value>
+  </data>
   <data name="NavItem_About" xml:space="preserve">
     <value>За списанието</value>
   </data>
@@ -516,7 +761,7 @@
     <value>Категории</value>
   </data>
   <data name="NavItem_Codex" xml:space="preserve">
-    <value>Кодекс</value>
+    <value>Етичен кодекс</value>
   </data>
   <data name="NavItem_Contact" xml:space="preserve">
     <value>Изпрати</value>
@@ -696,6 +941,12 @@
   <data name="ResetPassword_SuccessMessage" xml:space="preserve">
     <value>Паролата Ви бе възстановена. Моля, &lt;a asp-page="/Identity/Account/Login"&gt;влезте в платформата&lt;/a&gt;.</value>
   </data>
+  <data name="Reset_Button_Label" xml:space="preserve">
+    <value>Изчисти</value>
+  </data>
+  <data name="Save_Button_Label" xml:space="preserve">
+    <value>Запази</value>
+  </data>
   <data name="SetStringResource_Dialog_Description" xml:space="preserve">
     <value>Текста ще бъде запазен и видим за всички.</value>
   </data>
@@ -729,11 +980,26 @@
   <data name="SiteRole_HeadEditors" xml:space="preserve">
     <value>Главни редактори</value>
   </data>
+  <data name="SiteRole_Label" xml:space="preserve">
+    <value>Роля</value>
+  </data>
   <data name="SiteRole_User" xml:space="preserve">
     <value>Потребител</value>
   </data>
+  <data name="SiteRole_UserPlus" xml:space="preserve">
+    <value>Потребител +</value>
+  </data>
   <data name="SiteRole_Users" xml:space="preserve">
     <value>Потребители</value>
+  </data>
+  <data name="StatusMessage_Error_Prefix" xml:space="preserve">
+    <value>Грешка:</value>
+  </data>
+  <data name="StatusMessage_Success_Prefix" xml:space="preserve">
+    <value>Успех:</value>
+  </data>
+  <data name="StatusMessage_Warning_Prefix" xml:space="preserve">
+    <value>Внимание:</value>
   </data>
   <data name="Team_B.Yanev_Member" xml:space="preserve">
     <value>доц. д-р Борян Янев</value>
@@ -765,10 +1031,103 @@
   <data name="Team_Z.Ivanov_Member" xml:space="preserve">
     <value>доц. д-р Живко Иванов</value>
   </data>
+  <data name="UserDisplayNameType_Anonymous" xml:space="preserve">
+    <value>Да се показва само 'Анонимен'</value>
+  </data>
+  <data name="UserDisplayNameType_Names" xml:space="preserve">
+    <value>Имена</value>
+  </data>
+  <data name="UserDisplayNameType_NamesAndUserName" xml:space="preserve">
+    <value>Имена и псевдоним</value>
+  </data>
+  <data name="UserDisplayNameType_UserName" xml:space="preserve">
+    <value>Псевдоним</value>
+  </data>
   <data name="Version_Label" xml:space="preserve">
     <value>версия</value>
   </data>
   <data name="Welcome_Message" xml:space="preserve">
     <value>Добре дошли на &lt;span&gt;ЛИнК.uni-plovdiv.bg&lt;/span&gt;</value>
+  </data>
+  <data name="EmailModel_OnPostChangeEmailAsync_test" xml:space="preserve">
+    <value>test</value>
+  </data>
+  <data name="ChangePasswordModel_ConfirmPassword" xml:space="preserve">
+    <value>Потвърди нова парола</value>
+  </data>
+  <data name="ChangePasswordModel_NewPassword" xml:space="preserve">
+    <value>Нова парола</value>
+  </data>
+  <data name="ChangePasswordModel_OldPassword" xml:space="preserve">
+    <value>Стара парола</value>
+  </data>
+  <data name="Delete_Button_Label" xml:space="preserve">
+    <value>Изтрий</value>
+  </data>
+  <data name="Download_Button_Label" xml:space="preserve">
+    <value>Свали</value>
+  </data>
+  <data name="ManageDeletePersonalData_DeleteButtonLabel" xml:space="preserve">
+    <value>Изтрий данните и затвори акаунта ми</value>
+  </data>
+  <data name="ManageDeletePersonalData_Description" xml:space="preserve">
+    <value>Изтриването на тези данни ще премахне завинаги Вашия акаунт и това не може да бъде възстановено.</value>
+  </data>
+  <data name="ManageDeletePersonalData_IncorrectPassword_ErrorMessage" xml:space="preserve">
+    <value>Невалидна парола.</value>
+  </data>
+  <data name="ManageDeletePersonalData_Title" xml:space="preserve">
+    <value>Изтриване на лични данни</value>
+  </data>
+  <data name="ManageDownloadPersonalData_Title" xml:space="preserve">
+    <value>Сваляне на лични данни</value>
+  </data>
+  <data name="ManageEmail_Description" xml:space="preserve">
+    <value>&lt;p&gt;&lt;small&gt;Ако решите да промените email адреса си, &lt;span class="text-decoration-underline"&gt;ще трябва да го потвърдите чрез верификационен email отново&lt;/span&gt;, преди да можете да влезете в сайта.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Сайтът на списание LInC &lt;span class="text-decoration-underline"&gt;не използва email адреса Ви за маркетингови цели и промоции&lt;/span&gt;. Ще Ви изпратим уведомление за нов брой на списанието единствено, ако сте го &lt;a href="/identity/account/manage/information"&gt;указали във Вашите преференции&lt;/a&gt;.&lt;/small&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="ManageEmail_ReSendConfirmation_Description" xml:space="preserve">
+    <value>&lt;p&gt;&lt;small&gt;Има случаи, когато верификационният email не успява да достигне до Вашата поща. Моля, в случай, че не получите верификационен email до няколко минути, опитайте да го преизпратите.&lt;/small&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="ManageEmail_ReSendVerification_Confirmation" xml:space="preserve">
+    <value>Ще изпратим друг email с нова връзка за потвърждение. Моля, проверете папките си за спам и кошче за писмото.</value>
+  </data>
+  <data name="ManageEmail_ReSendVerification_Confirmation_Title" xml:space="preserve">
+    <value>Сигурни ли сте?</value>
+  </data>
+  <data name="ManagePassword_Description" xml:space="preserve">
+    <value>&lt;p&gt;&lt;small&gt;За да осигурим максимална сигурност на достъпът Ви до сайта изискваме от Вашата парола да съдържа:&lt;/small&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;small&gt;символи &lt;span class="text-decoration-underline"&gt;единствено на латиница&lt;/span&gt;&lt;/small&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;small&gt;поне шест символа&lt;/small&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;small&gt;поне четири &lt;span class="text-decoration-underline"&gt;различни&lt;/span&gt; символа&lt;/small&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;small&gt;поне една главна буква&lt;/small&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;small&gt;поне една цифра&lt;/small&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;small&gt;Моля, не използвайте пароли, които използвате и другаде.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Паролата Ви е ключът за достъп до сайта, пазете я в тайна!&lt;/small&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="ManagePassword_SubmitButton_Label" xml:space="preserve">
+    <value>Смени парола</value>
+  </data>
+  <data name="ManagePassword_Title" xml:space="preserve">
+    <value>Смяна на парола</value>
+  </data>
+  <data name="ManagePassword_Update_SuccessMessage" xml:space="preserve">
+    <value>Паролата Ви е променена.</value>
+  </data>
+  <data name="ManagePersonalData_Description" xml:space="preserve">
+    <value>Вашият потребителски акаунт съдържа лични данни, които сте ни предоставили. Тази страница Ви позволява да изтеглите или изтриете тези данни.</value>
+  </data>
+  <data name="ManagePersonalData_PageDescription" xml:space="preserve">
+    <value>&lt;p&gt;&lt;small&gt;Всички лични данни събирани в сайтът на Списание Страница могат да бъдат изтеглени и прегледани в &lt;a href="http://www.google.com/search?q=json" target="_blank"&gt;машинно четим формат (JSON)&lt;/a&gt;.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Страница не събира лична информация, различна от тази, която ни предоставяте. Във всеки един момент информацията, която пазим за Вас може да бъде прегледана и (виж по-долу) изтрита.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Изтриването на информация, задължителна за Вашата автентикация в системата ще доведе до &lt;b&gt;изтриване на потребителят Ви от системата&lt;/b&gt;.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;&lt;b&gt;Внимание! Ако изтриете потребителят си от системата, няма да можете да влизате в сайта и всяка асоциирана с Вас информация ще бъде изтрита!&lt;/b&gt;&lt;/small&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="ManagePersonalData_Title" xml:space="preserve">
+    <value>Лични данни</value>
   </data>
 </root>

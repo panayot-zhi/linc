@@ -86,7 +86,7 @@ namespace linc.Areas.Identity.Pages.Account
 
             [DataType(DataType.Password)]
             [Display(Name = "RegisterModel_ConfirmPassword", ResourceType = typeof(Resources.SharedResource))]
-            [Compare("Password", ErrorMessageResourceName = "CompareAttribute_MustMatch", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+            [Compare(nameof(Password), ErrorMessageResourceName = "CompareAttribute_MustMatch", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
             public string ConfirmPassword { get; set; }
 
             [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]

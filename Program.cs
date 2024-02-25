@@ -19,7 +19,7 @@ public class Program
             .AddDatabase(configuration)
             .AddConfigurations(configuration)
             .AddAuthentications(configuration)
-            .AddApplicationIdentity()
+            .AddApplicationIdentity(environment)
             .AddCaching()
             .AddLocalizations()
             .AddCookies()

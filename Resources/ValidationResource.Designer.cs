@@ -286,7 +286,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The {0} field is not a valid phone number..
+        ///   Looks up a localized string similar to Полето {0} не съдържа валиден телефонен номер..
         /// </summary>
         public static string PhoneAttribute_Invalid {
             get {

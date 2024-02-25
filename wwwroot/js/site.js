@@ -48,8 +48,8 @@
     });
 
     // Bind Submit targets href form
-    $("form").on('submit', onSubmit);
     $(".submit-link").on('click', doSubmit);
+    $("form:not(.no-preloader)").on('submit', onSubmit);
     $("[contenteditable=\"true\"]").on('blur', onBlurContentEditable);
     $("[contenteditable=\"true\"]").on('focus', onFocusContentEditable);
     $("[contenteditable=\"true\"]").on('keydown', onSaveContentEditable);
@@ -57,6 +57,13 @@
     //   e.preventDefault();
     //    return false;
     //});
+
+    // Trigger popovers
+    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+
+    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+        return new bootstrap.Popover(popoverTriggerEl)
+    })
 
     window.currentEditingElementId = null;
 

@@ -29,8 +29,8 @@ namespace linc.Utility
         {
             output.Attributes.Add("id", DatabaseLocalizationKey);
 
-            //var editable = ViewContext.ViewData.Get<bool?>("Editable") == true;
-            var editable = ViewContext.TempData.ContainsKey("Editable");
+            //var editable = ViewContext.ViewData.Get<bool?>(SiteConstant.TempDataEditableKey) == true;
+            var editable = ViewContext.TempData.ContainsKey(SiteConstant.TempDataEditableKey);
             if (ViewContext.HttpContext.User.IsAtLeast(SiteRole.Editor) && editable)
             {
                 output.Attributes.Add("contenteditable", "true");

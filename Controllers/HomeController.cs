@@ -39,13 +39,13 @@ namespace linc.Controllers
         [SiteAuthorize(SiteRole.Editor)]
         public IActionResult Edit()
         {
-            if (TempData.ContainsKey("Editable"))
+            if (TempData.ContainsKey(SiteConstant.TempDataEditableKey))
             {
-                TempData.Remove("Editable");
+                TempData.Remove(SiteConstant.TempDataEditableKey);
             }
             else
             {
-                TempData.Add("Editable", "True");
+                TempData.Add(SiteConstant.TempDataEditableKey, SiteConstant.True);
             }
 
             return RedirectToAction(nameof(Index));
