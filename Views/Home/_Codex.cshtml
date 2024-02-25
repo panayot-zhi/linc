@@ -5,10 +5,11 @@
         <div class="section-title">
             <h2>@HtmlLocalizer["CodexSection_Title"]</h2>
             @* <h3>@HtmlLocalizer["CodexSection_SubTitle"]</h3> *@
-            <p contenteditable-for="CodexSection_Description">
-                Издателят и редакторският екип на „Лингвистика, интерпретация, концепции“ се ръководят от нормите и 
+            <p>
+                @HtmlLocalizer["CodexSection_Description"]
+                @*Издателят и редакторският екип на „Лингвистика, интерпретация, концепции“ се ръководят от нормите и 
                 утвърдените международни стандарти в научната публикационна дейност, отразени в документите на 
-                <a href="http://publicationethics.org/" target="_blank">Committee on Publication Ethics</a>
+                <a href="http://publicationethics.org/" target="_blank">Committee on Publication Ethics</a>*@
             </p>
         </div>
         
@@ -21,8 +22,9 @@
                         </button>
                     </h2>
                     <div id="collapse-editors" class="accordion-collapse collapse" data-bs-parent="#code-of-ethics">
-                        <div class="accordion-body" contenteditable-for="CodexSection_Editors_Content">
-                            <ul class="mx-2">
+                        <div class="accordion-body">
+                            @HtmlLocalizer["CodexSection_Editors_Content"]
+                            @*<ul class="mx-2">
                                 <li>
                                     съобразява работата си с насоките на <a href="https://publicationethics.org/files/Code_of_conduct_for_journal_editors_Mar11.pdf" target="_blank">Code of Conduct and Best Practice Guidelines for Journal Editors</a>;
                                 </li>
@@ -68,7 +70,7 @@
                                 <li>
                                     в сътрудничество с издателя се грижи за електронния архив на изданието и перманентната видимост на публикуваните текстове на сайта на „Лингвистика, интерпретация, концепции“.
                                 </li>
-                            </ul>
+                            </ul>*@
                         </div>
                     </div>
                 </div>
@@ -79,8 +81,9 @@
                         </button>
                     </h2>
                     <div id="flush-collapseTwo" class="accordion-collapse collapse show" data-bs-parent="#code-of-ethics">
-                        <div class="accordion-body" contenteditable-for="CodexSection_Authors_Content">
-                            <ul class="mx-2">
+                        <div class="accordion-body">
+                            @HtmlLocalizer["CodexSection_Authors_Content"]
+                            @*<ul class="mx-2">
                                 <li>
                                     може да предложи на списанието <strong>само своя собствена разработка</strong>, която не е публикувана и не е депозирана в друго издание;
                                 </li>
@@ -114,7 +117,7 @@
                                 <li>
                                     спазва Етичния кодекс на изданието и общосподелените академични норми за колегиално поведение.
                                 </li>
-                            </ul>
+                            </ul>*@
                         </div>
                     </div>
                 </div>
@@ -125,8 +128,9 @@
                         </button>
                     </h2>
                     <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#code-of-ethics">
-                        <div class="accordion-body" contenteditable-for="CodexSection_Reviewers_Content">
-                            <ul class="mx-2">
+                        <div class="accordion-body">
+                            @HtmlLocalizer["CodexSection_Reviewers_Content"]
+                            @*<ul class="mx-2">
                                 <li>
                                     съобразява работата си с насоките на <a href="https://publicationethics.org/resources/guidelines/cope-ethical-guidelines-peer-reviewers" target="_blank">Ethical Guidelines for Peer Reviewers</a>;
                                 </li>
@@ -145,7 +149,7 @@
                                 <li>
                                     съобразява се с Етичния кодекс на изданието.
                                 </li>
-                            </ul>
+                            </ul>*@
                         </div>
                     </div>
                 </div>

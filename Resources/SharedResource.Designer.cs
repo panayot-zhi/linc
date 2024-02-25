@@ -457,7 +457,23 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to АВТОРЪТ.
+        ///   Looks up a localized string similar to &lt;ul class=&quot;mx-2&quot;&gt;
+        ///                                &lt;li&gt;
+        ///                                    може да предложи на списанието &lt;strong&gt;само своя собствена разработка&lt;/strong&gt;, която не е публикувана и не е депозирана в друго издание;
+        ///                                &lt;/li&gt;
+        ///                                &lt;li&gt;
+        ///                                    трябва да е изготвил текста си съобразно техническите изисквания към публикациите в „Лингвистика, интерпретация, концепции“;
+        ///                                &lt;/li&gt;
+        ///   [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string CodexSection_Authors_Content {
+            get {
+                return ResourceManager.GetString("CodexSection_Authors_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to АВТОРЪТ:.
         /// </summary>
         public static string CodexSection_Authors_Title {
             get {
@@ -466,7 +482,32 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to РЕДАКТОРСКИЯТ ЕКИП.
+        ///   Looks up a localized string similar to Издателят и редакторският екип на „Лингвистика, интерпретация, концепции“ се ръководят от нормите и  утвърдените международни стандарти в научната публикационна дейност, отразени в документите на &lt;a href=&quot;http://publicationethics.org/&quot; target=&quot;_blank&quot;&gt;Committee on Publication Ethics&lt;/a&gt;.
+        /// </summary>
+        public static string CodexSection_Description {
+            get {
+                return ResourceManager.GetString("CodexSection_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;ul class=&quot;mx-2&quot;&gt;
+        ///    &lt;li&gt;
+        ///        съобразява работата си с насоките на &lt;a href=&quot;https://publicationethics.org/files/Code_of_conduct_for_journal_editors_Mar11.pdf&quot; target=&quot;_blank&quot;&gt;Code of Conduct and Best Practice Guidelines for Journal Editors&lt;/a&gt;;
+        ///    &lt;/li&gt;
+        ///    &lt;li&gt;
+        ///        отговаря за цялостната научна стратегия на изданието, стреми се да привлича като автори изявени в своята област български и чужди учени, както и перспективни млади изследователи от различни страни и институции;
+        ///    &lt;/li&gt;
+        ///    &lt;li [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string CodexSection_Editors_Content {
+            get {
+                return ResourceManager.GetString("CodexSection_Editors_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to РЕДАКТОРСКИЯТ ЕКИП:.
         /// </summary>
         public static string CodexSection_Editors_Title {
             get {
@@ -475,7 +516,21 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to РЕЦЕНЗЕНТЪТ.
+        ///   Looks up a localized string similar to &lt;ul class=&quot;mx-2&quot;&gt;
+        ///    &lt;li&gt;
+        ///        съобразява работата си с насоките на &lt;a href=&quot;https://publicationethics.org/resources/guidelines/cope-ethical-guidelines-peer-reviewers&quot; target=&quot;_blank&quot;&gt;Ethical Guidelines for Peer Reviewers&lt;/a&gt;;
+        ///    &lt;/li&gt;
+        ///    &lt;li&gt;
+        ///        ако предложеният за оценяване текст съдържа и тип информация, която не кореспондира с компетентностния профил на поканения за рецензент, той трябва да откаже ангажимента. Същото трябва да направи и ако прецени, че не би могъл да спази срока за преда [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string CodexSection_Reviewers_Content {
+            get {
+                return ResourceManager.GetString("CodexSection_Reviewers_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to РЕЦЕНЗЕНТЪТ:.
         /// </summary>
         public static string CodexSection_Reviewers_Title {
             get {
@@ -1251,7 +1306,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Кодекс.
+        ///   Looks up a localized string similar to Етичен кодекс.
         /// </summary>
         public static string NavItem_Codex {
             get {

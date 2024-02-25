@@ -249,14 +249,125 @@
   <data name="Close_Label" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="CodexSection_Authors_Content" xml:space="preserve">
+    <value>&lt;ul class="mx-2"&gt;
+	&lt;li&gt;
+		may submit to the journal &lt;strong&gt;only their own work&lt;/strong&gt; that has not been either published in or submitted to another journal; 
+	&lt;/li&gt;
+	&lt;li&gt;
+		must have formatted their text in accordance with the LinC Guidelines for Authors; 
+	&lt;/li&gt;
+	&lt;li&gt;
+		is/are responsible for the reliability of the primary data they utilise in their research and for the proposed work’s originality; 
+	&lt;/li&gt;
+	&lt;li&gt;
+		when their text is published again, they must include a correct bibliographical reference to its first publication in LInC; 
+	&lt;/li&gt;
+	&lt;li&gt;
+		must cite accurately and fully all sources used in the writing of the research paper; 
+	&lt;/li&gt;
+	&lt;li&gt;
+		must specify the institutions, organisations, projects, individuals relevant to the preparation of their study (by funding the research that resulted in its production, by providing specific information, working conditions, access to a non-public archive, etc.); 
+	&lt;/li&gt;
+	&lt;li&gt;
+		must report any conflicts of interest; 
+	&lt;/li&gt;
+	&lt;li&gt;
+		must answer the reviewers’ questions, respond to their comments and, if necessary, make changes to the submitted text; in case of disagreement with the proposed corrective options, the author has the right to withdraw the submitted manuscript; 
+	&lt;/li&gt;
+	&lt;li&gt;
+		must promptly inform the Editors if they discover a serious omission or error in their work after submission; 
+	&lt;/li&gt;
+	&lt;li&gt;
+		does/do not disclose details of their collaboration with the editorial board as part of the publication process; 
+	&lt;/li&gt;
+	&lt;li&gt;
+		complies with the journal’s Code of Ethics and with generally accepted academic norms of ethical conduct.
+	&lt;/li&gt;
+&lt;/ul&gt;</value>
+  </data>
   <data name="CodexSection_Authors_Title" xml:space="preserve">
-    <value>THE AUTHOR</value>
+    <value>THE AUTHOR(S):</value>
+  </data>
+  <data name="CodexSection_Description" xml:space="preserve">
+    <value>The publisher and the editorial team of Linguistics, Interpretation, Concepts are guided by the norms and internationally established academic publishing standards, as reflected in the documents of the &lt;a href="http://publicationethics.org/" target="_blank"&gt;Committee on Publication Ethics&lt;/a&gt;</value>
+  </data>
+  <data name="CodexSection_Editors_Content" xml:space="preserve">
+    <value>&lt;ul class="mx-2"&gt;
+	&lt;li&gt;
+		complies with the guidelines stipulated in the &lt;a href="https://publicationethics.org/files/Code_of_conduct_for_journal_editors_Mar11.pdf" target="_blank"&gt;Code of Conduct and Best Practice Guidelines for Journal Editors&lt;/a&gt;;
+	&lt;/li&gt;
+	&lt;li&gt;
+		is responsible for the overall scientific strategy of the publication and seeks to publish works by Bulgarian and foreign scholars of stature, as well as by young promising scholars from different countries and institutions;
+	&lt;/li&gt;
+	&lt;li&gt;
+		appoints as reviewers experts with standing and unquestionable merit in the respective research field(s) (Editorial Board members cannot be reviewers);
+	&lt;/li&gt;
+	&lt;li&gt;
+		selects journal content that suits the professional community’s current interests;
+	&lt;/li&gt;
+	&lt;li&gt;
+		ensures that diverse points of view are presented, that freedom of scholarly expression is not restricted and that scholarly debate in the humanities is stimulated;
+	&lt;/li&gt;
+	&lt;li&gt;
+		is guided strictly by scholarly criteria, aims and objectives in the selection of texts and does not allow any form of discrimination on the grounds of race, ethnicity, religion, gender or age;
+	&lt;/li&gt;
+	&lt;li&gt;
+		abides by the journal’s copyright policy which complies with the Copyright and Neighbouring Rights Act of the Republic of Bulgaria and with the best global practices in the relevant field (see &lt;a href="/docs/publication_agreement.doc"&gt;Publication Agreement&lt;/a&gt;); 
+	&lt;/li&gt;
+	&lt;li&gt;
+		counteracts any malpractice (submissions are vetted for plagiarism; fair co-author relationships are guaranteed by requiring a co-author contribution report indicating each author’s contribution to the specific article/study; potential conflicts of interest are monitored); 
+	&lt;/li&gt;
+	&lt;li&gt;
+		ensures the verifiability of the work done in the process of accepting, reviewing and publishing texts; 
+	&lt;/li&gt;
+	&lt;li&gt;
+		strictly follows the procedures of double-blind peer review of articles submitted to the Editorial Office; 
+	&lt;/li&gt;
+	&lt;li&gt;
+		informs the authors about the pre-publishing stages of the article/study in a timely manner and helps to improve the submitted manuscript; 
+	&lt;/li&gt;
+	&lt;li&gt;
+		ensures the confidentiality of authors and reviewers as well as of correspondence concerning the improvement of the manuscript quality;
+	&lt;/li&gt;
+	&lt;li&gt;
+		does not use for personal gain information obtained in the process of working with authors and reviewers;
+	&lt;/li&gt;
+	&lt;li&gt;
+		in case of a signal of any sort of impropriety or dishonesty in a text that has already been published, makes sure that the audience is informed about the problematic content (discloses the editorial position on the case and/or the opposing opinion and/or the respective author’s corrective text); 
+	&lt;/li&gt;
+	&lt;li&gt;
+		in collaboration with the publisher, takes care of the journal’s electronic archive, as well as of the published texts’ permanent visibility on the LInC website.
+	&lt;/li&gt;
+&lt;/ul&gt;</value>
   </data>
   <data name="CodexSection_Editors_Title" xml:space="preserve">
-    <value>THE EDITORIAL TEAM</value>
+    <value>THE EDITORIAL TEAM:</value>
+  </data>
+  <data name="CodexSection_Reviewers_Content" xml:space="preserve">
+    <value>&lt;ul class="mx-2"&gt;
+    &lt;li&gt;
+		complies with the guidelines stipulated in the &lt;a href="https://publicationethics.org/resources/guidelines/cope-ethical-guidelines-peer-reviewers" target="_blank"&gt;Ethical Guidelines for Peer Reviewers&lt;/a&gt;;
+    &lt;/li&gt;
+    &lt;li&gt;
+        if the text submitted for evaluation contains any type of information that does not match the invited reviewer’s competence profile, the reviewer must decline the invitation. He/she must do the same if he/she considers that he/she cannot meet the deadline for submitting a review (the deadline is three weeks);
+    &lt;/li&gt;
+    &lt;li&gt;
+        is to strive for objectivity of judgement, is to clearly state his/her position (the reviewer recommends the manuscript for publication; the reviewer recommends the manuscript for publication after corrections; the reviewer does not recommend the manuscript for publication), justifies his/her comments on the manuscript, and suggests corrections that he/she believes would improve the quality of the manuscript;
+    &lt;/li&gt;
+    &lt;li&gt;
+        notifies the Editorial Board in the event of a potential conflict of interest;
+    &lt;/li&gt;
+    &lt;li&gt;
+        keeps the information obtained while working on a specific manuscript confidential, does not use this information for personal gain and does not discuss it with persons outside the editorial board;
+    &lt;/li&gt;
+    &lt;li&gt;
+        complies with the journal’s Code of Ethics.
+    &lt;/li&gt;
+&lt;/ul&gt;</value>
   </data>
   <data name="CodexSection_Reviewers_Title" xml:space="preserve">
-    <value>THE REVIEWER</value>
+    <value>THE REVIEWER:</value>
   </data>
   <data name="CodexSection_SubTitle" xml:space="preserve">
     <value>Read about our &lt;span&gt;Code of ethics&lt;/span&gt;</value>
@@ -519,7 +630,7 @@
     <value>Categories</value>
   </data>
   <data name="NavItem_Codex" xml:space="preserve">
-    <value>Codex</value>
+    <value>Code of Ethics</value>
   </data>
   <data name="NavItem_Contact" xml:space="preserve">
     <value>Submit</value>
