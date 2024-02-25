@@ -7,5 +7,13 @@ public enum ApplicationDocumentType
     CoverPage,
     IndexPage,
 
-    IssuePdf
+    IssuePdf,
+
+    Original,
+    Anonymized,
+    Redacted,
+
+    Review,
+    Agreement,
+
 }

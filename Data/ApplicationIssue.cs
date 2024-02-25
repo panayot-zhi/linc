@@ -19,10 +19,7 @@ namespace linc.Data
         public string Description { get; set; }
 
 
-        [ForeignKey(nameof(PdfFile))]
-        public int? PdfFileId { get; set; }
-
-        public ApplicationDocument PdfFile { get; set; }
+        public ICollection<ApplicationDocument> Files { get; set; }
 
 
         #region Automatic

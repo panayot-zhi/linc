@@ -21,6 +21,8 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 
     public DbSet<ApplicationDocument> Documents { get; set; }
 
+    public DbSet<ApplicationDossier> Dossiers { get; set; }
+
     public DbSet<ApplicationLanguage> Languages { get; set; }
 
     public DbSet<ApplicationStringResource> StringResources { get; set; }

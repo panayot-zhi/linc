@@ -33,5 +33,21 @@ namespace linc.Data
         [Required]
         [MaxLength(512)]
         public string RelativePath { get; set; }
+
+
+
+        public ICollection<ApplicationDossier> Dossiers { get; set; }
+
+        public ICollection<ApplicationIssue> Issues { get; set; }
+
+
+
+        #region Automatic
+
+        public DateTime LastUpdated { get; set; }
+
+        public DateTime DateCreated { get; set; }
+
+        #endregion
     }
 }
