@@ -155,5 +155,19 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
                 UserId = SiteConstant.ZeroGuid,
                 RoleId = SiteConstant.ZeroGuid
             });
+
+        // Convert enumerations to string
+
+        builder.Entity<ApplicationDocument>()
+            .Property(x => x.DocumentType)
+            .HasConversion<string>();
+        
+        builder.Entity<ApplicationDossier>()
+            .Property(x => x.Status)
+            .HasConversion<string>();
+
+        builder.Entity<ApplicationUser>()
+            .Property(x => x.AvatarType)
+            .HasConversion<string>();
     }
 }

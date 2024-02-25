@@ -23,6 +23,7 @@ namespace linc.Data
         public string LastName { get; set; }
 
         [PersonalData]
+        [MaxLength(127)]
         public UserDisplayNameType DisplayNameType { get; set; }
 
         [PersonalData]

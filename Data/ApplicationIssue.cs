@@ -8,6 +8,8 @@ namespace linc.Data
     {
         public int Id { get; set; }
 
+        public bool IsAvailable { get; set; }
+
 
         [Required]
         public int IssueNumber { get; set; }

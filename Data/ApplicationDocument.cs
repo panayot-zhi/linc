@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using linc.Models.Enumerations;
 
 namespace linc.Data
@@ -27,6 +28,7 @@ namespace linc.Data
 
 
         [Required]
+        [MaxLength(128)]
         public ApplicationDocumentType DocumentType { get; set; }
 
 
