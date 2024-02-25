@@ -1130,4 +1130,22 @@
   <data name="ManagePersonalData_Title" xml:space="preserve">
     <value>Лични данни</value>
   </data>
+  <data name="IssueCreate_Description" xml:space="preserve">
+    <value>Допълнителна информация</value>
+  </data>
+  <data name="IssueCreate_IndexPages" xml:space="preserve">
+    <value>Прикачете страници със съдържание</value>
+  </data>
+  <data name="IssueCreate_IssueNumber" xml:space="preserve">
+    <value>Пореден номер</value>
+  </data>
+  <data name="IssueCreate_PdfFile" xml:space="preserve">
+    <value>Прикачете броят като PDF</value>
+  </data>
+  <data name="IssueCreate_ReleaseYear" xml:space="preserve">
+    <value>Година на издаване</value>
+  </data>
+  <data name="Прикачете броят като PDF" xml:space="preserve">
+    <value>Прикачете изображение с корица</value>
+  </data>
 </root>

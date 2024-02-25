@@ -1207,6 +1207,51 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Допълнителна информация.
+        /// </summary>
+        public static string IssueCreate_Description {
+            get {
+                return ResourceManager.GetString("IssueCreate_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Прикачете страници със съдържание.
+        /// </summary>
+        public static string IssueCreate_IndexPages {
+            get {
+                return ResourceManager.GetString("IssueCreate_IndexPages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пореден номер.
+        /// </summary>
+        public static string IssueCreate_IssueNumber {
+            get {
+                return ResourceManager.GetString("IssueCreate_IssueNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Прикачете броят като PDF.
+        /// </summary>
+        public static string IssueCreate_PdfFile {
+            get {
+                return ResourceManager.GetString("IssueCreate_PdfFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Година на издаване.
+        /// </summary>
+        public static string IssueCreate_ReleaseYear {
+            get {
+                return ResourceManager.GetString("IssueCreate_ReleaseYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Библиотека.
         /// </summary>
         public static string LibraryIndex_Title {
@@ -2734,6 +2779,15 @@ namespace linc.Resources {
         public static string Welcome_Message {
             get {
                 return ResourceManager.GetString("Welcome_Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Прикачете изображение с корица.
+        /// </summary>
+        public static string Прикачете_броят_като_PDF {
+            get {
+                return ResourceManager.GetString("Прикачете броят като PDF", resourceCulture);
             }
         }
     }
