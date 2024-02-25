@@ -384,6 +384,7 @@ public static class StartupExtensions
     {
         services.AddScoped<ILocalizationService, LocalizationService>();
         services.AddTransient<IContentService, ContentService>();
+        services.AddTransient<IIssueService, IssueService>();
         services.AddTransient<IEmailSender, EmailSender>();
         //services.AddTransient<ISharedViewLocalizer, SharedViewLocalizer>();
 
