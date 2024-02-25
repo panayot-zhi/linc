@@ -2,14 +2,13 @@
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @model ConfirmEmailChangeModel
 @{
-    ViewData["Title"] = @HtmlLocalizer["ConfirmEmailChange_Title"];
+    ViewData["Title"] = HtmlLocalizer["ConfirmEmailChange_Title"];
 }
 
 @* <h1>@ViewData["Title"]</h1> *@
+
 <div class="row">
     <div class="col-lg-6 offset-lg-3">
-        <section class="text-center">
-            <partial name="_StatusMessage" model="Model.StatusMessage" />
-        </section>
+        <partial name="_StatusMessage" model="Model.StatusMessage" />
     </div>
 </div>
