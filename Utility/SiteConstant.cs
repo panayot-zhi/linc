@@ -5,6 +5,8 @@ public static class SiteConstant
     public const string True = nameof(True);
     public const string False = nameof(False);
 
+    public const string IssuesFolderName = "issues";
+
     public const string TempDataEditableKey = "Editable";
 
     public static readonly Dictionary<int, string> SupportedCultures = new() {
