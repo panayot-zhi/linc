@@ -20,6 +20,9 @@ namespace linc.Data
         [MaxLength(1024)]
         public string Description { get; set; }
 
+        [MaxLength(1024)]
+        public string Notes { get; set; }
+
 
         public int StartingPage { get; set; }
 

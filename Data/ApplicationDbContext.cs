@@ -14,9 +14,17 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     public readonly DbContextOptions<ApplicationDbContext> Options;
 
 
+
+    public DbSet<ApplicationIssue> Issues { get; set; }
+
+    public DbSet<ApplicationSource> Sources { get; set; }
+
+    public DbSet<ApplicationDocument> Documents { get; set; }
+
     public DbSet<ApplicationLanguage> Languages { get; set; }
 
     public DbSet<ApplicationStringResource> StringResources { get; set; }
+
 
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
