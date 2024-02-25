@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using Newtonsoft.Json.Linq;
+using System.Text.RegularExpressions;
 
 namespace linc.Utility;
 
@@ -9,7 +10,7 @@ public class SlugifyParameterTransformer : IOutboundParameterTransformer
         if (value is null)
             return null;
 
-        // Slugify value
-        return Regex.Replace(value.ToString(), "([a-z])([A-Z])", "$1-$2").ToLower();
+        // Slugify value with a special kebab case function
+        return HelperFunctions.ToKebabCase(value.ToString());
     }
 }

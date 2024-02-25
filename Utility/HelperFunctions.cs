@@ -2,6 +2,7 @@
 using System.Security.Cryptography;
 using System.Security.Principal;
 using System.Text;
+using System.Text.RegularExpressions;
 using linc.Contracts;
 using linc.Models.Enumerations;
 using Microsoft.AspNetCore.Diagnostics;
@@ -11,6 +12,7 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace linc.Utility;
 
@@ -81,6 +83,16 @@ public static class HelperFunctions
 
             return builder.ToString();
         }
+    }
+
+    internal static string ToKebabCase(string input)
+    {
+        if (input == null)
+        {
+            return null;
+        }
+
+        return Regex.Replace(input, "([a-z])([A-Z])", "$1-$2").ToLower();
     }
 
     public static void Shuffle<T>(this IList<T> list)
