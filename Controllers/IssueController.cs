@@ -1,44 +1,49 @@
 ﻿using linc.Contracts;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using linc.Data;
+using linc.Models.ConfigModels;
 using linc.Models.Enumerations;
 using linc.Models.ViewModels.Issue;
 using linc.Utility;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Options;
 
 namespace linc.Controllers
 {
     public class IssueController : BaseController
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ILogger<IssueController> _logger;
         private readonly IIssueService _issueService;
+        private readonly ApplicationConfig _config;
 
-        public IssueController(ApplicationDbContext context,
+        public IssueController(
+            IOptions<ApplicationConfig> configOptions,
+            ILogger<IssueController> logger,
             ILocalizationService localizer,
             IIssueService issueService)
             : base(localizer)
         {
-            _context = context;
+            _logger = logger;
             _issueService = issueService;
+            _config = configOptions.Value;
         }
 
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Issues.ToListAsync());
+            throw new NotImplementedException();
         }
 
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Issues == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var applicationIssue = await _context.Issues
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var applicationIssue = await _issueService.GetIssueAsync(id.Value);
             if (applicationIssue == null)
             {
+                _logger.LogWarning("Could not find issue with the id of {@Id}",
+                    id.Value);
                 return NotFound();
             }
 
@@ -62,10 +67,10 @@ namespace linc.Controllers
             }
 
             var issueId = await _issueService.CreateIssueAsync(vModel);
-            return RedirectToAction(nameof(Edit), new { id = issueId });
+            return RedirectToAction(nameof(Details), new { id = issueId });
         }
 
-        // GET: Issue/Edit/5
+        /*// GET: Issue/Edit/5
         [SiteAuthorize(SiteRole.Editor)]
         public async Task<IActionResult> Edit(int? id)
         {
@@ -116,9 +121,9 @@ namespace linc.Controllers
                 return RedirectToAction(nameof(Index));
             }
             return View(applicationIssue);
-        }
+        }*/
 
-        [SiteAuthorize(SiteRole.Editor)]
+        /*[SiteAuthorize(SiteRole.Editor)]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Issues == null)
@@ -153,11 +158,31 @@ namespace linc.Controllers
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
-        }
+        }*/
 
-        private bool ApplicationIssueExists(int id)
+        [AllowAnonymous]
+        public async Task<IActionResult> LoadFile(int id)
         {
-          return _context.Issues.Any(e => e.Id == id);
+            var file = await _issueService.GetFileAsync(id);
+
+            if (file == null)
+            {
+                return NotFound();
+            }
+
+            var path = Path.Combine(_config.RepositoryPath, file.RelativePath);
+
+            if (!System.IO.File.Exists(path))
+            {
+                _logger.LogWarning("Could not find physical file {@File}", 
+                    file);
+                return NotFound();
+            }
+
+            return new PhysicalFileResult(path, file.MimeType)
+            {
+                FileDownloadName = $"{file.FileName}.{file.Extension}"
+            };
         }
     }
 }

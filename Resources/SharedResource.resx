@@ -1130,6 +1130,9 @@
   <data name="ManagePersonalData_Title" xml:space="preserve">
     <value>Лични данни</value>
   </data>
+  <data name="IssueCreate_CoverPage" xml:space="preserve">
+    <value>Прикачете изображение с корица</value>
+  </data>
   <data name="IssueCreate_Description" xml:space="preserve">
     <value>Допълнителна информация</value>
   </data>
@@ -1145,7 +1148,37 @@
   <data name="IssueCreate_ReleaseYear" xml:space="preserve">
     <value>Година на издаване</value>
   </data>
-  <data name="Прикачете броят като PDF" xml:space="preserve">
-    <value>Прикачете изображение с корица</value>
+  <data name="Issue_CreatePage_Notes_Title" xml:space="preserve">
+    <value>Бележки</value>
+  </data>
+  <data name="Issue_CreatePage_SubTitle" xml:space="preserve">
+    <value>Създаване на нов брой</value>
+  </data>
+  <data name="Issue_CreatePage_Title" xml:space="preserve">
+    <value>Създаване на брой</value>
+  </data>
+  <data name="Issue_DetailsPage_ContentTitle" xml:space="preserve">
+    <value>Съдържание</value>
+  </data>
+  <data name="Issue_DetailsPage_IssueCreated" xml:space="preserve">
+    <value>Създаден</value>
+  </data>
+  <data name="Issue_DetailsPage_IssueDescription" xml:space="preserve">
+    <value>Допълнителна информация</value>
+  </data>
+  <data name="Issue_DetailsPage_IssueISSN" xml:space="preserve">
+    <value>ISSN</value>
+  </data>
+  <data name="Issue_DetailsPage_IssueNumber" xml:space="preserve">
+    <value>Пореден номер</value>
+  </data>
+  <data name="Issue_DetailsPage_IssuePdf" xml:space="preserve">
+    <value>Свали PDF</value>
+  </data>
+  <data name="Issue_DetailsPage_IssueTitle" xml:space="preserve">
+    <value>Детайли за брой</value>
+  </data>
+  <data name="Issue_DetailsPage_Title" xml:space="preserve">
+    <value>Преглед на брой</value>
   </data>
 </root>

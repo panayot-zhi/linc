@@ -1,0 +1,88 @@
+﻿@using linc.Models.Enumerations
+@using linc.Utility
+@model linc.Data.ApplicationIssue
+
+@{
+    ViewData["Title"] = HtmlLocalizer["Issue_DetailsPage_Title"];
+}
+
+@section Breadcrumbs {
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>@HtmlLocalizer["Issue_DetailsPage_Title"]</h2>
+                <ol>
+                    <li>
+                        <a href="/">@HtmlLocalizer["NavItem_Home"]</a>
+                    </li>
+                    <li>
+                        <a asp-action="Index">@HtmlLocalizer["NavItem_Library"]</a>
+                    </li>
+                    <li>@ViewData["Title"]</li>
+                </ol>
+            </div>
+
+        </div>
+    </section>
+    <!-- End Breadcrumbs -->
+}
+
+<!-- ======= Portfolio Details Section ======= -->
+<section id="portfolio-details" class="portfolio-details">
+    <div class="container">
+
+        <div class="row gy-4">
+
+            <div class="col-lg-8">
+                <div class="portfolio-details-slider swiper">
+                    <div class="swiper-wrapper align-items-center">
+                        
+                        <div class="swiper-slide">
+                            <img src="@Url.Action("LoadFile", new { id = Model.CoverPage.Id })" alt="@Model.CoverPage.Title">
+                        </div>
+
+                        @foreach (var file in Model.IndexPages)
+                        {
+                            <div class="swiper-slide">
+                                <img src="@Url.Action("LoadFile", new { id = file.Id })" alt="@file.Title">
+                            </div>
+                        }
+
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="portfolio-info">
+                    <h3>@HtmlLocalizer["Issue_DetailsPage_IssueTitle"]</h3>
+                    <ul>
+                        <li><strong>@HtmlLocalizer["Issue_DetailsPage_IssueNumber"]</strong>: @Model.IssueNumber</li>
+                        <li><strong>@HtmlLocalizer["Issue_DetailsPage_IssueISSN"]</strong>: @SiteConstant.ISSN</li>
+                        <li><strong>@HtmlLocalizer["Issue_DetailsPage_IssueCreated"]</strong>: @Model.DateCreated.ToString("dd MMMM, yyyy")</li>
+                        <li><strong>@HtmlLocalizer["Issue_DetailsPage_IssueDescription"]</strong>:
+                            <pre class="pt-2">@Model.Description</pre>
+                        </li>
+                    </ul>
+                    <hr />
+                    <a class="btn btn-primary w-100" target="_blank" href="@Url.Action("LoadFile", new { id = Model.Pdf.Id })">
+                        @HtmlLocalizer["Issue_DetailsPage_IssuePdf"]
+                    </a>
+                </div>
+                <div class="portfolio-description">
+                    <h2>@HtmlLocalizer["Issue_DetailsPage_ContentTitle"]</h2>
+                    <ul>
+                        @foreach (var source in Model.Sources)
+                        {
+                            <li>@source.Title</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section><!-- End Portfolio Details Section -->

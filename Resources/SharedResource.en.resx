@@ -602,6 +602,39 @@
   <data name="IssueCreate_ReleaseYear" xml:space="preserve">
     <value>Release year</value>
   </data>
+  <data name="Issue_CreatePage_Notes_Title" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="Issue_CreatePage_SubTitle" xml:space="preserve">
+    <value>Create new issue</value>
+  </data>
+  <data name="Issue_CreatePage_Title" xml:space="preserve">
+    <value>Create issue</value>
+  </data>
+  <data name="Issue_DetailsPage_ContentTitle" xml:space="preserve">
+    <value>Contents</value>
+  </data>
+  <data name="Issue_DetailsPage_IssueCreated" xml:space="preserve">
+    <value>Created</value>
+  </data>
+  <data name="Issue_DetailsPage_IssueDescription" xml:space="preserve">
+    <value>Additional information</value>
+  </data>
+  <data name="Issue_DetailsPage_IssueISSN" xml:space="preserve">
+    <value>ISSN</value>
+  </data>
+  <data name="Issue_DetailsPage_IssueNumber" xml:space="preserve">
+    <value>Issue number</value>
+  </data>
+  <data name="Issue_DetailsPage_IssuePdf" xml:space="preserve">
+    <value>Download PDF</value>
+  </data>
+  <data name="Issue_DetailsPage_IssueTitle" xml:space="preserve">
+    <value>Issue details</value>
+  </data>
+  <data name="Issue_DetailsPage_Title" xml:space="preserve">
+    <value>View issue</value>
+  </data>
   <data name="Issue_IndexPage_Label" xml:space="preserve">
     <value>Contents</value>
   </data>
