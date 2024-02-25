@@ -1,0 +1,80 @@
+﻿@page
+@using linc.Models.Enumerations
+@model InfoModel
+
+@{
+    ViewData["Title"] = HtmlLocalizer["ManagePreferences_Title"];
+    ViewData["ActivePage"] = ManageNavPages.Information;
+}
+
+<div class="row">
+
+    <div class="col-md-6">
+
+        <partial name="Account/_StatusMessage" for="StatusMessage" />
+
+        <form id="profile-form" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Input.DisplayNameType"></label>
+                <select asp-for="Input.DisplayNameType" class="form-select" asp-items="Html.GetEnumSelectList<UserDisplayNameType>()"></select>
+                <span asp-validation-for="Input.DisplayNameType" class="invalid-feedback"></span>
+                <p class="form-text"><small>@HtmlLocalizer["CurrentDisplayName_Label"]: @Model.CurrentDisplayName</small></p>
+            </div>
+            
+            <div class="form-group text-end">
+                <div class="form-check">
+                    <label class="form-check-label" asp-for="Input.DisplayEmail">
+                        <input class="form-check-input" asp-for="Input.DisplayEmail" />
+                        @Html.DisplayNameFor(x => x.Input.DisplayEmail)
+                    </label>
+                    <span asp-validation-for="Input.DisplayEmail" class="invalid-feedback"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.Description"></label>
+                <textarea asp-for="Input.Description" class="form-control" rows="6"></textarea>
+                <span asp-validation-for="Input.Description" class="invalid-feedback"></span>
+            </div>
+
+            @*
+            <div class="form-floating">
+                <label asp-for="Input.PhoneNumber"></label>
+                <input asp-for="Input.PhoneNumber" class="form-control" maxlength="14" />
+                <span asp-validation-for="Input.PhoneNumber" class="invalid-feedback"></span>
+            </div>
+            *@
+            
+            <div class="form-check">
+                <input class="form-check-input" asp-for="Input.Subscribed" />
+                <label class="form-check-label" asp-for="Input.Subscribed">
+                    @Html.DisplayNameFor(x => x.Input.Subscribed)
+                </label>
+            </div>
+
+            <hr />
+            
+            <div class="text-end">
+                <button type="reset" class="btn btn-lg btn-outline-secondary">
+                    @HtmlLocalizer["Reset_Button_Label"]
+                </button>
+
+                <button id="update-profile-button" type="submit" class="w-50 btn btn-lg btn-primary">
+                    @HtmlLocalizer["Save_Button_Label"]
+                </button>
+            </div>
+
+        </form>
+    </div>
+
+    <div class="col-md-6">
+        @HtmlLocalizer["ManagePreferences_PageDescription"]
+    </div>
+
+</div>
+
+@section scripts {
+    <partial name="_ValidationScripts" />
+}

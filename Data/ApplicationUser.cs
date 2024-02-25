@@ -28,6 +28,9 @@ namespace linc.Data
         [PersonalData]
         public bool DisplayEmail { get; set; }
 
+        [PersonalData]
+        public bool Subscribed { get; set; }
+
         #region Avatar
 
         [PersonalData]

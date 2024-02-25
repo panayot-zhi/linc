@@ -2,18 +2,15 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 #nullable disable
 
-using System;
 using System.ComponentModel.DataAnnotations;
-using System.Threading.Tasks;
+using linc.Contracts;
 using linc.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
 
 namespace linc.Areas.Identity.Pages.Account.Manage
 {
-    public class DeletePersonalDataModel : PageModel
+    public class DeletePersonalDataModel : BasePageModel
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
@@ -22,39 +19,26 @@ namespace linc.Areas.Identity.Pages.Account.Manage
         public DeletePersonalDataModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            ILogger<DeletePersonalDataModel> logger)
+            ILogger<DeletePersonalDataModel> logger,
+            ILocalizationService localizer)
+        : base(localizer)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
         }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         [BindProperty]
         public InputModel Input { get; set; }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         public class InputModel
         {
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
-            [Required]
             [DataType(DataType.Password)]
+            [Display(Name = "RegisterModel_Password", ResourceType = typeof(Resources.SharedResource))]
+            [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
             public string Password { get; set; }
         }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         public bool RequirePassword { get; set; }
 
         public async Task<IActionResult> OnGet()
@@ -62,7 +46,9 @@ namespace linc.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                _logger.LogError("Unable to find user with ID {UserId}",
+                    _userManager.GetUserId(User));
+                return NotFound();
             }
 
             RequirePassword = await _userManager.HasPasswordAsync(user);
@@ -74,7 +60,9 @@ namespace linc.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                _logger.LogError("Unable to find user with ID {UserId}",
+                    _userManager.GetUserId(User));
+                return NotFound();
             }
 
             RequirePassword = await _userManager.HasPasswordAsync(user);
@@ -82,7 +70,7 @@ namespace linc.Areas.Identity.Pages.Account.Manage
             {
                 if (!await _userManager.CheckPasswordAsync(user, Input.Password))
                 {
-                    ModelState.AddModelError(string.Empty, "Incorrect password.");
+                    ModelState.AddModelError(string.Empty, LocalizationService["ManageDeletePersonalData_IncorrectPassword_ErrorMessage"].Value);
                     return Page();
                 }
             }
@@ -91,14 +79,14 @@ namespace linc.Areas.Identity.Pages.Account.Manage
             var userId = await _userManager.GetUserIdAsync(user);
             if (!result.Succeeded)
             {
-                throw new InvalidOperationException($"Unexpected error occurred deleting user.");
+                throw new InvalidOperationException("Unexpected error occurred deleting user.");
             }
 
             await _signInManager.SignOutAsync();
 
-            _logger.LogInformation("User with ID '{UserId}' deleted themselves.", userId);
+            _logger.LogInformation("User with ID {UserId} deleted themselves.", userId);
 
-            return Redirect("~/");
+            return Redirect("/");
         }
     }
 }

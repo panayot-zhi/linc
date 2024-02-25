@@ -2,8 +2,35 @@
 
 @if (!string.IsNullOrEmpty(Model))
 {
-    <div class="alert alert-info alert-dismissible text-center" role="alert">
+    var message = Model;
+    var prefix = string.Empty;
+    var statusMessageClass = "info";
+
+    var successMessagePrefix = HtmlLocalizer["StatusMessage_Success_Prefix"].Value;
+    var warningMessagePrefix = HtmlLocalizer["StatusMessage_Warning_Prefix"].Value;
+    var errorMessagePrefix = HtmlLocalizer["StatusMessage_Error_Prefix"].Value;
+
+    if (Model.StartsWith(successMessagePrefix, StringComparison.CurrentCultureIgnoreCase))
+    {
+        message = message.Remove(0, successMessagePrefix.Length);
+        prefix = $"<strong>{successMessagePrefix}</strong>&nbsp;";
+        statusMessageClass = "success";
+    }
+    else if (Model.StartsWith(warningMessagePrefix, StringComparison.CurrentCultureIgnoreCase))
+    {
+        message = message.Remove(0, warningMessagePrefix.Length);
+        prefix = $"<strong>{warningMessagePrefix}</strong>&nbsp;";
+        statusMessageClass = "warning";
+    }
+    else if (Model.StartsWith(errorMessagePrefix, StringComparison.CurrentCultureIgnoreCase))
+    {
+        message = message.Remove(0, errorMessagePrefix.Length);
+        prefix = $"<strong>{errorMessagePrefix}</strong>&nbsp;";
+        statusMessageClass = "danger";
+    }
+
+    <div class="alert alert-@statusMessageClass alert-dismissible" role="alert">
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="@HtmlLocalizer["Close_Label"]"></button>
-        @Model
+        @Html.Raw(prefix)@message
     </div>
 }

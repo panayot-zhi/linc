@@ -3,6 +3,8 @@ using System.Security.Principal;
 using linc.Contracts;
 using linc.Models.Enumerations;
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Newtonsoft.Json;
@@ -77,6 +79,19 @@ public static class HelperFunctions
         return default;
     }
 
+    public static void AddIdentityError(this ModelStateDictionary modelState, IdentityError error)
+    {
+        modelState.AddModelError(error.Code, error.Description);
+    }
+
+    public static void AddIdentityErrors(this ModelStateDictionary modelState, IEnumerable<IdentityError> errors)
+    {
+        foreach (var identityError in errors)
+        {
+            modelState.AddIdentityError(identityError);
+        }
+    }
+
     public static void AddAlertMessage(
         ITempDataDictionary tempData,
         ILocalizationService localizationService,
@@ -114,35 +129,5 @@ public static class HelperFunctions
         });
 
         tempData["AlertMessage"] = alertMessage;
-    }
-
-    public static string GetUserId(this ClaimsPrincipal user)
-    {
-        return user.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-    }
-
-    public static string GetUserName(this ClaimsPrincipal user)
-    {
-        return user.FindFirst(ClaimTypes.Name)?.Value;
-    }
-
-    public static string GetEmail(this ClaimsPrincipal user)
-    {
-        return user.FindFirst(ClaimTypes.Email)?.Value;
-    }
-
-    public static SiteRole? GetRole(this ClaimsPrincipal user)
-    {
-        var roleName = user.FindFirst(ClaimTypes.Role)?.Value;
-
-        if (Enum.TryParse(
-                value: roleName,
-                ignoreCase: false,
-                result: out SiteRole r))
-        {
-            return r;
-        }
-
-        return null;
     }
 }

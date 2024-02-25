@@ -2,24 +2,30 @@
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @model PersonalDataModel
 @{
-    ViewData["Title"] = "Personal Data";
+    ViewData["Title"] = HtmlLocalizer["ManagePersonalData_Title"];
     ViewData["ActivePage"] = ManageNavPages.PersonalData;
 }
 
-<h3>@ViewData["Title"]</h3>
+@* <h3>@ViewData["Title"]</h3> *@
 
 <div class="row">
     <div class="col-md-6">
-        <p>Your account contains personal data that you have given us. This page allows you to download or delete that data.</p>
         <p>
-            <strong>Deleting this data will permanently remove your account, and this cannot be recovered.</strong>
+            @HtmlLocalizer["ManagePersonalData_Description"]
         </p>
-        <form class="pb-3" id="download-data" asp-page="DownloadPersonalData" method="post">
-            <button class="btn btn-primary" type="submit">Download</button>
+        <hr />
+        <form class="pb-3 text-end no-preloader" id="download-data" asp-page="DownloadPersonalData" method="post">
+            <a id="delete" asp-page="DeletePersonalData" class="btn btn-danger">
+                @HtmlLocalizer["Delete_Button_Label"]
+            </a>
+            <button class="w-50 btn btn-primary" type="submit">
+                @HtmlLocalizer["Download_Button_Label"]
+            </button>
         </form>
-        <p>
-            <a id="delete" asp-page="DeletePersonalData" class="btn btn-danger">Delete</a>
-        </p>
+    </div>
+    
+    <div class="col-sm-6">
+        @HtmlLocalizer["ManagePersonalData_PageDescription"]
     </div>
 </div>
 

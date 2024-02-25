@@ -168,6 +168,9 @@
   <data name="AlertMessage_Warning_Title" xml:space="preserve">
     <value>Attention!</value>
   </data>
+  <data name="Anonymous_Label" xml:space="preserve">
+    <value>Anonymous</value>
+  </data>
   <data name="Board_Aleksander.Mikołajczak_Member" xml:space="preserve">
     <value>Проф. дн Александер Войчех Миколайчак</value>
   </data>
@@ -216,6 +219,9 @@
   <data name="Board_Vanya.Georgieva_MemberWork" xml:space="preserve">
     <value>Технически сътрудник &lt;br/&gt;катедра Българска литература и теория на литературата&lt;br/&gt;ПУ „Паисий Хилендарски“</value>
   </data>
+  <data name="Cancel_Button_Label" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="CategoriesSection_SubTitle" xml:space="preserve">
     <value>Browse by &lt;span&gt;categories&lt;/span&gt;</value>
   </data>
@@ -245,6 +251,18 @@
   </data>
   <data name="Category_Surveys" xml:space="preserve">
     <value>Surveys</value>
+  </data>
+  <data name="ChangeEmail_Button_Label" xml:space="preserve">
+    <value>Change email</value>
+  </data>
+  <data name="ChangePasswordModel_ConfirmPassword" xml:space="preserve">
+    <value>Confirm new password</value>
+  </data>
+  <data name="ChangePasswordModel_NewPassword" xml:space="preserve">
+    <value>New password</value>
+  </data>
+  <data name="ChangePasswordModel_OldPassword" xml:space="preserve">
+    <value>Old password</value>
   </data>
   <data name="Close_Label" xml:space="preserve">
     <value>Close</value>
@@ -426,6 +444,21 @@
   </data>
   <data name="Copyright_Label" xml:space="preserve">
     <value>All rights reserved</value>
+  </data>
+  <data name="CurrentDisplayName_Label" xml:space="preserve">
+    <value>Current</value>
+  </data>
+  <data name="Delete_Button_Label" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Download_Button_Label" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="EmailModel_Email" xml:space="preserve">
+    <value>Email address</value>
+  </data>
+  <data name="EmailModel_NewEmail" xml:space="preserve">
+    <value>New email</value>
   </data>
   <data name="FaqSection_SubTitle" xml:space="preserve">
     <value>Frequently Asked &lt;span&gt;Questions&lt;/span&gt;</value>
@@ -623,6 +656,185 @@
   <data name="Logo_Short" xml:space="preserve">
     <value>LInC</value>
   </data>
+  <data name="ManageDeletePersonalData_DeleteButtonLabel" xml:space="preserve">
+    <value>Delete data and close my account</value>
+  </data>
+  <data name="ManageDeletePersonalData_Description" xml:space="preserve">
+    <value>Deleting this data will permanently remove your account, and this cannot be recovered.</value>
+  </data>
+  <data name="ManageDeletePersonalData_IncorrectPassword_ErrorMessage" xml:space="preserve">
+    <value>Incorrect password.</value>
+  </data>
+  <data name="ManageDeletePersonalData_Title" xml:space="preserve">
+    <value>Delete Personal Data</value>
+  </data>
+  <data name="ManageDownloadPersonalData_Title" xml:space="preserve">
+    <value>Download Your Data</value>
+  </data>
+  <data name="ManageEmail_ChangeEmail_SuccessMessage" xml:space="preserve">
+    <value>Confirmation link to change email sent. Please check your email.</value>
+  </data>
+  <data name="ManageEmail_ChangeEmail_WarningMessage" xml:space="preserve">
+    <value>Your email is unchanged.</value>
+  </data>
+  <data name="ManageEmail_Description" xml:space="preserve">
+    <value>&lt;p&gt;&lt;small&gt;If you decide to change your email address, &lt;span class="text-decoration-underline"&gt;you will need to confirm it via a verification email again&lt;/span&gt; before you can enter the site.&lt;/ small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;LInC &lt;span class="text-decoration-underline"&gt;does not use your email address for marketing purposes and promotions&lt;/span&gt;. We will only send you a notification about a new issue, if you have &lt;a href="/identity/account/manage/information"&gt;specified it in your preferences&lt;/a&gt;.&lt;/small&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="ManageEmail_ReSendConfirmation_Description" xml:space="preserve">
+    <value>&lt;p&gt;&lt;small&gt;There are cases when the verification email fails to reach your mailbox. Please, in case you do not receive a verification email within a few minutes, try to resend it.&lt;/small&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="ManageEmail_ReSendVerificationEmail_SuccessMessage" xml:space="preserve">
+    <value>Verification email was re-sent. Please check your email.</value>
+  </data>
+  <data name="ManageEmail_ReSendVerification_Confirmation" xml:space="preserve">
+    <value>We will send another email with a new confirmation link. Please, check your spam and trash folders for it.</value>
+  </data>
+  <data name="ManageEmail_ReSendVerification_Confirmation_Title" xml:space="preserve">
+    <value>Are you sure?</value>
+  </data>
+  <data name="ManageEmail_Title" xml:space="preserve">
+    <value>Manage email</value>
+  </data>
+  <data name="ManageIndex_Description" xml:space="preserve">
+    <value>&lt;p&gt;&lt;small&gt;The information in this form is required for the LInC web site to verify your identity.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Your nickname will be shown publicly to other users, if you do not want your names to be shown.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;You can manage this preference from the &lt;a class="text-decoration-underline" href="/identity/account/manage/information"&gt;advanced settings here&lt;/a&gt;.&lt;/small&gt;&lt;/p&gt;
+&lt;p &gt;&lt;small&gt;If you decide to give your phone number, keep in mind that LInC &lt;b&gt;does not distribute your number to third parties and does not use it for marketing purposes&lt;/b&gt;. The phone number is used to secure your account, exclusively at your request.&lt;/small&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="ManageIndex_EmailVerificationPending" xml:space="preserve">
+    <value>pending confirmation</value>
+  </data>
+  <data name="ManageIndex_EmailVerificationPending_Popover" xml:space="preserve">
+    <value>This email address is pending confirmation</value>
+  </data>
+  <data name="ManageIndex_EmailVerified" xml:space="preserve">
+    <value>confirmed</value>
+  </data>
+  <data name="ManageIndex_EmailVerified_Popover" xml:space="preserve">
+    <value>The email address has been confirmed</value>
+  </data>
+  <data name="ManageIndex_ReSendVerificationEmail" xml:space="preserve">
+    <value>Resend verification email</value>
+  </data>
+  <data name="ManageIndex_SetNames_ErrorStatusMessage" xml:space="preserve">
+    <value>Unexpected error occurred when trying to set names.</value>
+  </data>
+  <data name="ManageIndex_SetPhoneNumber_ErrorStatusMessage" xml:space="preserve">
+    <value>Unexpected error when trying to set phone number.</value>
+  </data>
+  <data name="ManageIndex_SetUserName_ErrorStatusMessage" xml:space="preserve">
+    <value>Unexpected error when trying to set username.</value>
+  </data>
+  <data name="ManageIndex_SuccessStatusMessage" xml:space="preserve">
+    <value>Your profile has been updated.</value>
+  </data>
+  <data name="ManageIndex_Title" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="ManageNavItem_Administration" xml:space="preserve">
+    <value>Administration</value>
+  </data>
+  <data name="ManageNavItem_Avatar" xml:space="preserve">
+    <value>Picture</value>
+  </data>
+  <data name="ManageNavItem_ChangePassword" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="ManageNavItem_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="ManageNavItem_ExternalLogins" xml:space="preserve">
+    <value>External logins</value>
+  </data>
+  <data name="ManageNavItem_Information" xml:space="preserve">
+    <value>Preferences</value>
+  </data>
+  <data name="ManageNavItem_PersonalData" xml:space="preserve">
+    <value>Personal data</value>
+  </data>
+  <data name="ManageNavItem_Profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="ManageNavItem_TwoFactorAuthentication" xml:space="preserve">
+    <value>Two-factor authentication</value>
+  </data>
+  <data name="ManagePassword_Description" xml:space="preserve">
+    <value>&lt;p&gt;&lt;small&gt;In order to ensure maximum security of your access to the web site, we require your password to contain:&lt;/small&gt;&lt;/p&gt;
+
+ &lt;ul&gt;
+	 &lt;li&gt;&lt;small&gt;characters &lt;span class="text-decoration-underline"&gt;only in Latin&lt;/span&gt;&lt;/small&gt;&lt;/li&gt;
+	 &lt;li&gt;&lt;small&gt;at least six characters&lt;/small&gt;&lt;/li&gt;
+	 &lt;li&gt;&lt;small&gt;at least four &lt;span class="text-decoration-underline"&gt;different&lt;/span&gt; characters&lt;/small&gt;&lt;/li&gt;
+	 &lt;li&gt;&lt;small&gt;at least one capital letter&lt;/small&gt;&lt;/li&gt;
+	 &lt;li&gt;&lt;small&gt;at least one digit&lt;/small&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+
+ &lt;p&gt;&lt;small&gt;Please do not use passwords that you use elsewhere.&lt;/small&gt;&lt;/p&gt;
+ &lt;p&gt;&lt;small&gt;Your password is the key to accessing the site, keep it secret!&lt;/small&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="ManagePassword_SubmitButton_Label" xml:space="preserve">
+    <value>Update Password</value>
+  </data>
+  <data name="ManagePassword_Title" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="ManagePassword_Update_SuccessMessage" xml:space="preserve">
+    <value>Your password has been changed.</value>
+  </data>
+  <data name="ManagePersonalData_Description" xml:space="preserve">
+    <value>Your account contains personal data that you have given us. This page allows you to download or delete that data.</value>
+  </data>
+  <data name="ManagePersonalData_PageDescription" xml:space="preserve">
+    <value>&lt;p&gt;&lt;small&gt;All personal data collected on the Page Magazine site can be downloaded and viewed in &lt;a href="http://www.google.com/search?q=json" target="_blank"&gt;machine readable format (JSON)&lt;/a&gt;.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Site does not collect personal information other than what you provide to us. At any time, the information we hold about you can be reviewed and (see below) deleted.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Deletion of information required for your authentication in the system will result in &lt;b&gt;deletion of your user from the system&lt;/b&gt;.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;&lt;b&gt;Caution! If you delete your user from the system, you will not be able to enter the site and any information associated with you will be deleted!&lt;/b&gt;&lt;/small&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="ManagePersonalData_Title" xml:space="preserve">
+    <value>Personal data</value>
+  </data>
+  <data name="ManagePreferences_Description" xml:space="preserve">
+    <value>Short description</value>
+  </data>
+  <data name="ManagePreferences_DisplayEmail" xml:space="preserve">
+    <value>Show my email address</value>
+  </data>
+  <data name="ManagePreferences_DisplayNameType" xml:space="preserve">
+    <value>What to show about you</value>
+  </data>
+  <data name="ManagePreferences_PageDescription" xml:space="preserve">
+    <value>&lt;p&gt;&lt;small&gt;LInC does not collect personal information other than that which you provide to us. All data stored about you can be &lt;a class="text-decoration-underline" href="/identity/account/manage/personal-data"&gt;downloaded here&lt;/a&gt; in a machine-readable format.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;All the information in from is &lt;span class="text-decoration-underline"&gt;optional for the functioning of the website&lt;/span&gt;.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;When choosing how to display you on the web site, you always have the option to display only 'Anonymous'.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Your email address will not be publicly displayed to other users unless you specifically indicate that this is your wish.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;If you want, you can enter a short bio description of up to 1000 characters about yourself.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;If you decide, you can indicate that you want to be notified when a new issue comes out of print by email.&lt;/small&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="ManagePreferences_Subscribed" xml:space="preserve">
+    <value>Subscribe me for notifications (by email) when a new issue comes out</value>
+  </data>
+  <data name="ManagePreferences_Title" xml:space="preserve">
+    <value>Additional settings</value>
+  </data>
+  <data name="ManagePreferences_Update_ErrorStatusMessage" xml:space="preserve">
+    <value>Unexpected error occurred when updating your preferences.</value>
+  </data>
+  <data name="ManagePreferences_Update_SuccessStatusMessage" xml:space="preserve">
+    <value>Your preferences have been saved.</value>
+  </data>
+  <data name="ManageProfile_DisplayEmail" xml:space="preserve">
+    <value>Show my email</value>
+  </data>
+  <data name="ManageProfile_Phone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="ManageProfile_SuccessMessage" xml:space="preserve">
+    <value>Your profile has been updated</value>
+  </data>
+  <data name="ManageProfile_Title" xml:space="preserve">
+    <value>Change your account settings</value>
+  </data>
   <data name="NavItem_About" xml:space="preserve">
     <value>About</value>
   </data>
@@ -813,6 +1025,12 @@
   <data name="ResetPassword_SuccessMessage" xml:space="preserve">
     <value>Your password has been reset. Please &lt;a href="/Identity/Account/Login"&gt;click here to log in&lt;/a&gt;.</value>
   </data>
+  <data name="Reset_Button_Label" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="Save_Button_Label" xml:space="preserve">
+    <value>Save</value>
+  </data>
   <data name="SetStringResource_Dialog_Description" xml:space="preserve">
     <value>The resource will be saved and visible for everybody.</value>
   </data>
@@ -846,11 +1064,26 @@
   <data name="SiteRole_HeadEditors" xml:space="preserve">
     <value>Head Editors</value>
   </data>
+  <data name="SiteRole_Label" xml:space="preserve">
+    <value>Role</value>
+  </data>
   <data name="SiteRole_User" xml:space="preserve">
     <value>User</value>
   </data>
+  <data name="SiteRole_UserPlus" xml:space="preserve">
+    <value>User +</value>
+  </data>
   <data name="SiteRole_Users" xml:space="preserve">
     <value>Users</value>
+  </data>
+  <data name="StatusMessage_Error_Prefix" xml:space="preserve">
+    <value>Error:</value>
+  </data>
+  <data name="StatusMessage_Success_Prefix" xml:space="preserve">
+    <value>Success:</value>
+  </data>
+  <data name="StatusMessage_Warning_Prefix" xml:space="preserve">
+    <value>Warning:</value>
   </data>
   <data name="Team_B.Yanev_Member" xml:space="preserve">
     <value>доц. д-р Борян Янев</value>
@@ -881,6 +1114,18 @@
   </data>
   <data name="Team_Z.Ivanov_Member" xml:space="preserve">
     <value>доц. д-р Живко Иванов</value>
+  </data>
+  <data name="UserDisplayNameType_Anonymous" xml:space="preserve">
+    <value>Show only 'Anonymous'</value>
+  </data>
+  <data name="UserDisplayNameType_Names" xml:space="preserve">
+    <value>Names</value>
+  </data>
+  <data name="UserDisplayNameType_NamesAndUserName" xml:space="preserve">
+    <value>Names and username</value>
+  </data>
+  <data name="UserDisplayNameType_UserName" xml:space="preserve">
+    <value>Username</value>
   </data>
   <data name="Version_Label" xml:space="preserve">
     <value>version</value>

@@ -2,27 +2,59 @@
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @model IndexModel
 @{
-    ViewData["Title"] = "Profile";
+    ViewData["Title"] = HtmlLocalizer["ManageIndex_Title"];
     ViewData["ActivePage"] = ManageNavPages.Index;
 }
 
-<h3>@ViewData["Title"]</h3>
-<partial name="_StatusMessage" for="StatusMessage" />
+@* <h3>@ViewData["Title"]</h3> *@
 <div class="row">
     <div class="col-md-6">
+        
+        <partial name="Account/_StatusMessage" for="StatusMessage" />
+        
         <form id="profile-form" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div asp-validation-summary="All" class="text-danger"></div>
+
             <div class="form-floating">
-                <input asp-for="Username" class="form-control" disabled />
-                <label asp-for="Username" class="form-label"></label>
+                <input asp-for="Input.FirstName" class="form-control" />
+                <label asp-for="Input.FirstName" class="form-label"></label>
+                <span asp-validation-for="Input.FirstName" class="invalid-feedback"></span>
             </div>
+            
+            <div class="form-floating">
+                <input asp-for="Input.LastName" class="form-control" />
+                <label asp-for="Input.LastName" class="form-label"></label>
+                <span asp-validation-for="Input.LastName" class="invalid-feedback"></span>
+            </div>
+
+            <div class="form-floating">
+                <input asp-for="Input.UserName" class="form-control form-control-lg" />
+                <label asp-for="Input.UserName" class="form-label"></label>
+                <span asp-validation-for="Input.UserName" class="invalid-feedback"></span>
+            </div>
+
             <div class="form-floating">
                 <input asp-for="Input.PhoneNumber" class="form-control" />
                 <label asp-for="Input.PhoneNumber" class="form-label"></label>
-                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                <span asp-validation-for="Input.PhoneNumber" class="invalid-feedback"></span>
             </div>
-            <button id="update-profile-button" type="submit" class="w-100 btn btn-lg btn-primary">Save</button>
+            
+            <hr />
+
+            <div class="text-end">
+                <button type="reset" class="btn btn-lg btn-outline-secondary">
+                    @HtmlLocalizer["Reset_Button_Label"]
+                </button>
+
+                <button id="update-profile-button" type="submit" class="w-50 btn btn-lg btn-primary">
+                    @HtmlLocalizer["Save_Button_Label"]
+                </button>
+            </div>
         </form>
+    </div>
+    
+    <div class="col-md-6">
+        @HtmlLocalizer["ManageIndex_Description"]
     </div>
 </div>
 

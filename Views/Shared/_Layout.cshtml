@@ -44,6 +44,7 @@
 
     <!-- Vendor CSS Files -->
     @* TODO: Heavily revise if all of these are necessary *@
+    @* TODO: minify *@
     <link href="~/lib/aos/aos.css" rel="stylesheet">
     <link href="~/lib/flag-icons/css/flag-icons.min.css" rel="stylesheet">
     <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -81,7 +82,7 @@
                 <form id="set_language" asp-controller="Home" asp-action="SetLanguage" asp-route-returnUrl="@Context.Request.Path">
                     <environment exclude="Production">
                         @* <span class="me-2">Session: @Context.Session.GetString("Hi")</span> *@
-                        <span class="me-2">Editable: @(TempData.Peek("Editable") ?? "False")</span>
+                        <span class="me-2">Editable: @(TempData.Peek(SiteConstant.TempDataEditableKey) ?? SiteConstant.False)</span>
                         <span class="me-2">Language: @currentCulture</span>
                     </environment>
                     @foreach (var supportedCulture in SiteConstant.SupportedCultures.Values)
@@ -136,12 +137,14 @@
                                 <i class="bi bi-chevron-down"></i>
                             </a>
                             <ul>
+                                
                                 <li>
                                     <a id="manage" asp-area="Identity" asp-page="/Account/Manage/Index">@HtmlLocalizer["NavItem_MyProfile"]</a>
                                 </li>
+                                
                                 @if (User.IsAtLeast(SiteRole.Editor))
                                 {
-                                    if (TempData.ContainsKey("Editable"))
+                                    if (TempData.ContainsKey(SiteConstant.TempDataEditableKey))
                                     {
                                         <li>
                                             <a asp-controller="Home" asp-action="Edit">@HtmlLocalizer["NavItem_EditModeDisable"]</a>
@@ -164,6 +167,14 @@
                                         <a href="#">@HtmlLocalizer["NavItem_MySubmissions"]</a>
                                     </li>
                                 }
+                                
+                                @if (User.IsImpersonating())
+                                {
+                                    <li>
+                                        <a asp-controller="Admin" asp-action="StopImpersonation">Back to @User.GetOriginalUserName()</a>
+                                    </li>
+                                }
+
                             </ul>
                         </li>
                         <li>
