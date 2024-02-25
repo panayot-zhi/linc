@@ -170,3 +170,16 @@ section#board {
 section#testimonials {
     margin-bottom: 60px;
 }
+
+/*--------------------------------------------------------------
+# Hero Section
+--------------------------------------------------------------*/
+#hero.hero-bg {
+    background-position-y: -40%;
+    background-repeat: no-repeat;
+}
+
+#hero.hero-en {
+    background-position-y: 180%;
+    background-repeat: no-repeat;
+}

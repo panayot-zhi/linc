@@ -1,13 +1,18 @@
 ﻿@model IndexViewModel
 @using Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.AspNetCore.Localization
+@using linc.Utility
 
 @{
     ViewData["Title"] = HtmlLocalizer["HomeIndex_Title"];
+
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var currentCulture = requestCulture?.RequestCulture.UICulture.Name ?? "bg";
 }
 
 @section Hero {
     <!-- ======= Hero Section ======= -->
-    <section id="hero" class="d-flex align-items-center">
+    <section id="hero" class="d-flex align-items-center hero-@currentCulture">
         <div class="container" data-aos="zoom-out" data-aos-delay="100">
             
             @* TODO: можем ли да регистрираме линк.uni-plovdiv.bg *@
