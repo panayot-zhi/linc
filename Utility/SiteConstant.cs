@@ -9,6 +9,8 @@ public static class SiteConstant
 
     public const string TempDataEditableKey = "Editable";
 
+    public const string ISSN = "ISSN 3033-0181";
+
     public static readonly Dictionary<int, string> SupportedCultures = new() {
         // NOTE: Key is database id
         // value is the culture
