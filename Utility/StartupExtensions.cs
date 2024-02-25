@@ -161,6 +161,7 @@ public static class StartupExtensions
     public static IServiceCollection AddConfigurations(this IServiceCollection services, IConfiguration configuration)
     {
         services.Configure<EmailConfig>(configuration.GetSection(nameof(EmailConfig)));
+        services.Configure<ApplicationConfig>(configuration.GetSection(nameof(ApplicationConfig)));
 
         // var cultureInfo = new CultureInfo("bg");
 
