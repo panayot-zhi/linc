@@ -7,7 +7,7 @@ public interface IContentService
 {
     List<SuggestionsViewModel> GetSuggestions(int count = 5);
 
-    IndexViewModel GetIndexViewModel();
+    Task<IndexViewModel> GetIndexViewModel();
 
     string GetVersion();
 }

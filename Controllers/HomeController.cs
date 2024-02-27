@@ -30,9 +30,9 @@ namespace linc.Controllers
             _userManager = userManager;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var viewModel = _contentService.GetIndexViewModel();
+            var viewModel = await _contentService.GetIndexViewModel();
             return View(viewModel);
         }
 
