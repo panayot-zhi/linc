@@ -1,9 +1,14 @@
 ﻿@using linc.Models.Enumerations
 @using linc.Utility
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model linc.Data.ApplicationIssue
 
 @{
     ViewData["Title"] = HtmlLocalizer["Issue_DetailsPage_Title"];
+
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var currentCulture = requestCulture?.RequestCulture.UICulture.Name ?? "bg";
 }
 
 @section Breadcrumbs {
@@ -12,7 +17,7 @@
         <div class="container">
 
             <div class="d-flex justify-content-between align-items-center">
-                <h2>@HtmlLocalizer["Issue_DetailsPage_Title"]</h2>
+                <h2>@HtmlLocalizer["Issue_DetailsPage_PageTitle", Model.IssueNumber]</h2>
                 <ol>
                     <li>
                         <a href="/">@HtmlLocalizer["NavItem_Home"]</a>
@@ -35,7 +40,7 @@
 
         <div class="row gy-4">
 
-            <div class="col-lg-8">
+            <div class="col-lg-7">
                 <div class="portfolio-details-slider swiper">
                     <div class="swiper-wrapper align-items-center">
                         
@@ -55,11 +60,11 @@
                 </div>
             </div>
 
-            <div class="col-lg-4">
+            <div class="col-lg-5">
                 <div class="portfolio-info">
                     <h3>@HtmlLocalizer["Issue_DetailsPage_IssueTitle"]</h3>
                     <ul>
-                        <li><strong>@HtmlLocalizer["Issue_DetailsPage_IssueNumber"]</strong>: @Model.IssueNumber</li>
+                        @* <li><strong>@HtmlLocalizer["Issue_DetailsPage_IssueNumber"]</strong>: @Model.IssueNumber</li> *@
                         <li><strong>@HtmlLocalizer["Issue_DetailsPage_IssueISSN"]</strong>: @SiteConstant.ISSN</li>
                         <li><strong>@HtmlLocalizer["Issue_DetailsPage_IssueCreated"]</strong>: @Model.DateCreated.ToString("dd MMMM, yyyy")</li>
                         <li><strong>@HtmlLocalizer["Issue_DetailsPage_IssueDescription"]</strong>:
@@ -71,14 +76,71 @@
                         @HtmlLocalizer["Issue_DetailsPage_IssuePdf"]
                     </a>
                 </div>
+
                 <div class="portfolio-description">
                     <h2>@HtmlLocalizer["Issue_DetailsPage_ContentTitle"]</h2>
-                    <ul>
-                        @foreach (var source in Model.Sources)
+
+                    <ul class="nav nav-tabs nav-fill" role="tablist">
+                        @foreach (var culture in SiteConstant.SupportedCultures.Values)
                         {
-                            <li>@source.Title</li>
+                            var isActive = currentCulture.Equals(culture);
+                            var activeClass = isActive ? "active" : string.Empty;
+                            
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link @activeClass" id="tab-switch-@culture" data-bs-toggle="tab" data-bs-target="#tab-content-@culture" type="button" role="tab" aria-controls="tab-content-@culture" aria-selected="@isActive">
+                                    @culture
+                                </button>
+                            </li>
                         }
                     </ul>
+
+                    <!-- Tab panes -->
+                    <div class="source-tab-content tab-content">
+                        @foreach (var (languageId, culture) in SiteConstant.SupportedCultures)
+                        {
+                            var isActive = currentCulture.Equals(culture);
+                            var activeClass = isActive ? "active" : string.Empty;
+
+                            <div class="tab-pane @activeClass" id="tab-content-@culture" role="tabpanel" aria-labelledby="tab-switch-@culture">
+                                
+                                <ul>
+                                    @foreach (var source in Model.Sources.Where(x => x.LanguageId == languageId))
+                                    {
+                                        <li class="source-container">
+                                
+                                            @if (!string.IsNullOrWhiteSpace(source.AuthorNames))
+                                            {
+                                                <p class="source-author">
+                                                    @source.FirstName @source.LastName
+                                                    @if (!string.IsNullOrEmpty(source.AuthorNotes))
+                                                    {
+                                                        <br/>
+                                                        <small>@source.AuthorNotes</small>
+                                                    }
+                                                </p>
+                                            }
+
+                                            <p class="source-title">
+                                                <a href="@Url.Action("Pdf", "Source", new { id = source.IssueId })#page=@source.StartingPage">@source.Title</a>
+                                            </p>
+
+                                            <p class="source-page text-end">
+                                                <strong>@source.StartingPage</strong>
+                                            </p>
+
+                                            @if (!string.IsNullOrEmpty(source.TitleNotes))
+                                            {
+                                                <small>@source.TitleNotes</small>
+                                            }
+
+                                        </li>
+                                    }
+                                </ul>
+
+
+                            </div>
+                        }
+                    </div>
                 </div>
             </div>
 

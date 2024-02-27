@@ -1181,4 +1181,40 @@
   <data name="Issue_DetailsPage_Title" xml:space="preserve">
     <value>Преглед на брой</value>
   </data>
+  <data name="SourceCreate_AuthorNotes" xml:space="preserve">
+    <value>Бележки за автора</value>
+  </data>
+  <data name="SourceCreate_FirstName" xml:space="preserve">
+    <value>Име</value>
+  </data>
+  <data name="SourceCreate_IssueId" xml:space="preserve">
+    <value>Брой</value>
+  </data>
+  <data name="SourceCreate_LanguageId" xml:space="preserve">
+    <value>Език</value>
+  </data>
+  <data name="SourceCreate_LastName" xml:space="preserve">
+    <value>Фамилия</value>
+  </data>
+  <data name="SourceCreate_StartingPage" xml:space="preserve">
+    <value>Начална страница</value>
+  </data>
+  <data name="SourceCreate_Title" xml:space="preserve">
+    <value>Заглавие</value>
+  </data>
+  <data name="SourceCreate_TitleNotes" xml:space="preserve">
+    <value>Бележки към автора</value>
+  </data>
+  <data name="Source_CreatePage_SubTitle" xml:space="preserve">
+    <value>Създаване на </value>
+  </data>
+  <data name="Source_CreatePage_Title" xml:space="preserve">
+    <value>Създаване на източник</value>
+  </data>
+  <data name="Issue_DetailsPage_InfoTitle" xml:space="preserve">
+    <value>Информация за броя</value>
+  </data>
+  <data name="Issue_DetailsPage_PageTitle" xml:space="preserve">
+    <value>Преглед на брой №{0}</value>
+  </data>
 </root>

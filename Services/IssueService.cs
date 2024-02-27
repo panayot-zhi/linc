@@ -4,8 +4,6 @@ using linc.Models.ConfigModels;
 using linc.Models.Enumerations;
 using linc.Models.ViewModels.Issue;
 using linc.Utility;
-using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using NuGet.Packaging;
@@ -30,8 +28,13 @@ namespace linc.Services
 
         public async Task<ApplicationIssue> GetIssueAsync(int id)
         {
+            // var currentCulture = Thread.CurrentThread.CurrentUICulture.Name;
+            // var languageId = SiteConstant.SupportedCultures.First(x =>
+            //     x.Value == currentCulture).Key;
+
             return await _context.Issues
                 .Include(x => x.Files)
+                .Include(x => x.Sources)
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 

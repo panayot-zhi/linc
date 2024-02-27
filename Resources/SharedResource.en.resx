@@ -614,6 +614,9 @@
   <data name="Issue_DetailsPage_ContentTitle" xml:space="preserve">
     <value>Contents</value>
   </data>
+  <data name="Issue_DetailsPage_InfoTitle" xml:space="preserve">
+    <value>Information about the issue</value>
+  </data>
   <data name="Issue_DetailsPage_IssueCreated" xml:space="preserve">
     <value>Created</value>
   </data>
@@ -631,6 +634,9 @@
   </data>
   <data name="Issue_DetailsPage_IssueTitle" xml:space="preserve">
     <value>Issue details</value>
+  </data>
+  <data name="Issue_DetailsPage_PageTitle" xml:space="preserve">
+    <value>#{0} Issue details</value>
   </data>
   <data name="Issue_DetailsPage_Title" xml:space="preserve">
     <value>View issue</value>
@@ -1126,6 +1132,30 @@
   </data>
   <data name="SiteRole_Users" xml:space="preserve">
     <value>Users</value>
+  </data>
+  <data name="SourceCreate_AuthorNotes" xml:space="preserve">
+    <value>Notes for the author</value>
+  </data>
+  <data name="SourceCreate_FirstName" xml:space="preserve">
+    <value>First name</value>
+  </data>
+  <data name="SourceCreate_IssueId" xml:space="preserve">
+    <value>Issue</value>
+  </data>
+  <data name="SourceCreate_LanguageId" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="SourceCreate_LastName" xml:space="preserve">
+    <value>Last name</value>
+  </data>
+  <data name="SourceCreate_StartingPage" xml:space="preserve">
+    <value>Starting page</value>
+  </data>
+  <data name="SourceCreate_Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="SourceCreate_TitleNotes" xml:space="preserve">
+    <value>Notes</value>
   </data>
   <data name="StatusMessage_Error_Prefix" xml:space="preserve">
     <value>Error:</value>

@@ -1216,6 +1216,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Информация за броя.
+        /// </summary>
+        public static string Issue_DetailsPage_InfoTitle {
+            get {
+                return ResourceManager.GetString("Issue_DetailsPage_InfoTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Създаден.
         /// </summary>
         public static string Issue_DetailsPage_IssueCreated {
@@ -1266,6 +1275,15 @@ namespace linc.Resources {
         public static string Issue_DetailsPage_IssueTitle {
             get {
                 return ResourceManager.GetString("Issue_DetailsPage_IssueTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Преглед на брой №{0}.
+        /// </summary>
+        public static string Issue_DetailsPage_PageTitle {
+            get {
+                return ResourceManager.GetString("Issue_DetailsPage_PageTitle", resourceCulture);
             }
         }
         
@@ -2716,6 +2734,96 @@ namespace linc.Resources {
         public static string SiteRole_Users {
             get {
                 return ResourceManager.GetString("SiteRole_Users", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Създаване на .
+        /// </summary>
+        public static string Source_CreatePage_SubTitle {
+            get {
+                return ResourceManager.GetString("Source_CreatePage_SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Създаване на източник.
+        /// </summary>
+        public static string Source_CreatePage_Title {
+            get {
+                return ResourceManager.GetString("Source_CreatePage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Бележки за автора.
+        /// </summary>
+        public static string SourceCreate_AuthorNotes {
+            get {
+                return ResourceManager.GetString("SourceCreate_AuthorNotes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Име.
+        /// </summary>
+        public static string SourceCreate_FirstName {
+            get {
+                return ResourceManager.GetString("SourceCreate_FirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Брой.
+        /// </summary>
+        public static string SourceCreate_IssueId {
+            get {
+                return ResourceManager.GetString("SourceCreate_IssueId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Език.
+        /// </summary>
+        public static string SourceCreate_LanguageId {
+            get {
+                return ResourceManager.GetString("SourceCreate_LanguageId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Фамилия.
+        /// </summary>
+        public static string SourceCreate_LastName {
+            get {
+                return ResourceManager.GetString("SourceCreate_LastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Начална страница.
+        /// </summary>
+        public static string SourceCreate_StartingPage {
+            get {
+                return ResourceManager.GetString("SourceCreate_StartingPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Заглавие.
+        /// </summary>
+        public static string SourceCreate_Title {
+            get {
+                return ResourceManager.GetString("SourceCreate_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Бележки към автора.
+        /// </summary>
+        public static string SourceCreate_TitleNotes {
+            get {
+                return ResourceManager.GetString("SourceCreate_TitleNotes", resourceCulture);
             }
         }
         

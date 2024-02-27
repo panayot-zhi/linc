@@ -197,3 +197,32 @@ section#testimonials {
     background-position-y: 140%;
     background-repeat: no-repeat;
 }
+
+/*--------------------------------------------------------------
+# Source Box
+--------------------------------------------------------------*/
+.portfolio-details .portfolio-description li.source-container {
+}
+
+.portfolio-details .portfolio-description p.source-author {
+}
+
+.portfolio-details .portfolio-description p.source-title {
+    padding-right: 30px;
+}
+
+.portfolio-details .portfolio-description p.source-page {
+    position: relative;
+    border-bottom-style: dotted;
+    border-bottom-width: 2px;
+    margin-bottom: -15px;
+    top: -25px;
+}
+
+.portfolio-details .source-tab-content {
+    border: 1px solid #dee2e6;
+    margin-top: -1px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}

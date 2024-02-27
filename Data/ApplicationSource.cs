@@ -14,14 +14,17 @@ namespace linc.Data
         [MaxLength(255)]
         public string LastName { get; set; }
 
+        [NotMapped] public string AuthorNames => $"{FirstName} {LastName}";
+
+        [MaxLength(1024)]
+        public string AuthorNotes { get; set; }
+
+
         [MaxLength(512)]
         public string Title { get; set; }
 
         [MaxLength(1024)]
-        public string Description { get; set; }
-
-        [MaxLength(1024)]
-        public string Notes { get; set; }
+        public string TitleNotes { get; set; }
 
 
         public int StartingPage { get; set; }

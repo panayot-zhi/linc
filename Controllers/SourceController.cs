@@ -4,26 +4,30 @@ using linc.Models.ConfigModels;
 using linc.Models.Enumerations;
 using linc.Models.ViewModels.Issue;
 using linc.Utility;
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Options;
+using Microsoft.EntityFrameworkCore;
 
 namespace linc.Controllers
 {
-    public class IssueController : BaseController
+    public class SourceController : BaseController
     {
-        private readonly ILogger<IssueController> _logger;
-        private readonly IIssueService _issueService;
+        private readonly ILogger<SourceController> _logger;
+        private readonly ISourceService _sourceService;
+        private readonly IIssueService _issuesService;
         private readonly ApplicationConfig _config;
 
-        public IssueController(
+        public SourceController(
             IOptions<ApplicationConfig> configOptions,
-            ILogger<IssueController> logger,
+            ILogger<SourceController> logger,
             ILocalizationService localizer,
-            IIssueService issueService)
+            ISourceService sourceService, 
+            IIssueService issuesService)
             : base(localizer)
         {
             _logger = logger;
-            _issueService = issueService;
+            _sourceService = sourceService;
+            _issuesService = issuesService;
             _config = configOptions.Value;
         }
 
@@ -32,47 +36,51 @@ namespace linc.Controllers
             throw new NotImplementedException();
         }
 
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var applicationIssue = await _issueService.GetIssueAsync(id.Value);
-            if (applicationIssue == null)
-            {
-                _logger.LogWarning("Could not find issue with the id of {@Id}",
-                    id.Value);
-                return NotFound();
-            }
-
-            if (!applicationIssue.IsAvailable && !User.IsAtLeast(SiteRole.UserPlus))
-            {
-                return NotFound();
-            }
-
-            return View(applicationIssue);
-        }
+        // public async Task<IActionResult> Details(int? id)
+        // {
+        //     if (id == null)
+        //     {
+        //         return NotFound();
+        //     }
+        //
+        //     var applicationSource = await _sourceService.GetSourceAsync(id.Value);
+        //     if (applicationSource == null)
+        //     {
+        //         _logger.LogWarning("Could not find source with the id of {@Id}",
+        //             id.Value);
+        //         return NotFound();
+        //     }
+        //
+        //     return View(applicationSource);
+        // }
 
         [SiteAuthorize(SiteRole.Editor)]
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            return View();
+            var vModel = new SourceCreateViewModel
+            {
+                Issues = await GetIssuesAsync(),
+                Languages = GetLanguages()
+            };
+
+            return View(vModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         [SiteAuthorize(SiteRole.Editor)]
-        public async Task<IActionResult> Create(IssueCreateViewModel vModel) 
+        public async Task<IActionResult> Create(SourceCreateViewModel vModel) 
         {
             if (!ModelState.IsValid)
             {
+                vModel.Issues = await GetIssuesAsync();
+                vModel.Languages = GetLanguages();
+
                 return View(vModel);
             }
 
-            var issueId = await _issueService.CreateIssueAsync(vModel);
-            return RedirectToAction(nameof(Details), new { id = issueId });
+            var sourceId = await _sourceService.CreateSourceAsync(vModel);
+            return RedirectToAction("Details", "Issue", new { id = vModel.IssueId });
         }
 
         /*// GET: Issue/Edit/5
@@ -165,29 +173,39 @@ namespace linc.Controllers
             return RedirectToAction(nameof(Index));
         }*/
 
-        [AllowAnonymous]
-        public async Task<IActionResult> LoadFile(int id)
+        public async Task<IActionResult> Pdf(int? id)
         {
-            var file = await _issueService.GetFileAsync(id);
-
-            if (file == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
-            var path = Path.Combine(_config.RepositoryPath, file.RelativePath);
-
-            if (!System.IO.File.Exists(path))
+            var issueEntry = await _issuesService.GetIssueAsync(id.Value);
+            if (issueEntry == null)
             {
-                _logger.LogWarning("Could not find physical file {@File}", 
-                    file);
                 return NotFound();
             }
 
-            return new PhysicalFileResult(path, file.MimeType)
-            {
-                FileDownloadName = $"{file.FileName}.{file.Extension}"
-            };
+            var issuePdf = await _issuesService.GetFileAsync(issueEntry.Pdf.Id);
+            var pdfPath = Path.Combine(_config.RepositoryPath, issuePdf.RelativePath);
+            var content = await System.IO.File.ReadAllBytesAsync(pdfPath);
+
+            return new FileContentResult(content, issuePdf.MimeType);
+        }
+
+        public async Task<List<SelectListItem>> GetIssuesAsync()
+        {
+            var issues = await _sourceService.GetIssuesAsync();
+            return issues.Select(x =>
+                    new SelectListItem($"{x.IssueNumber}/{x.ReleaseYear}", x.Id.ToString()))
+                .ToList();
+        }
+
+        public List<SelectListItem> GetLanguages()
+        {
+            return SiteConstant.SupportedCultures.Select(supportedCulture =>
+                    new SelectListItem(supportedCulture.Value, supportedCulture.Key.ToString()))
+                .ToList();
         }
     }
 }

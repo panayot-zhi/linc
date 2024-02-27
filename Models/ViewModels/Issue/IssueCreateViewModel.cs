@@ -14,7 +14,7 @@ namespace linc.Models.ViewModels.Issue
         public int? ReleaseYear { get; set; }
 
         [Display(Name = "IssueCreate_Description", ResourceType = typeof(Resources.SharedResource))]
-        [MaxLength(1024, ErrorMessageResourceName = "MaxLengthAttribute_InvalidMaxLength", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+        [MaxLength(1024, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         public string Description { get; set; }
 
         [Display(Name = "IssueCreate_PdfFile", ResourceType = typeof(Resources.SharedResource))]
