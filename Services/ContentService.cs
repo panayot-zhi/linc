@@ -3,6 +3,7 @@ using linc.Contracts;
 using linc.Models.Enumerations;
 using linc.Models.ViewModels;
 using linc.Models.ViewModels.Home;
+using linc.Utility;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Caching.Memory;
 
@@ -36,21 +37,20 @@ public class ContentService : IContentService
     {
         // TODO: Expand and fill this model with information
         
-        var counts = new CountsViewModel()
+        var var = new CountsViewModel()
         {
-            AdministratorsCount = (await _userManager.GetUsersInRoleAsync(SiteRole.Administrator.ToString().ToUpperInvariant())).Count, 
-            HeadEditorsCount = (await _userManager.GetUsersInRoleAsync(SiteRole.HeadEditor.ToString().ToUpperInvariant())).Count, 
-            EditorsCount = (await _userManager.GetUsersInRoleAsync(SiteRole.Editor.ToString().ToUpperInvariant())).Count, 
-            UsersCount = (await _userManager.GetUsersInRoleAsync(SiteRole.User.ToString().ToUpperInvariant())).Count,
+            AdministratorsCount = _dbContext.CountByRole(SiteRolesHelper.AdministratorRoleName),
+            HeadEditorsCount = _dbContext.CountByRole(SiteRolesHelper.HeadEditorRoleName),
+            EditorsCount = _dbContext.CountByRole(SiteRolesHelper.EditorRoleName),
+            UsersCount = _dbContext.CountByRole(SiteRolesHelper.UserRoleName),
 
-            // NOTE: Hard-coded value!
-            EditorsBoardCount = 6 
+            // NOTE: a hard-coded value
+            EditorsBoardCount = 6
         };
 
         var viewModel = new IndexViewModel()
         {
-            CountsViewModel = counts
-        };
+            CountsViewModel = var         };
 
         return viewModel;
     }
