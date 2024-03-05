@@ -2501,6 +2501,34 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;p&gt;Ако сте открили несъответсвие или грешка, моля, докладвайте я на администратора за да може да адресираме проблема възможно най-бързо.&lt;/p&gt;
+        ///&lt;p&gt;Моля, бъдете подробни в информацията, която предоставяте, и включете екранни снимки, ако е приложимо.&lt;/p&gt;.
+        /// </summary>
+        public static string ReportBug_Description {
+            get {
+                return ResourceManager.GetString("ReportBug_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Докладвай за нередност.
+        /// </summary>
+        public static string ReportBug_Title {
+            get {
+                return ResourceManager.GetString("ReportBug_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Докладвай.
+        /// </summary>
+        public static string ReportBugSection_SubmitButton_Label {
+            get {
+                return ResourceManager.GetString("ReportBugSection_SubmitButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Писмото за потвърждение беше изпратено повторно. Моля, проверете електронната си поща..
         /// </summary>
         public static string ResendEmailConfirmation_SuccessMessage {

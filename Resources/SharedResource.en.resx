@@ -1052,6 +1052,16 @@
   <data name="Register_EmailConfirmation_Required" xml:space="preserve">
     <value>We have sent you a letter of confirmation. Please, prior to entering, confirm your email with the link inside it.</value>
   </data>
+  <data name="ReportBugSection_SubmitButton_Label" xml:space="preserve">
+    <value>Report</value>
+  </data>
+  <data name="ReportBug_Description" xml:space="preserve">
+    <value>&lt;p&gt;If you have encountered an issue or an inconsistency, please, report this to the site administrator so he can take up measures immediately.&lt;/p&gt;
+&lt;p&gt;Please, be detailed in the information that you provide and include screenshots, if applicable.&lt;/p&gt;</value>
+  </data>
+  <data name="ReportBug_Title" xml:space="preserve">
+    <value>Report a bug</value>
+  </data>
   <data name="ResendEmailConfirmationPage_Button_Label" xml:space="preserve">
     <value>Resend</value>
   </data>
