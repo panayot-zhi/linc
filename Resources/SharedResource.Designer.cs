@@ -223,6 +223,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Автори.
+        /// </summary>
+        public static string AuthorsSection_Title {
+            get {
+                return ResourceManager.GetString("AuthorsSection_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Проф. дн Александер Войчех Миколайчак.
         /// </summary>
         public static string Board_Aleksander_Mikołajczak_Member {
@@ -2062,6 +2071,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Автори.
+        /// </summary>
+        public static string NavItem_Authors {
+            get {
+                return ResourceManager.GetString("NavItem_Authors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Категории.
         /// </summary>
         public static string NavItem_Categories {
@@ -2675,7 +2693,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Борд на редакторите.
+        ///   Looks up a localized string similar to Редакционен борд.
         /// </summary>
         public static string SiteRole_EditorsBoard {
             get {

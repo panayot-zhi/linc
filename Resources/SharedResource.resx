@@ -972,7 +972,7 @@
     <value>Редактори</value>
   </data>
   <data name="SiteRole_EditorsBoard" xml:space="preserve">
-    <value>Борд на редакторите</value>
+    <value>Редакционен борд</value>
   </data>
   <data name="SiteRole_HeadEditor" xml:space="preserve">
     <value>Главен редактор</value>
@@ -1216,5 +1216,11 @@
   </data>
   <data name="Issue_DetailsPage_PageTitle" xml:space="preserve">
     <value>Преглед на брой №{0}</value>
+  </data>
+  <data name="AuthorsSection_Title" xml:space="preserve">
+    <value>Автори</value>
+  </data>
+  <data name="NavItem_Authors" xml:space="preserve">
+    <value>Автори</value>
   </data>
 </root>

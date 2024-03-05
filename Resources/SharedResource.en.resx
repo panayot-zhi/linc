@@ -171,6 +171,9 @@
   <data name="Anonymous_Label" xml:space="preserve">
     <value>Anonymous</value>
   </data>
+  <data name="AuthorsSection_Title" xml:space="preserve">
+    <value>Authors</value>
+  </data>
   <data name="Board_Aleksander.Mikołajczak_Member" xml:space="preserve">
     <value>Проф. дн Александер Войчех Миколайчак</value>
   </data>
@@ -894,6 +897,9 @@
   </data>
   <data name="NavItem_About" xml:space="preserve">
     <value>About</value>
+  </data>
+  <data name="NavItem_Authors" xml:space="preserve">
+    <value>Authors</value>
   </data>
   <data name="NavItem_Categories" xml:space="preserve">
     <value>Categories</value>
