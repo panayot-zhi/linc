@@ -644,6 +644,9 @@
   <data name="Issue_DetailsPage_Title" xml:space="preserve">
     <value>View issue</value>
   </data>
+  <data name="Issue_Details_Label" xml:space="preserve">
+    <value>View issue</value>
+  </data>
   <data name="Issue_IndexPage_Label" xml:space="preserve">
     <value>Contents</value>
   </data>
@@ -652,6 +655,9 @@
   </data>
   <data name="Issue_Number_Label" xml:space="preserve">
     <value>Issue #</value>
+  </data>
+  <data name="Issue_Zoom_Label" xml:space="preserve">
+    <value>Cover page, issue #{0}, {1}</value>
   </data>
   <data name="LibraryIndex_Title" xml:space="preserve">
     <value>Library</value>

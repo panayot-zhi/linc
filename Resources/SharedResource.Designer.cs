@@ -1216,6 +1216,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Преглед на брой.
+        /// </summary>
+        public static string Issue_Details_Label {
+            get {
+                return ResourceManager.GetString("Issue_Details_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Съдържание.
         /// </summary>
         public static string Issue_DetailsPage_ContentTitle {
@@ -1329,6 +1338,15 @@ namespace linc.Resources {
         public static string Issue_Number_Label {
             get {
                 return ResourceManager.GetString("Issue_Number_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Корица на брой №{0}, {1}.
+        /// </summary>
+        public static string Issue_Zoom_Label {
+            get {
+                return ResourceManager.GetString("Issue_Zoom_Label", resourceCulture);
             }
         }
         
