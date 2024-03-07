@@ -91,18 +91,26 @@ public class ContentService : IContentService
 
     public List<SuggestionsViewModel> GetSuggestions(int count = 5)
     {
-        var result = new List<SuggestionsViewModel>();
+        // TODO: Improve this query
+        var sources = _dbContext.Sources
+            .Select(x => new SuggestionsViewModel()
+            {
+                Content = x.Title,
+                StartingPage = x.StartingPage,
+                IssueId = x.IssueId.Value
+            })
+            .ToList();
+        
+        sources.Shuffle();
 
-        // for (var i = 1; i <= 5; i++)
-        // {
-        //     result.Add(new()
-        //     {
-        //         Content = "Брой №" + i,
-        //         Href = "#"
-        //     });
-        // }
-        //
-        // result.Shuffle();
+        var result = sources.Take(5).ToList();
+
+        result.ForEach(x => x.Href = _linkGenerator.GetUriByAction(
+            _httpContextAccessor.HttpContext!,
+            "Pdf",
+            "Source",
+            new { id = x.IssueId },
+            fragment: new FragmentString($"#page={x.StartingPage}")));
 
         return result;
     }

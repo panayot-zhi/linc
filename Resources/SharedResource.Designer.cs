@@ -1035,7 +1035,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Препоръчани.
+        ///   Looks up a localized string similar to Случайни.
         /// </summary>
         public static string Footer_Suggestions_Title {
             get {

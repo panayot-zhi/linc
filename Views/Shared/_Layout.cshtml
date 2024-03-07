@@ -157,15 +157,15 @@
                                         </li>
                                     }
 
-                                    <li>
-                                        <a href="#">@HtmlLocalizer["NavItem_Submissions"]</a>
-                                    </li>
+                                    @* <li> *@
+                                    @*     <a href="#">@HtmlLocalizer["NavItem_Submissions"]</a> *@
+                                    @* </li> *@
                                 }
                                 else
                                 {
-                                    <li>
-                                        <a href="#">@HtmlLocalizer["NavItem_MySubmissions"]</a>
-                                    </li>
+                                    @* <li> *@
+                                    @*     <a href="#">@HtmlLocalizer["NavItem_MySubmissions"]</a> *@
+                                    @* </li> *@
                                 }
                                 
                                 @if (User.IsImpersonating())
@@ -328,7 +328,7 @@
                         </p>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 footer-links">
+                    <div class="col-lg-2 col-md-6 footer-links">
                         <h4>@HtmlLocalizer["Footer_UsefulLinks_Title"]</h4>
                         @* TODO: Ponder upon using one page for terms and conditions that includes Privacy and Cookies section? *@
                         @* 
@@ -365,7 +365,7 @@
                         </ul>
                     </div>
 
-                    <div class="col-lg-3 col-md-6 footer-links">
+                    <div class="col-lg-4 col-md-6 footer-links">
                         <h4>@HtmlLocalizer["Footer_Suggestions_Title"]</h4>
                         <ul>
                             @foreach (var suggestion in ContentService.GetSuggestions())
