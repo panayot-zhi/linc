@@ -5,6 +5,7 @@ using linc.Models.ViewModels;
 using linc.Models.ViewModels.Home;
 using linc.Utility;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace linc.Services;
@@ -36,8 +37,9 @@ public class ContentService : IContentService
     public async Task<IndexViewModel> GetIndexViewModel()
     {
         // TODO: Expand and fill this model with information
+        // TODO: Cache this
         
-        var var = new CountsViewModel()
+        var countsViewModel = new CountsViewModel()
         {
             AdministratorsCount = _dbContext.CountByRole(SiteRolesHelper.AdministratorRoleName),
             HeadEditorsCount = _dbContext.CountByRole(SiteRolesHelper.HeadEditorRoleName),
@@ -48,9 +50,41 @@ public class ContentService : IContentService
             EditorsBoardCount = 6
         };
 
+        var issuesList = await _dbContext.Issues
+            .Include(x => x.Files)
+            .OrderByDescending(x => x.LastUpdated)
+            .Where(x => x.IsAvailable)
+            .Select(x => new IssueViewModel()
+            {
+                Id = x.Id,
+                Description = x.Description,
+                IssueNumber = x.IssueNumber,
+                ReleaseYear = x.ReleaseYear,
+                ReleaseDate = x.DateCreated,
+                CoverPageId = x.CoverPage.Id,
+                CoverPageRelativePath = x.CoverPage.RelativePath,
+                // IndexPageIds = x.IndexPages
+                //     .Select(y => y.Id)
+                //     .ToList()
+
+            })
+            .Take(12)
+            .ToListAsync();
+
+        var issuesViewModel = new PortfolioViewModel()
+        {
+            Issues = issuesList,
+            IssueYears = issuesList
+                .GroupBy(x => x.ReleaseYear)
+                .Select(g => g.Key)
+                .ToList()
+        };
+
         var viewModel = new IndexViewModel()
         {
-            CountsViewModel = var         };
+            CountsViewModel = countsViewModel,
+            PortfolioViewModel = issuesViewModel
+        };
 
         return viewModel;
     }
