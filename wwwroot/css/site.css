@@ -201,6 +201,9 @@ section#testimonials {
 /*--------------------------------------------------------------
 # Source Box
 --------------------------------------------------------------*/
+.source-container {
+    padding-top: 20px;
+}
 .portfolio-details .portfolio-description li.source-container {
 }
 
@@ -215,7 +218,7 @@ section#testimonials {
     position: relative;
     border-bottom-style: dotted;
     border-bottom-width: 2px;
-    margin-bottom: -15px;
+    margin-bottom: -20px;
     top: -25px;
 }
 
