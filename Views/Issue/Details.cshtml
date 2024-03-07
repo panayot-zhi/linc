@@ -104,7 +104,7 @@
                             <div class="tab-pane @activeClass" id="tab-content-@culture" role="tabpanel" aria-labelledby="tab-switch-@culture">
                                 
                                 <ul>
-                                    @foreach (var source in Model.Sources.Where(x => x.LanguageId == languageId))
+                                    @foreach (var source in Model.Sources.Where(x => x.LanguageId == languageId).OrderBy(x => x.StartingPage))
                                     {
                                         <li class="source-container">
                                 
