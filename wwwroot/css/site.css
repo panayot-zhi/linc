@@ -226,3 +226,177 @@ section#testimonials {
     padding-bottom: 20px;
     padding-top: 20px;
 }
+
+
+/*--------------------------------------------------------------
+# Alphabet icons
+--------------------------------------------------------------*/
+.bx.source-letter.bx-a:before {
+    content: 'A';
+}
+.bx.source-letter.bx-b:before {
+    content: 'B';
+}
+.bx.source-letter.bx-c:before {
+    content: 'C';
+}
+.bx.source-letter.bx-d:before {
+    content: 'D';
+}
+.bx.source-letter.bx-e:before {
+    content: 'E';
+}
+.bx.source-letter.bx-f:before {
+    content: 'F';
+}
+.bx.source-letter.bx-g:before {
+    content: 'G';
+}
+.bx.source-letter.bx-h:before {
+    content: 'H';
+}
+.bx.source-letter.bx-i:before {
+    content: 'I';
+}
+.bx.source-letter.bx-j:before {
+    content: 'J';
+}
+.bx.source-letter.bx-k:before {
+    content: 'K';
+}
+.bx.source-letter.bx-l:before {
+    content: 'L';
+}
+.bx.source-letter.bx-m:before {
+    content: 'M';
+}
+.bx.source-letter.bx-n:before {
+    content: 'N';
+}
+.bx.source-letter.bx-o:before {
+    content: 'O';
+}
+.bx.source-letter.bx-p:before {
+    content: 'P';
+}
+.bx.source-letter.bx-q:before {
+    content: 'Q';
+}
+.bx.source-letter.bx-r:before {
+    content: 'R';
+}
+.bx.source-letter.bx-s:before {
+    content: 'S';
+}
+.bx.source-letter.bx-t:before {
+    content: 'T';
+}
+.bx.source-letter.bx-u:before {
+    content: 'U';
+}
+.bx.source-letter.bx-v:before {
+    content: 'V';
+}
+.bx.source-letter.bx-w:before {
+    content: 'W';
+}
+.bx.source-letter.bx-x:before {
+    content: 'X';
+}
+.bx.source-letter.bx-y:before {
+    content: 'X';
+}
+.bx.source-letter.bx-z:before {
+    content: 'Z';
+}
+
+.bx.source-letter.bx-а:before {
+    content: 'А';
+}
+.bx.source-letter.bx-б:before {
+    content: 'Б';
+}
+.bx.source-letter.bx-в:before {
+    content: 'В';
+}
+.bx.source-letter.bx-г:before {
+    content: 'Г';
+}
+.bx.source-letter.bx-д:before {
+    content: 'Д';
+}
+.bx.source-letter.bx-е:before {
+    content: 'Е';
+}
+.bx.source-letter.bx-ж:before {
+    content: 'Ж';
+}
+.bx.source-letter.bx-з:before {
+    content: 'З';
+}
+.bx.source-letter.bx-и:before {
+    content: 'И';
+}
+.bx.source-letter.bx-й:before {
+    content: 'Й';
+}
+.bx.source-letter.bx-к:before {
+    content: 'К';
+}
+.bx.source-letter.bx-л:before {
+    content: 'Л';
+}
+.bx.source-letter.bx-м:before {
+    content: 'М';
+}
+.bx.source-letter.bx-н:before {
+    content: 'Н';
+}
+.bx.source-letter.bx-о:before {
+    content: 'О';
+}
+.bx.source-letter.bx-п:before {
+    content: 'П';
+}
+.bx.source-letter.bx-р:before {
+    content: 'Р';
+}
+.bx.source-letter.bx-с:before {
+    content: 'С';
+}
+.bx.source-letter.bx-т:before {
+    content: 'Т';
+}
+.bx.source-letter.bx-у:before {
+    content: 'У';
+}
+.bx.source-letter.bx-ф:before {
+    content: 'Ф';
+}
+.bx.source-letter.bx-х:before {
+    content: 'Х';
+}
+.bx.source-letter.bx-ц:before {
+    content: 'Ц';
+}
+.bx.source-letter.bx-ч:before {
+    content: 'Ч';
+}
+.bx.source-letter.bx-ш:before {
+    content: 'Ш';
+}
+.bx.source-letter.bx-щ:before {
+    content: 'Щ';
+}
+.bx.source-letter.bx-ъ:before {
+    content: 'Ъ';
+}
+.bx.source-letter.bx-ь:before {
+    content: 'Ь';
+}
+.bx.source-letter.bx-ю:before {
+    content: 'Ю';
+}
+.bx.source-letter.bx-я:before {
+    content: 'Я';
+}
