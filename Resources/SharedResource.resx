@@ -1203,7 +1203,7 @@
     <value>Заглавие</value>
   </data>
   <data name="SourceCreate_TitleNotes" xml:space="preserve">
-    <value>Бележки към автора</value>
+    <value>Бележки към ръкописа</value>
   </data>
   <data name="Source_CreatePage_SubTitle" xml:space="preserve">
     <value>Създаване на </value>

@@ -1189,7 +1189,7 @@
     <value>Title</value>
   </data>
   <data name="SourceCreate_TitleNotes" xml:space="preserve">
-    <value>Notes</value>
+    <value>Notes to the manuscript</value>
   </data>
   <data name="StatusMessage_Error_Prefix" xml:space="preserve">
     <value>Error:</value>

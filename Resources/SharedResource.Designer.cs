@@ -2919,7 +2919,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Бележки към автора.
+        ///   Looks up a localized string similar to Бележки към ръкописа.
         /// </summary>
         public static string SourceCreate_TitleNotes {
             get {
