@@ -1,5 +1,7 @@
 ﻿@page
 @using Microsoft.AspNetCore.Mvc.TagHelpers
+@using linc.Utility
+@using linc.Models.Enumerations
 @model AdministrationModel
 @{
     ViewData["Title"] = HtmlLocalizer["AdminIndex_Title"];
@@ -8,12 +10,15 @@
 
 <div class="row admin-top">
     <div class="col-md-6 admin-links">
-        <h4>@HtmlLocalizer["AdminIndex_Operations_Title"]</h4>
+        <h4 class="pb-4">@HtmlLocalizer["AdminIndex_Operations_Title"]</h4>
         <ul>
-            <li>
-                <i class="bx bx-chevron-right"></i>
-                <a asp-controller="Issue" asp-action="Create">@HtmlLocalizer["Admin_CreateIssue"]</a>
-            </li>
+            @if (User.IsAtLeast(SiteRole.HeadEditor))
+            {
+                <li>
+                    <i class="bx bx-chevron-right"></i>
+                    <a asp-controller="Issue" asp-action="Create">@HtmlLocalizer["Admin_CreateIssue"]</a>
+                </li>
+            }
             <li>
                 <i class="bx bx-chevron-right"></i>
                 <a asp-controller="Source" asp-action="Create" asp-fragment="team">@HtmlLocalizer["Admin_CreateSource"]</a>
