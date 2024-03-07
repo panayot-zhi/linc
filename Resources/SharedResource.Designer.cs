@@ -124,6 +124,42 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Създаване на брой.
+        /// </summary>
+        public static string Admin_CreateIssue {
+            get {
+                return ResourceManager.GetString("Admin_CreateIssue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Създаване на запис в индекса.
+        /// </summary>
+        public static string Admin_CreateSource {
+            get {
+                return ResourceManager.GetString("Admin_CreateSource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Административни операции.
+        /// </summary>
+        public static string AdminIndex_Operations_Title {
+            get {
+                return ResourceManager.GetString("AdminIndex_Operations_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Администрация.
+        /// </summary>
+        public static string AdminIndex_Title {
+            get {
+                return ResourceManager.GetString("AdminIndex_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Данните, които изпращате са невалидни..
         /// </summary>
         public static string AlertMessage_400Warning {

@@ -1239,4 +1239,16 @@
   <data name="ReportBug_Title" xml:space="preserve">
     <value>Докладвай за нередност</value>
   </data>
+  <data name="AdminIndex_Operations_Title" xml:space="preserve">
+    <value>Административни операции</value>
+  </data>
+  <data name="AdminIndex_Title" xml:space="preserve">
+    <value>Администрация</value>
+  </data>
+  <data name="Admin_CreateIssue" xml:space="preserve">
+    <value>Създаване на брой</value>
+  </data>
+  <data name="Admin_CreateSource" xml:space="preserve">
+    <value>Създаване на запис в индекса</value>
+  </data>
 </root>
