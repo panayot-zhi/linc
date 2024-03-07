@@ -503,7 +503,7 @@
     <value>Партньори</value>
   </data>
   <data name="Footer_Suggestions_Title" xml:space="preserve">
-    <value>Препоръчани</value>
+    <value>Случайни</value>
   </data>
   <data name="Footer_UsefulLinks_Codex" xml:space="preserve">
     <value>Етичен кодекс</value>
@@ -972,7 +972,7 @@
     <value>Редактори</value>
   </data>
   <data name="SiteRole_EditorsBoard" xml:space="preserve">
-    <value>Борд на редакторите</value>
+    <value>Редакционен борд</value>
   </data>
   <data name="SiteRole_HeadEditor" xml:space="preserve">
     <value>Главен редактор</value>
@@ -1129,5 +1129,126 @@
   </data>
   <data name="ManagePersonalData_Title" xml:space="preserve">
     <value>Лични данни</value>
+  </data>
+  <data name="IssueCreate_CoverPage" xml:space="preserve">
+    <value>Прикачете изображение с корица</value>
+  </data>
+  <data name="IssueCreate_Description" xml:space="preserve">
+    <value>Допълнителна информация</value>
+  </data>
+  <data name="IssueCreate_IndexPages" xml:space="preserve">
+    <value>Прикачете страници със съдържание</value>
+  </data>
+  <data name="IssueCreate_IssueNumber" xml:space="preserve">
+    <value>Пореден номер</value>
+  </data>
+  <data name="IssueCreate_PdfFile" xml:space="preserve">
+    <value>Прикачете броят като PDF</value>
+  </data>
+  <data name="IssueCreate_ReleaseYear" xml:space="preserve">
+    <value>Година на издаване</value>
+  </data>
+  <data name="Issue_CreatePage_Notes_Title" xml:space="preserve">
+    <value>Бележки</value>
+  </data>
+  <data name="Issue_CreatePage_SubTitle" xml:space="preserve">
+    <value>Създаване на нов брой</value>
+  </data>
+  <data name="Issue_CreatePage_Title" xml:space="preserve">
+    <value>Създаване на брой</value>
+  </data>
+  <data name="Issue_DetailsPage_ContentTitle" xml:space="preserve">
+    <value>Съдържание</value>
+  </data>
+  <data name="Issue_DetailsPage_IssueCreated" xml:space="preserve">
+    <value>Създаден</value>
+  </data>
+  <data name="Issue_DetailsPage_IssueDescription" xml:space="preserve">
+    <value>Допълнителна информация</value>
+  </data>
+  <data name="Issue_DetailsPage_IssueISSN" xml:space="preserve">
+    <value>ISSN</value>
+  </data>
+  <data name="Issue_DetailsPage_IssueNumber" xml:space="preserve">
+    <value>Пореден номер</value>
+  </data>
+  <data name="Issue_DetailsPage_IssuePdf" xml:space="preserve">
+    <value>Свали PDF</value>
+  </data>
+  <data name="Issue_DetailsPage_IssueTitle" xml:space="preserve">
+    <value>Детайли за брой</value>
+  </data>
+  <data name="Issue_DetailsPage_Title" xml:space="preserve">
+    <value>Преглед на брой</value>
+  </data>
+  <data name="SourceCreate_AuthorNotes" xml:space="preserve">
+    <value>Бележки за автора</value>
+  </data>
+  <data name="SourceCreate_FirstName" xml:space="preserve">
+    <value>Име</value>
+  </data>
+  <data name="SourceCreate_IssueId" xml:space="preserve">
+    <value>Брой</value>
+  </data>
+  <data name="SourceCreate_LanguageId" xml:space="preserve">
+    <value>Език</value>
+  </data>
+  <data name="SourceCreate_LastName" xml:space="preserve">
+    <value>Фамилия</value>
+  </data>
+  <data name="SourceCreate_StartingPage" xml:space="preserve">
+    <value>Начална страница</value>
+  </data>
+  <data name="SourceCreate_Title" xml:space="preserve">
+    <value>Заглавие</value>
+  </data>
+  <data name="SourceCreate_TitleNotes" xml:space="preserve">
+    <value>Бележки към ръкописа</value>
+  </data>
+  <data name="Source_CreatePage_SubTitle" xml:space="preserve">
+    <value>Създаване на </value>
+  </data>
+  <data name="Source_CreatePage_Title" xml:space="preserve">
+    <value>Създаване на източник</value>
+  </data>
+  <data name="Issue_DetailsPage_InfoTitle" xml:space="preserve">
+    <value>Информация за броя</value>
+  </data>
+  <data name="Issue_DetailsPage_PageTitle" xml:space="preserve">
+    <value>Преглед на брой №{0}</value>
+  </data>
+  <data name="AuthorsSection_Title" xml:space="preserve">
+    <value>Автори</value>
+  </data>
+  <data name="Issue_Details_Label" xml:space="preserve">
+    <value>Преглед на брой</value>
+  </data>
+  <data name="Issue_Zoom_Label" xml:space="preserve">
+    <value>Корица на брой №{0}, {1}</value>
+  </data>
+  <data name="NavItem_Authors" xml:space="preserve">
+    <value>Автори</value>
+  </data>
+  <data name="ReportBugSection_SubmitButton_Label" xml:space="preserve">
+    <value>Докладвай</value>
+  </data>
+  <data name="ReportBug_Description" xml:space="preserve">
+    <value>&lt;p&gt;Ако сте открили несъответсвие или грешка, моля, докладвайте я на администратора за да може да адресираме проблема възможно най-бързо.&lt;/p&gt;
+&lt;p&gt;Моля, бъдете подробни в информацията, която предоставяте, и включете екранни снимки, ако е приложимо.&lt;/p&gt;</value>
+  </data>
+  <data name="ReportBug_Title" xml:space="preserve">
+    <value>Докладвай за нередност</value>
+  </data>
+  <data name="AdminIndex_Operations_Title" xml:space="preserve">
+    <value>Административни операции</value>
+  </data>
+  <data name="AdminIndex_Title" xml:space="preserve">
+    <value>Администрация</value>
+  </data>
+  <data name="Admin_CreateIssue" xml:space="preserve">
+    <value>Създаване на брой</value>
+  </data>
+  <data name="Admin_CreateSource" xml:space="preserve">
+    <value>Създаване на запис в индекса</value>
   </data>
 </root>

@@ -1,13 +1,18 @@
 ﻿using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Security.Principal;
+using System.Text;
+using System.Text.RegularExpressions;
 using linc.Contracts;
 using linc.Models.Enumerations;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace linc.Utility;
 
@@ -40,6 +45,11 @@ public static class HelperFunctions
         return entry.Properties.Any(x => x.Metadata.Name == property);
     }
 
+    public static string Extension(this IFormFile formFile)
+    {
+        return GetFileExtension(formFile.FileName);
+    }
+
     public static bool IsAjax(this HttpRequest request, string httpVerb = "")
     {
         if (request == null)
@@ -58,6 +68,33 @@ public static class HelperFunctions
         return request.Headers["X-Requested-With"] == "XMLHttpRequest";
     }
 
+    internal static string Md5Hash(string input)
+    {
+        using (var md5 = MD5.Create())
+        {
+            var bytes = Encoding.UTF8.GetBytes(input);
+            var hash = md5.ComputeHash(bytes);
+
+            var builder = new StringBuilder();
+            foreach (var c in hash)
+            {
+                builder.Append(c.ToString("X2"));
+            }
+
+            return builder.ToString();
+        }
+    }
+
+    internal static string ToKebabCase(string input)
+    {
+        if (input == null)
+        {
+            return null;
+        }
+
+        return Regex.Replace(input, "([a-z])([A-Z])", "$1-$2").ToLower();
+    }
+
     public static void Shuffle<T>(this IList<T> list)
     {
         var n = list.Count;
@@ -68,6 +105,29 @@ public static class HelperFunctions
             (list[k], list[n]) = (list[n], list[k]);
         }
     }
+
+    public static string GetFileExtension(string fileName)
+    {
+        if (string.IsNullOrWhiteSpace(fileName))
+        {
+            return null;
+        }
+
+        return fileName.Substring(fileName.LastIndexOf(".", StringComparison.Ordinal) + 1);
+    }
+
+    public static string GetMimeType(string fileName)
+    {
+        var provider = new FileExtensionContentTypeProvider();
+
+        if (!provider.TryGetContentType(fileName, out var contentType))
+        {
+            contentType = "application/octet-stream";
+        }
+
+        return contentType;
+    }
+
 
     public static T Get<T>(this ViewDataDictionary viedDataDictionary, string key)
     {

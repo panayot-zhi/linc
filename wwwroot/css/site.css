@@ -35,6 +35,10 @@ a.submit-link {
   /* keep */
 }
 
+.inner-page {
+  /* keep */
+}
+
 .section-title p span {
     color: #106eea;
 }
@@ -81,6 +85,8 @@ a.submit-link {
     overflow: hidden;
 }
 
+.inner-page .form-group,
+.inner-page .form-floating,
 .identity .form-group,
 .identity .form-floating {
     margin: 15px 5px;
@@ -183,11 +189,294 @@ section#testimonials {
 # Hero Section
 --------------------------------------------------------------*/
 #hero.hero-bg {
-    background-position-y: -40%;
+    background-position-y: -20%;
     background-repeat: no-repeat;
 }
 
 #hero.hero-en {
-    background-position-y: 160%;
+    background-position-y: 140%;
     background-repeat: no-repeat;
+}
+
+/*--------------------------------------------------------------
+# Source Box
+--------------------------------------------------------------*/
+.source-container {
+    padding-top: 20px;
+}
+.portfolio-details .portfolio-description li.source-container {
+}
+
+.portfolio-details .portfolio-description p.source-author {
+}
+
+.portfolio-details .portfolio-description p.source-title {
+    padding-right: 30px;
+}
+
+.portfolio-details .portfolio-description p.source-page {
+    position: relative;
+    border-bottom-style: dotted;
+    border-bottom-width: 2px;
+    margin-bottom: -20px;
+    top: -25px;
+}
+
+.portfolio-details .source-tab-content {
+    border: 1px solid #dee2e6;
+    margin-top: -1px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+
+/*--------------------------------------------------------------
+# Alphabet icons
+--------------------------------------------------------------*/
+.bx.source-letter.bx-a:before {
+    content: 'A';
+}
+.bx.source-letter.bx-b:before {
+    content: 'B';
+}
+.bx.source-letter.bx-c:before {
+    content: 'C';
+}
+.bx.source-letter.bx-d:before {
+    content: 'D';
+}
+.bx.source-letter.bx-e:before {
+    content: 'E';
+}
+.bx.source-letter.bx-f:before {
+    content: 'F';
+}
+.bx.source-letter.bx-g:before {
+    content: 'G';
+}
+.bx.source-letter.bx-h:before {
+    content: 'H';
+}
+.bx.source-letter.bx-i:before {
+    content: 'I';
+}
+.bx.source-letter.bx-j:before {
+    content: 'J';
+}
+.bx.source-letter.bx-k:before {
+    content: 'K';
+}
+.bx.source-letter.bx-l:before {
+    content: 'L';
+}
+.bx.source-letter.bx-m:before {
+    content: 'M';
+}
+.bx.source-letter.bx-n:before {
+    content: 'N';
+}
+.bx.source-letter.bx-o:before {
+    content: 'O';
+}
+.bx.source-letter.bx-p:before {
+    content: 'P';
+}
+.bx.source-letter.bx-q:before {
+    content: 'Q';
+}
+.bx.source-letter.bx-r:before {
+    content: 'R';
+}
+.bx.source-letter.bx-s:before {
+    content: 'S';
+}
+.bx.source-letter.bx-t:before {
+    content: 'T';
+}
+.bx.source-letter.bx-u:before {
+    content: 'U';
+}
+.bx.source-letter.bx-v:before {
+    content: 'V';
+}
+.bx.source-letter.bx-w:before {
+    content: 'W';
+}
+.bx.source-letter.bx-x:before {
+    content: 'X';
+}
+.bx.source-letter.bx-y:before {
+    content: 'X';
+}
+.bx.source-letter.bx-z:before {
+    content: 'Z';
+}
+
+.bx.source-letter.bx-а:before {
+    content: 'А';
+}
+.bx.source-letter.bx-б:before {
+    content: 'Б';
+}
+.bx.source-letter.bx-в:before {
+    content: 'В';
+}
+.bx.source-letter.bx-г:before {
+    content: 'Г';
+}
+.bx.source-letter.bx-д:before {
+    content: 'Д';
+}
+.bx.source-letter.bx-е:before {
+    content: 'Е';
+}
+.bx.source-letter.bx-ж:before {
+    content: 'Ж';
+}
+.bx.source-letter.bx-з:before {
+    content: 'З';
+}
+.bx.source-letter.bx-и:before {
+    content: 'И';
+}
+.bx.source-letter.bx-й:before {
+    content: 'Й';
+}
+.bx.source-letter.bx-к:before {
+    content: 'К';
+}
+.bx.source-letter.bx-л:before {
+    content: 'Л';
+}
+.bx.source-letter.bx-м:before {
+    content: 'М';
+}
+.bx.source-letter.bx-н:before {
+    content: 'Н';
+}
+.bx.source-letter.bx-о:before {
+    content: 'О';
+}
+.bx.source-letter.bx-п:before {
+    content: 'П';
+}
+.bx.source-letter.bx-р:before {
+    content: 'Р';
+}
+.bx.source-letter.bx-с:before {
+    content: 'С';
+}
+.bx.source-letter.bx-т:before {
+    content: 'Т';
+}
+.bx.source-letter.bx-у:before {
+    content: 'У';
+}
+.bx.source-letter.bx-ф:before {
+    content: 'Ф';
+}
+.bx.source-letter.bx-х:before {
+    content: 'Х';
+}
+.bx.source-letter.bx-ц:before {
+    content: 'Ц';
+}
+.bx.source-letter.bx-ч:before {
+    content: 'Ч';
+}
+.bx.source-letter.bx-ш:before {
+    content: 'Ш';
+}
+.bx.source-letter.bx-щ:before {
+    content: 'Щ';
+}
+.bx.source-letter.bx-ъ:before {
+    content: 'Ъ';
+}
+.bx.source-letter.bx-ь:before {
+    content: 'Ь';
+}
+.bx.source-letter.bx-ю:before {
+    content: 'Ю';
+}
+.bx.source-letter.bx-я:before {
+    content: 'Я';
+}
+
+/*--------------------------------------------------------------
+# Admin Section
+--------------------------------------------------------------*/
+
+.admin-top {
+    padding: 30px 0;
+    background: #fff;
+}
+
+.admin-top h4 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #444444;
+    position: relative;
+    padding-bottom: 12px;
+}
+
+.admin-top .admin-links {
+     margin-bottom: 30px;
+}
+
+.admin-top .admin-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.admin-top .admin-links ul i {
+    padding-right: 2px;
+    color: #106eea;
+    font-size: 18px;
+    line-height: 1;
+}
+
+.admin-top .admin-links ul li {
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+}
+
+.admin-top .admin-links ul li:first-child {
+     padding-top: 0;
+}
+
+.admin-top .admin-links ul a {
+    color: #777777;
+    transition: 0.3s;
+    display: inline-block;
+    line-height: 1;
+}
+
+.admin-top .admin-links ul a:hover {
+    text-decoration: none;
+    color: #106eea;
+}
+
+.admin-top .social-links a {
+    font-size: 18px;
+    display: inline-block;
+    background: #106eea;
+    color: #fff;
+    line-height: 1;
+    padding: 8px 0;
+    margin-right: 4px;
+    border-radius: 4px;
+    text-align: center;
+    width: 36px;
+    height: 36px;
+    transition: 0.3s;
+}
+
+.admin-top .social-links a:hover {
+    background: #3b8af2;
+    color: #fff;
+    text-decoration: none;
 }

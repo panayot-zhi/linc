@@ -14,9 +14,19 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     public readonly DbContextOptions<ApplicationDbContext> Options;
 
 
+
+    public DbSet<ApplicationIssue> Issues { get; set; }
+
+    public DbSet<ApplicationSource> Sources { get; set; }
+
+    public DbSet<ApplicationDocument> Documents { get; set; }
+
+    public DbSet<ApplicationDossier> Dossiers { get; set; }
+
     public DbSet<ApplicationLanguage> Languages { get; set; }
 
     public DbSet<ApplicationStringResource> StringResources { get; set; }
+
 
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
@@ -145,5 +155,19 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
                 UserId = SiteConstant.ZeroGuid,
                 RoleId = SiteConstant.ZeroGuid
             });
+
+        // Convert enumerations to string
+
+        builder.Entity<ApplicationDocument>()
+            .Property(x => x.DocumentType)
+            .HasConversion<string>();
+        
+        builder.Entity<ApplicationDossier>()
+            .Property(x => x.Status)
+            .HasConversion<string>();
+
+        builder.Entity<ApplicationUser>()
+            .Property(x => x.AvatarType)
+            .HasConversion<string>();
     }
 }

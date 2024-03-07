@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using linc.Data;
 
@@ -10,9 +11,10 @@ using linc.Data;
 namespace linc.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240225162646_IssueAndDossier")]
+    partial class IssueAndDossier
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -241,14 +243,14 @@ namespace linc.Migrations
                         .HasColumnType("varchar(127)")
                         .HasColumnName("author_id");
 
-                    b.Property<string>("AuthorNotes")
-                        .HasMaxLength(1024)
-                        .HasColumnType("varchar(1024)")
-                        .HasColumnName("author_notes");
-
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime(6)")
                         .HasColumnName("date_created");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(1024)
+                        .HasColumnType("varchar(1024)")
+                        .HasColumnName("description");
 
                     b.Property<string>("FirstName")
                         .HasMaxLength(255)
@@ -272,6 +274,11 @@ namespace linc.Migrations
                         .HasColumnType("datetime(6)")
                         .HasColumnName("last_updated");
 
+                    b.Property<string>("Notes")
+                        .HasMaxLength(1024)
+                        .HasColumnType("varchar(1024)")
+                        .HasColumnName("notes");
+
                     b.Property<int>("StartingPage")
                         .HasColumnType("int")
                         .HasColumnName("starting_page");
@@ -280,11 +287,6 @@ namespace linc.Migrations
                         .HasMaxLength(512)
                         .HasColumnType("varchar(512)")
                         .HasColumnName("title");
-
-                    b.Property<string>("TitleNotes")
-                        .HasMaxLength(1024)
-                        .HasColumnType("varchar(1024)")
-                        .HasColumnName("title_notes");
 
                     b.HasKey("Id")
                         .HasName("pk_sources");
@@ -763,7 +765,7 @@ namespace linc.Migrations
                         .HasConstraintName("fk_sources_users_author_id");
 
                     b.HasOne("linc.Data.ApplicationIssue", "Issue")
-                        .WithMany("Sources")
+                        .WithMany()
                         .HasForeignKey("IssueId")
                         .HasConstraintName("fk_sources_issues_issue_id");
 
@@ -857,11 +859,6 @@ namespace linc.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_asp_net_user_tokens_asp_net_users_user_id");
-                });
-
-            modelBuilder.Entity("linc.Data.ApplicationIssue", b =>
-                {
-                    b.Navigation("Sources");
                 });
 
             modelBuilder.Entity("linc.Data.ApplicationLanguage", b =>

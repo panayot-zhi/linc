@@ -124,6 +124,42 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Създаване на брой.
+        /// </summary>
+        public static string Admin_CreateIssue {
+            get {
+                return ResourceManager.GetString("Admin_CreateIssue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Създаване на запис в индекса.
+        /// </summary>
+        public static string Admin_CreateSource {
+            get {
+                return ResourceManager.GetString("Admin_CreateSource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Административни операции.
+        /// </summary>
+        public static string AdminIndex_Operations_Title {
+            get {
+                return ResourceManager.GetString("AdminIndex_Operations_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Администрация.
+        /// </summary>
+        public static string AdminIndex_Title {
+            get {
+                return ResourceManager.GetString("AdminIndex_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Данните, които изпращате са невалидни..
         /// </summary>
         public static string AlertMessage_400Warning {
@@ -219,6 +255,15 @@ namespace linc.Resources {
         public static string Anonymous_Label {
             get {
                 return ResourceManager.GetString("Anonymous_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Автори.
+        /// </summary>
+        public static string AuthorsSection_Title {
+            get {
+                return ResourceManager.GetString("AuthorsSection_Title", resourceCulture);
             }
         }
         
@@ -990,7 +1035,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Препоръчани.
+        ///   Looks up a localized string similar to Случайни.
         /// </summary>
         public static string Footer_Suggestions_Title {
             get {
@@ -1180,6 +1225,132 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Бележки.
+        /// </summary>
+        public static string Issue_CreatePage_Notes_Title {
+            get {
+                return ResourceManager.GetString("Issue_CreatePage_Notes_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Създаване на нов брой.
+        /// </summary>
+        public static string Issue_CreatePage_SubTitle {
+            get {
+                return ResourceManager.GetString("Issue_CreatePage_SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Създаване на брой.
+        /// </summary>
+        public static string Issue_CreatePage_Title {
+            get {
+                return ResourceManager.GetString("Issue_CreatePage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Преглед на брой.
+        /// </summary>
+        public static string Issue_Details_Label {
+            get {
+                return ResourceManager.GetString("Issue_Details_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Съдържание.
+        /// </summary>
+        public static string Issue_DetailsPage_ContentTitle {
+            get {
+                return ResourceManager.GetString("Issue_DetailsPage_ContentTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Информация за броя.
+        /// </summary>
+        public static string Issue_DetailsPage_InfoTitle {
+            get {
+                return ResourceManager.GetString("Issue_DetailsPage_InfoTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Създаден.
+        /// </summary>
+        public static string Issue_DetailsPage_IssueCreated {
+            get {
+                return ResourceManager.GetString("Issue_DetailsPage_IssueCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Допълнителна информация.
+        /// </summary>
+        public static string Issue_DetailsPage_IssueDescription {
+            get {
+                return ResourceManager.GetString("Issue_DetailsPage_IssueDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ISSN.
+        /// </summary>
+        public static string Issue_DetailsPage_IssueISSN {
+            get {
+                return ResourceManager.GetString("Issue_DetailsPage_IssueISSN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пореден номер.
+        /// </summary>
+        public static string Issue_DetailsPage_IssueNumber {
+            get {
+                return ResourceManager.GetString("Issue_DetailsPage_IssueNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Свали PDF.
+        /// </summary>
+        public static string Issue_DetailsPage_IssuePdf {
+            get {
+                return ResourceManager.GetString("Issue_DetailsPage_IssuePdf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Детайли за брой.
+        /// </summary>
+        public static string Issue_DetailsPage_IssueTitle {
+            get {
+                return ResourceManager.GetString("Issue_DetailsPage_IssueTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Преглед на брой №{0}.
+        /// </summary>
+        public static string Issue_DetailsPage_PageTitle {
+            get {
+                return ResourceManager.GetString("Issue_DetailsPage_PageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Преглед на брой.
+        /// </summary>
+        public static string Issue_DetailsPage_Title {
+            get {
+                return ResourceManager.GetString("Issue_DetailsPage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Съдържание.
         /// </summary>
         public static string Issue_IndexPage_Label {
@@ -1203,6 +1374,69 @@ namespace linc.Resources {
         public static string Issue_Number_Label {
             get {
                 return ResourceManager.GetString("Issue_Number_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Корица на брой №{0}, {1}.
+        /// </summary>
+        public static string Issue_Zoom_Label {
+            get {
+                return ResourceManager.GetString("Issue_Zoom_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Прикачете изображение с корица.
+        /// </summary>
+        public static string IssueCreate_CoverPage {
+            get {
+                return ResourceManager.GetString("IssueCreate_CoverPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Допълнителна информация.
+        /// </summary>
+        public static string IssueCreate_Description {
+            get {
+                return ResourceManager.GetString("IssueCreate_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Прикачете страници със съдържание.
+        /// </summary>
+        public static string IssueCreate_IndexPages {
+            get {
+                return ResourceManager.GetString("IssueCreate_IndexPages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Пореден номер.
+        /// </summary>
+        public static string IssueCreate_IssueNumber {
+            get {
+                return ResourceManager.GetString("IssueCreate_IssueNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Прикачете броят като PDF.
+        /// </summary>
+        public static string IssueCreate_PdfFile {
+            get {
+                return ResourceManager.GetString("IssueCreate_PdfFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Година на издаване.
+        /// </summary>
+        public static string IssueCreate_ReleaseYear {
+            get {
+                return ResourceManager.GetString("IssueCreate_ReleaseYear", resourceCulture);
             }
         }
         
@@ -1891,6 +2125,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Автори.
+        /// </summary>
+        public static string NavItem_Authors {
+            get {
+                return ResourceManager.GetString("NavItem_Authors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Категории.
         /// </summary>
         public static string NavItem_Categories {
@@ -2312,6 +2555,34 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;p&gt;Ако сте открили несъответсвие или грешка, моля, докладвайте я на администратора за да може да адресираме проблема възможно най-бързо.&lt;/p&gt;
+        ///&lt;p&gt;Моля, бъдете подробни в информацията, която предоставяте, и включете екранни снимки, ако е приложимо.&lt;/p&gt;.
+        /// </summary>
+        public static string ReportBug_Description {
+            get {
+                return ResourceManager.GetString("ReportBug_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Докладвай за нередност.
+        /// </summary>
+        public static string ReportBug_Title {
+            get {
+                return ResourceManager.GetString("ReportBug_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Докладвай.
+        /// </summary>
+        public static string ReportBugSection_SubmitButton_Label {
+            get {
+                return ResourceManager.GetString("ReportBugSection_SubmitButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Писмото за потвърждение беше изпратено повторно. Моля, проверете електронната си поща..
         /// </summary>
         public static string ResendEmailConfirmation_SuccessMessage {
@@ -2504,7 +2775,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Борд на редакторите.
+        ///   Looks up a localized string similar to Редакционен борд.
         /// </summary>
         public static string SiteRole_EditorsBoard {
             get {
@@ -2563,6 +2834,96 @@ namespace linc.Resources {
         public static string SiteRole_Users {
             get {
                 return ResourceManager.GetString("SiteRole_Users", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Създаване на .
+        /// </summary>
+        public static string Source_CreatePage_SubTitle {
+            get {
+                return ResourceManager.GetString("Source_CreatePage_SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Създаване на източник.
+        /// </summary>
+        public static string Source_CreatePage_Title {
+            get {
+                return ResourceManager.GetString("Source_CreatePage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Бележки за автора.
+        /// </summary>
+        public static string SourceCreate_AuthorNotes {
+            get {
+                return ResourceManager.GetString("SourceCreate_AuthorNotes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Име.
+        /// </summary>
+        public static string SourceCreate_FirstName {
+            get {
+                return ResourceManager.GetString("SourceCreate_FirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Брой.
+        /// </summary>
+        public static string SourceCreate_IssueId {
+            get {
+                return ResourceManager.GetString("SourceCreate_IssueId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Език.
+        /// </summary>
+        public static string SourceCreate_LanguageId {
+            get {
+                return ResourceManager.GetString("SourceCreate_LanguageId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Фамилия.
+        /// </summary>
+        public static string SourceCreate_LastName {
+            get {
+                return ResourceManager.GetString("SourceCreate_LastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Начална страница.
+        /// </summary>
+        public static string SourceCreate_StartingPage {
+            get {
+                return ResourceManager.GetString("SourceCreate_StartingPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Заглавие.
+        /// </summary>
+        public static string SourceCreate_Title {
+            get {
+                return ResourceManager.GetString("SourceCreate_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Бележки към ръкописа.
+        /// </summary>
+        public static string SourceCreate_TitleNotes {
+            get {
+                return ResourceManager.GetString("SourceCreate_TitleNotes", resourceCulture);
             }
         }
         

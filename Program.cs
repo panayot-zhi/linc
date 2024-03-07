@@ -1,4 +1,5 @@
 using linc.Utility;
+using Microsoft.Extensions.FileProviders;
 using Serilog;
 
 namespace linc;
@@ -45,6 +46,14 @@ public class Program
         app.UseStatusCodePagesWithReExecute("/Home/Error/{0}");
         app.UseHttpsRedirection();
         app.UseStaticFiles();
+
+        var repositoryPath = configuration["ApplicationConfig:RepositoryPath"];
+        var issuesFolderPath = Path.Combine(repositoryPath, SiteConstant.IssuesFolderName);
+        app.UseStaticFiles(new StaticFileOptions()
+        {
+            FileProvider = new PhysicalFileProvider(issuesFolderPath),
+            RequestPath = new PathString($"/{SiteConstant.IssuesFolderName}")
+        });
 
         app.UseRouting();
         app.UseAuthentication();

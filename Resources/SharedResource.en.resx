@@ -138,6 +138,18 @@
   <data name="AboutSection_Title" xml:space="preserve">
     <value>About the journal</value>
   </data>
+  <data name="AdminIndex_Operations_Title" xml:space="preserve">
+    <value>Administrative operations</value>
+  </data>
+  <data name="AdminIndex_Title" xml:space="preserve">
+    <value>Administration</value>
+  </data>
+  <data name="Admin_CreateIssue" xml:space="preserve">
+    <value>Create an issue</value>
+  </data>
+  <data name="Admin_CreateSource" xml:space="preserve">
+    <value>Create index entry</value>
+  </data>
   <data name="AlertMessage_400Warning" xml:space="preserve">
     <value>The data that you are sending is invalid.</value>
   </data>
@@ -170,6 +182,9 @@
   </data>
   <data name="Anonymous_Label" xml:space="preserve">
     <value>Anonymous</value>
+  </data>
+  <data name="AuthorsSection_Title" xml:space="preserve">
+    <value>Authors</value>
   </data>
   <data name="Board_Aleksander.Mikołajczak_Member" xml:space="preserve">
     <value>Проф. дн Александер Войчех Миколайчак</value>
@@ -518,7 +533,7 @@
     <value>Partners</value>
   </data>
   <data name="Footer_Suggestions_Title" xml:space="preserve">
-    <value>Suggested</value>
+    <value>Random</value>
   </data>
   <data name="Footer_UsefulLinks_Codex" xml:space="preserve">
     <value>Code of Ethics</value>
@@ -584,6 +599,66 @@
   <data name="Index_Title" xml:space="preserve">
     <value>Home</value>
   </data>
+  <data name="IssueCreate_CoverPage" xml:space="preserve">
+    <value>Attach image with the cover page</value>
+  </data>
+  <data name="IssueCreate_Description" xml:space="preserve">
+    <value>Additional information</value>
+  </data>
+  <data name="IssueCreate_IndexPages" xml:space="preserve">
+    <value>Attach images with the index pages</value>
+  </data>
+  <data name="IssueCreate_IssueNumber" xml:space="preserve">
+    <value>Issue number</value>
+  </data>
+  <data name="IssueCreate_PdfFile" xml:space="preserve">
+    <value>Attach the issue as PDF</value>
+  </data>
+  <data name="IssueCreate_ReleaseYear" xml:space="preserve">
+    <value>Release year</value>
+  </data>
+  <data name="Issue_CreatePage_Notes_Title" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="Issue_CreatePage_SubTitle" xml:space="preserve">
+    <value>Create new issue</value>
+  </data>
+  <data name="Issue_CreatePage_Title" xml:space="preserve">
+    <value>Create issue</value>
+  </data>
+  <data name="Issue_DetailsPage_ContentTitle" xml:space="preserve">
+    <value>Contents</value>
+  </data>
+  <data name="Issue_DetailsPage_InfoTitle" xml:space="preserve">
+    <value>Information about the issue</value>
+  </data>
+  <data name="Issue_DetailsPage_IssueCreated" xml:space="preserve">
+    <value>Created</value>
+  </data>
+  <data name="Issue_DetailsPage_IssueDescription" xml:space="preserve">
+    <value>Additional information</value>
+  </data>
+  <data name="Issue_DetailsPage_IssueISSN" xml:space="preserve">
+    <value>ISSN</value>
+  </data>
+  <data name="Issue_DetailsPage_IssueNumber" xml:space="preserve">
+    <value>Issue number</value>
+  </data>
+  <data name="Issue_DetailsPage_IssuePdf" xml:space="preserve">
+    <value>Download PDF</value>
+  </data>
+  <data name="Issue_DetailsPage_IssueTitle" xml:space="preserve">
+    <value>Issue details</value>
+  </data>
+  <data name="Issue_DetailsPage_PageTitle" xml:space="preserve">
+    <value>#{0} Issue details</value>
+  </data>
+  <data name="Issue_DetailsPage_Title" xml:space="preserve">
+    <value>View issue</value>
+  </data>
+  <data name="Issue_Details_Label" xml:space="preserve">
+    <value>View issue</value>
+  </data>
   <data name="Issue_IndexPage_Label" xml:space="preserve">
     <value>Contents</value>
   </data>
@@ -592,6 +667,9 @@
   </data>
   <data name="Issue_Number_Label" xml:space="preserve">
     <value>Issue #</value>
+  </data>
+  <data name="Issue_Zoom_Label" xml:space="preserve">
+    <value>Cover page, issue #{0}, {1}</value>
   </data>
   <data name="LibraryIndex_Title" xml:space="preserve">
     <value>Library</value>
@@ -838,6 +916,9 @@
   <data name="NavItem_About" xml:space="preserve">
     <value>About</value>
   </data>
+  <data name="NavItem_Authors" xml:space="preserve">
+    <value>Authors</value>
+  </data>
   <data name="NavItem_Categories" xml:space="preserve">
     <value>Categories</value>
   </data>
@@ -989,6 +1070,16 @@
   <data name="Register_EmailConfirmation_Required" xml:space="preserve">
     <value>We have sent you a letter of confirmation. Please, prior to entering, confirm your email with the link inside it.</value>
   </data>
+  <data name="ReportBugSection_SubmitButton_Label" xml:space="preserve">
+    <value>Report</value>
+  </data>
+  <data name="ReportBug_Description" xml:space="preserve">
+    <value>&lt;p&gt;If you have encountered an issue or an inconsistency, please, report this to the site administrator so he can take up measures immediately.&lt;/p&gt;
+&lt;p&gt;Please, be detailed in the information that you provide and include screenshots, if applicable.&lt;/p&gt;</value>
+  </data>
+  <data name="ReportBug_Title" xml:space="preserve">
+    <value>Report a bug</value>
+  </data>
   <data name="ResendEmailConfirmationPage_Button_Label" xml:space="preserve">
     <value>Resend</value>
   </data>
@@ -1075,6 +1166,30 @@
   </data>
   <data name="SiteRole_Users" xml:space="preserve">
     <value>Users</value>
+  </data>
+  <data name="SourceCreate_AuthorNotes" xml:space="preserve">
+    <value>Notes for the author</value>
+  </data>
+  <data name="SourceCreate_FirstName" xml:space="preserve">
+    <value>First name</value>
+  </data>
+  <data name="SourceCreate_IssueId" xml:space="preserve">
+    <value>Issue</value>
+  </data>
+  <data name="SourceCreate_LanguageId" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="SourceCreate_LastName" xml:space="preserve">
+    <value>Last name</value>
+  </data>
+  <data name="SourceCreate_StartingPage" xml:space="preserve">
+    <value>Starting page</value>
+  </data>
+  <data name="SourceCreate_Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="SourceCreate_TitleNotes" xml:space="preserve">
+    <value>Notes to the manuscript</value>
   </data>
   <data name="StatusMessage_Error_Prefix" xml:space="preserve">
     <value>Error:</value>
