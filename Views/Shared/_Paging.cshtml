@@ -3,10 +3,10 @@
 
 @{
     // Because most resources are chronologically ordered
-    // Back (Назад) makes more sense for advancing pages
+    // Back makes more sense for advancing pages
 
-    var nextLabel = ViewData["Next"] ?? HtmlLocalizer["NextPage_label"];
-    var previousLabel = ViewData["Previous"] ?? HtmlLocalizer["previousPage_label"];
+    var nextLabel = ViewData["Next"] ?? HtmlLocalizer["NextPage_Label"];
+    var previousLabel = ViewData["Previous"] ?? HtmlLocalizer["PreviousPage_Label"];
 
     var hasNext = Model.HasNextPage;
     var hasPrevious = Model.HasPreviousPage;
@@ -29,7 +29,7 @@
     else
     {
         var currentPageNumberParameter = $"{pageParameter}={currentStep}";
-        if (queryString.Value.Contains(currentPageNumberParameter))
+        if (queryString.Value != null && queryString.Value.Contains(currentPageNumberParameter))
         {
             urlStringFormat = Context.Request.GetEncodedUrl().Replace(currentPageNumberParameter, $"{pageParameter}={{0}}");
         }

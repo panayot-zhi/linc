@@ -329,7 +329,7 @@ section#testimonials {
     content: 'X';
 }
 .bx.source-letter.bx-y:before {
-    content: 'X';
+    content: 'Y';
 }
 .bx.source-letter.bx-z:before {
     content: 'Z';
@@ -538,4 +538,12 @@ section#testimonials {
 .alphabet-sort .alphabet-letter a:hover,
 .alphabet-sort .alphabet-letter a:focus {
     color: #55a773;
+}
+
+/*--------------------------------------------------------------
+# Sources
+--------------------------------------------------------------*/
+
+#sources .icon-box {
+    width: 100%;
 }
