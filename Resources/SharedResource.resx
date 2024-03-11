@@ -1254,6 +1254,15 @@
   <data name="All_Label" xml:space="preserve">
     <value>Всички</value>
   </data>
+  <data name="NextPage_Label" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="PreviousPage_Label" xml:space="preserve">
+    <value>Напред</value>
+  </data>
+  <data name="Sources_All_Description" xml:space="preserve">
+    <value>Преглед на всички автори</value>
+  </data>
   <data name="Source_IndexPage_FilterByIssues_Title" xml:space="preserve">
     <value>По броеве</value>
   </data>

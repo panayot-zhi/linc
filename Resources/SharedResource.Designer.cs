@@ -2368,6 +2368,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Назад.
+        /// </summary>
+        public static string NextPage_Label {
+            get {
+                return ResourceManager.GetString("NextPage_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Всички.
         /// </summary>
         public static string PortfolioSection_Filter_All {
@@ -2391,6 +2400,15 @@ namespace linc.Resources {
         public static string PortfolioSection_Title {
             get {
                 return ResourceManager.GetString("PortfolioSection_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Напред.
+        /// </summary>
+        public static string PreviousPage_Label {
+            get {
+                return ResourceManager.GetString("PreviousPage_Label", resourceCulture);
             }
         }
         
@@ -2978,6 +2996,15 @@ namespace linc.Resources {
         public static string SourceCreate_TitleNotes {
             get {
                 return ResourceManager.GetString("SourceCreate_TitleNotes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Преглед на всички автори.
+        /// </summary>
+        public static string Sources_All_Description {
+            get {
+                return ResourceManager.GetString("Sources_All_Description", resourceCulture);
             }
         }
         
