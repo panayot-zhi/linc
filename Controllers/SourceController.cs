@@ -2,11 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using linc.Models.ConfigModels;
 using linc.Models.Enumerations;
-using linc.Models.ViewModels.Issue;
 using linc.Utility;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Options;
-using Microsoft.EntityFrameworkCore;
+using linc.Models.ViewModels.Source;
 
 namespace linc.Controllers
 {
@@ -31,9 +30,20 @@ namespace linc.Controllers
             _config = configOptions.Value;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? page, int? year, string filter, int? issueId)
         {
-            throw new NotImplementedException();
+            filter = System.Net.WebUtility.UrlDecode(filter);
+            var viewModel = await _sourceService.GetSourcesPagedAsync(filter: filter, year: year, issueId: issueId, 
+                pageIndex: page);
+
+            viewModel.YearFilter = await _sourceService.GetSourcesCountByYears();
+            viewModel.IssuesFilter = await _sourceService.GetSourcesCountByIssues();
+
+            viewModel.CurrentIssueId = issueId;
+            viewModel.CurrentAuthorsFilter = filter;
+            viewModel.CurrentYearFilter = year;
+
+            return View(viewModel);
         }
 
         // public async Task<IActionResult> Details(int? id)
@@ -195,7 +205,7 @@ namespace linc.Controllers
 
         public async Task<List<SelectListItem>> GetIssuesAsync()
         {
-            var issues = await _sourceService.GetIssuesAsync();
+            var issues = await _issuesService.GetIssuesAsync();
             return issues.Select(x =>
                     new SelectListItem($"{x.IssueNumber}/{x.ReleaseYear}", x.Id.ToString()))
                 .ToList();

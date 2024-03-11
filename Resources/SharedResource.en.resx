@@ -180,6 +180,9 @@
   <data name="AlertMessage_Warning_Title" xml:space="preserve">
     <value>Attention!</value>
   </data>
+  <data name="All_Label" xml:space="preserve">
+    <value>All</value>
+  </data>
   <data name="Anonymous_Label" xml:space="preserve">
     <value>Anonymous</value>
   </data>
@@ -997,6 +1000,9 @@
   <data name="NewsletterSection_Title" xml:space="preserve">
     <value>Subscribe for new issues</value>
   </data>
+  <data name="NextPage_Label" xml:space="preserve">
+    <value>Next</value>
+  </data>
   <data name="PortfolioSection_Filter_All" xml:space="preserve">
     <value>All</value>
   </data>
@@ -1005,6 +1011,9 @@
   </data>
   <data name="PortfolioSection_Title" xml:space="preserve">
     <value>Issues</value>
+  </data>
+  <data name="PreviousPage_Label" xml:space="preserve">
+    <value>Previous</value>
   </data>
   <data name="RegisterConfirmation_InfoMessage" xml:space="preserve">
     <value>We've sent you a confirmation email. Please, follow the link inside it to confirm your account.</value>
@@ -1190,6 +1199,24 @@
   </data>
   <data name="SourceCreate_TitleNotes" xml:space="preserve">
     <value>Notes to the manuscript</value>
+  </data>
+  <data name="Sources_All_Description" xml:space="preserve">
+    <value>View all authors</value>
+  </data>
+  <data name="Source_IndexPage_FilterByIssues_Title" xml:space="preserve">
+    <value>By issues</value>
+  </data>
+  <data name="Source_IndexPage_FilterByYears_Title" xml:space="preserve">
+    <value>By years</value>
+  </data>
+  <data name="Source_IndexPage_NoResults" xml:space="preserve">
+    <value>No results for the given criteria.</value>
+  </data>
+  <data name="Source_IndexPage_SubTitle" xml:space="preserve">
+    <value>Library</value>
+  </data>
+  <data name="Source_IndexPage_Title" xml:space="preserve">
+    <value>Authors</value>
   </data>
   <data name="StatusMessage_Error_Prefix" xml:space="preserve">
     <value>Error:</value>

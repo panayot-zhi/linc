@@ -250,6 +250,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Всички.
+        /// </summary>
+        public static string All_Label {
+            get {
+                return ResourceManager.GetString("All_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Анонимен.
         /// </summary>
         public static string Anonymous_Label {
@@ -2359,6 +2368,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Назад.
+        /// </summary>
+        public static string NextPage_Label {
+            get {
+                return ResourceManager.GetString("NextPage_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Всички.
         /// </summary>
         public static string PortfolioSection_Filter_All {
@@ -2382,6 +2400,15 @@ namespace linc.Resources {
         public static string PortfolioSection_Title {
             get {
                 return ResourceManager.GetString("PortfolioSection_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Напред.
+        /// </summary>
+        public static string PreviousPage_Label {
+            get {
+                return ResourceManager.GetString("PreviousPage_Label", resourceCulture);
             }
         }
         
@@ -2856,6 +2883,51 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to По броеве.
+        /// </summary>
+        public static string Source_IndexPage_FilterByIssues_Title {
+            get {
+                return ResourceManager.GetString("Source_IndexPage_FilterByIssues_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to По години.
+        /// </summary>
+        public static string Source_IndexPage_FilterByYears_Title {
+            get {
+                return ResourceManager.GetString("Source_IndexPage_FilterByYears_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Няма намерени резултати за избраните критерии..
+        /// </summary>
+        public static string Source_IndexPage_NoResults {
+            get {
+                return ResourceManager.GetString("Source_IndexPage_NoResults", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Библиотека.
+        /// </summary>
+        public static string Source_IndexPage_SubTitle {
+            get {
+                return ResourceManager.GetString("Source_IndexPage_SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Автори.
+        /// </summary>
+        public static string Source_IndexPage_Title {
+            get {
+                return ResourceManager.GetString("Source_IndexPage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Бележки за автора.
         /// </summary>
         public static string SourceCreate_AuthorNotes {
@@ -2924,6 +2996,15 @@ namespace linc.Resources {
         public static string SourceCreate_TitleNotes {
             get {
                 return ResourceManager.GetString("SourceCreate_TitleNotes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Преглед на всички автори.
+        /// </summary>
+        public static string Sources_All_Description {
+            get {
+                return ResourceManager.GetString("Sources_All_Description", resourceCulture);
             }
         }
         

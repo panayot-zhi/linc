@@ -38,6 +38,11 @@ namespace linc.Services
                 .FirstOrDefaultAsync(x => x.Id == id);
         }
 
+        public async Task<List<ApplicationIssue>> GetIssuesAsync()
+        {
+            return await _context.Issues.ToListAsync();
+        }
+
         public async Task<int> CreateIssueAsync(IssueCreateViewModel input)
         {
             var issueNumber = input.IssueNumber.Value;

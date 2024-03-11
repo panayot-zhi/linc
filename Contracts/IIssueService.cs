@@ -9,6 +9,8 @@ namespace linc.Contracts
 
         Task<ApplicationIssue> GetIssueAsync(int id);
 
+        Task<List<ApplicationIssue>> GetIssuesAsync();
+
         Task<int> CreateIssueAsync(IssueCreateViewModel input);
     }
 }
