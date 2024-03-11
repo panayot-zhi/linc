@@ -1,5 +1,6 @@
 ﻿using linc.Contracts;
 using linc.Data;
+using linc.Models.ViewModels.Home;
 using linc.Models.ViewModels.Source;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -21,9 +22,81 @@ namespace linc.Services
             throw new NotImplementedException();
         }
 
-        public async Task<List<ApplicationIssue>> GetIssuesAsync()
+        public async Task<SourceIndexViewModel> GetSourcesPagedAsync(string filter, int? year, int? issueId, int? pageIndex, int pageSize = 10)
         {
-            return await _context.Issues.ToListAsync();
+            if (!pageIndex.HasValue)
+            {
+                pageIndex = 1;
+            }
+
+            var sourcesDbSet = _context.Sources;
+            var query = sourcesDbSet.AsQueryable();
+
+            if (issueId.HasValue)
+            {
+                query = query.Where(x => x.IssueId == issueId.Value);
+            }
+
+            if (year.HasValue)
+            {
+                query = query.Where(x => x.DateCreated.Year == year.Value);
+            }
+
+            if (!string.IsNullOrEmpty(filter))
+            {
+                if ("*".Equals(filter))
+                {
+                    // skip
+                }
+                else
+                {
+                    query = query.Where(x => x.FirstName.StartsWith(filter));
+                    query = query.OrderBy(x => x.FirstName);
+                }
+            }
+            else
+            {
+                query = query.OrderBy(x => x.DateCreated).
+                    ThenByDescending(x => x.LastUpdated)
+                    .ThenBy(x => x.StartingPage);
+            }
+
+            var count = await query.CountAsync();
+
+            var sources = query
+                .Skip((pageIndex.Value - 1) * pageSize)
+                .Take(pageSize);
+
+            return new SourceIndexViewModel(count, pageIndex.Value, pageSize)
+            {
+                Records = await sources.ToListAsync()
+            };
+        }
+
+        public async Task<List<SourceCountByYears>> GetSourcesCountByYears()
+        {
+            return await _context.Sources
+                .Include(x => x.Issue)
+                .GroupBy(x => x.Issue.ReleaseYear)
+                .Select(x => new SourceCountByYears()
+                {
+                    Year = x.Key,
+                    Count = x.Count()
+
+                }).ToListAsync();
+        }
+
+        public async Task<List<SourceCountByIssues>> GetSourcesCountByIssues()
+        {
+            return await _context.Sources
+                .Where(source => source.IssueId.HasValue)
+                .GroupBy(source => source.IssueId)
+                .Select(group => new SourceCountByIssues
+                {
+                    IssueId = group.Key.Value,
+                    IssueTitle = $"{group.First().Issue.IssueNumber}/{group.First().Issue.DateCreated.Year}",
+                    Count = group.Count()
+                }).ToListAsync();
         }
 
         public async Task<int> CreateSourceAsync(SourceCreateViewModel input)
