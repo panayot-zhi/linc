@@ -180,6 +180,9 @@
   <data name="AlertMessage_Warning_Title" xml:space="preserve">
     <value>Attention!</value>
   </data>
+  <data name="All_Label" xml:space="preserve">
+    <value>All</value>
+  </data>
   <data name="Anonymous_Label" xml:space="preserve">
     <value>Anonymous</value>
   </data>
@@ -1190,6 +1193,21 @@
   </data>
   <data name="SourceCreate_TitleNotes" xml:space="preserve">
     <value>Notes to the manuscript</value>
+  </data>
+  <data name="Source_IndexPage_FilterByIssues_Title" xml:space="preserve">
+    <value>By issues</value>
+  </data>
+  <data name="Source_IndexPage_FilterByYears_Title" xml:space="preserve">
+    <value>By years</value>
+  </data>
+  <data name="Source_IndexPage_NoResults" xml:space="preserve">
+    <value>No results for the given criteria.</value>
+  </data>
+  <data name="Source_IndexPage_SubTitle" xml:space="preserve">
+    <value>Library</value>
+  </data>
+  <data name="Source_IndexPage_Title" xml:space="preserve">
+    <value>Authors</value>
   </data>
   <data name="StatusMessage_Error_Prefix" xml:space="preserve">
     <value>Error:</value>

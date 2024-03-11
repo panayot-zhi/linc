@@ -250,6 +250,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Всички.
+        /// </summary>
+        public static string All_Label {
+            get {
+                return ResourceManager.GetString("All_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Анонимен.
         /// </summary>
         public static string Anonymous_Label {
@@ -2852,6 +2861,51 @@ namespace linc.Resources {
         public static string Source_CreatePage_Title {
             get {
                 return ResourceManager.GetString("Source_CreatePage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to По броеве.
+        /// </summary>
+        public static string Source_IndexPage_FilterByIssues_Title {
+            get {
+                return ResourceManager.GetString("Source_IndexPage_FilterByIssues_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to По години.
+        /// </summary>
+        public static string Source_IndexPage_FilterByYears_Title {
+            get {
+                return ResourceManager.GetString("Source_IndexPage_FilterByYears_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Няма намерени резултати за избраните критерии..
+        /// </summary>
+        public static string Source_IndexPage_NoResults {
+            get {
+                return ResourceManager.GetString("Source_IndexPage_NoResults", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Библиотека.
+        /// </summary>
+        public static string Source_IndexPage_SubTitle {
+            get {
+                return ResourceManager.GetString("Source_IndexPage_SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Автори.
+        /// </summary>
+        public static string Source_IndexPage_Title {
+            get {
+                return ResourceManager.GetString("Source_IndexPage_Title", resourceCulture);
             }
         }
         
