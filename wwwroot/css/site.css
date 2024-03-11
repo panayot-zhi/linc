@@ -39,6 +39,30 @@ a.submit-link {
   /* keep */
 }
 
+/* 
+    icon-links
+*/
+
+.icon-links li {
+    display: block;
+    padding: 6px 0;
+}
+
+.icon-links li a.active {
+    font-size: 1.2em;
+}
+
+/* 
+    paging
+*/
+.paging {
+    padding-top: 40px;
+}
+
+.paging span {
+    padding: 0 4px;
+}
+
 .section-title p span {
     color: #106eea;
 }
@@ -204,17 +228,15 @@ section#testimonials {
 .source-container {
     padding-top: 20px;
 }
-.portfolio-details .portfolio-description li.source-container {
+
+.source-container .source-author {
 }
 
-.portfolio-details .portfolio-description p.source-author {
-}
-
-.portfolio-details .portfolio-description p.source-title {
+.source-container .source-title {
     padding-right: 30px;
 }
 
-.portfolio-details .portfolio-description p.source-page {
+.source-container p.source-page {
     position: relative;
     border-bottom-style: dotted;
     border-bottom-width: 2px;
@@ -479,4 +501,41 @@ section#testimonials {
     background: #3b8af2;
     color: #fff;
     text-decoration: none;
+}
+
+/*--------------------------------------------------------------
+# index alphabet sort 
+--------------------------------------------------------------*/
+
+.alphabet-sort {
+    padding-bottom: 20px;
+}
+
+.alphabet-sort .alphabet-wildcard {
+    position: absolute;
+    padding-top: 8px;
+}
+
+.alphabet-sort .row {
+    padding-left: 40px;
+}
+
+.alphabet-sort .alphabet-letter.clear .bi {
+    font-size: 18px;
+}
+
+.alphabet-sort .alphabet-letter {
+    display: inline-block;
+    text-align: center;
+    width: 1.2em;
+}
+
+.alphabet-sort .alphabet-letter.active {
+    font-weight: bold;
+    font-size: 1.5em;
+}
+
+.alphabet-sort .alphabet-letter a:hover,
+.alphabet-sort .alphabet-letter a:focus {
+    color: #55a773;
 }
