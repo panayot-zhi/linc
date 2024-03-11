@@ -1,5 +1,5 @@
 ﻿using linc.Data;
-using linc.Models.ViewModels.Issue;
+using linc.Models.ViewModels.Source;
 
 namespace linc.Contracts
 {

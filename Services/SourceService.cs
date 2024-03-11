@@ -1,6 +1,6 @@
 ﻿using linc.Contracts;
 using linc.Data;
-using linc.Models.ViewModels.Issue;
+using linc.Models.ViewModels.Source;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
