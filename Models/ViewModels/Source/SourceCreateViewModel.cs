@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
-namespace linc.Models.ViewModels.Issue
+namespace linc.Models.ViewModels.Source
 {
     public class SourceCreateViewModel
     {
