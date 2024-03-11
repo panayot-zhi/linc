@@ -1,5 +1,4 @@
 ﻿@model AuthorsViewModel
-@using linc.Models.Enumerations
 @using linc.Utility
 
 <!-- ======= Services Section ======= -->
@@ -19,114 +18,129 @@
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
                 <div class="icon-box">
                     <div class="icon">
-                        <i class="bx bx-file"></i>
+                        <a asp-controller="Source" asp-action="Index" asp-route-filter="Б">
+                            <i class="bx bx-б source-letter"></i>
+                        </a>
                     </div>
                     <h4>
-                        <a asp-controller="Source" asp-action="Index" asp-route-id="Articles">
-                            @(EnumHelper<IndexCategory>.GetDisplayName(IndexCategory.Articles))
+                        <a asp-controller="Source" asp-action="Index" asp-route-filter="Б">
+                            Благовест ЗЛАТАНОВ
                         </a>
                     </h4>
-                    <p contenteditable-for="Category_Articles_Description">
+                    <p contenteditable-for="Category_BlagovestZlatanov_Description">
                         Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi
                     </p>
                 </div>
-            </div><!-- End Articles category item -->
+            </div><!-- End BlagovestZlatanov item -->
 
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="100">
                 <div class="icon-box">
                     <div class="icon">
-                        <i class="bx bx-left-indent"></i>
+                        <a asp-controller="Source" asp-action="Index" asp-route-filter="К">
+                            <i class="bx bx-к source-letter"></i>
+                        </a>
                     </div>
                     <h4>
-                        <a asp-controller="Source" asp-action="Index" asp-route-id="Analyses">
-                            @(EnumHelper<IndexCategory>.GetDisplayName(IndexCategory.Analyses))
+                        <a asp-controller="Source" asp-action="Index" asp-route-filter="К">
+                            Клео ПРОТОХРИСТОВА
                         </a>
                     </h4>
-                    <p contenteditable-for="Category_Analyses_Description">
+                    <p contenteditable-for="Category_KleoProtohristova_Description">
                         Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi
                     </p>
                 </div>
-            </div><!-- End Analyses category item -->
+            </div><!-- End KleoProtohristova item -->
             
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="100">
                 <div class="icon-box">
                     <div class="icon">
-                        <i class="bx bx-task"></i>
+                        <a asp-controller="Source" asp-action="Index" asp-route-filter="З">
+                            <i class="bx bx-з source-letter"></i>
+                        </a>
                     </div>
                     <h4>
-                        <a asp-controller="Source" asp-action="Index" asp-route-id="Surveys">
-                            @(EnumHelper<IndexCategory>.GetDisplayName(IndexCategory.Surveys))
+                        <a asp-controller="Source" asp-action="Index" asp-route-filter="З">
+                            Запрян КОЗЛУДЖОВ
                         </a>
                     </h4>
-                    <p contenteditable-for="Category_Surveys_Description">
+                    <p contenteditable-for="Category_ZapryanKozludzhov_Description">
                         Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi
                     </p>
                 </div>
-            </div><!-- End Surveys category item -->
+            </div><!-- End ZapryanKozludzhov item -->
 
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
                 <div class="icon-box">
                     <div class="icon">
-                        <i class="bx bx-chat"></i>
+                        <a asp-controller="Source" asp-action="Index" asp-route-filter="G">
+                            <i class="bx bx-g source-letter"></i>
+                        </a>
                     </div>
                     <h4>
-                        <a asp-controller="Source" asp-action="Index" asp-route-id="Discussions">
-                            @(EnumHelper<IndexCategory>.GetDisplayName(IndexCategory.Discussions))
+                        <a asp-controller="Source" asp-action="Index" asp-route-filter="G">
+                            Guglielmo CINQUE
                         </a>
                     </h4>
-                    <p contenteditable-for="Category_Discussions_Description">
+                    <p contenteditable-for="Category_GuglielmoCinque_Description">
                         Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi
                     </p>
                 </div>
-            </div><!-- End Discussions category item -->
+            </div><!-- End GuglielmoCinque item -->
 
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
                 <div class="icon-box">
                     <div class="icon">
-                        <i class="bx bx-message-edit"></i>
+                        <a asp-controller="Source" asp-action="Index" asp-route-filter="Y">
+                            <i class="bx bx-y source-letter"></i>
+                        </a>
+
                     </div>
                     <h4>
-                        <a asp-controller="Source" asp-action="Index" asp-route-id="Reviews">
-                            @(EnumHelper<IndexCategory>.GetDisplayName(IndexCategory.Reviews))
+                        <a asp-controller="Source" asp-action="Index" asp-route-filter="Y">
+                            Yana ROWLAND
                         </a>
                     </h4>
-                    <p contenteditable-for="Category_Reviews_Description">
+                    <p contenteditable-for="Category_YanaRowland_Description">
                         Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi
                     </p>
                 </div>
-            </div><!-- End Reviews category item -->
-
+            </div><!-- End YanaRowland item -->
+            
             <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
                 <div class="icon-box">
                     <div class="icon">
-                        <i class="bx bx-history"></i>
+                        <a asp-controller="Source" asp-action="Index" asp-route-filter="B">
+                            <i class="bx bx-b source-letter"></i>
+                        </a>
                     </div>
                     <h4>
-                        <a asp-controller="Source" asp-action="Index" asp-route-id="Chronicles">
-                            @(EnumHelper<IndexCategory>.GetDisplayName(IndexCategory.Chronicles))
+                        <a asp-controller="Source" asp-action="Index" asp-route-filter="B">
+                            Boris MINKOV
                         </a>
                     </h4>
-                    <p contenteditable-for="Category_Chronicles_Description">
+                    <p contenteditable-for="Category_BorisMinkov_Description">
                         Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi
                     </p>
                 </div>
-            </div><!-- End Chronicles category item -->
+            </div><!-- End BorisMinkov item -->
 
             <div class="offset-lg-4 col-lg-4 offset-md-3 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
                 <div class="icon-box">
                     <div class="icon">
-                        <i class="bx bx-world"></i>
+                        <a asp-controller="Source" asp-action="Index">
+                            <i class="bi bi-asterisk"></i>
+                        </a>
                     </div>
                     <h4>
-                        <a asp-controller="Source" asp-action="Index" asp-route-id="Foreign">
-                            @(EnumHelper<IndexCategory>.GetDisplayName(IndexCategory.Foreign))
+                        <a asp-controller="Source" asp-action="Index">
+                            @HtmlLocalizer["All_Label"]
                         </a>
                     </h4>
-                    <p contenteditable-for="Category_Foreign_Description">
-                        Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi
+                    <p>
+                        @HtmlLocalizer["Sources_All_Description"]
                     </p>
                 </div>
-            </div><!-- End Foreign category item -->
+            </div><!-- End All item -->
 
         </div>
     </div>
