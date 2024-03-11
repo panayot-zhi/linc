@@ -1254,6 +1254,10 @@
   <data name="All_Label" xml:space="preserve">
     <value>Всички</value>
   </data>
+  <data name="FeaturedSection_Submit_Description" xml:space="preserve">
+    <value>Изпратете ръкописа си на редакционния email адрес &lt;a class="nav-link" href="mailto:review-linc@uni-plovdiv.bg"&gt;review-linc@uni-plovdiv.bg&lt;/a&gt;.
+Преди това се запознайте с &lt;a target="_blank" class="nav-link" href="https://test.linc.uni-plovdiv.bg/docs/bg/technical_requirements.doc"&gt;техническите изисквания&lt;/a&gt; към предлаганите за публикуване текстове и с &lt;a class="nav-link scrollto" href="#codex"&gt;Етичния кодекс на списанието&lt;/a&gt;.</value>
+  </data>
   <data name="NextPage_Label" xml:space="preserve">
     <value>Назад</value>
   </data>
