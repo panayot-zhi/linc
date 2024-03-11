@@ -1,5 +1,175 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using linc.Utility
+@using System.Net
+@model SourceIndexViewModel
+
 @{
+    ViewData["Title"] = HtmlLocalizer["Source_IndexPage_Title"];
+}
+
+@section Breadcrumbs {
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>@HtmlLocalizer["Source_IndexPage_SubTitle"]</h2>
+                <ol>
+                    <li>
+                        <a href="/">@HtmlLocalizer["NavItem_Home"]</a>
+                    </li>
+                    <li>@ViewData["Title"]</li>
+                </ol>
+            </div>
+
+        </div>
+    </section>
+    <!-- End Breadcrumbs -->
+}
+
+<section class="portfolio-details">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+
+                <div class="alphabet-sort">
+
+                    <div class="alphabet-wildcard alphabet-letter clear">
+                        <a href="@Url.Action("Index", "Source", new { year = Model.CurrentYearFilter, issueId = Model.CurrentIssueId })">
+                            <i class="bi bi-asterisk"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="row">
+                        @foreach (var letter in SiteConstant.CyrillicAlphabet.Select(x => x.ToString()))
+                        {
+                            <div class="alphabet-letter @(Model.CurrentAuthorsFilter == letter ? "active" : "")">
+                                <a href="@Url.Action("Index", "Source", new { filter = WebUtility.UrlEncode(letter), year = Model.CurrentYearFilter, issueId = Model.CurrentIssueId })">@letter</a>
+                            </div>
+                        }
+                    </div>
+                    
+                    <div class="row">
+                        @foreach (var letter in SiteConstant.LatinAlphabet.Select(x => x.ToString()))
+                        {
+                            <div class="alphabet-letter @(Model.CurrentAuthorsFilter == letter ? "active" : "")">
+                                <a href="@Url.Action("Index", "Source", new { filter = WebUtility.UrlEncode(letter), year = Model.CurrentYearFilter, issueId = Model.CurrentIssueId })">@letter</a>
+                            </div>
+                        }
+                    </div>
+
+                </div>
+
+                <div id="list-source" class="content" role="main">
+
+                    @if (Model.Records.Any())
+                    {
+                        <ul>
+                            @foreach (var source in Model.Records)
+                            {
+                                <li class="source-container">
+                                
+                                    @if (!string.IsNullOrWhiteSpace(source.AuthorNames))
+                                    {
+                                        <p class="source-author">
+                                            @source.FirstName @source.LastName
+                                            @if (!string.IsNullOrEmpty(source.AuthorNotes))
+                                            {
+                                                <br/>
+                                                <small>@source.AuthorNotes</small>
+                                            }
+                                        </p>
+                                    }
+
+                                    <p class="source-title">
+                                        <a href="@Url.Action("Pdf", "Source", new { id = source.IssueId })#page=@source.StartingPage">@source.Title</a>
+                                    </p>
+
+                                    <p class="source-page text-end">
+                                        <strong><a href="@Url.Action("Pdf", "Source", new { id = source.IssueId })#page=@source.StartingPage">@source.StartingPage</a></strong>
+                                    </p>
+
+                                    @if (!string.IsNullOrEmpty(source.TitleNotes))
+                                    {
+                                        <small>@source.TitleNotes</small>
+                                    }
+
+                                </li>
+                            }
+                        </ul>
+                    }
+                    else
+                    {
+                        <p>
+                            @HtmlLocalizer["Source_IndexPage_NoResults"]
+                        </p>
+                    }
+                    
+                    @if (Model.TotalPages > 1)
+                    {
+                        @await Html.PartialAsync("_Paging", Model)
+                    }
+
+                </div>
+            </div>
+
+            <div class="col-md-4 text-end">
+                
+                <div class="portfolio-description">
+                    <h2>@HtmlLocalizer["Source_IndexPage_FilterByYears_Title"]</h2>
+                    <p>
+                        <ul class="icon-links">
+                            <li>
+                                <i class="bx bx-chevron-right"></i> 
+                                <a class="@(Model.CurrentYearFilter.HasValue ? string.Empty : "active")" href="@Url.Action("Index", "Source")">
+                                    @HtmlLocalizer["All_Label"]
+                                </a>
+                            </li>
+                            @foreach (var filter in Model.YearFilter)
+                            {
+                                <li>
+                                    <i class="bx bx-chevron-right"></i>
+                                    <a class="@(Model.CurrentYearFilter == filter.Year ? "active" : "")" href="@Url.Action("Index", "Source", new { year = filter.Year })">
+                                        @filter.Year (@filter.Count)
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </p>
+                    <h2>@HtmlLocalizer["Source_IndexPage_FilterByIssues_Title"]</h2>
+                    <p>
+                        <ul class="icon-links">
+                            <li>
+                                <i class="bx bx-chevron-right"></i>
+                                <a class="@(Model.CurrentIssueId.HasValue ? string.Empty : "active")" href="@Url.Action("Index", "Source")">
+                                    @HtmlLocalizer["All_Label"]
+                                </a>
+                            </li>
+                            @foreach (var filter in Model.IssuesFilter)
+                            {
+                                <li>
+                                    <i class="bx bx-chevron-right"></i>
+                                    <a class="@(Model.CurrentIssueId == filter.IssueId ? "active" : "")" href="@Url.Action("Index", "Source", new { issueId = filter.IssueId })">
+                                        @filter.IssueTitle (@filter.Count)
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Newsletter {
+    <partial name="_Submit" />
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $("#nav-sources").addClass('active');
+        })
+    </script>
 }
