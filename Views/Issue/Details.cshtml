@@ -23,7 +23,7 @@
                         <a href="/">@HtmlLocalizer["NavItem_Home"]</a>
                     </li>
                     <li>
-                        <a asp-action="Index">@HtmlLocalizer["NavItem_Library"]</a>
+                        <a asp-controller="Source" asp-action="Index" asp-route-issueId="@Model.Id">@HtmlLocalizer["NavItem_Library"]</a>
                     </li>
                     <li>@ViewData["Title"]</li>
                 </ol>
@@ -35,7 +35,7 @@
 }
 
 <!-- ======= Portfolio Details Section ======= -->
-<section id="portfolio-details" class="portfolio-details">
+<section class="portfolio-details">
     <div class="container">
 
         <div class="row gy-4">
