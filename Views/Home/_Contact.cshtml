@@ -37,7 +37,9 @@
 
             <div class="col-lg-3 col-md-6">
                 <div class="info-box  mb-4">
-                    <i class="bx bxs-download"></i>
+                    <a href="@Url.Content($"~/docs/{currentCulture}/{SiteConstant.TechnicalRequirementsFileName}")">
+                        <i class="bx bxs-download"></i>
+                    </a>
                     <h3 class="title">
                         <a href="@Url.Content($"~/docs/{currentCulture}/{SiteConstant.TechnicalRequirementsFileName}")">
                             @HtmlLocalizer["ContactSection_TechnicalRequirements_Title"]
@@ -51,7 +53,9 @@
 
             <div class="col-lg-3 col-md-6">
                 <div class="info-box  mb-4">
-                    <i class="bx bxs-download"></i>
+                    <a href="@Url.Content($"~/docs/{SiteConstant.PublicationAgreementFileName}")">
+                        <i class="bx bxs-download"></i>
+                    </a>
                     <h3 class="title">
                         <a href="@Url.Content($"~/docs/{SiteConstant.PublicationAgreementFileName}")">
                             @HtmlLocalizer["ContactSection_PublicationAgreement_Title"]

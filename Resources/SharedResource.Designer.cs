@@ -909,6 +909,16 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Изпратете ръкописа си на редакционния email адрес &lt;a class=&quot;nav-link&quot; href=&quot;mailto:review-linc@uni-plovdiv.bg&quot;&gt;review-linc@uni-plovdiv.bg&lt;/a&gt;.
+        ///Преди това се запознайте с &lt;a target=&quot;_blank&quot; class=&quot;nav-link&quot; href=&quot;https://test.linc.uni-plovdiv.bg/docs/bg/technical_requirements.doc&quot;&gt;техническите изисквания&lt;/a&gt; към предлаганите за публикуване текстове и с &lt;a class=&quot;nav-link scrollto&quot; href=&quot;#codex&quot;&gt;Етичния кодекс на списанието&lt;/a&gt;..
+        /// </summary>
+        public static string FeaturedSection_Submit_Description {
+            get {
+                return ResourceManager.GetString("FeaturedSection_Submit_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Изпращане на ръкопис.
         /// </summary>
         public static string FeaturedSection_Submit_Title {

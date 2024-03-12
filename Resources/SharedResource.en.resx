@@ -490,6 +490,9 @@
   <data name="FeaturedSection_Review_Title" xml:space="preserve">
     <value>Anonymous review</value>
   </data>
+  <data name="FeaturedSection_Submit_Description" xml:space="preserve">
+    <value>Send your manuscript to the editorial staff at &lt;a class="nav-link" href="mailto:review-linc@uni-plovdiv.bg"&gt;review-linc@uni-plovdiv.bg&lt;/a&gt;. First, read &lt;a target="_blank" class="nav-link" href="https://test.linc.uni-plovdiv.bg/docs/en/technical_requirements.doc"&gt;the technical requirements&lt;/a&gt; for submitting manuscripts and &lt;a class="nav-link scrollto" href="#codex"&gt;the Code of Ethics&lt;/a&gt;.</value>
+  </data>
   <data name="FeaturedSection_Submit_Title" xml:space="preserve">
     <value>Submit a publication</value>
   </data>
