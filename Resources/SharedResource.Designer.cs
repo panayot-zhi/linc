@@ -403,24 +403,6 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to гл. ас. д-р Ваня Георгиева.
-        /// </summary>
-        public static string Board_Vanya_Georgieva_Member {
-            get {
-                return ResourceManager.GetString("Board_Vanya.Georgieva_Member", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Технически сътрудник &lt;br/&gt;катедра Българска литература и теория на литературата&lt;br/&gt;ПУ „Паисий Хилендарски“.
-        /// </summary>
-        public static string Board_Vanya_Georgieva_MemberWork {
-            get {
-                return ResourceManager.GetString("Board_Vanya.Georgieva_MemberWork", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Отказ.
         /// </summary>
         public static string Cancel_Button_Label {
