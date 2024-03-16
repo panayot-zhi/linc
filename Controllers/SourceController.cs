@@ -70,7 +70,9 @@ namespace linc.Controllers
             var vModel = new SourceCreateViewModel
             {
                 Issues = await GetIssuesAsync(),
-                Languages = GetLanguages()
+                Languages = GetLanguages(),
+
+                LanguageId = LocalizationService.GetCurrentLanguageId()
             };
 
             return View(vModel);
@@ -85,6 +87,8 @@ namespace linc.Controllers
             {
                 vModel.Issues = await GetIssuesAsync();
                 vModel.Languages = GetLanguages();
+
+                vModel.LanguageId = LocalizationService.GetCurrentLanguageId();
 
                 return View(vModel);
             }
@@ -213,9 +217,13 @@ namespace linc.Controllers
 
         public List<SelectListItem> GetLanguages()
         {
-            return SiteConstant.SupportedCultures.Select(supportedCulture =>
-                    new SelectListItem(supportedCulture.Value, supportedCulture.Key.ToString()))
+            var currentLanguageId = LocalizationService.GetCurrentLanguageId();
+            var list = SiteConstant.SupportedCultures.Select(supportedCulture =>
+                    new SelectListItem(supportedCulture.Value, supportedCulture.Key.ToString(), 
+                        supportedCulture.Key == currentLanguageId))
                 .ToList();
+
+            return list;
         }
     }
 }
