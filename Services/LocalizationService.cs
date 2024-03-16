@@ -56,10 +56,7 @@ namespace linc.Services
 
         public async Task SetStringResource(string resourceKey, string value, string userId)
         {
-            var currentCulture = Thread.CurrentThread.CurrentUICulture.Name;
-            var languageId = SiteConstant.SupportedCultures.First(x =>
-                x.Value == currentCulture).Key;
-
+            var languageId = GetCurrentLanguageId();
             var stringResource = GetStringResource(resourceKey, languageId);
             if (stringResource == null)
             {
@@ -160,10 +157,7 @@ namespace linc.Services
                 return new LocalizedHtmlString(item.Name, item.Value, false, args);
             }
 
-            var currentCulture = Thread.CurrentThread.CurrentUICulture.Name;
-            var languageId = SiteConstant.SupportedCultures.First(x =>
-                x.Value == currentCulture).Key;
-
+            var languageId = GetCurrentLanguageId();
             var stringResource = GetStringResource(resourceKey, languageId);
             if (string.IsNullOrEmpty(stringResource))
             {
@@ -177,5 +171,14 @@ namespace linc.Services
         public LocalizedHtmlString this[string name, params object[] arguments] => Localize(name, arguments);
 
         public LocalizedHtmlString this[string name] => Localize(name);
+
+        public int GetCurrentLanguageId()
+        {
+            var currentCulture = Thread.CurrentThread.CurrentUICulture.Name;
+            var languageId = SiteConstant.SupportedCultures.First(x =>
+                x.Value == currentCulture).Key;
+
+            return languageId;
+        }
     }
 }

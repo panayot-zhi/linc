@@ -22,5 +22,7 @@ namespace linc.Contracts
         LocalizedHtmlString this[string name, params object[] arguments] { get; }
 
         Task SetStringResource(string resourceKey, string value, string userId);
+
+        int GetCurrentLanguageId();
     }
 }
