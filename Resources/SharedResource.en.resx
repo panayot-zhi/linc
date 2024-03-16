@@ -1037,7 +1037,7 @@
     <value>Password</value>
   </data>
   <data name="RegisterModel_PrivacyConsent" xml:space="preserve">
-    <value>I've read and accept the Privacy policy and the Terms and conditions of the site</value>
+    <value>I've read and accept the &lt;a href="/home/privacy"&gt;Privacy policy&lt;/a&gt; and the &lt;a href="/home/terms"&gt;Terms and conditions&lt;/a&gt; of the site</value>
   </data>
   <data name="RegisterModel_PrivacyConsent_ErrorMessage" xml:space="preserve">
     <value>To register, please, read and accept the Terms and conditions of the site as well as it's Privacy policy.</value>

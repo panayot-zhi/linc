@@ -47,7 +47,7 @@
                 <div class="form-check">
                     <input class="form-check-input" asp-for="Input.PrivacyConsent" aria-required="true" required/>
                     <label class="form-check-label" asp-for="Input.PrivacyConsent">
-                        @Html.DisplayNameFor(m => m.Input.PrivacyConsent)
+                        @HtmlLocalizer["RegisterModel_PrivacyConsent"]
                     </label>
                     <span asp-validation-for="Input.PrivacyConsent" class="invalid-feedback"></span>
                 </div>

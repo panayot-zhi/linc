@@ -2486,7 +2486,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Прочетох и приемам Политиката за поверителност на сайта и Общите му условия.
+        ///   Looks up a localized string similar to Прочетох и приемам &lt;a href=&quot;/home/privacy&quot;&gt;Политиката за поверителност&lt;/a&gt; на сайта и &lt;a href=&quot;/home/terms&quot;&gt;Общите му условия&lt;/a&gt;.
         /// </summary>
         public static string RegisterModel_PrivacyConsent {
             get {

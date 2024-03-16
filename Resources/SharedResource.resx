@@ -860,7 +860,7 @@
     <value>Парола</value>
   </data>
   <data name="RegisterModel_PrivacyConsent" xml:space="preserve">
-    <value>Прочетох и приемам Политиката за поверителност на сайта и Общите му условия</value>
+    <value>Прочетох и приемам &lt;a href="/home/privacy"&gt;Политиката за поверителност&lt;/a&gt; на сайта и &lt;a href="/home/terms"&gt;Общите му условия&lt;/a&gt;</value>
   </data>
   <data name="RegisterModel_PrivacyConsent_ErrorMessage" xml:space="preserve">
     <value>За да се регистрирате се изисква да сте прочели и да приемате общите условия на сайта и политиката му за поверителност.</value>
