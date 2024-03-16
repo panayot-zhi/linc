@@ -973,6 +973,60 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Етичен кодекс.
+        /// </summary>
+        public static string Footer_GuidelinesPolicies_Codex {
+            get {
+                return ResourceManager.GetString("Footer_GuidelinesPolicies_Codex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ползване на бисквитки.
+        /// </summary>
+        public static string Footer_GuidelinesPolicies_Cookies {
+            get {
+                return ResourceManager.GetString("Footer_GuidelinesPolicies_Cookies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Политика за поверителност.
+        /// </summary>
+        public static string Footer_GuidelinesPolicies_PrivacyPolicy {
+            get {
+                return ResourceManager.GetString("Footer_GuidelinesPolicies_PrivacyPolicy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Процедура по публикуване.
+        /// </summary>
+        public static string Footer_GuidelinesPolicies_SubmitGuidance {
+            get {
+                return ResourceManager.GetString("Footer_GuidelinesPolicies_SubmitGuidance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Условия за ползване.
+        /// </summary>
+        public static string Footer_GuidelinesPolicies_TermsOfService {
+            get {
+                return ResourceManager.GetString("Footer_GuidelinesPolicies_TermsOfService", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Насоки и правила.
+        /// </summary>
+        public static string Footer_GuidelinesPolicies_Title {
+            get {
+                return ResourceManager.GetString("Footer_GuidelinesPolicies_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Телефон.
         /// </summary>
         public static string Footer_Phone_Label {
@@ -1041,60 +1095,6 @@ namespace linc.Resources {
         public static string Footer_Suggestions_Title {
             get {
                 return ResourceManager.GetString("Footer_Suggestions_Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Етичен кодекс.
-        /// </summary>
-        public static string Footer_GuidelinesPolicies_Codex {
-            get {
-                return ResourceManager.GetString("Footer_GuidelinesPolicies_Codex", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ползване на бисквитки.
-        /// </summary>
-        public static string Footer_GuidelinesPolicies_Cookies {
-            get {
-                return ResourceManager.GetString("Footer_GuidelinesPolicies_Cookies", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Политика за поверителност.
-        /// </summary>
-        public static string Footer_GuidelinesPolicies_PrivacyPolicy {
-            get {
-                return ResourceManager.GetString("Footer_GuidelinesPolicies_PrivacyPolicy", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Процедура по публикуване.
-        /// </summary>
-        public static string Footer_GuidelinesPolicies_SubmitGuidance {
-            get {
-                return ResourceManager.GetString("Footer_GuidelinesPolicies_SubmitGuidance", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Условия за ползване.
-        /// </summary>
-        public static string Footer_GuidelinesPolicies_TermsOfService {
-            get {
-                return ResourceManager.GetString("Footer_GuidelinesPolicies_TermsOfService", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Насоки и правила.
-        /// </summary>
-        public static string Footer_GuidelinesPolicies_Title {
-            get {
-                return ResourceManager.GetString("Footer_GuidelinesPolicies_Title", resourceCulture);
             }
         }
         
@@ -3095,7 +3095,7 @@ namespace linc.Resources {
         /// </summary>
         public static string Team_V_Markovska_Member {
             get {
-                return ResourceManager.GetString("Team_V.Markovska_Member", resourceCulture);
+                return ResourceManager.GetString("Team_V.Marovska_Member", resourceCulture);
             }
         }
         
