@@ -928,7 +928,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Реномирана редколегия.
+        ///   Looks up a localized string similar to Редколегия.
         /// </summary>
         public static string FeaturedSection_Team_Title {
             get {
