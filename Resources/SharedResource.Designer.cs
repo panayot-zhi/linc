@@ -1065,54 +1065,54 @@ namespace linc.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Етичен кодекс.
         /// </summary>
-        public static string Footer_UsefulLinks_Codex {
+        public static string Footer_GuidelinesPolicies_Codex {
             get {
-                return ResourceManager.GetString("Footer_UsefulLinks_Codex", resourceCulture);
+                return ResourceManager.GetString("Footer_GuidelinesPolicies_Codex", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Ползване на бисквитки.
         /// </summary>
-        public static string Footer_UsefulLinks_Cookies {
+        public static string Footer_GuidelinesPolicies_Cookies {
             get {
-                return ResourceManager.GetString("Footer_UsefulLinks_Cookies", resourceCulture);
+                return ResourceManager.GetString("Footer_GuidelinesPolicies_Cookies", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Политика за поверителност.
         /// </summary>
-        public static string Footer_UsefulLinks_PrivacyPolicy {
+        public static string Footer_GuidelinesPolicies_PrivacyPolicy {
             get {
-                return ResourceManager.GetString("Footer_UsefulLinks_PrivacyPolicy", resourceCulture);
+                return ResourceManager.GetString("Footer_GuidelinesPolicies_PrivacyPolicy", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Процедура по публикуване.
         /// </summary>
-        public static string Footer_UsefulLinks_SubmitGuidance {
+        public static string Footer_GuidelinesPolicies_SubmitGuidance {
             get {
-                return ResourceManager.GetString("Footer_UsefulLinks_SubmitGuidance", resourceCulture);
+                return ResourceManager.GetString("Footer_GuidelinesPolicies_SubmitGuidance", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Условия за ползване.
         /// </summary>
-        public static string Footer_UsefulLinks_TermsOfService {
+        public static string Footer_GuidelinesPolicies_TermsOfService {
             get {
-                return ResourceManager.GetString("Footer_UsefulLinks_TermsOfService", resourceCulture);
+                return ResourceManager.GetString("Footer_GuidelinesPolicies_TermsOfService", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Насоки и правила.
         /// </summary>
-        public static string Footer_UsefulLinks_Title {
+        public static string Footer_GuidelinesPolicies_Title {
             get {
-                return ResourceManager.GetString("Footer_UsefulLinks_Title", resourceCulture);
+                return ResourceManager.GetString("Footer_GuidelinesPolicies_Title", resourceCulture);
             }
         }
         

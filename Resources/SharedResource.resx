@@ -505,22 +505,22 @@
   <data name="Footer_Suggestions_Title" xml:space="preserve">
     <value>Случайни</value>
   </data>
-  <data name="Footer_UsefulLinks_Codex" xml:space="preserve">
+  <data name="Footer_GuidelinesPolicies_Codex" xml:space="preserve">
     <value>Етичен кодекс</value>
   </data>
-  <data name="Footer_UsefulLinks_Cookies" xml:space="preserve">
+  <data name="Footer_GuidelinesPolicies_Cookies" xml:space="preserve">
     <value>Ползване на бисквитки</value>
   </data>
-  <data name="Footer_UsefulLinks_PrivacyPolicy" xml:space="preserve">
+  <data name="Footer_GuidelinesPolicies_PrivacyPolicy" xml:space="preserve">
     <value>Политика за поверителност</value>
   </data>
-  <data name="Footer_UsefulLinks_SubmitGuidance" xml:space="preserve">
+  <data name="Footer_GuidelinesPolicies_SubmitGuidance" xml:space="preserve">
     <value>Процедура по публикуване</value>
   </data>
-  <data name="Footer_UsefulLinks_TermsOfService" xml:space="preserve">
+  <data name="Footer_GuidelinesPolicies_TermsOfService" xml:space="preserve">
     <value>Условия за ползване</value>
   </data>
-  <data name="Footer_UsefulLinks_Title" xml:space="preserve">
+  <data name="Footer_GuidelinesPolicies_Title" xml:space="preserve">
     <value>Насоки и правила</value>
   </data>
   <data name="ForgotPasswordPage_Procedure" xml:space="preserve">

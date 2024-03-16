@@ -541,22 +541,22 @@
   <data name="Footer_Suggestions_Title" xml:space="preserve">
     <value>Random</value>
   </data>
-  <data name="Footer_UsefulLinks_Codex" xml:space="preserve">
+  <data name="Footer_GuidelinesPolicies_Codex" xml:space="preserve">
     <value>Code of Ethics</value>
   </data>
-  <data name="Footer_UsefulLinks_Cookies" xml:space="preserve">
+  <data name="Footer_GuidelinesPolicies_Cookies" xml:space="preserve">
     <value>Cookies usage</value>
   </data>
-  <data name="Footer_UsefulLinks_PrivacyPolicy" xml:space="preserve">
+  <data name="Footer_GuidelinesPolicies_PrivacyPolicy" xml:space="preserve">
     <value>Privacy policy</value>
   </data>
-  <data name="Footer_UsefulLinks_SubmitGuidance" xml:space="preserve">
+  <data name="Footer_GuidelinesPolicies_SubmitGuidance" xml:space="preserve">
     <value>Submit procedure</value>
   </data>
-  <data name="Footer_UsefulLinks_TermsOfService" xml:space="preserve">
+  <data name="Footer_GuidelinesPolicies_TermsOfService" xml:space="preserve">
     <value>Terms of use</value>
   </data>
-  <data name="Footer_UsefulLinks_Title" xml:space="preserve">
+  <data name="Footer_GuidelinesPolicies_Title" xml:space="preserve">
     <value>Guidelines &amp; Policies</value>
   </data>
   <data name="ForgotPasswordPage_Procedure" xml:space="preserve">
