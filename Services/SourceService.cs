@@ -50,8 +50,8 @@ namespace linc.Services
                 }
                 else
                 {
-                    query = query.Where(x => x.FirstName.StartsWith(filter));
-                    query = query.OrderBy(x => x.FirstName);
+                    query = query.Where(x => x.LastName.StartsWith(filter));
+                    query = query.OrderBy(x => x.LastName);
                 }
             }
             else
