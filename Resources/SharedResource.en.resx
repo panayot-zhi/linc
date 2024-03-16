@@ -536,7 +536,7 @@
     <value>Find us and our authors across the web.</value>
   </data>
   <data name="Footer_Social_Title" xml:space="preserve">
-    <value>Partners</value>
+    <value>Useful links</value>
   </data>
   <data name="Footer_Suggestions_Title" xml:space="preserve">
     <value>Random</value>
@@ -557,7 +557,7 @@
     <value>Terms of use</value>
   </data>
   <data name="Footer_UsefulLinks_Title" xml:space="preserve">
-    <value>Useful links</value>
+    <value>Guidelines &amp; Policies</value>
   </data>
   <data name="ForgotPasswordPage_Procedure" xml:space="preserve">
     <value>&lt;p&gt;&lt;small&gt;You will receive an email with a reset link on the email provided.&lt;/small&gt;&lt;/p&gt;

@@ -1045,7 +1045,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Партньори.
+        ///   Looks up a localized string similar to Полезни връзки.
         /// </summary>
         public static string Footer_Social_Title {
             get {
@@ -1108,7 +1108,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Полезни връзки.
+        ///   Looks up a localized string similar to Насоки и правила.
         /// </summary>
         public static string Footer_UsefulLinks_Title {
             get {
