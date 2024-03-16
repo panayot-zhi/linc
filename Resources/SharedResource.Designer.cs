@@ -3093,7 +3093,7 @@ namespace linc.Resources {
         /// <summary>
         ///   Looks up a localized string similar to проф. д-р Вера Маровска.
         /// </summary>
-        public static string Team_V_Markovska_Member {
+        public static string Team_V_Marovska_Member {
             get {
                 return ResourceManager.GetString("Team_V.Marovska_Member", resourceCulture);
             }
