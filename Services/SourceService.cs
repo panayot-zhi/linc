@@ -31,6 +31,7 @@ namespace linc.Services
 
             var sourcesDbSet = _context.Sources;
             var query = sourcesDbSet
+                .Include(x => x.Issue)
                 .Where(x => x.LanguageId == languageId)
                 .AsQueryable();
 
