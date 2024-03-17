@@ -82,6 +82,13 @@
                         </div>
                         <div class="col-sm-3">
                             <div class="form-floating">
+                                <input asp-for="LastPage" class="form-control" />
+                                <label asp-for="LastPage" class="form-label"></label>
+                                <span asp-validation-for="LastPage" class="invalid-feedback"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-floating">
                                 <select asp-for="LanguageId" asp-items="@Model.Languages" class="form-select"></select>
                                 <label asp-for="LanguageId" class="form-label"></label>
                                 <span asp-validation-for="LanguageId" class="invalid-feedback"></span>

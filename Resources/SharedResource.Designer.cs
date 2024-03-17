@@ -3019,6 +3019,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Последна страница.
+        /// </summary>
+        public static string SourceCreate_LastPage {
+            get {
+                return ResourceManager.GetString("SourceCreate_LastPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Начална страница.
         /// </summary>
         public static string SourceCreate_StartingPage {

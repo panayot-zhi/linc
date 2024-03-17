@@ -1294,4 +1294,7 @@
   <data name="Board_Joaquín.García-Medall_MemberWork" xml:space="preserve">
     <value>Университет на Валядолид, Испания</value>
   </data>
+  <data name="SourceCreate_LastPage" xml:space="preserve">
+    <value>Последна страница</value>
+  </data>
 </root>

@@ -32,6 +32,8 @@ namespace linc.Data
 
         public int StartingPage { get; set; }
 
+        public int LastPage { get; set; }
+
 
         [ForeignKey(nameof(Language))]
         public int LanguageId { get; set; }
