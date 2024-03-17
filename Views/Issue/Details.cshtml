@@ -57,16 +57,15 @@
                     </div>
                     <div class="swiper-pagination"></div>
                 </div>
-            </div>
-
-            <div class="col-lg-5">
-                <div class="portfolio-info">
+                
+                <div class="mt-4 portfolio-info">
                     <h3>@HtmlLocalizer["Issue_DetailsPage_IssueTitle"]</h3>
                     <ul>
                         @* <li><strong>@HtmlLocalizer["Issue_DetailsPage_IssueNumber"]</strong>: @Model.IssueNumber</li> *@
                         <li><strong>@HtmlLocalizer["Issue_DetailsPage_IssueISSN"]</strong>: @SiteConstant.ISSN</li>
                         <li><strong>@HtmlLocalizer["Issue_DetailsPage_IssueCreated"]</strong>: @Model.DateCreated.ToString("dd MMMM, yyyy")</li>
-                        <li><strong>@HtmlLocalizer["Issue_DetailsPage_IssueDescription"]</strong>:
+                        <li>
+                            <strong>@HtmlLocalizer["Issue_DetailsPage_IssueDescription"]</strong>:
                             <pre class="pt-2">@Model.Description</pre>
                         </li>
                     </ul>
@@ -75,6 +74,9 @@
                         @HtmlLocalizer["Issue_DetailsPage_IssuePdf"]
                     </a>
                 </div>
+            </div>
+
+            <div class="col-lg-5">
 
                 <div class="portfolio-description">
                     <h2>@HtmlLocalizer["Issue_DetailsPage_ContentTitle"]</h2>
