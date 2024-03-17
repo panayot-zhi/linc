@@ -1276,4 +1276,22 @@
   <data name="Source_IndexPage_Title" xml:space="preserve">
     <value>Автори</value>
   </data>
+  <data name="Board_Ana.Kocheva_Member" xml:space="preserve">
+    <value>Проф. д-р Ана Кочева</value>
+  </data>
+  <data name="Board_Ana.Kocheva_MemberWork" xml:space="preserve">
+    <value>Институт за български език - Българска академия на науките, София, България</value>
+  </data>
+  <data name="Board_Iliyana.Krapova_Member" xml:space="preserve">
+    <value>Проф. д-р Илияна Кръпова</value>
+  </data>
+  <data name="Board_Iliyana.Krapova_MemberWork" xml:space="preserve">
+    <value>Департамент по езикознание и сравнителни културни изследвания, Венециански университет "Ка'Фоскари", Италия</value>
+  </data>
+  <data name="Board_Joaquín.García-Medall_Member" xml:space="preserve">
+    <value>Проф. Хоакин Гарсия-Медал</value>
+  </data>
+  <data name="Board_Joaquín.García-Medall_MemberWork" xml:space="preserve">
+    <value>Университет на Валядолид, Испания</value>
+  </data>
 </root>

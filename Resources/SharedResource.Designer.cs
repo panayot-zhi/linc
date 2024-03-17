@@ -295,6 +295,24 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Проф. д-р Ана Кочева.
+        /// </summary>
+        public static string Board_Ana_Kocheva_Member {
+            get {
+                return ResourceManager.GetString("Board_Ana.Kocheva_Member", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Институт за български език - Българска академия на науките, София, България.
+        /// </summary>
+        public static string Board_Ana_Kocheva_MemberWork {
+            get {
+                return ResourceManager.GetString("Board_Ana.Kocheva_MemberWork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Проф. д-р Елизабет Шоре.
         /// </summary>
         public static string Board_Elisabeth_Cheauré_Member {
@@ -327,6 +345,42 @@ namespace linc.Resources {
         public static string Board_Hüseyin_Mevsim_MemberWork {
             get {
                 return ResourceManager.GetString("Board_Hüseyin.Mevsim_MemberWork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Проф. д-р Илияна Кръпова.
+        /// </summary>
+        public static string Board_Iliyana_Krapova_Member {
+            get {
+                return ResourceManager.GetString("Board_Iliyana.Krapova_Member", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Департамент по езикознание и сравнителни културни изследвания, Венециански университет &quot;Ка&apos;Фоскари&quot;, Италия.
+        /// </summary>
+        public static string Board_Iliyana_Krapova_MemberWork {
+            get {
+                return ResourceManager.GetString("Board_Iliyana.Krapova_MemberWork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Проф. Хоакин Гарсия-Медал.
+        /// </summary>
+        public static string Board_Joaquín_García_Medall_Member {
+            get {
+                return ResourceManager.GetString("Board_Joaquín.García-Medall_Member", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Университет на Валядолид, Испания.
+        /// </summary>
+        public static string Board_Joaquín_García_Medall_MemberWork {
+            get {
+                return ResourceManager.GetString("Board_Joaquín.García-Medall_MemberWork", resourceCulture);
             }
         }
         

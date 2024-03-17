@@ -1272,4 +1272,22 @@
   <data name="Welcome_Message" xml:space="preserve">
     <value>Welcome to &lt;span&gt;LInC.uni-plovdiv.bg&lt;/span&gt;</value>
   </data>
+  <data name="Board_Ana.Kocheva_Member" xml:space="preserve">
+    <value>Prof. Ana Kocheva, PhD</value>
+  </data>
+  <data name="Board_Ana.Kocheva_MemberWork" xml:space="preserve">
+    <value>Institute for Bulgarian Language – Bulgarian Academy of Sciences, Sofia, Bulgaria</value>
+  </data>
+  <data name="Board_Iliyana.Krapova_Member" xml:space="preserve">
+    <value>Prof. Iliyana Krapova, PhD</value>
+  </data>
+  <data name="Board_Iliyana.Krapova_MemberWork" xml:space="preserve">
+    <value>Department of Linguistics and Comparative Cultural Studies, Ca' Foscari University of Venice</value>
+  </data>
+  <data name="Board_Joaquín.García-Medall_Member" xml:space="preserve">
+    <value>Prof. Joaquín García-Medall</value>
+  </data>
+  <data name="Board_Joaquín.García-Medall_MemberWork" xml:space="preserve">
+    <value>University of Valladolid, Spain</value>
+  </data>
 </root>
