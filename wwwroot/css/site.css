@@ -225,6 +225,21 @@ section#testimonials {
 /*--------------------------------------------------------------
 # Source Box
 --------------------------------------------------------------*/
+
+#sources .icon-box {
+    width: 100%;
+}
+
+.source-origin-container {
+    position: relative;
+    width: 100%
+}
+
+.source-origin-container .source-orgin {
+    position: absolute;
+    right: 0;
+}
+
 .source-container {
     padding-top: 20px;
 }
@@ -233,7 +248,8 @@ section#testimonials {
 }
 
 .source-container .source-title {
-    padding-right: 30px;
+    min-height: 30px;
+    padding-right: 60px;
 }
 
 .source-container p.source-page {
@@ -431,7 +447,7 @@ section#testimonials {
 --------------------------------------------------------------*/
 
 .admin-top {
-    padding: 30px 0;
+    padding: 20px 0;
     background: #fff;
 }
 
@@ -540,10 +556,11 @@ section#testimonials {
     color: #55a773;
 }
 
-/*--------------------------------------------------------------
-# Sources
---------------------------------------------------------------*/
 
-#sources .icon-box {
-    width: 100%;
+/*--------------------------------------------------------------
+# Identity content
+--------------------------------------------------------------*/
+#identity-content .row > * {
+    padding-top: 20px;
+    padding-bottom: 20px;
 }

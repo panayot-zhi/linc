@@ -295,6 +295,24 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Проф. д-р Ана Кочева.
+        /// </summary>
+        public static string Board_Ana_Kocheva_Member {
+            get {
+                return ResourceManager.GetString("Board_Ana.Kocheva_Member", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Институт за български език - Българска академия на науките, София, България.
+        /// </summary>
+        public static string Board_Ana_Kocheva_MemberWork {
+            get {
+                return ResourceManager.GetString("Board_Ana.Kocheva_MemberWork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Проф. д-р Елизабет Шоре.
         /// </summary>
         public static string Board_Elisabeth_Cheauré_Member {
@@ -327,6 +345,42 @@ namespace linc.Resources {
         public static string Board_Hüseyin_Mevsim_MemberWork {
             get {
                 return ResourceManager.GetString("Board_Hüseyin.Mevsim_MemberWork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Проф. д-р Илияна Кръпова.
+        /// </summary>
+        public static string Board_Iliyana_Krapova_Member {
+            get {
+                return ResourceManager.GetString("Board_Iliyana.Krapova_Member", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Департамент по езикознание и сравнителни културни изследвания, Венециански университет &quot;Ка&apos;Фоскари&quot;, Италия.
+        /// </summary>
+        public static string Board_Iliyana_Krapova_MemberWork {
+            get {
+                return ResourceManager.GetString("Board_Iliyana.Krapova_MemberWork", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Проф. Хоакин Гарсия-Медал.
+        /// </summary>
+        public static string Board_Joaquín_García_Medall_Member {
+            get {
+                return ResourceManager.GetString("Board_Joaquín.García-Medall_Member", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Университет на Валядолид, Испания.
+        /// </summary>
+        public static string Board_Joaquín_García_Medall_MemberWork {
+            get {
+                return ResourceManager.GetString("Board_Joaquín.García-Medall_MemberWork", resourceCulture);
             }
         }
         
@@ -399,24 +453,6 @@ namespace linc.Resources {
         public static string Board_Title {
             get {
                 return ResourceManager.GetString("Board_Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to гл. ас. д-р Ваня Георгиева.
-        /// </summary>
-        public static string Board_Vanya_Georgieva_Member {
-            get {
-                return ResourceManager.GetString("Board_Vanya.Georgieva_Member", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Технически сътрудник &lt;br/&gt;катедра Българска литература и теория на литературата&lt;br/&gt;ПУ „Паисий Хилендарски“.
-        /// </summary>
-        public static string Board_Vanya_Georgieva_MemberWork {
-            get {
-                return ResourceManager.GetString("Board_Vanya.Georgieva_MemberWork", resourceCulture);
             }
         }
         
@@ -928,7 +964,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Реномирана редколегия.
+        ///   Looks up a localized string similar to Редколегия.
         /// </summary>
         public static string FeaturedSection_Team_Title {
             get {
@@ -991,6 +1027,60 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Етичен кодекс.
+        /// </summary>
+        public static string Footer_GuidelinesPolicies_Codex {
+            get {
+                return ResourceManager.GetString("Footer_GuidelinesPolicies_Codex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ползване на бисквитки.
+        /// </summary>
+        public static string Footer_GuidelinesPolicies_Cookies {
+            get {
+                return ResourceManager.GetString("Footer_GuidelinesPolicies_Cookies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Политика за поверителност.
+        /// </summary>
+        public static string Footer_GuidelinesPolicies_PrivacyPolicy {
+            get {
+                return ResourceManager.GetString("Footer_GuidelinesPolicies_PrivacyPolicy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Процедура по публикуване.
+        /// </summary>
+        public static string Footer_GuidelinesPolicies_SubmitGuidance {
+            get {
+                return ResourceManager.GetString("Footer_GuidelinesPolicies_SubmitGuidance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Условия за ползване.
+        /// </summary>
+        public static string Footer_GuidelinesPolicies_TermsOfService {
+            get {
+                return ResourceManager.GetString("Footer_GuidelinesPolicies_TermsOfService", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Насоки и правила.
+        /// </summary>
+        public static string Footer_GuidelinesPolicies_Title {
+            get {
+                return ResourceManager.GetString("Footer_GuidelinesPolicies_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Телефон.
         /// </summary>
         public static string Footer_Phone_Label {
@@ -1045,7 +1135,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Партньори.
+        ///   Looks up a localized string similar to Полезни връзки.
         /// </summary>
         public static string Footer_Social_Title {
             get {
@@ -1059,60 +1149,6 @@ namespace linc.Resources {
         public static string Footer_Suggestions_Title {
             get {
                 return ResourceManager.GetString("Footer_Suggestions_Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Етичен кодекс.
-        /// </summary>
-        public static string Footer_UsefulLinks_Codex {
-            get {
-                return ResourceManager.GetString("Footer_UsefulLinks_Codex", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ползване на бисквитки.
-        /// </summary>
-        public static string Footer_UsefulLinks_Cookies {
-            get {
-                return ResourceManager.GetString("Footer_UsefulLinks_Cookies", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Политика за поверителност.
-        /// </summary>
-        public static string Footer_UsefulLinks_PrivacyPolicy {
-            get {
-                return ResourceManager.GetString("Footer_UsefulLinks_PrivacyPolicy", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Процедура по публикуване.
-        /// </summary>
-        public static string Footer_UsefulLinks_SubmitGuidance {
-            get {
-                return ResourceManager.GetString("Footer_UsefulLinks_SubmitGuidance", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Условия за ползване.
-        /// </summary>
-        public static string Footer_UsefulLinks_TermsOfService {
-            get {
-                return ResourceManager.GetString("Footer_UsefulLinks_TermsOfService", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Полезни връзки.
-        /// </summary>
-        public static string Footer_UsefulLinks_Title {
-            get {
-                return ResourceManager.GetString("Footer_UsefulLinks_Title", resourceCulture);
             }
         }
         
@@ -2486,7 +2522,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Прочетох и приемам Политиката за поверителност на сайта и Общите му условия.
+        ///   Looks up a localized string similar to Прочетох и приемам &lt;a href=&quot;/home/privacy&quot;&gt;Политиката за поверителност&lt;/a&gt; на сайта и &lt;a href=&quot;/home/terms&quot;&gt;Общите му условия&lt;/a&gt;.
         /// </summary>
         public static string RegisterModel_PrivacyConsent {
             get {
@@ -2983,6 +3019,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Последна страница.
+        /// </summary>
+        public static string SourceCreate_LastPage {
+            get {
+                return ResourceManager.GetString("SourceCreate_LastPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Начална страница.
         /// </summary>
         public static string SourceCreate_StartingPage {
@@ -3111,9 +3156,9 @@ namespace linc.Resources {
         /// <summary>
         ///   Looks up a localized string similar to проф. д-р Вера Маровска.
         /// </summary>
-        public static string Team_V_Markovska_Member {
+        public static string Team_V_Marovska_Member {
             get {
-                return ResourceManager.GetString("Team_V.Markovska_Member", resourceCulture);
+                return ResourceManager.GetString("Team_V.Marovska_Member", resourceCulture);
             }
         }
         

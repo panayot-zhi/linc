@@ -22,7 +22,7 @@ namespace linc.Services
             throw new NotImplementedException();
         }
 
-        public async Task<SourceIndexViewModel> GetSourcesPagedAsync(string filter, int? year, int? issueId, int? pageIndex, int pageSize = 10)
+        public async Task<SourceIndexViewModel> GetSourcesPagedAsync(string filter, int languageId, int? year, int? issueId, int? pageIndex, int pageSize = 10)
         {
             if (!pageIndex.HasValue)
             {
@@ -30,7 +30,10 @@ namespace linc.Services
             }
 
             var sourcesDbSet = _context.Sources;
-            var query = sourcesDbSet.AsQueryable();
+            var query = sourcesDbSet
+                .Include(x => x.Issue)
+                .Where(x => x.LanguageId == languageId)
+                .AsQueryable();
 
             if (issueId.HasValue)
             {
@@ -48,10 +51,18 @@ namespace linc.Services
                 {
                     // skip
                 }
+                else if (filter.Length > 1)
+                {
+                    // perform search by
+                    query = query.Where(x =>
+                        EF.Functions.Like(x.LastName, filter) ||
+                        EF.Functions.Like(x.FirstName, filter)
+                    );
+                }
                 else
                 {
-                    query = query.Where(x => x.FirstName.StartsWith(filter));
-                    query = query.OrderBy(x => x.FirstName);
+                    query = query.Where(x => x.LastName.StartsWith(filter));
+                    query = query.OrderBy(x => x.LastName);
                 }
             }
             else

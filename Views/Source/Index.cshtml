@@ -68,6 +68,19 @@
                             {
                                 <li class="source-container">
                                 
+                                    @if (source.IssueId.HasValue)
+                                    {
+                                        <div class="source-origin-container">
+                                            <p class="source-orgin">
+                                                <small>
+                                                    <a asp-controller="Issue" asp-action="Details" asp-route-id="@source.IssueId">
+                                                        @source.Issue.IssueNumber / @source.Issue.ReleaseYear
+                                                    </a>
+                                                </small>
+                                            </p>
+                                        </div>
+                                    }
+
                                     @if (!string.IsNullOrWhiteSpace(source.AuthorNames))
                                     {
                                         <p class="source-author">

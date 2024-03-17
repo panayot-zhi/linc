@@ -213,12 +213,6 @@
   <data name="Board_Title" xml:space="preserve">
     <value>Редакционен борд</value>
   </data>
-  <data name="Board_Vanya.Georgieva_Member" xml:space="preserve">
-    <value>гл. ас. д-р Ваня Георгиева</value>
-  </data>
-  <data name="Board_Vanya.Georgieva_MemberWork" xml:space="preserve">
-    <value>Технически сътрудник &lt;br/&gt;катедра Българска литература и теория на литературата&lt;br/&gt;ПУ „Паисий Хилендарски“</value>
-  </data>
   <data name="Cancel_Button_Label" xml:space="preserve">
     <value>Отказ</value>
   </data>
@@ -461,7 +455,7 @@
     <value>Изпращане на ръкопис</value>
   </data>
   <data name="FeaturedSection_Team_Title" xml:space="preserve">
-    <value>Реномирана редколегия</value>
+    <value>Редколегия</value>
   </data>
   <data name="Footer_Admin_Label" xml:space="preserve">
     <value>Администратор</value>
@@ -500,28 +494,28 @@
     <value>Открийте нас и нашите автори в мрежата.</value>
   </data>
   <data name="Footer_Social_Title" xml:space="preserve">
-    <value>Партньори</value>
+    <value>Полезни връзки</value>
   </data>
   <data name="Footer_Suggestions_Title" xml:space="preserve">
     <value>Случайни</value>
   </data>
-  <data name="Footer_UsefulLinks_Codex" xml:space="preserve">
+  <data name="Footer_GuidelinesPolicies_Codex" xml:space="preserve">
     <value>Етичен кодекс</value>
   </data>
-  <data name="Footer_UsefulLinks_Cookies" xml:space="preserve">
+  <data name="Footer_GuidelinesPolicies_Cookies" xml:space="preserve">
     <value>Ползване на бисквитки</value>
   </data>
-  <data name="Footer_UsefulLinks_PrivacyPolicy" xml:space="preserve">
+  <data name="Footer_GuidelinesPolicies_PrivacyPolicy" xml:space="preserve">
     <value>Политика за поверителност</value>
   </data>
-  <data name="Footer_UsefulLinks_SubmitGuidance" xml:space="preserve">
+  <data name="Footer_GuidelinesPolicies_SubmitGuidance" xml:space="preserve">
     <value>Процедура по публикуване</value>
   </data>
-  <data name="Footer_UsefulLinks_TermsOfService" xml:space="preserve">
+  <data name="Footer_GuidelinesPolicies_TermsOfService" xml:space="preserve">
     <value>Условия за ползване</value>
   </data>
-  <data name="Footer_UsefulLinks_Title" xml:space="preserve">
-    <value>Полезни връзки</value>
+  <data name="Footer_GuidelinesPolicies_Title" xml:space="preserve">
+    <value>Насоки и правила</value>
   </data>
   <data name="ForgotPasswordPage_Procedure" xml:space="preserve">
     <value>&lt;p&gt;&lt;small&gt;Ще Ви изпратим линк за възстановяване на email адреса, който въведете.&lt;/small&gt;&lt;/p&gt;
@@ -860,7 +854,7 @@
     <value>Парола</value>
   </data>
   <data name="RegisterModel_PrivacyConsent" xml:space="preserve">
-    <value>Прочетох и приемам Политиката за поверителност на сайта и Общите му условия</value>
+    <value>Прочетох и приемам &lt;a href="/home/privacy"&gt;Политиката за поверителност&lt;/a&gt; на сайта и &lt;a href="/home/terms"&gt;Общите му условия&lt;/a&gt;</value>
   </data>
   <data name="RegisterModel_PrivacyConsent_ErrorMessage" xml:space="preserve">
     <value>За да се регистрирате се изисква да сте прочели и да приемате общите условия на сайта и политиката му за поверителност.</value>
@@ -1022,7 +1016,7 @@
   <data name="Team_Title" xml:space="preserve">
     <value>Екип</value>
   </data>
-  <data name="Team_V.Markovska_Member" xml:space="preserve">
+  <data name="Team_V.Marovska_Member" xml:space="preserve">
     <value>проф. д-р Вера Маровска</value>
   </data>
   <data name="Team_Y.Rowland_Member" xml:space="preserve">
@@ -1281,5 +1275,26 @@
   </data>
   <data name="Source_IndexPage_Title" xml:space="preserve">
     <value>Автори</value>
+  </data>
+  <data name="Board_Ana.Kocheva_Member" xml:space="preserve">
+    <value>Проф. д-р Ана Кочева</value>
+  </data>
+  <data name="Board_Ana.Kocheva_MemberWork" xml:space="preserve">
+    <value>Институт за български език - Българска академия на науките, София, България</value>
+  </data>
+  <data name="Board_Iliyana.Krapova_Member" xml:space="preserve">
+    <value>Проф. д-р Илияна Кръпова</value>
+  </data>
+  <data name="Board_Iliyana.Krapova_MemberWork" xml:space="preserve">
+    <value>Департамент по езикознание и сравнителни културни изследвания, Венециански университет "Ка'Фоскари", Италия</value>
+  </data>
+  <data name="Board_Joaquín.García-Medall_Member" xml:space="preserve">
+    <value>Проф. Хоакин Гарсия-Медал</value>
+  </data>
+  <data name="Board_Joaquín.García-Medall_MemberWork" xml:space="preserve">
+    <value>Университет на Валядолид, Испания</value>
+  </data>
+  <data name="SourceCreate_LastPage" xml:space="preserve">
+    <value>Последна страница</value>
   </data>
 </root>

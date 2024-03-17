@@ -47,7 +47,7 @@ public class ContentService : IContentService
             UsersCount = _dbContext.CountByRole(SiteRolesHelper.UserRoleName),
 
             // NOTE: a hard-coded value
-            EditorsBoardCount = 6
+            EditorsBoardCount = 9
         };
 
         var issuesList = await _dbContext.Issues

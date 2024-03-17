@@ -7,7 +7,7 @@ namespace linc.Contracts
     {
         Task<ApplicationDocument> GetFileAsync(int id);
 
-        Task<ApplicationIssue> GetIssueAsync(int id);
+        Task<ApplicationIssue> GetIssueAsync(int id, int? languageId = null);
 
         Task<List<ApplicationIssue>> GetIssuesAsync();
 

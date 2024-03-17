@@ -39,7 +39,8 @@ namespace linc.Controllers
                 return NotFound();
             }
 
-            var applicationIssue = await _issueService.GetIssueAsync(id.Value);
+            var currentLanguageId = LocalizationService.GetCurrentLanguageId();
+            var applicationIssue = await _issueService.GetIssueAsync(id.Value, currentLanguageId);
             if (applicationIssue == null)
             {
                 _logger.LogWarning("Could not find issue with the id of {@Id}",

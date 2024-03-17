@@ -1,8 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 
 namespace linc.Data
 {
+    [Index(nameof(FirstName), IsUnique = false)]
+    [Index(nameof(LastName), IsUnique = false)]
     public class ApplicationSource
     {
         public int Id { get; set; }
@@ -28,6 +31,8 @@ namespace linc.Data
 
 
         public int StartingPage { get; set; }
+
+        public int LastPage { get; set; }
 
 
         [ForeignKey(nameof(Language))]

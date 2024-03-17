@@ -33,8 +33,9 @@ namespace linc.Controllers
         public async Task<IActionResult> Index(int? page, int? year, string filter, int? issueId)
         {
             filter = System.Net.WebUtility.UrlDecode(filter);
-            var viewModel = await _sourceService.GetSourcesPagedAsync(filter: filter, year: year, issueId: issueId, 
-                pageIndex: page);
+            var languageId = LocalizationService.GetCurrentLanguageId();
+            var viewModel = await _sourceService.GetSourcesPagedAsync(filter: filter, languageId: languageId, 
+                year: year, issueId: issueId, pageIndex: page);
 
             viewModel.YearFilter = await _sourceService.GetSourcesCountByYears();
             viewModel.IssuesFilter = await _sourceService.GetSourcesCountByIssues();
@@ -70,7 +71,9 @@ namespace linc.Controllers
             var vModel = new SourceCreateViewModel
             {
                 Issues = await GetIssuesAsync(),
-                Languages = GetLanguages()
+                Languages = GetLanguages(),
+
+                LanguageId = LocalizationService.GetCurrentLanguageId()
             };
 
             return View(vModel);
@@ -85,6 +88,8 @@ namespace linc.Controllers
             {
                 vModel.Issues = await GetIssuesAsync();
                 vModel.Languages = GetLanguages();
+
+                vModel.LanguageId = LocalizationService.GetCurrentLanguageId();
 
                 return View(vModel);
             }
@@ -213,9 +218,13 @@ namespace linc.Controllers
 
         public List<SelectListItem> GetLanguages()
         {
-            return SiteConstant.SupportedCultures.Select(supportedCulture =>
-                    new SelectListItem(supportedCulture.Value, supportedCulture.Key.ToString()))
+            var currentLanguageId = LocalizationService.GetCurrentLanguageId();
+            var list = SiteConstant.SupportedCultures.Select(supportedCulture =>
+                    new SelectListItem(supportedCulture.Value, supportedCulture.Key.ToString(), 
+                        supportedCulture.Key == currentLanguageId))
                 .ToList();
+
+            return list;
         }
     }
 }

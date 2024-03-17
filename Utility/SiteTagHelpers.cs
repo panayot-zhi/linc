@@ -10,9 +10,13 @@ namespace linc.Utility
     public class DatabaseLocalizationTagHelper : TagHelper
     {
         private const string DatabaseLocalizationKeyName = "contenteditable-for";
+        private const string AllowedName = "contenteditable-allowed-for";
 
         [HtmlAttributeName(DatabaseLocalizationKeyName)]
         public string DatabaseLocalizationKey { get; set; }
+
+        [HtmlAttributeName(AllowedName)]
+        public SiteRole? Allowed { get; set; }
 
         [ViewContext]
         [HtmlAttributeNotBound]
@@ -31,7 +35,13 @@ namespace linc.Utility
 
             //var editable = ViewContext.ViewData.Get<bool?>(SiteConstant.TempDataEditableKey) == true;
             var editable = ViewContext.TempData.ContainsKey(SiteConstant.TempDataEditableKey);
-            if (ViewContext.HttpContext.User.IsAtLeast(SiteRole.Editor) && editable)
+            
+            if (!Allowed.HasValue)
+            {
+                Allowed = SiteRole.Editor;
+            }
+
+            if (ViewContext.HttpContext.User.IsAtLeast(Allowed.Value) && editable)
             {
                 output.Attributes.Add("contenteditable", "true");
                 

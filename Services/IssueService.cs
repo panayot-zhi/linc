@@ -26,16 +26,18 @@ namespace linc.Services
             return await _context.Documents.FindAsync(id);
         }
 
-        public async Task<ApplicationIssue> GetIssueAsync(int id)
+        public async Task<ApplicationIssue> GetIssueAsync(int id, int? sourcesLanguageId = null)
         {
-            // var currentCulture = Thread.CurrentThread.CurrentUICulture.Name;
-            // var languageId = SiteConstant.SupportedCultures.First(x =>
-            //     x.Value == currentCulture).Key;
+            IQueryable<ApplicationIssue> query = _context.Issues
+                .Include(x => x.Files);
 
-            return await _context.Issues
-                .Include(x => x.Files)
-                .Include(x => x.Sources)
-                .FirstOrDefaultAsync(x => x.Id == id);
+            if (sourcesLanguageId.HasValue)
+            {
+                query = query.Include(x => x.Sources
+                    .Where(source => source.LanguageId == sourcesLanguageId.Value));
+            }
+
+            return await query.FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<List<ApplicationIssue>> GetIssuesAsync()

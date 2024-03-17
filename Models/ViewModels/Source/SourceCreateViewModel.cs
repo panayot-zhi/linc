@@ -33,6 +33,11 @@ namespace linc.Models.ViewModels.Source
         [Display(Name = "SourceCreate_StartingPage", ResourceType = typeof(Resources.SharedResource))]
         public int? StartingPage { get; set; }
 
+        [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+        [Display(Name = "SourceCreate_LastPage", ResourceType = typeof(Resources.SharedResource))]
+        public int? LastPage { get; set; }
+
+
 
         [Display(Name = "SourceCreate_IssueId", ResourceType = typeof(Resources.SharedResource))]
         public int? IssueId { get; set; }
@@ -41,10 +46,10 @@ namespace linc.Models.ViewModels.Source
         public int LanguageId { get; set; }
 
 
+
         public List<SelectListItem> Languages { get; set; }
 
         public List<SelectListItem> Issues { get; set; }
-
     }
 
 }
