@@ -5,9 +5,6 @@
 
 @{
     ViewData["Title"] = HtmlLocalizer["Issue_DetailsPage_Title"];
-
-    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
-    var currentCulture = requestCulture?.RequestCulture.UICulture.Name ?? "bg";
 }
 
 @section Breadcrumbs {
