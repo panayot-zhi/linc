@@ -1,4 +1,5 @@
 ﻿@using linc.Utility
+@using linc.Models.Enumerations
 @model SourceCreateViewModel
 
 @{
@@ -120,9 +121,9 @@
             <div class="col-lg-4">
                 <h3>@HtmlLocalizer["Issue_CreatePage_Notes_Title"]</h3>
                 <hr>
-                <p contenteditable-for="Issue_CreatePage_Notes">
+                <div contenteditable-for="Issue_CreatePage_Notes" contenteditable-allowed-for="SiteRole.Editor">
 
-                </p>
+                </div>
             </div>
         </div>
     </div>
