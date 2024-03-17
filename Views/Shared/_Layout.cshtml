@@ -471,5 +471,10 @@
 
     <partial name="_AlertMessage"/>
 
+    @if (User.IsAtLeast(SiteRole.Editor))
+    {
+        <partial name="_SetStringResource" model="@(User.Is(SiteRole.Administrator) ? "innerHTML" : "innerText")"/>
+    }
+
 </body>
 </html>
