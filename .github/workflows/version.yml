@@ -8,7 +8,7 @@ on:
 
 permissions:
   contents: write
-  
+
 jobs:
   version-increment:
     if: github.event.pull_request.merged == true
@@ -40,7 +40,7 @@ jobs:
             let major+=1
             minor=0
             patch=0
-            
+
             new_version="$major.$minor.$patch"
             echo "NEW_VERSION=$new_version" >> $GITHUB_OUTPUT
             sed -i "s/<Version>$current_version<\/Version>/<Version>$new_version<\/Version>/" "$csproj_file"
@@ -48,21 +48,28 @@ jobs:
         elif [[ "$SOURCE_BRANCH" == feature/* ]]; then
             let minor+=1
             #patch=0
-            
+
             new_version="$major.$minor.$patch"
             echo "NEW_VERSION=$new_version" >> $GITHUB_OUTPUT
             sed -i "s/<Version>$current_version<\/Version>/<Version>$new_version<\/Version>/" "$csproj_file"
             echo "Updated minor version for feature branch."
         elif [[ "$SOURCE_BRANCH" == bugfix/* || "$SOURCE_BRANCH" == hotfix/* ]]; then
             let patch+=1
-            
+
             new_version="$major.$minor.$patch"
             echo "NEW_VERSION=$new_version" >> $GITHUB_OUTPUT
             sed -i "s/<Version>$current_version<\/Version>/<Version>$new_version<\/Version>/" "$csproj_file"
             echo "Updated patch version for bugfix/hotfix branches."
         else
             echo "Branch is not part of version automation."
-        fi      
+        fi
+
+    - name: Update README.md
+      run: |
+        # Simple sed command to replace a placeholder or existing version in README.md
+        # This example assumes a placeholder like <!--version-->x.x.x<!--version-->
+        # Use sed to find and replace the badge image URL with the new version
+        sed -i "s/badge\/latest-v\..*-/badge\/latest-v.${{ steps.update-version.outputs.NEW_VERSION }}-/" README.md
 
     - name: Commit and push changes
       if: ${{ steps.update-version.outputs.NEW_VERSION }}
@@ -70,5 +77,5 @@ jobs:
           git config --global user.name 'Admin-Linc'
           git config --global user.email 'admin-linc@uni-plovdiv.bg'
           git add --all
-          git commit -am "Auto-incremented version to ${{ steps.update-version.outputs.NEW_VERSION }}"
+          git commit -am "Auto-incremented version to v.${{ steps.update-version.outputs.NEW_VERSION }}"
           git push
