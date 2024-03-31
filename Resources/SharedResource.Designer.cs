@@ -2486,7 +2486,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Назад.
+        ///   Looks up a localized string similar to Напред.
         /// </summary>
         public static string NextPage_Label {
             get {
@@ -2522,7 +2522,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Напред.
+        ///   Looks up a localized string similar to Назад.
         /// </summary>
         public static string PreviousPage_Label {
             get {
@@ -2844,6 +2844,15 @@ namespace linc.Resources {
         public static string Save_Button_Label {
             get {
                 return ResourceManager.GetString("Save_Button_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Прегледайте авторите от всички издания по азбучен ред или търсете конкретно име или заглавие. Можете да прегледате и произведения по години и броеве &lt;a href=&quot;{0}&quot;&gt;тук&lt;/a&gt;..
+        /// </summary>
+        public static string ServicesSection_Description {
+            get {
+                return ResourceManager.GetString("ServicesSection_Description", resourceCulture);
             }
         }
         
