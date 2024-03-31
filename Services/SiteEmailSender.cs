@@ -138,6 +138,8 @@ namespace linc.Services
                     Url = _appConfig.ServerUrl + "/identity/account/manage"
                 });
 
+                viewModel.FooterText = _localizationService["BaseEmailModel_FooterText"].Value;
+
                 var previewLink = GetEmailPreviewLink(siteEmailDescriptor.Template, viewModel);
                 viewModel.Preview = _localizationService["BaseEmailModel_PreviewEmailInBrowser", previewLink].Value;
 
