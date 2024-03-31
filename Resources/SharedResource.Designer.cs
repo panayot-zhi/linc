@@ -277,6 +277,24 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Вашият профил.
+        /// </summary>
+        public static string BaseEmailModel_FooterProfileLink {
+            get {
+                return ResourceManager.GetString("BaseEmailModel_FooterProfileLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ако имате проблеми с email-а &lt;a href=&quot;{0}&quot; target=&quot;_blank&quot;&gt;прегледайте го в браузър&lt;/a&gt;.
+        /// </summary>
+        public static string BaseEmailModel_PreviewEmailInBrowser {
+            get {
+                return ResourceManager.GetString("BaseEmailModel_PreviewEmailInBrowser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Проф. дн Александер Войчех Миколайчак.
         /// </summary>
         public static string Board_Aleksander_Mikołajczak_Member {

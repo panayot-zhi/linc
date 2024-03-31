@@ -1293,4 +1293,10 @@
   <data name="SourceCreate_LastPage" xml:space="preserve">
     <value>Last page</value>
   </data>
+  <data name="BaseEmailModel_FooterProfileLink" xml:space="preserve">
+    <value>Your profile</value>
+  </data>
+  <data name="BaseEmailModel_PreviewEmailInBrowser" xml:space="preserve">
+    <value>If you are having troubles with the email visuals &lt;a href="{0}" target="_blank"&gt;view it in a browser&lt;/a&gt;</value>
+  </data>
 </root>
