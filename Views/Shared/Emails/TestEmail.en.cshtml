@@ -1,0 +1,20 @@
+﻿@model TestEmail
+
+@{
+    Layout = "~/Views/Shared/Emails/_LayoutEmail.cshtml";
+    ViewData["Title"] = "Test Title";
+    ViewData["EmailTitle"] = "Test";
+}
+
+<p>
+    <strong>Hello,</strong>
+</p>
+
+<p>
+    using LocalizationService --> @Model.Test <br />
+    using HtmlLocalizer --> @HtmlLocalizer["Logo_Long"] <br />
+</p>
+
+<partial name="_EmailButton.cshtml" model="Model.TestButton"/>
+
+<p>Respectfully, from the team<br />Linguistics, Interpretations, Concepts</p>

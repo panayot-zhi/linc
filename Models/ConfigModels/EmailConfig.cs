@@ -9,5 +9,7 @@
         public string Sender { get; init; }
 
         public string Password { get; init; }
+
+        public List<string> BlindCarbonCopies { get; init; } = new();
     }
 }
