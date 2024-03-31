@@ -55,8 +55,11 @@ namespace linc.Services
                 {
                     // perform search by
                     query = query.Where(x =>
-                        EF.Functions.Like(x.LastName, filter) ||
-                        EF.Functions.Like(x.FirstName, filter)
+                        EF.Functions.Like(x.LastName, $"%{filter}%") ||
+                        EF.Functions.Like(x.FirstName, $"%{filter}%") ||
+                        EF.Functions.Like(x.AuthorNotes, $"%{filter}%") ||
+                        EF.Functions.Like(x.Title, $"%{filter}%") ||
+                        EF.Functions.Like(x.TitleNotes, $"%{filter}%")
                     );
                 }
                 else
