@@ -248,13 +248,20 @@
                 
                 @if (IsSectionDefined("footer"))
                 {
-                    <!-- ADDRESS -->
+                    <!-- DEDICATED EMAIL FOOTER SECTION -->
                     <tr>
                         <td bgcolor="#f4f4f4" align="left" style="padding: 0px 30px 30px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 18px;">
                             <p style="margin: 0;">@await RenderSectionAsync("footer", required: false)</p>
                         </td>
                     </tr>
                 }
+                
+                <!-- GENERAL EMAIL FOOTER MESSAGE -->
+                <tr>
+                    <td bgcolor="#f4f4f4" style="padding: 0px 20px 20px 20px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 18px; text-align: center">
+                        <p style="margin: 0;">@Model.FooterText</p>
+                    </td>
+                </tr>
 
             </table>
             <!--[if (gte mso 9)|(IE)]>
