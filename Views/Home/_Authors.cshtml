@@ -1,5 +1,7 @@
 ﻿@model AuthorsViewModel
 @using linc.Utility
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using System.Net
 
 <!-- ======= Services Section ======= -->
 <section id="sources" class="services section-bg">
@@ -8,140 +10,52 @@
         <div class="section-title">
             <h2>@HtmlLocalizer["AuthorsSection_Title"]</h2>
             @* <h3>@HtmlLocalizer["CategoriesSection_SubTitle"]</h3> *@
-            <p contenteditable-for="ServicesSection_Description">
-                Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.
+            <p>
+                @HtmlLocalizer["ServicesSection_Description", Url.Action("Index", "Source")!]
             </p>
         </div>
 
         <div class="row">
-
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-                <div class="icon-box">
-                    <div class="icon">
-                        <a asp-controller="Source" asp-action="Index" asp-route-filter="Б">
-                            <i class="bx bx-б source-letter"></i>
-                        </a>
-                    </div>
-                    <h4>
-                        <a asp-controller="Source" asp-action="Index" asp-route-filter="Б">
-                            Благовест ЗЛАТАНОВ
-                        </a>
-                    </h4>
-                    <p contenteditable-for="Category_BlagovestZlatanov_Description">
-                        Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi
-                    </p>
-                </div>
-            </div><!-- End BlagovestZlatanov item -->
-
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="100">
-                <div class="icon-box">
-                    <div class="icon">
-                        <a asp-controller="Source" asp-action="Index" asp-route-filter="К">
-                            <i class="bx bx-к source-letter"></i>
-                        </a>
-                    </div>
-                    <h4>
-                        <a asp-controller="Source" asp-action="Index" asp-route-filter="К">
-                            Клео ПРОТОХРИСТОВА
-                        </a>
-                    </h4>
-                    <p contenteditable-for="Category_KleoProtohristova_Description">
-                        Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi
-                    </p>
-                </div>
-            </div><!-- End KleoProtohristova item -->
             
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="100">
-                <div class="icon-box">
-                    <div class="icon">
-                        <a asp-controller="Source" asp-action="Index" asp-route-filter="З">
-                            <i class="bx bx-з source-letter"></i>
-                        </a>
-                    </div>
-                    <h4>
-                        <a asp-controller="Source" asp-action="Index" asp-route-filter="З">
-                            Запрян КОЗЛУДЖОВ
-                        </a>
-                    </h4>
-                    <p contenteditable-for="Category_ZapryanKozludzhov_Description">
-                        Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi
-                    </p>
-                </div>
-            </div><!-- End ZapryanKozludzhov item -->
+            <div class="alphabet-sort">
 
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
-                <div class="icon-box">
-                    <div class="icon">
-                        <a asp-controller="Source" asp-action="Index" asp-route-filter="G">
-                            <i class="bx bx-g source-letter"></i>
-                        </a>
+                <div class="row">
+                    <div class="text-center">
+                        @foreach (var letter in SiteConstant.CyrillicAlphabet.Select(x => x.ToString()))
+                        {
+                            <div class="alphabet-letter">
+                                <a href="@Url.Action("Index", "Source", new { filter = WebUtility.UrlEncode(letter) })">@letter</a>
+                            </div>
+                        }
                     </div>
-                    <h4>
-                        <a asp-controller="Source" asp-action="Index" asp-route-filter="G">
-                            Guglielmo CINQUE
-                        </a>
-                    </h4>
-                    <p contenteditable-for="Category_GuglielmoCinque_Description">
-                        Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi
-                    </p>
                 </div>
-            </div><!-- End GuglielmoCinque item -->
-
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
-                <div class="icon-box">
-                    <div class="icon">
-                        <a asp-controller="Source" asp-action="Index" asp-route-filter="Y">
-                            <i class="bx bx-y source-letter"></i>
-                        </a>
-
+                    
+                <div class="row">
+                    <div class="text-center">
+                        @foreach (var letter in SiteConstant.LatinAlphabet.Select(x => x.ToString()))
+                        {
+                            <div class="alphabet-letter">
+                                <a href="@Url.Action("Index", "Source", new { filter = WebUtility.UrlEncode(letter) })">@letter</a>
+                            </div>
+                        }
                     </div>
-                    <h4>
-                        <a asp-controller="Source" asp-action="Index" asp-route-filter="Y">
-                            Yana ROWLAND
-                        </a>
-                    </h4>
-                    <p contenteditable-for="Category_YanaRowland_Description">
-                        Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi
-                    </p>
                 </div>
-            </div><!-- End YanaRowland item -->
+
+            </div>
+
+            <div class="authors-search">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <form asp-controller="Source" asp-action="Index" method="get">
+                                <input type="text" name="filter">
+                                <input type="submit" value="@HtmlLocalizer["Search_Button_Label"]">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
-            <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
-                <div class="icon-box">
-                    <div class="icon">
-                        <a asp-controller="Source" asp-action="Index" asp-route-filter="B">
-                            <i class="bx bx-b source-letter"></i>
-                        </a>
-                    </div>
-                    <h4>
-                        <a asp-controller="Source" asp-action="Index" asp-route-filter="B">
-                            Boris MINKOV
-                        </a>
-                    </h4>
-                    <p contenteditable-for="Category_BorisMinkov_Description">
-                        Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi
-                    </p>
-                </div>
-            </div><!-- End BorisMinkov item -->
-
-            <div class="offset-lg-4 col-lg-4 offset-md-3 col-md-6 d-flex align-items-stretch mt-4" data-aos="zoom-in" data-aos-delay="100">
-                <div class="icon-box">
-                    <div class="icon">
-                        <a asp-controller="Source" asp-action="Index">
-                            <i class="bi bi-asterisk"></i>
-                        </a>
-                    </div>
-                    <h4>
-                        <a asp-controller="Source" asp-action="Index">
-                            @HtmlLocalizer["All_Label"]
-                        </a>
-                    </h4>
-                    <p>
-                        @HtmlLocalizer["Sources_All_Description"]
-                    </p>
-                </div>
-            </div><!-- End All item -->
-
         </div>
     </div>
 </section>

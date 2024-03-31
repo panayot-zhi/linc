@@ -1,5 +1,7 @@
 ﻿@using linc.Utility
 @using System.Net
+@using System.Web
+@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model SourceIndexViewModel
 
 @{
@@ -40,6 +42,9 @@
 <section class="portfolio-details">
     <div class="container">
         <div class="row">
+            
+            <small class="pb-3">@HtmlLocalizer["Source_IndexPage_SearchDescription"]</small>
+
             <div class="col-md-8">
 
                 <div class="alphabet-sort">
@@ -49,7 +54,7 @@
                             <i class="bi bi-asterisk"></i>
                         </a>
                     </div>
-                    
+
                     <div class="row">
                         @foreach (var letter in SiteConstant.CyrillicAlphabet.Select(x => x.ToString()))
                         {
@@ -58,7 +63,7 @@
                             </div>
                         }
                     </div>
-                    
+
                     <div class="row">
                         @foreach (var letter in SiteConstant.LatinAlphabet.Select(x => x.ToString()))
                         {
@@ -78,7 +83,7 @@
                             @foreach (var source in Model.Records)
                             {
                                 <li class="source-container">
-                                
+
                                     @if (source.IssueId.HasValue)
                                     {
                                         <div class="source-origin-container">
@@ -94,7 +99,7 @@
 
                                     @if (!string.IsNullOrWhiteSpace(source.AuthorNames))
                                     {
-                                        <p class="source-author">
+                                        <p class="source-author annotate">
                                             @source.FirstName @source.LastName
                                             @if (!string.IsNullOrEmpty(source.AuthorNotes))
                                             {
@@ -104,7 +109,7 @@
                                         </p>
                                     }
 
-                                    <p class="source-title">
+                                    <p class="source-title annotate">
                                         <a href="@Url.Action("Pdf", "Source", new { id = source.IssueId })#page=@source.StartingPage">@source.Title</a>
                                     </p>
 
@@ -114,7 +119,7 @@
 
                                     @if (!string.IsNullOrEmpty(source.TitleNotes))
                                     {
-                                        <small>@source.TitleNotes</small>
+                                        <small class="annotate">@source.TitleNotes</small>
                                     }
 
                                 </li>
@@ -127,7 +132,7 @@
                             @HtmlLocalizer["Source_IndexPage_NoResults"]
                         </p>
                     }
-                    
+
                     @if (Model.TotalPages > 1)
                     {
                         @await Html.PartialAsync("_Paging", Model)
@@ -137,13 +142,13 @@
             </div>
 
             <div class="col-md-4 text-end">
-                
+
                 <div class="portfolio-description">
                     <h2>@HtmlLocalizer["Source_IndexPage_FilterByYears_Title"]</h2>
                     <p>
                         <ul class="icon-links">
                             <li>
-                                <i class="bx bx-chevron-right"></i> 
+                                <i class="bx bx-chevron-right"></i>
                                 <a class="@(Model.CurrentYearFilter.HasValue ? string.Empty : "active")" href="@Url.Action("Index", "Source")">
                                     @HtmlLocalizer["All_Label"]
                                 </a>
@@ -190,10 +195,50 @@
     <partial name="_Submit" />
 }
 
+@{
+
+    var safeSearchQuery = "";
+    if (Model.AuthorsFilter?.Length > 1)
+    {
+        safeSearchQuery = HttpUtility.JavaScriptStringEncode(Model.AuthorsFilter);
+    }
+}
+
 @section Scripts {
     <script>
         $(document).ready(function () {
             $("#nav-sources").addClass('active');
+            
+            function decodeHtmlEntities(encodedString) {
+                let textArea = document.createElement('textarea');
+                textArea.innerHTML = encodedString;
+                return textArea.value;
+            }
+
+            let encodedSearchQuery = '@safeSearchQuery';
+            let searchQuery = decodeHtmlEntities(encodedSearchQuery);
+            
+            if(!searchQuery) {
+                // nothing to do here
+                // cease execution
+                return;
+            }
+
+            //console.log(searchQuery);
+
+            function highlightSearchQuery(textContent, searchQuery) {
+                // Escape special regex characters in searchQuery
+                let escapedSearchQuery = searchQuery.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+                let regex = new RegExp(escapedSearchQuery, 'gi'); // 'g' for global search, 'i' for case-insensitive
+
+                return textContent.replace(regex, function (match) {
+                    return `<span class="highlight">${match}</span>`;
+                });
+            }
+
+            $(".annotate").each(function (index, element) {
+                element.innerHTML = highlightSearchQuery(element.innerHTML, searchQuery)
+            });
         })
     </script>
 }
