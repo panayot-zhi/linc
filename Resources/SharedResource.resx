@@ -1315,4 +1315,22 @@
   <data name="BaseEmailModel_PreviewEmailInBrowser" xml:space="preserve">
     <value>Ако имате проблеми с email-а &lt;a href="{0}" target="_blank"&gt;прегледайте го в браузър&lt;/a&gt;</value>
   </data>
+  <data name="BaseEmailModel_FooterText" xml:space="preserve">
+    <value>Списание Лингвистика, Интерпретация, Концепции издава Пловдивско университетско издателство</value>
+  </data>
+  <data name="Email_ConfirmEmailChange_Subject" xml:space="preserve">
+    <value>Потвърждение на променен email</value>
+  </data>
+  <data name="Email_ConfirmEmail_ConfirmButton_Label" xml:space="preserve">
+    <value>Потвърди</value>
+  </data>
+  <data name="Email_ConfirmEmail_Subject" xml:space="preserve">
+    <value>Потвърждение на email</value>
+  </data>
+  <data name="Email_ResetPassword_ResetButton_Label" xml:space="preserve">
+    <value>Възстанови</value>
+  </data>
+  <data name="Email_ResetPassword_Subject" xml:space="preserve">
+    <value>Възстановяване на парола</value>
+  </data>
 </root>

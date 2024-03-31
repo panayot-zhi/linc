@@ -1,10 +1,9 @@
 ﻿using linc.Models.ConfigModels;
 using linc.Models.ViewModels.Emails;
-using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace linc.Contracts
 {
-    public interface ISiteEmailSender : IEmailSender
+    public interface ISiteEmailSender
     {
         EmailConfig EmailConfig { get; }
 

@@ -4,12 +4,13 @@
 
 using System.ComponentModel.DataAnnotations;
 using System.Text;
-using System.Text.Encodings.Web;
 using linc.Contracts;
 using linc.Data;
+using linc.Models.ConfigModels;
 using linc.Models.Enumerations;
+using linc.Models.ViewModels.Emails;
+using linc.Utility;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 
@@ -19,10 +20,10 @@ namespace linc.Areas.Identity.Pages.Account
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<ForgotPasswordModel> _logger;
-        private readonly IEmailSender _emailSender;
+        private readonly ISiteEmailSender _emailSender;
 
         public ForgotPasswordModel(UserManager<ApplicationUser> userManager, 
-            IEmailSender emailSender, 
+            ISiteEmailSender emailSender, 
             ILogger<ForgotPasswordModel> logger, 
             ILocalizationService localizer)
         : base(localizer)
@@ -86,10 +87,24 @@ namespace linc.Areas.Identity.Pages.Account
                 values: new { area = "Identity", code },
                 protocol: Request.Scheme);
 
-            await _emailSender.SendEmailAsync(
-                Input.Email,
-                "Reset Password",
-                $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+            ArgumentNullException.ThrowIfNull(callbackUrl);
+
+            var model = new SiteEmailDescriptor<ResetPassword>()
+            {
+                Emails = new() { Input.Email },
+                Subject = LocalizationService["Email_ResetPassword_Subject"].Value,
+                ViewModel = new ResetPassword
+                {
+                    IpAddress = HelperFunctions.GetIp(HttpContext),
+                    Reset = new EmailButton
+                    {
+                        Url = callbackUrl,
+                        Text = LocalizationService["Email_ResetPassword_ResetButton_Label"].Value
+                    }
+                }
+            };
+
+            await _emailSender.SendEmailAsync(model);
 
             AddAlertMessage(LocalizationService["ForgotPassword_InfoMessage"],
                 type: AlertMessageType.Info);

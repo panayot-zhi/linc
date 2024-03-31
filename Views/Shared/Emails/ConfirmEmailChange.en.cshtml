@@ -1,0 +1,25 @@
+﻿@using linc.Utility
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model ConfirmEmailChange
+
+@{
+    Layout = "~/Views/Shared/Emails/_LayoutEmail.cshtml";
+    ViewData["Title"] = "Confirm email address change";
+    ViewData["EmailTitle"] = "Confirm change";
+}
+
+<p>
+    <strong>Hello, @Model.Names,</strong>
+</p>
+
+<p>
+    you have changed your email address on the LInC website. To confirm your new email, please follow this link:
+</p>
+
+<partial name="_EmailButton.cshtml" model="Model.Confirm"/>
+
+<p>If this email is not associated with your user, please <a href="mailto:@SiteConstant.AdministratorEmail" target="_blank">report to the system administrator</a> and ignore this email.</p>
+
+<p>&nbsp;</p>
+
+<p>Respectfully, from the team of<br />Linguistics, Interpretations, Concepts</p>

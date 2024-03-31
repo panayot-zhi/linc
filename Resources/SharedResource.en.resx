@@ -1311,4 +1311,19 @@
   <data name="BaseEmailModel_PreviewEmailInBrowser" xml:space="preserve">
     <value>If you are having troubles with the email visuals &lt;a href="{0}" target="_blank"&gt;view it in a browser&lt;/a&gt;</value>
   </data>
+  <data name="BaseEmailModel_FooterText" xml:space="preserve">
+    <value>Linguistics, Interpretation, Concepts magazine is published by Plovdiv University Publishing House</value>
+  </data>
+  <data name="Email_ConfirmEmail_ConfirmButton_Label" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
+  <data name="Email_ConfirmEmail_Subject" xml:space="preserve">
+    <value>Confirm email</value>
+  </data>
+  <data name="Email_ResetPassword_ResetButton_Label" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="Email_ResetPassword_Subject" xml:space="preserve">
+    <value>Reset password</value>
+  </data>
 </root>

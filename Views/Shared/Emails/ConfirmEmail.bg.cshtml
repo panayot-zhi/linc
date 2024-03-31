@@ -1,0 +1,20 @@
+﻿@model ConfirmEmail
+
+@{
+    Layout = "~/Views/Shared/Emails/_LayoutEmail.cshtml";
+    ViewData["Title"] = "Потвърждение на email адрес";
+    ViewData["EmailTitle"] = "Потвърждение";
+}
+
+<p>
+    <strong>Здравейте, @Model.Names,</strong>
+</p>
+
+<p>
+    благодарим Ви за регистрацията в сайта на списание ЛИнК. За да активирате профила, моля, последвайте тази връзка:
+</p>
+
+<partial name="_EmailButton.cshtml" model="Model.Confirm"/>
+
+<p>С уважение, екипът на списание<br/>Лингвистика, Интерпретация, Концепции</p>
+

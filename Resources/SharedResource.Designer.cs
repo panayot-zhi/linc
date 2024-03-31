@@ -286,6 +286,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Списание Лингвистика, Интерпретация, Концепции издава Пловдивско университетско издателство.
+        /// </summary>
+        public static string BaseEmailModel_FooterText {
+            get {
+                return ResourceManager.GetString("BaseEmailModel_FooterText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ако имате проблеми с email-а &lt;a href=&quot;{0}&quot; target=&quot;_blank&quot;&gt;прегледайте го в браузър&lt;/a&gt;.
         /// </summary>
         public static string BaseEmailModel_PreviewEmailInBrowser {
@@ -896,6 +905,51 @@ namespace linc.Resources {
         public static string Download_Button_Label {
             get {
                 return ResourceManager.GetString("Download_Button_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Потвърди.
+        /// </summary>
+        public static string Email_ConfirmEmail_ConfirmButton_Label {
+            get {
+                return ResourceManager.GetString("Email_ConfirmEmail_ConfirmButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Потвърждение на email.
+        /// </summary>
+        public static string Email_ConfirmEmail_Subject {
+            get {
+                return ResourceManager.GetString("Email_ConfirmEmail_Subject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Потвърждение на променен email.
+        /// </summary>
+        public static string Email_ConfirmEmailChange_Subject {
+            get {
+                return ResourceManager.GetString("Email_ConfirmEmailChange_Subject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Възстанови.
+        /// </summary>
+        public static string Email_ResetPassword_ResetButton_Label {
+            get {
+                return ResourceManager.GetString("Email_ResetPassword_ResetButton_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Възстановяване на парола.
+        /// </summary>
+        public static string Email_ResetPassword_Subject {
+            get {
+                return ResourceManager.GetString("Email_ResetPassword_Subject", resourceCulture);
             }
         }
         
