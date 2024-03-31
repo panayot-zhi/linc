@@ -123,7 +123,7 @@ namespace linc.Controllers
             return LocalRedirect(returnUrl);
         }
 
-        [ResponseCache(CacheProfileName = "NoCache")]
+        [ResponseCache(CacheProfileName = SiteCacheProfile.NoCache)]
         public IActionResult Error(string id)
         {
             var errorViewModel = GetErrorViewModel(id);
