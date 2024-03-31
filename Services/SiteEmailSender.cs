@@ -102,7 +102,6 @@ namespace linc.Services
             var currentCulture = CultureInfo.CurrentCulture;
             var currentUiCulture = CultureInfo.CurrentUICulture;
             var currentCultureName = currentCulture.Name.Clone().ToString();
-            var siteName = _localizationService["Logo_Short"].Value;
             var viewModel = siteEmailDescriptor.ViewModel;
             var changedCulture = false;
 
@@ -113,6 +112,8 @@ namespace linc.Services
 
                 changedCulture = true;
             }
+
+            var siteName = _localizationService["Logo_Short"].Value;
 
             if (!siteEmailDescriptor.ViewModel.ModelPopulated)
             {
