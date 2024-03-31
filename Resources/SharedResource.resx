@@ -1253,10 +1253,10 @@
 Преди това се запознайте с &lt;a target="_blank" class="nav-link" href="https://test.linc.uni-plovdiv.bg/docs/bg/technical_requirements.doc"&gt;техническите изисквания&lt;/a&gt; към предлаганите за публикуване текстове и с &lt;a class="nav-link scrollto" href="#codex"&gt;Етичния кодекс на списанието&lt;/a&gt;.</value>
   </data>
   <data name="NextPage_Label" xml:space="preserve">
-    <value>Назад</value>
+    <value>Напред</value>
   </data>
   <data name="PreviousPage_Label" xml:space="preserve">
-    <value>Напред</value>
+    <value>Назад</value>
   </data>
   <data name="Sources_All_Description" xml:space="preserve">
     <value>Преглед на всички автори</value>
@@ -1332,5 +1332,8 @@
   </data>
   <data name="Email_ResetPassword_Subject" xml:space="preserve">
     <value>Възстановяване на парола</value>
+  </data>
+  <data name="ServicesSection_Description" xml:space="preserve">
+    <value>Прегледайте авторите от всички издания по азбучен ред или търсете конкретно име или заглавие. Можете да прегледате и произведения по години и броеве &lt;a href="{0}"&gt;тук&lt;/a&gt;.</value>
   </data>
 </root>
