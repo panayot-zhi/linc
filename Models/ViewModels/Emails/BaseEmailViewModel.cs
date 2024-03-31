@@ -1,12 +1,14 @@
 ﻿using System.Globalization;
+using Newtonsoft.Json;
 
 namespace linc.Models.ViewModels.Emails
 {
     public abstract class BaseEmailViewModel
     {
-        public string Language { get; set; } = CultureInfo.CurrentUICulture.Name;
-
+        [JsonIgnore]
         public bool ModelPopulated { get; set; }
+
+        public string Language { get; set; } = CultureInfo.CurrentUICulture.Name;
 
         public string Preview { get; set; }
 

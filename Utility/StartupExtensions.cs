@@ -382,11 +382,12 @@ public static class StartupExtensions
 
     public static IServiceCollection AddServices(this IServiceCollection services)
     {
+        services.AddScoped<IRazorViewToStringRenderer, RazorViewToStringRenderer>();
         services.AddScoped<ILocalizationService, LocalizationService>();
         services.AddTransient<IContentService, ContentService>();
         services.AddTransient<ISourceService, SourceService>();
         services.AddTransient<IIssueService, IssueService>();
-        services.AddTransient<IEmailSender, EmailSender>();
+        services.AddTransient<ISiteEmailSender, SiteEmailSender>();
         //services.AddTransient<ISharedViewLocalizer, SharedViewLocalizer>();
 
         return services;
