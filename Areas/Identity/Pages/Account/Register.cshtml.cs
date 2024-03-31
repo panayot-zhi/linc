@@ -7,12 +7,13 @@ using System.Text;
 using System.Text.Encodings.Web;
 using linc.Contracts;
 using linc.Data;
+using linc.Models.ConfigModels;
 using linc.Models.Enumerations;
+using linc.Models.ViewModels.Emails;
 using linc.Utility;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
 
@@ -27,7 +28,7 @@ namespace linc.Areas.Identity.Pages.Account
         private readonly IUserStore<ApplicationUser> _userStore;
         private readonly IUserEmailStore<ApplicationUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
-        private readonly IEmailSender _emailSender;
+        private readonly ISiteEmailSender _emailSender;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
@@ -36,7 +37,7 @@ namespace linc.Areas.Identity.Pages.Account
             IUserStore<ApplicationUser> userStore,
             ILogger<RegisterModel> logger,
             ILocalizationService localizer,
-            IEmailSender emailSender)
+            ISiteEmailSender emailSender)
         : base(localizer)
         {
             _userManager = userManager;
@@ -145,12 +146,27 @@ namespace linc.Areas.Identity.Pages.Account
                 var callbackUrl = Url.Page(
                     "/Account/ConfirmEmail",
                     pageHandler: null,
-                    values: new { area = "Identity", userId = userId, code = code, returnUrl = ReturnUrl },
+                    values: new { area = "Identity", userId, code, returnUrl = ReturnUrl },
                     protocol: Request.Scheme);
 
-                // TODO: Email templates
-                await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                    $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                ArgumentNullException.ThrowIfNull(callbackUrl);
+
+                var model = new SiteEmailDescriptor<ConfirmEmail>()
+                {
+                    Emails = new() { Input.Email },
+                    Subject = LocalizationService["Email_ConfirmEmail_Subject"].Value,
+                    ViewModel = new ConfirmEmail
+                    {
+                        Names = user.GetDisplayName(LocalizationService),
+                        Confirm = new EmailButton
+                        {
+                            Url = HtmlEncoder.Default.Encode(callbackUrl),
+                            Text = LocalizationService["Email_ConfirmEmail_ConfirmButton_Label"].Value
+                        }
+                    }
+                };
+
+                await _emailSender.SendEmailAsync(model);
 
                 AddAlertMessage(LocalizationService["RegisterConfirmation_InfoMessage"],
                     type: AlertMessageType.Success);

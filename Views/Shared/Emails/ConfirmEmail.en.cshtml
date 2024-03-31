@@ -1,0 +1,19 @@
+﻿@model ConfirmEmail
+
+@{
+    Layout = "~/Views/Shared/Emails/_LayoutEmail.cshtml";
+    ViewData["Title"] = "Confirm email address";
+    ViewData["EmailTitle"] = "Confirm";
+}
+
+<p>
+    <strong>Hello, @Model.Names,</strong>
+</p>
+
+<p>
+    thank you for registering on the LInC website. To activate the account, please follow this link:
+</p>
+
+<partial name="_EmailButton.cshtml" model="Model.Confirm"/>
+
+<p>Respectfully, from the team<br />Linguistics, Interpretations, Concepts</p>
