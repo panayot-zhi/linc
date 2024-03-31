@@ -1297,4 +1297,10 @@
   <data name="SourceCreate_LastPage" xml:space="preserve">
     <value>Последна страница</value>
   </data>
+  <data name="BaseEmailModel_FooterProfileLink" xml:space="preserve">
+    <value>Вашият профил</value>
+  </data>
+  <data name="BaseEmailModel_PreviewEmailInBrowser" xml:space="preserve">
+    <value>Ако имате проблеми с email-а &lt;a href="{0}" target="_blank"&gt;прегледайте го в браузър&lt;/a&gt;</value>
+  </data>
 </root>
