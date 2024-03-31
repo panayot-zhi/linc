@@ -17,7 +17,18 @@
                     <li>
                         <a href="/">@HtmlLocalizer["NavItem_Home"]</a>
                     </li>
-                    <li>@ViewData["Title"]</li>
+                    @if (Model.AuthorsFilter?.Length > 1)
+                    {
+                        <li>
+                            <a asp-controller="Source" asp-action="Index">@ViewData["Title"]</a>
+                        </li>
+
+                        <li>@Model.AuthorsFilter</li>
+                    }
+                    else
+                    {
+                        <li>@ViewData["Title"]</li>
+                    }
                 </ol>
             </div>
 
