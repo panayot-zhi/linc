@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.Extensions.Primitives;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -83,6 +84,32 @@ public static class HelperFunctions
 
             return builder.ToString();
         }
+    }
+
+    public static string GetIp(HttpContext httpContext)
+    {
+        var result = string.Empty;
+
+        // first try to get IP address from the forwarded header
+        if (httpContext.Request.Headers != null)
+        {
+            // the X-Forwarded-For (XFF) HTTP header field is a de facto standard for identifying the originating IP address of a client
+            // connecting to a web server through an HTTP proxy or load balancer
+
+            var forwardedHeader = httpContext.Request.Headers["X-Forwarded-For"];
+            if (!StringValues.IsNullOrEmpty(forwardedHeader))
+            {
+                result = forwardedHeader.FirstOrDefault();
+            }
+        }
+
+        // if this header not exists try get connection remote IP address
+        if (string.IsNullOrEmpty(result) && httpContext.Connection.RemoteIpAddress != null)
+        {
+            result = httpContext.Connection.RemoteIpAddress.ToString();
+        }
+
+        return result;
     }
 
     internal static string ToKebabCase(string input)

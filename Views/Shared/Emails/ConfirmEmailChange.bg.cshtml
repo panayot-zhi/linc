@@ -1,0 +1,26 @@
+﻿@using linc.Utility
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model ConfirmEmailChange
+
+@{
+    Layout = "~/Views/Shared/Emails/_LayoutEmail.cshtml";
+    ViewData["Title"] = "Потвърждение на променен email адрес";
+    ViewData["EmailTitle"] = "Потвърждение на промяна";
+}
+
+<p>
+    <strong>Здравейте, @Model.Names,</strong>
+</p>
+
+<p>
+    променихте email адресът си в сайта на списание ЛИнК. За да потвърдите новият email, моля, последвайте тази връзка:
+</p>
+
+<partial name="_EmailButton.cshtml" model="Model.Confirm"/>
+
+<p>Ако този email не е свързан с Ваш потребител, моля, <a href="mailto:@SiteConstant.AdministratorEmail" target="_blank">подайте сигнал до администратора на системата</a> и игнорирайте този email.</p>
+
+<p>&nbsp;</p>
+
+<p>С уважение, екипът на списание<br/>Лингвистика, Интерпретация, Концепции</p>
+

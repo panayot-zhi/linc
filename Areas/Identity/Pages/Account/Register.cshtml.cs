@@ -157,10 +157,10 @@ namespace linc.Areas.Identity.Pages.Account
                     Subject = LocalizationService["Email_ConfirmEmail_Subject"].Value,
                     ViewModel = new ConfirmEmail
                     {
-                        Names = user.GetDisplayName(LocalizationService),
+                        Names = user.Names,
                         Confirm = new EmailButton
                         {
-                            Url = HtmlEncoder.Default.Encode(callbackUrl),
+                            Url = callbackUrl,
                             Text = LocalizationService["Email_ConfirmEmail_ConfirmButton_Label"].Value
                         }
                     }

@@ -221,14 +221,14 @@
                 <!-- NAVIGATION -->
                 <tr>
                     <td bgcolor="#f4f4f4" align="left" style="padding: 30px 30px 30px 30px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 14px; font-weight: 400; line-height: 18px;">
-                        <p style="margin: 0;">
+                        <p style="margin: 0; text-align: center;">
                             @for (var index = 1; index <= Model.FooterLinks.Count; index++)
                             {
                                 var link = Model.FooterLinks[index - 1];
                                 <a href="@link.Url" target="_blank" style="color: #111111; font-weight: 700;">@link.Text</a>
                                 if (index != Model.FooterLinks.Count)
                                 {
-                                    @:-
+                                    @:&nbsp;-&nbsp;
                                 }
                             }
                         </p>

@@ -15,7 +15,9 @@ namespace linc.Models.ViewModels.Emails
         public EmailLink Logo { get; set; } = new();
 
         public List<EmailLink> FooterLinks { get; set; } = new();
-
+        
+        public string FooterText { get; set; }
+        
         public bool Unsubscribe { get; set; }
 
         public bool IsPreviewing { get; set; }
