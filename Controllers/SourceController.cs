@@ -36,10 +36,11 @@ namespace linc.Controllers
             var languageId = LocalizationService.GetCurrentLanguageId();
             var viewModel = await _sourceService.GetSourcesPagedAsync(filter: filter, languageId: languageId, 
                 year: year, issueId: issueId, pageIndex: page);
-
+            
             viewModel.YearFilter = await _sourceService.GetSourcesCountByYears();
             viewModel.IssuesFilter = await _sourceService.GetSourcesCountByIssues();
 
+            viewModel.AuthorsFilter = filter;
             viewModel.CurrentIssueId = issueId;
             viewModel.CurrentAuthorsFilter = filter;
             viewModel.CurrentYearFilter = year;
