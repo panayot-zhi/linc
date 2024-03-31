@@ -91,8 +91,9 @@ public class ContentService : IContentService
 
     public List<SuggestionsViewModel> GetSuggestions(int count = 5)
     {
-        // TODO: Improve this query
+        var lastIssue = _dbContext.Issues.Max(x => x.Id);
         var sources = _dbContext.Sources
+            .Where(x => x.IssueId == lastIssue)
             .Select(x => new SuggestionsViewModel()
             {
                 Content = x.Title,
@@ -112,7 +113,7 @@ public class ContentService : IContentService
             new { id = x.IssueId },
             fragment: new FragmentString($"#page={x.StartingPage}")));
 
-        return result;
+        return result;  
     }
 
     public string GetVersion()
