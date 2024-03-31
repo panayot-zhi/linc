@@ -1297,6 +1297,18 @@
   <data name="SourceCreate_LastPage" xml:space="preserve">
     <value>Последна страница</value>
   </data>
+  <data name="Team_EditorialAssistants_SubTitle" xml:space="preserve">
+    <value>Технически сътрудник</value>
+  </data>
+  <data name="Team_LanguageAndCulture_SubTitle" xml:space="preserve">
+    <value>&lt;span&gt;Език&lt;/span&gt; и култура</value>
+  </data>
+  <data name="Team_LiteratureAndCulture_SubTitle" xml:space="preserve">
+    <value>&lt;span&gt;Литература&lt;/span&gt; и култура</value>
+  </data>
+  <data name="Team_V.Georgieva_Member" xml:space="preserve">
+    <value>гл. ас. д-р Ваня Георгиева</value>
+  </data>
   <data name="BaseEmailModel_FooterProfileLink" xml:space="preserve">
     <value>Вашият профил</value>
   </data>

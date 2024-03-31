@@ -1293,6 +1293,18 @@
   <data name="SourceCreate_LastPage" xml:space="preserve">
     <value>Last page</value>
   </data>
+  <data name="Team_EditorialAssistants_SubTitle" xml:space="preserve">
+    <value>Editorial Assistant</value>
+  </data>
+  <data name="Team_LanguageAndCulture_SubTitle" xml:space="preserve">
+    <value>Language and Culture</value>
+  </data>
+  <data name="Team_LiteratureAndCulture_SubTitle" xml:space="preserve">
+    <value>Literature and Culture</value>
+  </data>
+  <data name="Team_V.Georgieva_Member" xml:space="preserve">
+    <value>Аssistant Professor Vanya Georgieva, PhD</value>
+  </data>
   <data name="BaseEmailModel_FooterProfileLink" xml:space="preserve">
     <value>Your profile</value>
   </data>

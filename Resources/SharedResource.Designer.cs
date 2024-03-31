@@ -3118,6 +3118,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Технически сътрудник.
+        /// </summary>
+        public static string Team_EditorialAssistants_SubTitle {
+            get {
+                return ResourceManager.GetString("Team_EditorialAssistants_SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to доц. д-р Фани Бойкова.
         /// </summary>
         public static string Team_F_Boykova_Member {
@@ -3132,6 +3141,24 @@ namespace linc.Resources {
         public static string Team_I_Peleva_Member {
             get {
                 return ResourceManager.GetString("Team_I.Peleva_Member", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;Език&lt;/span&gt; и култура.
+        /// </summary>
+        public static string Team_LanguageAndCulture_SubTitle {
+            get {
+                return ResourceManager.GetString("Team_LanguageAndCulture_SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;span&gt;Литература&lt;/span&gt; и култура.
+        /// </summary>
+        public static string Team_LiteratureAndCulture_SubTitle {
+            get {
+                return ResourceManager.GetString("Team_LiteratureAndCulture_SubTitle", resourceCulture);
             }
         }
         
@@ -3168,6 +3195,15 @@ namespace linc.Resources {
         public static string Team_Title {
             get {
                 return ResourceManager.GetString("Team_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to гл. ас. д-р Ваня Георгиева.
+        /// </summary>
+        public static string Team_V_Georgieva_Member {
+            get {
+                return ResourceManager.GetString("Team_V.Georgieva_Member", resourceCulture);
             }
         }
         
