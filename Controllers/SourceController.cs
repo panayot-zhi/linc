@@ -17,12 +17,12 @@ namespace linc.Controllers
         private readonly ApplicationConfig _config;
 
         public SourceController(
+            ILocalizationService localizationService,
             IOptions<ApplicationConfig> configOptions,
             ILogger<SourceController> logger,
-            ILocalizationService localizer,
             ISourceService sourceService, 
             IIssueService issuesService)
-            : base(localizer)
+            : base(localizationService)
         {
             _logger = logger;
             _sourceService = sourceService;

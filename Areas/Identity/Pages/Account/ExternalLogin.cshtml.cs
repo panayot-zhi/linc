@@ -36,9 +36,9 @@ namespace linc.Areas.Identity.Pages.Account
             UserManager<ApplicationUser> userManager,
             IUserStore<ApplicationUser> userStore,
             ILogger<ExternalLoginModel> logger,
-            ILocalizationService localizer,
+            ILocalizationService localizationService,
             ISiteEmailSender emailSender)
-        : base(localizer)
+        : base(localizationService)
         {
             _emailStore = GetEmailStore();
 

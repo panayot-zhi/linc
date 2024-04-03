@@ -21,9 +21,9 @@ namespace linc.Areas.Identity.Pages.Account.Manage
         public IndexModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            ILocalizationService localizer, 
+            ILocalizationService localizationService, 
             ILogger<IndexModel> logger)
-        : base(localizer)
+        : base(localizationService)
         {
             _userManager = userManager;
             _signInManager = signInManager;

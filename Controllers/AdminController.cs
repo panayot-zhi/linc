@@ -5,17 +5,24 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using linc.Data;
+using linc.Models.ConfigModels;
+using linc.Models.ViewModels.Emails;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using System.Globalization;
+using linc.Contracts;
 
 namespace linc.Controllers
 {
-    public class AdminController : Controller
+    public class AdminController : BaseController
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
 
         public AdminController(
             UserManager<ApplicationUser> userManager, 
-            SignInManager<ApplicationUser> signInManager)
+            SignInManager<ApplicationUser> signInManager,
+            ILocalizationService localizationService)
+        : base(localizationService)
         {
             _userManager = userManager;
             _signInManager = signInManager;

@@ -16,8 +16,8 @@ namespace linc.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class LockoutModel : BasePageModel
     {
-        public LockoutModel(ILocalizationService localizer) 
-            : base(localizer)
+        public LockoutModel(ILocalizationService localizationService) 
+            : base(localizationService)
         {
         }
 

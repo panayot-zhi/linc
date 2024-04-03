@@ -21,8 +21,8 @@ namespace linc.Areas.Identity.Pages.Account.Manage
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             ILogger<ChangePasswordModel> logger,
-            ILocalizationService localizer)
-        : base(localizer)
+            ILocalizationService localizationService)
+        : base(localizationService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
