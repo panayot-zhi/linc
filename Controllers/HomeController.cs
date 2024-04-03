@@ -9,8 +9,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Identity;
-using System.Globalization;
-using linc.Models.ConfigModels;
 using linc.Models.ViewModels.Emails;
 using Newtonsoft.Json;
 using System.Text;
@@ -22,22 +20,20 @@ namespace linc.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IContentService _contentService;
-        private readonly ISiteEmailSender _mailSender;
 
         public HomeController(
             ILogger<HomeController> logger,
             UserManager<ApplicationUser> userManager,
             ILocalizationService localizationService, 
-            IContentService contentService, 
-            ISiteEmailSender mailSender)
+            IContentService contentService)
         : base(localizationService)
         {
             _logger = logger;
             _contentService = contentService;
-            _mailSender = mailSender;
             _userManager = userManager;
         }
 
+        [ResponseCache(CacheProfileName = SiteCacheProfile.Hourly)]
         public async Task<IActionResult> Index()
         {
             var viewModel = await _contentService.GetIndexViewModel();

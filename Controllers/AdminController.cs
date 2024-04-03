@@ -7,7 +7,6 @@ using System.Security.Claims;
 using linc.Data;
 using linc.Models.ConfigModels;
 using linc.Models.ViewModels.Emails;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using System.Globalization;
 using linc.Contracts;
 
@@ -17,15 +16,18 @@ namespace linc.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly ISiteEmailSender _emailSender;
 
         public AdminController(
             UserManager<ApplicationUser> userManager, 
             SignInManager<ApplicationUser> signInManager,
-            ILocalizationService localizationService)
+            ILocalizationService localizationService, 
+            ISiteEmailSender emailSender)
         : base(localizationService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _emailSender = emailSender;
         }
 
         [SiteAuthorize(SiteRole.Administrator)]
@@ -106,7 +108,7 @@ namespace linc.Controllers
                 ViewModel = viewModel
             };
 
-            await _mailSender.SendEmailAsync(email);
+            await _emailSender.SendEmailAsync(email);
 
             //AddAlertMessage("Sent");
 
