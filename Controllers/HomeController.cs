@@ -77,6 +77,66 @@ namespace linc.Controllers
         {
             return View();
         }
+        
+        public IActionResult Email(string id, string data)
+        {
+            var type = Type.GetType($"linc.Models.ViewModels.Emails.{id}");
+
+            ArgumentNullException.ThrowIfNull(type);
+
+            var base64EncodedBytes = Convert.FromBase64String(data);
+            var jsonViewModel = Encoding.UTF8.GetString(base64EncodedBytes);
+            var viewModel = JsonConvert.DeserializeObject(jsonViewModel, type);
+
+            if (viewModel is not BaseEmailViewModel baseViewModel)
+            {
+                throw new NotSupportedException("Message could not be read.");
+            }
+
+            baseViewModel.Preview = "#";
+            baseViewModel.IsPreviewing = true;
+
+            return View($"~/Views/Shared/Emails/{id}.{baseViewModel.Language}.cshtml", viewModel);
+        }
+
+        [SiteAuthorize(SiteRole.Administrator, andAbove: false)]
+        public async Task<IActionResult> TestSendEmail(string id)
+        {
+            var request = HttpContext.Request;
+            var domainUrl = $"{request.Scheme}://{request.Host}";
+
+            var viewModel = new TestEmail()
+            {
+                Test = LocalizationService["Logo_Long"].Value,
+                TestButton = new EmailButton
+                {
+                    Text = LocalizationService["Logo_Short"].Value,
+                    Url = domainUrl
+                }
+            };
+
+            if (!string.IsNullOrEmpty(id))
+            {
+                // test language display
+                viewModel.Language = new CultureInfo(id).Name;
+            }
+
+            var email = new SiteEmailDescriptor<TestEmail>()
+            {
+                Emails = new()
+                {
+                    SiteConstant.AdministratorEmail
+                },
+                Subject = "Коле, получи ли?",
+                ViewModel = viewModel
+            };
+
+            await _mailSender.SendEmailAsync(email);
+
+            //AddAlertMessage("Sent");
+
+            return View($"Emails/TestEmail.{viewModel.Language}", viewModel);
+        }
 
         [Ajax]
         [HttpPost]
@@ -186,7 +246,7 @@ namespace linc.Controllers
 
                     // NOTE: List here any cases where
                     // we need response body brevity
-                    
+
                     if (path.EndsWith(".js.map"))
                     {
                         return StatusCode((int)HttpStatusCode.NotFound, path);
@@ -217,45 +277,6 @@ namespace linc.Controllers
                 errorViewModel.RequestId, errorViewModel.Path, errorViewModel.Error);
 
             return View(errorViewModel);
-        }
-
-        [SiteAuthorize(SiteRole.Administrator, andAbove: false)]
-        public async Task<IActionResult> TestSendEmail(string id)
-        {
-            var request = HttpContext.Request;
-            var domainUrl = $"{request.Scheme}://{request.Host}";
-            
-            var viewModel = new TestEmail()
-            {
-                Test = LocalizationService["Logo_Long"].Value,
-                TestButton = new EmailButton
-                {
-                    Text = LocalizationService["Logo_Short"].Value,
-                    Url = domainUrl
-                }
-            };
-
-            if (!string.IsNullOrEmpty(id))
-            {
-                // test language display
-                viewModel.Language = new CultureInfo(id).Name;
-            }
-
-            var email = new SiteEmailDescriptor<TestEmail>()
-            {
-                Emails = new()
-                {
-                    SiteConstant.AdministratorEmail
-                },
-                Subject = "Коле, получи ли?",
-                ViewModel = viewModel
-            };
-
-            await _mailSender.SendEmailAsync(email);
-
-            //AddAlertMessage("Sent");
-
-            return View($"Emails/TestEmail.{viewModel.Language}", viewModel);
         }
 
         protected ErrorViewModel GetErrorViewModel(string code, IExceptionHandlerPathFeature exceptionHandlerPathFeature = null)
@@ -294,27 +315,6 @@ namespace linc.Controllers
             
 
             return errorViewModel;
-        }
-
-        public IActionResult Email(string id, string data)
-        {
-            var type = Type.GetType($"linc.Models.ViewModels.Emails.{id}");
-            
-            ArgumentNullException.ThrowIfNull(type);
-
-            var base64EncodedBytes = Convert.FromBase64String(data);
-            var jsonViewModel = Encoding.UTF8.GetString(base64EncodedBytes);
-            var viewModel = JsonConvert.DeserializeObject(jsonViewModel, type);
-
-            if (viewModel is not BaseEmailViewModel baseViewModel)
-            {
-                throw new NotSupportedException("Message could not be read.");
-            }
-                
-            baseViewModel.Preview = "#";
-            baseViewModel.IsPreviewing = true;
-
-            return View($"~/Views/Shared/Emails/{id}.{baseViewModel.Language}.cshtml", viewModel);
         }
     }
 }
