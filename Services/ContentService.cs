@@ -108,8 +108,8 @@ public class ContentService : IContentService
 
         result.ForEach(x => x.Href = _linkGenerator.GetUriByAction(
             _httpContextAccessor.HttpContext!,
-            "Pdf",
-            "Source",
+            "LoadIssuePdf",
+            "Issue",
             new { id = x.IssueId },
             fragment: new FragmentString($"#page={x.StartingPage}")));
 

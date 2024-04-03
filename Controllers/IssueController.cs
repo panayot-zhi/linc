@@ -6,6 +6,7 @@ using linc.Models.ViewModels.Issue;
 using linc.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Options;
+using linc.Services;
 
 namespace linc.Controllers
 {
@@ -165,6 +166,26 @@ namespace linc.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }*/
+
+        public async Task<IActionResult> LoadIssuePdf(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var issueEntry = await _issueService.GetIssueAsync(id.Value);
+            if (issueEntry == null)
+            {
+                return NotFound();
+            }
+
+            var issuePdf = await _issueService.GetFileAsync(issueEntry.Pdf.Id);
+            var pdfPath = Path.Combine(_config.RepositoryPath, issuePdf.RelativePath);
+            var content = await System.IO.File.ReadAllBytesAsync(pdfPath);
+
+            return new FileContentResult(content, issuePdf.MimeType);
+        }
 
         [AllowAnonymous]
         public async Task<IActionResult> LoadFile(int id)

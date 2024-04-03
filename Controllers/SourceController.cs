@@ -189,26 +189,6 @@ namespace linc.Controllers
             return RedirectToAction(nameof(Index));
         }*/
 
-        public async Task<IActionResult> Pdf(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var issueEntry = await _issuesService.GetIssueAsync(id.Value);
-            if (issueEntry == null)
-            {
-                return NotFound();
-            }
-
-            var issuePdf = await _issuesService.GetFileAsync(issueEntry.Pdf.Id);
-            var pdfPath = Path.Combine(_config.RepositoryPath, issuePdf.RelativePath);
-            var content = await System.IO.File.ReadAllBytesAsync(pdfPath);
-
-            return new FileContentResult(content, issuePdf.MimeType);
-        }
-
         public async Task<List<SelectListItem>> GetIssuesAsync()
         {
             var issues = await _issuesService.GetIssuesAsync();

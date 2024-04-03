@@ -110,7 +110,7 @@
                                 }
 
                                 <p class="source-title">
-                                    <a href="@Url.Action("Pdf", "Source", new { id = source.IssueId })#page=@source.StartingPage">@source.Title</a>
+                                    <a href="@Url.Action("LoadIssuePdf", "Issue", new { id = source.IssueId })#page=@source.StartingPage">@source.Title</a>
                                 </p>
 
                                 <p class="source-page text-end">

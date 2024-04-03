@@ -110,11 +110,11 @@
                                     }
 
                                     <p class="source-title annotate">
-                                        <a href="@Url.Action("Pdf", "Source", new { id = source.IssueId })#page=@source.StartingPage">@source.Title</a>
+                                        <a href="@Url.Action("LoadIssuePdf", "Issue", new { id = source.IssueId })#page=@source.StartingPage">@source.Title</a>
                                     </p>
 
                                     <p class="source-page text-end">
-                                        <strong><a href="@Url.Action("Pdf", "Source", new { id = source.IssueId })#page=@source.StartingPage">@source.StartingPage</a></strong>
+                                        <strong><a href="@Url.Action("LoadIssuePdf", "Issue", new { id = source.IssueId })#page=@source.StartingPage">@source.StartingPage</a></strong>
                                     </p>
 
                                     @if (!string.IsNullOrEmpty(source.TitleNotes))
