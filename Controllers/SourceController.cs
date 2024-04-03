@@ -189,7 +189,7 @@ namespace linc.Controllers
             return RedirectToAction(nameof(Index));
         }*/
 
-        public async Task<List<SelectListItem>> GetIssuesAsync()
+        private async Task<List<SelectListItem>> GetIssuesAsync()
         {
             var issues = await _issuesService.GetIssuesAsync();
             return issues.Select(x =>
@@ -197,7 +197,7 @@ namespace linc.Controllers
                 .ToList();
         }
 
-        public List<SelectListItem> GetLanguages()
+        private List<SelectListItem> GetLanguages()
         {
             var currentLanguageId = LocalizationService.GetCurrentLanguageId();
             var list = SiteConstant.SupportedCultures.Select(supportedCulture =>
