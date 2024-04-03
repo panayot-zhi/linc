@@ -74,5 +74,43 @@ namespace linc.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        public async Task<IActionResult> TestSendEmail(string id)
+        {
+            var request = HttpContext.Request;
+            var domainUrl = $"{request.Scheme}://{request.Host}";
+
+            var viewModel = new TestEmail()
+            {
+                Test = LocalizationService["Logo_Long"].Value,
+                TestButton = new EmailButton
+                {
+                    Text = LocalizationService["Logo_Short"].Value,
+                    Url = domainUrl
+                }
+            };
+
+            if (!string.IsNullOrEmpty(id))
+            {
+                // test language display
+                viewModel.Language = new CultureInfo(id).Name;
+            }
+
+            var email = new SiteEmailDescriptor<TestEmail>()
+            {
+                Emails = new()
+                {
+                    SiteConstant.AdministratorEmail
+                },
+                Subject = "Коле, получи ли?",
+                ViewModel = viewModel
+            };
+
+            await _mailSender.SendEmailAsync(email);
+
+            //AddAlertMessage("Sent");
+
+            return View($"Emails/TestEmail.{viewModel.Language}", viewModel);
+        }
     }
 }
