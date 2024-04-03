@@ -59,26 +59,31 @@ namespace linc.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [ResponseCache(CacheProfileName = SiteCacheProfile.Yearly)]
         public IActionResult Submit()
         {
-            throw new NotImplementedException();
+            return View();
         }
 
+        [ResponseCache(CacheProfileName = SiteCacheProfile.Yearly)]
         public IActionResult Terms()
         {
             return View();
         }
 
+        [ResponseCache(CacheProfileName = SiteCacheProfile.Yearly)]
         public IActionResult Privacy()
         {
             return View();
         }
 
+        [ResponseCache(CacheProfileName = SiteCacheProfile.Yearly)]
         public IActionResult Cookies()
         {
             return View();
         }
-        
+
+        [ResponseCache(CacheProfileName = SiteCacheProfile.Monthly, VaryByQueryKeys = new []{ "id", "data" })]
         public IActionResult Email(string id, string data)
         {
             var type = Type.GetType($"linc.Models.ViewModels.Emails.{id}");
