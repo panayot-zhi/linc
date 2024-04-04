@@ -139,11 +139,13 @@ namespace linc.Services
 
         private async Task<string> FindUserByNamesAsync(string inputFirstName, string inputLastName)
         {
-            return (await _context.Users
-                        .FirstOrDefaultAsync(x =>
-                            x.FirstName.ToUpper() == inputFirstName.ToUpper() &&
-                            x.LastName.ToUpper() == inputLastName.ToUpper()
-                        ))?.Id;
+            var user = await _context.Users
+                .FirstOrDefaultAsync(x =>
+                    x.FirstName.ToUpper() == inputFirstName.ToUpper() &&
+                    x.LastName.ToUpper() == inputLastName.ToUpper()
+                );
+
+            return user?.Id;
         }
     }
 }
