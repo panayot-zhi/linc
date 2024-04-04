@@ -12,6 +12,7 @@ using linc.Contracts;
 
 namespace linc.Controllers
 {
+    [SiteAuthorize(SiteRole.Administrator)]
     public class AdminController : BaseController
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -30,7 +31,6 @@ namespace linc.Controllers
             _emailSender = emailSender;
         }
 
-        [SiteAuthorize(SiteRole.Administrator)]
         public async Task<IActionResult> ImpersonateUser(string userId)
         {
             var currentUserId = User.GetUserId();
