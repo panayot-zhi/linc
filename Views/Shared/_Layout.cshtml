@@ -365,17 +365,19 @@
                         </ul>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 footer-links">
-                        <h4>@HtmlLocalizer["Footer_Suggestions_Title"]</h4>
-                        <ul>
-                            @foreach (var suggestion in ContentService.GetSuggestions())
-                            {
-                                <li>
-                                    <i class="bx bx-chevron-right"></i> <a href="@suggestion.Href">@suggestion.Content</a>
-                                </li>
-                            }
-                        </ul>
-                    </div>
+                    <cache expires-after="@TimeSpan.FromDays(1)">
+                        <div class="col-lg-4 col-md-6 footer-links">
+                            <h4>@HtmlLocalizer["Footer_Suggestions_Title"]</h4>
+                            <ul>
+                                @foreach (var suggestion in ContentService.GetSuggestions())
+                                {
+                                    <li>
+                                        <i class="bx bx-chevron-right"></i> <a href="@suggestion.Href">@suggestion.Content</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </cache>
 
                     <div class="col-lg-3 col-md-6 footer-links">
                         <h4>@HtmlLocalizer["Footer_Social_Title"]</h4>
