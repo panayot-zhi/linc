@@ -2,14 +2,10 @@
 using linc.Data;
 using linc.Models.ConfigModels;
 using linc.Models.Enumerations;
-using linc.Models.ViewModels.Home;
 using linc.Models.ViewModels.Source;
 using linc.Utility;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using static Org.BouncyCastle.Math.EC.ECCurve;
 
 namespace linc.Services
 {
@@ -24,9 +20,9 @@ namespace linc.Services
             _config = config.Value;
         }
 
-        public Task<ApplicationSource> GetSourceAsync(int id)
+        public async Task<ApplicationSource> GetSourceAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Sources.FindAsync(id);
         }
 
         public async Task<SourceIndexViewModel> GetSourcesPagedAsync(string filter, int languageId, int? year, int? issueId, int? pageIndex, int pageSize = 10)
