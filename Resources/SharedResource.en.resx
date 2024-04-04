@@ -1336,4 +1336,7 @@
   <data name="Source_IndexPage_SearchDescription" xml:space="preserve">
     <value>search by first letter of the author's last name</value>
   </data>
+  <data name="SourceCreate_PdfFile" xml:space="preserve">
+    <value>Attach the source as PDF</value>
+  </data>
 </root>

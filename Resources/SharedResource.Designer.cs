@@ -3127,6 +3127,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Прикачете източника като PDF.
+        /// </summary>
+        public static string SourceCreate_PdfFile {
+            get {
+                return ResourceManager.GetString("SourceCreate_PdfFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Начална страница.
         /// </summary>
         public static string SourceCreate_StartingPage {

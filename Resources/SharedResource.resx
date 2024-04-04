@@ -1343,4 +1343,7 @@
   <data name="Source_IndexPage_SearchDescription" xml:space="preserve">
     <value>търсене по първа буква от фамилното име</value>
   </data>
+  <data name="SourceCreate_PdfFile" xml:space="preserve">
+    <value>Прикачете източника като PDF</value>
+  </data>
 </root>

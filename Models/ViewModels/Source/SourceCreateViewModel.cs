@@ -39,6 +39,11 @@ namespace linc.Models.ViewModels.Source
 
 
 
+        [Display(Name = "SourceCreate_PdfFile", ResourceType = typeof(Resources.SharedResource))]
+        public IFormFile PdfFile { get; set; }
+
+
+
         [Display(Name = "SourceCreate_IssueId", ResourceType = typeof(Resources.SharedResource))]
         public int? IssueId { get; set; }
 

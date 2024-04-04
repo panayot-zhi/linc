@@ -1,20 +1,27 @@
 ﻿using linc.Contracts;
 using linc.Data;
+using linc.Models.ConfigModels;
+using linc.Models.Enumerations;
 using linc.Models.ViewModels.Home;
 using linc.Models.ViewModels.Source;
+using linc.Utility;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using static Org.BouncyCastle.Math.EC.ECCurve;
 
 namespace linc.Services
 {
     public class SourceService : ISourceService
     {
         private readonly ApplicationDbContext _context;
+        private readonly ApplicationConfig _config;
 
-        public SourceService(ApplicationDbContext context)
+        public SourceService(ApplicationDbContext context, IOptions<ApplicationConfig> config)
         {
             _context = context;
+            _config = config.Value;
         }
 
         public Task<ApplicationSource> GetSourceAsync(int id)
@@ -115,6 +122,7 @@ namespace linc.Services
 
         public async Task<int> CreateSourceAsync(SourceCreateViewModel input)
         {
+            var issue = await _context.Issues.FindAsync(input.IssueId);
             var authorId = await FindUserByNamesAsync(input.FirstName, input.LastName);
             var entity = new ApplicationSource()
             {
@@ -131,11 +139,53 @@ namespace linc.Services
                 AuthorId = authorId
             };
 
+            if (input.PdfFile != null && issue != null)
+            {
+                var pdf = await SaveSourcePdf(input.PdfFile, entity.StartingPage, issue.ReleaseYear, issue.IssueNumber);
+                entity.PdfId = pdf.Id;
+            }
+
             var entityEntry = await _context.Sources.AddAsync(entity);
             await _context.SaveChangesAsync();
 
             return entityEntry.Entity.Id;
         }
+
+        private async Task<ApplicationDocument> SaveSourcePdf(IFormFile inputFile, int startingPage, int releaseYear, int issueNumber)
+        {
+            var type = ApplicationDocumentType.SourcePdf;
+            var fileExtension = inputFile.Extension();
+            var fileName = $"{releaseYear}-{issueNumber.ToString().PadLeft(3, '0')}-{HelperFunctions.ToKebabCase(type.ToString())}-{startingPage}";
+
+            var rootFolderPath = Path.Combine(_config.RepositoryPath, SiteConstant.IssuesFolderName);
+            var directoryPath = Path.Combine(rootFolderPath, releaseYear.ToString());
+            var filePath = Path.Combine(directoryPath, $"{fileName}.{fileExtension}");
+
+            Directory.CreateDirectory(directoryPath);
+
+            var relativePath = Path.Combine(SiteConstant.IssuesFolderName, releaseYear.ToString(),
+                $"{fileName}.{fileExtension}");
+
+            await using (var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                await inputFile.CopyToAsync(fileStream);
+            }
+
+            var entry = new ApplicationDocument()
+            {
+                DocumentType = type,
+                Extension = fileExtension,
+                FileName = fileName,
+                MimeType = inputFile.ContentType,
+                Title = inputFile.FileName,
+                RelativePath = relativePath
+            };
+
+            var entityEntry = await _context.Documents.AddAsync(entry);
+            await _context.SaveChangesAsync();
+            return entityEntry.Entity;
+        }
+
 
         private async Task<string> FindUserByNamesAsync(string inputFirstName, string inputLastName)
         {
