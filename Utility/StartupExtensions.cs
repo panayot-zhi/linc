@@ -117,7 +117,6 @@ public static class StartupExtensions
     public static IServiceCollection AddCaching(this IServiceCollection services)
     {
         services.AddResponseCaching();
-        services.AddDistributedMemoryCache();
         services.AddMemoryCache(options =>
         {
             // aim for roughly 20M symbols

@@ -33,7 +33,6 @@ namespace linc.Controllers
             _userManager = userManager;
         }
 
-        [ResponseCache(CacheProfileName = SiteCacheProfile.Hourly)]
         public async Task<IActionResult> Index()
         {
             var viewModel = await _contentService.GetIndexViewModel();
@@ -131,7 +130,6 @@ namespace linc.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult SetLanguage(string culture, string returnUrl = "/")
         {
             Response.Cookies.Append(

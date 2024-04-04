@@ -44,7 +44,6 @@ public class Program
         app.UseRequestLocalization();
         app.UseExceptionHandler("/Home/Error");
         app.UseStatusCodePagesWithReExecute("/Home/Error/{0}");
-        app.UseHttpsRedirection();
         app.UseStaticFiles();
 
         var repositoryPath = configuration["ApplicationConfig:RepositoryPath"];
