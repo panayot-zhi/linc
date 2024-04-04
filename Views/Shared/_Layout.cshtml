@@ -79,10 +79,17 @@
                 <span>@HtmlLocalizer["Logo_Long"]</span>
             </div>
             <div class="d-flex align-items-center">
-                <form id="set_language" asp-controller="Home" asp-action="SetLanguage" asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)">
+                <form id="set_language" asp-controller="Home" asp-action="SetLanguage" asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)" asp-antiforgery="false">
                     <environment exclude="Production">
                         @* <span class="me-2">Session: @Context.Session.GetString("Hi")</span> *@
-                        <span class="me-2">Editable: @(TempData.Peek(SiteConstant.TempDataEditableKey) ?? SiteConstant.False)</span>
+                        @{
+                            var editable = "False";
+                            if (User.IsAtLeast(SiteRole.Editor) && TempData.ContainsKey(SiteConstant.TempDataEditableKey))
+                            {
+                                editable = TempData.Peek(SiteConstant.TempDataEditableKey)?.ToString() ?? "False";
+                            }
+                        }
+                        <span class="me-2">Editable: @editable</span>
                         <span class="me-2">Language: @currentCulture</span>
                     </environment>
                     @foreach (var supportedCulture in SiteConstant.SupportedCultures.Values)
