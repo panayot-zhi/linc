@@ -21,11 +21,6 @@ namespace linc.Services
             _config = configOptions.Value;
         }
 
-        public async Task<ApplicationDocument> GetFileAsync(int id)
-        {
-            return await _context.Documents.FindAsync(id);
-        }
-
         public async Task<ApplicationIssue> GetIssueAsync(int id, int? sourcesLanguageId = null)
         {
             IQueryable<ApplicationIssue> query = _context.Issues

@@ -47,6 +47,12 @@ namespace linc.Data
         public ApplicationIssue Issue { get; set; }
 
 
+        [ForeignKey(nameof(Pdf))]
+        public int? PdfId { get; set; }
+
+        public ApplicationDocument Pdf { get; set; }
+
+
         [MaxLength(127)]
         [ForeignKey(nameof(Author))]
         public string AuthorId { get; set; }

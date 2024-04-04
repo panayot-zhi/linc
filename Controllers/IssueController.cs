@@ -13,6 +13,7 @@ namespace linc.Controllers
     public class IssueController : BaseController
     {
         private readonly ILogger<IssueController> _logger;
+        private readonly IDocumentService _documentService;
         private readonly IIssueService _issueService;
         private readonly ApplicationConfig _config;
 
@@ -20,11 +21,13 @@ namespace linc.Controllers
             ILocalizationService localizationService,
             IOptions<ApplicationConfig> configOptions,
             ILogger<IssueController> logger,
+            IDocumentService documentService,
             IIssueService issueService)
             : base(localizationService)
         {
             _logger = logger;
             _issueService = issueService;
+            _documentService = documentService;
             _config = configOptions.Value;
         }
 
@@ -180,36 +183,11 @@ namespace linc.Controllers
                 return NotFound();
             }
 
-            var issuePdf = await _issueService.GetFileAsync(issueEntry.Pdf.Id);
+            var issuePdf = await _documentService.GetFileAsync(issueEntry.Pdf.Id);
             var pdfPath = Path.Combine(_config.RepositoryPath, issuePdf.RelativePath);
             var content = await System.IO.File.ReadAllBytesAsync(pdfPath);
 
             return new FileContentResult(content, issuePdf.MimeType);
-        }
-
-        [AllowAnonymous]
-        public async Task<IActionResult> LoadFile(int id)
-        {
-            var file = await _issueService.GetFileAsync(id);
-
-            if (file == null)
-            {
-                return NotFound();
-            }
-
-            var path = Path.Combine(_config.RepositoryPath, file.RelativePath);
-
-            if (!System.IO.File.Exists(path))
-            {
-                _logger.LogWarning("Could not find physical file {@File}", 
-                    file);
-                return NotFound();
-            }
-
-            return new PhysicalFileResult(path, file.MimeType)
-            {
-                FileDownloadName = $"{file.FileName}.{file.Extension}"
-            };
         }
     }
 }

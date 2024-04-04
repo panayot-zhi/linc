@@ -8,6 +8,7 @@ public enum ApplicationDocumentType
     IndexPage,
 
     IssuePdf,
+    SourcePdf,
 
     Original,
     Anonymized,

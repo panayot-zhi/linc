@@ -30,7 +30,7 @@
             {
                 <div class="col-lg-4 col-md-6 portfolio-item filter-@issue.ReleaseYear">
                     <a asp-controller="Issue" asp-action="Details" asp-route-id="@issue.Id">
-                        <img src="@Url.Action("LoadFile", "Issue", new { id = issue.CoverPageId })" class="img-fluid" alt="">
+                        <img src="@Url.Action("LoadDocumentFile", "Document", new { id = issue.CoverPageId })" class="img-fluid" alt="">
                     </a>
                     <div class="portfolio-info">
                         <h4>@HtmlLocalizer["Issue_Number_Label"] @issue.IssueNumber</h4>

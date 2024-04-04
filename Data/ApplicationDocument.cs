@@ -37,6 +37,7 @@ namespace linc.Data
         public string RelativePath { get; set; }
 
 
+        public ApplicationSource Source { get; set; }
 
         public ICollection<ApplicationDossier> Dossiers { get; set; }
 
