@@ -1330,7 +1330,7 @@
     <value>Search</value>
     <comment>Se</comment>
   </data>
-  <data name="ServicesSection_Description" xml:space="preserve">
+  <data name="AuthorsSection_Description" xml:space="preserve">
     <value>Browse authors from all issues alphabetically or search for a specific name or title. You can also browse works by year and issue &lt;a href="{0}"&gt;here&lt;/a&gt;.</value>
   </data>
   <data name="Source_IndexPage_SearchDescription" xml:space="preserve">

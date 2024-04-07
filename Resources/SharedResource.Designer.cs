@@ -268,6 +268,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Прегледайте авторите от всички издания по азбучен ред или търсете конкретно име или заглавие. Можете да прегледате и произведения по години и броеве &lt;a href=&quot;{0}&quot;&gt;тук&lt;/a&gt;..
+        /// </summary>
+        public static string AuthorsSection_Description {
+            get {
+                return ResourceManager.GetString("AuthorsSection_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Автори.
         /// </summary>
         public static string AuthorsSection_Title {
@@ -2853,15 +2862,6 @@ namespace linc.Resources {
         public static string Search_Button_Label {
             get {
                 return ResourceManager.GetString("Search_Button_Label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Прегледайте авторите от всички издания по азбучен ред или търсете конкретно име или заглавие. Можете да прегледате и произведения по години и броеве &lt;a href=&quot;{0}&quot;&gt;тук&lt;/a&gt;..
-        /// </summary>
-        public static string ServicesSection_Description {
-            get {
-                return ResourceManager.GetString("ServicesSection_Description", resourceCulture);
             }
         }
         

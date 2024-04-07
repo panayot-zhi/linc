@@ -1337,7 +1337,7 @@
     <value>Търси</value>
     <comment>Se</comment>
   </data>
-  <data name="ServicesSection_Description" xml:space="preserve">
+  <data name="AuthorsSection_Description" xml:space="preserve">
     <value>Прегледайте авторите от всички издания по азбучен ред или търсете конкретно име или заглавие. Можете да прегледате и произведения по години и броеве &lt;a href="{0}"&gt;тук&lt;/a&gt;.</value>
   </data>
   <data name="Source_IndexPage_SearchDescription" xml:space="preserve">
