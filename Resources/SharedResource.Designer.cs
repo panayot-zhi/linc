@@ -268,7 +268,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Прегледайте авторите от всички издания по азбучен ред или търсете конкретно име или заглавие. Можете да прегледате и произведения по години и броеве &lt;a href=&quot;{0}&quot;&gt;тук&lt;/a&gt;..
+        ///   Looks up a localized string similar to Прегледайте авторите от всички издания по азбучен ред или търсете конкретно име или заглавие. Можете да прегледате и &lt;a href=&quot;{0}&quot;&gt;всички произведения по години и броеве&lt;/a&gt;..
         /// </summary>
         public static string AuthorsSection_Description {
             get {
@@ -2500,6 +2500,15 @@ namespace linc.Resources {
         public static string NextPage_Label {
             get {
                 return ResourceManager.GetString("NextPage_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Прегледайте последните издадени броеве на списанието по години..
+        /// </summary>
+        public static string PortfolioSection_Description {
+            get {
+                return ResourceManager.GetString("PortfolioSection_Description", resourceCulture);
             }
         }
         
