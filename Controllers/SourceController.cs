@@ -1,12 +1,9 @@
 ﻿using linc.Contracts;
 using Microsoft.AspNetCore.Mvc;
-using linc.Models.ConfigModels;
 using linc.Models.Enumerations;
 using linc.Utility;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.Extensions.Options;
 using linc.Models.ViewModels.Source;
-using linc.Services;
 
 namespace linc.Controllers
 {
@@ -16,11 +13,9 @@ namespace linc.Controllers
         private readonly IDocumentService _documentService;
         private readonly ISourceService _sourceService;
         private readonly IIssueService _issuesService;
-        private readonly ApplicationConfig _config;
 
         public SourceController(
             ILocalizationService localizationService,
-            IOptions<ApplicationConfig> configOptions,
             ILogger<SourceController> logger,
             IDocumentService documentService,
             ISourceService sourceService, 
@@ -31,7 +26,6 @@ namespace linc.Controllers
             _sourceService = sourceService;
             _issuesService = issuesService;
             _documentService = documentService;
-            _config = configOptions.Value;
         }
 
         public async Task<IActionResult> Index(int? page, int? year, string filter, int? issueId)
@@ -99,7 +93,7 @@ namespace linc.Controllers
                 return View(vModel);
             }
 
-            var sourceId = await _sourceService.CreateSourceAsync(vModel);
+            await _sourceService.CreateSourceAsync(vModel);
 
             return RedirectToAction("Details", "Issue", new { id = vModel.IssueId });
         }
@@ -212,11 +206,11 @@ namespace linc.Controllers
                 return NotFound();
             }
 
-            var sourcePdf = await _documentService.GetFileAsync(sourceEntry.PdfId.Value);
-            var pdfPath = Path.Combine(_config.RepositoryPath, sourcePdf.RelativePath);
-            var content = await System.IO.File.ReadAllBytesAsync(pdfPath);
+            var sourcePdf = await _documentService.GetDocumentWithContentAsync(sourceEntry.PdfId.Value);
 
-            return new FileContentResult(content, sourcePdf.MimeType);
+            _logger.LogInformation("Loading source pdf with content {@Source}", sourcePdf);
+
+            return new FileContentResult(sourcePdf.Content, sourcePdf.MimeType);
         }
 
         private async Task<List<SelectListItem>> GetIssuesAsync()

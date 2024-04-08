@@ -1,22 +1,32 @@
-﻿using linc.Contracts;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
+using linc.Contracts;
 using linc.Data;
 using linc.Models.ConfigModels;
 using linc.Models.Enumerations;
 using linc.Models.ViewModels.Source;
 using linc.Utility;
+using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using MimeKit;
+using System.Net.Mime;
 
 namespace linc.Services
 {
     public class SourceService : ISourceService
     {
+        private readonly IDocumentService _documentService;
         private readonly ApplicationDbContext _context;
         private readonly ApplicationConfig _config;
 
-        public SourceService(ApplicationDbContext context, IOptions<ApplicationConfig> config)
+        public SourceService(ApplicationDbContext context, 
+            IOptions<ApplicationConfig> config, 
+            IDocumentService documentService)
         {
             _context = context;
+            _documentService = documentService;
             _config = config.Value;
         }
 
@@ -139,16 +149,70 @@ namespace linc.Services
                 AuthorId = authorId
             };
 
+            ApplicationDocument pdf;
             if (input.PdfFile != null)
             {
-                var pdf = await SaveSourcePdf(input.PdfFile, entity.StartingPage, issue.ReleaseYear, issue.IssueNumber);
-                entity.PdfId = pdf.Id;
+                // pdf file was provided, just save it and continue
+                pdf = await SaveSourcePdf(input.PdfFile, entity.StartingPage, issue.ReleaseYear, issue.IssueNumber);
             }
+            else
+            {
+                // no pdf file was provided, generate it from the issue pdf
+                pdf = await GenerateSourcePdf(issue, entity.StartingPage, entity.LastPage, issue.IssueNumber);
+
+            }
+
+            entity.PdfId = pdf.Id;
 
             var entityEntry = await _context.Sources.AddAsync(entity);
             await _context.SaveChangesAsync();
-
             return entityEntry.Entity.Id;
+        }
+
+        private async Task<ApplicationDocument> GenerateSourcePdf(ApplicationIssue issue, int startingPage, int lastPage, int releaseYear)
+        {
+            var issuePdf = await _documentService.GetDocumentAsync(issue.Pdf.Id);
+            var issuePdfPath = _documentService.GetDocumentFilePath(issuePdf);
+            var issueNumber = issue.IssueNumber;
+
+            const ApplicationDocumentType type = ApplicationDocumentType.SourcePdf;
+            var fileName = $"{issue.ReleaseYear}-{issueNumber.ToString().PadLeft(3, '0')}-{HelperFunctions.ToKebabCase(type.ToString())}-{startingPage}";
+            var relativePath = Path.Combine(SiteConstant.IssuesFolderName, releaseYear.ToString());
+            var directoryPath = Path.Combine(_config.RepositoryPath, relativePath);
+            var outputPdfPath = Path.Combine(directoryPath, $"{fileName}.pdf");
+
+            await using var stream = new FileStream(outputPdfPath, FileMode.Create);
+
+            var document = new Document();
+            var issuePdfReader = new PdfReader(issuePdfPath);
+            var pdfWriter = new PdfCopy(document, stream);
+
+            document.Open();
+
+            // Loop through the specified range and add the pages to the new document
+            for (var pageNumber = startingPage; pageNumber <= lastPage; pageNumber++)
+            {
+                var page = pdfWriter.GetImportedPage(issuePdfReader, pageNumber);
+                pdfWriter.AddPage(page);
+            }
+
+            document.Close();
+            pdfWriter.Close();
+            issuePdfReader.Close();
+
+            var entry = new ApplicationDocument()
+            {
+                DocumentType = type,
+                Extension = "pdf",
+                FileName = fileName,
+                MimeType = MediaTypeNames.Application.Pdf,
+                Title = fileName,
+                RelativePath = relativePath
+            };
+
+            var entityEntry = await _context.Documents.AddAsync(entry);
+            await _context.SaveChangesAsync();
+            return entityEntry.Entity;
         }
 
         private async Task<ApplicationDocument> SaveSourcePdf(IFormFile inputFile, int startingPage, int releaseYear, int issueNumber)

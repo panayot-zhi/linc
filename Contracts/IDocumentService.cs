@@ -4,6 +4,10 @@ namespace linc.Contracts
 {
     public interface IDocumentService
     {
-        Task<ApplicationDocument> GetFileAsync(int id);
+        Task<ApplicationDocument> GetDocumentAsync(int id);
+
+        Task<ApplicationDocument> GetDocumentWithContentAsync(int id);
+
+        string GetDocumentFilePath(ApplicationDocument document);
     }
 }

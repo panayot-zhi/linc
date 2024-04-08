@@ -29,19 +29,17 @@ namespace linc.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> LoadDocumentFile(int id)
         {
-            var file = await _documentService.GetFileAsync(id);
+            var file = await _documentService.GetDocumentAsync(id);
 
-            if (file == null)
+            if (file is null)
             {
                 return NotFound();
             }
 
-            var path = Path.Combine(_config.RepositoryPath, file.RelativePath);
+            var path = _documentService.GetDocumentFilePath(file);
 
-            if (!System.IO.File.Exists(path))
+            if (path is null)
             {
-                _logger.LogWarning("Could not find physical file {@File}",
-                    file);
                 return NotFound();
             }
 

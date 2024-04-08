@@ -1,12 +1,8 @@
 ﻿using linc.Contracts;
 using Microsoft.AspNetCore.Mvc;
-using linc.Models.ConfigModels;
 using linc.Models.Enumerations;
 using linc.Models.ViewModels.Issue;
 using linc.Utility;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.Extensions.Options;
-using linc.Services;
 
 namespace linc.Controllers
 {
@@ -15,11 +11,9 @@ namespace linc.Controllers
         private readonly ILogger<IssueController> _logger;
         private readonly IDocumentService _documentService;
         private readonly IIssueService _issueService;
-        private readonly ApplicationConfig _config;
 
         public IssueController(
             ILocalizationService localizationService,
-            IOptions<ApplicationConfig> configOptions,
             ILogger<IssueController> logger,
             IDocumentService documentService,
             IIssueService issueService)
@@ -28,12 +22,6 @@ namespace linc.Controllers
             _logger = logger;
             _issueService = issueService;
             _documentService = documentService;
-            _config = configOptions.Value;
-        }
-
-        public async Task<IActionResult> Index()
-        {
-            throw new NotImplementedException();
         }
 
         public async Task<IActionResult> Details(int? id)
@@ -44,20 +32,21 @@ namespace linc.Controllers
             }
 
             var currentLanguageId = LocalizationService.GetCurrentLanguageId();
-            var applicationIssue = await _issueService.GetIssueAsync(id.Value, currentLanguageId);
-            if (applicationIssue == null)
+            var issue = await _issueService.GetIssueAsync(id.Value, currentLanguageId);
+            if (issue == null)
             {
-                _logger.LogWarning("Could not find issue with the id of {@Id}",
-                    id.Value);
+                _logger.LogWarning("Could not find issue with the id of {@Id}", id.Value);
                 return NotFound();
             }
 
-            if (!applicationIssue.IsAvailable && !User.IsAtLeast(SiteRole.UserPlus))
+            if (!issue.IsAvailable && !User.IsAtLeast(SiteRole.UserPlus))
             {
                 return NotFound();
             }
 
-            return View(applicationIssue);
+            _logger.LogInformation("Loading issue {Id}", id.Value);
+
+            return View(issue);
         }
 
         [SiteAuthorize(SiteRole.Editor)]
@@ -183,11 +172,11 @@ namespace linc.Controllers
                 return NotFound();
             }
 
-            var issuePdf = await _documentService.GetFileAsync(issueEntry.Pdf.Id);
-            var pdfPath = Path.Combine(_config.RepositoryPath, issuePdf.RelativePath);
-            var content = await System.IO.File.ReadAllBytesAsync(pdfPath);
+            var issuePdf = await _documentService.GetDocumentWithContentAsync(issueEntry.Pdf.Id);
 
-            return new FileContentResult(content, issuePdf.MimeType);
+            _logger.LogInformation("Loading issue pdf with content {@Source}", issuePdf);
+
+            return new FileContentResult(issuePdf.Content, issuePdf.MimeType);
         }
     }
 }

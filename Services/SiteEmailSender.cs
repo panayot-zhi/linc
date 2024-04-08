@@ -1,14 +1,13 @@
 ﻿using System.Globalization;
 using System.Text;
+using System.Text.Json;
 using linc.Contracts;
 using linc.Models.ConfigModels;
 using linc.Models.ViewModels.Emails;
 using MailKit.Net.Smtp;
 using MailKit.Security;
-using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Options;
 using MimeKit;
-using Newtonsoft.Json;
 
 namespace linc.Services
 {
@@ -192,7 +191,7 @@ namespace linc.Services
 
         private string GetEmailPreviewLink(string templateName, dynamic viewModel)
         {
-            var jsonViewModel = JsonConvert.SerializeObject(viewModel);
+            var jsonViewModel = JsonSerializer.Serialize(viewModel);
             var plainTextBytes = Encoding.UTF8.GetBytes(jsonViewModel);
             var data = Convert.ToBase64String(plainTextBytes);
 

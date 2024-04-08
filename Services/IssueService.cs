@@ -116,7 +116,7 @@ namespace linc.Services
                 while (File.Exists(filePath))
                 {
                     fileName = fileName.Remove(fileName.Length - 2, 2);
-                    fileName = fileName + number.ToString().PadLeft(2, '0');
+                    fileName += number.ToString().PadLeft(2, '0');
                     filePath = Path.Combine(directoryPath, $"{fileName}.{fileExtension}");
                     number++;
                 }
