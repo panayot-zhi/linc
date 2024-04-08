@@ -119,13 +119,17 @@ namespace linc.Services
         public async Task<int> CreateSourceAsync(SourceCreateViewModel input)
         {
             var issue = await _context.Issues.FindAsync(input.IssueId);
+
+            ArgumentNullException.ThrowIfNull(issue);
+
             var authorId = await FindUserByNamesAsync(input.FirstName, input.LastName);
             var entity = new ApplicationSource()
             {
                 FirstName = input.FirstName,
                 LastName = input.LastName,
                 AuthorNotes = input.AuthorNotes,
-                StartingPage = input.StartingPage.Value,
+                StartingPage = input.StartingPage!.Value,
+                LastPage = input.LastPage!.Value,
 
                 Title = input.Title,
                 TitleNotes = input.TitleNotes,
@@ -135,7 +139,7 @@ namespace linc.Services
                 AuthorId = authorId
             };
 
-            if (input.PdfFile != null && issue != null)
+            if (input.PdfFile != null)
             {
                 var pdf = await SaveSourcePdf(input.PdfFile, entity.StartingPage, issue.ReleaseYear, issue.IssueNumber);
                 entity.PdfId = pdf.Id;
@@ -149,8 +153,8 @@ namespace linc.Services
 
         private async Task<ApplicationDocument> SaveSourcePdf(IFormFile inputFile, int startingPage, int releaseYear, int issueNumber)
         {
-            var type = ApplicationDocumentType.SourcePdf;
             var fileExtension = inputFile.Extension();
+            const ApplicationDocumentType type = ApplicationDocumentType.SourcePdf;
             var fileName = $"{releaseYear}-{issueNumber.ToString().PadLeft(3, '0')}-{HelperFunctions.ToKebabCase(type.ToString())}-{startingPage}";
 
             var rootFolderPath = Path.Combine(_config.RepositoryPath, SiteConstant.IssuesFolderName);

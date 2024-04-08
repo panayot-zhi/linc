@@ -100,6 +100,7 @@ namespace linc.Controllers
             }
 
             var sourceId = await _sourceService.CreateSourceAsync(vModel);
+
             return RedirectToAction("Details", "Issue", new { id = vModel.IssueId });
         }
 
