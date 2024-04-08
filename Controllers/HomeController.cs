@@ -10,8 +10,8 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Identity;
 using linc.Models.ViewModels.Emails;
-using Newtonsoft.Json;
 using System.Text;
+using System.Text.Json;
 
 namespace linc.Controllers
 {
@@ -87,7 +87,7 @@ namespace linc.Controllers
 
             var base64EncodedBytes = Convert.FromBase64String(data);
             var jsonViewModel = Encoding.UTF8.GetString(base64EncodedBytes);
-            var viewModel = JsonConvert.DeserializeObject(jsonViewModel, type);
+            var viewModel = JsonSerializer.Deserialize(jsonViewModel, type);
 
             if (viewModel is not BaseEmailViewModel baseViewModel)
             {
