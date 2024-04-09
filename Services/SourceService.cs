@@ -178,11 +178,12 @@ namespace linc.Services
 
             const ApplicationDocumentType type = ApplicationDocumentType.SourcePdf;
             var fileName = $"{issue.ReleaseYear}-{issueNumber.ToString().PadLeft(3, '0')}-{HelperFunctions.ToKebabCase(type.ToString())}-{startingPage}";
-            var relativePath = Path.Combine(SiteConstant.IssuesFolderName, releaseYear.ToString());
-            var directoryPath = Path.Combine(_config.RepositoryPath, relativePath);
-            var outputPdfPath = Path.Combine(directoryPath, $"{fileName}.pdf");
 
-            await using var stream = new FileStream(outputPdfPath, FileMode.Create);
+            var rootFolderPath = Path.Combine(_config.RepositoryPath, SiteConstant.IssuesFolderName);
+            var directoryPath = Path.Combine(rootFolderPath, releaseYear.ToString());
+            var filePath = Path.Combine(directoryPath, $"{fileName}.pdf");
+
+            await using var stream = new FileStream(filePath, FileMode.Create);
 
             var document = new Document();
             var issuePdfReader = new PdfReader(issuePdfPath);
@@ -200,6 +201,8 @@ namespace linc.Services
             document.Close();
             pdfWriter.Close();
             issuePdfReader.Close();
+
+            var relativePath = Path.Combine(SiteConstant.IssuesFolderName, releaseYear.ToString(), $"{fileName}.pdf");
 
             var entry = new ApplicationDocument()
             {
