@@ -48,7 +48,7 @@ namespace linc.Data
 
 
         [ForeignKey(nameof(Pdf))]
-        public int? PdfId { get; set; }
+        public int PdfId { get; set; }
 
         public ApplicationDocument Pdf { get; set; }
 
