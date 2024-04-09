@@ -96,9 +96,9 @@ public class ContentService : IContentService
             .Where(x => x.IssueId == lastIssue)
             .Select(x => new SuggestionsViewModel()
             {
-                Content = x.Title,
+                IssueId = x.IssueId,
                 StartingPage = x.StartingPage,
-                IssueId = x.IssueId.Value
+                Content = x.Title
             })
             .ToList();
         
@@ -106,12 +106,14 @@ public class ContentService : IContentService
 
         var result = sources.Take(5).ToList();
 
-        result.ForEach(x => x.Href = _linkGenerator.GetUriByAction(
-            _httpContextAccessor.HttpContext!,
-            "LoadIssuePdf",
-            "Issue",
-            new { id = x.IssueId },
-            fragment: new FragmentString($"#page={x.StartingPage}")));
+        result.ForEach(x => x.Href = 
+            _linkGenerator.GetUriByAction(
+                _httpContextAccessor.HttpContext!,
+                "LoadIssuePdf",
+                "Document",
+                new { id = x.IssueId },
+                fragment: new FragmentString($"#page={x.StartingPage}"))
+            );
 
         return result;  
     }

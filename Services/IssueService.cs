@@ -136,7 +136,7 @@ namespace linc.Services
                 Extension = fileExtension,
                 FileName = fileName,
                 MimeType = inputFile.ContentType,
-                Title = inputFile.FileName,
+                OriginalFileName = inputFile.FileName,
                 RelativePath = relativePath
             };
 

@@ -6,11 +6,8 @@ using linc.Models.ConfigModels;
 using linc.Models.Enumerations;
 using linc.Models.ViewModels.Source;
 using linc.Utility;
-using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using MimeKit;
 using System.Net.Mime;
 
 namespace linc.Services
@@ -68,11 +65,8 @@ namespace linc.Services
                 {
                     // perform search by
                     query = query.Where(x =>
-                        EF.Functions.Like(x.LastName, $"%{filter}%") ||
-                        EF.Functions.Like(x.FirstName, $"%{filter}%") ||
-                        EF.Functions.Like(x.AuthorNotes, $"%{filter}%") ||
-                        EF.Functions.Like(x.Title, $"%{filter}%") ||
-                        EF.Functions.Like(x.TitleNotes, $"%{filter}%")
+                        EF.Functions.Like(x.AuthorNames, $"%{filter}%") ||
+                        EF.Functions.Like(x.AuthorNotes, $"%{filter}%")
                     );
                 }
                 else
@@ -116,11 +110,10 @@ namespace linc.Services
         public async Task<List<SourceCountByIssues>> GetSourcesCountByIssues()
         {
             return await _context.Sources
-                .Where(source => source.IssueId.HasValue)
                 .GroupBy(source => source.IssueId)
                 .Select(group => new SourceCountByIssues
                 {
-                    IssueId = group.Key.Value,
+                    IssueId = group.Key,
                     IssueTitle = $"{group.First().Issue.IssueNumber}/{group.First().Issue.DateCreated.Year}",
                     Count = group.Count()
                 }).ToListAsync();
@@ -128,41 +121,48 @@ namespace linc.Services
 
         public async Task<int> CreateSourceAsync(SourceCreateViewModel input)
         {
+            // validation should guard these from being nulls
+            var startingPage = input.StartingPage!.Value;
+            var lastPage = input.LastPage!.Value;
+            var issueId = input.IssueId!.Value;
+
             var issue = _context.Issues
                 .Include(x => x.Files)
-                .First(x => x.Id == input.IssueId);
+                .First(x => x.Id == issueId);
 
             var authorId = await FindUserByNamesAsync(input.FirstName, input.LastName);
-            var entity = new ApplicationSource()
-            {
-                FirstName = input.FirstName,
-                LastName = input.LastName,
-                AuthorNotes = input.AuthorNotes,
-                StartingPage = input.StartingPage!.Value,
-                LastPage = input.LastPage!.Value,
-
-                Title = input.Title,
-                TitleNotes = input.TitleNotes,
-
-                LanguageId = input.LanguageId,
-                IssueId = input.IssueId,
-                AuthorId = authorId
-            };
 
             ApplicationDocument pdf;
             if (input.PdfFile != null)
             {
                 // pdf file was provided, just save it and continue
-                pdf = await SaveSourcePdf(input.PdfFile, entity.StartingPage, issue.ReleaseYear, issue.IssueNumber);
+                pdf = await SaveSourcePdf(input.PdfFile, startingPage, issue.ReleaseYear, issue.IssueNumber);
             }
             else
             {
                 // no pdf file was provided, generate it from the issue pdf
-                pdf = await GenerateSourcePdf(issue, entity.StartingPage, entity.LastPage);
+                pdf = await GenerateSourcePdf(issue, startingPage, lastPage);
 
             }
+            var entity = new ApplicationSource
+            {
+                FirstName = input.FirstName,
+                LastName = input.LastName,
+                AuthorNames = $"{input.FirstName} {input.LastName}",
+                AuthorNotes = input.AuthorNotes,
 
-            entity.PdfId = pdf.Id;
+                StartingPage = startingPage,
+                LastPage = lastPage,
+
+                Title = input.Title,
+                TitleNotes = input.TitleNotes,
+
+                LanguageId = input.LanguageId,
+                IssueId = issueId,
+                AuthorId = authorId,
+
+                PdfId = pdf.Id
+            };
 
             var entityEntry = await _context.Sources.AddAsync(entity);
             await _context.SaveChangesAsync();
@@ -210,7 +210,7 @@ namespace linc.Services
                 Extension = "pdf",
                 FileName = fileName,
                 MimeType = MediaTypeNames.Application.Pdf,
-                Title = fileName,
+                OriginalFileName = fileName,
                 RelativePath = relativePath
             };
 
@@ -245,7 +245,7 @@ namespace linc.Services
                 Extension = fileExtension,
                 FileName = fileName,
                 MimeType = inputFile.ContentType,
-                Title = inputFile.FileName,
+                OriginalFileName = inputFile.FileName,
                 RelativePath = relativePath
             };
 

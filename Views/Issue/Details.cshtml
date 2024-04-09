@@ -1,6 +1,6 @@
 ﻿@using linc.Utility
-@using Microsoft.AspNetCore.Localization
 @using Microsoft.AspNetCore.Mvc.TagHelpers
+@using System.Net
 @model linc.Data.ApplicationIssue
 
 @{
@@ -41,13 +41,13 @@
                     <div class="swiper-wrapper align-items-center">
                         
                         <div class="swiper-slide">
-                            <img src="@Url.Action("LoadDocumentFile", "Document", new { id = Model.CoverPage.Id })" alt="@Model.CoverPage.Title">
+                            <img src="@Url.Action("LoadDocumentFile", "Document", new { id = Model.CoverPage.Id })" alt="@Model.CoverPage.OriginalFileName">
                         </div>
 
                         @foreach (var file in Model.IndexPages)
                         {
                             <div class="swiper-slide">
-                                <img src="@Url.Action("LoadDocumentFile", "Document", new { id = file.Id })" alt="@file.Title">
+                                <img src="@Url.Action("LoadDocumentFile", "Document", new { id = file.Id })" alt="@file.OriginalFileName">
                             </div>
                         }
 
@@ -67,7 +67,7 @@
                         </li>
                     </ul>
                     <hr />
-                    <a class="btn btn-primary w-100" target="_blank" href="@Url.Action("LoadDocumentFile", "Document", new { id = Model.Pdf.Id })">
+                    <a class="btn btn-primary w-100" target="_blank" href="@Url.Action("DownloadDocumentFile", "Document", new { id = Model.Pdf.Id })">
                         @HtmlLocalizer["Issue_DetailsPage_IssuePdf"]
                     </a>
                 </div>
@@ -100,17 +100,22 @@
                                 @if (!string.IsNullOrWhiteSpace(source.AuthorNames))
                                 {
                                     <p class="source-author">
-                                        @source.FirstName @source.LastName
+
+                                        <a asp-controller="Source" asp-action="Index" asp-route-filter="@WebUtility.UrlEncode(source.AuthorNames)">
+                                            @source.AuthorNames
+                                        </a>
                                         @if (!string.IsNullOrEmpty(source.AuthorNotes))
                                         {
-                                            <br />
+                                            <br/>
                                             <small>@source.AuthorNotes</small>
                                         }
                                     </p>
                                 }
 
                                 <p class="source-title">
-                                    <a href="@Url.Action("LoadIssuePdf", "Issue", new { id = source.IssueId })#page=@source.StartingPage">@source.Title</a>
+                                    <a href="@Url.Action("LoadSourcePdf", "Document", new { id = source.Id })">
+                                        @source.Title
+                                    </a>
                                 </p>
 
                                 <p class="source-page text-end">

@@ -84,18 +84,15 @@
                             {
                                 <li class="source-container">
 
-                                    @if (source.IssueId.HasValue)
-                                    {
-                                        <div class="source-origin-container">
-                                            <p class="source-orgin">
-                                                <small>
-                                                    <a asp-controller="Issue" asp-action="Details" asp-route-id="@source.IssueId">
-                                                        @source.Issue.IssueNumber / @source.Issue.ReleaseYear
-                                                    </a>
-                                                </small>
-                                            </p>
-                                        </div>
-                                    }
+                                    <div class="source-origin-container">
+                                        <p class="source-orgin">
+                                            <small>
+                                                <a asp-controller="Issue" asp-action="Details" asp-route-id="@source.IssueId">
+                                                    @source.Issue.IssueNumber / @source.Issue.ReleaseYear
+                                                </a>
+                                            </small>
+                                        </p>
+                                    </div>
 
                                     @if (!string.IsNullOrWhiteSpace(source.AuthorNames))
                                     {
@@ -110,11 +107,11 @@
                                     }
 
                                     <p class="source-title annotate">
-                                        <a href="@Url.Action("LoadIssuePdf", "Issue", new { id = source.IssueId })#page=@source.StartingPage">@source.Title</a>
+                                        <a href="@Url.Action("LoadSourcePdf", "Document", new { id = source.Id })">@source.Title</a>
                                     </p>
 
                                     <p class="source-page text-end">
-                                        <strong><a href="@Url.Action("LoadIssuePdf", "Issue", new { id = source.IssueId })#page=@source.StartingPage">@source.StartingPage</a></strong>
+                                        <strong><a href="@Url.Action("LoadIssuePdf", "Document", new { id = source.IssueId })#page=@source.StartingPage">@source.StartingPage</a></strong>
                                     </p>
 
                                     @if (!string.IsNullOrEmpty(source.TitleNotes))
