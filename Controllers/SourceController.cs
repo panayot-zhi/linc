@@ -10,14 +10,12 @@ namespace linc.Controllers
     public class SourceController : BaseController
     {
         private readonly ILogger<SourceController> _logger;
-        private readonly IDocumentService _documentService;
         private readonly ISourceService _sourceService;
         private readonly IIssueService _issuesService;
 
         public SourceController(
             ILocalizationService localizationService,
             ILogger<SourceController> logger,
-            IDocumentService documentService,
             ISourceService sourceService, 
             IIssueService issuesService)
             : base(localizationService)
@@ -25,7 +23,6 @@ namespace linc.Controllers
             _logger = logger;
             _sourceService = sourceService;
             _issuesService = issuesService;
-            _documentService = documentService;
         }
 
         public async Task<IActionResult> Index(int? page, int? year, string filter, int? issueId)
@@ -46,6 +43,7 @@ namespace linc.Controllers
             return View(viewModel);
         }
 
+        // TODO
         // public async Task<IActionResult> Details(int? id)
         // {
         //     if (id == null)
@@ -93,124 +91,12 @@ namespace linc.Controllers
                 return View(vModel);
             }
 
-            await _sourceService.CreateSourceAsync(vModel);
+            var sourceId = await _sourceService.CreateSourceAsync(vModel);
+
+            _logger.LogInformation("Source {SourceId} has been created successfully, redirecting...", 
+                sourceId);
 
             return RedirectToAction("Details", "Issue", new { id = vModel.IssueId });
-        }
-
-        /*// GET: Issue/Edit/5
-        [SiteAuthorize(SiteRole.Editor)]
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null || _context.Issues == null)
-            {
-                return NotFound();
-            }
-
-            var applicationIssue = await _context.Issues.FindAsync(id);
-            if (applicationIssue == null)
-            {
-                return NotFound();
-            }
-            return View(applicationIssue);
-        }
-
-        // POST: Issue/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [SiteAuthorize(SiteRole.Editor)]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,IssueNumber,ReleaseYear,Description,LastUpdated,DateCreated")] ApplicationIssue applicationIssue)
-        {
-            if (id != applicationIssue.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(applicationIssue);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ApplicationIssueExists(applicationIssue.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(applicationIssue);
-        }*/
-
-        /*[SiteAuthorize(SiteRole.Editor)]
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null || _context.Issues == null)
-            {
-                return NotFound();
-            }
-
-            var applicationIssue = await _context.Issues
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (applicationIssue == null)
-            {
-                return NotFound();
-            }
-
-            return View(applicationIssue);
-        }
-
-        [SiteAuthorize(SiteRole.Editor)]
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.Issues == null)
-            {
-                return Problem("Entity set 'ApplicationDbContext.Issues'  is null.");
-            }
-            var applicationIssue = await _context.Issues.FindAsync(id);
-            if (applicationIssue != null)
-            {
-                _context.Issues.Remove(applicationIssue);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }*/
-
-        public async Task<IActionResult> LoadSourcePdf(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var sourceEntry = await _sourceService.GetSourceAsync(id.Value);
-            if (sourceEntry == null)
-            {
-                return NotFound();
-            }
-
-            if (!sourceEntry.PdfId.HasValue)
-            {
-                return NotFound();
-            }
-
-            var sourcePdf = await _documentService.GetDocumentWithContentAsync(sourceEntry.PdfId.Value);
-
-            _logger.LogInformation("Loading source pdf with content {@Source}", sourcePdf);
-
-            return new FileContentResult(sourcePdf.Content, sourcePdf.MimeType);
         }
 
         private async Task<List<SelectListItem>> GetIssuesAsync()
