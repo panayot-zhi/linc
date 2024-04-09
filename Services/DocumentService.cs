@@ -25,23 +25,6 @@ namespace linc.Services
             return await _context.Documents.FindAsync(id);
         }
 
-        public async Task<ApplicationDocument> GetDocumentWithContentAsync(int id)
-        {
-            var document = await GetDocumentAsync(id);
-            if (document is null)
-            {
-                return null;
-            }
-
-            var filePath = GetDocumentFilePath(document);
-            if (filePath is not null)
-            {
-                document.Content = await File.ReadAllBytesAsync(filePath);
-            }
-
-            return document;
-        }
-
         public string GetDocumentFilePath(ApplicationDocument document)
         {
             var path = Path.Combine(_config.RepositoryPath, document.RelativePath);

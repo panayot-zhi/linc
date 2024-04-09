@@ -6,8 +6,6 @@ namespace linc.Contracts
     {
         Task<ApplicationDocument> GetDocumentAsync(int id);
 
-        Task<ApplicationDocument> GetDocumentWithContentAsync(int id);
-
         string GetDocumentFilePath(ApplicationDocument document);
     }
 }

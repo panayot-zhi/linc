@@ -1,6 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
 using linc.Models.Enumerations;
 
 namespace linc.Data
@@ -12,7 +10,7 @@ namespace linc.Data
 
         [Required]
         [MaxLength(256)]
-        public string Title { get; set; }
+        public string OriginalFileName { get; set; }
 
 
         [Required]
@@ -36,11 +34,6 @@ namespace linc.Data
         [Required]
         [MaxLength(512)]
         public string RelativePath { get; set; }
-
-
-        [NotMapped]
-        [JsonIgnore]
-        public byte[] Content { get; set; }
 
 
         public ApplicationSource Source { get; set; }
