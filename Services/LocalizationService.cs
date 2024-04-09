@@ -4,7 +4,6 @@ using linc.Utility;
 using Microsoft.AspNetCore.Mvc.Localization;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Localization;
-using Newtonsoft.Json.Linq;
 
 namespace linc.Services
 {

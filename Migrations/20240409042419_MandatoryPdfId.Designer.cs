@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using linc.Data;
 
@@ -10,9 +11,10 @@ using linc.Data;
 namespace linc.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240409042419_MandatoryPdfId")]
+    partial class MandatoryPdfId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -96,17 +98,17 @@ namespace linc.Migrations
                         .HasColumnType("varchar(128)")
                         .HasColumnName("mime_type");
 
-                    b.Property<string>("OriginalFileName")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("varchar(256)")
-                        .HasColumnName("original_file_name");
-
                     b.Property<string>("RelativePath")
                         .IsRequired()
                         .HasMaxLength(512)
                         .HasColumnType("varchar(512)")
                         .HasColumnName("relative_path");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("varchar(256)")
+                        .HasColumnName("title");
 
                     b.HasKey("Id")
                         .HasName("pk_documents");
@@ -241,11 +243,6 @@ namespace linc.Migrations
                         .HasColumnType("varchar(127)")
                         .HasColumnName("author_id");
 
-                    b.Property<string>("AuthorNames")
-                        .HasMaxLength(512)
-                        .HasColumnType("varchar(512)")
-                        .HasColumnName("author_names");
-
                     b.Property<string>("AuthorNotes")
                         .HasMaxLength(1024)
                         .HasColumnType("varchar(1024)")
@@ -260,7 +257,7 @@ namespace linc.Migrations
                         .HasColumnType("varchar(255)")
                         .HasColumnName("first_name");
 
-                    b.Property<int>("IssueId")
+                    b.Property<int?>("IssueId")
                         .HasColumnType("int")
                         .HasColumnName("issue_id");
 
@@ -788,8 +785,6 @@ namespace linc.Migrations
                     b.HasOne("linc.Data.ApplicationIssue", "Issue")
                         .WithMany("Sources")
                         .HasForeignKey("IssueId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
                         .HasConstraintName("fk_sources_issues_issue_id");
 
                     b.HasOne("linc.Data.ApplicationLanguage", "Language")

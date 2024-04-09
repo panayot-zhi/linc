@@ -9,11 +9,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Identity;
-using System.Globalization;
-using linc.Models.ConfigModels;
 using linc.Models.ViewModels.Emails;
-using Newtonsoft.Json;
 using System.Text;
+using System.Text.Json;
 
 namespace linc.Controllers
 {
@@ -22,18 +20,16 @@ namespace linc.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IContentService _contentService;
-        private readonly ISiteEmailSender _mailSender;
 
-        public HomeController(ILogger<HomeController> logger,
+        public HomeController(
+            ILogger<HomeController> logger,
             UserManager<ApplicationUser> userManager,
             ILocalizationService localizationService, 
-            IContentService contentService, 
-            ISiteEmailSender mailSender)
+            IContentService contentService)
         : base(localizationService)
         {
             _logger = logger;
             _contentService = contentService;
-            _mailSender = mailSender;
             _userManager = userManager;
         }
 
@@ -58,26 +54,52 @@ namespace linc.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [ResponseCache(CacheProfileName = SiteCacheProfile.Yearly)]
         public IActionResult Submit()
         {
-            throw new NotImplementedException();
+            return View();
         }
 
+        [ResponseCache(CacheProfileName = SiteCacheProfile.Yearly)]
         public IActionResult Terms()
         {
             return View();
         }
 
+        [ResponseCache(CacheProfileName = SiteCacheProfile.Yearly)]
         public IActionResult Privacy()
         {
             return View();
         }
 
+        [ResponseCache(CacheProfileName = SiteCacheProfile.Yearly)]
         public IActionResult Cookies()
         {
             return View();
         }
 
+        [ResponseCache(CacheProfileName = SiteCacheProfile.Monthly, VaryByQueryKeys = new []{ "id", "data" })]
+        public IActionResult Email(string id, string data)
+        {
+            var type = Type.GetType($"linc.Models.ViewModels.Emails.{id}");
+
+            ArgumentNullException.ThrowIfNull(type);
+
+            var base64EncodedBytes = Convert.FromBase64String(data);
+            var jsonViewModel = Encoding.UTF8.GetString(base64EncodedBytes);
+            var viewModel = JsonSerializer.Deserialize(jsonViewModel, type);
+
+            if (viewModel is not BaseEmailViewModel baseViewModel)
+            {
+                throw new NotSupportedException("Message could not be read.");
+            }
+
+            baseViewModel.Preview = "#";
+            baseViewModel.IsPreviewing = true;
+
+            return View($"~/Views/Shared/Emails/{id}.{baseViewModel.Language}.cshtml", viewModel);
+        }
+        
         [Ajax]
         [HttpPost]
         [SiteAuthorize(SiteRole.Editor)]
@@ -108,7 +130,6 @@ namespace linc.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult SetLanguage(string culture, string returnUrl = "/")
         {
             Response.Cookies.Append(
@@ -186,7 +207,7 @@ namespace linc.Controllers
 
                     // NOTE: List here any cases where
                     // we need response body brevity
-                    
+
                     if (path.EndsWith(".js.map"))
                     {
                         return StatusCode((int)HttpStatusCode.NotFound, path);
@@ -217,45 +238,6 @@ namespace linc.Controllers
                 errorViewModel.RequestId, errorViewModel.Path, errorViewModel.Error);
 
             return View(errorViewModel);
-        }
-
-        [SiteAuthorize(SiteRole.Administrator, andAbove: false)]
-        public async Task<IActionResult> TestSendEmail(string id)
-        {
-            var request = HttpContext.Request;
-            var domainUrl = $"{request.Scheme}://{request.Host}";
-            
-            var viewModel = new TestEmail()
-            {
-                Test = LocalizationService["Logo_Long"].Value,
-                TestButton = new EmailButton
-                {
-                    Text = LocalizationService["Logo_Short"].Value,
-                    Url = domainUrl
-                }
-            };
-
-            if (!string.IsNullOrEmpty(id))
-            {
-                // test language display
-                viewModel.Language = new CultureInfo(id).Name;
-            }
-
-            var email = new SiteEmailDescriptor<TestEmail>()
-            {
-                Emails = new()
-                {
-                    SiteConstant.AdministratorEmail
-                },
-                Subject = "Коле, получи ли?",
-                ViewModel = viewModel
-            };
-
-            await _mailSender.SendEmailAsync(email);
-
-            //AddAlertMessage("Sent");
-
-            return View($"Emails/TestEmail.{viewModel.Language}", viewModel);
         }
 
         protected ErrorViewModel GetErrorViewModel(string code, IExceptionHandlerPathFeature exceptionHandlerPathFeature = null)
@@ -294,27 +276,6 @@ namespace linc.Controllers
             
 
             return errorViewModel;
-        }
-
-        public IActionResult Email(string id, string data)
-        {
-            var type = Type.GetType($"linc.Models.ViewModels.Emails.{id}");
-            
-            ArgumentNullException.ThrowIfNull(type);
-
-            var base64EncodedBytes = Convert.FromBase64String(data);
-            var jsonViewModel = Encoding.UTF8.GetString(base64EncodedBytes);
-            var viewModel = JsonConvert.DeserializeObject(jsonViewModel, type);
-
-            if (viewModel is not BaseEmailViewModel baseViewModel)
-            {
-                throw new NotSupportedException("Message could not be read.");
-            }
-                
-            baseViewModel.Preview = "#";
-            baseViewModel.IsPreviewing = true;
-
-            return View($"~/Views/Shared/Emails/{id}.{baseViewModel.Language}.cshtml", viewModel);
         }
     }
 }

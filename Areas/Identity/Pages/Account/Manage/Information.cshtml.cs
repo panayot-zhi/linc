@@ -19,9 +19,9 @@ namespace linc.Areas.Identity.Pages.Account.Manage
         public InfoModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            ILocalizationService localizer,
+            ILocalizationService localizationService,
             ILogger<InfoModel> logger)
-        : base(localizer)
+        : base(localizationService)
         {
             _userManager = userManager;
             _signInManager = signInManager;

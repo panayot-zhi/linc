@@ -19,8 +19,8 @@ namespace linc.Areas.Identity.Pages.Account
 
         public ConfirmEmailModel(UserManager<ApplicationUser> userManager, 
             ILogger<ConfirmEmailModel> logger, 
-            ILocalizationService localizer)
-        : base(localizer)
+            ILocalizationService localizationService)
+        : base(localizationService)
         {
             _logger = logger;
             _userManager = userManager;

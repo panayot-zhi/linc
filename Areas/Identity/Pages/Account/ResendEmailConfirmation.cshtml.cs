@@ -23,11 +23,12 @@ namespace linc.Areas.Identity.Pages.Account
         private readonly ILogger<ResendEmailConfirmationModel> _logger;
         private readonly ISiteEmailSender _emailSender;
 
-        public ResendEmailConfirmationModel(UserManager<ApplicationUser> userManager,
+        public ResendEmailConfirmationModel(
+            UserManager<ApplicationUser> userManager,
             ILogger<ResendEmailConfirmationModel> logger,
-            ILocalizationService localizer,
+            ILocalizationService localizationService,
             ISiteEmailSender emailSender)
-        : base(localizer)
+        : base(localizationService)
         {
             _userManager = userManager;
             _emailSender = emailSender;

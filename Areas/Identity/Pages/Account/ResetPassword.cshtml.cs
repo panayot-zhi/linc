@@ -19,9 +19,9 @@ namespace linc.Areas.Identity.Pages.Account
         private readonly ILogger<ResetPasswordModel> _logger;
 
         public ResetPasswordModel(UserManager<ApplicationUser> userManager,
-            ILogger<ResetPasswordModel> logger,
-            ILocalizationService localizer)
-        : base(localizer)
+            ILocalizationService localizationService,
+            ILogger<ResetPasswordModel> logger)
+        : base(localizationService)
         {
             _userManager = userManager;
             _logger = logger;

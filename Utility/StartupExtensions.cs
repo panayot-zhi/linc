@@ -117,7 +117,6 @@ public static class StartupExtensions
     public static IServiceCollection AddCaching(this IServiceCollection services)
     {
         services.AddResponseCaching();
-        services.AddDistributedMemoryCache();
         services.AddMemoryCache(options =>
         {
             // aim for roughly 20M symbols
@@ -384,6 +383,7 @@ public static class StartupExtensions
     {
         services.AddScoped<IRazorViewToStringRenderer, RazorViewToStringRenderer>();
         services.AddScoped<ILocalizationService, LocalizationService>();
+        services.AddTransient<IDocumentService, DocumentService>();
         services.AddTransient<IContentService, ContentService>();
         services.AddTransient<ISourceService, SourceService>();
         services.AddTransient<IIssueService, IssueService>();

@@ -1330,10 +1330,19 @@
     <value>Search</value>
     <comment>Se</comment>
   </data>
-  <data name="ServicesSection_Description" xml:space="preserve">
-    <value>Browse authors from all issues alphabetically or search for a specific name or title. You can also browse works by year and issue &lt;a href="{0}"&gt;here&lt;/a&gt;.</value>
+  <data name="AuthorsSection_Description" xml:space="preserve">
+    <value>Browse authors from all issues alphabetically or search for a specific name or title. You can also browse &lt;a href="{0}"&gt;all works by year and issue&lt;/a&gt;.</value>
   </data>
   <data name="Source_IndexPage_SearchDescription" xml:space="preserve">
     <value>search by first letter of the author's last name</value>
+  </data>
+  <data name="SourceCreate_PdfFile" xml:space="preserve">
+    <value>Attach the source as PDF</value>
+  </data>
+  <data name="PortfolioSection_Description" xml:space="preserve">
+    <value>Browse through the most recently published issues by year.</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
   </data>
 </root>

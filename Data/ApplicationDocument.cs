@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using linc.Models.Enumerations;
 
 namespace linc.Data
@@ -11,7 +10,7 @@ namespace linc.Data
 
         [Required]
         [MaxLength(256)]
-        public string Title { get; set; }
+        public string OriginalFileName { get; set; }
 
 
         [Required]
@@ -37,11 +36,11 @@ namespace linc.Data
         public string RelativePath { get; set; }
 
 
+        public ApplicationSource Source { get; set; }
 
         public ICollection<ApplicationDossier> Dossiers { get; set; }
 
         public ICollection<ApplicationIssue> Issues { get; set; }
-
 
 
         #region Automatic

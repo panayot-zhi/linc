@@ -33,15 +33,12 @@ namespace linc.Utility
         {
             output.Attributes.Add("id", DatabaseLocalizationKey);
 
-            //var editable = ViewContext.ViewData.Get<bool?>(SiteConstant.TempDataEditableKey) == true;
-            var editable = ViewContext.TempData.ContainsKey(SiteConstant.TempDataEditableKey);
-            
             if (!Allowed.HasValue)
             {
                 Allowed = SiteRole.Editor;
             }
 
-            if (ViewContext.HttpContext.User.IsAtLeast(Allowed.Value) && editable)
+            if (ViewContext.HttpContext.User.IsAtLeast(Allowed.Value) && IsEditing())
             {
                 output.Attributes.Add("contenteditable", "true");
                 
@@ -81,6 +78,11 @@ namespace linc.Utility
 
             // we need some content after all, fill some gibberish
             output.Content.SetHtmlContent("Lorem ipsum dolor sit amet");
+        }
+
+        private bool IsEditing()
+        {
+            return ViewContext.TempData.ContainsKey(SiteConstant.TempDataEditableKey);
         }
     }
 }

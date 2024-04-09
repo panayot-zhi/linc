@@ -35,10 +35,10 @@ namespace linc.Areas.Identity.Pages.Account
             SignInManager<ApplicationUser> signInManager,
             RoleManager<IdentityRole> roleManager,
             IUserStore<ApplicationUser> userStore,
-            ILogger<RegisterModel> logger,
-            ILocalizationService localizer,
-            ISiteEmailSender emailSender)
-        : base(localizer)
+            ILocalizationService localizationService,
+            ISiteEmailSender emailSender,
+            ILogger<RegisterModel> logger)
+        : base(localizationService)
         {
             _userManager = userManager;
             _userStore = userStore;

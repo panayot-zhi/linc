@@ -79,10 +79,17 @@
                 <span>@HtmlLocalizer["Logo_Long"]</span>
             </div>
             <div class="d-flex align-items-center">
-                <form id="set_language" asp-controller="Home" asp-action="SetLanguage" asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)">
+                <form id="set_language" asp-controller="Home" asp-action="SetLanguage" asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)" asp-antiforgery="false">
                     <environment exclude="Production">
                         @* <span class="me-2">Session: @Context.Session.GetString("Hi")</span> *@
-                        <span class="me-2">Editable: @(TempData.Peek(SiteConstant.TempDataEditableKey) ?? SiteConstant.False)</span>
+                        @{
+                            var editable = "False";
+                            if (User.IsAtLeast(SiteRole.Editor) && TempData.ContainsKey(SiteConstant.TempDataEditableKey))
+                            {
+                                editable = TempData.Peek(SiteConstant.TempDataEditableKey)?.ToString() ?? "False";
+                            }
+                        }
+                        <span class="me-2">Editable: @editable</span>
                         <span class="me-2">Language: @currentCulture</span>
                     </environment>
                     @foreach (var supportedCulture in SiteConstant.SupportedCultures.Values)
@@ -365,17 +372,19 @@
                         </ul>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 footer-links">
-                        <h4>@HtmlLocalizer["Footer_Suggestions_Title"]</h4>
-                        <ul>
-                            @foreach (var suggestion in ContentService.GetSuggestions())
-                            {
-                                <li>
-                                    <i class="bx bx-chevron-right"></i> <a href="@suggestion.Href">@suggestion.Content</a>
-                                </li>
-                            }
-                        </ul>
-                    </div>
+                    <cache expires-after="@TimeSpan.FromDays(1)">
+                        <div class="col-lg-4 col-md-6 footer-links">
+                            <h4>@HtmlLocalizer["Footer_Suggestions_Title"]</h4>
+                            <ul>
+                                @foreach (var suggestion in ContentService.GetSuggestions())
+                                {
+                                    <li>
+                                        <i class="bx bx-chevron-right"></i> <a href="@suggestion.Href">@suggestion.Content</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </cache>
 
                     <div class="col-lg-3 col-md-6 footer-links">
                         <h4>@HtmlLocalizer["Footer_Social_Title"]</h4>
@@ -453,6 +462,7 @@
                 </div>
             </div>
         </cache>
+
     </footer>
     <!-- End Footer -->
 
@@ -468,7 +478,7 @@
     @* <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script> *@
     <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/sweetalert2/sweetalert2.all.min.js"></script>
-    <script src="~/lib/purecounterjs/dist/purecounter_vanilla.min.js"></script>
+    <script src="~/lib/purecounterjs/dist/purecounter_vanilla.js"></script>
     <script src="~/lib/aos/aos.js"></script>
     <script src="~/lib/glightbox/js/glightbox.min.js"></script>
     <script src="~/lib/isotope-layout/dist/isotope.pkgd.min.js"></script>

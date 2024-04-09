@@ -25,8 +25,8 @@ namespace linc.Areas.Identity.Pages.Account
         public ForgotPasswordModel(UserManager<ApplicationUser> userManager, 
             ISiteEmailSender emailSender, 
             ILogger<ForgotPasswordModel> logger, 
-            ILocalizationService localizer)
-        : base(localizer)
+            ILocalizationService localizationService)
+        : base(localizationService)
         {
             _userManager = userManager;
             _emailSender = emailSender;

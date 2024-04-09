@@ -6,7 +6,6 @@ using linc.Models.ViewModels.Issue;
 using linc.Utility;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using NuGet.Packaging;
 
 namespace linc.Services
 {
@@ -19,11 +18,6 @@ namespace linc.Services
         {
             _context = context;
             _config = configOptions.Value;
-        }
-
-        public async Task<ApplicationDocument> GetFileAsync(int id)
-        {
-            return await _context.Documents.FindAsync(id);
         }
 
         public async Task<ApplicationIssue> GetIssueAsync(int id, int? sourcesLanguageId = null)
@@ -47,8 +41,9 @@ namespace linc.Services
 
         public async Task<int> CreateIssueAsync(IssueCreateViewModel input)
         {
-            var issueNumber = input.IssueNumber.Value;
-            var releaseYear = input.ReleaseYear.Value;
+            // validation should guard these from being nulls
+            var issueNumber = input.IssueNumber!.Value;
+            var releaseYear = input.ReleaseYear!.Value;
 
             var pdf = await SaveIssuePdf(input.PdfFile, releaseYear, issueNumber);
             var cover = await SaveIssueCoverPage(input.CoverPage, releaseYear, issueNumber);
@@ -65,7 +60,11 @@ namespace linc.Services
 
             entry.Files.Add(pdf);
             entry.Files.Add(cover);
-            entry.Files.AddRange(indexPages);
+
+            foreach (var indexPage in indexPages)
+            {
+                entry.Files.Add(indexPage);
+            }
 
             var entityEntry = await _context.Issues.AddAsync(entry);
             await _context.SaveChangesAsync();
@@ -117,7 +116,7 @@ namespace linc.Services
                 while (File.Exists(filePath))
                 {
                     fileName = fileName.Remove(fileName.Length - 2, 2);
-                    fileName = fileName + number.ToString().PadLeft(2, '0');
+                    fileName += number.ToString().PadLeft(2, '0');
                     filePath = Path.Combine(directoryPath, $"{fileName}.{fileExtension}");
                     number++;
                 }
@@ -137,7 +136,7 @@ namespace linc.Services
                 Extension = fileExtension,
                 FileName = fileName,
                 MimeType = inputFile.ContentType,
-                Title = inputFile.FileName,
+                OriginalFileName = inputFile.FileName,
                 RelativePath = relativePath
             };
 

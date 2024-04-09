@@ -268,6 +268,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Прегледайте авторите от всички издания по азбучен ред или търсете конкретно име или заглавие. Можете да прегледате и &lt;a href=&quot;{0}&quot;&gt;всички произведения по години и броеве&lt;/a&gt;..
+        /// </summary>
+        public static string AuthorsSection_Description {
+            get {
+                return ResourceManager.GetString("AuthorsSection_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Автори.
         /// </summary>
         public static string AuthorsSection_Title {
@@ -2495,6 +2504,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Прегледайте последните издадени броеве на списанието по години..
+        /// </summary>
+        public static string PortfolioSection_Description {
+            get {
+                return ResourceManager.GetString("PortfolioSection_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Всички.
         /// </summary>
         public static string PortfolioSection_Filter_All {
@@ -2857,15 +2875,6 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Прегледайте авторите от всички издания по азбучен ред или търсете конкретно име или заглавие. Можете да прегледате и произведения по години и броеве &lt;a href=&quot;{0}&quot;&gt;тук&lt;/a&gt;..
-        /// </summary>
-        public static string ServicesSection_Description {
-            get {
-                return ResourceManager.GetString("ServicesSection_Description", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Текста ще бъде запазен и видим за всички..
         /// </summary>
         public static string SetStringResource_Dialog_Description {
@@ -3123,6 +3132,15 @@ namespace linc.Resources {
         public static string SourceCreate_LastPage {
             get {
                 return ResourceManager.GetString("SourceCreate_LastPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Прикачете източника като PDF.
+        /// </summary>
+        public static string SourceCreate_PdfFile {
+            get {
+                return ResourceManager.GetString("SourceCreate_PdfFile", resourceCulture);
             }
         }
         

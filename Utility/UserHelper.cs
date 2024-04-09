@@ -65,7 +65,7 @@ namespace linc.Utility
             throw new ArgumentOutOfRangeException();
         }
 
-        public static string GetDisplayName(this ApplicationUser user, ILocalizationService localizer)
+        public static string GetDisplayName(this ApplicationUser user, ILocalizationService localizationService)
         {
             string displayName;
             switch (user.DisplayNameType)
@@ -77,7 +77,7 @@ namespace linc.Utility
                     displayName = user.Names;
                     break;
                 case UserDisplayNameType.Anonymous:
-                    displayName = localizer["Anonymous_Label"].Value;
+                    displayName = localizationService["Anonymous_Label"].Value;
                     break;
                 case UserDisplayNameType.NamesAndUserName:
                     displayName = $"{user.Names} ({user.UserName})";

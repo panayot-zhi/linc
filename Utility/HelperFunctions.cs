@@ -2,6 +2,7 @@
 using System.Security.Cryptography;
 using System.Security.Principal;
 using System.Text;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using linc.Contracts;
 using linc.Models.Enumerations;
@@ -12,8 +13,6 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Primitives;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace linc.Utility;
 
@@ -205,7 +204,7 @@ public static class HelperFunctions
                 SiteConstant.AdministratorEmail].Value;
         }
 
-        var alertMessage = JsonConvert.SerializeObject(new
+        var alertMessage = JsonSerializer.Serialize(new
         {
             html = message,
             icon = type.ToString().ToLowerInvariant(),

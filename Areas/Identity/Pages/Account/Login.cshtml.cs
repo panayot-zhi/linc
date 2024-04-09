@@ -19,9 +19,9 @@ namespace linc.Areas.Identity.Pages.Account
 
 
         public LoginModel(SignInManager<ApplicationUser> signInManager,
-            ILocalizationService localizer,
+            ILocalizationService localizationService,
             ILogger<LoginModel> logger)
-        : base(localizer)
+        : base(localizationService)
         {
             _signInManager = signInManager;
             _logger = logger;

@@ -17,7 +17,8 @@ namespace linc.Data
         [MaxLength(255)]
         public string LastName { get; set; }
 
-        [NotMapped] public string AuthorNames => $"{FirstName} {LastName}";
+        [MaxLength(512)]
+        public string AuthorNames { get; set; }
 
         [MaxLength(1024)]
         public string AuthorNotes { get; set; }
@@ -42,9 +43,15 @@ namespace linc.Data
 
 
         [ForeignKey(nameof(Issue))]
-        public int? IssueId { get; set; }
+        public int IssueId { get; set; }
 
         public ApplicationIssue Issue { get; set; }
+
+
+        [ForeignKey(nameof(Pdf))]
+        public int PdfId { get; set; }
+
+        public ApplicationDocument Pdf { get; set; }
 
 
         [MaxLength(127)]

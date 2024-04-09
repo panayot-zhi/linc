@@ -1,25 +1,35 @@
-﻿using linc.Contracts;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
+using linc.Contracts;
 using linc.Data;
-using linc.Models.ViewModels.Home;
+using linc.Models.ConfigModels;
+using linc.Models.Enumerations;
 using linc.Models.ViewModels.Source;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using linc.Utility;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using System.Net.Mime;
 
 namespace linc.Services
 {
     public class SourceService : ISourceService
     {
+        private readonly IDocumentService _documentService;
         private readonly ApplicationDbContext _context;
+        private readonly ApplicationConfig _config;
 
-        public SourceService(ApplicationDbContext context)
+        public SourceService(ApplicationDbContext context, 
+            IOptions<ApplicationConfig> config, 
+            IDocumentService documentService)
         {
             _context = context;
+            _documentService = documentService;
+            _config = config.Value;
         }
 
-        public Task<ApplicationSource> GetSourceAsync(int id)
+        public async Task<ApplicationSource> GetSourceAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Sources.FindAsync(id);
         }
 
         public async Task<SourceIndexViewModel> GetSourcesPagedAsync(string filter, int languageId, int? year, int? issueId, int? pageIndex, int pageSize = 10)
@@ -55,11 +65,8 @@ namespace linc.Services
                 {
                     // perform search by
                     query = query.Where(x =>
-                        EF.Functions.Like(x.LastName, $"%{filter}%") ||
-                        EF.Functions.Like(x.FirstName, $"%{filter}%") ||
-                        EF.Functions.Like(x.AuthorNotes, $"%{filter}%") ||
-                        EF.Functions.Like(x.Title, $"%{filter}%") ||
-                        EF.Functions.Like(x.TitleNotes, $"%{filter}%")
+                        EF.Functions.Like(x.AuthorNames, $"%{filter}%") ||
+                        EF.Functions.Like(x.AuthorNotes, $"%{filter}%")
                     );
                 }
                 else
@@ -103,11 +110,10 @@ namespace linc.Services
         public async Task<List<SourceCountByIssues>> GetSourcesCountByIssues()
         {
             return await _context.Sources
-                .Where(source => source.IssueId.HasValue)
                 .GroupBy(source => source.IssueId)
                 .Select(group => new SourceCountByIssues
                 {
-                    IssueId = group.Key.Value,
+                    IssueId = group.Key,
                     IssueTitle = $"{group.First().Issue.IssueNumber}/{group.First().Issue.DateCreated.Year}",
                     Count = group.Count()
                 }).ToListAsync();
@@ -115,35 +121,149 @@ namespace linc.Services
 
         public async Task<int> CreateSourceAsync(SourceCreateViewModel input)
         {
+            // validation should guard these from being nulls
+            var startingPage = input.StartingPage!.Value;
+            var lastPage = input.LastPage!.Value;
+            var issueId = input.IssueId!.Value;
+
+            var issue = _context.Issues
+                .Include(x => x.Files)
+                .First(x => x.Id == issueId);
+
             var authorId = await FindUserByNamesAsync(input.FirstName, input.LastName);
-            var entity = new ApplicationSource()
+
+            ApplicationDocument pdf;
+            if (input.PdfFile != null)
+            {
+                // pdf file was provided, just save it and continue
+                pdf = await SaveSourcePdf(input.PdfFile, startingPage, issue.ReleaseYear, issue.IssueNumber);
+            }
+            else
+            {
+                // no pdf file was provided, generate it from the issue pdf
+                pdf = await GenerateSourcePdf(issue, startingPage, lastPage);
+
+            }
+            var entity = new ApplicationSource
             {
                 FirstName = input.FirstName,
                 LastName = input.LastName,
+                AuthorNames = $"{input.FirstName} {input.LastName}",
                 AuthorNotes = input.AuthorNotes,
-                StartingPage = input.StartingPage.Value,
+
+                StartingPage = startingPage,
+                LastPage = lastPage,
 
                 Title = input.Title,
                 TitleNotes = input.TitleNotes,
 
                 LanguageId = input.LanguageId,
-                IssueId = input.IssueId,
-                AuthorId = authorId
+                IssueId = issueId,
+                AuthorId = authorId,
+
+                PdfId = pdf.Id
             };
 
             var entityEntry = await _context.Sources.AddAsync(entity);
             await _context.SaveChangesAsync();
-
             return entityEntry.Entity.Id;
         }
 
+        private async Task<ApplicationDocument> GenerateSourcePdf(ApplicationIssue issue, int startingPage, int lastPage)
+        {
+            var issuePdf = await _documentService.GetDocumentAsync(issue.Pdf.Id);
+            var issuePdfPath = _documentService.GetDocumentFilePath(issuePdf);
+            var issueNumber = issue.IssueNumber;
+            var releaseYear = issue.ReleaseYear;
+
+            const ApplicationDocumentType type = ApplicationDocumentType.SourcePdf;
+            var fileName = $"{issue.ReleaseYear}-{issueNumber.ToString().PadLeft(3, '0')}-{HelperFunctions.ToKebabCase(type.ToString())}-{startingPage}";
+
+            var rootFolderPath = Path.Combine(_config.RepositoryPath, SiteConstant.IssuesFolderName);
+            var directoryPath = Path.Combine(rootFolderPath, releaseYear.ToString());
+            var filePath = Path.Combine(directoryPath, $"{fileName}.pdf");
+
+            await using var stream = new FileStream(filePath, FileMode.Create);
+
+            var document = new Document();
+            var issuePdfReader = new PdfReader(issuePdfPath);
+            var pdfWriter = new PdfCopy(document, stream);
+
+            document.Open();
+
+            // Loop through the specified range and add the pages to the new document
+            for (var pageNumber = startingPage; pageNumber <= lastPage; pageNumber++)
+            {
+                var page = pdfWriter.GetImportedPage(issuePdfReader, pageNumber);
+                pdfWriter.AddPage(page);
+            }
+
+            document.Close();
+            pdfWriter.Close();
+            issuePdfReader.Close();
+
+            var relativePath = Path.Combine(SiteConstant.IssuesFolderName, releaseYear.ToString(), $"{fileName}.pdf");
+
+            var entry = new ApplicationDocument()
+            {
+                DocumentType = type,
+                Extension = "pdf",
+                FileName = fileName,
+                MimeType = MediaTypeNames.Application.Pdf,
+                OriginalFileName = fileName,
+                RelativePath = relativePath
+            };
+
+            var entityEntry = await _context.Documents.AddAsync(entry);
+            await _context.SaveChangesAsync();
+            return entityEntry.Entity;
+        }
+
+        private async Task<ApplicationDocument> SaveSourcePdf(IFormFile inputFile, int startingPage, int releaseYear, int issueNumber)
+        {
+            var fileExtension = inputFile.Extension();
+            const ApplicationDocumentType type = ApplicationDocumentType.SourcePdf;
+            var fileName = $"{releaseYear}-{issueNumber.ToString().PadLeft(3, '0')}-{HelperFunctions.ToKebabCase(type.ToString())}-{startingPage}";
+
+            var rootFolderPath = Path.Combine(_config.RepositoryPath, SiteConstant.IssuesFolderName);
+            var directoryPath = Path.Combine(rootFolderPath, releaseYear.ToString());
+            var filePath = Path.Combine(directoryPath, $"{fileName}.{fileExtension}");
+
+            Directory.CreateDirectory(directoryPath);
+
+            var relativePath = Path.Combine(SiteConstant.IssuesFolderName, releaseYear.ToString(),
+                $"{fileName}.{fileExtension}");
+
+            await using (var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                await inputFile.CopyToAsync(fileStream);
+            }
+
+            var entry = new ApplicationDocument()
+            {
+                DocumentType = type,
+                Extension = fileExtension,
+                FileName = fileName,
+                MimeType = inputFile.ContentType,
+                OriginalFileName = inputFile.FileName,
+                RelativePath = relativePath
+            };
+
+            var entityEntry = await _context.Documents.AddAsync(entry);
+            await _context.SaveChangesAsync();
+            return entityEntry.Entity;
+        }
+
+
         private async Task<string> FindUserByNamesAsync(string inputFirstName, string inputLastName)
         {
-            return (await _context.Users
-                        .FirstOrDefaultAsync(x =>
-                            x.FirstName.ToUpper() == inputFirstName.ToUpper() &&
-                            x.LastName.ToUpper() == inputLastName.ToUpper()
-                        ))?.Id;
+            var user = await _context.Users
+                .FirstOrDefaultAsync(x =>
+                    x.FirstName.ToUpper() == inputFirstName.ToUpper() &&
+                    x.LastName.ToUpper() == inputLastName.ToUpper()
+                );
+
+            return user?.Id;
         }
     }
 }

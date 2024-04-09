@@ -23,9 +23,9 @@ namespace linc.Areas.Identity.Pages.Account.Manage
         public EmailModel(
             ILogger<EmailModel> logger,
             UserManager<ApplicationUser> userManager,
-            ILocalizationService localizer,
+            ILocalizationService localizationService,
             ISiteEmailSender emailSender)
-        : base(localizer)
+        : base(localizationService)
         {
             _userManager = userManager;
             _emailSender = emailSender;
