@@ -128,9 +128,9 @@ namespace linc.Services
 
         public async Task<int> CreateSourceAsync(SourceCreateViewModel input)
         {
-            var issue = await _context.Issues.FindAsync(input.IssueId);
-
-            ArgumentNullException.ThrowIfNull(issue);
+            var issue = _context.Issues
+                .Include(x => x.Files)
+                .First(x => x.Id == input.IssueId);
 
             var authorId = await FindUserByNamesAsync(input.FirstName, input.LastName);
             var entity = new ApplicationSource()
@@ -158,7 +158,7 @@ namespace linc.Services
             else
             {
                 // no pdf file was provided, generate it from the issue pdf
-                pdf = await GenerateSourcePdf(issue, entity.StartingPage, entity.LastPage, issue.IssueNumber);
+                pdf = await GenerateSourcePdf(issue, entity.StartingPage, entity.LastPage);
 
             }
 
@@ -169,11 +169,12 @@ namespace linc.Services
             return entityEntry.Entity.Id;
         }
 
-        private async Task<ApplicationDocument> GenerateSourcePdf(ApplicationIssue issue, int startingPage, int lastPage, int releaseYear)
+        private async Task<ApplicationDocument> GenerateSourcePdf(ApplicationIssue issue, int startingPage, int lastPage)
         {
             var issuePdf = await _documentService.GetDocumentAsync(issue.Pdf.Id);
             var issuePdfPath = _documentService.GetDocumentFilePath(issuePdf);
             var issueNumber = issue.IssueNumber;
+            var releaseYear = issue.ReleaseYear;
 
             const ApplicationDocumentType type = ApplicationDocumentType.SourcePdf;
             var fileName = $"{issue.ReleaseYear}-{issueNumber.ToString().PadLeft(3, '0')}-{HelperFunctions.ToKebabCase(type.ToString())}-{startingPage}";
