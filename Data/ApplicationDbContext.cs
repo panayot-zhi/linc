@@ -169,9 +169,9 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
             .Property(x => x.DocumentType)
             .HasConversion<string>();
         
-        builder.Entity<ApplicationDossier>()
-            .Property(x => x.Status)
-            .HasConversion<string>();
+        // builder.Entity<ApplicationDossier>()
+        //     .Property(x => x.Status)
+        //     .HasConversion<string>();
 
         builder.Entity<ApplicationUser>()
             .Property(x => x.AvatarType)
