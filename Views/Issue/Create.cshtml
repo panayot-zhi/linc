@@ -16,7 +16,7 @@
                         <a href="/">@HtmlLocalizer["NavItem_Home"]</a>
                     </li>
                     <li>
-                        <a asp-action="Index">@HtmlLocalizer["NavItem_Library"]</a>
+                        <a asp-controller="Source" asp-action="Index">@HtmlLocalizer["NavItem_Library"]</a>
                     </li>
                     <li>@ViewData["Title"]</li>
                 </ol>
@@ -38,14 +38,14 @@
                     
                     <div class="row">
                         <div class="col-sm-3">
-                            <div class="form-floating ">
+                            <div class="form-floating">
                                 <input asp-for="IssueNumber" class="form-control"/>
                                 <label asp-for="IssueNumber" class="form-label"></label>
                                 <span asp-validation-for="IssueNumber" class="invalid-feedback"></span>
                             </div>
                         </div>
                         <div class="col-sm-9">
-                            <div class="form-floating ">
+                            <div class="form-floating">
                                 <input asp-for="ReleaseYear" class="form-control"/>
                                 <label asp-for="ReleaseYear" class="form-label"></label>
                                 <span asp-validation-for="ReleaseYear" class="invalid-feedback"></span>
