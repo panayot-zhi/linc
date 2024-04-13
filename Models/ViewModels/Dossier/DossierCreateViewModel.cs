@@ -24,7 +24,7 @@ namespace linc.Models.ViewModels.Dossier
         [Display(Name = "DossierCreate_Email", ResourceType = typeof(Resources.SharedResource))]
         public string Email { get; set; }
 
-
+        [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         [Display(Name = "DossierCreate_OriginalFile", ResourceType = typeof(Resources.SharedResource))]
         public IFormFile OriginalFile { get; set; }
     }
