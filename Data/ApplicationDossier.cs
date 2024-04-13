@@ -28,7 +28,6 @@ namespace linc.Data
 
 
         [Required]
-        [MaxLength(128)]
         public ApplicationDossierStatus Status { get; set; }
 
 
@@ -69,5 +68,11 @@ namespace linc.Data
         public string EditedById { get; set; }
 
         public ApplicationUser EditedBy { get; set; }
+
+
+        [ForeignKey(nameof(AssignedTo))]
+        public string AssignedToId { get; set; }
+
+        public ApplicationUser AssignedTo { get; set; }
     }
 }
