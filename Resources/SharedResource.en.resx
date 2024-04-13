@@ -1384,4 +1384,7 @@
   <data name="Dossier_List_Label" xml:space="preserve">
     <value>Dossiers</value>
   </data>
+  <data name="Dossiers_IndexPage_NoResults" xml:space="preserve">
+    <value>No dossiers found.</value>
+  </data>
 </root>

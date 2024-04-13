@@ -1382,4 +1382,7 @@
   <data name="Edit_Label" xml:space="preserve">
     <value>Редакция</value>
   </data>
+  <data name="Dossiers_IndexPage_NoResults" xml:space="preserve">
+    <value>Няма намерени досиета.</value>
+  </data>
 </root>

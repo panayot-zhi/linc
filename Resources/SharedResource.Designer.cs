@@ -999,6 +999,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Няма намерени досиета..
+        /// </summary>
+        public static string Dossiers_IndexPage_NoResults {
+            get {
+                return ResourceManager.GetString("Dossiers_IndexPage_NoResults", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Свали.
         /// </summary>
         public static string Download_Button_Label {
