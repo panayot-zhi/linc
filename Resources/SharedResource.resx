@@ -1349,6 +1349,9 @@
   <data name="Create_Label" xml:space="preserve">
     <value>Създаване</value>
   </data>
+  <data name="Dossier_List_Label" xml:space="preserve">
+    <value>Досиета</value>
+  </data>
   <data name="Edit_Label" xml:space="preserve">
     <value>Редакция</value>
   </data>

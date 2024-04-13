@@ -909,6 +909,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Досиета.
+        /// </summary>
+        public static string Dossier_List_Label {
+            get {
+                return ResourceManager.GetString("Dossier_List_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Свали.
         /// </summary>
         public static string Download_Button_Label {

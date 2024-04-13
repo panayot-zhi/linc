@@ -1354,4 +1354,7 @@
   <data name="Edit_Label" xml:space="preserve">
     <value>Edit</value>
   </data>
+  <data name="Dossier_List_Label" xml:space="preserve">
+    <value>Dossiers</value>
+  </data>
 </root>
