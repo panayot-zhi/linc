@@ -384,6 +384,7 @@ public static class StartupExtensions
         services.AddScoped<IRazorViewToStringRenderer, RazorViewToStringRenderer>();
         services.AddScoped<ILocalizationService, LocalizationService>();
         services.AddTransient<IDocumentService, DocumentService>();
+        services.AddTransient<IDossierService, DossierService>();
         services.AddTransient<IContentService, ContentService>();
         services.AddTransient<ISourceService, SourceService>();
         services.AddTransient<IIssueService, IssueService>();
