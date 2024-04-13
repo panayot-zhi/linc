@@ -67,6 +67,29 @@ a.submit-link {
     padding: 0 4px;
 }
 
+th.asc::before {
+    content: "\f145"; /* Bootstrap Icons arrow-up */
+    font-family: 'bootstrap-icons';
+}
+
+th.desc::before {
+    content: "\f124"; /* Bootstrap Icons arrow-down */
+    font-family: 'bootstrap-icons';
+}
+
+th.sortable::before {
+    display: inline-block;
+    font-size: inherit;
+    text-rendering: auto;
+    padding-right: 10px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* 
+    various
+*/
+
 .section-title p span {
     color: #106eea;
 }
