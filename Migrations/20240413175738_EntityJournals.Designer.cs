@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using linc.Data;
 
@@ -10,9 +11,10 @@ using linc.Data;
 namespace linc.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240413175738_EntityJournals")]
+    partial class EntityJournals
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -121,15 +123,6 @@ namespace linc.Migrations
                         .HasColumnType("int")
                         .HasColumnName("id");
 
-                    b.Property<string>("CreatedById")
-                        .IsRequired()
-                        .HasColumnType("varchar(255)")
-                        .HasColumnName("created_by_id");
-
-                    b.Property<string>("EditedById")
-                        .HasColumnType("varchar(255)")
-                        .HasColumnName("edited_by_id");
-
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -162,12 +155,6 @@ namespace linc.Migrations
 
                     b.HasKey("Id")
                         .HasName("pk_dossiers");
-
-                    b.HasIndex("CreatedById")
-                        .HasDatabaseName("ix_dossiers_created_by_id");
-
-                    b.HasIndex("EditedById")
-                        .HasDatabaseName("ix_dossiers_edited_by_id");
 
                     b.ToTable("dossiers", (string)null);
                 });
@@ -571,8 +558,8 @@ namespace linc.Migrations
                         .HasColumnName("last_updated");
 
                     b.Property<string>("Message")
-                        .HasMaxLength(512)
-                        .HasColumnType("varchar(512)")
+                        .HasMaxLength(1024)
+                        .HasColumnType("varchar(1024)")
                         .HasColumnName("message");
 
                     b.Property<string>("PerformedById")
@@ -589,9 +576,6 @@ namespace linc.Migrations
 
                     b.HasIndex("DossierId")
                         .HasDatabaseName("ix_dossier_journals_dossier_id");
-
-                    b.HasIndex("Message")
-                        .HasDatabaseName("ix_dossier_journals_message");
 
                     b.HasIndex("PerformedById")
                         .HasDatabaseName("ix_dossier_journals_performed_by_id");
@@ -619,8 +603,8 @@ namespace linc.Migrations
                         .HasColumnName("last_updated");
 
                     b.Property<string>("Message")
-                        .HasMaxLength(512)
-                        .HasColumnType("varchar(512)")
+                        .HasMaxLength(1024)
+                        .HasColumnType("varchar(1024)")
                         .HasColumnName("message");
 
                     b.Property<string>("PerformedById")
@@ -637,9 +621,6 @@ namespace linc.Migrations
 
                     b.HasIndex("IssueId")
                         .HasDatabaseName("ix_issue_journals_issue_id");
-
-                    b.HasIndex("Message")
-                        .HasDatabaseName("ix_issue_journals_message");
 
                     b.HasIndex("PerformedById")
                         .HasDatabaseName("ix_issue_journals_performed_by_id");
@@ -663,8 +644,8 @@ namespace linc.Migrations
                         .HasColumnName("last_updated");
 
                     b.Property<string>("Message")
-                        .HasMaxLength(512)
-                        .HasColumnType("varchar(512)")
+                        .HasMaxLength(1024)
+                        .HasColumnType("varchar(1024)")
                         .HasColumnName("message");
 
                     b.Property<string>("PerformedById")
@@ -682,9 +663,6 @@ namespace linc.Migrations
 
                     b.HasKey("Id")
                         .HasName("pk_source_journals");
-
-                    b.HasIndex("Message")
-                        .HasDatabaseName("ix_source_journals_message");
 
                     b.HasIndex("PerformedById")
                         .HasDatabaseName("ix_source_journals_performed_by_id");
@@ -937,25 +915,6 @@ namespace linc.Migrations
                         .HasConstraintName("fk_application_document_application_issue_issues_issues_id");
                 });
 
-            modelBuilder.Entity("linc.Data.ApplicationDossier", b =>
-                {
-                    b.HasOne("linc.Data.ApplicationUser", "CreatedBy")
-                        .WithMany()
-                        .HasForeignKey("CreatedById")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_dossiers_users_created_by_id");
-
-                    b.HasOne("linc.Data.ApplicationUser", "EditedBy")
-                        .WithMany()
-                        .HasForeignKey("EditedById")
-                        .HasConstraintName("fk_dossiers_users_edited_by_id");
-
-                    b.Navigation("CreatedBy");
-
-                    b.Navigation("EditedBy");
-                });
-
             modelBuilder.Entity("linc.Data.ApplicationSource", b =>
                 {
                     b.HasOne("linc.Data.ApplicationUser", "Author")
@@ -1017,7 +976,7 @@ namespace linc.Migrations
             modelBuilder.Entity("linc.Data.DossierJournal", b =>
                 {
                     b.HasOne("linc.Data.ApplicationDossier", "Dossier")
-                        .WithMany("Journals")
+                        .WithMany()
                         .HasForeignKey("DossierId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
@@ -1137,11 +1096,6 @@ namespace linc.Migrations
             modelBuilder.Entity("linc.Data.ApplicationDocument", b =>
                 {
                     b.Navigation("Source");
-                });
-
-            modelBuilder.Entity("linc.Data.ApplicationDossier", b =>
-                {
-                    b.Navigation("Journals");
                 });
 
             modelBuilder.Entity("linc.Data.ApplicationIssue", b =>

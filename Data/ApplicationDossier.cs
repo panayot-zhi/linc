@@ -1,6 +1,7 @@
 ﻿using linc.Models.Enumerations;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace linc.Data
 {
@@ -31,7 +32,9 @@ namespace linc.Data
         public ApplicationDossierStatus Status { get; set; }
 
 
-        public ICollection<ApplicationDocument> Documents { get; set; }
+        public virtual ICollection<ApplicationDocument> Documents { get; set; } = new List<ApplicationDocument>();
+
+        public virtual ICollection<DossierJournal> Journals { get; set; } = new HashSet<DossierJournal>();
 
 
         [NotMapped]
@@ -53,5 +56,18 @@ namespace linc.Data
         [NotMapped]
         public List<ApplicationDocument> Reviews =>
             Documents.Where(x => x.DocumentType == ApplicationDocumentType.Review).ToList();
+
+
+        [Required]
+        [ForeignKey(nameof(CreatedBy))]
+        public string CreatedById { get; set; }
+
+        public ApplicationUser CreatedBy { get; set; }
+
+
+        [ForeignKey(nameof(EditedBy))]
+        public string EditedById { get; set; }
+
+        public ApplicationUser EditedBy { get; set; }
     }
 }
