@@ -909,11 +909,92 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Създаване на ново досие за ръкопис.
+        /// </summary>
+        public static string Dossier_CreatePage_SubTitle {
+            get {
+                return ResourceManager.GetString("Dossier_CreatePage_SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Създаване на досие.
+        /// </summary>
+        public static string Dossier_CreatePage_Title {
+            get {
+                return ResourceManager.GetString("Dossier_CreatePage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Списък с налични досиета.
+        /// </summary>
+        public static string Dossier_IndexPage_SubTitle {
+            get {
+                return ResourceManager.GetString("Dossier_IndexPage_SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Списък досиета.
+        /// </summary>
+        public static string Dossier_IndexPage_Title {
+            get {
+                return ResourceManager.GetString("Dossier_IndexPage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Досиета.
         /// </summary>
         public static string Dossier_List_Label {
             get {
                 return ResourceManager.GetString("Dossier_List_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email адрес.
+        /// </summary>
+        public static string DossierCreate_Email {
+            get {
+                return ResourceManager.GetString("DossierCreate_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Име.
+        /// </summary>
+        public static string DossierCreate_FirstName {
+            get {
+                return ResourceManager.GetString("DossierCreate_FirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Фамилия.
+        /// </summary>
+        public static string DossierCreate_LastName {
+            get {
+                return ResourceManager.GetString("DossierCreate_LastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ръкопис.
+        /// </summary>
+        public static string DossierCreate_OriginalFile {
+            get {
+                return ResourceManager.GetString("DossierCreate_OriginalFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Заглавие.
+        /// </summary>
+        public static string DossierCreate_Title {
+            get {
+                return ResourceManager.GetString("DossierCreate_Title", resourceCulture);
             }
         }
         

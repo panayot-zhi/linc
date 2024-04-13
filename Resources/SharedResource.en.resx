@@ -1354,6 +1354,33 @@
   <data name="Edit_Label" xml:space="preserve">
     <value>Edit</value>
   </data>
+  <data name="DossierCreate_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="DossierCreate_FirstName" xml:space="preserve">
+    <value>First name</value>
+  </data>
+  <data name="DossierCreate_LastName" xml:space="preserve">
+    <value>Last name</value>
+  </data>
+  <data name="DossierCreate_OriginalFile" xml:space="preserve">
+    <value>Manuscript</value>
+  </data>
+  <data name="DossierCreate_Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="Dossier_CreatePage_SubTitle" xml:space="preserve">
+    <value>Create new manuscript dossier</value>
+  </data>
+  <data name="Dossier_CreatePage_Title" xml:space="preserve">
+    <value>Create dossier</value>
+  </data>
+  <data name="Dossier_IndexPage_SubTitle" xml:space="preserve">
+    <value>List of available dossiers</value>
+  </data>
+  <data name="Dossier_IndexPage_Title" xml:space="preserve">
+    <value>Dossiers list</value>
+  </data>
   <data name="Dossier_List_Label" xml:space="preserve">
     <value>Dossiers</value>
   </data>

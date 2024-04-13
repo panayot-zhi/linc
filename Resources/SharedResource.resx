@@ -1349,6 +1349,33 @@
   <data name="Create_Label" xml:space="preserve">
     <value>Създаване</value>
   </data>
+  <data name="DossierCreate_Email" xml:space="preserve">
+    <value>Email адрес</value>
+  </data>
+  <data name="DossierCreate_FirstName" xml:space="preserve">
+    <value>Име</value>
+  </data>
+  <data name="DossierCreate_LastName" xml:space="preserve">
+    <value>Фамилия</value>
+  </data>
+  <data name="DossierCreate_OriginalFile" xml:space="preserve">
+    <value>Ръкопис</value>
+  </data>
+  <data name="DossierCreate_Title" xml:space="preserve">
+    <value>Заглавие</value>
+  </data>
+  <data name="Dossier_CreatePage_SubTitle" xml:space="preserve">
+    <value>Създаване на ново досие за ръкопис</value>
+  </data>
+  <data name="Dossier_CreatePage_Title" xml:space="preserve">
+    <value>Създаване на досие</value>
+  </data>
+  <data name="Dossier_IndexPage_SubTitle" xml:space="preserve">
+    <value>Списък с налични досиета</value>
+  </data>
+  <data name="Dossier_IndexPage_Title" xml:space="preserve">
+    <value>Списък досиета</value>
+  </data>
   <data name="Dossier_List_Label" xml:space="preserve">
     <value>Досиета</value>
   </data>
