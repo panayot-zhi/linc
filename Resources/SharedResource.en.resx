@@ -438,7 +438,7 @@
   <data name="ContactSection_Review_Email" xml:space="preserve">
     <value>Review Email</value>
   </data>
-  <data name="ContactSection_SubmitButton_Label" xml:space="preserve">
+  <data name="Submit_Button_Label" xml:space="preserve">
     <value>Submit</value>
   </data>
   <data name="ContactSection_SubmitDescription" xml:space="preserve">
@@ -1344,5 +1344,11 @@
   </data>
   <data name="String1" xml:space="preserve">
     <value />
+  </data>
+  <data name="Source_CreatePage_SubTitle" xml:space="preserve">
+    <value>Create a new source from the index page</value>
+  </data>
+  <data name="Source_CreatePage_Title" xml:space="preserve">
+    <value>Create source</value>
   </data>
 </root>

@@ -411,7 +411,7 @@
   <data name="ContactSection_Review_Email" xml:space="preserve">
     <value>Email за ръкописи</value>
   </data>
-  <data name="ContactSection_SubmitButton_Label" xml:space="preserve">
+  <data name="Submit_Button_Label" xml:space="preserve">
     <value>Изпрати ръкопис</value>
   </data>
   <data name="ContactSection_SubmitDescription" xml:space="preserve">
@@ -1043,9 +1043,6 @@
   <data name="Welcome_Message" xml:space="preserve">
     <value>Добре дошли на &lt;span&gt;ЛИнК.uni-plovdiv.bg&lt;/span&gt;</value>
   </data>
-  <data name="EmailModel_OnPostChangeEmailAsync_test" xml:space="preserve">
-    <value>test</value>
-  </data>
   <data name="ChangePasswordModel_ConfirmPassword" xml:space="preserve">
     <value>Потвърди нова парола</value>
   </data>
@@ -1200,7 +1197,7 @@
     <value>Бележки към ръкописа</value>
   </data>
   <data name="Source_CreatePage_SubTitle" xml:space="preserve">
-    <value>Създаване на </value>
+    <value>Създаване на нов източник от съдържанието</value>
   </data>
   <data name="Source_CreatePage_Title" xml:space="preserve">
     <value>Създаване на източник</value>

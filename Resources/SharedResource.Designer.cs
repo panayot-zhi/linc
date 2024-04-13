@@ -836,15 +836,6 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Изпрати ръкопис.
-        /// </summary>
-        public static string ContactSection_SubmitButton_Label {
-            get {
-                return ResourceManager.GetString("ContactSection_SubmitButton_Label", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to &lt;p&gt;Моля, запознайте се с &lt;a href=&quot;{0}&quot;&gt;Техническите изисквания за публикуване&lt;/a&gt; преди да изпратите ръкописа си и попълнете, подпишете и изпратете заедно с ръкописа &lt;a href=&quot;{1}&quot;&gt;Декларация за съгласие&lt;/a&gt; статуята/студията да бъде издадена.&lt;/p&gt;
         ///&lt;p&gt;Приеманите от редакцията файлове са с разширение .doc, .docx.&lt;/p&gt;.
         /// </summary>
@@ -977,15 +968,6 @@ namespace linc.Resources {
         public static string EmailModel_NewEmail {
             get {
                 return ResourceManager.GetString("EmailModel_NewEmail", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to test.
-        /// </summary>
-        public static string EmailModel_OnPostChangeEmailAsync_test {
-            get {
-                return ResourceManager.GetString("EmailModel_OnPostChangeEmailAsync_test", resourceCulture);
             }
         }
         
@@ -3010,7 +2992,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Създаване на .
+        ///   Looks up a localized string similar to Създаване на нов източник от съдържанието.
         /// </summary>
         public static string Source_CreatePage_SubTitle {
             get {
@@ -3204,6 +3186,15 @@ namespace linc.Resources {
         public static string StatusMessage_Warning_Prefix {
             get {
                 return ResourceManager.GetString("StatusMessage_Warning_Prefix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изпрати ръкопис.
+        /// </summary>
+        public static string Submit_Button_Label {
+            get {
+                return ResourceManager.GetString("Submit_Button_Label", resourceCulture);
             }
         }
         
