@@ -1,5 +1,6 @@
 ﻿using linc.Models.Enumerations;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace linc.Data
 {
@@ -31,5 +32,26 @@ namespace linc.Data
 
 
         public ICollection<ApplicationDocument> Documents { get; set; }
+
+
+        [NotMapped]
+        public ApplicationDocument Original =>
+            Documents.FirstOrDefault(x => x.DocumentType == ApplicationDocumentType.Original);
+
+        [NotMapped]
+        public ApplicationDocument Anonymized =>
+            Documents.FirstOrDefault(x => x.DocumentType == ApplicationDocumentType.Anonymized);
+
+        [NotMapped]
+        public ApplicationDocument Agreement =>
+            Documents.FirstOrDefault(x => x.DocumentType == ApplicationDocumentType.Agreement);
+
+        [NotMapped]
+        public ApplicationDocument Redacted =>
+            Documents.FirstOrDefault(x => x.DocumentType == ApplicationDocumentType.Redacted);
+
+        [NotMapped]
+        public List<ApplicationDocument> Reviews =>
+            Documents.Where(x => x.DocumentType == ApplicationDocumentType.Review).ToList();
     }
 }
