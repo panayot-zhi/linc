@@ -9,10 +9,11 @@ namespace linc.Utility
         {
             switch (sortOrder)
             {
-                case SiteSortOrder.Descending:
+                case SiteSortOrder.Desc:
                     return CallOrderedQueryable(query, "OrderByDescending", propertyName, comparer);
                 
-                case SiteSortOrder.Ascending:
+                case SiteSortOrder.Asc:
+                case SiteSortOrder.Unspecified:
 
                 default:
                     return CallOrderedQueryable(query, "OrderBy", propertyName, comparer);
@@ -23,10 +24,11 @@ namespace linc.Utility
         {
             switch (sortOrder)
             {
-                case SiteSortOrder.Descending:
+                case SiteSortOrder.Desc:
                     return CallOrderedQueryable(query, "ThenByDescending", propertyName, comparer);
 
-                case SiteSortOrder.Ascending:
+                case SiteSortOrder.Asc:
+                case SiteSortOrder.Unspecified:
 
                 default:
                     return CallOrderedQueryable(query, "ThenBy", propertyName, comparer);

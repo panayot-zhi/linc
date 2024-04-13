@@ -2,7 +2,9 @@
 {
     public enum SiteSortOrder
     {
-        Ascending,
-        Descending
+        Unspecified,
+
+        Asc,
+        Desc
     }
 }
