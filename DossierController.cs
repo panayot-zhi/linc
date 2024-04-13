@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using linc.Data;
+using linc.Models.ViewModels.Dossier;
 
 namespace linc
 {
@@ -44,7 +45,8 @@ namespace linc
         // GET: Dossier/Create
         public IActionResult Create()
         {
-            return View();
+            var viewModel = new DossierCreateViewModel();
+            return View(viewModel);
         }
 
         // POST: Dossier/Create
@@ -52,15 +54,17 @@ namespace linc
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,FirstName,LastName,Email,Status")] ApplicationDossier applicationDossier)
+        public async Task<IActionResult> Create(DossierCreateViewModel viewModel)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                _context.Add(applicationDossier);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return View(viewModel);
             }
-            return View(applicationDossier);
+
+            // _context.Add(applicationDossier);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+
         }
 
         // GET: Dossier/Edit/5
