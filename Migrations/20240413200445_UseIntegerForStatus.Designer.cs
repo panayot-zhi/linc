@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using linc.Data;
 
@@ -10,9 +11,10 @@ using linc.Data;
 namespace linc.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240413200445_UseIntegerForStatus")]
+    partial class UseIntegerForStatus
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -121,10 +123,6 @@ namespace linc.Migrations
                         .HasColumnType("int")
                         .HasColumnName("id");
 
-                    b.Property<string>("AssignedToId")
-                        .HasColumnType("varchar(255)")
-                        .HasColumnName("assigned_to_id");
-
                     b.Property<string>("CreatedById")
                         .IsRequired()
                         .HasColumnType("varchar(255)")
@@ -164,9 +162,6 @@ namespace linc.Migrations
 
                     b.HasKey("Id")
                         .HasName("pk_dossiers");
-
-                    b.HasIndex("AssignedToId")
-                        .HasDatabaseName("ix_dossiers_assigned_to_id");
 
                     b.HasIndex("CreatedById")
                         .HasDatabaseName("ix_dossiers_created_by_id");
@@ -944,11 +939,6 @@ namespace linc.Migrations
 
             modelBuilder.Entity("linc.Data.ApplicationDossier", b =>
                 {
-                    b.HasOne("linc.Data.ApplicationUser", "AssignedTo")
-                        .WithMany()
-                        .HasForeignKey("AssignedToId")
-                        .HasConstraintName("fk_dossiers_users_assigned_to_id");
-
                     b.HasOne("linc.Data.ApplicationUser", "CreatedBy")
                         .WithMany()
                         .HasForeignKey("CreatedById")
@@ -960,8 +950,6 @@ namespace linc.Migrations
                         .WithMany()
                         .HasForeignKey("EditedById")
                         .HasConstraintName("fk_dossiers_users_edited_by_id");
-
-                    b.Navigation("AssignedTo");
 
                     b.Navigation("CreatedBy");
 
