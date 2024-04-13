@@ -2,26 +2,34 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using linc.Data;
+using linc.Models.Enumerations;
 using linc.Models.ViewModels.Dossier;
+using linc.Utility;
 
 namespace linc
 {
+    [SiteAuthorize(SiteRole.Editor)]
     public class DossierController : BaseController
     {
         private readonly ApplicationDbContext _context;
+        private readonly IDossierService _dossierService;
 
         public DossierController(
-            ApplicationDbContext context, 
+            ApplicationDbContext context,
+            IDossierService dossierService,
             ILocalizationService localizationService) 
             : base(localizationService)
         {
             _context = context;
+            _dossierService = dossierService;
         }
 
         // GET: Dossier
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? page, string sort, string order)
         {
-              return View(await _context.Dossiers.ToListAsync());
+            Enum.TryParse(order, ignoreCase: true, result: out SiteSortOrder sortOrder);
+            var viewModel = await _dossierService.GetDossiersPagedAsync(page, sort, sortOrder);
+            return View(viewModel);
         }
 
         // GET: Dossier/Details/5
@@ -43,17 +51,16 @@ namespace linc
         }
 
         // GET: Dossier/Create
+        [SiteAuthorize(SiteRole.HeadEditor)]
         public IActionResult Create()
         {
-            var viewModel = new DossierCreateViewModel();
-            return View(viewModel);
+            return View();
         }
 
         // POST: Dossier/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [SiteAuthorize(SiteRole.HeadEditor)]
         public async Task<IActionResult> Create(DossierCreateViewModel viewModel)
         {
             if (!ModelState.IsValid)
@@ -61,8 +68,8 @@ namespace linc
                 return View(viewModel);
             }
 
-            // _context.Add(applicationDossier);
-            await _context.SaveChangesAsync();
+            var currentUserId = User.GetUserId();
+            await _dossierService.CreateDossierAsync(viewModel, currentUserId);
             return RedirectToAction(nameof(Index));
 
         }
