@@ -1346,4 +1346,10 @@
   <data name="PortfolioSection_Description" xml:space="preserve">
     <value>Прегледайте последните издадени броеве на списанието по години.</value>
   </data>
+  <data name="Create_Label" xml:space="preserve">
+    <value>Създаване</value>
+  </data>
+  <data name="Edit_Label" xml:space="preserve">
+    <value>Редакция</value>
+  </data>
 </root>

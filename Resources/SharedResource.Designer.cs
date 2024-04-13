@@ -882,6 +882,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Създаване.
+        /// </summary>
+        public static string Create_Label {
+            get {
+                return ResourceManager.GetString("Create_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Текущо.
         /// </summary>
         public static string CurrentDisplayName_Label {
@@ -905,6 +914,15 @@ namespace linc.Resources {
         public static string Download_Button_Label {
             get {
                 return ResourceManager.GetString("Download_Button_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Редакция.
+        /// </summary>
+        public static string Edit_Label {
+            get {
+                return ResourceManager.GetString("Edit_Label", resourceCulture);
             }
         }
         
