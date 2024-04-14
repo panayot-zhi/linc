@@ -1440,6 +1440,9 @@
   <data name="DossierEdit_AssignEditor_Prompt" xml:space="preserve">
     <value>Choose assignee for this dossier</value>
   </data>
+  <data name="DossierEdit_Reviewer_Prompt" xml:space="preserve">
+    <value>Choose reviewer</value>
+  </data>
   <data name="DossierStatus_Accepted" xml:space="preserve">
     <value>Accepted for print</value>
   </data>
@@ -1491,13 +1494,61 @@
   <data name="Dossier_ListHeader_Title" xml:space="preserve">
     <value>Manuscript</value>
   </data>
-  <data name="Dossier_ТоList_Label" xml:space="preserve">
-    <value>To dossiers list</value>
-  </data>
   <data name="JournalDossier_Created" xml:space="preserve">
     <value>New dossier has been created.</value>
   </data>
   <data name="ReportBug_Description_Bottom" xml:space="preserve">
     <value>Please, be detailed in the information that you provide and include screenshots, if applicable.</value>
+  </data>
+  <data name="DossierEdit_Assignee" xml:space="preserve">
+    <value>Editor</value>
+  </data>
+  <data name="DossierEdit_ConfirmStatusChange" xml:space="preserve">
+    <value>Are you sure you want to change the dossier status?</value>
+  </data>
+  <data name="DossierEdit_ConfirmStatusChange_Title" xml:space="preserve">
+    <value>Status change</value>
+  </data>
+  <data name="DossierEdit_Editors" xml:space="preserve">
+    <value>Editors</value>
+  </data>
+  <data name="DossierEdit_ReviewerEmail" xml:space="preserve">
+    <value>Reviewer - email</value>
+  </data>
+  <data name="DossierEdit_ReviewerFirstName" xml:space="preserve">
+    <value>Reviewer - last name</value>
+  </data>
+  <data name="DossierEdit_ReviewerLastName" xml:space="preserve">
+    <value>Reviewer - first name</value>
+  </data>
+  <data name="DossierEdit_Reviewers" xml:space="preserve">
+    <value>Reviewers</value>
+  </data>
+  <data name="Dossier_BackToDetails_Label" xml:space="preserve">
+    <value>Back to details</value>
+  </data>
+  <data name="Dossier_BackToList_Label" xml:space="preserve">
+    <value>Back to list</value>
+  </data>
+  <data name="Dossier_EditPage_ToStatus" xml:space="preserve">
+    <value>Transition to</value>
+  </data>
+  <data name="Dossier_EditPage_UploadAnonymizedDocument" xml:space="preserve">
+    <value>Attach an anonymized document</value>
+  </data>
+  <data name="Dossier_EditPage_UploadAnonymizedDocument_Warning" xml:space="preserve">
+    <value>There is already an anonymized document attached to the file, if you attach a new one it will replace the old one.</value>
+  </data>
+  <data name="Dossier_EditPage_UploadRedactedDocument" xml:space="preserve">
+    <value>Attach redacted document</value>
+  </data>
+  <data name="Dossier_EditPage_UploadRedactedDocument_Warning" xml:space="preserve">
+    <value>There is already an edited document attached, if you attach a new one it will replace the old one.</value>
+  </data>
+  <data name="Dossier_EditPage_UploadReviewDocument" xml:space="preserve">
+    <value>Attach a review</value>
+  </data>
+  <data name="Dossier_EditPage_UploadReviewDocument_Info" xml:space="preserve">
+    <value>There is one review attached to the dossier, when you attach the second one it will automatically change to '{0}' status.</value>
   </data>
 </root>

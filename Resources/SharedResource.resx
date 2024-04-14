@@ -1438,6 +1438,9 @@
   <data name="DossierEdit_AssignEditor_Prompt" xml:space="preserve">
     <value>Изберете редактор за досието</value>
   </data>
+  <data name="DossierEdit_Reviewer_Prompt" xml:space="preserve">
+    <value>Изберете рецензент</value>
+  </data>
   <data name="DossierStatus_Accepted" xml:space="preserve">
     <value>Приет за печат</value>
   </data>
@@ -1489,13 +1492,61 @@
   <data name="Dossier_ListHeader_Title" xml:space="preserve">
     <value>Ръкопис</value>
   </data>
-  <data name="Dossier_ТоList_Label" xml:space="preserve">
-    <value>Към списък досиета</value>
-  </data>
   <data name="JournalDossier_Created" xml:space="preserve">
     <value>Създадено досие.</value>
   </data>
   <data name="ReportBug_Description_Bottom" xml:space="preserve">
     <value>Моля, бъдете подробни в информацията, която предоставяте, и включете екранни снимки, ако е приложимо.</value>
+  </data>
+  <data name="DossierEdit_Assignee" xml:space="preserve">
+    <value>Редактор</value>
+  </data>
+  <data name="DossierEdit_ConfirmStatusChange" xml:space="preserve">
+    <value>Сигурни ли сте, че искате да смените статуса на досието?</value>
+  </data>
+  <data name="DossierEdit_ConfirmStatusChange_Title" xml:space="preserve">
+    <value>Смяна на статус</value>
+  </data>
+  <data name="DossierEdit_Editors" xml:space="preserve">
+    <value>Редактори</value>
+  </data>
+  <data name="DossierEdit_ReviewerEmail" xml:space="preserve">
+    <value>Рецензент - email</value>
+  </data>
+  <data name="DossierEdit_ReviewerFirstName" xml:space="preserve">
+    <value>Рецензент - фамилия</value>
+  </data>
+  <data name="DossierEdit_ReviewerLastName" xml:space="preserve">
+    <value>Рецензент - име</value>
+  </data>
+  <data name="DossierEdit_Reviewers" xml:space="preserve">
+    <value>Рецензенти</value>
+  </data>
+  <data name="Dossier_BackToDetails_Label" xml:space="preserve">
+    <value>Назад към преглед</value>
+  </data>
+  <data name="Dossier_BackToList_Label" xml:space="preserve">
+    <value>Назад към списък</value>
+  </data>
+  <data name="Dossier_EditPage_ToStatus" xml:space="preserve">
+    <value>Към статус</value>
+  </data>
+  <data name="Dossier_EditPage_UploadAnonymizedDocument" xml:space="preserve">
+    <value>Прикачете анонимизиран документ</value>
+  </data>
+  <data name="Dossier_EditPage_UploadAnonymizedDocument_Warning" xml:space="preserve">
+    <value>Към досието вече има прикачен анонимизиран документ, ако прикачите нов, той ще подмени стария.</value>
+  </data>
+  <data name="Dossier_EditPage_UploadRedactedDocument" xml:space="preserve">
+    <value>Прикачете редактиран документ</value>
+  </data>
+  <data name="Dossier_EditPage_UploadRedactedDocument_Warning" xml:space="preserve">
+    <value>Към досието вече има прикачен редактиран документ, ако прикачите нов, той ще подмени стария.</value>
+  </data>
+  <data name="Dossier_EditPage_UploadReviewDocument" xml:space="preserve">
+    <value>Прикачете рецензия</value>
+  </data>
+  <data name="Dossier_EditPage_UploadReviewDocument_Info" xml:space="preserve">
+    <value>Към досието има прикачена една рецензия, когато прикачите втората, то автоматично ще премине в статус '{0}'.</value>
   </data>
 </root>

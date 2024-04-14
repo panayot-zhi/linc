@@ -1008,6 +1008,24 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Назад към преглед.
+        /// </summary>
+        public static string Dossier_BackToDetails_Label {
+            get {
+                return ResourceManager.GetString("Dossier_BackToDetails_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Назад към списък.
+        /// </summary>
+        public static string Dossier_BackToList_Label {
+            get {
+                return ResourceManager.GetString("Dossier_BackToList_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Създаване на ново досие за ръкопис.
         /// </summary>
         public static string Dossier_CreatePage_SubTitle {
@@ -1058,6 +1076,69 @@ namespace linc.Resources {
         public static string Dossier_EditPage_Title {
             get {
                 return ResourceManager.GetString("Dossier_EditPage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Към статус.
+        /// </summary>
+        public static string Dossier_EditPage_ToStatus {
+            get {
+                return ResourceManager.GetString("Dossier_EditPage_ToStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Прикачете анонимизиран документ.
+        /// </summary>
+        public static string Dossier_EditPage_UploadAnonymizedDocument {
+            get {
+                return ResourceManager.GetString("Dossier_EditPage_UploadAnonymizedDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Към досието вече има прикачен анонимизиран документ, ако прикачите нов, той ще подмени стария..
+        /// </summary>
+        public static string Dossier_EditPage_UploadAnonymizedDocument_Warning {
+            get {
+                return ResourceManager.GetString("Dossier_EditPage_UploadAnonymizedDocument_Warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Прикачете редактиран документ.
+        /// </summary>
+        public static string Dossier_EditPage_UploadRedactedDocument {
+            get {
+                return ResourceManager.GetString("Dossier_EditPage_UploadRedactedDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Към досието вече има прикачен редактиран документ, ако прикачите нов, той ще подмени стария..
+        /// </summary>
+        public static string Dossier_EditPage_UploadRedactedDocument_Warning {
+            get {
+                return ResourceManager.GetString("Dossier_EditPage_UploadRedactedDocument_Warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Прикачете рецензия.
+        /// </summary>
+        public static string Dossier_EditPage_UploadReviewDocument {
+            get {
+                return ResourceManager.GetString("Dossier_EditPage_UploadReviewDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Към досието има прикачена една рецензия, когато прикачите втората, то автоматично ще премине в статус &apos;{0}&apos;..
+        /// </summary>
+        public static string Dossier_EditPage_UploadReviewDocument_Info {
+            get {
+                return ResourceManager.GetString("Dossier_EditPage_UploadReviewDocument_Info", resourceCulture);
             }
         }
         
@@ -1130,15 +1211,6 @@ namespace linc.Resources {
         public static string Dossier_ListHeader_Title {
             get {
                 return ResourceManager.GetString("Dossier_ListHeader_Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Към списък досиета.
-        /// </summary>
-        public static string Dossier_ТоList_Label {
-            get {
-                return ResourceManager.GetString("Dossier_ТоList_Label", resourceCulture);
             }
         }
         
@@ -1247,6 +1319,87 @@ namespace linc.Resources {
         public static string DossierEdit_AssignEditor_Prompt {
             get {
                 return ResourceManager.GetString("DossierEdit_AssignEditor_Prompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Редактор.
+        /// </summary>
+        public static string DossierEdit_Assignee {
+            get {
+                return ResourceManager.GetString("DossierEdit_Assignee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Сигурни ли сте, че искате да смените статуса на досието?.
+        /// </summary>
+        public static string DossierEdit_ConfirmStatusChange {
+            get {
+                return ResourceManager.GetString("DossierEdit_ConfirmStatusChange", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Смяна на статус.
+        /// </summary>
+        public static string DossierEdit_ConfirmStatusChange_Title {
+            get {
+                return ResourceManager.GetString("DossierEdit_ConfirmStatusChange_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Редактори.
+        /// </summary>
+        public static string DossierEdit_Editors {
+            get {
+                return ResourceManager.GetString("DossierEdit_Editors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изберете рецензент.
+        /// </summary>
+        public static string DossierEdit_Reviewer_Prompt {
+            get {
+                return ResourceManager.GetString("DossierEdit_Reviewer_Prompt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Рецензент - email.
+        /// </summary>
+        public static string DossierEdit_ReviewerEmail {
+            get {
+                return ResourceManager.GetString("DossierEdit_ReviewerEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Рецензент - фамилия.
+        /// </summary>
+        public static string DossierEdit_ReviewerFirstName {
+            get {
+                return ResourceManager.GetString("DossierEdit_ReviewerFirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Рецензент - име.
+        /// </summary>
+        public static string DossierEdit_ReviewerLastName {
+            get {
+                return ResourceManager.GetString("DossierEdit_ReviewerLastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Рецензенти.
+        /// </summary>
+        public static string DossierEdit_Reviewers {
+            get {
+                return ResourceManager.GetString("DossierEdit_Reviewers", resourceCulture);
             }
         }
         
