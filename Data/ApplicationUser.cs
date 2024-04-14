@@ -32,6 +32,11 @@ namespace linc.Data
         [PersonalData]
         public bool Subscribed { get; set; }
 
+        public bool IsAuthor { get; set; }
+
+        public bool IsReviewer { get; set; }
+
+
         #region Avatar
 
         [PersonalData]
@@ -49,7 +54,7 @@ namespace linc.Data
         [PersonalData]
         public string InternalAvatarPath { get; set; }
 
-        #endregion
+        #endregion Avatar
 
         #region Navigation
 
@@ -65,7 +70,7 @@ namespace linc.Data
         //
         // public ICollection<StranitzaPost> Posts { get; set; }
 
-        #endregion
+        #endregion Navigation
 
         #region NotMapped
 
@@ -73,7 +78,7 @@ namespace linc.Data
         [PersonalData]
         public string Names => $"{FirstName} {LastName}";
 
-        #endregion
+        #endregion NotMapped
 
         #region Automatic
 
@@ -83,7 +88,7 @@ namespace linc.Data
         [PersonalData]
         public DateTime DateCreated { get; set; }
 
-        #endregion
+        #endregion Automatic
     }
 
 }
