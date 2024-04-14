@@ -2,8 +2,6 @@
 using linc.Contracts;
 using linc.Data;
 using linc.Models.Enumerations;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 
 namespace linc.Utility
 {
@@ -94,11 +92,20 @@ namespace linc.Utility
             return displayName;
         }
 
+        public static List<ApplicationUser> GetAllByRole(this ApplicationDbContext dbContext, string roleName)
+        {
+            var role = dbContext.Roles.First(x => x.Name == roleName);
+            var userIds = dbContext.UserRoles
+                .Where(x => x.RoleId == role.Id)
+                .Select(x => x.UserId);
+
+            return dbContext.Users.Where(x => userIds.Contains(x.Id)).ToList();
+        }
+
         public static int CountByRole(this ApplicationDbContext dbContext, string roleName)
         {
             var role = dbContext.Roles.First(x => x.Name == roleName);
             return dbContext.UserRoles.Count(x => x.RoleId == role.Id);
-
         }
     }
 }
