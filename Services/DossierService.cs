@@ -3,8 +3,8 @@ using linc.Data;
 using linc.Models.ConfigModels;
 using linc.Models.Enumerations;
 using linc.Models.ViewModels.Dossier;
-using linc.Models.ViewModels.Source;
 using linc.Utility;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
@@ -15,7 +15,15 @@ namespace linc.Services
         private readonly ApplicationDbContext _context;
         private readonly ApplicationConfig _config;
 
-        public DossierService(ApplicationDbContext context, IOptions<ApplicationConfig> configOptions)
+        public class JournalEntryKeys
+        {
+            public const string Created = "JournalDossier_Created";
+            public const string AssignedTo = "JournalDossier_AssignedTo";
+            public const string ReAssignedTo = "JournalDossier_ReassignedTo";
+        }
+
+        public DossierService(ApplicationDbContext context, 
+            IOptions<ApplicationConfig> configOptions)
         {
             _context = context;
             _config = configOptions.Value;
@@ -54,12 +62,74 @@ namespace linc.Services
             };
         }
 
+        public async Task<DossierDetailsViewModel> GetDossierDetailsAsync(int id)
+        {
+            var query = _context.Dossiers
+                .Include(x => x.AssignedTo)
+                .Include(x => x.Journals)
+                    .ThenInclude(x => x.PerformedBy);
+
+            var dossier = await query.FirstOrDefaultAsync(x => x.Id == id);
+            if (dossier is null)
+            {
+                return null;
+            }
+
+            /*var editors = _context.GetAllByRole(SiteRole.Editor.ToString());
+            var headEditors = _context.GetAllByRole(SiteRole.HeadEditor.ToString());
+
+            var selectList = new List<SelectListItem>();
+
+            selectList.AddRange(editors.Select(x => new SelectListItem(text: x.Names, x.Id)));
+            selectList.AddRange(headEditors.Select(x => new SelectListItem(text: x.Names, x.Id)));*/
+            
+            var viewModel = new DossierDetailsViewModel()
+            {
+                Id = dossier.Id,
+                Title = dossier.Title,
+                AuthorNames = dossier.Names,
+                AuthorEmail = dossier.Email,
+                Status = dossier.Status,
+
+                AssignedToId = dossier.AssignedToId,
+                AssignedTo = dossier.AssignedTo != null ? 
+                    dossier.AssignedTo.Names : 
+                    string.Empty,
+
+                // TODO: filter?
+                Journals = dossier.Journals.ToList()
+            };
+
+            return viewModel;
+        }
+
+        public async Task<DossierEditViewModel> GetDossierEditAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task AssignDossierAsync(int dossierId, string userId)
+        {
+            var dossier = await _context.Dossiers.FindAsync(dossierId);
+
+            ArgumentNullException.ThrowIfNull(dossier);
+
+            _context.Dossiers.Attach(dossier);
+            dossier.AssignedToId = userId;
+
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateDossierAsync(DossierEditViewModel input)
+        {
+            throw new NotImplementedException();
+        }
 
         public async Task<int> CreateDossierAsync(DossierCreateViewModel input, string currentUserId)
         {
             await using var transaction = await _context.Database.BeginTransactionAsync();
             var original = await SaveDossierDocumentAsync(input.OriginalFile, ApplicationDocumentType.Original);
-            var entry = new ApplicationDossier()
+            var entry = new ApplicationDossier
             {
                 Title = input.Title,
                 FirstName = input.FirstName,
@@ -73,7 +143,11 @@ namespace linc.Services
 
             entry.Documents.Add(original);
 
-            // TODO: journal entry
+            entry.Journals.Add(new DossierJournal
+            {
+                Message = JournalEntryKeys.Created,
+                PerformedById = currentUserId
+            });
 
             var entityEntry = await _context.Dossiers.AddAsync(entry);
             await _context.SaveChangesAsync();
