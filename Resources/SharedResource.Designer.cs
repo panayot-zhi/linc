@@ -2162,11 +2162,56 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Назначен {0} за редактор на досието..
+        /// </summary>
+        public static string JournalDossier_AssignedTo {
+            get {
+                return ResourceManager.GetString("JournalDossier_AssignedTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Създадено досие..
         /// </summary>
         public static string JournalDossier_Created {
             get {
                 return ResourceManager.GetString("JournalDossier_Created", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Подменен документ от тип &apos;{0}&apos;..
+        /// </summary>
+        public static string JournalDossier_DocumentReUploaded {
+            get {
+                return ResourceManager.GetString("JournalDossier_DocumentReUploaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Прикачен документ от тип &apos;{0}&apos;..
+        /// </summary>
+        public static string JournalDossier_DocumentUploaded {
+            get {
+                return ResourceManager.GetString("JournalDossier_DocumentUploaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Сменен {0} с {1} за редактор на досието..
+        /// </summary>
+        public static string JournalDossier_ReAssignedTo {
+            get {
+                return ResourceManager.GetString("JournalDossier_ReAssignedTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Досието премина от статус &apos;{0}&apos; в статус &apos;{1}&apos;..
+        /// </summary>
+        public static string JournalDossier_StatusUpdated {
+            get {
+                return ResourceManager.GetString("JournalDossier_StatusUpdated", resourceCulture);
             }
         }
         

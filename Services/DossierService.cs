@@ -22,9 +22,16 @@ namespace linc.Services
 
         public class JournalEntryKeys
         {
-            public const string Created = "JournalDossier_Created";
-            public const string AssignedTo = "JournalDossier_AssignedTo";
-            public const string ReAssignedTo = "JournalDossier_ReassignedTo";
+            private const string Prefix = "JournalDossier";
+
+            public const string Created = $"{Prefix}_{nameof(Created)}";
+            public const string AssignedTo = $"{Prefix}_{nameof(AssignedTo)}";
+            public const string ReAssignedTo = $"{Prefix}_{nameof(ReAssignedTo)}";
+            public const string StatusUpdated = $"{Prefix}_{nameof(StatusUpdated)}";
+            //public const string PropertyUpdated = $"{Prefix}_{nameof(PropertyUpdated)}";
+
+            public const string DocumentUploaded = $"{Prefix}_{nameof(DocumentUploaded)}";
+            public const string DocumentReUploaded = $"{Prefix}_{nameof(DocumentReUploaded)}";
         }
 
         public DossierService(ApplicationDbContext context, 
@@ -195,8 +202,8 @@ namespace linc.Services
 
             entry.Journals.Add(new DossierJournal
             {
-                Message = JournalEntryKeys.Created,
-                PerformedById = currentUserId
+                PerformedById = currentUserId,
+                Message = JournalEntryKeys.Created
             });
 
             var entityEntry = await _context.Dossiers.AddAsync(entry);
@@ -260,7 +267,48 @@ namespace linc.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateAssigneeAsync(int id)
+        public async Task UpdateAssigneeAsync(int id, string targetUserId)
+        {
+            var currentUserId = GetCurrentUserId();
+            var targetUser = await _context.Users.FindAsync(targetUserId);
+            var dossier = _context.Dossiers
+                .Include(x => x.AssignedTo)
+                .First(x => x.Id == id);
+
+            _context.Dossiers.Attach(dossier);
+
+            if (dossier.AssignedTo != null)
+            {
+                dossier.Journals.Add(new DossierJournal
+                {
+                    PerformedById = currentUserId,
+                    Message = JournalEntryKeys.ReAssignedTo,
+                    MessageArguments = new[]
+                    {
+                        dossier.AssignedTo.UserName, 
+                        targetUser!.UserName
+                    }
+                });
+            }
+            else
+            {
+                dossier.Journals.Add(new DossierJournal
+                {
+                    PerformedById = currentUserId,
+                    Message = JournalEntryKeys.AssignedTo,
+                    MessageArguments = new[]
+                    {
+                        targetUser!.UserName
+                    }
+                });
+            }
+
+            dossier.AssignedToId = targetUserId;
+
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateStatusAsync(int id, ApplicationDossierStatus status)
         {
             var currentUserId = GetCurrentUserId();
             var dossier = await _context.Dossiers.FindAsync(id);
@@ -268,18 +316,20 @@ namespace linc.Services
             ArgumentNullException.ThrowIfNull(dossier);
 
             _context.Dossiers.Attach(dossier);
-            dossier.AssignedToId = currentUserId;
 
-            await _context.SaveChangesAsync();
-        }
+            dossier.Journals.Add(new DossierJournal
+            {
+                PerformedById = currentUserId,
+                Message = JournalEntryKeys.StatusUpdated,
+                // NOTE: Refactoring ApplicationDossierStatus
+                // will break this convention
+                MessageArguments = new[]
+                {
+                    $"DossierStatus_{dossier.Status}",
+                    $"DossierStatus_{status}"
+                }
+            });
 
-        public async Task UpdateStatusAsync(int id, ApplicationDossierStatus status)
-        {
-            var dossier = await _context.Dossiers.FindAsync(id);
-
-            ArgumentNullException.ThrowIfNull(dossier);
-
-            _context.Dossiers.Attach(dossier);
             dossier.Status = status;
 
             await _context.SaveChangesAsync();
@@ -289,6 +339,7 @@ namespace linc.Services
         {
             // validation has succeeded, trust all the data and the state of integrity
 
+            var currentUserId = GetCurrentUserId();
             var dossier = _context.Dossiers
                 .Include(x => x.Reviews)
                 .Include(x => x.Documents)
@@ -300,8 +351,7 @@ namespace linc.Services
 
             _context.Dossiers.Attach(dossier);
 
-            // assign any changeable properties here
-            dossier.AssignedToId = input.AssigneeId;
+            await UpdateDossierPropertiesAsync(dossier, input);
 
             // NOTE: Perform clearly defined actions based on the current dossier status
 
@@ -316,7 +366,18 @@ namespace linc.Services
 
                     // allow uploading an anonymized document
                     var document = await SaveDossierDocumentAsync(input.Document, ApplicationDocumentType.Anonymized);
+                    
                     dossier.Documents.Add(document);
+
+                    dossier.Journals.Add(new DossierJournal
+                    {
+                        PerformedById = currentUserId,
+                        Message = JournalEntryKeys.DocumentUploaded,
+                        MessageArguments = new[]
+                        {
+                            "DocumentType_Anonymized"
+                        }
+                    });
 
                     // update dossier status
                     await UpdateStatusAsync(dossier.Id, ApplicationDossierStatus.Prepared);
@@ -332,9 +393,18 @@ namespace linc.Services
 
                     // allow overriding of anonymized document
                     await DeleteDossierDocument(dossier, dossier.Anonymized);
-                    var anonymizedDocument =
-                        await SaveDossierDocumentAsync(input.Document, ApplicationDocumentType.Anonymized);
+                    var anonymizedDocument = await SaveDossierDocumentAsync(input.Document, ApplicationDocumentType.Anonymized);
                     dossier.Documents.Add(anonymizedDocument);
+
+                    dossier.Journals.Add(new DossierJournal
+                    {
+                        PerformedById = currentUserId,
+                        Message = JournalEntryKeys.DocumentReUploaded,
+                        MessageArguments = new[]
+                        {
+                            "DocumentType_Anonymized"
+                        }
+                    });
 
                     break;
 
@@ -361,6 +431,16 @@ namespace linc.Services
                     };
 
                     dossier.Reviews.Add(dossierReview);
+
+                    dossier.Journals.Add(new DossierJournal
+                    {
+                        PerformedById = currentUserId,
+                        Message = JournalEntryKeys.DocumentUploaded,
+                        MessageArguments = new[]
+                        {
+                            "DocumentType_Review"
+                        }
+                    });
 
                     // create a checkpoint here
                     await _context.SaveChangesAsync();
@@ -391,11 +471,33 @@ namespace linc.Services
                     if (dossier.Redacted != null)
                     {
                         await DeleteDossierDocument(dossier, dossier.Redacted);
+
+                        dossier.Journals.Add(new DossierJournal
+                        {
+                            PerformedById = currentUserId,
+                            Message = JournalEntryKeys.DocumentReUploaded,
+                            MessageArguments = new[]
+                            {
+                                "DocumentType_Redacted"
+                            }
+                        });
+                    }
+                    else
+                    {
+                        dossier.Journals.Add(new DossierJournal
+                        {
+                            PerformedById = currentUserId,
+                            Message = JournalEntryKeys.DocumentUploaded,
+                            MessageArguments = new[]
+                            {
+                                "DocumentType_Redacted"
+                            }
+                        });
                     }
 
                     var redactedDocument = await SaveDossierDocumentAsync(input.Document, ApplicationDocumentType.Redacted);
                     dossier.Documents.Add(redactedDocument);
-
+                    
                     break;
 
                 case ApplicationDossierStatus.AcceptedWithCorrections:
@@ -416,6 +518,17 @@ namespace linc.Services
 
             await _context.SaveChangesAsync();
             await transaction.CommitAsync();
+        }
+
+        private async Task UpdateDossierPropertiesAsync(ApplicationDossier dossier, DossierEditViewModel input)
+        {
+            if (dossier.AssignedToId != input.AssigneeId)
+            {
+                await UpdateAssigneeAsync(dossier.Id, input.AssigneeId);
+            }
+
+            // NOTE: if need be add statements for other properties here...
+
         }
 
         private ClaimsPrincipal GetCurrentUser()

@@ -1552,6 +1552,21 @@
   <data name="Dossier_EditPage_UploadReviewDocument_Info" xml:space="preserve">
     <value>Към досието има прикачена една рецензия, когато прикачите втората, то автоматично ще премине в статус '{0}'.</value>
   </data>
+  <data name="JournalDossier_AssignedTo" xml:space="preserve">
+    <value>Назначен {0} за редактор на досието.</value>
+  </data>
+  <data name="JournalDossier_DocumentReUploaded" xml:space="preserve">
+    <value>Подменен документ от тип '{0}'.</value>
+  </data>
+  <data name="JournalDossier_DocumentUploaded" xml:space="preserve">
+    <value>Прикачен документ от тип '{0}'.</value>
+  </data>
+  <data name="JournalDossier_ReAssignedTo" xml:space="preserve">
+    <value>Сменен {0} с {1} за редактор на досието.</value>
+  </data>
+  <data name="JournalDossier_StatusUpdated" xml:space="preserve">
+    <value>Досието премина от статус '{0}' в статус '{1}'.</value>
+  </data>
   <data name="Reviewer_Label" xml:space="preserve">
     <value>Рецензент</value>
   </data>

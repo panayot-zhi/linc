@@ -159,8 +159,18 @@
                     @foreach (var entry in Model.Journals)
                     {
                         <p class="journal-entry">
-                            <small>@entry.DateCreated.ToString("dd MMM yyyy"), @entry.PerformedBy.Names</small><br/>
-                            @HtmlLocalizer[entry.Message]
+                            <small>@entry.DateCreated.ToString("dd MMM yyyy HH:mm"), @entry.PerformedBy.Names</small><br/>
+                            
+                            @{
+                                var messageArguments = new object [entry.MessageArguments.Length];
+                                for (var index = 0; index < entry.MessageArguments.Length; index++)
+                                {
+                                    messageArguments[index] = HtmlLocalizer[entry.MessageArguments[index]];
+                                }
+                            }
+
+                            @HtmlLocalizer[entry.Message, messageArguments]
+
                         </p>
                     }
                 </div>

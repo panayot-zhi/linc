@@ -114,7 +114,7 @@ namespace linc
                 return NotFound();
             }
 
-            await _dossierService.UpdateAssigneeAsync(id.Value);
+            await _dossierService.UpdateAssigneeAsync(id.Value, User.GetUserId());
             return RedirectToAction(nameof(Details), new { id });
         }
 

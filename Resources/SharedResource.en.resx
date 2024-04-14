@@ -1554,6 +1554,21 @@
   <data name="Dossier_EditPage_UploadReviewDocument_Info" xml:space="preserve">
     <value>There is one review attached to the dossier, when you attach the second one it will automatically change to '{0}' status.</value>
   </data>
+  <data name="JournalDossier_AssignedTo" xml:space="preserve">
+    <value>Assigned {0} as editor for the dossier.</value>
+  </data>
+  <data name="JournalDossier_DocumentReUploaded" xml:space="preserve">
+    <value>Overwritten document of type '{0}'.</value>
+  </data>
+  <data name="JournalDossier_DocumentUploaded" xml:space="preserve">
+    <value>Uploaded document of type '{0}'.</value>
+  </data>
+  <data name="JournalDossier_ReAssignedTo" xml:space="preserve">
+    <value>Changed {0} with {1} as editor for the dossier.</value>
+  </data>
+  <data name="JournalDossier_StatusUpdated" xml:space="preserve">
+    <value>Status changed from '{0}' to '{1}'.</value>
+  </data>
   <data name="Reviewer_Label" xml:space="preserve">
     <value>Reviewer</value>
   </data>

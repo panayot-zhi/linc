@@ -14,7 +14,7 @@ namespace linc.Contracts
 
         Task<int> CreateDossierAsync(DossierCreateViewModel input);
 
-        Task UpdateAssigneeAsync(int id);
+        Task UpdateAssigneeAsync(int id, string targetUserId);
 
         Task UpdateStatusAsync(int id, ApplicationDossierStatus status);
 
