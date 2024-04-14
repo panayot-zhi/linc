@@ -954,6 +954,42 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Редактор.
+        /// </summary>
+        public static string Dossier_ListHeader_Assignee {
+            get {
+                return ResourceManager.GetString("Dossier_ListHeader_Assignee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Създател.
+        /// </summary>
+        public static string Dossier_ListHeader_Creator {
+            get {
+                return ResourceManager.GetString("Dossier_ListHeader_Creator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Статус.
+        /// </summary>
+        public static string Dossier_ListHeader_Status {
+            get {
+                return ResourceManager.GetString("Dossier_ListHeader_Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ръкопис.
+        /// </summary>
+        public static string Dossier_ListHeader_Title {
+            get {
+                return ResourceManager.GetString("Dossier_ListHeader_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email адрес.
         /// </summary>
         public static string DossierCreate_Email {

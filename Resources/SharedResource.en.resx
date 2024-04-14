@@ -1411,4 +1411,16 @@
   <data name="DossierStatus_Reviewed" xml:space="preserve">
     <value>Reviewed</value>
   </data>
+  <data name="Dossier_ListHeader_Assignee" xml:space="preserve">
+    <value>Editor</value>
+  </data>
+  <data name="Dossier_ListHeader_Creator" xml:space="preserve">
+    <value>Creator</value>
+  </data>
+  <data name="Dossier_ListHeader_Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Dossier_ListHeader_Title" xml:space="preserve">
+    <value>Manuscript</value>
+  </data>
 </root>
