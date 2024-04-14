@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using linc.Models.Enumerations;
 using System.ComponentModel.DataAnnotations;
-using linc.Contracts;
 
 namespace linc.Models.ViewModels.Dossier
 {
@@ -15,6 +14,8 @@ namespace linc.Models.ViewModels.Dossier
             _documents = documents;
         }
 
+        // ReSharper disable once UnusedMember.Global
+        // NOTE: this is done for model binding
         public DossierEditViewModel()
         {
 
@@ -24,24 +25,46 @@ namespace linc.Models.ViewModels.Dossier
         public int Id { get; set; }
 
 
+        [Display(Name = "DossierCreate_Title", ResourceType = typeof(Resources.SharedResource))]
         public string Title { get; set; }
 
+        [Display(Name = "DossierCreate_FirstName", ResourceType = typeof(Resources.SharedResource))]
         public string FirstName { get; set; }
 
+        [Display(Name = "DossierCreate_LastName", ResourceType = typeof(Resources.SharedResource))]
         public string LastName { get; set; }
 
+        [EmailAddress(ErrorMessageResourceName = "EmailAddressAttribute_Invalid", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+        [Display(Name = "DossierCreate_Email", ResourceType = typeof(Resources.SharedResource))]
         public string Email { get; set; }
 
 
         public ApplicationDossierStatus Status { get; set; }
 
 
+        [Display(Name = "DossierEdit_Assignee", ResourceType = typeof(Resources.SharedResource))]
         public string AssigneeId { get; set; }
 
-        public string Assignee { get; set; }
+        [Display(Name = "DossierEdit_Assignee", ResourceType = typeof(Resources.SharedResource))]
+        public string AssigneeNames { get; set; }
 
 
+        [Display(Name = "DossierEdit_ReviewerFirstName", ResourceType = typeof(Resources.SharedResource))]
+        public string ReviewerFirstName { get; set; }
+
+        [Display(Name = "DossierEdit_ReviewerLastName", ResourceType = typeof(Resources.SharedResource))]
+        public string ReviewerLastName { get; set; }
+
+        [EmailAddress(ErrorMessageResourceName = "EmailAddressAttribute_Invalid", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+        [Display(Name = "DossierEdit_ReviewerEmail", ResourceType = typeof(Resources.SharedResource))]
+        public string ReviewerEmail { get; set; }
+
+
+        [Display(Name = "DossierEdit_Editors", ResourceType = typeof(Resources.SharedResource))]
         public List<SelectListItem> Editors { get; set; }
+
+        [Display(Name = "DossierEdit_Reviewers", ResourceType = typeof(Resources.SharedResource))]
+        public List<SelectListItem> Reviewers { get; set; }
 
 
         public ApplicationDocument Original =>
@@ -63,6 +86,7 @@ namespace linc.Models.ViewModels.Dossier
         public ApplicationDocumentType DocumentType { get; set; }
 
         public IFormFile Document { get; set; }
+
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

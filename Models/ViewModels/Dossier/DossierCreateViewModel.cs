@@ -19,6 +19,7 @@ namespace linc.Models.ViewModels.Dossier
         [Display(Name = "DossierCreate_LastName", ResourceType = typeof(Resources.SharedResource))]
         public string LastName { get; set; }
 
+        [EmailAddress(ErrorMessageResourceName = "EmailAddressAttribute_Invalid", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         [MaxLength(255, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         [Display(Name = "DossierCreate_Email", ResourceType = typeof(Resources.SharedResource))]
