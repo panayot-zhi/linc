@@ -38,6 +38,8 @@
         <div class="row">
             <div class="col-lg-8 offset-lg-2 col-md-8 offset-md-2">
                 <form asp-action="Edit" enctype="multipart/form-data">
+                    
+                    <input asp-for="Status" type="hidden" />
 
                     <h3>@HtmlLocalizer["Dossier_EditPage_SubTitle"]</h3>
                     <small>@HtmlLocalizer["Dossier_ListHeader_Status"]: @(EnumHelper<ApplicationDossierStatus>.GetDisplayName(Model.Status))</small>
