@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using linc.Models.Enumerations;
 using System.ComponentModel.DataAnnotations;
+using linc.Contracts;
 
 namespace linc.Models.ViewModels.Dossier
 {
@@ -90,10 +91,30 @@ namespace linc.Models.ViewModels.Dossier
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            //var localizationService = validationContext.GetService(typeof(ILocalizationService)) as ILocalizationService;
+            if (Status == ApplicationDossierStatus.InReview && Document != null)
+            {
+                var localizationService = validationContext.GetService(typeof(ILocalizationService)) as ILocalizationService;
 
-            // TODO: Validate!
-            //yield return new ValidationResult("Моля факайте се.", new[] { nameof(Id) });
+                ArgumentNullException.ThrowIfNull(localizationService);
+
+                if (string.IsNullOrEmpty(ReviewerFirstName))
+                {
+                    yield return new ValidationResult(localizationService["DossierEdit_ReviewerFirstName_Required"].Value, 
+                        new[] { nameof(ReviewerFirstName) });
+                }
+
+                if (string.IsNullOrEmpty(ReviewerLastName))
+                {
+                    yield return new ValidationResult(localizationService["DossierEdit_ReviewerLastName_Required"].Value,
+                        new[] { nameof(ReviewerLastName) });
+                }
+
+                if (string.IsNullOrEmpty(ReviewerEmail))
+                {
+                    yield return new ValidationResult(localizationService["DossierEdit_ReviewerEmail_Required"].Value,
+                        new[] { nameof(ReviewerEmail) });
+                }
+            }
 
             yield break;
         }
