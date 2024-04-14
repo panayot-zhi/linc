@@ -15,6 +15,9 @@ namespace linc.Data
         [MaxLength(512)]
         public string Message { get; set; }
 
+        [MaxLength(512)]
+        public string[] MessageArguments { get; set; }
+
 
         [Required]
         [ForeignKey(nameof(PerformedBy))]
