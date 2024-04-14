@@ -30,6 +30,8 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     public DbSet<DossierJournal> DossierJournals { get; set; }
 
 
+    public DbSet<ApplicationDossierReview> DossierReviews { get; set; }
+
     public DbSet<ApplicationDocument> Documents { get; set; }
 
     public DbSet<ApplicationLanguage> Languages { get; set; }

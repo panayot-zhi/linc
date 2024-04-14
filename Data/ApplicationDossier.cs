@@ -45,6 +45,8 @@ namespace linc.Data
         public virtual ApplicationUser AssignedTo { get; set; }
 
 
+        public virtual ICollection<ApplicationDossierReview> Reviews { get; set; } = new List<ApplicationDossierReview>();
+
         public virtual ICollection<ApplicationDocument> Documents { get; set; } = new List<ApplicationDocument>();
 
         public virtual ICollection<DossierJournal> Journals { get; set; } = new HashSet<DossierJournal>();
@@ -71,10 +73,6 @@ namespace linc.Data
         [NotMapped]
         public ApplicationDocument Redacted =>
             Documents.FirstOrDefault(x => x.DocumentType == ApplicationDocumentType.Redacted);
-
-        [NotMapped]
-        public List<ApplicationDocument> Reviews =>
-            Documents.Where(x => x.DocumentType == ApplicationDocumentType.Review).ToList();
 
         #endregion NotMapped
 
