@@ -43,10 +43,13 @@ a.submit-link {
   /* keep */
 }
 
+a.requires-confirm {
+  /* keep */
+}
+
 /* 
     icon-links
 */
-
 .icon-links li {
     display: block;
     padding: 6px 0;
@@ -97,6 +100,24 @@ th.sortable::before {
 
 .journal-entry {
 
+}
+
+/* 
+    dossier
+*/
+#dossier-operations {
+    list-style-type: none; /* Removes default list styling */
+    padding: 0; /* Removes default padding */
+}
+
+#dossier-operations li {
+    display: inline; /* Display items inline */
+    margin-right: 4px; /* Right margin of 4px */
+}
+
+#dossier-operations li:not(:last-child)::after {
+    content: " |"; /* Add separator after each item except the last one */
+    margin-left: 4px; /* Left margin of 4px to the separator */
 }
 
 /* 
