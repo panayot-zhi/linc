@@ -32,6 +32,7 @@ namespace linc.Services
 
             public const string DocumentUploaded = $"{Prefix}_{nameof(DocumentUploaded)}";
             public const string DocumentReUploaded = $"{Prefix}_{nameof(DocumentReUploaded)}";
+            public const string ClearedAssignment = $"{Prefix}_{nameof(ClearedAssignment)}";
         }
 
         public DossierService(ApplicationDbContext context, 
@@ -271,39 +272,62 @@ namespace linc.Services
         {
             var currentUserId = GetCurrentUserId();
             var targetUser = await _context.Users.FindAsync(targetUserId);
-            var dossier = _context.Dossiers
-                .Include(x => x.AssignedTo)
-                .First(x => x.Id == id);
+            var dossier = await _context.Dossiers.FindAsync(id);
+
+            ArgumentNullException.ThrowIfNull(dossier);
 
             _context.Dossiers.Attach(dossier);
 
-            if (dossier.AssignedTo != null)
+            if (dossier.AssignedToId != null)
             {
-                dossier.Journals.Add(new DossierJournal
+                var currentAssignee = await _context.Users.FindAsync(dossier.AssignedToId);
+
+                ArgumentNullException.ThrowIfNull(currentAssignee);
+
+                if (targetUser != null)
                 {
-                    PerformedById = currentUserId,
-                    Message = JournalEntryKeys.ReAssignedTo,
-                    MessageArguments = new[]
+                    dossier.Journals.Add(new DossierJournal
                     {
-                        dossier.AssignedTo.UserName, 
-                        targetUser!.UserName
-                    }
-                });
+                        PerformedById = currentUserId,
+                        Message = JournalEntryKeys.ReAssignedTo,
+                        MessageArguments = new[]
+                        {
+                            currentAssignee.UserName,
+                            targetUser.UserName
+                        }
+                    });
+                }
+                else
+                {
+                    dossier.Journals.Add(new DossierJournal
+                    {
+                        PerformedById = currentUserId,
+                        Message = JournalEntryKeys.ClearedAssignment,
+                        MessageArguments = new[]
+                        {
+                            currentAssignee.UserName
+                        }
+                    });
+                }
             }
             else
             {
-                dossier.Journals.Add(new DossierJournal
+                if (targetUser != null)
                 {
-                    PerformedById = currentUserId,
-                    Message = JournalEntryKeys.AssignedTo,
-                    MessageArguments = new[]
+                    dossier.Journals.Add(new DossierJournal
                     {
-                        targetUser!.UserName
-                    }
-                });
+                        PerformedById = currentUserId,
+                        Message = JournalEntryKeys.AssignedTo,
+                        MessageArguments = new[]
+                        {
+                            targetUser.UserName
+                        }
+                    });
+                }
             }
 
             dossier.AssignedToId = targetUserId;
+            dossier.AssignedTo = targetUser;
 
             await _context.SaveChangesAsync();
         }
@@ -588,14 +612,18 @@ namespace linc.Services
                     );
             }
 
-            if (user is not null)
+            if (user is null)
             {
-                _context.Users.Attach(user);
-                user.IsReviewer = true;
-                await _context.SaveChangesAsync();
+                return null;
             }
 
-            return user?.Id;
+            _context.Users.Attach(user);
+
+            user.IsReviewer = true;
+
+            await _context.SaveChangesAsync();
+
+            return user.Id;
         }
     }
 }

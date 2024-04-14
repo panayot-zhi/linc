@@ -266,14 +266,18 @@ namespace linc.Services
                     EF.Functions.Like(x.LastName, $"{inputLastName}")
                 );
 
-            if (user is not null)
+            if (user is null)
             {
-                _context.Users.Attach(user);
-                user.IsAuthor = true;
-                await _context.SaveChangesAsync();
+                return null;
             }
 
-            return user?.Id;
+            _context.Users.Attach(user);
+            
+            user.IsAuthor = true;
+
+            await _context.SaveChangesAsync();
+
+            return user.Id;
         }
     }
 }
