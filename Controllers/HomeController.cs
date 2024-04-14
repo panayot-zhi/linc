@@ -63,19 +63,15 @@ namespace linc.Controllers
         [ResponseCache(CacheProfileName = SiteCacheProfile.Yearly)]
         public IActionResult Terms()
         {
-            return View();
+            // TODO: view according to language
+            return View("Terms.bg");
         }
 
         [ResponseCache(CacheProfileName = SiteCacheProfile.Yearly)]
         public IActionResult Privacy()
         {
-            return View();
-        }
-
-        [ResponseCache(CacheProfileName = SiteCacheProfile.Yearly)]
-        public IActionResult Cookies()
-        {
-            return View();
+            // TODO: view according to language
+            return View("Privacy.bg");
         }
 
         [ResponseCache(CacheProfileName = SiteCacheProfile.Monthly, VaryByQueryKeys = new []{ "id", "data" })]
