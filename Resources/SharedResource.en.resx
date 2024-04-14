@@ -1572,4 +1572,16 @@
   <data name="Reviewer_Label" xml:space="preserve">
     <value>Reviewer</value>
   </data>
+  <data name="DossierEdit_ReviewerEmail_Required" xml:space="preserve">
+    <value>Please, fill reviewer's email address.</value>
+  </data>
+  <data name="DossierEdit_ReviewerFirstName_Required" xml:space="preserve">
+    <value>Please, fill reviewer's first name.</value>
+  </data>
+  <data name="DossierEdit_ReviewerLastName_Required" xml:space="preserve">
+    <value>Please, fill reviewer's last name.</value>
+  </data>
+  <data name="JournalDossier_ClearedAssignment" xml:space="preserve">
+    <value>Editor {0} was removed from dossier.</value>
+  </data>
 </root>

@@ -1386,6 +1386,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Моля, въведете email на рецензент..
+        /// </summary>
+        public static string DossierEdit_ReviewerEmail_Required {
+            get {
+                return ResourceManager.GetString("DossierEdit_ReviewerEmail_Required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Рецензент - фамилия.
         /// </summary>
         public static string DossierEdit_ReviewerFirstName {
@@ -1395,11 +1404,29 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Моля, въведете име на рецензент..
+        /// </summary>
+        public static string DossierEdit_ReviewerFirstName_Required {
+            get {
+                return ResourceManager.GetString("DossierEdit_ReviewerFirstName_Required", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Рецензент - име.
         /// </summary>
         public static string DossierEdit_ReviewerLastName {
             get {
                 return ResourceManager.GetString("DossierEdit_ReviewerLastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Моля, въведете фамилия на рецензент..
+        /// </summary>
+        public static string DossierEdit_ReviewerLastName_Required {
+            get {
+                return ResourceManager.GetString("DossierEdit_ReviewerLastName_Required", resourceCulture);
             }
         }
         
@@ -2167,6 +2194,15 @@ namespace linc.Resources {
         public static string JournalDossier_AssignedTo {
             get {
                 return ResourceManager.GetString("JournalDossier_AssignedTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Редактор {0} е премахнат от досието..
+        /// </summary>
+        public static string JournalDossier_ClearedAssignment {
+            get {
+                return ResourceManager.GetString("JournalDossier_ClearedAssignment", resourceCulture);
             }
         }
         

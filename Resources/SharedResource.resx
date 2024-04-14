@@ -1570,4 +1570,16 @@
   <data name="Reviewer_Label" xml:space="preserve">
     <value>Рецензент</value>
   </data>
+  <data name="DossierEdit_ReviewerEmail_Required" xml:space="preserve">
+    <value>Моля, въведете email на рецензент.</value>
+  </data>
+  <data name="DossierEdit_ReviewerFirstName_Required" xml:space="preserve">
+    <value>Моля, въведете име на рецензент.</value>
+  </data>
+  <data name="DossierEdit_ReviewerLastName_Required" xml:space="preserve">
+    <value>Моля, въведете фамилия на рецензент.</value>
+  </data>
+  <data name="JournalDossier_ClearedAssignment" xml:space="preserve">
+    <value>Редактор {0} е премахнат от досието.</value>
+  </data>
 </root>
