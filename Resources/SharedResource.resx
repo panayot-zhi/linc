@@ -1498,6 +1498,9 @@
   <data name="ReportBug_Description_Bottom" xml:space="preserve">
     <value>Моля, бъдете подробни в информацията, която предоставяте, и включете екранни снимки, ако е приложимо.</value>
   </data>
+  <data name="DossierDetails_AssignToMe" xml:space="preserve">
+    <value>Назначи ме като редактор</value>
+  </data>
   <data name="DossierEdit_Assignee" xml:space="preserve">
     <value>Редактор</value>
   </data>
@@ -1548,5 +1551,8 @@
   </data>
   <data name="Dossier_EditPage_UploadReviewDocument_Info" xml:space="preserve">
     <value>Към досието има прикачена една рецензия, когато прикачите втората, то автоматично ще премине в статус '{0}'.</value>
+  </data>
+  <data name="Reviewer_Label" xml:space="preserve">
+    <value>Рецензент</value>
   </data>
 </root>

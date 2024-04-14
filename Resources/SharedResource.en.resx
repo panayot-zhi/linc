@@ -1500,6 +1500,9 @@
   <data name="ReportBug_Description_Bottom" xml:space="preserve">
     <value>Please, be detailed in the information that you provide and include screenshots, if applicable.</value>
   </data>
+  <data name="DossierDetails_AssignToMe" xml:space="preserve">
+    <value>Assign me as editor</value>
+  </data>
   <data name="DossierEdit_Assignee" xml:space="preserve">
     <value>Editor</value>
   </data>
@@ -1550,5 +1553,8 @@
   </data>
   <data name="Dossier_EditPage_UploadReviewDocument_Info" xml:space="preserve">
     <value>There is one review attached to the dossier, when you attach the second one it will automatically change to '{0}' status.</value>
+  </data>
+  <data name="Reviewer_Label" xml:space="preserve">
+    <value>Reviewer</value>
   </data>
 </root>

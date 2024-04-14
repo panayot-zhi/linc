@@ -1269,6 +1269,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Назначи ме като редактор.
+        /// </summary>
+        public static string DossierDetails_AssignToMe {
+            get {
+                return ResourceManager.GetString("DossierDetails_AssignToMe", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
         public static string DossierDetails_AuthorEmail {
@@ -3446,6 +3455,15 @@ namespace linc.Resources {
         public static string ResetPasswordPage_Title {
             get {
                 return ResourceManager.GetString("ResetPasswordPage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Рецензент.
+        /// </summary>
+        public static string Reviewer_Label {
+            get {
+                return ResourceManager.GetString("Reviewer_Label", resourceCulture);
             }
         }
         

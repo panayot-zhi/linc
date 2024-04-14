@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Security.Claims;
 using linc.Contracts;
 using linc.Data;
 using linc.Models.ConfigModels;
@@ -60,6 +61,18 @@ namespace linc.Services
                 .OrderBy(sortPropertyName, sortOrder)
                 .AsQueryable();
 
+            var currentUser = GetCurrentUser();
+
+            ArgumentNullException.ThrowIfNull(currentUser);
+
+            if (currentUser.Is(SiteRole.Editor))
+            {
+                query = query.Where(x => 
+                    x.Status == ApplicationDossierStatus.New || 
+                    x.AssignedToId == currentUser.GetUserId()
+                );
+            }
+
             var count = await query.CountAsync();
 
             var dossiers = query
@@ -75,6 +88,10 @@ namespace linc.Services
         public async Task<DossierDetailsViewModel> GetDossierDetailsViewModelAsync(int id)
         {
             var query = _context.Dossiers
+                .Include(x => x.Reviews)
+                    .ThenInclude(x => x.Review)
+                .Include(x => x.Reviews)
+                    .ThenInclude(x => x.Reviewer)
                 .Include(x => x.Documents)
                 .Include(x => x.AssignedTo)
                 .Include(x => x.Journals)
@@ -85,6 +102,9 @@ namespace linc.Services
             {
                 return null;
             }
+
+            var allDocuments = new List<ApplicationDocument>(dossier.Documents);
+            allDocuments.AddRange(dossier.Reviews.Select(x => x.Review));
 
             var viewModel = new DossierDetailsViewModel()
             {
@@ -99,9 +119,13 @@ namespace linc.Services
                     dossier.AssignedTo.Names : 
                     string.Empty,
 
+                DateCreated = dossier.DateCreated,
+                LastUpdated = dossier.LastUpdated,
+
                 // TODO: filter?
                 Journals = dossier.Journals.ToList(),
-                Documents = dossier.Documents
+                Reviews = dossier.Reviews.ToList(),
+                Documents = allDocuments
                     .OrderBy(x => x.DocumentType)
                     .ToList()
             };
@@ -112,6 +136,8 @@ namespace linc.Services
         public async Task<DossierEditViewModel> GetDossierEditViewModelAsync(int id)
         {
             var query = _context.Dossiers
+                .Include(x => x.Reviews)
+                    .ThenInclude(x => x.Review)
                 .Include(x => x.Documents)
                 .Include(x => x.AssignedTo);
 
@@ -121,25 +147,10 @@ namespace linc.Services
                 return null;
             }
 
-            var editors = _context.GetAllByRole(SiteRole.Editor.ToString());
-            var headEditors = _context.GetAllByRole(SiteRole.HeadEditor.ToString());
+            var allDocuments = new List<ApplicationDocument>(dossier.Documents);
+            allDocuments.AddRange(dossier.Reviews.Select(x => x.Review));
 
-            var selectList = new List<SelectListItem>()
-            {
-                // localize
-                new(_localizationService["DossierEdit_AssignEditor_Prompt"].Value, string.Empty)
-            };
-
-            selectList.AddRange(editors.Select(x => new SelectListItem(text: x.Names, x.Id)));
-            selectList.AddRange(headEditors.Select(x => new SelectListItem(text: x.Names, x.Id)));
-
-            if (dossier.AssignedToId != null)
-            {
-                var assignedTo = selectList.Find(x => x.Value.Equals(dossier.AssignedToId));
-                assignedTo!.Selected = true;
-            }
-
-            var viewModel = new DossierEditViewModel(dossier.Documents.ToList())
+            var viewModel = new DossierEditViewModel(allDocuments.ToList())
             {
                 Id = dossier.Id,
 
@@ -148,11 +159,15 @@ namespace linc.Services
                 LastName = dossier.LastName,
                 Email = dossier.Email,
 
-                Editors = selectList,
+                Status = dossier.Status,
 
-                Assignee = dossier.AssignedTo != null ?
+                AssigneeId = dossier.AssignedToId,
+                AssigneeNames = dossier.AssignedTo != null ?
                     dossier.AssignedTo.Names :
-                    string.Empty
+                    string.Empty,
+
+                Editors = GetEditors(dossier.AssignedToId),
+                Reviewers = GetReviewers(),
 
             };
 
@@ -275,6 +290,7 @@ namespace linc.Services
             // validation has succeeded, trust all the data and the state of integrity
 
             var dossier = _context.Dossiers
+                .Include(x => x.Reviews)
                 .Include(x => x.Documents)
                 .FirstOrDefault(x => x.Id == input.Id);
 
@@ -284,6 +300,7 @@ namespace linc.Services
 
             _context.Dossiers.Attach(dossier);
 
+            // assign any changeable properties here
             dossier.AssignedToId = input.AssigneeId;
 
             // NOTE: Perform clearly defined actions based on the current dossier status
@@ -291,36 +308,108 @@ namespace linc.Services
             switch (dossier.Status)
             {
                 case ApplicationDossierStatus.New:
-                {
+                    
+                    if (input.Document == null)
+                    {
+                        break;
+                    }
+
                     // allow uploading an anonymized document
                     var document = await SaveDossierDocumentAsync(input.Document, ApplicationDocumentType.Anonymized);
                     dossier.Documents.Add(document);
 
                     // update dossier status
                     await UpdateStatusAsync(dossier.Id, ApplicationDossierStatus.Prepared);
+
                     break;
-                }
+
                 case ApplicationDossierStatus.Prepared:
-                {
+
+                    if (input.Document == null)
+                    {
+                        break;
+                    }
+
                     // allow overriding of anonymized document
                     await DeleteDossierDocument(dossier, dossier.Anonymized);
-                    var anonymizedDocument = await SaveDossierDocumentAsync(input.Document, ApplicationDocumentType.Anonymized);
+                    var anonymizedDocument =
+                        await SaveDossierDocumentAsync(input.Document, ApplicationDocumentType.Anonymized);
                     dossier.Documents.Add(anonymizedDocument);
+
                     break;
-                }
+
                 case ApplicationDossierStatus.InReview:
+
+                    if (input.Document == null)
+                    {
+                        break;
+                    }
+
                     // allow uploading a review document
+                    var review = await SaveDossierDocumentAsync(input.Document, ApplicationDocumentType.Review);
+                    var userReviewerId = await FindReviewerAsync(input.ReviewerEmail, input.ReviewerFirstName, input.ReviewerLastName);
+                    var dossierReview = new ApplicationDossierReview()
+                    {
+                        FirstName = input.ReviewerFirstName,
+                        LastName = input.ReviewerLastName,
+                        Email = input.ReviewerEmail,
+
+                        ReviewerId = userReviewerId,
+
+                        Dossier = dossier,
+                        Review = review
+                    };
+
+                    dossier.Reviews.Add(dossierReview);
+
+                    // create a checkpoint here
+                    await _context.SaveChangesAsync();
+
+                    // check if there are 2 reviews available
+                    // if yes - advance dossier status
+                    if (dossier.Reviews.Count == 2)
+                    {
+                        // update dossier status
+                        await UpdateStatusAsync(dossier.Id, ApplicationDossierStatus.Reviewed);
+                    }
+
                     break;
+
                 case ApplicationDossierStatus.Reviewed:
+                    // nothing to do here ...
+                    // awaiting operator's command
                     break;
-                case ApplicationDossierStatus.Accepted:
-                    break;
-                case ApplicationDossierStatus.AcceptedWithCorrections:
-                    break;
+
                 case ApplicationDossierStatus.AwaitingCorrections:
+                    
+                    if (input.Document == null)
+                    {
+                        break;
+                    }
+
+                    // allow uploading/overriding of a redacted version document
+                    if (dossier.Redacted != null)
+                    {
+                        await DeleteDossierDocument(dossier, dossier.Redacted);
+                    }
+
+                    var redactedDocument = await SaveDossierDocumentAsync(input.Document, ApplicationDocumentType.Redacted);
+                    dossier.Documents.Add(redactedDocument);
+
                     break;
+
+                case ApplicationDossierStatus.AcceptedWithCorrections:
+                    // partial success! pat yourself on the back!
+                    break;
+
+                case ApplicationDossierStatus.Accepted:
+                    // full success! congratulations!
+                    break;
+
                 case ApplicationDossierStatus.Rejected:
+                    // aw, out of luck
                     break;
+
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -329,9 +418,71 @@ namespace linc.Services
             await transaction.CommitAsync();
         }
 
+        private ClaimsPrincipal GetCurrentUser()
+        {
+            return _httpContextAccessor.HttpContext?.User;
+        }
+
         private string GetCurrentUserId()
         {
-            return _httpContextAccessor.HttpContext?.User.GetUserId();
+            return GetCurrentUser()?.GetUserId();
+        }
+
+        private List<SelectListItem> GetReviewers()
+        {
+            var selectList = new List<SelectListItem>()
+            {
+                new(_localizationService["DossierEdit_Reviewer_Prompt"].Value, string.Empty)
+            };
+
+            var reviewers = _context.Users
+                .Where(x => x.IsReviewer)
+                .Select(x => new SelectListItem(x.Names, x.Id))
+                .ToList();
+
+            selectList.AddRange(reviewers);
+
+            return selectList;
+
+        }
+
+        private List<SelectListItem> GetEditors(string assigneeId)
+        {
+            var editors = _context.GetAllByRole(SiteRole.Editor.ToString());
+            var headEditors = _context.GetAllByRole(SiteRole.HeadEditor.ToString());
+
+            var selectList = new List<SelectListItem>()
+            {
+                new(_localizationService["DossierEdit_AssignEditor_Prompt"].Value, string.Empty)
+            };
+
+            selectList.AddRange(editors.Select(x => new SelectListItem(text: x.Names, x.Id, x.Id == assigneeId)));
+            selectList.AddRange(headEditors.Select(x => new SelectListItem(text: x.Names, x.Id, x.Id == assigneeId)));
+
+            return selectList;
+        }
+
+        private async Task<string> FindReviewerAsync(string inputEmail, string inputFirstName, string inputLastName)
+        {
+            var user = _context.Users.FirstOrDefault(x => x.Email == inputEmail);
+            if (user == null)
+            {
+                // second try by names
+                user = _context.Users
+                    .FirstOrDefault(x =>
+                        EF.Functions.Like(x.FirstName, $"{inputFirstName}")&&
+                        EF.Functions.Like(x.LastName, $"{inputLastName}")
+                    );
+            }
+
+            if (user is not null)
+            {
+                _context.Users.Attach(user);
+                user.IsReviewer = true;
+                await _context.SaveChangesAsync();
+            }
+
+            return user?.Id;
         }
     }
 }

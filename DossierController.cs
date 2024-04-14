@@ -76,6 +76,18 @@ namespace linc
                 return NotFound();
             }
 
+            if (User.IsAtLeast(SiteRole.HeadEditor))
+            {
+                return View(viewModel);
+            }
+
+            // check permissions
+            var currentUserId = User.GetUserId();
+            if (viewModel.AssigneeId != currentUserId)
+            {
+                return Forbid();
+            }
+
             return View(viewModel);
         }
 
@@ -85,6 +97,8 @@ namespace linc
         {
             if (!ModelState.IsValid)
             {
+                // sadly we have to repopulate the whole model if something fails
+                viewModel = await _dossierService.GetDossierEditViewModelAsync(viewModel.Id);
                 return View(viewModel);
             }
 
@@ -101,7 +115,7 @@ namespace linc
             }
 
             await _dossierService.UpdateAssigneeAsync(id.Value);
-            return RedirectToAction(nameof(Details));
+            return RedirectToAction(nameof(Details), new { id });
         }
 
         public async Task<IActionResult> UpdateStatus(int? id, ApplicationDossierStatus status)
@@ -112,7 +126,7 @@ namespace linc
             }
 
             await _dossierService.UpdateStatusAsync(id.Value, status);
-            return RedirectToAction(nameof(Details));
+            return RedirectToAction(nameof(Details), new { id });
         }
     }
 }
