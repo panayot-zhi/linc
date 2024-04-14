@@ -909,6 +909,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Преглед.
+        /// </summary>
+        public static string Details_Label {
+            get {
+                return ResourceManager.GetString("Details_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Създаване на ново досие за ръкопис.
         /// </summary>
         public static string Dossier_CreatePage_SubTitle {
@@ -927,6 +936,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Преглед на досие.
+        /// </summary>
+        public static string Dossier_DetailsPage_Title {
+            get {
+                return ResourceManager.GetString("Dossier_DetailsPage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Списък с налични досиета.
         /// </summary>
         public static string Dossier_IndexPage_SubTitle {
@@ -941,6 +959,15 @@ namespace linc.Resources {
         public static string Dossier_IndexPage_Title {
             get {
                 return ResourceManager.GetString("Dossier_IndexPage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Досие.
+        /// </summary>
+        public static string Dossier_Label {
+            get {
+                return ResourceManager.GetString("Dossier_Label", resourceCulture);
             }
         }
         
@@ -1780,6 +1807,15 @@ namespace linc.Resources {
         public static string IssueCreate_ReleaseYear {
             get {
                 return ResourceManager.GetString("IssueCreate_ReleaseYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Създадено досие..
+        /// </summary>
+        public static string JournalDossier_Created {
+            get {
+                return ResourceManager.GetString("JournalDossier_Created", resourceCulture);
             }
         }
         
@@ -2925,12 +2961,20 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;p&gt;Ако сте открили несъответсвие или грешка, моля, докладвайте я на администратора за да може да адресираме проблема възможно най-бързо.&lt;/p&gt;
-        ///&lt;p&gt;Моля, бъдете подробни в информацията, която предоставяте, и включете екранни снимки, ако е приложимо.&lt;/p&gt;.
+        ///   Looks up a localized string similar to &lt;p&gt;Моля, бъдете подробни в информацията, която предоставяте, и включете екранни снимки, ако е приложимо.&lt;/p&gt;.
         /// </summary>
-        public static string ReportBug_Description {
+        public static string ReportBug_Description_Bottom {
             get {
-                return ResourceManager.GetString("ReportBug_Description", resourceCulture);
+                return ResourceManager.GetString("ReportBug_Description_Bottom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;p&gt;Ако сте открили несъответсвие или грешка, моля, докладвайте я на администратора за да може да адресираме проблема възможно най-бързо.&lt;/p&gt;.
+        /// </summary>
+        public static string ReportBug_Description_Top {
+            get {
+                return ResourceManager.GetString("ReportBug_Description_Top", resourceCulture);
             }
         }
         

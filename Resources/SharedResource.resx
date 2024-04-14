@@ -1223,9 +1223,8 @@
   <data name="ReportBugSection_SubmitButton_Label" xml:space="preserve">
     <value>Докладвай</value>
   </data>
-  <data name="ReportBug_Description" xml:space="preserve">
-    <value>&lt;p&gt;Ако сте открили несъответсвие или грешка, моля, докладвайте я на администратора за да може да адресираме проблема възможно най-бързо.&lt;/p&gt;
-&lt;p&gt;Моля, бъдете подробни в информацията, която предоставяте, и включете екранни снимки, ако е приложимо.&lt;/p&gt;</value>
+  <data name="ReportBug_Description_Top" xml:space="preserve">
+    <value>&lt;p&gt;Ако сте открили несъответсвие или грешка, моля, докладвайте я на администратора за да може да адресираме проблема възможно най-бързо.&lt;/p&gt;</value>
   </data>
   <data name="ReportBug_Title" xml:space="preserve">
     <value>Докладвай за нередност</value>
@@ -1385,6 +1384,9 @@
   <data name="Dossiers_IndexPage_NoResults" xml:space="preserve">
     <value>Няма намерени досиета.</value>
   </data>
+  <data name="Details_Label" xml:space="preserve">
+    <value>Преглед</value>
+  </data>
   <data name="DossierStatus_Accepted" xml:space="preserve">
     <value>Приет за печат</value>
   </data>
@@ -1409,6 +1411,12 @@
   <data name="DossierStatus_Reviewed" xml:space="preserve">
     <value>Рецензиран</value>
   </data>
+  <data name="Dossier_DetailsPage_Title" xml:space="preserve">
+    <value>Преглед на досие</value>
+  </data>
+  <data name="Dossier_Label" xml:space="preserve">
+    <value>Досие</value>
+  </data>
   <data name="Dossier_ListHeader_Assignee" xml:space="preserve">
     <value>Редактор</value>
   </data>
@@ -1420,5 +1428,11 @@
   </data>
   <data name="Dossier_ListHeader_Title" xml:space="preserve">
     <value>Ръкопис</value>
+  </data>
+  <data name="JournalDossier_Created" xml:space="preserve">
+    <value>Създадено досие.</value>
+  </data>
+  <data name="ReportBug_Description_Bottom" xml:space="preserve">
+    <value>&lt;p&gt;Моля, бъдете подробни в информацията, която предоставяте, и включете екранни снимки, ако е приложимо.&lt;/p&gt;</value>
   </data>
 </root>

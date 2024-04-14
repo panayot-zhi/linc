@@ -1079,9 +1079,8 @@
   <data name="ReportBugSection_SubmitButton_Label" xml:space="preserve">
     <value>Report</value>
   </data>
-  <data name="ReportBug_Description" xml:space="preserve">
-    <value>&lt;p&gt;If you have encountered an issue or an inconsistency, please, report this to the site administrator so he can take up measures immediately.&lt;/p&gt;
-&lt;p&gt;Please, be detailed in the information that you provide and include screenshots, if applicable.&lt;/p&gt;</value>
+  <data name="ReportBug_Description_Top" xml:space="preserve">
+    <value>&lt;p&gt;If you have encountered an issue or an inconsistency, please, report this to the site administrator so he can take up measures immediately.&lt;/p&gt;</value>
   </data>
   <data name="ReportBug_Title" xml:space="preserve">
     <value>Report a bug</value>
@@ -1387,6 +1386,9 @@
   <data name="Dossiers_IndexPage_NoResults" xml:space="preserve">
     <value>No dossiers found.</value>
   </data>
+  <data name="Details_Label" xml:space="preserve">
+    <value>Details</value>
+  </data>
   <data name="DossierStatus_Accepted" xml:space="preserve">
     <value>Accepted for print</value>
   </data>
@@ -1411,6 +1413,12 @@
   <data name="DossierStatus_Reviewed" xml:space="preserve">
     <value>Reviewed</value>
   </data>
+  <data name="Dossier_DetailsPage_Title" xml:space="preserve">
+    <value>Dossier details</value>
+  </data>
+  <data name="Dossier_Label" xml:space="preserve">
+    <value>Dossier</value>
+  </data>
   <data name="Dossier_ListHeader_Assignee" xml:space="preserve">
     <value>Editor</value>
   </data>
@@ -1422,5 +1430,11 @@
   </data>
   <data name="Dossier_ListHeader_Title" xml:space="preserve">
     <value>Manuscript</value>
+  </data>
+  <data name="JournalDossier_Created" xml:space="preserve">
+    <value>New dossier has been created.</value>
+  </data>
+  <data name="ReportBug_Description_Bottom" xml:space="preserve">
+    <value>&lt;p&gt;Please, be detailed in the information that you provide and include screenshots, if applicable.&lt;/p&gt;</value>
   </data>
 </root>
