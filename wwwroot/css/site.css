@@ -87,9 +87,21 @@ th.sortable::before {
 }
 
 /* 
+    journal
+*/
+.journal-entries {
+    border-left: 1px solid;
+    border-color: #d0d0d0;
+    padding: 20px;
+}
+
+.journal-entry {
+
+}
+
+/* 
     various
 */
-
 .section-title p span {
     color: #106eea;
 }
