@@ -1008,6 +1008,78 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Приет за печат.
+        /// </summary>
+        public static string DossierStatus_Accepted {
+            get {
+                return ResourceManager.GetString("DossierStatus_Accepted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Приет за печат с поправки.
+        /// </summary>
+        public static string DossierStatus_AcceptedWithCorrections {
+            get {
+                return ResourceManager.GetString("DossierStatus_AcceptedWithCorrections", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Чака поправка.
+        /// </summary>
+        public static string DossierStatus_AwaitingCorrections {
+            get {
+                return ResourceManager.GetString("DossierStatus_AwaitingCorrections", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to В рецензия.
+        /// </summary>
+        public static string DossierStatus_InReview {
+            get {
+                return ResourceManager.GetString("DossierStatus_InReview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Нов.
+        /// </summary>
+        public static string DossierStatus_New {
+            get {
+                return ResourceManager.GetString("DossierStatus_New", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Подготвен.
+        /// </summary>
+        public static string DossierStatus_Prepared {
+            get {
+                return ResourceManager.GetString("DossierStatus_Prepared", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Отхвърлен.
+        /// </summary>
+        public static string DossierStatus_Rejected {
+            get {
+                return ResourceManager.GetString("DossierStatus_Rejected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Рецензиран.
+        /// </summary>
+        public static string DossierStatus_Reviewed {
+            get {
+                return ResourceManager.GetString("DossierStatus_Reviewed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Свали.
         /// </summary>
         public static string Download_Button_Label {

@@ -1385,4 +1385,28 @@
   <data name="Dossiers_IndexPage_NoResults" xml:space="preserve">
     <value>Няма намерени досиета.</value>
   </data>
+  <data name="DossierStatus_Accepted" xml:space="preserve">
+    <value>Приет за печат</value>
+  </data>
+  <data name="DossierStatus_AcceptedWithCorrections" xml:space="preserve">
+    <value>Приет за печат с поправки</value>
+  </data>
+  <data name="DossierStatus_AwaitingCorrections" xml:space="preserve">
+    <value>Чака поправка</value>
+  </data>
+  <data name="DossierStatus_InReview" xml:space="preserve">
+    <value>В рецензия</value>
+  </data>
+  <data name="DossierStatus_New" xml:space="preserve">
+    <value>Нов</value>
+  </data>
+  <data name="DossierStatus_Prepared" xml:space="preserve">
+    <value>Подготвен</value>
+  </data>
+  <data name="DossierStatus_Rejected" xml:space="preserve">
+    <value>Отхвърлен</value>
+  </data>
+  <data name="DossierStatus_Reviewed" xml:space="preserve">
+    <value>Рецензиран</value>
+  </data>
 </root>

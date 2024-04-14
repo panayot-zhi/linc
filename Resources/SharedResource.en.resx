@@ -1387,4 +1387,28 @@
   <data name="Dossiers_IndexPage_NoResults" xml:space="preserve">
     <value>No dossiers found.</value>
   </data>
+  <data name="DossierStatus_Accepted" xml:space="preserve">
+    <value>Accepted for print</value>
+  </data>
+  <data name="DossierStatus_AcceptedWithCorrections" xml:space="preserve">
+    <value>Accepted with corrections</value>
+  </data>
+  <data name="DossierStatus_AwaitingCorrections" xml:space="preserve">
+    <value>Awaiting corrections</value>
+  </data>
+  <data name="DossierStatus_InReview" xml:space="preserve">
+    <value>In review</value>
+  </data>
+  <data name="DossierStatus_New" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="DossierStatus_Prepared" xml:space="preserve">
+    <value>Prepared</value>
+  </data>
+  <data name="DossierStatus_Rejected" xml:space="preserve">
+    <value>Rejected</value>
+  </data>
+  <data name="DossierStatus_Reviewed" xml:space="preserve">
+    <value>Reviewed</value>
+  </data>
 </root>
