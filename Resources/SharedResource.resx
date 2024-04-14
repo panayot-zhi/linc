@@ -1570,6 +1570,36 @@
   <data name="Reviewer_Label" xml:space="preserve">
     <value>Рецензент</value>
   </data>
+  <data name="AboutSection_Content_Description" xml:space="preserve">
+    <value>Текстовете, постъпили в редакцията на списанието, подлежат на двойно анонимно рецензиране от двама независими рецензенти – експерти в съответната научна област.</value>
+  </data>
+  <data name="AboutSection_Description_FirstRow" xml:space="preserve">
+    <value>„Лингвистика, интерпретация, концепции“ е списание на Филологическия факултет на Пловдивския университет „Паисий Хилендарски“.</value>
+  </data>
+  <data name="AboutSection_Description_SecondRow" xml:space="preserve">
+    <value>Годишно излизат &lt;span&gt;два броя&lt;/span&gt;, единият от които е &lt;span&gt;тематичен&lt;/span&gt;.</value>
+  </data>
+  <data name="AboutSection_Footer_RowOne" xml:space="preserve">
+    <value>Изданието се стреми да формира пространство на толерантния и стойностен интелектуален дебат върху проблемите, занимаващи съвременните изследователи хуманитаристи, да популяризира постиженията на български и чужди учени, да се съобразява с потребностите на читателска аудитория със специфични интереси и подготвеност.</value>
+  </data>
+  <data name="AboutSection_Footer_RowThree" xml:space="preserve">
+    <value>Лиценз: CC BY-NC-ND 4.0 / Attribution-NonCommercial-NoDerivatives 4.0 International</value>
+  </data>
+  <data name="AboutSection_Footer_RowTwo" xml:space="preserve">
+    <value>Списанието се финансира от Пловдивския университет и се издава от Пловдивско университетско издателство.</value>
+  </data>
+  <data name="AboutSection_Goals_Description" xml:space="preserve">
+    <value>„Лингвистика, интерпретация, концепции“ публикува статии по проблеми на теорията, историята и социологията на езика и литературата, културологични, медийни и компаративистки изследвания, проучвания относно диалозите между изкуствата, трудове върху стратегиите и практиките в хуманитарното образование, рецензии за академични книги.</value>
+  </data>
+  <data name="AboutSection_Mission_Description" xml:space="preserve">
+    <value>Списанието предоставя трибуна на изследователи с различни методологически нагласи, от различни поколения и идентифициращи се с различни културни традиции и контексти.</value>
+  </data>
+  <data name="AboutSection_Publish_Description" xml:space="preserve">
+    <value>Публикуването в „Лингвистика, интерпретация, концепции“ е безплатно за авторите и за институциите, към които те принадлежат. Достъпът до онлайн формата на изданието е свободен, безплатен и до целия текстови обем.</value>
+  </data>
+  <data name="AboutSection_Review_Description" xml:space="preserve">
+    <value>Текстовете, постъпили в редакцията на списанието, подлежат на двойно анонимно рецензиране от двама независими рецензенти – експерти в съответната научна област.</value>
+  </data>
   <data name="DossierEdit_ReviewerEmail_Required" xml:space="preserve">
     <value>Моля, въведете email на рецензент.</value>
   </data>
@@ -1578,6 +1608,15 @@
   </data>
   <data name="DossierEdit_ReviewerLastName_Required" xml:space="preserve">
     <value>Моля, въведете фамилия на рецензент.</value>
+  </data>
+  <data name="FeaturedSection_International_Description" xml:space="preserve">
+    <value>Публикациите в „Лингвистика, интерпретация, концепции“ са на български или на английски език и могат да бъдат полезни на специалисти от различни сфери на хуманитаристиката.</value>
+  </data>
+  <data name="FeaturedSection_Review_Description" xml:space="preserve">
+    <value>След първоначално одобрение редакторите анонимизират ръкописа и го изпращат на двама рецензенти – експерти в съответната научна област.</value>
+  </data>
+  <data name="FeaturedSection_Team_Description" xml:space="preserve">
+    <value>В редакторския екип на изданието участват хабилитирани преподаватели от Филологическия факултет на Пловдивския университет „Паисий Хилендарски“. Членове на Редакционния борд са изявени изследователи от различни страни и научни организации.</value>
   </data>
   <data name="JournalDossier_ClearedAssignment" xml:space="preserve">
     <value>Редактор {0} е премахнат от досието.</value>

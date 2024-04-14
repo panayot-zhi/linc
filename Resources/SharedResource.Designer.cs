@@ -61,11 +61,74 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Текстовете, постъпили в редакцията на списанието, подлежат на двойно анонимно рецензиране от двама независими рецензенти – експерти в съответната научна област..
+        /// </summary>
+        public static string AboutSection_Content_Description {
+            get {
+                return ResourceManager.GetString("AboutSection_Content_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Съдържание.
         /// </summary>
         public static string AboutSection_Content_Title {
             get {
                 return ResourceManager.GetString("AboutSection_Content_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to „Лингвистика, интерпретация, концепции“ е списание на Филологическия факултет на Пловдивския университет „Паисий Хилендарски“..
+        /// </summary>
+        public static string AboutSection_Description_FirstRow {
+            get {
+                return ResourceManager.GetString("AboutSection_Description_FirstRow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Годишно излизат &lt;span&gt;два броя&lt;/span&gt;, единият от които е &lt;span&gt;тематичен&lt;/span&gt;..
+        /// </summary>
+        public static string AboutSection_Description_SecondRow {
+            get {
+                return ResourceManager.GetString("AboutSection_Description_SecondRow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изданието се стреми да формира пространство на толерантния и стойностен интелектуален дебат върху проблемите, занимаващи съвременните изследователи хуманитаристи, да популяризира постиженията на български и чужди учени, да се съобразява с потребностите на читателска аудитория със специфични интереси и подготвеност..
+        /// </summary>
+        public static string AboutSection_Footer_RowOne {
+            get {
+                return ResourceManager.GetString("AboutSection_Footer_RowOne", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Лиценз: CC BY-NC-ND 4.0 / Attribution-NonCommercial-NoDerivatives 4.0 International.
+        /// </summary>
+        public static string AboutSection_Footer_RowThree {
+            get {
+                return ResourceManager.GetString("AboutSection_Footer_RowThree", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Списанието се финансира от Пловдивския университет и се издава от Пловдивско университетско издателство..
+        /// </summary>
+        public static string AboutSection_Footer_RowTwo {
+            get {
+                return ResourceManager.GetString("AboutSection_Footer_RowTwo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to „Лингвистика, интерпретация, концепции“ публикува статии по проблеми на теорията, историята и социологията на езика и литературата, културологични, медийни и компаративистки изследвания, проучвания относно диалозите между изкуствата, трудове върху стратегиите и практиките в хуманитарното образование, рецензии за академични книги..
+        /// </summary>
+        public static string AboutSection_Goals_Description {
+            get {
+                return ResourceManager.GetString("AboutSection_Goals_Description", resourceCulture);
             }
         }
         
@@ -79,6 +142,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Списанието предоставя трибуна на изследователи с различни методологически нагласи, от различни поколения и идентифициращи се с различни културни традиции и контексти..
+        /// </summary>
+        public static string AboutSection_Mission_Description {
+            get {
+                return ResourceManager.GetString("AboutSection_Mission_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Мисия.
         /// </summary>
         public static string AboutSection_Mission_Title {
@@ -88,11 +160,29 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Публикуването в „Лингвистика, интерпретация, концепции“ е безплатно за авторите и за институциите, към които те принадлежат. Достъпът до онлайн формата на изданието е свободен, безплатен и до целия текстови обем..
+        /// </summary>
+        public static string AboutSection_Publish_Description {
+            get {
+                return ResourceManager.GetString("AboutSection_Publish_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Публикуване на ръкопис.
         /// </summary>
         public static string AboutSection_Publish_Title {
             get {
                 return ResourceManager.GetString("AboutSection_Publish_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Текстовете, постъпили в редакцията на списанието, подлежат на двойно анонимно рецензиране от двама независими рецензенти – експерти в съответната научна област..
+        /// </summary>
+        public static string AboutSection_Review_Description {
+            get {
+                return ResourceManager.GetString("AboutSection_Review_Description", resourceCulture);
             }
         }
         
@@ -1620,11 +1710,29 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Публикациите в „Лингвистика, интерпретация, концепции“ са на български или на английски език и могат да бъдат полезни на специалисти от различни сфери на хуманитаристиката..
+        /// </summary>
+        public static string FeaturedSection_International_Description {
+            get {
+                return ResourceManager.GetString("FeaturedSection_International_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Български &amp; Английски.
         /// </summary>
         public static string FeaturedSection_International_Title {
             get {
                 return ResourceManager.GetString("FeaturedSection_International_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to След първоначално одобрение редакторите анонимизират ръкописа и го изпращат на двама рецензенти – експерти в съответната научна област..
+        /// </summary>
+        public static string FeaturedSection_Review_Description {
+            get {
+                return ResourceManager.GetString("FeaturedSection_Review_Description", resourceCulture);
             }
         }
         
@@ -1653,6 +1761,15 @@ namespace linc.Resources {
         public static string FeaturedSection_Submit_Title {
             get {
                 return ResourceManager.GetString("FeaturedSection_Submit_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to В редакторския екип на изданието участват хабилитирани преподаватели от Филологическия факултет на Пловдивския университет „Паисий Хилендарски“. Членове на Редакционния борд са изявени изследователи от различни страни и научни организации..
+        /// </summary>
+        public static string FeaturedSection_Team_Description {
+            get {
+                return ResourceManager.GetString("FeaturedSection_Team_Description", resourceCulture);
             }
         }
         

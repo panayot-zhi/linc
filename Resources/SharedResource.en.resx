@@ -1572,6 +1572,36 @@
   <data name="Reviewer_Label" xml:space="preserve">
     <value>Reviewer</value>
   </data>
+  <data name="AboutSection_Content_Description" xml:space="preserve">
+    <value>The texts published in LInC are in Bulgarian or English and should be of interest to specialists in various branches of the humanities.</value>
+  </data>
+  <data name="AboutSection_Description_FirstRow" xml:space="preserve">
+    <value>Linguistics, Interpretations, Concepts is a journal published by the Faculty of Philology of Paisii Hilendarski University of Plovdiv.</value>
+  </data>
+  <data name="AboutSection_Description_SecondRow" xml:space="preserve">
+    <value>The journal is published &lt;span&gt;biannually&lt;/span&gt;, and one of the two issues covers a &lt;span&gt;particular topic&lt;/span&gt;.</value>
+  </data>
+  <data name="AboutSection_Footer_RowOne" xml:space="preserve">
+    <value>The journal seeks to create a forum for tolerant and valuable intellectual debate on issues engaging contemporary researchers in the humanities, to popularise the achievements of Bulgarian and foreign scholars, and to accommodate the needs of a readership with specific interests and backgrounds.</value>
+  </data>
+  <data name="AboutSection_Footer_RowThree" xml:space="preserve">
+    <value>Licence: CC BY-NC-ND 4.0 / Attribution-NonCommercial-NoDerivatives 4.0 International</value>
+  </data>
+  <data name="AboutSection_Footer_RowTwo" xml:space="preserve">
+    <value>The journal is funded by Paisii Hilendarski University of Plovdiv, and is published by Plovdiv University Press.</value>
+  </data>
+  <data name="AboutSection_Goals_Description" xml:space="preserve">
+    <value>LInC publishes articles on topics in the theory, history and sociology of language and literature, culture studies, media studies, comparative studies, studies on dialogues between the arts, studies on educational strategies and practices in the humanities, and academic book reviews.</value>
+  </data>
+  <data name="AboutSection_Mission_Description" xml:space="preserve">
+    <value>The journal provides a platform for researchers with different methods and approaches, belonging to different generations and identifying with different cultural traditions and contexts.</value>
+  </data>
+  <data name="AboutSection_Publish_Description" xml:space="preserve">
+    <value>Publication in LInC is free of charge for the authors, as well as for the institutions to which they are affiliated. Access to the online edition is free, as is access to the full texts.</value>
+  </data>
+  <data name="AboutSection_Review_Description" xml:space="preserve">
+    <value>Submissions to the journal are subject to double-blind peer review by two independent reviewers who are experts in the respective research areas.</value>
+  </data>
   <data name="DossierEdit_ReviewerEmail_Required" xml:space="preserve">
     <value>Please, fill reviewer's email address.</value>
   </data>
@@ -1580,6 +1610,15 @@
   </data>
   <data name="DossierEdit_ReviewerLastName_Required" xml:space="preserve">
     <value>Please, fill reviewer's last name.</value>
+  </data>
+  <data name="FeaturedSection_International_Description" xml:space="preserve">
+    <value>The journal accepts publications in Bulgarian and English. They can be of interest to specialists in various branches of the humanities.</value>
+  </data>
+  <data name="FeaturedSection_Review_Description" xml:space="preserve">
+    <value>In the event of initial approval editors will delete any personal information and send the manuscript to two anonymous reviewers who are experts in the area of the research.</value>
+  </data>
+  <data name="FeaturedSection_Team_Description" xml:space="preserve">
+    <value>The members of the editorial team are  full professors and associate professors from the Faculty of Philology at Paisii Hilendarski University of Plovdiv. The members of the Editorial Board are renowned researchers from  various countries and scientific organisations.</value>
   </data>
   <data name="JournalDossier_ClearedAssignment" xml:space="preserve">
     <value>Editor {0} was removed from dossier.</value>
