@@ -1,7 +1,6 @@
 ﻿using linc.Models.Enumerations;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
 
 namespace linc.Data
 {
@@ -78,5 +77,13 @@ namespace linc.Data
             Documents.Where(x => x.DocumentType == ApplicationDocumentType.Review).ToList();
 
         #endregion NotMapped
+
+        #region Automatic
+
+        public DateTime LastUpdated { get; set; }
+
+        public DateTime DateCreated { get; set; }
+
+        #endregion Automatic
     }
 }
