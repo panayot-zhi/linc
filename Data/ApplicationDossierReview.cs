@@ -21,6 +21,12 @@ namespace linc.Data
         public string Email { get; set; }
 
 
+        [NotMapped]
+        public string Names => Reviewer == null ?
+            $"{FirstName} {LastName}" :
+            Reviewer.Names;
+
+
         #region Navigation
 
         [ForeignKey(nameof(Reviewer))]
