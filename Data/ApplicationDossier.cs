@@ -31,10 +31,31 @@ namespace linc.Data
         public ApplicationDossierStatus Status { get; set; }
 
 
+        #region Navigation
+
+        [Required]
+        [ForeignKey(nameof(CreatedBy))]
+        public string CreatedById { get; set; }
+
+        public virtual ApplicationUser CreatedBy { get; set; }
+
+
+        [ForeignKey(nameof(AssignedTo))]
+        public string AssignedToId { get; set; }
+
+        public virtual ApplicationUser AssignedTo { get; set; }
+
+
         public virtual ICollection<ApplicationDocument> Documents { get; set; } = new List<ApplicationDocument>();
 
         public virtual ICollection<DossierJournal> Journals { get; set; } = new HashSet<DossierJournal>();
 
+        #endregion Navigation
+
+        #region NotMapped
+
+        [NotMapped]
+        public string Names => $"{FirstName} {LastName}";
 
         [NotMapped]
         public ApplicationDocument Original =>
@@ -56,23 +77,6 @@ namespace linc.Data
         public List<ApplicationDocument> Reviews =>
             Documents.Where(x => x.DocumentType == ApplicationDocumentType.Review).ToList();
 
-
-        [Required]
-        [ForeignKey(nameof(CreatedBy))]
-        public string CreatedById { get; set; }
-
-        public ApplicationUser CreatedBy { get; set; }
-
-
-        [ForeignKey(nameof(EditedBy))]
-        public string EditedById { get; set; }
-
-        public ApplicationUser EditedBy { get; set; }
-
-
-        [ForeignKey(nameof(AssignedTo))]
-        public string AssignedToId { get; set; }
-
-        public ApplicationUser AssignedTo { get; set; }
+        #endregion NotMapped
     }
 }
