@@ -33,7 +33,7 @@ namespace linc
                 return NotFound();
             }
 
-            var viewModel = await _dossierService.GetDossierDetailsAsync(id.Value);
+            var viewModel = await _dossierService.GetDossierDetailsViewModelAsync(id.Value);
             if (viewModel == null)
             {
                 return NotFound();
@@ -58,23 +58,9 @@ namespace linc
                 return View(viewModel);
             }
 
-            var currentUserId = User.GetUserId();
-            await _dossierService.CreateDossierAsync(viewModel, currentUserId);
+            await _dossierService.CreateDossierAsync(viewModel);
             return RedirectToAction(nameof(Index));
 
-        }
-
-        public async Task<IActionResult> AssignToMe(int? id)
-        {
-            if (id is null)
-            {
-                return NotFound();
-            }
-
-            var userId = User.GetUserId();
-            await _dossierService.AssignDossierAsync(id.Value, userId);
-
-            return RedirectToAction(nameof(Details));
         }
 
         public async Task<IActionResult> Edit(int? id)
@@ -84,7 +70,7 @@ namespace linc
                 return NotFound();
             }
 
-            var viewModel = await _dossierService.GetDossierEditAsync(id.Value);
+            var viewModel = await _dossierService.GetDossierEditViewModelAsync(id.Value);
             if (viewModel == null)
             {
                 return NotFound();
@@ -104,6 +90,28 @@ namespace linc
 
             await _dossierService.UpdateDossierAsync(viewModel);
 
+            return RedirectToAction(nameof(Details), new { id = viewModel.Id });
+        }
+
+        public async Task<IActionResult> UpdateAssignee(int? id)
+        {
+            if (id is null)
+            {
+                return NotFound();
+            }
+
+            await _dossierService.UpdateAssigneeAsync(id.Value);
+            return RedirectToAction(nameof(Details));
+        }
+
+        public async Task<IActionResult> UpdateStatus(int? id, ApplicationDossierStatus status)
+        {
+            if (id is null)
+            {
+                return NotFound();
+            }
+
+            await _dossierService.UpdateStatusAsync(id.Value, status);
             return RedirectToAction(nameof(Details));
         }
     }

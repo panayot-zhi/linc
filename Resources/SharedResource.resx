@@ -1435,6 +1435,9 @@
   <data name="DossierDocument_ListHeader_OriginalFileName" xml:space="preserve">
     <value>Файл</value>
   </data>
+  <data name="DossierEdit_AssignEditor_Prompt" xml:space="preserve">
+    <value>Изберете редактор за досието</value>
+  </data>
   <data name="DossierStatus_Accepted" xml:space="preserve">
     <value>Приет за печат</value>
   </data>
@@ -1465,6 +1468,12 @@
   <data name="Dossier_DetailsPage_Title" xml:space="preserve">
     <value>Преглед на досие</value>
   </data>
+  <data name="Dossier_EditPage_SubTitle" xml:space="preserve">
+    <value>Редакция на досие на ръкопис</value>
+  </data>
+  <data name="Dossier_EditPage_Title" xml:space="preserve">
+    <value>Редакция на досие</value>
+  </data>
   <data name="Dossier_Label" xml:space="preserve">
     <value>Досие</value>
   </data>
@@ -1479,6 +1488,9 @@
   </data>
   <data name="Dossier_ListHeader_Title" xml:space="preserve">
     <value>Ръкопис</value>
+  </data>
+  <data name="Dossier_ТоList_Label" xml:space="preserve">
+    <value>Към списък досиета</value>
   </data>
   <data name="JournalDossier_Created" xml:space="preserve">
     <value>Създадено досие.</value>

@@ -1437,6 +1437,9 @@
   <data name="DossierDocument_ListHeader_OriginalFileName" xml:space="preserve">
     <value>File</value>
   </data>
+  <data name="DossierEdit_AssignEditor_Prompt" xml:space="preserve">
+    <value>Choose assignee for this dossier</value>
+  </data>
   <data name="DossierStatus_Accepted" xml:space="preserve">
     <value>Accepted for print</value>
   </data>
@@ -1467,6 +1470,12 @@
   <data name="Dossier_DetailsPage_Title" xml:space="preserve">
     <value>Dossier details</value>
   </data>
+  <data name="Dossier_EditPage_SubTitle" xml:space="preserve">
+    <value>Editing manuscript dossier</value>
+  </data>
+  <data name="Dossier_EditPage_Title" xml:space="preserve">
+    <value>Dossier edit</value>
+  </data>
   <data name="Dossier_Label" xml:space="preserve">
     <value>Dossier</value>
   </data>
@@ -1481,6 +1490,9 @@
   </data>
   <data name="Dossier_ListHeader_Title" xml:space="preserve">
     <value>Manuscript</value>
+  </data>
+  <data name="Dossier_ТоList_Label" xml:space="preserve">
+    <value>To dossiers list</value>
   </data>
   <data name="JournalDossier_Created" xml:space="preserve">
     <value>New dossier has been created.</value>

@@ -1044,6 +1044,24 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Редакция на досие на ръкопис.
+        /// </summary>
+        public static string Dossier_EditPage_SubTitle {
+            get {
+                return ResourceManager.GetString("Dossier_EditPage_SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Редакция на досие.
+        /// </summary>
+        public static string Dossier_EditPage_Title {
+            get {
+                return ResourceManager.GetString("Dossier_EditPage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Списък с налични досиета.
         /// </summary>
         public static string Dossier_IndexPage_SubTitle {
@@ -1112,6 +1130,15 @@ namespace linc.Resources {
         public static string Dossier_ListHeader_Title {
             get {
                 return ResourceManager.GetString("Dossier_ListHeader_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Към списък досиета.
+        /// </summary>
+        public static string Dossier_ТоList_Label {
+            get {
+                return ResourceManager.GetString("Dossier_ТоList_Label", resourceCulture);
             }
         }
         
@@ -1211,6 +1238,15 @@ namespace linc.Resources {
         public static string DossierDocument_ListHeader_OriginalFileName {
             get {
                 return ResourceManager.GetString("DossierDocument_ListHeader_OriginalFileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изберете редактор за досието.
+        /// </summary>
+        public static string DossierEdit_AssignEditor_Prompt {
+            get {
+                return ResourceManager.GetString("DossierEdit_AssignEditor_Prompt", resourceCulture);
             }
         }
         

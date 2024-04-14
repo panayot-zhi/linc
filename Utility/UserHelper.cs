@@ -94,7 +94,12 @@ namespace linc.Utility
 
         public static List<ApplicationUser> GetAllByRole(this ApplicationDbContext dbContext, string roleName)
         {
-            var role = dbContext.Roles.First(x => x.Name == roleName);
+            var role = dbContext.Roles.FirstOrDefault(x => x.Name == roleName);
+            if (role == null)
+            {
+                return new List<ApplicationUser>();
+            }
+
             var userIds = dbContext.UserRoles
                 .Where(x => x.RoleId == role.Id)
                 .Select(x => x.UserId);
