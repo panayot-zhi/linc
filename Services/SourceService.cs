@@ -126,6 +126,8 @@ namespace linc.Services
             var lastPage = input.LastPage!.Value;
             var issueId = input.IssueId!.Value;
 
+            await using var transaction = await _context.Database.BeginTransactionAsync();
+
             var issue = _context.Issues
                 .Include(x => x.Files)
                 .First(x => x.Id == issueId);
@@ -142,8 +144,8 @@ namespace linc.Services
             {
                 // no pdf file was provided, generate it from the issue pdf
                 pdf = await GenerateSourcePdf(issue, startingPage, lastPage);
-
             }
+
             var entity = new ApplicationSource
             {
                 FirstName = input.FirstName,
@@ -166,6 +168,7 @@ namespace linc.Services
 
             var entityEntry = await _context.Sources.AddAsync(entity);
             await _context.SaveChangesAsync();
+            await transaction.CommitAsync();
             return entityEntry.Entity.Id;
         }
 
@@ -259,9 +262,16 @@ namespace linc.Services
         {
             var user = await _context.Users
                 .FirstOrDefaultAsync(x =>
-                    x.FirstName.ToUpper() == inputFirstName.ToUpper() &&
-                    x.LastName.ToUpper() == inputLastName.ToUpper()
+                    string.Equals(x.FirstName, inputFirstName, StringComparison.CurrentCultureIgnoreCase) &&
+                    string.Equals(x.LastName, inputLastName, StringComparison.CurrentCultureIgnoreCase)
                 );
+
+            if (user is not null)
+            {
+                _context.Users.Attach(user);
+                user.IsAuthor = true;
+                await _context.SaveChangesAsync();
+            }
 
             return user?.Id;
         }
