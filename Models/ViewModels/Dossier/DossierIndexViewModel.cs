@@ -7,10 +7,8 @@ namespace linc.Models.ViewModels.Dossier
     {
         public DossierIndexViewModel(int totalRecords, int pageIndex, int pageSize) : base(totalRecords, pageIndex, pageSize)
         {
-
         }
 
         public IEnumerable<ApplicationDossier> Records { get; set; }
-
     }
 }

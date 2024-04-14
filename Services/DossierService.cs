@@ -65,6 +65,7 @@ namespace linc.Services
         public async Task<DossierDetailsViewModel> GetDossierDetailsAsync(int id)
         {
             var query = _context.Dossiers
+                .Include(x => x.Documents)
                 .Include(x => x.AssignedTo)
                 .Include(x => x.Journals)
                     .ThenInclude(x => x.PerformedBy);
@@ -97,7 +98,10 @@ namespace linc.Services
                     string.Empty,
 
                 // TODO: filter?
-                Journals = dossier.Journals.ToList()
+                Journals = dossier.Journals.ToList(),
+                Documents = dossier.Documents
+                    .OrderByDescending(x => x.DateCreated)
+                    .ToList()
             };
 
             return viewModel;

@@ -918,6 +918,96 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Декларация.
+        /// </summary>
+        public static string DocumentType_Agreement {
+            get {
+                return ResourceManager.GetString("DocumentType_Agreement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Анонимизиран.
+        /// </summary>
+        public static string DocumentType_Anonymized {
+            get {
+                return ResourceManager.GetString("DocumentType_Anonymized", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Корица.
+        /// </summary>
+        public static string DocumentType_CoverPage {
+            get {
+                return ResourceManager.GetString("DocumentType_CoverPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Съдържание.
+        /// </summary>
+        public static string DocumentType_IndexPage {
+            get {
+                return ResourceManager.GetString("DocumentType_IndexPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Брой.
+        /// </summary>
+        public static string DocumentType_IssuePdf {
+            get {
+                return ResourceManager.GetString("DocumentType_IssuePdf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Оригинал.
+        /// </summary>
+        public static string DocumentType_Original {
+            get {
+                return ResourceManager.GetString("DocumentType_Original", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Редактиран.
+        /// </summary>
+        public static string DocumentType_Redacted {
+            get {
+                return ResourceManager.GetString("DocumentType_Redacted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Рецензия.
+        /// </summary>
+        public static string DocumentType_Review {
+            get {
+                return ResourceManager.GetString("DocumentType_Review", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Източник.
+        /// </summary>
+        public static string DocumentType_SourcePdf {
+            get {
+                return ResourceManager.GetString("DocumentType_SourcePdf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Неизвестен.
+        /// </summary>
+        public static string DocumentType_Unknown {
+            get {
+                return ResourceManager.GetString("DocumentType_Unknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Създаване на ново досие за ръкопис.
         /// </summary>
         public static string Dossier_CreatePage_SubTitle {
@@ -932,6 +1022,15 @@ namespace linc.Resources {
         public static string Dossier_CreatePage_Title {
             get {
                 return ResourceManager.GetString("Dossier_CreatePage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Няма назначен редактор..
+        /// </summary>
+        public static string Dossier_DetailsPage_NoEditorAssigned {
+            get {
+                return ResourceManager.GetString("Dossier_DetailsPage_NoEditorAssigned", resourceCulture);
             }
         }
         
@@ -1058,6 +1157,60 @@ namespace linc.Resources {
         public static string DossierCreate_Title {
             get {
                 return ResourceManager.GetString("DossierCreate_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Редактор.
+        /// </summary>
+        public static string DossierDetails_AssignedTo {
+            get {
+                return ResourceManager.GetString("DossierDetails_AssignedTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string DossierDetails_AuthorEmail {
+            get {
+                return ResourceManager.GetString("DossierDetails_AuthorEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Автор.
+        /// </summary>
+        public static string DossierDetails_AuthorNames {
+            get {
+                return ResourceManager.GetString("DossierDetails_AuthorNames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Създаден.
+        /// </summary>
+        public static string DossierDocument_ListHeader_DateCreated {
+            get {
+                return ResourceManager.GetString("DossierDocument_ListHeader_DateCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Тип.
+        /// </summary>
+        public static string DossierDocument_ListHeader_DocumentType {
+            get {
+                return ResourceManager.GetString("DossierDocument_ListHeader_DocumentType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Файл.
+        /// </summary>
+        public static string DossierDocument_ListHeader_OriginalFileName {
+            get {
+                return ResourceManager.GetString("DossierDocument_ListHeader_OriginalFileName", resourceCulture);
             }
         }
         
@@ -2961,7 +3114,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;p&gt;Моля, бъдете подробни в информацията, която предоставяте, и включете екранни снимки, ако е приложимо.&lt;/p&gt;.
+        ///   Looks up a localized string similar to Моля, бъдете подробни в информацията, която предоставяте, и включете екранни снимки, ако е приложимо..
         /// </summary>
         public static string ReportBug_Description_Bottom {
             get {
@@ -2970,7 +3123,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;p&gt;Ако сте открили несъответсвие или грешка, моля, докладвайте я на администратора за да може да адресираме проблема възможно най-бързо.&lt;/p&gt;.
+        ///   Looks up a localized string similar to Ако сте открили несъответсвие или грешка, моля, докладвайте я на администратора за да може да адресираме проблема възможно най-бързо..
         /// </summary>
         public static string ReportBug_Description_Top {
             get {

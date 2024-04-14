@@ -1080,7 +1080,7 @@
     <value>Report</value>
   </data>
   <data name="ReportBug_Description_Top" xml:space="preserve">
-    <value>&lt;p&gt;If you have encountered an issue or an inconsistency, please, report this to the site administrator so he can take up measures immediately.&lt;/p&gt;</value>
+    <value>If you have encountered an issue or an inconsistency, please, report this to the site administrator so he can take up measures immediately.</value>
   </data>
   <data name="ReportBug_Title" xml:space="preserve">
     <value>Report a bug</value>
@@ -1389,6 +1389,54 @@
   <data name="Details_Label" xml:space="preserve">
     <value>Details</value>
   </data>
+  <data name="DocumentType_Agreement" xml:space="preserve">
+    <value>Declaration</value>
+  </data>
+  <data name="DocumentType_Anonymized" xml:space="preserve">
+    <value>Anonymized</value>
+  </data>
+  <data name="DocumentType_CoverPage" xml:space="preserve">
+    <value>Cover</value>
+  </data>
+  <data name="DocumentType_IndexPage" xml:space="preserve">
+    <value>Index</value>
+  </data>
+  <data name="DocumentType_IssuePdf" xml:space="preserve">
+    <value>Issue</value>
+  </data>
+  <data name="DocumentType_Original" xml:space="preserve">
+    <value>Original</value>
+  </data>
+  <data name="DocumentType_Redacted" xml:space="preserve">
+    <value>Redacted</value>
+  </data>
+  <data name="DocumentType_Review" xml:space="preserve">
+    <value>Review</value>
+  </data>
+  <data name="DocumentType_SourcePdf" xml:space="preserve">
+    <value>Source</value>
+  </data>
+  <data name="DocumentType_Unknown" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="DossierDetails_AssignedTo" xml:space="preserve">
+    <value>Editor</value>
+  </data>
+  <data name="DossierDetails_AuthorEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="DossierDetails_AuthorNames" xml:space="preserve">
+    <value>Author</value>
+  </data>
+  <data name="DossierDocument_ListHeader_DateCreated" xml:space="preserve">
+    <value>Created</value>
+  </data>
+  <data name="DossierDocument_ListHeader_DocumentType" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="DossierDocument_ListHeader_OriginalFileName" xml:space="preserve">
+    <value>File</value>
+  </data>
   <data name="DossierStatus_Accepted" xml:space="preserve">
     <value>Accepted for print</value>
   </data>
@@ -1413,6 +1461,9 @@
   <data name="DossierStatus_Reviewed" xml:space="preserve">
     <value>Reviewed</value>
   </data>
+  <data name="Dossier_DetailsPage_NoEditorAssigned" xml:space="preserve">
+    <value>No editor assigned.</value>
+  </data>
   <data name="Dossier_DetailsPage_Title" xml:space="preserve">
     <value>Dossier details</value>
   </data>
@@ -1435,6 +1486,6 @@
     <value>New dossier has been created.</value>
   </data>
   <data name="ReportBug_Description_Bottom" xml:space="preserve">
-    <value>&lt;p&gt;Please, be detailed in the information that you provide and include screenshots, if applicable.&lt;/p&gt;</value>
+    <value>Please, be detailed in the information that you provide and include screenshots, if applicable.</value>
   </data>
 </root>

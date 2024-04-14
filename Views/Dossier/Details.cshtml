@@ -54,15 +54,6 @@
         <div class="row">
             <div class="col-lg-9">
                 <dl class="row">
-                    @if (!string.IsNullOrEmpty(Model.AssignedTo))
-                    {
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.AssignedTo)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.AssignedTo)
-                        </dd>
-                    }
                     <dt class="col-sm-2">
                         @Html.DisplayNameFor(model => model.AuthorNames)
                     </dt>
@@ -75,7 +66,58 @@
                     <dd class="col-sm-10">
                         @Html.DisplayFor(model => model.AuthorEmail)
                     </dd>
+                    <dt class="col-sm-2">
+                        @Html.DisplayNameFor(model => model.AssignedTo)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @if (!string.IsNullOrEmpty(Model.AssignedTo))
+                        {
+                            @Html.DisplayFor(model => model.AssignedTo)
+                        }
+                        else
+                        {
+                            @HtmlLocalizer["Dossier_DetailsPage_NoEditorAssigned"]
+                        }
+                    </dd>
                 </dl>
+                
+                <hr />
+                
+                <table class="table table-hover">
+                    <thead class="table-light">
+                    <tr>
+                        <th class="col-md-2">
+                            @HtmlLocalizer["DossierDocument_ListHeader_DocumentType"]
+                        </th>
+                        <th class="col-md-7">
+                            @HtmlLocalizer["DossierDocument_ListHeader_OriginalFileName"]
+                        </th>
+                        <th class="text-center col-md-2">
+                                @HtmlLocalizer["DossierDocument_ListHeader_DateCreated"]
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in Model.Documents)
+                    {
+                        <tr>
+                            <td class="col-md-2">
+                                @Html.DisplayFor(modelItem => item.DocumentType)
+                            </td>
+                            <td class="col-md-8">
+                                <a asp-controller="Document" asp-action="DownloadDocumentFile" asp-route-id="@item.Id">
+                                    @Html.DisplayFor(modelItem => item.OriginalFileName)
+                                </a>
+                            </td>
+                            <td class="text-center col-md-2">
+                                    @item.DateCreated.ToString("dd MMM yyyy")
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+
+                </table>
+
             </div>
             <div class="col-lg-3">
                 <div class="journal-entries">

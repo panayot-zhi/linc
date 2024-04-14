@@ -1224,7 +1224,7 @@
     <value>Докладвай</value>
   </data>
   <data name="ReportBug_Description_Top" xml:space="preserve">
-    <value>&lt;p&gt;Ако сте открили несъответсвие или грешка, моля, докладвайте я на администратора за да може да адресираме проблема възможно най-бързо.&lt;/p&gt;</value>
+    <value>Ако сте открили несъответсвие или грешка, моля, докладвайте я на администратора за да може да адресираме проблема възможно най-бързо.</value>
   </data>
   <data name="ReportBug_Title" xml:space="preserve">
     <value>Докладвай за нередност</value>
@@ -1387,6 +1387,54 @@
   <data name="Details_Label" xml:space="preserve">
     <value>Преглед</value>
   </data>
+  <data name="DocumentType_Agreement" xml:space="preserve">
+    <value>Декларация</value>
+  </data>
+  <data name="DocumentType_Anonymized" xml:space="preserve">
+    <value>Анонимизиран</value>
+  </data>
+  <data name="DocumentType_CoverPage" xml:space="preserve">
+    <value>Корица</value>
+  </data>
+  <data name="DocumentType_IndexPage" xml:space="preserve">
+    <value>Съдържание</value>
+  </data>
+  <data name="DocumentType_IssuePdf" xml:space="preserve">
+    <value>Брой</value>
+  </data>
+  <data name="DocumentType_Original" xml:space="preserve">
+    <value>Оригинал</value>
+  </data>
+  <data name="DocumentType_Redacted" xml:space="preserve">
+    <value>Редактиран</value>
+  </data>
+  <data name="DocumentType_Review" xml:space="preserve">
+    <value>Рецензия</value>
+  </data>
+  <data name="DocumentType_SourcePdf" xml:space="preserve">
+    <value>Източник</value>
+  </data>
+  <data name="DocumentType_Unknown" xml:space="preserve">
+    <value>Неизвестен</value>
+  </data>
+  <data name="DossierDetails_AssignedTo" xml:space="preserve">
+    <value>Редактор</value>
+  </data>
+  <data name="DossierDetails_AuthorEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="DossierDetails_AuthorNames" xml:space="preserve">
+    <value>Автор</value>
+  </data>
+  <data name="DossierDocument_ListHeader_DateCreated" xml:space="preserve">
+    <value>Създаден</value>
+  </data>
+  <data name="DossierDocument_ListHeader_DocumentType" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="DossierDocument_ListHeader_OriginalFileName" xml:space="preserve">
+    <value>Файл</value>
+  </data>
   <data name="DossierStatus_Accepted" xml:space="preserve">
     <value>Приет за печат</value>
   </data>
@@ -1411,6 +1459,9 @@
   <data name="DossierStatus_Reviewed" xml:space="preserve">
     <value>Рецензиран</value>
   </data>
+  <data name="Dossier_DetailsPage_NoEditorAssigned" xml:space="preserve">
+    <value>Няма назначен редактор.</value>
+  </data>
   <data name="Dossier_DetailsPage_Title" xml:space="preserve">
     <value>Преглед на досие</value>
   </data>
@@ -1433,6 +1484,6 @@
     <value>Създадено досие.</value>
   </data>
   <data name="ReportBug_Description_Bottom" xml:space="preserve">
-    <value>&lt;p&gt;Моля, бъдете подробни в информацията, която предоставяте, и включете екранни снимки, ако е приложимо.&lt;/p&gt;</value>
+    <value>Моля, бъдете подробни в информацията, която предоставяте, и включете екранни снимки, ако е приложимо.</value>
   </data>
 </root>
