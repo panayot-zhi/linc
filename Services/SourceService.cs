@@ -132,7 +132,7 @@ namespace linc.Services
                 .Include(x => x.Files)
                 .First(x => x.Id == issueId);
 
-            var authorId = await FindUserByNamesAsync(input.FirstName, input.LastName);
+            var authorId = await FindAuthorByNamesAsync(input.FirstName, input.LastName);
 
             ApplicationDocument pdf;
             if (input.PdfFile != null)
@@ -258,12 +258,12 @@ namespace linc.Services
         }
 
 
-        private async Task<string> FindUserByNamesAsync(string inputFirstName, string inputLastName)
+        private async Task<string> FindAuthorByNamesAsync(string inputFirstName, string inputLastName)
         {
             var user = await _context.Users
                 .FirstOrDefaultAsync(x =>
-                    string.Equals(x.FirstName, inputFirstName, StringComparison.CurrentCultureIgnoreCase) &&
-                    string.Equals(x.LastName, inputLastName, StringComparison.CurrentCultureIgnoreCase)
+                    EF.Functions.Like(x.FirstName, $"{inputFirstName}") &&
+                    EF.Functions.Like(x.LastName, $"{inputLastName}")
                 );
 
             if (user is not null)
