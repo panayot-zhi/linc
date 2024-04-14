@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using linc.Data;
 using linc.Models.Enumerations;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace linc.Models.ViewModels.Dossier
 {
@@ -24,6 +23,12 @@ namespace linc.Models.ViewModels.Dossier
         [Display(Name = "DossierDetails_AssignedTo", ResourceType = typeof(Resources.SharedResource))]
         public string AssignedTo { get; set; }
 
+        public DateTime DateCreated { get; set; }
+
+        public DateTime LastUpdated { get; set; }
+
+
+        public List<ApplicationDossierReview> Reviews { get; set; }
 
         public List<ApplicationDocument> Documents { get; set; }
 
