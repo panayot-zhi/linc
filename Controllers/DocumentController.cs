@@ -24,7 +24,7 @@ namespace linc.Controllers
             _sourceService = sourceService;
         }
 
-        public async Task<IActionResult> DownloadDocumentFile(int? id)
+        public async Task<IActionResult> DownloadDocumentFile(int? id, bool useOriginalFileName = false)
         {
             if (id == null)
             {
@@ -43,7 +43,9 @@ namespace linc.Controllers
                 return NotFound();
             }
 
-            result.FileDownloadName = $"{document.FileName}.{document.Extension}";
+            result.FileDownloadName = !useOriginalFileName ? 
+                $"{document.FileName}.{document.Extension}" : 
+                document.OriginalFileName;
 
             return result;
         }
