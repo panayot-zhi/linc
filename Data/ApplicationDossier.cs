@@ -1,5 +1,6 @@
 ﻿using linc.Models.Enumerations;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace linc.Data
 {
@@ -26,10 +27,61 @@ namespace linc.Data
 
 
         [Required]
-        [MaxLength(128)]
         public ApplicationDossierStatus Status { get; set; }
 
 
-        public ICollection<ApplicationDocument> Documents { get; set; }
+        #region Navigation
+
+        [Required]
+        [ForeignKey(nameof(CreatedBy))]
+        public string CreatedById { get; set; }
+
+        public virtual ApplicationUser CreatedBy { get; set; }
+
+
+        [ForeignKey(nameof(AssignedTo))]
+        public string AssignedToId { get; set; }
+
+        public virtual ApplicationUser AssignedTo { get; set; }
+
+
+        public virtual ICollection<ApplicationDossierReview> Reviews { get; set; } = new List<ApplicationDossierReview>();
+
+        public virtual ICollection<ApplicationDocument> Documents { get; set; } = new List<ApplicationDocument>();
+
+        public virtual ICollection<DossierJournal> Journals { get; set; } = new HashSet<DossierJournal>();
+
+        #endregion Navigation
+
+        #region NotMapped
+
+        [NotMapped]
+        public string Names => $"{FirstName} {LastName}";
+
+        [NotMapped]
+        public ApplicationDocument Original =>
+            Documents.FirstOrDefault(x => x.DocumentType == ApplicationDocumentType.Original);
+
+        [NotMapped]
+        public ApplicationDocument Anonymized =>
+            Documents.FirstOrDefault(x => x.DocumentType == ApplicationDocumentType.Anonymized);
+
+        [NotMapped]
+        public ApplicationDocument Agreement =>
+            Documents.FirstOrDefault(x => x.DocumentType == ApplicationDocumentType.Agreement);
+
+        [NotMapped]
+        public ApplicationDocument Redacted =>
+            Documents.FirstOrDefault(x => x.DocumentType == ApplicationDocumentType.Redacted);
+
+        #endregion NotMapped
+
+        #region Automatic
+
+        public DateTime LastUpdated { get; set; }
+
+        public DateTime DateCreated { get; set; }
+
+        #endregion Automatic
     }
 }

@@ -1,5 +1,6 @@
 ﻿@using linc.Utility
 @using Microsoft.AspNetCore.Localization
+
 @{
     var requestCulture = Context.Features.Get<IRequestCultureFeature>();
     var currentCulture = requestCulture?.RequestCulture.UICulture.Name ?? "bg";
@@ -13,7 +14,7 @@
                          Url.Content($"~/docs/{currentCulture}/{SiteConstant.TechnicalRequirementsFileName}"),
                          Url.Content($"~/docs/{SiteConstant.PublicationAgreementFileName}")]
                 <div class="text-center">
-                    <a class="w-50 btn btn-lg btn-primary" target="_blank" href="mailto:@SiteConstant.ReviewsEmail">@HtmlLocalizer["ContactSection_SubmitButton_Label"]</a>
+                    <a class="w-50 btn btn-lg btn-primary" target="_blank" href="mailto:@SiteConstant.ReviewsEmail">@HtmlLocalizer["Submit_Button_Label"]</a>
                 </div>
             </div>
         </div>

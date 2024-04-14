@@ -126,11 +126,13 @@ namespace linc.Services
             var lastPage = input.LastPage!.Value;
             var issueId = input.IssueId!.Value;
 
+            await using var transaction = await _context.Database.BeginTransactionAsync();
+
             var issue = _context.Issues
                 .Include(x => x.Files)
                 .First(x => x.Id == issueId);
 
-            var authorId = await FindUserByNamesAsync(input.FirstName, input.LastName);
+            var authorId = await FindAuthorByNamesAsync(input.FirstName, input.LastName);
 
             ApplicationDocument pdf;
             if (input.PdfFile != null)
@@ -142,8 +144,8 @@ namespace linc.Services
             {
                 // no pdf file was provided, generate it from the issue pdf
                 pdf = await GenerateSourcePdf(issue, startingPage, lastPage);
-
             }
+
             var entity = new ApplicationSource
             {
                 FirstName = input.FirstName,
@@ -166,6 +168,7 @@ namespace linc.Services
 
             var entityEntry = await _context.Sources.AddAsync(entity);
             await _context.SaveChangesAsync();
+            await transaction.CommitAsync();
             return entityEntry.Entity.Id;
         }
 
@@ -255,15 +258,26 @@ namespace linc.Services
         }
 
 
-        private async Task<string> FindUserByNamesAsync(string inputFirstName, string inputLastName)
+        private async Task<string> FindAuthorByNamesAsync(string inputFirstName, string inputLastName)
         {
             var user = await _context.Users
                 .FirstOrDefaultAsync(x =>
-                    x.FirstName.ToUpper() == inputFirstName.ToUpper() &&
-                    x.LastName.ToUpper() == inputLastName.ToUpper()
+                    EF.Functions.Like(x.FirstName, $"{inputFirstName}") &&
+                    EF.Functions.Like(x.LastName, $"{inputLastName}")
                 );
 
-            return user?.Id;
+            if (user is null)
+            {
+                return null;
+            }
+
+            _context.Users.Attach(user);
+            
+            user.IsAuthor = true;
+
+            await _context.SaveChangesAsync();
+
+            return user.Id;
         }
     }
 }

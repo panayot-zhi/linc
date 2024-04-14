@@ -164,9 +164,9 @@
                                         </li>
                                     }
 
-                                    @* <li> *@
-                                    @*     <a href="#">@HtmlLocalizer["NavItem_Submissions"]</a> *@
-                                    @* </li> *@
+                                    <li>
+                                        <a asp-controller="Dossier" asp-action="Index">@HtmlLocalizer["NavItem_Submissions"]</a>
+                                    </li>
                                 }
                                 else
                                 {
@@ -367,7 +367,7 @@
                             </li>
                             <li>
                                 <i class="bx bx-chevron-right"></i> 
-                                <a asp-controller="Home" asp-action="Cookies">@HtmlLocalizer["Footer_GuidelinesPolicies_Cookies"]</a>
+                                <a asp-controller="Home" asp-action="Privacy" asp-fragment="#cookies">@HtmlLocalizer["Footer_GuidelinesPolicies_Cookies"]</a>
                             </li>
                         </ul>
                     </div>
@@ -416,7 +416,7 @@
                             </li>*@
 
                             <li>
-                                <i class="bx bx-chevron-right"></i> <a target="_blank" href="https://blogs.uni-plovdiv.net/verba-iuvenium/?lang=en">VERBA IUVENIUM</a>
+                                <i class="bx bx-chevron-right"></i> <a target="_blank" href="https://blogs.uni-plovdiv.net/verba-iuvenium/?lang=@currentCulture">VERBA IUVENIUM</a>
                             </li>
 
                         </ul>

@@ -411,7 +411,7 @@
   <data name="ContactSection_Review_Email" xml:space="preserve">
     <value>Email за ръкописи</value>
   </data>
-  <data name="ContactSection_SubmitButton_Label" xml:space="preserve">
+  <data name="Submit_Button_Label" xml:space="preserve">
     <value>Изпрати ръкопис</value>
   </data>
   <data name="ContactSection_SubmitDescription" xml:space="preserve">
@@ -1043,9 +1043,6 @@
   <data name="Welcome_Message" xml:space="preserve">
     <value>Добре дошли на &lt;span&gt;ЛИнК.uni-plovdiv.bg&lt;/span&gt;</value>
   </data>
-  <data name="EmailModel_OnPostChangeEmailAsync_test" xml:space="preserve">
-    <value>test</value>
-  </data>
   <data name="ChangePasswordModel_ConfirmPassword" xml:space="preserve">
     <value>Потвърди нова парола</value>
   </data>
@@ -1200,7 +1197,7 @@
     <value>Бележки към ръкописа</value>
   </data>
   <data name="Source_CreatePage_SubTitle" xml:space="preserve">
-    <value>Създаване на </value>
+    <value>Създаване на нов източник от съдържанието</value>
   </data>
   <data name="Source_CreatePage_Title" xml:space="preserve">
     <value>Създаване на източник</value>
@@ -1226,9 +1223,8 @@
   <data name="ReportBugSection_SubmitButton_Label" xml:space="preserve">
     <value>Докладвай</value>
   </data>
-  <data name="ReportBug_Description" xml:space="preserve">
-    <value>&lt;p&gt;Ако сте открили несъответсвие или грешка, моля, докладвайте я на администратора за да може да адресираме проблема възможно най-бързо.&lt;/p&gt;
-&lt;p&gt;Моля, бъдете подробни в информацията, която предоставяте, и включете екранни снимки, ако е приложимо.&lt;/p&gt;</value>
+  <data name="ReportBug_Description_Top" xml:space="preserve">
+    <value>Ако сте открили несъответсвие или грешка, моля, докладвайте я на администратора за да може да адресираме проблема възможно най-бързо.</value>
   </data>
   <data name="ReportBug_Title" xml:space="preserve">
     <value>Докладвай за нередност</value>
@@ -1348,5 +1344,281 @@
   </data>
   <data name="PortfolioSection_Description" xml:space="preserve">
     <value>Прегледайте последните издадени броеве на списанието по години.</value>
+  </data>
+  <data name="Create_Label" xml:space="preserve">
+    <value>Създаване</value>
+  </data>
+  <data name="DossierCreate_Email" xml:space="preserve">
+    <value>Email адрес</value>
+  </data>
+  <data name="DossierCreate_FirstName" xml:space="preserve">
+    <value>Име</value>
+  </data>
+  <data name="DossierCreate_LastName" xml:space="preserve">
+    <value>Фамилия</value>
+  </data>
+  <data name="DossierCreate_OriginalFile" xml:space="preserve">
+    <value>Ръкопис</value>
+  </data>
+  <data name="DossierCreate_Title" xml:space="preserve">
+    <value>Заглавие</value>
+  </data>
+  <data name="Dossier_CreatePage_SubTitle" xml:space="preserve">
+    <value>Създаване на ново досие за ръкопис</value>
+  </data>
+  <data name="Dossier_CreatePage_Title" xml:space="preserve">
+    <value>Създаване на досие</value>
+  </data>
+  <data name="Dossier_IndexPage_SubTitle" xml:space="preserve">
+    <value>Списък с налични досиета</value>
+  </data>
+  <data name="Dossier_IndexPage_Title" xml:space="preserve">
+    <value>Списък досиета</value>
+  </data>
+  <data name="Dossier_List_Label" xml:space="preserve">
+    <value>Досиета</value>
+  </data>
+  <data name="Edit_Label" xml:space="preserve">
+    <value>Редакция</value>
+  </data>
+  <data name="Dossiers_IndexPage_NoResults" xml:space="preserve">
+    <value>Няма намерени досиета.</value>
+  </data>
+  <data name="Details_Label" xml:space="preserve">
+    <value>Преглед</value>
+  </data>
+  <data name="DocumentType_Agreement" xml:space="preserve">
+    <value>Декларация</value>
+  </data>
+  <data name="DocumentType_Anonymized" xml:space="preserve">
+    <value>Анонимизиран</value>
+  </data>
+  <data name="DocumentType_CoverPage" xml:space="preserve">
+    <value>Корица</value>
+  </data>
+  <data name="DocumentType_IndexPage" xml:space="preserve">
+    <value>Съдържание</value>
+  </data>
+  <data name="DocumentType_IssuePdf" xml:space="preserve">
+    <value>Брой</value>
+  </data>
+  <data name="DocumentType_Original" xml:space="preserve">
+    <value>Оригинал</value>
+  </data>
+  <data name="DocumentType_Redacted" xml:space="preserve">
+    <value>Редактиран</value>
+  </data>
+  <data name="DocumentType_Review" xml:space="preserve">
+    <value>Рецензия</value>
+  </data>
+  <data name="DocumentType_SourcePdf" xml:space="preserve">
+    <value>Източник</value>
+  </data>
+  <data name="DocumentType_Unknown" xml:space="preserve">
+    <value>Неизвестен</value>
+  </data>
+  <data name="DossierDetails_AssignedTo" xml:space="preserve">
+    <value>Редактор</value>
+  </data>
+  <data name="DossierDetails_AuthorEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="DossierDetails_AuthorNames" xml:space="preserve">
+    <value>Автор</value>
+  </data>
+  <data name="DossierDocument_ListHeader_DateCreated" xml:space="preserve">
+    <value>Създаден</value>
+  </data>
+  <data name="DossierDocument_ListHeader_DocumentType" xml:space="preserve">
+    <value>Тип</value>
+  </data>
+  <data name="DossierDocument_ListHeader_OriginalFileName" xml:space="preserve">
+    <value>Файл</value>
+  </data>
+  <data name="DossierEdit_AssignEditor_Prompt" xml:space="preserve">
+    <value>Изберете редактор за досието</value>
+  </data>
+  <data name="DossierEdit_Reviewer_Prompt" xml:space="preserve">
+    <value>Изберете рецензент</value>
+  </data>
+  <data name="DossierStatus_Accepted" xml:space="preserve">
+    <value>Приет за печат</value>
+  </data>
+  <data name="DossierStatus_AcceptedWithCorrections" xml:space="preserve">
+    <value>Приет за печат с поправки</value>
+  </data>
+  <data name="DossierStatus_AwaitingCorrections" xml:space="preserve">
+    <value>Чака поправка</value>
+  </data>
+  <data name="DossierStatus_InReview" xml:space="preserve">
+    <value>В рецензия</value>
+  </data>
+  <data name="DossierStatus_New" xml:space="preserve">
+    <value>Нов</value>
+  </data>
+  <data name="DossierStatus_Prepared" xml:space="preserve">
+    <value>Подготвен</value>
+  </data>
+  <data name="DossierStatus_Rejected" xml:space="preserve">
+    <value>Отхвърлен</value>
+  </data>
+  <data name="DossierStatus_Reviewed" xml:space="preserve">
+    <value>Рецензиран</value>
+  </data>
+  <data name="Dossier_DetailsPage_NoEditorAssigned" xml:space="preserve">
+    <value>Няма назначен редактор.</value>
+  </data>
+  <data name="Dossier_DetailsPage_Title" xml:space="preserve">
+    <value>Преглед на досие</value>
+  </data>
+  <data name="Dossier_EditPage_SubTitle" xml:space="preserve">
+    <value>Редакция на досие на ръкопис</value>
+  </data>
+  <data name="Dossier_EditPage_Title" xml:space="preserve">
+    <value>Редакция на досие</value>
+  </data>
+  <data name="Dossier_Label" xml:space="preserve">
+    <value>Досие</value>
+  </data>
+  <data name="Dossier_ListHeader_Assignee" xml:space="preserve">
+    <value>Редактор</value>
+  </data>
+  <data name="Dossier_ListHeader_Creator" xml:space="preserve">
+    <value>Създател</value>
+  </data>
+  <data name="Dossier_ListHeader_Status" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="Dossier_ListHeader_Title" xml:space="preserve">
+    <value>Ръкопис</value>
+  </data>
+  <data name="JournalDossier_Created" xml:space="preserve">
+    <value>Създадено досие.</value>
+  </data>
+  <data name="ReportBug_Description_Bottom" xml:space="preserve">
+    <value>Моля, бъдете подробни в информацията, която предоставяте, и включете екранни снимки, ако е приложимо.</value>
+  </data>
+  <data name="DossierDetails_AssignToMe" xml:space="preserve">
+    <value>Назначи ме като редактор</value>
+  </data>
+  <data name="DossierEdit_Assignee" xml:space="preserve">
+    <value>Редактор</value>
+  </data>
+  <data name="DossierEdit_ConfirmStatusChange" xml:space="preserve">
+    <value>Сигурни ли сте, че искате да смените статуса на досието?</value>
+  </data>
+  <data name="DossierEdit_ConfirmStatusChange_Title" xml:space="preserve">
+    <value>Смяна на статус</value>
+  </data>
+  <data name="DossierEdit_Editors" xml:space="preserve">
+    <value>Редактори</value>
+  </data>
+  <data name="DossierEdit_ReviewerEmail" xml:space="preserve">
+    <value>Рецензент - email</value>
+  </data>
+  <data name="DossierEdit_ReviewerFirstName" xml:space="preserve">
+    <value>Рецензент - фамилия</value>
+  </data>
+  <data name="DossierEdit_ReviewerLastName" xml:space="preserve">
+    <value>Рецензент - име</value>
+  </data>
+  <data name="DossierEdit_Reviewers" xml:space="preserve">
+    <value>Рецензенти</value>
+  </data>
+  <data name="Dossier_BackToDetails_Label" xml:space="preserve">
+    <value>Назад към преглед</value>
+  </data>
+  <data name="Dossier_BackToList_Label" xml:space="preserve">
+    <value>Назад към списък</value>
+  </data>
+  <data name="Dossier_EditPage_ToStatus" xml:space="preserve">
+    <value>Към статус</value>
+  </data>
+  <data name="Dossier_EditPage_UploadAnonymizedDocument" xml:space="preserve">
+    <value>Прикачете анонимизиран документ</value>
+  </data>
+  <data name="Dossier_EditPage_UploadAnonymizedDocument_Warning" xml:space="preserve">
+    <value>Към досието вече има прикачен анонимизиран документ, ако прикачите нов, той ще подмени стария.</value>
+  </data>
+  <data name="Dossier_EditPage_UploadRedactedDocument" xml:space="preserve">
+    <value>Прикачете редактиран документ</value>
+  </data>
+  <data name="Dossier_EditPage_UploadRedactedDocument_Warning" xml:space="preserve">
+    <value>Към досието вече има прикачен редактиран документ, ако прикачите нов, той ще подмени стария.</value>
+  </data>
+  <data name="Dossier_EditPage_UploadReviewDocument" xml:space="preserve">
+    <value>Прикачете рецензия</value>
+  </data>
+  <data name="Dossier_EditPage_UploadReviewDocument_Info" xml:space="preserve">
+    <value>Към досието има прикачена една рецензия, когато прикачите втората, то автоматично ще премине в статус '{0}'.</value>
+  </data>
+  <data name="JournalDossier_AssignedTo" xml:space="preserve">
+    <value>Назначен {0} за редактор на досието.</value>
+  </data>
+  <data name="JournalDossier_DocumentReUploaded" xml:space="preserve">
+    <value>Подменен документ от тип '{0}'.</value>
+  </data>
+  <data name="JournalDossier_DocumentUploaded" xml:space="preserve">
+    <value>Прикачен документ от тип '{0}'.</value>
+  </data>
+  <data name="JournalDossier_ReAssignedTo" xml:space="preserve">
+    <value>Сменен {0} с {1} за редактор на досието.</value>
+  </data>
+  <data name="JournalDossier_StatusUpdated" xml:space="preserve">
+    <value>Досието премина от статус '{0}' в статус '{1}'.</value>
+  </data>
+  <data name="Reviewer_Label" xml:space="preserve">
+    <value>Рецензент</value>
+  </data>
+  <data name="AboutSection_Content_Description" xml:space="preserve">
+    <value>Текстовете, постъпили в редакцията на списанието, подлежат на двойно анонимно рецензиране от двама независими рецензенти – експерти в съответната научна област.</value>
+  </data>
+  <data name="AboutSection_Description_FirstRow" xml:space="preserve">
+    <value>„Лингвистика, интерпретация, концепции“ е списание на Филологическия факултет на Пловдивския университет „Паисий Хилендарски“.</value>
+  </data>
+  <data name="AboutSection_Description_SecondRow" xml:space="preserve">
+    <value>Годишно излизат &lt;span&gt;два броя&lt;/span&gt;, единият от които е &lt;span&gt;тематичен&lt;/span&gt;.</value>
+  </data>
+  <data name="AboutSection_Footer_RowOne" xml:space="preserve">
+    <value>Изданието се стреми да формира пространство на толерантния и стойностен интелектуален дебат върху проблемите, занимаващи съвременните изследователи хуманитаристи, да популяризира постиженията на български и чужди учени, да се съобразява с потребностите на читателска аудитория със специфични интереси и подготвеност.</value>
+  </data>
+  <data name="AboutSection_Footer_RowThree" xml:space="preserve">
+    <value>Лиценз: CC BY-NC-ND 4.0 / Attribution-NonCommercial-NoDerivatives 4.0 International</value>
+  </data>
+  <data name="AboutSection_Footer_RowTwo" xml:space="preserve">
+    <value>Списанието се финансира от Пловдивския университет и се издава от Пловдивско университетско издателство.</value>
+  </data>
+  <data name="AboutSection_Goals_Description" xml:space="preserve">
+    <value>„Лингвистика, интерпретация, концепции“ публикува статии по проблеми на теорията, историята и социологията на езика и литературата, културологични, медийни и компаративистки изследвания, проучвания относно диалозите между изкуствата, трудове върху стратегиите и практиките в хуманитарното образование, рецензии за академични книги.</value>
+  </data>
+  <data name="AboutSection_Mission_Description" xml:space="preserve">
+    <value>Списанието предоставя трибуна на изследователи с различни методологически нагласи, от различни поколения и идентифициращи се с различни културни традиции и контексти.</value>
+  </data>
+  <data name="AboutSection_Publish_Description" xml:space="preserve">
+    <value>Публикуването в „Лингвистика, интерпретация, концепции“ е безплатно за авторите и за институциите, към които те принадлежат. Достъпът до онлайн формата на изданието е свободен, безплатен и до целия текстови обем.</value>
+  </data>
+  <data name="AboutSection_Review_Description" xml:space="preserve">
+    <value>Текстовете, постъпили в редакцията на списанието, подлежат на двойно анонимно рецензиране от двама независими рецензенти – експерти в съответната научна област.</value>
+  </data>
+  <data name="DossierEdit_ReviewerEmail_Required" xml:space="preserve">
+    <value>Моля, въведете email на рецензент.</value>
+  </data>
+  <data name="DossierEdit_ReviewerFirstName_Required" xml:space="preserve">
+    <value>Моля, въведете име на рецензент.</value>
+  </data>
+  <data name="DossierEdit_ReviewerLastName_Required" xml:space="preserve">
+    <value>Моля, въведете фамилия на рецензент.</value>
+  </data>
+  <data name="FeaturedSection_International_Description" xml:space="preserve">
+    <value>Публикациите в „Лингвистика, интерпретация, концепции“ са на български или на английски език и могат да бъдат полезни на специалисти от различни сфери на хуманитаристиката.</value>
+  </data>
+  <data name="FeaturedSection_Review_Description" xml:space="preserve">
+    <value>След първоначално одобрение редакторите анонимизират ръкописа и го изпращат на двама рецензенти – експерти в съответната научна област.</value>
+  </data>
+  <data name="FeaturedSection_Team_Description" xml:space="preserve">
+    <value>В редакторския екип на изданието участват хабилитирани преподаватели от Филологическия факултет на Пловдивския университет „Паисий Хилендарски“. Членове на Редакционния борд са изявени изследователи от различни страни и научни организации.</value>
+  </data>
+  <data name="JournalDossier_ClearedAssignment" xml:space="preserve">
+    <value>Редактор {0} е премахнат от досието.</value>
   </data>
 </root>

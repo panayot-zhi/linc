@@ -7,6 +7,8 @@ public static class SiteConstant
 
     public const string IssuesFolderName = "issues";
 
+    public const string DossiersFolderName = "dossiers";
+
     public const string TempDataEditableKey = "Editable";
 
     public const string ISSN = "ISSN 3033-0181";

@@ -43,10 +43,13 @@ a.submit-link {
   /* keep */
 }
 
+a.requires-confirm {
+  /* keep */
+}
+
 /* 
     icon-links
 */
-
 .icon-links li {
     display: block;
     padding: 6px 0;
@@ -67,6 +70,59 @@ a.submit-link {
     padding: 0 4px;
 }
 
+th.asc::before {
+    content: "\f145"; /* Bootstrap Icons arrow-up */
+    font-family: 'bootstrap-icons';
+}
+
+th.desc::before {
+    content: "\f124"; /* Bootstrap Icons arrow-down */
+    font-family: 'bootstrap-icons';
+}
+
+th.sortable::before {
+    display: inline-block;
+    font-size: inherit;
+    text-rendering: auto;
+    padding-right: 10px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* 
+    journal
+*/
+.journal-entries {
+    border-left: 1px solid;
+    border-color: #d0d0d0;
+    padding: 20px;
+}
+
+.journal-entry {
+
+}
+
+/* 
+    dossier
+*/
+#dossier-operations {
+    list-style-type: none; /* Removes default list styling */
+    padding: 0; /* Removes default padding */
+}
+
+#dossier-operations li {
+    display: inline; /* Display items inline */
+    margin-right: 4px; /* Right margin of 4px */
+}
+
+#dossier-operations li:not(:last-child)::after {
+    content: " |"; /* Add separator after each item except the last one */
+    margin-left: 4px; /* Left margin of 4px to the separator */
+}
+
+/* 
+    various
+*/
 .section-title p span {
     color: #106eea;
 }

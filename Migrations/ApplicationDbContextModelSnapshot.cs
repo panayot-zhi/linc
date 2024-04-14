@@ -16,7 +16,7 @@ namespace linc.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.23")
+                .HasAnnotation("ProductVersion", "6.0.29")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("ApplicationDocumentApplicationDossier", b =>
@@ -121,6 +121,19 @@ namespace linc.Migrations
                         .HasColumnType("int")
                         .HasColumnName("id");
 
+                    b.Property<string>("AssignedToId")
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("assigned_to_id");
+
+                    b.Property<string>("CreatedById")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("created_by_id");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("date_created");
+
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -139,10 +152,12 @@ namespace linc.Migrations
                         .HasColumnType("varchar(255)")
                         .HasColumnName("last_name");
 
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasMaxLength(128)
-                        .HasColumnType("varchar(128)")
+                    b.Property<DateTime>("LastUpdated")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("last_updated");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int")
                         .HasColumnName("status");
 
                     b.Property<string>("Title")
@@ -154,7 +169,65 @@ namespace linc.Migrations
                     b.HasKey("Id")
                         .HasName("pk_dossiers");
 
+                    b.HasIndex("AssignedToId")
+                        .HasDatabaseName("ix_dossiers_assigned_to_id");
+
+                    b.HasIndex("CreatedById")
+                        .HasDatabaseName("ix_dossiers_created_by_id");
+
                     b.ToTable("dossiers", (string)null);
+                });
+
+            modelBuilder.Entity("linc.Data.ApplicationDossierReview", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    b.Property<int>("DossierId")
+                        .HasColumnType("int")
+                        .HasColumnName("dossier_id");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("email");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("first_name");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("last_name");
+
+                    b.Property<int>("ReviewId")
+                        .HasColumnType("int")
+                        .HasColumnName("review_id");
+
+                    b.Property<string>("ReviewerId")
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("reviewer_id");
+
+                    b.HasKey("Id")
+                        .HasName("pk_dossier_reviews");
+
+                    b.HasIndex("DossierId")
+                        .HasDatabaseName("ix_dossier_reviews_dossier_id");
+
+                    b.HasIndex("ReviewId")
+                        .HasDatabaseName("ix_dossier_reviews_review_id");
+
+                    b.HasIndex("ReviewerId")
+                        .HasDatabaseName("ix_dossier_reviews_reviewer_id");
+
+                    b.ToTable("dossier_reviews", (string)null);
                 });
 
             modelBuilder.Entity("linc.Data.ApplicationIssue", b =>
@@ -435,6 +508,14 @@ namespace linc.Migrations
                         .HasColumnType("longtext")
                         .HasColumnName("internal_avatar_path");
 
+                    b.Property<bool>("IsAuthor")
+                        .HasColumnType("tinyint(1)")
+                        .HasColumnName("is_author");
+
+                    b.Property<bool>("IsReviewer")
+                        .HasColumnType("tinyint(1)")
+                        .HasColumnName("is_reviewer");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -522,6 +603,8 @@ namespace linc.Migrations
                             Email = "admin-linc@uni-plovdiv.bg",
                             EmailConfirmed = true,
                             FirstName = "Panayot",
+                            IsAuthor = false,
+                            IsReviewer = false,
                             LastName = "Ivanov",
                             LastUpdated = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LockoutEnabled = false,
@@ -534,6 +617,165 @@ namespace linc.Migrations
                             TwoFactorEnabled = false,
                             UserName = "p.ivanov"
                         });
+                });
+
+            modelBuilder.Entity("linc.Data.DossierJournal", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("date_created");
+
+                    b.Property<int>("DossierId")
+                        .HasColumnType("int")
+                        .HasColumnName("dossier_id");
+
+                    b.Property<DateTime>("LastUpdated")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("last_updated");
+
+                    b.Property<string>("Message")
+                        .HasMaxLength(512)
+                        .HasColumnType("varchar(512)")
+                        .HasColumnName("message");
+
+                    b.Property<string>("MessageArguments")
+                        .HasMaxLength(512)
+                        .HasColumnType("varchar(512)")
+                        .HasColumnName("message_arguments");
+
+                    b.Property<string>("PerformedById")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("performed_by_id");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int")
+                        .HasColumnName("type");
+
+                    b.HasKey("Id")
+                        .HasName("pk_dossier_journals");
+
+                    b.HasIndex("DossierId")
+                        .HasDatabaseName("ix_dossier_journals_dossier_id");
+
+                    b.HasIndex("Message")
+                        .HasDatabaseName("ix_dossier_journals_message");
+
+                    b.HasIndex("PerformedById")
+                        .HasDatabaseName("ix_dossier_journals_performed_by_id");
+
+                    b.ToTable("dossier_journals", (string)null);
+                });
+
+            modelBuilder.Entity("linc.Data.IssueJournal", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("date_created");
+
+                    b.Property<int>("IssueId")
+                        .HasColumnType("int")
+                        .HasColumnName("issue_id");
+
+                    b.Property<DateTime>("LastUpdated")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("last_updated");
+
+                    b.Property<string>("Message")
+                        .HasMaxLength(512)
+                        .HasColumnType("varchar(512)")
+                        .HasColumnName("message");
+
+                    b.Property<string>("MessageArguments")
+                        .HasMaxLength(512)
+                        .HasColumnType("varchar(512)")
+                        .HasColumnName("message_arguments");
+
+                    b.Property<string>("PerformedById")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("performed_by_id");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int")
+                        .HasColumnName("type");
+
+                    b.HasKey("Id")
+                        .HasName("pk_issue_journals");
+
+                    b.HasIndex("IssueId")
+                        .HasDatabaseName("ix_issue_journals_issue_id");
+
+                    b.HasIndex("Message")
+                        .HasDatabaseName("ix_issue_journals_message");
+
+                    b.HasIndex("PerformedById")
+                        .HasDatabaseName("ix_issue_journals_performed_by_id");
+
+                    b.ToTable("issue_journals", (string)null);
+                });
+
+            modelBuilder.Entity("linc.Data.SourceJournal", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("date_created");
+
+                    b.Property<DateTime>("LastUpdated")
+                        .HasColumnType("datetime(6)")
+                        .HasColumnName("last_updated");
+
+                    b.Property<string>("Message")
+                        .HasMaxLength(512)
+                        .HasColumnType("varchar(512)")
+                        .HasColumnName("message");
+
+                    b.Property<string>("MessageArguments")
+                        .HasMaxLength(512)
+                        .HasColumnType("varchar(512)")
+                        .HasColumnName("message_arguments");
+
+                    b.Property<string>("PerformedById")
+                        .IsRequired()
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("performed_by_id");
+
+                    b.Property<int>("SourceId")
+                        .HasColumnType("int")
+                        .HasColumnName("source_id");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("int")
+                        .HasColumnName("type");
+
+                    b.HasKey("Id")
+                        .HasName("pk_source_journals");
+
+                    b.HasIndex("Message")
+                        .HasDatabaseName("ix_source_journals_message");
+
+                    b.HasIndex("PerformedById")
+                        .HasDatabaseName("ix_source_journals_performed_by_id");
+
+                    b.HasIndex("SourceId")
+                        .HasDatabaseName("ix_source_journals_source_id");
+
+                    b.ToTable("source_journals", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -778,6 +1020,53 @@ namespace linc.Migrations
                         .HasConstraintName("fk_application_document_application_issue_issues_issues_id");
                 });
 
+            modelBuilder.Entity("linc.Data.ApplicationDossier", b =>
+                {
+                    b.HasOne("linc.Data.ApplicationUser", "AssignedTo")
+                        .WithMany()
+                        .HasForeignKey("AssignedToId")
+                        .HasConstraintName("fk_dossiers_users_assigned_to_id");
+
+                    b.HasOne("linc.Data.ApplicationUser", "CreatedBy")
+                        .WithMany()
+                        .HasForeignKey("CreatedById")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_dossiers_users_created_by_id");
+
+                    b.Navigation("AssignedTo");
+
+                    b.Navigation("CreatedBy");
+                });
+
+            modelBuilder.Entity("linc.Data.ApplicationDossierReview", b =>
+                {
+                    b.HasOne("linc.Data.ApplicationDossier", "Dossier")
+                        .WithMany("Reviews")
+                        .HasForeignKey("DossierId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_dossier_reviews_dossiers_dossier_id");
+
+                    b.HasOne("linc.Data.ApplicationDocument", "Review")
+                        .WithMany()
+                        .HasForeignKey("ReviewId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_dossier_reviews_documents_review_id");
+
+                    b.HasOne("linc.Data.ApplicationUser", "Reviewer")
+                        .WithMany()
+                        .HasForeignKey("ReviewerId")
+                        .HasConstraintName("fk_dossier_reviews_users_reviewer_id");
+
+                    b.Navigation("Dossier");
+
+                    b.Navigation("Review");
+
+                    b.Navigation("Reviewer");
+                });
+
             modelBuilder.Entity("linc.Data.ApplicationSource", b =>
                 {
                     b.HasOne("linc.Data.ApplicationUser", "Author")
@@ -834,6 +1123,69 @@ namespace linc.Migrations
                     b.Navigation("EditedBy");
 
                     b.Navigation("Language");
+                });
+
+            modelBuilder.Entity("linc.Data.DossierJournal", b =>
+                {
+                    b.HasOne("linc.Data.ApplicationDossier", "Dossier")
+                        .WithMany("Journals")
+                        .HasForeignKey("DossierId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_dossier_journals_dossiers_dossier_id");
+
+                    b.HasOne("linc.Data.ApplicationUser", "PerformedBy")
+                        .WithMany()
+                        .HasForeignKey("PerformedById")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_dossier_journals_users_performed_by_id");
+
+                    b.Navigation("Dossier");
+
+                    b.Navigation("PerformedBy");
+                });
+
+            modelBuilder.Entity("linc.Data.IssueJournal", b =>
+                {
+                    b.HasOne("linc.Data.ApplicationIssue", "Issue")
+                        .WithMany()
+                        .HasForeignKey("IssueId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_issue_journals_issues_issue_id");
+
+                    b.HasOne("linc.Data.ApplicationUser", "PerformedBy")
+                        .WithMany()
+                        .HasForeignKey("PerformedById")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_issue_journals_users_performed_by_id");
+
+                    b.Navigation("Issue");
+
+                    b.Navigation("PerformedBy");
+                });
+
+            modelBuilder.Entity("linc.Data.SourceJournal", b =>
+                {
+                    b.HasOne("linc.Data.ApplicationUser", "PerformedBy")
+                        .WithMany()
+                        .HasForeignKey("PerformedById")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_source_journals_users_performed_by_id");
+
+                    b.HasOne("linc.Data.ApplicationSource", "Source")
+                        .WithMany()
+                        .HasForeignKey("SourceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_source_journals_sources_source_id");
+
+                    b.Navigation("PerformedBy");
+
+                    b.Navigation("Source");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -896,6 +1248,13 @@ namespace linc.Migrations
             modelBuilder.Entity("linc.Data.ApplicationDocument", b =>
                 {
                     b.Navigation("Source");
+                });
+
+            modelBuilder.Entity("linc.Data.ApplicationDossier", b =>
+                {
+                    b.Navigation("Journals");
+
+                    b.Navigation("Reviews");
                 });
 
             modelBuilder.Entity("linc.Data.ApplicationIssue", b =>

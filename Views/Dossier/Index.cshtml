@@ -1,0 +1,111 @@
+﻿@using linc.Utility
+@using linc.Models.Enumerations
+@model DossierIndexViewModel
+
+@{
+    ViewData["Title"] = HtmlLocalizer["Dossier_IndexPage_Title"];
+}
+
+@section Breadcrumbs {
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>@ViewData["Title"]</h2>
+                <ol>
+                    <li>
+                        <a href="/">@HtmlLocalizer["NavItem_Home"]</a>
+                    </li>
+                    <li>@HtmlLocalizer["Dossier_List_Label"]</li>
+                </ol>
+            </div>
+
+        </div>
+    </section>
+    <!-- End Breadcrumbs -->
+}
+
+<section>
+    <div class="container">
+
+        <h3>@HtmlLocalizer["Dossier_IndexPage_SubTitle"]</h3>
+
+        @if (User.IsAtLeast(SiteRole.HeadEditor))
+        {
+            <p class="text-end">
+                <a asp-action="Create">@HtmlLocalizer["Create_Label"]</a>
+            </p>
+        }
+        
+        <hr />
+        
+        @if (Model.Records.Any())
+        {
+            <table class="table table-hover">
+                <thead class="table-light">
+                <tr>
+                    <th sortable-for="Status" class="col-md-1">
+                        @HtmlLocalizer["Dossier_ListHeader_Status"]
+                    </th>
+                    <th sortable-for="Title" class="col-md-7">
+                        @HtmlLocalizer["Dossier_ListHeader_Title"]
+                    </th>
+                    <th sortable-for="DateCreated" class="text-center col-md-2">
+                        @HtmlLocalizer["Dossier_ListHeader_Creator"]
+                    </th>
+                    <th sortable-for="LastUpdated" class="text-center col-md-2">
+                        @HtmlLocalizer["Dossier_ListHeader_Assignee"]
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model.Records)
+                {
+                    <tr>
+                        <td class="col-md-1">
+                            @Html.DisplayFor(modelItem => item.Status)
+                        </td>
+                        <td class="col-md-7">
+                            <a asp-action="Details" asp-route-id="@item.Id">
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </a>
+                            <p>
+                                <small>
+                                    @Html.DisplayFor(modelItem => item.Names)
+                                </small>
+                            </p>
+                        </td>
+                        <td class="text-center col-md-2">
+                            @Html.DisplayFor(modelItem => item.CreatedBy.Names) <br/>
+                            <small>(@item.DateCreated.ToString("dd MMM yyyy"))</small>
+                        </td>
+                        <td class="text-center col-md-2">
+                            @if (item.AssignedTo != null)
+                            {
+                                @Html.DisplayFor(modelItem => item.AssignedTo.Names) <br/>
+                                <small>(@item.LastUpdated.ToString("dd MMM yyyy"))</small>
+                            }
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>
+                @HtmlLocalizer["Dossiers_IndexPage_NoResults"]
+            </p>
+        }
+
+        @if (Model.TotalPages > 1)
+        {
+            @await Html.PartialAsync("_Paging", Model)
+        }
+    </div>
+</section>
+
+@section Newsletter {
+    <partial name="_ReportBug" />
+}

@@ -3,6 +3,7 @@ using linc.Utility;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace linc.Data;
 
@@ -14,20 +15,29 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     public readonly DbContextOptions<ApplicationDbContext> Options;
 
 
-
     public DbSet<ApplicationIssue> Issues { get; set; }
+
+    public DbSet<IssueJournal> IssueJournals { get; set; }
+
 
     public DbSet<ApplicationSource> Sources { get; set; }
 
-    public DbSet<ApplicationDocument> Documents { get; set; }
+    public DbSet<SourceJournal> SourceJournals { get; set; }
+
 
     public DbSet<ApplicationDossier> Dossiers { get; set; }
+
+    public DbSet<DossierJournal> DossierJournals { get; set; }
+
+
+    public DbSet<ApplicationDossierReview> DossierReviews { get; set; }
+
+    public DbSet<ApplicationDocument> Documents { get; set; }
 
     public DbSet<ApplicationLanguage> Languages { get; set; }
 
     public DbSet<ApplicationStringResource> StringResources { get; set; }
-
-
+    
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
@@ -162,12 +172,38 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
             .Property(x => x.DocumentType)
             .HasConversion<string>();
         
-        builder.Entity<ApplicationDossier>()
-            .Property(x => x.Status)
-            .HasConversion<string>();
+        // we want these to be integers
+        // builder.Entity<ApplicationDossier>()
+        //     .Property(x => x.Status)
+        //     .HasConversion<string>();
 
         builder.Entity<ApplicationUser>()
             .Property(x => x.AvatarType)
             .HasConversion<string>();
+
+        // set collection conversions
+
+        builder.Entity<DossierJournal>()
+            .Property(p => p.MessageArguments)
+            .HasConversion(array => string.Join(",", array),
+                dbString => dbString.Split(",", StringSplitOptions.TrimEntries))
+            .Metadata.SetValueComparer(StringArrayValueComparer);
+
+        builder.Entity<IssueJournal>()
+            .Property(p => p.MessageArguments)
+            .HasConversion(array => string.Join(",", array),
+                dbString => dbString.Split(",", StringSplitOptions.TrimEntries))
+            .Metadata.SetValueComparer(StringArrayValueComparer);
+
+        builder.Entity<SourceJournal>()
+            .Property(p => p.MessageArguments)
+            .HasConversion(array => string.Join(",", array),
+                dbString => dbString.Split(",", StringSplitOptions.TrimEntries))
+            .Metadata.SetValueComparer(StringArrayValueComparer);
     }
+
+    private static readonly ValueComparer StringArrayValueComparer = new ValueComparer<string[]>(
+        (s1, s2) => s1.SequenceEqual(s2),
+        strings => strings.Aggregate(0, (accumulator, value) => HashCode.Combine(accumulator, value.GetHashCode())),
+        strings => strings.ToArray());
 }
