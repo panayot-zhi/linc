@@ -42,14 +42,20 @@
         
         @if (Model.Records.Any())
         {
-            <table class="table table-striped">
-                <thead>
+            <table class="table table-hover">
+                <thead class="table-light">
                 <tr>
-                    <th sortable-for="Status">
-                        Status
+                    <th sortable-for="Status" class="col-md-1">
+                        @HtmlLocalizer["Dossier_ListHeader_Status"]
                     </th>
-                    <th sortable-for="Title">
-                        Title
+                    <th sortable-for="Title" class="col-md-7">
+                        @HtmlLocalizer["Dossier_ListHeader_Title"]
+                    </th>
+                    <th sortable-for="DateCreated" class="text-center col-md-2">
+                        @HtmlLocalizer["Dossier_ListHeader_Creator"]
+                    </th>
+                    <th sortable-for="LastUpdated" class="text-center col-md-2">
+                        @HtmlLocalizer["Dossier_ListHeader_Assignee"]
                     </th>
                 </tr>
                 </thead>
@@ -57,18 +63,29 @@
                 @foreach (var item in Model.Records)
                 {
                     <tr>
-                        <td>
+                        <td class="col-md-1">
                             @Html.DisplayFor(modelItem => item.Status)
                         </td>
-                        <td>
+                        <td class="col-md-7">
                             <a asp-action="Details" asp-route-id="@item.Id">
                                 @Html.DisplayFor(modelItem => item.Title)
                             </a>
                             <p>
                                 <small>
-                                    @Html.DisplayFor(modelItem => item.FirstName) @Html.DisplayFor(modelItem => item.LastName)
+                                    @Html.DisplayFor(modelItem => item.Names)
                                 </small>
                             </p>
+                        </td>
+                        <td class="text-center col-md-2">
+                            @Html.DisplayFor(modelItem => item.CreatedBy.Names) <br/>
+                            <small>(@item.DateCreated.ToString("dd MMM yyyy"))</small>
+                        </td>
+                        <td class="text-center col-md-2">
+                            @if (item.AssignedTo != null)
+                            {
+                                @Html.DisplayFor(modelItem => item.AssignedTo.Names) <br/>
+                                <small>(@item.LastUpdated.ToString("dd MMM yyyy"))</small>
+                            }
                         </td>
                     </tr>
                 }
