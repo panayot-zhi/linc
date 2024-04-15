@@ -327,7 +327,6 @@ namespace linc.Services
             }
 
             dossier.AssignedToId = targetUserId;
-            dossier.AssignedTo = targetUser;
 
             await _context.SaveChangesAsync();
         }
