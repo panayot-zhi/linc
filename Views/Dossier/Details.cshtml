@@ -162,10 +162,14 @@
                             <small>@entry.DateCreated.ToString("dd MMM yyyy HH:mm"), @entry.PerformedBy.Names</small><br/>
                             
                             @{
-                                var messageArguments = new object [entry.MessageArguments.Length];
-                                for (var index = 0; index < entry.MessageArguments.Length; index++)
+                                object[] messageArguments = { };
+                                if (entry.MessageArguments != null)
                                 {
-                                    messageArguments[index] = HtmlLocalizer[entry.MessageArguments[index]];
+                                    messageArguments = new object[entry.MessageArguments.Length];
+                                    for (var index = 0; index < entry.MessageArguments.Length; index++)
+                                    {
+                                        messageArguments[index] = HtmlLocalizer[entry.MessageArguments[index]];
+                                    }
                                 }
                             }
 
