@@ -26,6 +26,7 @@ namespace linc.Services
         {
             _context = context;
             _documentService = documentService;
+            _logger = logger;
             _config = config.Value;
             _logger = logger;
         }
