@@ -15,16 +15,19 @@ namespace linc.Services
     public class SourceService : ISourceService
     {
         private readonly IDocumentService _documentService;
+        private readonly ILogger<SourceService> _logger;
         private readonly ApplicationDbContext _context;
         private readonly ApplicationConfig _config;
 
         public SourceService(ApplicationDbContext context, 
             IOptions<ApplicationConfig> config, 
+            ILogger<SourceService> logger,
             IDocumentService documentService)
         {
             _context = context;
             _documentService = documentService;
             _config = config.Value;
+            _logger = logger;
         }
 
         public async Task<ApplicationSource> GetSourceAsync(int id)
@@ -186,24 +189,34 @@ namespace linc.Services
             var directoryPath = Path.Combine(rootFolderPath, releaseYear.ToString());
             var filePath = Path.Combine(directoryPath, $"{fileName}.pdf");
 
-            await using var stream = new FileStream(filePath, FileMode.Create);
-
-            var document = new Document();
-            var issuePdfReader = new PdfReader(issuePdfPath);
-            var pdfWriter = new PdfCopy(document, stream);
-
-            document.Open();
-
-            // Loop through the specified range and add the pages to the new document
-            for (var pageNumber = startingPage; pageNumber <= lastPage; pageNumber++)
+            if (!File.Exists(filePath))
             {
-                var page = pdfWriter.GetImportedPage(issuePdfReader, pageNumber);
-                pdfWriter.AddPage(page);
-            }
+                await using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    var document = new Document();
+                    var issuePdfReader = new PdfReader(issuePdfPath);
+                    var pdfWriter = new PdfCopy(document, stream);
 
-            document.Close();
-            pdfWriter.Close();
-            issuePdfReader.Close();
+                    document.Open();
+
+                    // Loop through the specified range and add the pages to the new document
+                    for (var pageNumber = startingPage; pageNumber <= lastPage; pageNumber++)
+                    {
+                        var page = pdfWriter.GetImportedPage(issuePdfReader, pageNumber);
+                        pdfWriter.AddPage(page);
+                    }
+
+                    document.Close();
+                    pdfWriter.Close();
+                    issuePdfReader.Close();
+                }
+            }
+            else
+            {
+                _logger.LogWarning("SourcePdf could not be generated, because the file at the specified location already exists {FilePath}.{NewLine}" +
+                                   "This can occur when two sources point to the same part of the pdf.",
+                    filePath, Environment.NewLine);
+            }
 
             var relativePath = Path.Combine(SiteConstant.IssuesFolderName, releaseYear.ToString(), $"{fileName}.pdf");
 
@@ -237,10 +250,20 @@ namespace linc.Services
             var relativePath = Path.Combine(SiteConstant.IssuesFolderName, releaseYear.ToString(),
                 $"{fileName}.{fileExtension}");
 
-            await using (var fileStream = new FileStream(filePath, FileMode.Create))
+            if (!File.Exists(filePath))
             {
-                await inputFile.CopyToAsync(fileStream);
+                await using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await inputFile.CopyToAsync(fileStream);
+                }
             }
+            else
+            {
+                _logger.LogWarning("SourcePdf could not be saved, because the file at the specified location already exists {FilePath}.{NewLine}" +
+                                   "This can occur when two sources point to the same part of the pdf.",
+                    filePath, Environment.NewLine);
+            }
+
 
             var entry = new ApplicationDocument()
             {
