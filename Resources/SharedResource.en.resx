@@ -541,8 +541,8 @@
   <data name="Footer_GuidelinesPolicies_Cookies" xml:space="preserve">
     <value>Cookies usage</value>
   </data>
-  <data name="Footer_GuidelinesPolicies_PrivacyPolicy" xml:space="preserve">
-    <value>Privacy policy</value>
+  <data name="Footer_GuidelinesPolicies_PrivacyPolicyAndCookies" xml:space="preserve">
+    <value>Privacy policy and cookies</value>
   </data>
   <data name="Footer_GuidelinesPolicies_SubmitGuidance" xml:space="preserve">
     <value>Submit procedure</value>

@@ -1915,11 +1915,11 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Политика за поверителност.
+        ///   Looks up a localized string similar to Политика за поверителност и бисквитки.
         /// </summary>
-        public static string Footer_GuidelinesPolicies_PrivacyPolicy {
+        public static string Footer_GuidelinesPolicies_PrivacyPolicyAndCookies {
             get {
-                return ResourceManager.GetString("Footer_GuidelinesPolicies_PrivacyPolicy", resourceCulture);
+                return ResourceManager.GetString("Footer_GuidelinesPolicies_PrivacyPolicyAndCookies", resourceCulture);
             }
         }
         

@@ -347,15 +347,14 @@
                         <ul>
                             <li>
                                 <i class="bx bx-chevron-right"></i> 
+                                @* TODO: Extract to separate page *@
                                 <a class="scrollto" asp-controller="Home" asp-action="Index" asp-fragment="codex">
                                     @HtmlLocalizer["Footer_GuidelinesPolicies_Codex"]
                                 </a>
                             </li>
                             <li>
                                 <i class="bx bx-chevron-right"></i> 
-                                <a class="scrollto" asp-controller="Home" asp-action="Index" asp-fragment="contact">
-                                    @HtmlLocalizer["Footer_GuidelinesPolicies_SubmitGuidance"]
-                                </a>
+                                <a class="scrollto" asp-controller="Home" asp-action="Submit">@HtmlLocalizer["Footer_GuidelinesPolicies_SubmitGuidance"]</a>
                             </li>
                             <li>
                                 <i class="bx bx-chevron-right"></i> 
@@ -363,11 +362,7 @@
                             </li>
                             <li>
                                 <i class="bx bx-chevron-right"></i> 
-                                <a asp-controller="Home" asp-action="Privacy">@HtmlLocalizer["Footer_GuidelinesPolicies_PrivacyPolicy"]</a>
-                            </li>
-                            <li>
-                                <i class="bx bx-chevron-right"></i> 
-                                <a asp-controller="Home" asp-action="Privacy" asp-fragment="cookies">@HtmlLocalizer["Footer_GuidelinesPolicies_Cookies"]</a>
+                                <a asp-controller="Home" asp-action="Privacy">@HtmlLocalizer["Footer_GuidelinesPolicies_PrivacyPolicyAndCookies"]</a>
                             </li>
                         </ul>
                     </div>

@@ -505,8 +505,8 @@
   <data name="Footer_GuidelinesPolicies_Cookies" xml:space="preserve">
     <value>Ползване на бисквитки</value>
   </data>
-  <data name="Footer_GuidelinesPolicies_PrivacyPolicy" xml:space="preserve">
-    <value>Политика за поверителност</value>
+  <data name="Footer_GuidelinesPolicies_PrivacyPolicyAndCookies" xml:space="preserve">
+    <value>Политика за поверителност и бисквитки</value>
   </data>
   <data name="Footer_GuidelinesPolicies_SubmitGuidance" xml:space="preserve">
     <value>Процедура по публикуване</value>
