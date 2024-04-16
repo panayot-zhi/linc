@@ -171,6 +171,15 @@ namespace linc.Services
 
         public LocalizedHtmlString this[string name] => Localize(name);
 
+        public string GetCurrentLanguage()
+        {
+            var currentCulture = Thread.CurrentThread.CurrentUICulture.Name;
+            var language = SiteConstant.SupportedCultures.First(x =>
+                x.Value == currentCulture).Value;
+
+            return language;
+        }
+
         public int GetCurrentLanguageId()
         {
             var currentCulture = Thread.CurrentThread.CurrentUICulture.Name;

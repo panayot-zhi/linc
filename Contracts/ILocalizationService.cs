@@ -23,6 +23,8 @@ namespace linc.Contracts
 
         Task SetStringResource(string resourceKey, string value, string userId);
 
+        string GetCurrentLanguage();
+
         int GetCurrentLanguageId();
     }
 }
