@@ -442,7 +442,7 @@
     <value>Submit</value>
   </data>
   <data name="ContactSection_SubmitDescription" xml:space="preserve">
-    <value>&lt;p&gt;Please, read the &lt;a href="{0}"&gt;Technical requirements&lt;/a&gt; for publication prior to submitting and fill, sign and send along a &lt;a href="{1}"&gt;Publication agreement&lt;/a&gt; for your manuscript to be published.&lt;/p&gt;
+    <value>&lt;p&gt;Please read the &lt;a href="{0}"&gt;Technical Publication Requirements&lt;/a&gt; before submitting your manuscript. An editor will be in formal communication with you, and as a final step before publishing, we will send you a &lt;a href="{1}"&gt;Declaration of Consent&lt;/a&gt; for your manuscript to be published, which requires you to be a &lt;strong&gt;registered user&lt;/strong&gt; in the system.&lt;/p&gt;
 &lt;p&gt;Accepted file formats include .doc, .docx.&lt;/p&gt;</value>
   </data>
   <data name="ContactSection_SubTitle" xml:space="preserve">
@@ -541,8 +541,8 @@
   <data name="Footer_GuidelinesPolicies_Cookies" xml:space="preserve">
     <value>Cookies usage</value>
   </data>
-  <data name="Footer_GuidelinesPolicies_PrivacyPolicy" xml:space="preserve">
-    <value>Privacy policy</value>
+  <data name="Footer_GuidelinesPolicies_PrivacyPolicyAndCookies" xml:space="preserve">
+    <value>Privacy policy and cookies</value>
   </data>
   <data name="Footer_GuidelinesPolicies_SubmitGuidance" xml:space="preserve">
     <value>Submit procedure</value>
@@ -1622,5 +1622,32 @@
   </data>
   <data name="JournalDossier_ClearedAssignment" xml:space="preserve">
     <value>Editor {0} was removed from dossier.</value>
+  </data>
+  <data name="Board_Description" xml:space="preserve">
+    <value>Members of the Editors board are prominent researchers from various countries and scientific organizations.</value>
+  </data>
+  <data name="ContactSection_Description" xml:space="preserve">
+    <value>Procedure for acceptance, review and publication of a text.</value>
+  </data>
+  <data name="ContactSection_PublicationAgreement_Description" xml:space="preserve">
+    <value>Prior to publishing, we will send you a declaration of consent for the article to be published.</value>
+  </data>
+  <data name="ContactSection_Submit_Guideliness" xml:space="preserve">
+    <value>The text proposed for publication is sent as an email attachment to the Editorial team of the journal.
+An editor will then contact you on this email.
+Before publication, we will send you a declaration of consent for the article/study to be published.
+To accept it, you must be a &lt;strong&gt;registered user&lt;/strong&gt; in the system.
+&lt;br/&gt;
+&lt;br/&gt;
+The manuscript file must have a .doc or .docx extension.</value>
+  </data>
+  <data name="ContactSection_TechnicalRequirements_Description" xml:space="preserve">
+    <value>Find the technical requirements (guidelines for authors) for formatting of submissions.</value>
+  </data>
+  <data name="FaqSection_Description" xml:space="preserve">
+    <value>Explore our frequently asked questions for quick and clear answers to your most common queries.</value>
+  </data>
+  <data name="Team_Description" xml:space="preserve">
+    <value>The editorial team consists of Professors and Associate Professors from the Faculty of Philology at Paisii Hilendarski University of Plovdiv. Members of the Editorial Board are internationally renowned researchers.</value>
   </data>
 </root>

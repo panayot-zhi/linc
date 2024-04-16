@@ -1,4 +1,7 @@
-﻿@model IssueCreateViewModel
+﻿@using linc.Models.Enumerations
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@using linc.Utility
+@model IssueCreateViewModel
 
 @{
     ViewData["Title"] = HtmlLocalizer["Issue_CreatePage_Title"];
@@ -100,7 +103,7 @@
             <div class="col-lg-4">
                 <h3>@HtmlLocalizer["Issue_CreatePage_Notes_Title"]</h3>
                 <hr>
-                <p contenteditable-for="Issue_CreatePage_Notes">
+                <p contenteditable-for="Issue_CreatePage_Notes" contenteditable-allowed-for="SiteRole.Administrator">
 
                 </p>
             </div>

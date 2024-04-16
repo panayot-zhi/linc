@@ -415,7 +415,7 @@
     <value>Изпрати ръкопис</value>
   </data>
   <data name="ContactSection_SubmitDescription" xml:space="preserve">
-    <value>&lt;p&gt;Моля, запознайте се с &lt;a href="{0}"&gt;Техническите изисквания за публикуване&lt;/a&gt; преди да изпратите ръкописа си и попълнете, подпишете и изпратете заедно с ръкописа &lt;a href="{1}"&gt;Декларация за съгласие&lt;/a&gt; статуята/студията да бъде издадена.&lt;/p&gt;
+    <value>&lt;p&gt;Моля, запознайте се с &lt;a href="{0}"&gt;Техническите изисквания за публикуване&lt;/a&gt; преди да изпратите ръкописа си. В официална комуникация с Вас ще влезе редактор, а като последна стъпка преди публикуване, ще Ви изпратим &lt;a href="{1}"&gt;Декларация за съгласие&lt;/a&gt; статуята/студията Ви да бъде издадена, за което се изисква да сте &lt;strong&gt;регистриран потренител&lt;/strong&gt; в системата.&lt;/p&gt;
 &lt;p&gt;Приеманите от редакцията файлове са с разширение .doc, .docx.&lt;/p&gt;</value>
   </data>
   <data name="ContactSection_SubTitle" xml:space="preserve">
@@ -505,8 +505,8 @@
   <data name="Footer_GuidelinesPolicies_Cookies" xml:space="preserve">
     <value>Ползване на бисквитки</value>
   </data>
-  <data name="Footer_GuidelinesPolicies_PrivacyPolicy" xml:space="preserve">
-    <value>Политика за поверителност</value>
+  <data name="Footer_GuidelinesPolicies_PrivacyPolicyAndCookies" xml:space="preserve">
+    <value>Политика за поверителност и бисквитки</value>
   </data>
   <data name="Footer_GuidelinesPolicies_SubmitGuidance" xml:space="preserve">
     <value>Процедура по публикуване</value>
@@ -1620,5 +1620,32 @@
   </data>
   <data name="JournalDossier_ClearedAssignment" xml:space="preserve">
     <value>Редактор {0} е премахнат от досието.</value>
+  </data>
+  <data name="Board_Description" xml:space="preserve">
+    <value>Членове на Редакционния борд са изявени изследователи от различни страни и научни организации.</value>
+  </data>
+  <data name="ContactSection_Description" xml:space="preserve">
+    <value>Процедура по приемане, рецензиране и публикуване на текст.</value>
+  </data>
+  <data name="ContactSection_PublicationAgreement_Description" xml:space="preserve">
+    <value>Преди публикуване, ще Ви изпратим декларация за съгласие статията да бъде издадена.</value>
+  </data>
+  <data name="ContactSection_Submit_Guideliness" xml:space="preserve">
+    <value>Предложеният за публикуване текст се изпраща като прикачен файл към email до Редакцията на списанието. 
+С Вас на този email ще влезе в комуникация редактор на списанието.
+Преди публикуване, ще Ви изпратим декларация за съгласие статията/студията да бъде издадена.
+За да я приемете, трябва да сте &lt;strong&gt;регистриран потребител&lt;/strong&gt; в системата.
+&lt;br/&gt;
+&lt;br/&gt;
+Файлът с ръкописа трябва да е с разширение .doc или .docx.</value>
+  </data>
+  <data name="ContactSection_TechnicalRequirements_Description" xml:space="preserve">
+    <value>Запознайте се с техническите изисквания към предложените за публикуване текстове.</value>
+  </data>
+  <data name="FaqSection_Description" xml:space="preserve">
+    <value>Разгледайте нашите често задавани въпроси за бързи и ясни отговори на най-честите Ви въпроси.</value>
+  </data>
+  <data name="Team_Description" xml:space="preserve">
+    <value>В редакторския екип на изданието участват хабилитирани преподаватели от Филологическия факултет на Пловдивския университет „Паисий Хилендарски“.</value>
   </data>
 </root>

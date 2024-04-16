@@ -439,6 +439,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Членове на Редакционния борд са изявени изследователи от различни страни и научни организации..
+        /// </summary>
+        public static string Board_Description {
+            get {
+                return ResourceManager.GetString("Board_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Проф. д-р Елизабет Шоре.
         /// </summary>
         public static string Board_Elisabeth_Cheauré_Member {
@@ -908,6 +917,24 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Процедура по приемане, рецензиране и публикуване на текст..
+        /// </summary>
+        public static string ContactSection_Description {
+            get {
+                return ResourceManager.GetString("ContactSection_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Преди публикуване, ще Ви изпратим декларация за съгласие статията да бъде издадена..
+        /// </summary>
+        public static string ContactSection_PublicationAgreement_Description {
+            get {
+                return ResourceManager.GetString("ContactSection_PublicationAgreement_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Декларация за съгласие.
         /// </summary>
         public static string ContactSection_PublicationAgreement_Title {
@@ -926,7 +953,22 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;p&gt;Моля, запознайте се с &lt;a href=&quot;{0}&quot;&gt;Техническите изисквания за публикуване&lt;/a&gt; преди да изпратите ръкописа си и попълнете, подпишете и изпратете заедно с ръкописа &lt;a href=&quot;{1}&quot;&gt;Декларация за съгласие&lt;/a&gt; статуята/студията да бъде издадена.&lt;/p&gt;
+        ///   Looks up a localized string similar to Предложеният за публикуване текст се изпраща като прикачен файл към email до Редакцията на списанието. 
+        ///С Вас на този email ще влезе в комуникация редактор на списанието.
+        ///Преди публикуване, ще Ви изпратим декларация за съгласие статията/студията да бъде издадена.
+        ///За да я приемете, трябва да сте &lt;strong&gt;регистриран потребител&lt;/strong&gt; в системата.
+        ///&lt;br/&gt;
+        ///&lt;br/&gt;
+        ///Файлът с ръкописа трябва да е с разширение .doc или .docx..
+        /// </summary>
+        public static string ContactSection_Submit_Guideliness {
+            get {
+                return ResourceManager.GetString("ContactSection_Submit_Guideliness", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;p&gt;Моля, запознайте се с &lt;a href=&quot;{0}&quot;&gt;Техническите изисквания за публикуване&lt;/a&gt; преди да изпратите ръкописа си. В официална комуникация с Вас ще влезе редактор, а като последна стъпка преди публикуване, ще Ви изпратим &lt;a href=&quot;{1}&quot;&gt;Декларация за съгласие&lt;/a&gt; статуята/студията Ви да бъде издадена, за което се изисква да сте &lt;strong&gt;регистриран потренител&lt;/strong&gt; в системата.&lt;/p&gt;
         ///&lt;p&gt;Приеманите от редакцията файлове са с разширение .doc, .docx.&lt;/p&gt;.
         /// </summary>
         public static string ContactSection_SubmitDescription {
@@ -941,6 +983,15 @@ namespace linc.Resources {
         public static string ContactSection_SubTitle {
             get {
                 return ResourceManager.GetString("ContactSection_SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Запознайте се с техническите изисквания към предложените за публикуване текстове..
+        /// </summary>
+        public static string ContactSection_TechnicalRequirements_Description {
+            get {
+                return ResourceManager.GetString("ContactSection_TechnicalRequirements_Description", resourceCulture);
             }
         }
         
@@ -1692,6 +1743,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Разгледайте нашите често задавани въпроси за бързи и ясни отговори на най-честите Ви въпроси..
+        /// </summary>
+        public static string FaqSection_Description {
+            get {
+                return ResourceManager.GetString("FaqSection_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Често Задавани &lt;span&gt;Въпроси&lt;/span&gt;.
         /// </summary>
         public static string FaqSection_SubTitle {
@@ -1855,11 +1915,11 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Политика за поверителност.
+        ///   Looks up a localized string similar to Политика за поверителност и бисквитки.
         /// </summary>
-        public static string Footer_GuidelinesPolicies_PrivacyPolicy {
+        public static string Footer_GuidelinesPolicies_PrivacyPolicyAndCookies {
             get {
-                return ResourceManager.GetString("Footer_GuidelinesPolicies_PrivacyPolicy", resourceCulture);
+                return ResourceManager.GetString("Footer_GuidelinesPolicies_PrivacyPolicyAndCookies", resourceCulture);
             }
         }
         
@@ -4031,6 +4091,15 @@ namespace linc.Resources {
         public static string Team_B_Yanev_Member {
             get {
                 return ResourceManager.GetString("Team_B.Yanev_Member", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to В редакторския екип на изданието участват хабилитирани преподаватели от Филологическия факултет на Пловдивския университет „Паисий Хилендарски“..
+        /// </summary>
+        public static string Team_Description {
+            get {
+                return ResourceManager.GetString("Team_Description", resourceCulture);
             }
         }
         
