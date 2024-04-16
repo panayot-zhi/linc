@@ -57,21 +57,25 @@ namespace linc.Controllers
         [ResponseCache(CacheProfileName = SiteCacheProfile.Yearly)]
         public IActionResult Submit()
         {
-            return View();
+            // TODO: view according to language
+            var language = LocalizationService.GetCurrentLanguage();
+            return View($"Submit.{language}");
         }
 
         [ResponseCache(CacheProfileName = SiteCacheProfile.Yearly)]
         public IActionResult Terms()
         {
             // TODO: view according to language
-            return View("Terms.bg");
+            var language = LocalizationService.GetCurrentLanguage();
+            return View($"Terms.{language}");
         }
 
         [ResponseCache(CacheProfileName = SiteCacheProfile.Yearly)]
         public IActionResult Privacy()
         {
             // TODO: view according to language
-            return View("Privacy.bg");
+            var language = LocalizationService.GetCurrentLanguage();
+            return View($"Privacy.{language}");
         }
 
         [ResponseCache(CacheProfileName = SiteCacheProfile.Monthly, VaryByQueryKeys = new []{ "id", "data" })]
