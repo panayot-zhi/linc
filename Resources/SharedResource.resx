@@ -1621,6 +1621,9 @@
   <data name="JournalDossier_ClearedAssignment" xml:space="preserve">
     <value>Редактор {0} е премахнат от досието.</value>
   </data>
+  <data name="Board_Description" xml:space="preserve">
+    <value>Членове на Редакционния борд са изявени изследователи от различни страни и научни организации.</value>
+  </data>
   <data name="ContactSection_Description" xml:space="preserve">
     <value>Процедура по приемане, рецензиране и публикуване на текст.</value>
   </data>
@@ -1638,5 +1641,11 @@
   </data>
   <data name="ContactSection_TechnicalRequirements_Description" xml:space="preserve">
     <value>Запознайте се с техническите изисквания към предложените за публикуване текстове.</value>
+  </data>
+  <data name="FaqSection_Description" xml:space="preserve">
+    <value>Разгледайте нашите често задавани въпроси за бързи и ясни отговори на най-честите Ви въпроси.</value>
+  </data>
+  <data name="Team_Description" xml:space="preserve">
+    <value>В редакторския екип на изданието участват хабилитирани преподаватели от Филологическия факултет на Пловдивския университет „Паисий Хилендарски“.</value>
   </data>
 </root>

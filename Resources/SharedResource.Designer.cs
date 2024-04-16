@@ -439,6 +439,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Членове на Редакционния борд са изявени изследователи от различни страни и научни организации..
+        /// </summary>
+        public static string Board_Description {
+            get {
+                return ResourceManager.GetString("Board_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Проф. д-р Елизабет Шоре.
         /// </summary>
         public static string Board_Elisabeth_Cheauré_Member {
@@ -1730,6 +1739,15 @@ namespace linc.Resources {
         public static string EmailModel_NewEmail {
             get {
                 return ResourceManager.GetString("EmailModel_NewEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Разгледайте нашите често задавани въпроси за бързи и ясни отговори на най-честите Ви въпроси..
+        /// </summary>
+        public static string FaqSection_Description {
+            get {
+                return ResourceManager.GetString("FaqSection_Description", resourceCulture);
             }
         }
         
@@ -4073,6 +4091,15 @@ namespace linc.Resources {
         public static string Team_B_Yanev_Member {
             get {
                 return ResourceManager.GetString("Team_B.Yanev_Member", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to В редакторския екип на изданието участват хабилитирани преподаватели от Филологическия факултет на Пловдивския университет „Паисий Хилендарски“..
+        /// </summary>
+        public static string Team_Description {
+            get {
+                return ResourceManager.GetString("Team_Description", resourceCulture);
             }
         }
         

@@ -1623,6 +1623,9 @@
   <data name="JournalDossier_ClearedAssignment" xml:space="preserve">
     <value>Editor {0} was removed from dossier.</value>
   </data>
+  <data name="Board_Description" xml:space="preserve">
+    <value>Members of the Editors board are prominent researchers from various countries and scientific organizations.</value>
+  </data>
   <data name="ContactSection_Description" xml:space="preserve">
     <value>Procedure for acceptance, review and publication of a text.</value>
   </data>
@@ -1640,5 +1643,11 @@ The manuscript file must have a .doc or .docx extension.</value>
   </data>
   <data name="ContactSection_TechnicalRequirements_Description" xml:space="preserve">
     <value>Find the technical requirements (guidelines for authors) for formatting of submissions.</value>
+  </data>
+  <data name="FaqSection_Description" xml:space="preserve">
+    <value>Explore our frequently asked questions for quick and clear answers to your most common queries.</value>
+  </data>
+  <data name="Team_Description" xml:space="preserve">
+    <value>The editorial team consists of Professors and Associate Professors from the Faculty of Philology at Paisii Hilendarski University of Plovdiv. Members of the Editorial Board are internationally renowned researchers.</value>
   </data>
 </root>
