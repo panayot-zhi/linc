@@ -1517,10 +1517,10 @@
     <value>Рецензент - email</value>
   </data>
   <data name="DossierEdit_ReviewerFirstName" xml:space="preserve">
-    <value>Рецензент - фамилия</value>
+    <value>Рецензент - име</value>
   </data>
   <data name="DossierEdit_ReviewerLastName" xml:space="preserve">
-    <value>Рецензент - име</value>
+    <value>Рецензент - фамилия</value>
   </data>
   <data name="DossierEdit_Reviewers" xml:space="preserve">
     <value>Рецензенти</value>

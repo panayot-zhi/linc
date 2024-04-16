@@ -1536,7 +1536,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Рецензент - фамилия.
+        ///   Looks up a localized string similar to Рецензент - име.
         /// </summary>
         public static string DossierEdit_ReviewerFirstName {
             get {
@@ -1554,7 +1554,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Рецензент - име.
+        ///   Looks up a localized string similar to Рецензент - фамилия.
         /// </summary>
         public static string DossierEdit_ReviewerLastName {
             get {
