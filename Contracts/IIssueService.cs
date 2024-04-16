@@ -5,7 +5,9 @@ namespace linc.Contracts
 {
     public interface IIssueService
     {
-        Task<ApplicationIssue> GetIssueAsync(int id, int? languageId = null);
+        Task<ApplicationIssue> GetIssueAsync(int id, int? sourcesLanguageId = null);
+
+        Task<ApplicationDocument> GetIssueDocumentAsync(int id, int? documentId);
 
         Task<List<ApplicationIssue>> GetIssuesAsync();
 

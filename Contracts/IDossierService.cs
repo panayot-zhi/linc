@@ -1,11 +1,13 @@
 ﻿using linc.Models.Enumerations;
 using linc.Models.ViewModels.Dossier;
-using System.ComponentModel.DataAnnotations;
+using linc.Data;
 
 namespace linc.Contracts
 {
     public interface IDossierService
     {
+        Task<ApplicationDocument> GetDossierDocumentAsync(int id, int documentId);
+
         Task<DossierIndexViewModel> GetDossiersPagedAsync(int? pageIndex, string sortPropertyName, SiteSortOrder sortOrder, int pageSize = 10);
 
         Task<DossierDetailsViewModel> GetDossierDetailsViewModelAsync(int id);
