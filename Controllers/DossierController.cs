@@ -4,7 +4,7 @@ using linc.Models.Enumerations;
 using linc.Models.ViewModels.Dossier;
 using linc.Utility;
 
-namespace linc
+namespace linc.Controllers
 {
     [SiteAuthorize(SiteRole.Editor)]
     public class DossierController : BaseController
@@ -13,7 +13,7 @@ namespace linc
 
         public DossierController(
             IDossierService dossierService,
-            ILocalizationService localizationService) 
+            ILocalizationService localizationService)
             : base(localizationService)
         {
             _dossierService = dossierService;
@@ -38,7 +38,7 @@ namespace linc
             {
                 return NotFound();
             }
-            
+
             return View(viewModel);
         }
 
