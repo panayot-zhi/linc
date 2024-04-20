@@ -15,7 +15,7 @@ namespace linc.Services
     {
         public EmailConfig EmailConfig { get; }
 
-        private readonly ApplicationConfig _appConfig;
+        private readonly ApplicationConfig _config;
         private readonly ILogger<SiteEmailSender> _logger;
         private readonly ILocalizationService _localizationService;
         private readonly IRazorViewToStringRenderer _razor;
@@ -24,7 +24,7 @@ namespace linc.Services
 
         public SiteEmailSender(
             IOptions<EmailConfig> emailConfig,
-            IOptions<ApplicationConfig> appConfig,
+            IOptions<ApplicationConfig> configOptions,
             ILogger<SiteEmailSender> logger,
             ILocalizationService localizationService,
             IRazorViewToStringRenderer razor,
@@ -35,7 +35,7 @@ namespace linc.Services
             _link = link;
             _razor = razor;
             _logger = logger;
-            _appConfig = appConfig.Value;
+            _config = configOptions.Value;
             _localizationService = localizationService;
 
             EmailConfig = emailConfig.Value;
@@ -116,7 +116,7 @@ namespace linc.Services
 
             if (!siteEmailDescriptor.ViewModel.ModelPopulated)
             {
-                viewModel.Logo.Url = _appConfig.ServerUrl;
+                viewModel.Logo.Url = _config.ServerUrl;
                 viewModel.Logo.Text = siteName;
 
                 viewModel.FooterLinks.Add(new()
@@ -134,7 +134,7 @@ namespace linc.Services
                 viewModel.FooterLinks.Add(new()
                 {
                     Text = _localizationService["BaseEmailModel_FooterProfileLink"].Value,
-                    Url = _appConfig.ServerUrl + "/identity/account/manage"
+                    Url = _config.ServerUrl + "/identity/account/manage"
                 });
 
                 viewModel.FooterText = _localizationService["BaseEmailModel_FooterText"].Value;
@@ -200,7 +200,7 @@ namespace linc.Services
 
         private string GetActionLink(string action, string controller, object values = null)
         {
-            var currentUri = new Uri(_appConfig.ServerUrl);
+            var currentUri = new Uri(_config.ServerUrl);
             return _link.GetUriByAction(action, controller, values, currentUri.Scheme, new HostString(currentUri.Host, currentUri.Port),
                 options: new LinkOptions() { LowercaseUrls = false });
         }
