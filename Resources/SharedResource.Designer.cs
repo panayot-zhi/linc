@@ -4050,6 +4050,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;a href=&quot;{0}&quot;&gt;брой {1} / {2}&lt;/a&gt; стр. &lt;a target=&quot;_blank&quot; href=&quot;{3}&quot;&gt;{4}&lt;/a&gt;.
+        /// </summary>
+        public static string SourceSuggestion_IssueInformation_Template {
+            get {
+                return ResourceManager.GetString("SourceSuggestion_IssueInformation_Template", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Грешка:.
         /// </summary>
         public static string StatusMessage_Error_Prefix {

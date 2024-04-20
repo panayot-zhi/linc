@@ -14,22 +14,25 @@ public class ContentService : IContentService
 {
     private readonly ApplicationDbContext _dbContext;
     private readonly IHttpContextAccessor _httpContextAccessor;
+    private readonly ILocalizationService _localizationService;
     private readonly UserManager<ApplicationUser> _userManager;
     private readonly IConfiguration _configuration;
     private readonly LinkGenerator _linkGenerator;
     private readonly IMemoryCache _cache; 
 
-    public ContentService(ApplicationDbContext dbContext, 
+    public ContentService(ApplicationDbContext dbContext,
+        UserManager<ApplicationUser> userManager,
         LinkGenerator linkGenerator,
-        IHttpContextAccessor httpContextAccessor, 
-        IMemoryCache cache, 
-        IConfiguration configuration, 
-        UserManager<ApplicationUser> userManager)
+        IHttpContextAccessor httpContextAccessor,
+        ILocalizationService localizationService,
+        IConfiguration configuration,
+        IMemoryCache cache)
     {
         _cache = cache;
         _dbContext = dbContext;
         _configuration = configuration;
         _userManager = userManager;
+        _localizationService = localizationService;
         _httpContextAccessor = httpContextAccessor;
         _linkGenerator = linkGenerator;
     }
@@ -89,16 +92,22 @@ public class ContentService : IContentService
         return viewModel;
     }
 
-    public List<SuggestionsViewModel> GetSuggestions(int count = 5)
+    public List<SourceSuggestionViewModel> GetSourceSuggestions(int count = 3)
     {
         var lastIssue = _dbContext.Issues.Max(x => x.Id);
         var sources = _dbContext.Sources
+            .Include(x => x.Issue)
             .Where(x => x.IssueId == lastIssue)
-            .Select(x => new SuggestionsViewModel()
+            .Select(x => new SourceSuggestionViewModel()
             {
+                SourceId = x.Id,
                 IssueId = x.IssueId,
+                AuthorNames = x.AuthorNames,
+                Title = x.Title,
                 StartingPage = x.StartingPage,
-                Content = x.Title
+                IssueNumber = x.Issue.IssueNumber,
+                IssueYear = x.Issue.ReleaseYear
+
             })
             .ToList();
         
@@ -106,14 +115,32 @@ public class ContentService : IContentService
 
         var result = sources.Take(5).ToList();
 
-        result.ForEach(x => x.Href = 
-            _linkGenerator.GetUriByAction(
+        result.ForEach(x =>
+        {
+            var sourceIssueLink = _linkGenerator.GetUriByAction(
                 _httpContextAccessor.HttpContext!,
-                "LoadIssuePdf",
+                "LoadIssueDocument",
                 "Document",
-                new { id = x.IssueId },
-                fragment: new FragmentString($"#page={x.StartingPage}"))
-            );
+                new { issueId = x.IssueId },
+                fragment: new FragmentString($"#page={x.StartingPage}"));
+
+            var issueDetailsLink = _linkGenerator.GetUriByAction(
+                _httpContextAccessor.HttpContext!,
+                "Details",
+                "Issue",
+                new { id = x.IssueId });
+
+            x.IssueInformation = _localizationService["SourceSuggestion_IssueInformation_Template",
+                issueDetailsLink, x.IssueNumber, x.IssueYear, sourceIssueLink, x.StartingPage].Value;
+
+            x.SourceLink =
+                // NOTE: link to the source pdf itself
+                _linkGenerator.GetUriByAction(
+                    _httpContextAccessor.HttpContext!,
+                    "LoadSourceDocument",
+                    "Document",
+                    new { sourceId = x.SourceId });
+        });
 
         return result;  
     }
