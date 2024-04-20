@@ -44,6 +44,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="DinkToPdf" Version="1.0.8" />
 		<PackageReference Include="EFCore.NamingConventions" Version="6.0.0" />
 		<PackageReference Include="HarfBuzzSharp.NativeAssets.Linux" Version="7.3.0.2" />
 		<PackageReference Include="iTextSharp.LGPLv2.Core" Version="3.4.18" />
@@ -117,6 +118,18 @@
 	<ItemGroup>
 	  <Folder Include="wwwroot\docs\bg\" />
 	  <Folder Include="wwwroot\docs\en\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="libwkhtmltox.dll">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="libwkhtmltox.dylib">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
+	  <None Update="libwkhtmltox.so">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </None>
 	</ItemGroup>
 
 </Project>
