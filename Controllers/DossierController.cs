@@ -1,21 +1,31 @@
-﻿using linc.Contracts;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
+using linc.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using linc.Models.Enumerations;
 using linc.Models.ViewModels.Dossier;
 using linc.Utility;
+using iTextSharp.text.html.simpleparser;
+using linc.Models.ConfigModels;
+using linc.Models.ViewModels;
+using linc.Models.ViewModels.Pdfs;
 
 namespace linc.Controllers
 {
     public class DossierController : BaseController
     {
+        private readonly ApplicationConfig _config;
         private readonly IDossierService _dossierService;
+        private readonly IRazorViewToStringRenderer _viewRenderer;
 
         public DossierController(
             IDossierService dossierService,
-            ILocalizationService localizationService)
+            ILocalizationService localizationService, 
+            IRazorViewToStringRenderer viewRenderer)
             : base(localizationService)
         {
             _dossierService = dossierService;
+            _viewRenderer = viewRenderer;
         }
 
         [SiteAuthorize(SiteRole.Editor)]
@@ -132,6 +142,66 @@ namespace linc.Controllers
 
             await _dossierService.UpdateStatusAsync(id.Value, status);
             return RedirectToAction(nameof(Details), new { id });
+        }
+
+        [HttpGet("dossier/{id:int}/agreement")]
+        [SiteAuthorize]
+        public async Task<IActionResult> Agreement(int id)
+        {
+            var viewModel = new AgreementViewModel()
+            {
+                Logo = new LinkViewModel()
+                {
+                    Text = SiteConstant.SiteName,
+                    Url = _config.ServerUrl
+
+                }
+            };
+
+            return View("Pdfs/Agreement", viewModel);
+        }
+
+        [HttpPost("dossier/{id:int}/agreement")]
+        [SiteAuthorize]
+        public async Task<IActionResult> SaveAgreement(int? id)
+        {
+            var viewName = "Pdfs/Agreement.cshtml";
+            var viewModel = new AgreementViewModel()
+            {
+
+            };
+
+            var htmlView = await _viewRenderer.RenderViewToStringAsync(viewName, viewModel);
+
+            await using var fileStream = new FileStream($"F:\\temp\\linc\\dossiers\\test\\{Guid.NewGuid()}.pdf", FileMode.Create);
+            using var reader = new StringReader(htmlView);
+
+            // step 1: creation of a document-object
+            var document = new Document(PageSize.A4, 30, 30, 30, 30);
+
+            // step 2:
+            // we create a writer that listens to the document
+            // and directs a XML-stream to a file
+            var writer = PdfWriter.GetInstance(document, fileStream);
+
+            // step 3: we create a worker parse the document
+            var worker = new HtmlWorker(document);
+
+            // step 4: we open document and start the worker on the document
+            document.Open();
+
+            worker.StartDocument();
+
+            // step 5: parse the html into the document
+            worker.Parse(reader);
+
+            // step 6: close the document and the worker
+            worker.EndDocument();
+            worker.Close();
+            document.Close();
+            writer.Close();
+
+            return Redirect("/");
         }
     }
 }
