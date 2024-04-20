@@ -48,6 +48,19 @@ a.requires-confirm {
 }
 
 /* 
+    Publication Agreement
+*/
+
+#agreement-form label {
+    padding-right: 18%;
+    cursor: pointer;
+}
+
+#agreement-form label input[type="checkbox"] {
+    margin-right: 4px;
+}
+
+/* 
     icon-links
 */
 .icon-links li {

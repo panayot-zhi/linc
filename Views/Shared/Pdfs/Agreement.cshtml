@@ -1,9 +1,127 @@
 ﻿@model AgreementViewModel
 
 @{
-    ViewData["Title"] = "Agreement";
-    Layout = "~/Views/Shared/Pdfs/_LayoutPdf.cshtml";
+    ViewData["Title"] = "Publication Agreement";
+    Layout = Model.Layout;
 }
 
-<h1>Agreement</h1>
+@section Head {
+    <style type="text/css"> 
 
+        @@font-face {
+            font-family: 'Times New Roman';
+            src: local('Times New Roman'), url("https://db.onlinewebfonts.com/t/32441506567156636049eb850b53f02a.ttf") format("truetype");
+        }
+
+        * {margin:0; padding:0; text-indent:0; }
+        p { color: black; font-family:"Times New Roman", serif; font-style: normal; font-weight: normal; text-decoration: none; font-size: 12pt; margin:0pt; }
+        .s1 { color: black; font-family:"Times New Roman", serif; font-style: normal; font-weight: normal; text-decoration: none; font-size: 8pt; vertical-align: 4pt; }
+        .s3 { color: black; font-family:"Times New Roman", serif; font-style: normal; font-weight: normal; text-decoration: none; font-size: 12pt; }
+        .s4 { color: black; font-family:"Times New Roman", serif; font-style: normal; font-weight: normal; text-decoration: none; font-size: 10pt; vertical-align: 3pt; }
+        li {display: block; }
+        #l1 {padding-left: 0pt;counter-reset: c1 1; }
+        #l1> li>*:first-child:before {counter-increment: c1; content: counter(c1, decimal)". "; color: black; font-family:"Times New Roman", serif; font-style: normal; font-weight: normal; text-decoration: none; font-size: 12pt; }
+        #l1> li:first-child>*:first-child:before {counter-increment: c1 0;  }
+        #l2 {padding-left: 0pt;counter-reset: c2 1; }
+        #l2> li>*:first-child:before {counter-increment: c2; content: counter(c2, decimal)". "; color: black; font-family:"Times New Roman", serif; font-style: normal; font-weight: normal; text-decoration: none; font-size: 12pt; }
+        #l2> li:first-child>*:first-child:before {counter-increment: c2 0;  }
+    </style>
+}
+
+<section class="inner-page">
+    <div class="container">
+
+        <p style="padding-top: 3pt; padding-left: 16pt; text-indent: 0pt; text-align: center;">Publication Agreement</p>
+        <p style="padding-top: 13pt; text-indent: 0pt; text-align: left;"><br/></p>
+        <p style="padding-left: 6pt; text-indent: 0pt; text-align: left;">This is a publication agreement <span class="s1">1</span> (“this agreement”) regarding a written manuscript currently entitled</p>
+        <p style="padding-top: 13pt; padding-left: 14pt; text-indent: 0pt; text-align: center;">
+            <strong>@Model.Title</strong>
+        </p>
+        <p style="padding-top: 13pt; padding-left: 6pt; text-indent: 0pt; text-align: left;">(“the article”) to be published in <i>LINGUISTICS, INTERPRETATIONS, CONCEPTS / LINGVISTIKA, INTERPRETATSIYA, KONTSEPTSII </i>(“the journal”). The parties to this Agreement are:</p>
+        <p style="padding-top: 13pt; padding-left: 24pt; text-indent: 0pt; text-align: center;">
+            <strong>@Model.AuthorNames</strong>
+        </p>
+        <p style="padding-top: 13pt; padding-left: 6pt; text-indent: 0pt; text-align: left;">(name of corresponding author who signs on behalf of any other authors, collectively “you”) and <i>LINGUISTICS, INTERPRETATIONS, CONCEPTS / LINGVISTIKA, INTERPRETATSIYA, KONTSEPTSII </i>(“the publisher”).</p>
+        <ol id="l1" style="padding-top: 13pt;">
+            <li data-list-text="1.">
+                <p style="padding-left: 32pt; text-indent: 0pt; text-align: justify;">
+                    By signing this form, you warrant that you are signing on behalf of all authors of the article, and that you have the authority to act as their agent for the purpose of entering into this agreement.
+                </p>
+            </li>
+            <li data-list-text="2.">
+                <p class="s3" style="padding-left: 32pt; text-indent: 0pt; text-align: justify;">
+                    You hereby grant a Creative Commons copyright license in the article to the general public, in particular a Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License, which is incorporated herein by reference and is further specified at
+                    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">
+                        <span style="color: #06C; font-family: 'Times New Roman', serif; font-style: normal; font-weight: normal; text-decoration: underline; font-size: 12pt;">https://creativecommons.org/licenses/by-nc-nd/4.0/</span>
+                    </a>
+                    legalcode (human readable summary at
+                    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">
+                        <span style="color: #06C; font-family: 'Times New Roman', serif; font-style: normal; font-weight: normal; text-decoration: underline; font-size: 12pt;">https://creativecommons.org/licenses/by-nc-nd/4.0/</span>
+                    </a>
+                    <span style="color: #000;">).</span>
+                </p>
+            </li>
+            <li data-list-text="3.">
+                <p style="padding-left: 32pt; text-indent: 0pt; text-align: justify;">You agree to require that a citation to the original publication of the article in the journal as well as a hyperlink to the <i>LINGUISTICS, INTERPRETATIONS, CONCEPTS / LINGVISTIKA, INTERPRETATSIYA, KONTSEPTSII </i>web site linking to the original paper be included in any attribution statement satisfying the attribution requirement of the Creative Commons license of paragraph 2.</p>
+            </li>
+            <li data-list-text="4.">
+                <p style="padding-left: 32pt; text-indent: 0pt; text-align: justify;">You retain ownership of all rights under copyright in all versions of the article, and all rights not expressly granted in this agreement.</p>
+            </li>
+            <li data-list-text="5.">
+                <p style="padding-left: 32pt; text-indent: 0pt; text-align: justify;">To the extent that any edits made by the publisher to make the article suitable for publication in the journal amount to copyrightable works of authorship, the publisher hereby assigns all right, title, and interest in such edits to you. The publisher agrees to verify with you any such edits that are substantive. You agree that the license of paragraph 2 covers such edits.</p>
+            </li>
+            <li data-list-text="6.">
+                <p style="padding-left: 68pt; text-indent: -36pt; text-align: justify;">You further warrant that:</p>
+                <ol id="l2">
+                    <li data-list-text="1.">
+                        <p style="padding-left: 51pt; text-indent: -10pt; text-align: justify;"> The article is original, has not been formally published in any other peer-reviewed journal or in a book or edited collection, and is not under consideration for any such publication.</p>
+                    </li>
+                    <li data-list-text="2.">
+                        <p style="padding-left: 51pt; text-indent: -10pt; text-align: justify;"> You are the sole author(s) of the article, and that you have a complete and unencumbered right to make the grants you make.</p>
+                    </li>
+                    <li data-list-text="3.">
+                        <p style="padding-left: 51pt; text-indent: -10pt; text-align: justify;"> The article does not libel anyone, invade anyone's copyright or otherwise violate any statutory or common law right of anyone, and that you have made all reasonable efforts to ensure the accuracy of any factual information contained in the article. You agree to indemnify the publisher against any claim or action alleging facts which, if true, constitute a breach of any of the foregoing warranties or other provisions of this agreement, as well as against any related damages, losses, liabilities, and expenses incurred by the publisher.</p>
+                    </li>
+                </ol>
+            </li>
+            <li data-list-text="7.">
+                <p style="padding-left: 32pt; text-indent: 0pt; text-align: justify;">This is the entire agreement between you and the publisher, and it may be modified only in writing. It will be governed by the laws of the Republic of Bulgaria. It will bind and benefit our respective assigns and successors in interest, including your heirs. It will terminate if the publisher does not publish, in any medium, the article within one year of the date of your signature.</p>
+            </li>
+        </ol>
+        @if (!Model.Previewing)
+        {
+            <p style="padding-top: 13pt; padding-left: 5pt; text-indent: 0pt; text-align: left;">
+                I HAVE READ AND AGREE FULLY WITH THE TERMS OF THIS AGREEMENT.
+            </p>
+            <p style="padding-top: 13pt; padding-left: 5pt; text-indent: 0pt; text-align: left;">Corresponding Author: @Model.AuthorNames</p>
+            <p style="padding-top: 13pt; padding-left: 5pt; text-indent: 0pt; text-align: left;">Signed: @Model.SignerNames</p>
+            <p style="padding-top: 13pt; padding-left: 5pt; text-indent: 0pt; text-align: left;">Date: @Model.CurrentDate</p>
+            <hr style="margin-top: 13pt; margin-bottom: 4pt;"/>
+            <p class="s4" style="padding-top: 4pt; padding-left: 5pt; text-indent: 36pt; text-align: right;">
+                <sup>1</sup> The language of this publication agreement is based on Stuart Shieber's model open-access journal publication agreement, version 1.2, available at
+                <a href="http://bit.ly/1m9UsNt" style="color: black; font-family: 'Times New Roman', serif; font-style: normal; font-weight: normal; text-decoration: none; font-size: 10pt;" target="_blank">
+                    <span style="color: #06C; font-family: 'Times New Roman', serif; font-style: normal; font-weight: normal; text-decoration: underline; font-size: 10pt;">http://bit.ly/1m9UsNt</span>
+                </a>
+                <span style="color: #000;">.</span>
+            </p>
+        }
+    </div>
+
+</section>
+
+@section Newsletter {
+    <div class="footer-newsletter">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <form id="agreement-form" asp-action="Agreement" asp-route-id="@Model.DossierId">
+                        <label for="agreement">
+                            <input id="agreement" name="agreement" type="checkbox" required="required" /> I HAVE READ AND AGREE FULLY WITH THE TERMS OF THIS AGREEMENT
+                        </label>
+                        <input type="submit" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+}
