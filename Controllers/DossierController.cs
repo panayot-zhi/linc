@@ -6,7 +6,6 @@ using linc.Utility;
 
 namespace linc.Controllers
 {
-    [SiteAuthorize(SiteRole.Editor)]
     public class DossierController : BaseController
     {
         private readonly IDossierService _dossierService;
@@ -19,6 +18,7 @@ namespace linc.Controllers
             _dossierService = dossierService;
         }
 
+        [SiteAuthorize(SiteRole.Editor)]
         public async Task<IActionResult> Index(int? page, string sort, string order)
         {
             Enum.TryParse(order, ignoreCase: true, result: out SiteSortOrder sortOrder);
@@ -26,6 +26,7 @@ namespace linc.Controllers
             return View(viewModel);
         }
 
+        [SiteAuthorize(SiteRole.Editor)]
         public async Task<IActionResult> Details(int? id)
         {
             if (id is null)
@@ -63,6 +64,7 @@ namespace linc.Controllers
 
         }
 
+        [SiteAuthorize(SiteRole.Editor)]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -93,6 +95,7 @@ namespace linc.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [SiteAuthorize(SiteRole.Editor)]
         public async Task<IActionResult> Edit(DossierEditViewModel viewModel)
         {
             if (!ModelState.IsValid)
@@ -107,6 +110,7 @@ namespace linc.Controllers
             return RedirectToAction(nameof(Details), new { id = viewModel.Id });
         }
 
+        [SiteAuthorize(SiteRole.Editor)]
         public async Task<IActionResult> UpdateAssignee(int? id)
         {
             if (id is null)
@@ -118,6 +122,7 @@ namespace linc.Controllers
             return RedirectToAction(nameof(Details), new { id });
         }
 
+        [SiteAuthorize(SiteRole.Editor)]
         public async Task<IActionResult> UpdateStatus(int? id, ApplicationDossierStatus status)
         {
             if (id is null)
