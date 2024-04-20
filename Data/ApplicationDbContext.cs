@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System.Reflection.Emit;
 
 namespace linc.Data;
 
@@ -200,6 +201,19 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
             .HasConversion(array => string.Join(",", array),
                 dbString => dbString.Split(",", StringSplitOptions.TrimEntries))
             .Metadata.SetValueComparer(StringArrayValueComparer);
+
+        // declare computed columns
+        // NOTE: this is database specific (for MySQL)
+
+        builder.Entity<ApplicationSource>(entity =>
+        {
+            entity.Property(e => e.AuthorNames)
+                .HasComputedColumnSql(
+                    $"CONCAT({HelperFunctions.ToSnakeCase(nameof(ApplicationSource.FirstName))}, " +
+                    "' ', " +
+                    $"{HelperFunctions.ToSnakeCase(nameof(ApplicationSource.LastName))})"
+                );
+        });
     }
 
     private static readonly ValueComparer StringArrayValueComparer = new ValueComparer<string[]>(

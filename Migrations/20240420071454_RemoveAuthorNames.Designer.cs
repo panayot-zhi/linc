@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using linc.Data;
 
@@ -10,9 +11,10 @@ using linc.Data;
 namespace linc.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240420071454_RemoveAuthorNames")]
+    partial class RemoveAuthorNames
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -314,14 +316,6 @@ namespace linc.Migrations
                         .HasColumnType("varchar(127)")
                         .HasColumnName("author_id");
 
-                    b.Property<string>("AuthorNames")
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasMaxLength(512)
-                        .HasColumnType("varchar(512)")
-                        .HasColumnName("author_names")
-                        .HasComputedColumnSql("CONCAT(first_name, ' ', last_name)");
-
                     b.Property<string>("AuthorNotes")
                         .HasMaxLength(1024)
                         .HasColumnType("varchar(1024)")
@@ -381,9 +375,6 @@ namespace linc.Migrations
                     b.HasIndex("AuthorId")
                         .HasDatabaseName("ix_sources_author_id");
 
-                    b.HasIndex("AuthorNames")
-                        .HasDatabaseName("ix_sources_author_names");
-
                     b.HasIndex("FirstName")
                         .HasDatabaseName("ix_sources_first_name");
 
@@ -399,9 +390,6 @@ namespace linc.Migrations
                     b.HasIndex("PdfId")
                         .IsUnique()
                         .HasDatabaseName("ix_sources_pdf_id");
-
-                    b.HasIndex("Title")
-                        .HasDatabaseName("ix_sources_title");
 
                     b.ToTable("sources", (string)null);
                 });
