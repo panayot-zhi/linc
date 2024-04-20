@@ -12,14 +12,15 @@ using linc.Contracts;
 
 namespace linc.Controllers
 {
-    [SiteAuthorize(SiteRole.Administrator)]
     public class AdminController : BaseController
     {
+        private readonly ILogger<AdminController> _logger;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ISiteEmailSender _emailSender;
 
         public AdminController(
+            ILogger<AdminController> logger,
             UserManager<ApplicationUser> userManager, 
             SignInManager<ApplicationUser> signInManager,
             ILocalizationService localizationService, 
@@ -29,8 +30,10 @@ namespace linc.Controllers
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
+            _logger = logger;
         }
 
+        [SiteAuthorize(SiteRole.Administrator)]
         public async Task<IActionResult> ImpersonateUser(string userId)
         {
             var currentUserId = User.GetUserId();
@@ -63,7 +66,12 @@ namespace linc.Controllers
         {
             if (!User.IsImpersonating())
             {
-                throw new Exception("You are not impersonating now. Can't stop impersonation");
+                _logger.LogError("User '{UserName}' ({UseId}) is not currently impersonating. Can't stop impersonation: continuing",
+                    User.GetUserName(), User.GetUserId());
+
+                //throw new Exception("You are not impersonating now. Can't stop impersonation");
+
+                return Redirect("/");
             }
 
             var originalUserId = User.GetOriginalUserId();
@@ -74,9 +82,10 @@ namespace linc.Controllers
 
             await _signInManager.SignInAsync(originalUser, isPersistent: true);
 
-            return RedirectToAction("Index", "Home");
+            return Redirect("/");
         }
 
+        [SiteAuthorize(SiteRole.Administrator)]
         public async Task<IActionResult> TestSendEmail(string id)
         {
             var request = HttpContext.Request;
