@@ -168,7 +168,12 @@ namespace linc.Controllers
             var viewName = "Pdfs/Agreement.cshtml";
             var viewModel = new AgreementViewModel()
             {
+                Logo = new LinkViewModel()
+                {
+                    Text = SiteConstant.SiteName,
+                    Url = _config.ServerUrl
 
+                }
             };
 
             var htmlView = await _viewRenderer.RenderViewToStringAsync(viewName, viewModel);
