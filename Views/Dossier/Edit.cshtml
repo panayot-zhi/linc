@@ -90,7 +90,7 @@
                                 </a>
                             </li>
                         }
-                        else if (Model.Status is ApplicationDossierStatus.Accepted or ApplicationDossierStatus.AcceptedWithCorrections)
+                        else if (User.IsAtLeast(SiteRole.HeadEditor) && Model.Status is ApplicationDossierStatus.Accepted or ApplicationDossierStatus.AcceptedWithCorrections)
                         {
                             <li>
                                 <a asp-action="UpdateStatus" asp-route-id="@Model.Id" asp-route-status="AwaitingCorrections" class="requires-confirm">

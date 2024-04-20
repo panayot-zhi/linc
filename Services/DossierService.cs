@@ -358,6 +358,17 @@ namespace linc.Services
 
             ArgumentNullException.ThrowIfNull(dossier);
 
+            if (status == ApplicationDossierStatus.AwaitingCorrections && 
+                dossier.Status is ApplicationDossierStatus.Accepted or ApplicationDossierStatus.AcceptedWithCorrections)
+            {
+                // only Head Editor can return to this state
+                var user = GetCurrentUser();
+                if (!user.IsAtLeast(SiteRole.HeadEditor))
+                {
+                    throw new ApplicationException($"User {user.GetUserName()} is not allowed to return the dossier to the desired status.");
+                }
+            }
+
             _context.Dossiers.Attach(dossier);
 
             dossier.Journals.Add(new DossierJournal
