@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using linc.Contracts;
 using Microsoft.Extensions.DependencyInjection;
+using DinkToPdf.Contracts;
+using DinkToPdf;
 
 namespace linc.Utility;
 
@@ -381,6 +383,8 @@ public static class StartupExtensions
 
     public static IServiceCollection AddServices(this IServiceCollection services)
     {
+        services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
+
         services.AddScoped<IRazorViewToStringRenderer, RazorViewToStringRenderer>();
         services.AddScoped<ILocalizationService, LocalizationService>();
         services.AddTransient<IDocumentService, DocumentService>();
