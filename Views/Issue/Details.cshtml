@@ -41,13 +41,13 @@
                     <div class="swiper-wrapper align-items-center">
                         
                         <div class="swiper-slide">
-                            <img src="@Url.Action("LoadDocumentFile", "Document", new { id = Model.CoverPage.Id })" alt="@Model.CoverPage.OriginalFileName">
+                            <img src="@Url.Action("LoadIssueDocument", "Document", new { issueId = Model.Id, documentId = Model.CoverPage.Id })" alt="@Model.CoverPage.OriginalFileName">
                         </div>
 
                         @foreach (var file in Model.IndexPages)
                         {
                             <div class="swiper-slide">
-                                <img src="@Url.Action("LoadDocumentFile", "Document", new { id = file.Id })" alt="@file.OriginalFileName">
+                                <img src="@Url.Action("LoadIssueDocument", "Document", new { issueId = Model.Id, documentId = file.Id })" alt="@file.OriginalFileName">
                             </div>
                         }
 
@@ -67,7 +67,7 @@
                         </li>
                     </ul>
                     <hr />
-                    <a class="btn btn-primary w-100" target="_blank" href="@Url.Action("DownloadDocumentFile", "Document", new { id = Model.Pdf.Id })">
+                    <a class="btn btn-primary w-100" target="_blank" href="@Url.Action("LoadIssueDocument", "Document", new { issueId = Model.Id, download = true })">
                         @HtmlLocalizer["Issue_DetailsPage_IssuePdf"]
                     </a>
                 </div>
@@ -113,7 +113,7 @@
                                 }
 
                                 <p class="source-title">
-                                    <a href="@Url.Action("LoadSourcePdf", "Document", new { id = source.Id })">
+                                    <a href="@Url.Action("LoadSourceDocument", "Document", new { sourceId = source.Id })">
                                         @source.Title
                                     </a>
                                 </p>

@@ -121,6 +121,53 @@ public static class HelperFunctions
         return Regex.Replace(input, "([a-z])([A-Z])", "$1-$2").ToLower();
     }
 
+    public static string ToSnakeCase(string input)
+    {
+        // Return the original string if it's null
+        if (string.IsNullOrEmpty(input))
+        {
+            return input;
+        }
+
+        // Return the lowercased version if
+        // the string has less than 2 characters
+        if (input.Length < 2)
+        {
+            return input.ToLowerInvariant();
+        }
+
+        var builder = new StringBuilder();
+
+        // Append the first character in
+        // lowercase without adding an underscore
+        builder.Append(char.ToLowerInvariant(input[0]));
+
+        // Process the rest of the characters
+        // starting from the second one
+        for (var i = 1; i < input.Length; i++)
+        {
+            var c = input[i];
+            if (char.IsUpper(c))
+            {
+                // Check for word boundaries:
+                // 1. Previous character is lowercase or
+                // 2. Next character is lowercase (typical for camelCase or end of an acronym)
+                if (char.IsLower(input[i - 1]) || (i + 1 < input.Length && char.IsLower(input[i + 1])))
+                {
+                    builder.Append('_');
+                }
+
+                builder.Append(char.ToLowerInvariant(c));
+            }
+            else
+            {
+                builder.Append(c);
+            }
+        }
+
+        return builder.ToString();
+    }
+
     public static void Shuffle<T>(this IList<T> list)
     {
         var n = list.Count;

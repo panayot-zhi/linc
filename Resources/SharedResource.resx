@@ -1517,10 +1517,10 @@
     <value>Рецензент - email</value>
   </data>
   <data name="DossierEdit_ReviewerFirstName" xml:space="preserve">
-    <value>Рецензент - фамилия</value>
+    <value>Рецензент - име</value>
   </data>
   <data name="DossierEdit_ReviewerLastName" xml:space="preserve">
-    <value>Рецензент - име</value>
+    <value>Рецензент - фамилия</value>
   </data>
   <data name="DossierEdit_Reviewers" xml:space="preserve">
     <value>Рецензенти</value>
@@ -1647,5 +1647,14 @@
   </data>
   <data name="Team_Description" xml:space="preserve">
     <value>В редакторския екип на изданието участват хабилитирани преподаватели от Филологическия факултет на Пловдивския университет „Паисий Хилендарски“.</value>
+  </data>
+  <data name="Dossier_EditPage_BackToStatus" xml:space="preserve">
+    <value>Върни към статус</value>
+  </data>
+  <data name="Dossier_EditPage_UploadAnonymizedDocument_Info" xml:space="preserve">
+    <value>Когато прикачите анонимизиран документ, досието автоматично ще премине в статус '{0}'.</value>
+  </data>
+  <data name="SourceSuggestion_IssueInformation_Template" xml:space="preserve">
+    <value>&lt;a href="{0}"&gt;брой {1} / {2}&lt;/a&gt; стр. &lt;a target="_blank" href="{3}"&gt;{4}&lt;/a&gt;</value>
   </data>
 </root>

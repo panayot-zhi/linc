@@ -54,21 +54,18 @@ namespace linc.Data
         [PersonalData]
         public string InternalAvatarPath { get; set; }
 
+        [PersonalData]
+        public DateTime? LastLogin { get; set; }
+
         #endregion Avatar
 
         #region Navigation
 
-        // public ICollection<StranitzaEPage> AuthoredEPages { get; set; }
-        //
-        // public ICollection<StranitzaEPage> UploadedEPages { get; set; }
-        //
-        // public ICollection<StranitzaSource> Sources { get; set; }
-        //
-        // public ICollection<StranitzaComment> Comments { get; set; }
-        //
-        // public ICollection<StranitzaComment> ModeratedComments { get; set; }
-        //
-        // public ICollection<StranitzaPost> Posts { get; set; }
+        [InverseProperty(nameof(ApplicationDossier.CreatedBy))]
+        public ICollection<ApplicationDossier> CreatedDossiers { get; set; }
+
+        [InverseProperty(nameof(ApplicationDossier.AssignedTo))]
+        public ICollection<ApplicationDossier> AssignedDossiers { get; set; }
 
         #endregion Navigation
 

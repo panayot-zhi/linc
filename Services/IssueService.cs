@@ -22,8 +22,9 @@ namespace linc.Services
 
         public async Task<ApplicationIssue> GetIssueAsync(int id, int? sourcesLanguageId = null)
         {
-            IQueryable<ApplicationIssue> query = _context.Issues
-                .Include(x => x.Files);
+            var query = _context.Issues
+                .Include(x => x.Files)
+                .Where(x => x.Id == id);
 
             if (sourcesLanguageId.HasValue)
             {
@@ -31,7 +32,24 @@ namespace linc.Services
                     .Where(source => source.LanguageId == sourcesLanguageId.Value));
             }
 
-            return await query.FirstOrDefaultAsync(x => x.Id == id);
+            return await query.FirstOrDefaultAsync();
+        }
+
+        public async Task<ApplicationDocument> GetIssueDocumentAsync(int id, int? documentId)
+        {
+            var query = _context.Issues
+                .Include(x => x.Files)
+                .Where(x => x.Id == id);
+
+            var issue = await query.FirstOrDefaultAsync();
+            if (issue == null)
+            {
+                return null;
+            }
+
+            return documentId.HasValue ? 
+                issue.Files.FirstOrDefault(x => x.Id == documentId) :
+                issue.Pdf;
         }
 
         public async Task<List<ApplicationIssue>> GetIssuesAsync()

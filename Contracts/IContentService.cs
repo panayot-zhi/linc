@@ -5,7 +5,7 @@ namespace linc.Contracts;
 
 public interface IContentService
 {
-    List<SuggestionsViewModel> GetSuggestions(int count = 5);
+    List<SourceSuggestionViewModel> GetSourceSuggestions(int count = 3);
 
     Task<IndexViewModel> GetIndexViewModel();
 

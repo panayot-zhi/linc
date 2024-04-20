@@ -52,7 +52,9 @@
                         {
                             <li>
                                 <a asp-action="UpdateStatus" asp-route-id="@Model.Id" asp-route-status="InReview" class="requires-confirm">
-                                    @HtmlLocalizer["Dossier_EditPage_ToStatus"] '@(EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.InReview))'
+                                    <i class='bx bx-fast-forward'></i>
+                                    @HtmlLocalizer["Dossier_EditPage_ToStatus"]
+                                    '@(EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.InReview))'
                                 </a>
                             </li>
                         }
@@ -85,6 +87,16 @@
                                 <a asp-action="UpdateStatus" asp-route-id="@Model.Id" asp-route-status="AcceptedWithCorrections" class="requires-confirm">
                                     <i class='bx bx-check'></i>
                                     @(EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.AcceptedWithCorrections))
+                                </a>
+                            </li>
+                        }
+                        else if (Model.Status is ApplicationDossierStatus.Accepted or ApplicationDossierStatus.AcceptedWithCorrections)
+                        {
+                            <li>
+                                <a asp-action="UpdateStatus" asp-route-id="@Model.Id" asp-route-status="AwaitingCorrections" class="requires-confirm">
+                                    <i class='bx bx-rewind'></i>
+                                    @HtmlLocalizer["Dossier_EditPage_BackToStatus"] 
+                                    '@(EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.AwaitingCorrections))'
                                 </a>
                             </li>
                         }
@@ -158,6 +170,12 @@
                         // allow uploading an Anonymized document
                         <input asp-for="DocumentType" type="hidden" value="@ApplicationDocumentType.Anonymized" />
 
+                        <div class="alert alert-info" role="alert">
+                            <i class='bx bxs-info-circle'></i>
+                            @HtmlLocalizer["Dossier_EditPage_UploadAnonymizedDocument_Info", 
+                                EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.Prepared)]
+                        </div>
+
                         <div class="form-group">
                             <div class="mb-3">
                                 <label asp-for="Document" class="form-label">
@@ -176,6 +194,7 @@
                         <input asp-for="DocumentType" type="hidden" value="@ApplicationDocumentType.Anonymized" />
 
                         <div class="alert alert-warning" role="alert">
+                            <i class='bx bxs-error'></i>
                             @HtmlLocalizer["Dossier_EditPage_UploadAnonymizedDocument_Warning"]
                         </div>
 
@@ -196,6 +215,7 @@
                         if (Model.Reviews.Count > 0)
                         {
                             <div class="alert alert-info" role="alert">
+                                <i class='bx bxs-info-circle'></i>
                                 @HtmlLocalizer["Dossier_EditPage_UploadReviewDocument_Info", EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.Reviewed)]
                             </div>
                         }
@@ -243,6 +263,7 @@
                         if (Model.Redacted != null)
                         {
                             <div class="alert alert-warning" role="alert">
+                                <i class='bx bxs-error'></i>
                                 @HtmlLocalizer["Dossier_EditPage_UploadRedactedDocument_Warning"]
                             </div>
                         }

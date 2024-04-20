@@ -1203,6 +1203,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Върни към статус.
+        /// </summary>
+        public static string Dossier_EditPage_BackToStatus {
+            get {
+                return ResourceManager.GetString("Dossier_EditPage_BackToStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Редакция на досие на ръкопис.
         /// </summary>
         public static string Dossier_EditPage_SubTitle {
@@ -1235,6 +1244,15 @@ namespace linc.Resources {
         public static string Dossier_EditPage_UploadAnonymizedDocument {
             get {
                 return ResourceManager.GetString("Dossier_EditPage_UploadAnonymizedDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Когато прикачите анонимизиран документ, досието автоматично ще премине в статус &apos;{0}&apos;..
+        /// </summary>
+        public static string Dossier_EditPage_UploadAnonymizedDocument_Info {
+            get {
+                return ResourceManager.GetString("Dossier_EditPage_UploadAnonymizedDocument_Info", resourceCulture);
             }
         }
         
@@ -1536,7 +1554,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Рецензент - фамилия.
+        ///   Looks up a localized string similar to Рецензент - име.
         /// </summary>
         public static string DossierEdit_ReviewerFirstName {
             get {
@@ -1554,7 +1572,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Рецензент - име.
+        ///   Looks up a localized string similar to Рецензент - фамилия.
         /// </summary>
         public static string DossierEdit_ReviewerLastName {
             get {
@@ -4046,6 +4064,15 @@ namespace linc.Resources {
         public static string Sources_All_Description {
             get {
                 return ResourceManager.GetString("Sources_All_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;a href=&quot;{0}&quot;&gt;брой {1} / {2}&lt;/a&gt; стр. &lt;a target=&quot;_blank&quot; href=&quot;{3}&quot;&gt;{4}&lt;/a&gt;.
+        /// </summary>
+        public static string SourceSuggestion_IssueInformation_Template {
+            get {
+                return ResourceManager.GetString("SourceSuggestion_IssueInformation_Template", resourceCulture);
             }
         }
         

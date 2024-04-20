@@ -48,6 +48,26 @@ namespace linc.Services
             _config = configOptions.Value;
         }
 
+        public async Task<ApplicationDocument> GetDossierDocumentAsync(int id, int documentId)
+        {
+            var query = _context.Dossiers
+                .Include(x => x.Documents)
+                .Include(x => x.Reviews)
+                    .ThenInclude(x => x.Review)
+                .Where(x => x.Id == id);
+
+            var dossier = await query.FirstOrDefaultAsync();
+            if (dossier == null)
+            {
+                return null;
+            }
+
+            var allDocuments = new List<ApplicationDocument>(dossier.Documents);
+            allDocuments.AddRange(dossier.Reviews.Select(x => x.Review));
+
+            return allDocuments.FirstOrDefault(x => x.Id == documentId);
+        }
+
         public async Task<DossierIndexViewModel> GetDossiersPagedAsync(int? pageIndex, string sortPropertyName, SiteSortOrder sortOrder, int pageSize = 10)
         {
             if (!pageIndex.HasValue)

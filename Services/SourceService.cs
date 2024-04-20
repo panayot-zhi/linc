@@ -153,7 +153,6 @@ namespace linc.Services
             {
                 FirstName = input.FirstName,
                 LastName = input.LastName,
-                AuthorNames = $"{input.FirstName} {input.LastName}",
                 AuthorNotes = input.AuthorNotes,
 
                 StartingPage = startingPage,

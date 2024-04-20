@@ -133,9 +133,11 @@
                                 @Html.DisplayFor(modelItem => item.DocumentType)
                             </td>
                             <td class="col-md-8">
-                                <a asp-controller="Document" asp-action="DownloadDocumentFile" asp-route-id="@item.Id" asp-route-useOriginalFileName="true">
+                                
+                                <a asp-action="LoadDossierDocument" asp-controller="Document" asp-route-dossierId="@Model.Id" , asp-route-documentId="@item.Id">
                                     @Html.DisplayFor(modelItem => item.OriginalFileName)
                                 </a>
+
                                 @if (item.DocumentType == ApplicationDocumentType.Review)
                                 {
                                     var dossierReview = Model.Reviews.First(x => x.ReviewId == item.Id);
@@ -143,6 +145,7 @@
                                         <small>@HtmlLocalizer["Reviewer_Label"]: @dossierReview.Names (<a href="mailto:@dossierReview.Email" target="_blank">@dossierReview.Email</a>)</small>
                                     </p>
                                 }
+
                             </td>
                             <td class="text-center col-md-2">
                                     @item.DateCreated.ToString("dd MMM yyyy")

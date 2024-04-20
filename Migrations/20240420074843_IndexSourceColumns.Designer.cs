@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using linc.Data;
 
@@ -10,9 +11,10 @@ using linc.Data;
 namespace linc.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240420074843_IndexSourceColumns")]
+    partial class IndexSourceColumns
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -525,10 +527,6 @@ namespace linc.Migrations
                         .HasColumnType("tinyint(1)")
                         .HasColumnName("is_reviewer");
 
-                    b.Property<DateTime?>("LastLogin")
-                        .HasColumnType("datetime(6)")
-                        .HasColumnName("last_login");
-
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -1036,12 +1034,12 @@ namespace linc.Migrations
             modelBuilder.Entity("linc.Data.ApplicationDossier", b =>
                 {
                     b.HasOne("linc.Data.ApplicationUser", "AssignedTo")
-                        .WithMany("AssignedDossiers")
+                        .WithMany()
                         .HasForeignKey("AssignedToId")
                         .HasConstraintName("fk_dossiers_users_assigned_to_id");
 
                     b.HasOne("linc.Data.ApplicationUser", "CreatedBy")
-                        .WithMany("CreatedDossiers")
+                        .WithMany()
                         .HasForeignKey("CreatedById")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
@@ -1278,13 +1276,6 @@ namespace linc.Migrations
             modelBuilder.Entity("linc.Data.ApplicationLanguage", b =>
                 {
                     b.Navigation("StringResources");
-                });
-
-            modelBuilder.Entity("linc.Data.ApplicationUser", b =>
-                {
-                    b.Navigation("AssignedDossiers");
-
-                    b.Navigation("CreatedDossiers");
                 });
 #pragma warning restore 612, 618
         }

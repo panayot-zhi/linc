@@ -6,6 +6,11 @@ namespace linc.Data
 {
     [Index(nameof(FirstName), IsUnique = false)]
     [Index(nameof(LastName), IsUnique = false)]
+    [Index(nameof(AuthorNames), IsUnique = false)]
+    // [Index(nameof(AuthorNotes), IsUnique = false)]
+
+    [Index(nameof(Title), IsUnique = false)]
+    // [Index(nameof(TitleNotes), IsUnique = false)]
     public class ApplicationSource
     {
         public int Id { get; set; }
@@ -17,8 +22,9 @@ namespace linc.Data
         [MaxLength(255)]
         public string LastName { get; set; }
 
+        [Required]
         [MaxLength(512)]
-        public string AuthorNames { get; set; }
+        public string AuthorNames { get; init; }
 
         [MaxLength(1024)]
         public string AuthorNotes { get; set; }
