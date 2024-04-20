@@ -9,6 +9,7 @@ using linc.Models.ConfigModels;
 using linc.Models.ViewModels.Emails;
 using System.Globalization;
 using linc.Contracts;
+using linc.Models.ViewModels;
 
 namespace linc.Controllers
 {

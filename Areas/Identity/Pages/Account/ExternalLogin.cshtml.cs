@@ -10,6 +10,7 @@ using linc.Contracts;
 using linc.Data;
 using linc.Models.ConfigModels;
 using linc.Models.Enumerations;
+using linc.Models.ViewModels;
 using linc.Models.ViewModels.Emails;
 using linc.Utility;
 using Microsoft.AspNetCore.Authorization;

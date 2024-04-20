@@ -4,6 +4,6 @@
     {
         public string Names { get; set; }
 
-        public EmailButton Confirm { get; set; } = new();
+        public LinkViewModel Confirm { get; set; } = new();
     }
 }
