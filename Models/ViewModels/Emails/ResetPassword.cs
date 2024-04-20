@@ -4,6 +4,6 @@
     {
         public string IpAddress { get; set; }
 
-        public EmailButton Reset { get; set; } = new();
+        public LinkViewModel Reset { get; set; } = new();
     }
 }

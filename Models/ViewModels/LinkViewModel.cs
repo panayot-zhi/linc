@@ -1,6 +1,6 @@
-﻿namespace linc.Models.ViewModels.Emails
+﻿namespace linc.Models.ViewModels
 {
-    public class EmailButton
+    public class LinkViewModel
     {
         public string Text { get; set; }
 

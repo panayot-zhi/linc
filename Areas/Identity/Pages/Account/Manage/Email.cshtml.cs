@@ -112,7 +112,7 @@ namespace linc.Areas.Identity.Pages.Account.Manage
                     ViewModel = new ConfirmEmailChange
                     {
                         Names = user.Names,
-                        Confirm = new EmailButton
+                        Confirm = new LinkViewModel
                         {
                             Url = callbackUrl,
                             Text = LocalizationService["Email_ConfirmEmail_ConfirmButton_Label"].Value
@@ -164,7 +164,7 @@ namespace linc.Areas.Identity.Pages.Account.Manage
                 ViewModel = new ConfirmEmail
                 {
                     Names = user.Names,
-                    Confirm = new EmailButton
+                    Confirm = new LinkViewModel
                     {
                         Url = callbackUrl,
                         Text = LocalizationService["Email_ConfirmEmail_ConfirmButton_Label"].Value

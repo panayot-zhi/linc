@@ -4,6 +4,6 @@
     {
         public string Test { get; set; }
 
-        public EmailButton TestButton { get; set; }
+        public LinkViewModel TestButton { get; set; }
     }
 }

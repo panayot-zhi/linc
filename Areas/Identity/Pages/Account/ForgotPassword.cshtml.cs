@@ -96,7 +96,7 @@ namespace linc.Areas.Identity.Pages.Account
                 ViewModel = new ResetPassword
                 {
                     IpAddress = HelperFunctions.GetIp(HttpContext),
-                    Reset = new EmailButton
+                    Reset = new LinkViewModel
                     {
                         Url = callbackUrl,
                         Text = LocalizationService["Email_ResetPassword_ResetButton_Label"].Value

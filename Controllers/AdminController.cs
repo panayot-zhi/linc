@@ -94,7 +94,7 @@ namespace linc.Controllers
             var viewModel = new TestEmail()
             {
                 Test = LocalizationService["Logo_Long"].Value,
-                TestButton = new EmailButton
+                TestButton = new LinkViewModel
                 {
                     Text = LocalizationService["Logo_Short"].Value,
                     Url = domainUrl

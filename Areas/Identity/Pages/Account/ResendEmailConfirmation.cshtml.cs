@@ -90,7 +90,7 @@ namespace linc.Areas.Identity.Pages.Account
                 ViewModel = new ConfirmEmail
                 {
                     Names = user.Names,
-                    Confirm = new EmailButton
+                    Confirm = new LinkViewModel
                     {
                         Url = callbackUrl,
                         Text = LocalizationService["Email_ConfirmEmail_ConfirmButton_Label"].Value
