@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using linc.Contracts;
 using linc.Data;
 using linc.Models.ConfigModels;
@@ -200,6 +199,20 @@ namespace linc.Services
             };
 
             return viewModel;
+        }
+
+        public async Task<ApplicationDossier> GetDossierAsync(int id)
+        {
+            var query = _context.Dossiers
+                .Include(x => x.Documents);
+
+            var dossier = await query.FirstOrDefaultAsync(x => x.Id == id);
+            if (dossier is null)
+            {
+                return null;
+            }
+
+            return dossier;
         }
 
         public async Task<int> CreateDossierAsync(DossierCreateViewModel input)
