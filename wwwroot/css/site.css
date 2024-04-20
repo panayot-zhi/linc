@@ -187,6 +187,18 @@ th.sortable::before {
     box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, .25);
 }
 
+/* 
+    bootstrap alert
+*/
+.alert {
+    display: flex;
+}
+
+.alert i {
+    padding-right: .5rem;
+    font-size: 1.55rem;
+}
+
 /*--------------------------------------------------------------
 # Editor's board
 --------------------------------------------------------------*/

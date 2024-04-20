@@ -1239,6 +1239,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Когато прикачите анонимизиран документ, досието автоматично ще премине в статус &apos;{0}&apos;..
+        /// </summary>
+        public static string Dossier_EditPage_UploadAnonymizedDocument_Info {
+            get {
+                return ResourceManager.GetString("Dossier_EditPage_UploadAnonymizedDocument_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Към досието вече има прикачен анонимизиран документ, ако прикачите нов, той ще подмени стария..
         /// </summary>
         public static string Dossier_EditPage_UploadAnonymizedDocument_Warning {
