@@ -105,6 +105,10 @@ namespace linc.Areas.Identity.Pages.Account
                 // ReSharper disable once PossibleNullReferenceException
                 _logger.LogInformation("User {UserName} logged in.", user.UserName);
 
+                // mark this as last login
+                user.LastLogin = DateTime.UtcNow;
+                await _signInManager.UserManager.UpdateAsync(user);
+
                 return LocalRedirect(returnUrl);
             }
 
