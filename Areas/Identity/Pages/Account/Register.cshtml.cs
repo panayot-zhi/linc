@@ -129,67 +129,66 @@ namespace linc.Areas.Identity.Pages.Account
 
             var result = await _userManager.CreateAsync(user, Input.Password);
 
-            if (result.Succeeded)
+            if (!result.Succeeded)
             {
-                var defaultRole = await _roleManager.FindByNameAsync(SiteRolesHelper.UserRoleName);
-
-                if (defaultRole != null)
+                foreach (var error in result.Errors)
                 {
-                    await _userManager.AddToRoleAsync(user, defaultRole.Name);
+                    ModelState.AddModelError(string.Empty, error.Description);
                 }
 
-                _logger.LogInformation("User created a new account with password.");
+                // something failed,
+                // redisplay form
+                return Page();
+            }
 
-                var userId = await _userManager.GetUserIdAsync(user);
-                var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                var callbackUrl = Url.Page(
-                    "/Account/ConfirmEmail",
-                    pageHandler: null,
-                    values: new { area = "Identity", userId, code, returnUrl = ReturnUrl },
-                    protocol: Request.Scheme);
+            var defaultRole = await _roleManager.FindByNameAsync(SiteRolesHelper.UserRoleName);
 
-                ArgumentNullException.ThrowIfNull(callbackUrl);
+            if (defaultRole != null)
+            {
+                await _userManager.AddToRoleAsync(user, defaultRole.Name);
+            }
 
-                var model = new SiteEmailDescriptor<ConfirmEmail>()
+            _logger.LogInformation("User created a new account with password.");
+
+            var userId = await _userManager.GetUserIdAsync(user);
+            var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+            var callbackUrl = Url.Page(
+                "/Account/ConfirmEmail",
+                pageHandler: null,
+                values: new { area = "Identity", userId, code, returnUrl = ReturnUrl },
+                protocol: Request.Scheme);
+
+            ArgumentNullException.ThrowIfNull(callbackUrl);
+
+            var model = new SiteEmailDescriptor<ConfirmEmail>()
+            {
+                Emails = new() { Input.Email },
+                Subject = LocalizationService["Email_ConfirmEmail_Subject"].Value,
+                ViewModel = new ConfirmEmail
                 {
-                    Emails = new() { Input.Email },
-                    Subject = LocalizationService["Email_ConfirmEmail_Subject"].Value,
-                    ViewModel = new ConfirmEmail
+                    Names = user.Names,
+                    Confirm = new EmailButton
                     {
-                        Names = user.Names,
-                        Confirm = new EmailButton
-                        {
-                            Url = callbackUrl,
-                            Text = LocalizationService["Email_ConfirmEmail_ConfirmButton_Label"].Value
-                        }
+                        Url = callbackUrl,
+                        Text = LocalizationService["Email_ConfirmEmail_ConfirmButton_Label"].Value
                     }
-                };
-
-                await _emailSender.SendEmailAsync(model);
-
-                AddAlertMessage(LocalizationService["RegisterConfirmation_InfoMessage"],
-                    type: AlertMessageType.Success);
-
-                if (_userManager.Options.SignIn.RequireConfirmedAccount)
-                {
-                    return Redirect("/");
                 }
+            };
 
-                await _signInManager.SignInAsync(user, isPersistent: false);
+            await _emailSender.SendEmailAsync(model);
 
-                return LocalRedirect(ReturnUrl);
-            }
+            AddAlertMessage(LocalizationService["RegisterConfirmation_InfoMessage"],
+                type: AlertMessageType.Success);
 
-            foreach (var error in result.Errors)
+            if (_userManager.Options.SignIn.RequireConfirmedAccount)
             {
-                ModelState.AddModelError(string.Empty, error.Description);
+                return Redirect("/");
             }
 
-            // If we got this far,
-            // something failed,
-            // redisplay form
-            return Page();
+            await _signInManager.SignInAsync(user, isPersistent: false);
+
+            return LocalRedirect(ReturnUrl);
         }
 
         private ApplicationUser CreateUser()
