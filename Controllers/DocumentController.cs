@@ -31,9 +31,8 @@ namespace linc.Controllers
             _sourceService = sourceService;
         }
 
-        [HttpGet]
+        [HttpGet("issue/{issueId:int}/document/{documentId:int?}")]
         [AllowAnonymous]
-        [Route("issue/{issueId:int}/document/{documentId:int?}")]
         public async Task<IActionResult> LoadIssueDocument(int issueId, int? documentId, bool download = false)
         {
             // NOTE: documentId can be nullable here in order to return the pdf as the default document if no documentId is passed
@@ -52,9 +51,8 @@ namespace linc.Controllers
             return result;
         }
 
-        [HttpGet]
+        [HttpGet("source/{sourceId:int}/document")]
         [AllowAnonymous]
-        [Route("source/{sourceId:int}/document")]
         public async Task<IActionResult> LoadSourceDocument(int sourceId, bool download = false)
         {
             var source = await _sourceService.GetSourceAsync(sourceId);
@@ -72,9 +70,8 @@ namespace linc.Controllers
             return result;
         }
 
-        [HttpGet]
+        [HttpGet("dossier/{dossierId:int}/document/{documentId:int}")]
         [SiteAuthorize(SiteRole.Editor)]
-        [Route("dossier/{dossierId:int}/document/{documentId:int}")]
         public async Task<IActionResult> LoadDossierDocument(int dossierId, int documentId, bool download = true)
         {
             // NOTE: most of the time one would wish to download the dossier file so download is true by default
