@@ -1648,6 +1648,9 @@
   <data name="Team_Description" xml:space="preserve">
     <value>В редакторския екип на изданието участват хабилитирани преподаватели от Филологическия факултет на Пловдивския университет „Паисий Хилендарски“.</value>
   </data>
+  <data name="Dossier_EditPage_BackToStatus" xml:space="preserve">
+    <value>Върни към статус</value>
+  </data>
   <data name="Dossier_EditPage_UploadAnonymizedDocument_Info" xml:space="preserve">
     <value>Когато прикачите анонимизиран документ, досието автоматично ще премине в статус '{0}'.</value>
   </data>

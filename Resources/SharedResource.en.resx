@@ -1650,6 +1650,9 @@ The manuscript file must have a .doc or .docx extension.</value>
   <data name="Team_Description" xml:space="preserve">
     <value>The editorial team consists of Professors and Associate Professors from the Faculty of Philology at Paisii Hilendarski University of Plovdiv. Members of the Editorial Board are internationally renowned researchers.</value>
   </data>
+  <data name="Dossier_EditPage_BackToStatus" xml:space="preserve">
+    <value>Back to status</value>
+  </data>
   <data name="Dossier_EditPage_UploadAnonymizedDocument_Info" xml:space="preserve">
     <value>When you attach an anonymized document, the dossier will automatically transition to status '{0}'.</value>
   </data>

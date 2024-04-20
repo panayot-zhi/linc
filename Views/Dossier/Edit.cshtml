@@ -52,7 +52,9 @@
                         {
                             <li>
                                 <a asp-action="UpdateStatus" asp-route-id="@Model.Id" asp-route-status="InReview" class="requires-confirm">
-                                    @HtmlLocalizer["Dossier_EditPage_ToStatus"] '@(EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.InReview))'
+                                    <i class='bx bx-fast-forward'></i>
+                                    @HtmlLocalizer["Dossier_EditPage_ToStatus"]
+                                    '@(EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.InReview))'
                                 </a>
                             </li>
                         }
@@ -85,6 +87,16 @@
                                 <a asp-action="UpdateStatus" asp-route-id="@Model.Id" asp-route-status="AcceptedWithCorrections" class="requires-confirm">
                                     <i class='bx bx-check'></i>
                                     @(EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.AcceptedWithCorrections))
+                                </a>
+                            </li>
+                        }
+                        else if (Model.Status is ApplicationDossierStatus.Accepted or ApplicationDossierStatus.AcceptedWithCorrections)
+                        {
+                            <li>
+                                <a asp-action="UpdateStatus" asp-route-id="@Model.Id" asp-route-status="AwaitingCorrections" class="requires-confirm">
+                                    <i class='bx bx-rewind'></i>
+                                    @HtmlLocalizer["Dossier_EditPage_BackToStatus"] 
+                                    '@(EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.AwaitingCorrections))'
                                 </a>
                             </li>
                         }

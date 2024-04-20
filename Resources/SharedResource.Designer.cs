@@ -1203,6 +1203,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Върни към статус.
+        /// </summary>
+        public static string Dossier_EditPage_BackToStatus {
+            get {
+                return ResourceManager.GetString("Dossier_EditPage_BackToStatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Редакция на досие на ръкопис.
         /// </summary>
         public static string Dossier_EditPage_SubTitle {
