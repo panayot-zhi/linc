@@ -156,8 +156,17 @@ public class ContentService : IContentService
         return result;  
     }
 
-    public string GetVersion()
+    // cache version for as long
+    // as the application is running
+    private static string _version;
+
+    public static string GetVersion()
     {
+        if (_version != null)
+        {
+            return _version;
+        }
+
         var result = "0.0.1";
 
         var assembly = typeof(Program).Assembly.GetName();
@@ -172,6 +181,8 @@ public class ContentService : IContentService
             var buildDate = File.GetLastWriteTime(assemblyFileName);
             result += $" - {buildDate:MMMM dd, yyyy}";
         }
+
+        _version = result;
 
         return result;
     }
