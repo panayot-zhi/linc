@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using System.Net.Mime;
+using System.Security.Claims;
 using linc.Contracts;
 using linc.Data;
 using linc.Models.ConfigModels;
@@ -219,7 +220,6 @@ namespace linc.Services
         {
             var currentUserId = GetCurrentUserId();
             await using var transaction = await _context.Database.BeginTransactionAsync();
-            var original = await SaveDossierDocumentAsync(input.OriginalFile, ApplicationDocumentType.Original);
             var entry = new ApplicationDossier
             {
                 Title = input.Title,
@@ -232,6 +232,12 @@ namespace linc.Services
                 CreatedById = currentUserId
             };
 
+            var entityEntry = await _context.Dossiers.AddAsync(entry);
+
+            await _context.SaveChangesAsync();
+
+            var original = await SaveDossierDocumentAsync(input.OriginalFile, entry.Id, ApplicationDocumentType.Original);
+
             entry.Documents.Add(original);
 
             entry.Journals.Add(new DossierJournal
@@ -240,13 +246,12 @@ namespace linc.Services
                 Message = JournalEntryKeys.Created
             });
 
-            var entityEntry = await _context.Dossiers.AddAsync(entry);
             await _context.SaveChangesAsync();
             await transaction.CommitAsync();
             return entityEntry.Entity.Id;
         }
 
-        private async Task<ApplicationDocument> SaveDossierDocumentAsync(IFormFile inputFile, ApplicationDocumentType type)
+        private async Task<ApplicationDocument> SaveDossierDocumentAsync(IFormFile inputFile, int dossierId, ApplicationDocumentType type)
         {
             if (inputFile == null)
             {
@@ -256,12 +261,12 @@ namespace linc.Services
             var fileExtension = inputFile.Extension();
             var fileName = Guid.NewGuid().ToString();
 
-            var rootFolderPath = Path.Combine(_config.RepositoryPath, SiteConstant.DossiersFolderName);
+            var rootFolderPath = Path.Combine(_config.RepositoryPath, SiteConstant.DossiersFolderName, dossierId.ToString());
             var filePath = Path.Combine(rootFolderPath, $"{fileName}.{fileExtension}");
 
             Directory.CreateDirectory(rootFolderPath);
 
-            var relativePath = Path.Combine(SiteConstant.DossiersFolderName, $"{fileName}.{fileExtension}");
+            var relativePath = Path.Combine(SiteConstant.DossiersFolderName, dossierId.ToString(), $"{fileName}.{fileExtension}");
 
             await using (var fileStream = new FileStream(filePath, FileMode.Create))
             {
@@ -432,7 +437,7 @@ namespace linc.Services
                     }
 
                     // allow uploading an anonymized document
-                    var document = await SaveDossierDocumentAsync(input.Document, ApplicationDocumentType.Anonymized);
+                    var document = await SaveDossierDocumentAsync(input.Document, dossier.Id, ApplicationDocumentType.Anonymized);
                     
                     dossier.Documents.Add(document);
 
@@ -460,7 +465,7 @@ namespace linc.Services
 
                     // allow overriding of anonymized document
                     await DeleteDossierDocument(dossier, dossier.Anonymized);
-                    var anonymizedDocument = await SaveDossierDocumentAsync(input.Document, ApplicationDocumentType.Anonymized);
+                    var anonymizedDocument = await SaveDossierDocumentAsync(input.Document, dossier.Id, ApplicationDocumentType.Anonymized);
                     dossier.Documents.Add(anonymizedDocument);
 
                     dossier.Journals.Add(new DossierJournal
@@ -483,7 +488,7 @@ namespace linc.Services
                     }
 
                     // allow uploading a review document
-                    var review = await SaveDossierDocumentAsync(input.Document, ApplicationDocumentType.Review);
+                    var review = await SaveDossierDocumentAsync(input.Document, dossier.Id, ApplicationDocumentType.Review);
                     var userReviewerId = await FindReviewerAsync(input.ReviewerEmail, input.ReviewerFirstName, input.ReviewerLastName);
                     var dossierReview = new ApplicationDossierReview()
                     {
@@ -562,7 +567,7 @@ namespace linc.Services
                         });
                     }
 
-                    var redactedDocument = await SaveDossierDocumentAsync(input.Document, ApplicationDocumentType.Redacted);
+                    var redactedDocument = await SaveDossierDocumentAsync(input.Document, dossier.Id, ApplicationDocumentType.Redacted);
                     dossier.Documents.Add(redactedDocument);
                     
                     break;
@@ -585,6 +590,49 @@ namespace linc.Services
 
             await _context.SaveChangesAsync();
             await transaction.CommitAsync();
+        }
+
+        public async Task SaveAgreementAsync(ApplicationDossier dossier, byte[] inputFile)
+        {
+            const string fileName = "publication_agreement.pdf";
+            var rootFolderPath = Path.Combine(_config.RepositoryPath, SiteConstant.DossiersFolderName, dossier.Id.ToString());
+            var filePath = Path.Combine(rootFolderPath, fileName);
+            var currentUserId = GetCurrentUserId();
+
+            Directory.CreateDirectory(rootFolderPath);
+
+            var relativePath = Path.Combine(SiteConstant.DossiersFolderName, dossier.Id.ToString(), fileName);
+
+            await File.WriteAllBytesAsync(filePath, inputFile);
+
+            var entry = new ApplicationDocument()
+            {
+                DocumentType = ApplicationDocumentType.Agreement,
+                Extension = "pdf",
+                FileName = fileName,
+                MimeType = MediaTypeNames.Application.Pdf,
+                OriginalFileName = fileName,
+                RelativePath = relativePath
+            };
+
+            dossier.Journals.Add(new DossierJournal
+            {
+                PerformedById = currentUserId,
+                Message = JournalEntryKeys.DocumentUploaded,
+                MessageArguments = new[]
+                {
+                    "DocumentType_Agreement"
+                }
+            });
+
+            await _context.Documents.AddAsync(entry);
+
+            _context.Dossiers.Attach(dossier);
+
+            dossier.Documents.Add(entry);
+            dossier.AuthorId = currentUserId;
+
+            await _context.SaveChangesAsync();
         }
 
         private async Task UpdateDossierPropertiesAsync(ApplicationDossier dossier, DossierEditViewModel input)
