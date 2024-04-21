@@ -15,20 +15,30 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="backups\**" />
-	  <Compile Remove="release\**" />
-	  <Content Remove="backups\**" />
-	  <Content Remove="release\**" />
-	  <EmbeddedResource Remove="backups\**" />
-	  <EmbeddedResource Remove="release\**" />
-	  <None Remove="backups\**" />
-	  <None Remove="release\**" />
+		<Compile Remove="backups\**" />
+		<Compile Remove="release\**" />
+		<Content Remove="backups\**" />
+		<Content Remove="release\**" />
+		<EmbeddedResource Remove="backups\**" />
+		<EmbeddedResource Remove="release\**" />
+		<None Remove="backups\**" />
+		<None Remove="release\**" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<Content Remove="appsettings.Development.json" />
 		<Content Remove="appsettings.Production.json" />
 		<Content Remove="appsettings.Staging.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove="libwkhtmltox.dll" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="libwkhtmltox.dll">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Content>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -46,7 +56,6 @@
 	<ItemGroup>
 		<PackageReference Include="DinkToPdf" Version="1.0.8" />
 		<PackageReference Include="EFCore.NamingConventions" Version="6.0.0" />
-		<PackageReference Include="HarfBuzzSharp.NativeAssets.Linux" Version="7.3.0.2" />
 		<PackageReference Include="iTextSharp.LGPLv2.Core" Version="3.4.18" />
 		<PackageReference Include="MailKit" Version="4.3.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.23" />
@@ -59,7 +68,6 @@
 		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
 		<PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.2" />
 		<PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
-		<PackageReference Include="SkiaSharp.NativeAssets.Linux.NoDependencies" Version="2.88.8" />
 		<PackageReference Include="System.Net.Http" Version="4.3.4" />
 		<PackageReference Include="System.Text.RegularExpressions" Version="4.3.1" />
 	</ItemGroup>
@@ -71,65 +79,53 @@
 	</Target>
 
 	<ItemGroup>
-	  <Compile Update="Resources\IdentityErrorMessage.Designer.cs">
-	    <DesignTime>True</DesignTime>
-	    <AutoGen>True</AutoGen>
-	    <DependentUpon>IdentityErrorMessage.resx</DependentUpon>
-	  </Compile>
-	  <Compile Update="Resources\SharedResource.Designer.cs">
-	    <DesignTime>True</DesignTime>
-	    <AutoGen>True</AutoGen>
-	    <DependentUpon>SharedResource.resx</DependentUpon>
-	  </Compile>
-	  <Compile Update="Resources\ValidationResource.Designer.cs">
-	    <DesignTime>True</DesignTime>
-	    <AutoGen>True</AutoGen>
-	    <DependentUpon>ValidationResource.resx</DependentUpon>
-	  </Compile>
+		<Compile Update="Resources\IdentityErrorMessage.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>IdentityErrorMessage.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Resources\SharedResource.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>SharedResource.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Resources\ValidationResource.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>ValidationResource.resx</DependentUpon>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-    <Content Update="appsettings.Development.json">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Content>
-    <Content Update="appsettings.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="appsettings.Production.json">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-	<ItemGroup>
-	  <EmbeddedResource Update="Resources\IdentityErrorMessage.resx">
-	    <Generator>PublicResXFileCodeGenerator</Generator>
-	    <LastGenOutput>IdentityErrorMessage.Designer.cs</LastGenOutput>
-	  </EmbeddedResource>
-	  <EmbeddedResource Update="Resources\SharedResource.resx">
-	    <Generator>PublicResXFileCodeGenerator</Generator>
-	    <LastGenOutput>SharedResource.Designer.cs</LastGenOutput>
-	  </EmbeddedResource>
-	  <EmbeddedResource Update="Resources\ValidationResource.resx">
-	    <Generator>PublicResXFileCodeGenerator</Generator>
-	    <LastGenOutput>ValidationResource.Designer.cs</LastGenOutput>
-	  </EmbeddedResource>
+		<Content Update="appsettings.Development.json">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Content>
+		<Content Update="appsettings.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="appsettings.Production.json">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Content>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="wwwroot\docs\bg\" />
-	  <Folder Include="wwwroot\docs\en\" />
+		<EmbeddedResource Update="Resources\IdentityErrorMessage.resx">
+			<Generator>PublicResXFileCodeGenerator</Generator>
+			<LastGenOutput>IdentityErrorMessage.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\SharedResource.resx">
+			<Generator>PublicResXFileCodeGenerator</Generator>
+			<LastGenOutput>SharedResource.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\ValidationResource.resx">
+			<Generator>PublicResXFileCodeGenerator</Generator>
+			<LastGenOutput>ValidationResource.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Update="libwkhtmltox.dll">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="libwkhtmltox.dylib">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="libwkhtmltox.so">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
+		<Folder Include="wwwroot\docs\bg\" />
+		<Folder Include="wwwroot\docs\en\" />
 	</ItemGroup>
 
 </Project>
