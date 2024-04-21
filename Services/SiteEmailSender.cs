@@ -15,7 +15,7 @@ namespace linc.Services
     {
         public EmailConfig EmailConfig { get; }
 
-        private readonly ApplicationConfig _appConfig;
+        private readonly ApplicationConfig _config;
         private readonly ILogger<SiteEmailSender> _logger;
         private readonly ILocalizationService _localizationService;
         private readonly IRazorViewToStringRenderer _razor;
@@ -24,7 +24,7 @@ namespace linc.Services
 
         public SiteEmailSender(
             IOptions<EmailConfig> emailConfig,
-            IOptions<ApplicationConfig> appConfig,
+            IOptions<ApplicationConfig> configOptions,
             ILogger<SiteEmailSender> logger,
             ILocalizationService localizationService,
             IRazorViewToStringRenderer razor,
@@ -35,7 +35,7 @@ namespace linc.Services
             _link = link;
             _razor = razor;
             _logger = logger;
-            _appConfig = appConfig.Value;
+            _config = configOptions.Value;
             _localizationService = localizationService;
 
             EmailConfig = emailConfig.Value;
@@ -59,7 +59,6 @@ namespace linc.Services
             ArgumentNullException.ThrowIfNull(nameof(siteEmailDescriptor.Emails));
             ArgumentNullException.ThrowIfNull(nameof(siteEmailDescriptor.Subject));
 
-            
             var mimeMessage = new MimeMessage()
             {
                 From =
@@ -116,7 +115,7 @@ namespace linc.Services
 
             if (!siteEmailDescriptor.ViewModel.ModelPopulated)
             {
-                viewModel.Logo.Url = _appConfig.ServerUrl;
+                viewModel.Logo.Url = _config.ServerUrl;
                 viewModel.Logo.Text = siteName;
 
                 viewModel.FooterLinks.Add(new()
@@ -134,7 +133,7 @@ namespace linc.Services
                 viewModel.FooterLinks.Add(new()
                 {
                     Text = _localizationService["BaseEmailModel_FooterProfileLink"].Value,
-                    Url = _appConfig.ServerUrl + "/identity/account/manage"
+                    Url = _config.ServerUrl + "/identity/account/manage"
                 });
 
                 viewModel.FooterText = _localizationService["BaseEmailModel_FooterText"].Value;
@@ -200,49 +199,9 @@ namespace linc.Services
 
         private string GetActionLink(string action, string controller, object values = null)
         {
-            var currentUri = new Uri(_appConfig.ServerUrl);
+            var currentUri = new Uri(_config.ServerUrl);
             return _link.GetUriByAction(action, controller, values, currentUri.Scheme, new HostString(currentUri.Host, currentUri.Port),
                 options: new LinkOptions() { LowercaseUrls = false });
-        }
-
-        [Obsolete("Delete")]
-        public async Task SendEmailAsync(string email, string subject, string htmlMessage)
-        {
-            var mimeMessage = new MimeMessage()
-            {
-                Subject = subject,
-            };
-
-            mimeMessage.From.Add(MailboxAddress.Parse(EmailConfig.Sender));
-            mimeMessage.To.Add(MailboxAddress.Parse(email));
-
-            var builder = new BodyBuilder
-            {
-                HtmlBody = htmlMessage
-            };
-
-            mimeMessage.Body = builder.ToMessageBody();
-
-            using (var client = new SmtpClient())
-            {
-                if (_env.IsDevelopment())
-                {
-                    // For demo-purposes, accept all SSL certificates (in case the server supports STARTTLS)
-                    client.ServerCertificateValidationCallback = (s, c, h, e) => true;
-                }
-
-                // The third parameter is useSSL (true if the client should make 
-                // an SSL-wrapped connection to the server; otherwise, false).
-                await client.ConnectAsync(EmailConfig.Host, EmailConfig.Port,
-                    SecureSocketOptions.StartTlsWhenAvailable);
-
-                // Note: only needed if the SMTP server requires authentication
-                await client.AuthenticateAsync(EmailConfig.Sender, EmailConfig.Password);
-
-                await client.SendAsync(mimeMessage);
-
-                await client.DisconnectAsync(quit: true);
-            }
         }
     }
 }

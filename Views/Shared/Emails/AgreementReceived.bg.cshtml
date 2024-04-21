@@ -1,0 +1,24 @@
+﻿@model AgreementReceived
+
+@{
+    Layout = "~/Views/Shared/Emails/_LayoutEmail.cshtml";
+    ViewData["Title"] = "Получена декларация за публикуване";
+    ViewData["EmailTitle"] = "Декларация";
+}
+
+<p>
+    <strong>Здравейте, @Model.Names</strong>
+</p>
+
+<p style="margin: 20px 0 0;">
+    получихме Вашата декларация за публикуване. Можете да я прегледате от линка по-долу:
+</p>
+
+<partial name="_EmailButton.cshtml" model="Model.AgreementLink"/>
+
+<p style="margin: 20px 0;">
+    Благодарим Ви за сътрудничеството и проноса към списанието!
+</p>
+
+<p>С уважение, екипът на списание<br/>Лингвистика, Интерпретация, Концепции</p>
+

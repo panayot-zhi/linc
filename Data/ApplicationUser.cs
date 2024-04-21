@@ -67,6 +67,9 @@ namespace linc.Data
         [InverseProperty(nameof(ApplicationDossier.AssignedTo))]
         public ICollection<ApplicationDossier> AssignedDossiers { get; set; }
 
+        [InverseProperty(nameof(ApplicationDossier.Author))]
+        public ICollection<ApplicationDossier> AuthoredDossiers { get; set; }
+
         #endregion Navigation
 
         #region NotMapped

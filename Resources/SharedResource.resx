@@ -1657,4 +1657,16 @@
   <data name="SourceSuggestion_IssueInformation_Template" xml:space="preserve">
     <value>&lt;a href="{0}"&gt;брой {1} / {2}&lt;/a&gt; стр. &lt;a target="_blank" href="{3}"&gt;{4}&lt;/a&gt;</value>
   </data>
+  <data name="PublicationAgreement_SuccessMessage" xml:space="preserve">
+    <value>Споразумението за публикуване беше успешно прикачено към Вашия ръкопис! Благодаря Ви за съдействието.</value>
+  </data>
+  <data name="Agreement_DifferentUser_Warning" xml:space="preserve">
+    <value>Споразумението за публикуване е поискано от потребител с имена и email, различни от записаните в досието.</value>
+  </data>
+  <data name="Email_AgreementReceived_Subject" xml:space="preserve">
+    <value>Получена декларация за публикуване</value>
+  </data>
+  <data name="Email_Agreement_Subject" xml:space="preserve">
+    <value>Декларация за публикуване</value>
+  </data>
 </root>

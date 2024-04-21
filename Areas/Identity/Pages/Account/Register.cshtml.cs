@@ -9,6 +9,7 @@ using linc.Contracts;
 using linc.Data;
 using linc.Models.ConfigModels;
 using linc.Models.Enumerations;
+using linc.Models.ViewModels;
 using linc.Models.ViewModels.Emails;
 using linc.Utility;
 using Microsoft.AspNetCore.Authentication;
@@ -168,7 +169,7 @@ namespace linc.Areas.Identity.Pages.Account
                 ViewModel = new ConfirmEmail
                 {
                     Names = user.Names,
-                    Confirm = new EmailButton
+                    Confirm = new LinkViewModel
                     {
                         Url = callbackUrl,
                         Text = LocalizationService["Email_ConfirmEmail_ConfirmButton_Label"].Value

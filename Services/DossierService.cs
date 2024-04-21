@@ -1,10 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Net.Mime;
 using System.Security.Claims;
 using linc.Contracts;
 using linc.Data;
 using linc.Models.ConfigModels;
 using linc.Models.Enumerations;
+using linc.Models.ViewModels;
 using linc.Models.ViewModels.Dossier;
+using linc.Models.ViewModels.Emails;
 using linc.Utility;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +16,8 @@ namespace linc.Services
 {
     public class DossierService : IDossierService
     {
+        private readonly LinkGenerator _linkGenerator;
+        private readonly ISiteEmailSender _emailSender;
         private readonly ILocalizationService _localizationService;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly ILogger<DossierService> _logger;
@@ -38,14 +42,18 @@ namespace linc.Services
         public DossierService(ApplicationDbContext context, 
             IOptions<ApplicationConfig> configOptions, 
             IHttpContextAccessor httpContextAccessor, 
-            ILocalizationService localizationService, 
-            ILogger<DossierService> logger)
+            ILocalizationService localizationService,
+            ISiteEmailSender emailSender,
+            ILogger<DossierService> logger, 
+            LinkGenerator linkGenerator)
         {
+            _logger = logger;
             _context = context;
             _httpContextAccessor = httpContextAccessor;
             _localizationService = localizationService;
-            _logger = logger;
+            _linkGenerator = linkGenerator;
             _config = configOptions.Value;
+            _emailSender = emailSender;
         }
 
         public async Task<ApplicationDocument> GetDossierDocumentAsync(int id, int documentId)
@@ -77,8 +85,8 @@ namespace linc.Services
 
             if (string.IsNullOrEmpty(sortPropertyName))
             {
-                sortPropertyName = nameof(ApplicationDossier.Status);
-                sortOrder = SiteSortOrder.Asc;
+                sortPropertyName = nameof(ApplicationDossier.LastUpdated);
+                sortOrder = SiteSortOrder.Desc;
             }
 
             var dossiersDbSet = _context.Dossiers;
@@ -202,11 +210,24 @@ namespace linc.Services
             return viewModel;
         }
 
+        public async Task<ApplicationDossier> GetDossierAsync(int id)
+        {
+            var query = _context.Dossiers
+                .Include(x => x.Documents);
+
+            var dossier = await query.FirstOrDefaultAsync(x => x.Id == id);
+            if (dossier is null)
+            {
+                return null;
+            }
+
+            return dossier;
+        }
+
         public async Task<int> CreateDossierAsync(DossierCreateViewModel input)
         {
             var currentUserId = GetCurrentUserId();
             await using var transaction = await _context.Database.BeginTransactionAsync();
-            var original = await SaveDossierDocumentAsync(input.OriginalFile, ApplicationDocumentType.Original);
             var entry = new ApplicationDossier
             {
                 Title = input.Title,
@@ -219,6 +240,12 @@ namespace linc.Services
                 CreatedById = currentUserId
             };
 
+            var entityEntry = await _context.Dossiers.AddAsync(entry);
+
+            await _context.SaveChangesAsync();
+
+            var original = await SaveDossierDocumentAsync(input.OriginalFile, entry.Id, ApplicationDocumentType.Original);
+
             entry.Documents.Add(original);
 
             entry.Journals.Add(new DossierJournal
@@ -227,13 +254,12 @@ namespace linc.Services
                 Message = JournalEntryKeys.Created
             });
 
-            var entityEntry = await _context.Dossiers.AddAsync(entry);
             await _context.SaveChangesAsync();
             await transaction.CommitAsync();
             return entityEntry.Entity.Id;
         }
 
-        private async Task<ApplicationDocument> SaveDossierDocumentAsync(IFormFile inputFile, ApplicationDocumentType type)
+        private async Task<ApplicationDocument> SaveDossierDocumentAsync(IFormFile inputFile, int dossierId, ApplicationDocumentType type)
         {
             if (inputFile == null)
             {
@@ -243,12 +269,12 @@ namespace linc.Services
             var fileExtension = inputFile.Extension();
             var fileName = Guid.NewGuid().ToString();
 
-            var rootFolderPath = Path.Combine(_config.RepositoryPath, SiteConstant.DossiersFolderName);
+            var rootFolderPath = Path.Combine(_config.RepositoryPath, SiteConstant.DossiersFolderName, dossierId.ToString());
             var filePath = Path.Combine(rootFolderPath, $"{fileName}.{fileExtension}");
 
             Directory.CreateDirectory(rootFolderPath);
 
-            var relativePath = Path.Combine(SiteConstant.DossiersFolderName, $"{fileName}.{fileExtension}");
+            var relativePath = Path.Combine(SiteConstant.DossiersFolderName, dossierId.ToString(), $"{fileName}.{fileExtension}");
 
             await using (var fileStream = new FileStream(filePath, FileMode.Create))
             {
@@ -358,6 +384,17 @@ namespace linc.Services
 
             ArgumentNullException.ThrowIfNull(dossier);
 
+            if (status == ApplicationDossierStatus.AwaitingCorrections && 
+                dossier.Status is ApplicationDossierStatus.Accepted or ApplicationDossierStatus.AcceptedWithCorrections)
+            {
+                // only Head Editor can return to this state
+                var user = GetCurrentUser();
+                if (!user.IsAtLeast(SiteRole.HeadEditor))
+                {
+                    throw new ApplicationException($"User {user.GetUserName()} is not allowed to return the dossier to the desired status.");
+                }
+            }
+
             _context.Dossiers.Attach(dossier);
 
             dossier.Journals.Add(new DossierJournal
@@ -376,6 +413,41 @@ namespace linc.Services
             dossier.Status = status;
 
             await _context.SaveChangesAsync();
+
+            if (status is ApplicationDossierStatus.Accepted or ApplicationDossierStatus.AcceptedWithCorrections)
+            {
+                // check for agreement document
+                var agreement = _context.Dossiers
+                    .Include(x => x.Documents
+                        .Where(document => document.DocumentType == ApplicationDocumentType.Agreement))
+                    .FirstOrDefault(x => x.Id == dossier.Id)?.Agreement;
+
+                if (agreement == null)
+                {
+                    // send publication agreement link
+                    var emailDescriptor = new SiteEmailDescriptor<Agreement>()
+                    {
+                        Emails = new List<string>() { dossier.Email },
+                        Subject = _localizationService["Email_Agreement_Subject"].Value,
+                        ViewModel = new Agreement()
+                        {
+                            Names = dossier.Names,
+                            DossierStatus = EnumHelper<ApplicationDossierStatus>.GetDisplayName(status),
+                            AgreementLink = new LinkViewModel()
+                            {
+                                Text = _localizationService["Details_Label"].Value,
+                                Url = _linkGenerator.GetUriByAction(
+                                    _httpContextAccessor.HttpContext!,
+                                    "Agreement",
+                                    "Dossier",
+                                    new { id = dossier.Id })
+                            }
+                        }
+                    };
+
+                    await _emailSender.SendEmailAsync(emailDescriptor);
+                }
+            }
         }
 
         public async Task UpdateDossierAsync(DossierEditViewModel input)
@@ -408,7 +480,7 @@ namespace linc.Services
                     }
 
                     // allow uploading an anonymized document
-                    var document = await SaveDossierDocumentAsync(input.Document, ApplicationDocumentType.Anonymized);
+                    var document = await SaveDossierDocumentAsync(input.Document, dossier.Id, ApplicationDocumentType.Anonymized);
                     
                     dossier.Documents.Add(document);
 
@@ -436,7 +508,7 @@ namespace linc.Services
 
                     // allow overriding of anonymized document
                     await DeleteDossierDocument(dossier, dossier.Anonymized);
-                    var anonymizedDocument = await SaveDossierDocumentAsync(input.Document, ApplicationDocumentType.Anonymized);
+                    var anonymizedDocument = await SaveDossierDocumentAsync(input.Document, dossier.Id, ApplicationDocumentType.Anonymized);
                     dossier.Documents.Add(anonymizedDocument);
 
                     dossier.Journals.Add(new DossierJournal
@@ -459,7 +531,7 @@ namespace linc.Services
                     }
 
                     // allow uploading a review document
-                    var review = await SaveDossierDocumentAsync(input.Document, ApplicationDocumentType.Review);
+                    var review = await SaveDossierDocumentAsync(input.Document, dossier.Id, ApplicationDocumentType.Review);
                     var userReviewerId = await FindReviewerAsync(input.ReviewerEmail, input.ReviewerFirstName, input.ReviewerLastName);
                     var dossierReview = new ApplicationDossierReview()
                     {
@@ -538,7 +610,7 @@ namespace linc.Services
                         });
                     }
 
-                    var redactedDocument = await SaveDossierDocumentAsync(input.Document, ApplicationDocumentType.Redacted);
+                    var redactedDocument = await SaveDossierDocumentAsync(input.Document, dossier.Id, ApplicationDocumentType.Redacted);
                     dossier.Documents.Add(redactedDocument);
                     
                     break;
@@ -561,6 +633,78 @@ namespace linc.Services
 
             await _context.SaveChangesAsync();
             await transaction.CommitAsync();
+        }
+
+        public async Task SaveAgreementAsync(ApplicationDossier dossier, byte[] inputFile)
+        {
+            const string fileName = "publication_agreement.pdf";
+            var rootFolderPath = Path.Combine(_config.RepositoryPath, SiteConstant.DossiersFolderName, dossier.Id.ToString());
+            var filePath = Path.Combine(rootFolderPath, fileName);
+            var currentUser = GetCurrentUser();
+            var currentUserId = currentUser.GetUserId();
+            var currentUserEmail = currentUser.GetEmail();
+
+            Directory.CreateDirectory(rootFolderPath);
+
+            var relativePath = Path.Combine(SiteConstant.DossiersFolderName, dossier.Id.ToString(), fileName);
+
+            await File.WriteAllBytesAsync(filePath, inputFile);
+
+            var entry = new ApplicationDocument()
+            {
+                DocumentType = ApplicationDocumentType.Agreement,
+                Extension = "pdf",
+                FileName = fileName,
+                MimeType = MediaTypeNames.Application.Pdf,
+                OriginalFileName = fileName,
+                RelativePath = relativePath
+            };
+
+            dossier.Journals.Add(new DossierJournal
+            {
+                PerformedById = currentUserId,
+                Message = JournalEntryKeys.DocumentUploaded,
+                MessageArguments = new[]
+                {
+                    "DocumentType_Agreement"
+                }
+            });
+
+            await _context.Documents.AddAsync(entry);
+
+            _context.Dossiers.Attach(dossier);
+
+            dossier.Documents.Add(entry);
+            dossier.AuthorId = currentUserId;
+
+            await _context.SaveChangesAsync();
+
+            // send publication agreement document (to editor and to all user mails available)
+
+            var editor = _context.Users
+                .First(x => x.Id == dossier.AssignedToId);
+
+            var emailDescriptor = new SiteEmailDescriptor<AgreementReceived>()
+            {
+                CcEmails = new List<string>() { editor.Email },
+                Emails = new List<string>() { dossier.Email },
+                Subject = _localizationService["Email_AgreementReceived_Subject"].Value,
+                ViewModel = new AgreementReceived()
+                {
+                    Names = dossier.Names,
+                    AgreementLink = new LinkViewModel()
+                    {
+                        Text = _localizationService["Details_Label"].Value,
+                        Url = _linkGenerator.GetUriByAction(
+                            _httpContextAccessor.HttpContext!,
+                            "Agreement",
+                            "Dossier",
+                            new { id = dossier.Id })
+                    }
+                }
+            };
+
+            await _emailSender.SendEmailAsync(emailDescriptor);
         }
 
         private async Task UpdateDossierPropertiesAsync(ApplicationDossier dossier, DossierEditViewModel input)

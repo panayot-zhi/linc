@@ -12,9 +12,9 @@ namespace linc.Models.ViewModels.Emails
 
         public string Preview { get; set; }
 
-        public EmailLink Logo { get; set; } = new();
+        public LinkViewModel Logo { get; set; } = new();
 
-        public List<EmailLink> FooterLinks { get; set; } = new();
+        public List<LinkViewModel> FooterLinks { get; set; } = new();
         
         public string FooterText { get; set; }
         

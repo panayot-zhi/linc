@@ -15,7 +15,8 @@ namespace linc.Utility
         }
     }
 
-    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
+    // NOTE: as class authorization is not easily overridable, we mark actions only
+    [AttributeUsage(AttributeTargets.Method /* | AttributeTargets.Class*/)]
     public class SiteAuthorizeAttribute : AuthorizeAttribute
     {
         /// <summary>

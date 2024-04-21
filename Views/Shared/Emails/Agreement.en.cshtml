@@ -1,0 +1,27 @@
+﻿@model Agreement
+
+@{
+    Layout = "~/Views/Shared/Emails/_LayoutEmail.cshtml";
+    ViewData["Title"] = "Publication agreement";
+    ViewData["EmailTitle"] = "Agreement";
+}
+
+<p>
+    <strong>Hello, @Model.Names,</strong>
+</p>
+
+<p style="margin: 20px 0;">
+    your manuscript has transitioned to status '@Model.DossierStatus' and we now require your consent for the article/study to be published.
+</p>
+
+<p>
+    Please follow the link below to read the publication agreement:
+</p>
+
+<partial name="_EmailButton.cshtml" model="Model.AgreementLink"/>
+
+<p style="margin: 20px 0;">
+    Please note, that in order to do this, you would need to be a <strong>registered user</strong> in our system.
+</p>
+
+<p>Respectfully, from the team of<br />Linguistics, Interpretations, Concepts</p>

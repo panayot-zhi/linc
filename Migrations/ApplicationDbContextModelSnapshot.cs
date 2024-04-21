@@ -125,6 +125,10 @@ namespace linc.Migrations
                         .HasColumnType("varchar(255)")
                         .HasColumnName("assigned_to_id");
 
+                    b.Property<string>("AuthorId")
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("author_id");
+
                     b.Property<string>("CreatedById")
                         .IsRequired()
                         .HasColumnType("varchar(255)")
@@ -171,6 +175,9 @@ namespace linc.Migrations
 
                     b.HasIndex("AssignedToId")
                         .HasDatabaseName("ix_dossiers_assigned_to_id");
+
+                    b.HasIndex("AuthorId")
+                        .HasDatabaseName("ix_dossiers_author_id");
 
                     b.HasIndex("CreatedById")
                         .HasDatabaseName("ix_dossiers_created_by_id");
@@ -1040,6 +1047,11 @@ namespace linc.Migrations
                         .HasForeignKey("AssignedToId")
                         .HasConstraintName("fk_dossiers_users_assigned_to_id");
 
+                    b.HasOne("linc.Data.ApplicationUser", "Author")
+                        .WithMany()
+                        .HasForeignKey("AuthorId")
+                        .HasConstraintName("fk_dossiers_users_author_id");
+
                     b.HasOne("linc.Data.ApplicationUser", "CreatedBy")
                         .WithMany("CreatedDossiers")
                         .HasForeignKey("CreatedById")
@@ -1048,6 +1060,8 @@ namespace linc.Migrations
                         .HasConstraintName("fk_dossiers_users_created_by_id");
 
                     b.Navigation("AssignedTo");
+
+                    b.Navigation("Author");
 
                     b.Navigation("CreatedBy");
                 });

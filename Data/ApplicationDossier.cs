@@ -45,6 +45,12 @@ namespace linc.Data
         public virtual ApplicationUser AssignedTo { get; set; }
 
 
+        [ForeignKey(nameof(Author))]
+        public string AuthorId { get; set; }
+
+        public virtual ApplicationUser Author { get; set; }
+
+
         public virtual ICollection<ApplicationDossierReview> Reviews { get; set; } = new List<ApplicationDossierReview>();
 
         public virtual ICollection<ApplicationDocument> Documents { get; set; } = new List<ApplicationDocument>();
