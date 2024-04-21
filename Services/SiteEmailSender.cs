@@ -59,7 +59,6 @@ namespace linc.Services
             ArgumentNullException.ThrowIfNull(nameof(siteEmailDescriptor.Emails));
             ArgumentNullException.ThrowIfNull(nameof(siteEmailDescriptor.Subject));
 
-            
             var mimeMessage = new MimeMessage()
             {
                 From =
@@ -203,46 +202,6 @@ namespace linc.Services
             var currentUri = new Uri(_config.ServerUrl);
             return _link.GetUriByAction(action, controller, values, currentUri.Scheme, new HostString(currentUri.Host, currentUri.Port),
                 options: new LinkOptions() { LowercaseUrls = false });
-        }
-
-        [Obsolete("Delete")]
-        public async Task SendEmailAsync(string email, string subject, string htmlMessage)
-        {
-            var mimeMessage = new MimeMessage()
-            {
-                Subject = subject,
-            };
-
-            mimeMessage.From.Add(MailboxAddress.Parse(EmailConfig.Sender));
-            mimeMessage.To.Add(MailboxAddress.Parse(email));
-
-            var builder = new BodyBuilder
-            {
-                HtmlBody = htmlMessage
-            };
-
-            mimeMessage.Body = builder.ToMessageBody();
-
-            using (var client = new SmtpClient())
-            {
-                if (_env.IsDevelopment())
-                {
-                    // For demo-purposes, accept all SSL certificates (in case the server supports STARTTLS)
-                    client.ServerCertificateValidationCallback = (s, c, h, e) => true;
-                }
-
-                // The third parameter is useSSL (true if the client should make 
-                // an SSL-wrapped connection to the server; otherwise, false).
-                await client.ConnectAsync(EmailConfig.Host, EmailConfig.Port,
-                    SecureSocketOptions.StartTlsWhenAvailable);
-
-                // Note: only needed if the SMTP server requires authentication
-                await client.AuthenticateAsync(EmailConfig.Sender, EmailConfig.Password);
-
-                await client.SendAsync(mimeMessage);
-
-                await client.DisconnectAsync(quit: true);
-            }
         }
     }
 }
