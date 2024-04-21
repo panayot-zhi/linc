@@ -53,6 +53,16 @@ public class ContentService : IContentService
             EditorsBoardCount = 9
         };
 
+        var viewModel = new IndexViewModel()
+        {
+            CountsViewModel = countsViewModel,
+        };
+
+        if (!_dbContext.Issues.Any())
+        {
+            return viewModel;
+        }
+
         var issuesList = await _dbContext.Issues
             .Include(x => x.Files)
             .OrderByDescending(x => x.LastUpdated)
@@ -83,17 +93,18 @@ public class ContentService : IContentService
                 .ToList()
         };
 
-        var viewModel = new IndexViewModel()
-        {
-            CountsViewModel = countsViewModel,
-            PortfolioViewModel = issuesViewModel
-        };
+        viewModel.PortfolioViewModel = issuesViewModel;
 
         return viewModel;
     }
 
     public List<SourceSuggestionViewModel> GetSourceSuggestions(int count = 3)
     {
+        if (!_dbContext.Issues.Any())
+        {
+            return new List<SourceSuggestionViewModel>();
+        }
+
         var lastIssue = _dbContext.Issues.Max(x => x.Id);
         var sources = _dbContext.Sources
             .Include(x => x.Issue)
