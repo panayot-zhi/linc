@@ -12,6 +12,7 @@ using DinkToPdf;
 using linc.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
+using linc.Services;
 
 namespace linc.Controllers
 {
@@ -22,6 +23,7 @@ namespace linc.Controllers
         private readonly ILogger<DossierController> _logger;
         private readonly IRazorViewToStringRenderer _viewRenderer;
         private readonly IUserStore<ApplicationUser> _userService;
+        private readonly IDocumentService _documentService;
         private readonly IConverter _converter;
 
         private const string AgreementPdfViewName = "/Views/Shared/Pdfs/Agreement.cshtml";
@@ -32,12 +34,14 @@ namespace linc.Controllers
             ILocalizationService localizationService,
             IUserStore<ApplicationUser> userService,
             IRazorViewToStringRenderer viewRenderer,
+            IDocumentService documentService,
             IDossierService dossierService,
             IConverter converter)
             : base(localizationService)
         {
             _logger = logger;
             _converter = converter;
+            _documentService = documentService;
             _config = configOptions.Value;
             _dossierService = dossierService;
             _viewRenderer = viewRenderer;
@@ -184,13 +188,13 @@ namespace linc.Controllers
             {
                 if (dossier.AuthorId != currentUserId)
                 {
-                    // if another user is attempting sign
-                    // forbid the interaction
+                    // if another user is attempting to view 
+                    // the declaration forbid the interaction
                     return Forbid();
                 }
 
-                return RedirectToAction("LoadDossierDocument", "Document",
-                    new { dossierId = dossier.Id, documentId = dossier.Agreement.Id });
+                // if this is the user's agreement, let him view it
+                return await GetDocumentFile(dossier.Agreement.Id);
             }
 
             if (dossier.Names != currentUser.Names)
@@ -271,6 +275,43 @@ namespace linc.Controllers
             return Redirect("/");
         }
 
+        private async Task<PhysicalFileResult> GetDocumentFile(int documentId, bool download = false)
+        {
+            var document = await _documentService.GetDocumentAsync(documentId);
+            if (document is null)
+            {
+                return null;
+            }
+
+            var path = _documentService.GetDocumentFilePath(document);
+            if (path is null)
+            {
+                return null;
+            }
+
+            PhysicalFileResult result;
+
+            // don't append FileDownloadName by default since we do not want to force
+            // browsers to download the file, but instead attempt to display it
+
+            if (download)
+            {
+                result = new PhysicalFileResult(path, MediaTypeNames.Application.Octet)
+                {
+                    FileDownloadName = document.OriginalFileName
+                };
+            }
+            else
+            {
+                result = new PhysicalFileResult(path, document.MimeType);
+            }
+
+            _logger.LogInformation("Sending document file {Path} with MimeType of {MimeType} and type {DocumentType} for download: {Download}",
+                path, document.MimeType, document.DocumentType.ToString(), download);
+
+            return result;
+        }
+
         private byte[] GeneratePdfFile(string htmlContent)
         {
             var globalSettings = new GlobalSettings
@@ -316,5 +357,6 @@ namespace linc.Controllers
                 return stream.ToArray();
             }
         }
+
     }
 }
