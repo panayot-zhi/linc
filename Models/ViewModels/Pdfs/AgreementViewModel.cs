@@ -15,5 +15,7 @@
         public string SignerNames { get; set; }
 
         public string CurrentDate { get; set; }
+
+        public string SiteLink { get; set; }
     }
 }

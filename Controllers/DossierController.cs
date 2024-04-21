@@ -206,6 +206,7 @@ namespace linc.Controllers
                 SignerNames = currentUser.Names,
                 Title = dossier.Title,
                 CurrentDate = DateTime.Now.ToString("dd.MM.yyyy"),
+                SiteLink = _config.ServerUrl,
 
                 Previewing = true,
                 Layout = "_Layout"
@@ -250,6 +251,7 @@ namespace linc.Controllers
                 SignerNames = user.Names,
                 Title = dossier.Title,
                 CurrentDate = DateTime.Now.ToString("dd.MM.yyyy"),
+                SiteLink = _config.ServerUrl,
 
                 Layout = "/Views/Shared/Pdfs/_LayoutPdf.cshtml"
             };
