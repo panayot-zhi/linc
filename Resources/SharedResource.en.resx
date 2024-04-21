@@ -1662,6 +1662,12 @@ The manuscript file must have a .doc or .docx extension.</value>
   <data name="PublicationAgreement_SuccessMessage" xml:space="preserve">
     <value>The publication agreement has been attached to your submission successfully! Thank you for your cooperation.</value>
   </data>
+  <data name="Agreement_DifferentUser_Warning" xml:space="preserve">
+    <value>The publication agreement was requested by a user with different names and email than those recorded in the dossier.</value>
+  </data>
+  <data name="Email_AgreementReceived_Subject" xml:space="preserve">
+    <value>Received publication agreement</value>
+  </data>
   <data name="Email_Agreement_Subject" xml:space="preserve">
     <value>Publication agreement</value>
   </data>

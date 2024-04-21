@@ -250,6 +250,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Споразумението за публикуване е поискано от потребител с имена и email, различни от записаните в досието..
+        /// </summary>
+        public static string Agreement_DifferentUser_Warning {
+            get {
+                return ResourceManager.GetString("Agreement_DifferentUser_Warning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Данните, които изпращате са невалидни..
         /// </summary>
         public static string AlertMessage_400Warning {
@@ -1703,6 +1712,15 @@ namespace linc.Resources {
         public static string Email_Agreement_Subject {
             get {
                 return ResourceManager.GetString("Email_Agreement_Subject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Получена декларация за публикуване.
+        /// </summary>
+        public static string Email_AgreementReceived_Subject {
+            get {
+                return ResourceManager.GetString("Email_AgreementReceived_Subject", resourceCulture);
             }
         }
         
