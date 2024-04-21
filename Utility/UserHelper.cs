@@ -51,16 +51,7 @@ namespace linc.Utility
         {
             _ = user ?? throw new ArgumentNullException(nameof(user));
             var roleName = user.FindFirst(ClaimTypes.Role)?.Value;
-
-            if (Enum.TryParse(
-                    value: roleName,
-                    ignoreCase: true,
-                    result: out SiteRole r))
-            {
-                return r;
-            }
-
-            throw new ArgumentOutOfRangeException();
+            return SiteRolesHelper.GetRole(roleName);
         }
 
         public static string GetDisplayName(this ApplicationUser user, ILocalizationService localizationService)
