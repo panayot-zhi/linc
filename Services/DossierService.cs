@@ -416,28 +416,37 @@ namespace linc.Services
 
             if (status is ApplicationDossierStatus.Accepted or ApplicationDossierStatus.AcceptedWithCorrections)
             {
-                // send publication agreement declaration
-                var emailDescriptor = new SiteEmailDescriptor<Agreement>()
-                {
-                    Emails = new List<string>() { dossier.Email },
-                    Subject = _localizationService["Email_Agreement_Subject"].Value,
-                    ViewModel = new Agreement()
-                    {
-                        Names = dossier.Names,
-                        DossierStatus = EnumHelper<ApplicationDossierStatus>.GetDisplayName(status),
-                        AgreementLink = new LinkViewModel()
-                        {
-                            Text = _localizationService["Details_Label"].Value,
-                            Url = _linkGenerator.GetUriByAction(
-                                _httpContextAccessor.HttpContext!, 
-                                "Agreement", 
-                                "Dossier",
-                                new { id = dossier.Id })
-                        }
-                    }
-                };
+                // check for agreement document
+                var agreement = _context.Dossiers
+                    .Include(x => x.Documents
+                        .Where(document => document.DocumentType == ApplicationDocumentType.Agreement))
+                    .FirstOrDefault(x => x.Id == dossier.Id)?.Agreement;
 
-                await _emailSender.SendEmailAsync(emailDescriptor);
+                if (agreement == null)
+                {
+                    // send publication agreement declaration link
+                    var emailDescriptor = new SiteEmailDescriptor<Agreement>()
+                    {
+                        Emails = new List<string>() { dossier.Email },
+                        Subject = _localizationService["Email_Agreement_Subject"].Value,
+                        ViewModel = new Agreement()
+                        {
+                            Names = dossier.Names,
+                            DossierStatus = EnumHelper<ApplicationDossierStatus>.GetDisplayName(status),
+                            AgreementLink = new LinkViewModel()
+                            {
+                                Text = _localizationService["Details_Label"].Value,
+                                Url = _linkGenerator.GetUriByAction(
+                                    _httpContextAccessor.HttpContext!,
+                                    "Agreement",
+                                    "Dossier",
+                                    new { id = dossier.Id })
+                            }
+                        }
+                    };
+
+                    await _emailSender.SendEmailAsync(emailDescriptor);
+                }
             }
         }
 
