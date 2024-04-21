@@ -113,7 +113,7 @@ public class ContentService : IContentService
         
         sources.Shuffle();
 
-        var result = sources.Take(5).ToList();
+        var result = sources.Take(count).ToList();
 
         result.ForEach(x =>
         {
