@@ -1,14 +1,17 @@
-﻿using iTextSharp.text;
+﻿using System.Net.Mime;
 using iTextSharp.text.pdf;
 using linc.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using linc.Models.Enumerations;
 using linc.Models.ViewModels.Dossier;
 using linc.Utility;
-using iTextSharp.text.html.simpleparser;
 using linc.Models.ConfigModels;
-using linc.Models.ViewModels;
 using linc.Models.ViewModels.Pdfs;
+using DinkToPdf.Contracts;
+using DinkToPdf;
+using linc.Data;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
 
 namespace linc.Controllers
 {
@@ -16,16 +19,29 @@ namespace linc.Controllers
     {
         private readonly ApplicationConfig _config;
         private readonly IDossierService _dossierService;
+        private readonly ILogger<DossierController> _logger;
         private readonly IRazorViewToStringRenderer _viewRenderer;
+        private readonly IUserStore<ApplicationUser> _userService;
+        private readonly IConverter _converter;
+
+        private const string AgreementPdfViewName = "/Views/Shared/Pdfs/Agreement.cshtml";
 
         public DossierController(
+            ILogger<DossierController> logger,
+            IOptions<ApplicationConfig> configOptions,
+            ILocalizationService localizationService,
+            IUserStore<ApplicationUser> userService,
+            IRazorViewToStringRenderer viewRenderer,
             IDossierService dossierService,
-            ILocalizationService localizationService, 
-            IRazorViewToStringRenderer viewRenderer)
+            IConverter converter)
             : base(localizationService)
         {
+            _logger = logger;
+            _config = configOptions.Value;
             _dossierService = dossierService;
             _viewRenderer = viewRenderer;
+            _converter = converter;
+            _userService = userService;
         }
 
         [SiteAuthorize(SiteRole.Editor)]
@@ -148,65 +164,155 @@ namespace linc.Controllers
         [SiteAuthorize]
         public async Task<IActionResult> Agreement(int id)
         {
-            var viewModel = new AgreementViewModel()
+            var dossier = await _dossierService.GetDossierAsync(id);
+            if (dossier == null)
             {
-                Logo = new LinkViewModel()
-                {
-                    Text = SiteConstant.SiteName,
-                    Url = _config.ServerUrl
+                _logger.LogWarning(
+                    "An attempt was made to sign agreement document for a dossier that does not exist: {DossierId}",
+                    id);
 
+                return null;
+            }
+
+            var currentUserId = User.GetUserId();
+            var currentUser = await _userService.FindByIdAsync(currentUserId,
+                CancellationToken.None);
+
+            ArgumentNullException.ThrowIfNull(currentUser);
+
+            if (dossier.Agreement != null)
+            {
+                if (dossier.AuthorId != currentUserId)
+                {
+                    // if another user is attempting sign
+                    // forbid the interaction
+                    return Forbid();
                 }
+
+                return RedirectToAction("LoadDossierDocument", "Document",
+                    new { dossierId = dossier.Id, documentId = dossier.Agreement.Id });
+            }
+
+            if (dossier.Names != currentUser.Names)
+            {
+                _logger.LogWarning("Publication agreement was requested by a user with different names than those in the dossier: {DossierNames} != {CurrentUserNames}",
+                    dossier.Names, currentUser.Names);
+            }
+
+            var viewModel = new AgreementViewModel
+            {
+                DossierId = dossier.Id,
+                AuthorNames = dossier.Names,
+                SignerNames = currentUser.Names,
+                Title = dossier.Title,
+                CurrentDate = DateTime.Now.ToString("dd.MM.yyyy"),
+
+                Previewing = true,
+                Layout = "_Layout"
             };
 
-            return View("Pdfs/Agreement", viewModel);
+            return View(AgreementPdfViewName, viewModel);
         }
 
         [HttpPost("dossier/{id:int}/agreement")]
+        [ValidateAntiForgeryToken]
         [SiteAuthorize]
-        public async Task<IActionResult> SaveAgreement(int? id)
+        public async Task<IActionResult> SaveAgreement(int id, [Bind("agreement")] string agreement)
         {
-            var viewName = "Pdfs/Agreement.cshtml";
-            var viewModel = new AgreementViewModel()
+            if (string.IsNullOrEmpty(agreement))
             {
-                Logo = new LinkViewModel()
-                {
-                    Text = SiteConstant.SiteName,
-                    Url = _config.ServerUrl
+                AddAlertMessage("Please check that you agree with the terms of this agreement!", 
+                    type: AlertMessageType.Warning);
 
-                }
+                return RedirectToAction(nameof(Agreement), new { id });
+            }
+
+            var dossier = await _dossierService.GetDossierAsync(id);
+            if (dossier == null)
+            {
+                _logger.LogWarning(
+                    "An attempt was made to sign agreement document for a dossier that does not exist: {DossierId}",
+                    id);
+
+                return NotFound();
+            }
+
+            var currentUserId = User.GetUserId();
+            var user = await _userService.FindByIdAsync(currentUserId,
+                CancellationToken.None);
+
+            ArgumentNullException.ThrowIfNull(user);
+
+            var viewModel = new AgreementViewModel
+            {
+                DossierId = dossier.Id,
+                AuthorNames = dossier.Names,
+                SignerNames = user.Names,
+                Title = dossier.Title,
+                CurrentDate = DateTime.Now.ToString("dd.MM.yyyy"),
+
+                Layout = "/Views/Shared/Pdfs/_LayoutPdf.cshtml"
             };
 
-            var htmlView = await _viewRenderer.RenderViewToStringAsync(viewName, viewModel);
+            var htmlContent = await _viewRenderer.RenderViewToStringAsync(AgreementPdfViewName, viewModel);
 
-            await using var fileStream = new FileStream($"F:\\temp\\linc\\dossiers\\test\\{Guid.NewGuid()}.pdf", FileMode.Create);
-            using var reader = new StringReader(htmlView);
+            var pdfFile = GeneratePdfFile(htmlContent);
+            var stampedPdfFile = StampPdf(pdfFile, viewModel.SignerNames);
 
-            // step 1: creation of a document-object
-            var document = new Document(PageSize.A4, 30, 30, 30, 30);
+            //return File(stampedPdfFile, MediaTypeNames.Application.Pdf, fileDownloadName: "test.pdf");
 
-            // step 2:
-            // we create a writer that listens to the document
-            // and directs a XML-stream to a file
-            var writer = PdfWriter.GetInstance(document, fileStream);
+            await _dossierService.SaveAgreementAsync(dossier, stampedPdfFile);
 
-            // step 3: we create a worker parse the document
-            var worker = new HtmlWorker(document);
-
-            // step 4: we open document and start the worker on the document
-            document.Open();
-
-            worker.StartDocument();
-
-            // step 5: parse the html into the document
-            worker.Parse(reader);
-
-            // step 6: close the document and the worker
-            worker.EndDocument();
-            worker.Close();
-            document.Close();
-            writer.Close();
+            AddAlertMessage(LocalizationService["PublicationAgreement_SuccessMessage"], 
+                type: AlertMessageType.Success);
 
             return Redirect("/");
+        }
+
+        private byte[] GeneratePdfFile(string htmlContent)
+        {
+            var globalSettings = new GlobalSettings
+            {
+                PaperSize = PaperKind.A4,
+                ColorMode = ColorMode.Color,
+                Orientation = Orientation.Portrait,
+                DocumentTitle = "Publication Agreement"
+            };
+
+            var objectSettings = new ObjectSettings
+            {
+                PagesCount = true,
+                HtmlContent = htmlContent,
+                WebSettings = { DefaultEncoding = "utf-8" }
+            };
+
+            var pdfDocument = new HtmlToPdfDocument()
+            {
+                GlobalSettings = globalSettings,
+                Objects = { objectSettings }
+            };
+
+            var pdfFile = _converter.Convert(pdfDocument);
+
+            return pdfFile;
+        }
+
+        private byte[] StampPdf(byte[] pdfContent, string signerNames)
+        {
+            using (var reader = new PdfReader(pdfContent))
+            using (var stream = new MemoryStream())
+            {
+                using (var stamper = new PdfStamper(reader, stream))
+                {
+                    var info = reader.Info;
+                    info["Author"] = $"{SiteConstant.AdministratorEmail}";
+                    info["Creator"] = _config.ServerUrl;
+                    info["Subject"] = signerNames;
+                    stamper.MoreInfo = info;
+                }
+
+                return stream.ToArray();
+            }
         }
     }
 }
