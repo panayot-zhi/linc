@@ -4,7 +4,9 @@ using linc.Contracts;
 using linc.Data;
 using linc.Models.ConfigModels;
 using linc.Models.Enumerations;
+using linc.Models.ViewModels;
 using linc.Models.ViewModels.Dossier;
+using linc.Models.ViewModels.Emails;
 using linc.Utility;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +16,8 @@ namespace linc.Services
 {
     public class DossierService : IDossierService
     {
+        private readonly LinkGenerator _linkGenerator;
+        private readonly ISiteEmailSender _emailSender;
         private readonly ILocalizationService _localizationService;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly ILogger<DossierService> _logger;
@@ -38,14 +42,18 @@ namespace linc.Services
         public DossierService(ApplicationDbContext context, 
             IOptions<ApplicationConfig> configOptions, 
             IHttpContextAccessor httpContextAccessor, 
-            ILocalizationService localizationService, 
-            ILogger<DossierService> logger)
+            ILocalizationService localizationService,
+            ISiteEmailSender emailSender,
+            ILogger<DossierService> logger, 
+            LinkGenerator linkGenerator)
         {
+            _logger = logger;
             _context = context;
             _httpContextAccessor = httpContextAccessor;
             _localizationService = localizationService;
-            _logger = logger;
+            _linkGenerator = linkGenerator;
             _config = configOptions.Value;
+            _emailSender = emailSender;
         }
 
         public async Task<ApplicationDocument> GetDossierDocumentAsync(int id, int documentId)
@@ -405,6 +413,32 @@ namespace linc.Services
             dossier.Status = status;
 
             await _context.SaveChangesAsync();
+
+            if (status is ApplicationDossierStatus.Accepted or ApplicationDossierStatus.AcceptedWithCorrections)
+            {
+                // send publication agreement declaration
+                var emailDescriptor = new SiteEmailDescriptor<Agreement>()
+                {
+                    Emails = new List<string>() { dossier.Email },
+                    Subject = _localizationService["Email_Agreement_Subject"].Value,
+                    ViewModel = new Agreement()
+                    {
+                        Names = dossier.Names,
+                        DossierStatus = EnumHelper<ApplicationDossierStatus>.GetDisplayName(status),
+                        AgreementLink = new LinkViewModel()
+                        {
+                            Text = _localizationService["Details_Label"].Value,
+                            Url = _linkGenerator.GetUriByAction(
+                                _httpContextAccessor.HttpContext!, 
+                                "Agreement", 
+                                "Dossier",
+                                new { id = dossier.Id })
+                        }
+                    }
+                };
+
+                await _emailSender.SendEmailAsync(emailDescriptor);
+            }
         }
 
         public async Task UpdateDossierAsync(DossierEditViewModel input)
