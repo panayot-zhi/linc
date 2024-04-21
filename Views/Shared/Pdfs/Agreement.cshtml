@@ -62,7 +62,7 @@
                 </p>
             </li>
             <li data-list-text="3.">
-                <p style="padding-left: 32pt; text-indent: 0pt; text-align: justify;">You agree to require that a citation to the original publication of the article in the journal as well as a hyperlink to the <i>LINGUISTICS, INTERPRETATIONS, CONCEPTS / LINGVISTIKA, INTERPRETATSIYA, KONTSEPTSII </i>web site linking to the original paper be included in any attribution statement satisfying the attribution requirement of the Creative Commons license of paragraph 2.</p>
+                <p style="padding-left: 32pt; text-indent: 0pt; text-align: justify;">You agree to require that a citation to the original publication of the article in the journal as well as a hyperlink to the <i>LINGUISTICS, INTERPRETATIONS, CONCEPTS / LINGVISTIKA, INTERPRETATSIYA, KONTSEPTSII </i> web site linking to the original paper be included in any attribution statement satisfying the attribution requirement of the Creative Commons license of paragraph 2.</p>
             </li>
             <li data-list-text="4.">
                 <p style="padding-left: 32pt; text-indent: 0pt; text-align: justify;">You retain ownership of all rights under copyright in all versions of the article, and all rights not expressly granted in this agreement.</p>
@@ -88,23 +88,25 @@
                 <p style="padding-left: 32pt; text-indent: 0pt; text-align: justify;">This is the entire agreement between you and the publisher, and it may be modified only in writing. It will be governed by the laws of the Republic of Bulgaria. It will bind and benefit our respective assigns and successors in interest, including your heirs. It will terminate if the publisher does not publish, in any medium, the article within one year of the date of your signature.</p>
             </li>
         </ol>
+
         @if (!Model.Previewing)
         {
-            <p style="padding-top: 13pt; padding-left: 5pt; text-indent: 0pt; text-align: left;">
-                I HAVE READ AND AGREE FULLY WITH THE TERMS OF THIS AGREEMENT.
+            <p style="padding-top: 13pt; padding-left: 5pt; text-indent: 0pt; text-align: center;">
+                <strong>I HAVE READ AND AGREE FULLY WITH THE TERMS OF THIS AGREEMENT.</strong>
             </p>
             <p style="padding-top: 13pt; padding-left: 5pt; text-indent: 0pt; text-align: left;">Corresponding Author: @Model.AuthorNames</p>
             <p style="padding-top: 13pt; padding-left: 5pt; text-indent: 0pt; text-align: left;">Signed: @Model.SignerNames</p>
             <p style="padding-top: 13pt; padding-left: 5pt; text-indent: 0pt; text-align: left;">Date: @Model.CurrentDate</p>
-            <hr style="margin-top: 13pt; margin-bottom: 4pt;"/>
-            <p class="s4" style="padding-top: 4pt; padding-left: 5pt; text-indent: 36pt; text-align: right;">
-                <sup>1</sup> The language of this publication agreement is based on Stuart Shieber's model open-access journal publication agreement, version 1.2, available at
-                <a href="http://bit.ly/1m9UsNt" style="color: black; font-family: 'Times New Roman', serif; font-style: normal; font-weight: normal; text-decoration: none; font-size: 10pt;" target="_blank">
-                    <span style="color: #06C; font-family: 'Times New Roman', serif; font-style: normal; font-weight: normal; text-decoration: underline; font-size: 10pt;">http://bit.ly/1m9UsNt</span>
-                </a>
-                <span style="color: #000;">.</span>
-            </p>
         }
+        
+        <hr style="margin-top: 13pt; margin-bottom: 4pt;"/>
+        <p class="s4" style="padding-top: 4pt; padding-left: 5pt; text-indent: 36pt; text-align: right;">
+            <sup>1</sup> The language of this publication agreement is based on Stuart Shieber's model open-access journal publication agreement, version 1.2, available at
+            <a href="http://bit.ly/1m9UsNt" style="color: black; font-family: 'Times New Roman', serif; font-style: normal; font-weight: normal; text-decoration: none; font-size: 10pt;" target="_blank">
+                <span style="color: #06C; font-family: 'Times New Roman', serif; font-style: normal; font-weight: normal; text-decoration: underline; font-size: 10pt;">http://bit.ly/1m9UsNt</span>
+            </a>
+            <span style="color: #000;">.</span>
+        </p>
     </div>
 
 </section>
@@ -116,7 +118,8 @@
                 <div class="col-lg-6">
                     <form id="agreement-form" asp-action="Agreement" asp-route-id="@Model.DossierId">
                         <label for="agreement">
-                            <input id="agreement" name="agreement" type="checkbox" required="required" /> I HAVE READ AND AGREE FULLY WITH THE TERMS OF THIS AGREEMENT
+                            <input id="agreement" name="agreement" type="checkbox" required="required" />
+                            <strong>I HAVE READ AND AGREE FULLY WITH THE TERMS OF THIS AGREEMENT</strong>
                         </label>
                         <input type="submit" />
                     </form>
