@@ -415,7 +415,7 @@
     <value>Изпрати ръкопис</value>
   </data>
   <data name="ContactSection_SubmitDescription" xml:space="preserve">
-    <value>&lt;p&gt;Моля, запознайте се с &lt;a href="{0}"&gt;Техническите изисквания за публикуване&lt;/a&gt; преди да изпратите ръкописа си. В официална комуникация с Вас ще влезе редактор, а като последна стъпка преди публикуване, ще Ви изпратим &lt;a href="{1}"&gt;Декларация за съгласие&lt;/a&gt; статуята/студията Ви да бъде издадена, за което се изисква да сте &lt;strong&gt;регистриран потренител&lt;/strong&gt; в системата.&lt;/p&gt;
+    <value>&lt;p&gt;Моля, запознайте се с &lt;a href="{0}"&gt;Техническите изисквания за публикуване&lt;/a&gt; преди да изпратите ръкописа си. В официална комуникация с Вас ще влезе редактор, а като последна стъпка преди публикуване, ще Ви изпратим &lt;a href="{1}"&gt;Декларация за съгласие&lt;/a&gt; статията/студията Ви да бъде издадена, за което се изисква да сте &lt;strong&gt;регистриран потренител&lt;/strong&gt; в системата.&lt;/p&gt;
 &lt;p&gt;Приеманите от редакцията файлове са с разширение .doc, .docx.&lt;/p&gt;</value>
   </data>
   <data name="ContactSection_SubTitle" xml:space="preserve">
@@ -888,7 +888,7 @@
 &lt;p&gt;&lt;small&gt;Всички настройки по потребителският Ви акаунт &lt;span class="text-decoration-underline"&gt;могат да бъдат променяни&lt;/span&gt; и след регистрация.&lt;/small&gt;&lt;/p&gt;</value>
   </data>
   <data name="RegisterPage_Requirements_Title" xml:space="preserve">
-    <value>За да създадем Вашият потребителски акаунт е нужно</value>
+    <value>За да създадем Вашия потребителски акаунт е нужно</value>
   </data>
   <data name="RegisterPage_SubTitle" xml:space="preserve">
     <value>Създаване на акаунт</value>

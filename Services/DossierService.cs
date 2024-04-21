@@ -642,7 +642,6 @@ namespace linc.Services
             var filePath = Path.Combine(rootFolderPath, fileName);
             var currentUser = GetCurrentUser();
             var currentUserId = currentUser.GetUserId();
-            var currentUserEmail = currentUser.GetEmail();
 
             Directory.CreateDirectory(rootFolderPath);
 
