@@ -179,28 +179,45 @@ namespace linc.Controllers
             }
 
             var currentUserId = User.GetUserId();
-            var currentUser = await _userService.FindByIdAsync(currentUserId,
+            var currentUser = await _userService.FindByIdAsync(currentUserId, 
                 CancellationToken.None);
 
             ArgumentNullException.ThrowIfNull(currentUser);
 
             if (dossier.Agreement != null)
             {
-                if (dossier.AuthorId != currentUserId)
+                // allow preview of the document for
+                if (dossier.AuthorId == currentUserId)
                 {
-                    // if another user is attempting to view 
-                    // the declaration forbid the interaction
-                    return Forbid();
+                    // - the original author
+                    // if this is the user's agreement, let him view it
+                    return await GetDocumentFile(dossier.Agreement.Id);
                 }
 
-                // if this is the user's agreement, let him view it
-                return await GetDocumentFile(dossier.Agreement.Id);
+                if (dossier.AssignedToId == currentUserId)
+                {
+                    // - the editor that the dossier is assigned to
+                    // if this dossier is assigned to this editor - let him download
+                    return await GetDocumentFile(dossier.Agreement.Id);
+                }
+
+                // otherwise - forbid interaction
+                return Forbid();
+
             }
 
             if (dossier.Names != currentUser.Names)
             {
-                _logger.LogWarning("Publication agreement was requested by a user with different names than those in the dossier: {DossierNames} != {CurrentUserNames}",
-                    dossier.Names, currentUser.Names);
+                if (dossier.Email != currentUser.Email)
+                {
+                    // if the emails differ also - deny interaction
+                    AddAlertMessage(LocalizationService["Agreement_DifferentUser_Warning"],
+                        type: AlertMessageType.Warning);
+                    return Redirect("/");
+                }
+
+                _logger.LogWarning("Publication agreement was requested by a user with different names than those in the dossier, but the email was the same: {DossierNames} != {CurrentUserNames}, {Email}",
+                    dossier.Names, currentUser.Names, dossier.Email);
             }
 
             var viewModel = new AgreementViewModel
