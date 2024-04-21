@@ -2041,7 +2041,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Открийте нас и нашите автори в мрежата..
+        ///   Looks up a localized string similar to Открийте нас и нашите автори в мрежата.
         /// </summary>
         public static string Footer_Social_Description {
             get {
