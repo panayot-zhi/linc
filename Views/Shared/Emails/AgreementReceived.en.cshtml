@@ -1,0 +1,23 @@
+﻿@model AgreementReceived
+
+@{
+    Layout = "~/Views/Shared/Emails/_LayoutEmail.cshtml";
+    ViewData["Title"] = "Received publication agreement";
+    ViewData["EmailTitle"] = "Agreement";
+}
+
+<p>
+    <strong>Hello, @Model.Names,</strong>
+</p>
+
+<p style="margin: 20px 0 0;">
+    We have received your publication statement. You can view the link below:
+</p>
+
+<partial name="_EmailButton.cshtml" model="Model.AgreementLink"/>
+
+<p style="margin: 20px 0;">
+    Thank you for your cooperation and contribution to the magazine.
+</p>
+
+<p>Respectfully, from the team of<br />Linguistics, Interpretations, Concepts</p>

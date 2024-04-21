@@ -424,7 +424,7 @@ namespace linc.Services
 
                 if (agreement == null)
                 {
-                    // send publication agreement declaration link
+                    // send publication agreement link
                     var emailDescriptor = new SiteEmailDescriptor<Agreement>()
                     {
                         Emails = new List<string>() { dossier.Email },
@@ -640,7 +640,9 @@ namespace linc.Services
             const string fileName = "publication_agreement.pdf";
             var rootFolderPath = Path.Combine(_config.RepositoryPath, SiteConstant.DossiersFolderName, dossier.Id.ToString());
             var filePath = Path.Combine(rootFolderPath, fileName);
-            var currentUserId = GetCurrentUserId();
+            var currentUser = GetCurrentUser();
+            var currentUserId = currentUser.GetUserId();
+            var currentUserEmail = currentUser.GetEmail();
 
             Directory.CreateDirectory(rootFolderPath);
 
@@ -676,6 +678,33 @@ namespace linc.Services
             dossier.AuthorId = currentUserId;
 
             await _context.SaveChangesAsync();
+
+            // send publication agreement document (to editor and to all user mails available)
+
+            var editor = _context.Users
+                .First(x => x.Id == dossier.AssignedToId);
+
+            var emailDescriptor = new SiteEmailDescriptor<AgreementReceived>()
+            {
+                CcEmails = new List<string>() { editor.Email },
+                Emails = new List<string>() { dossier.Email },
+                Subject = _localizationService["Email_AgreementReceived_Subject"].Value,
+                ViewModel = new AgreementReceived()
+                {
+                    Names = dossier.Names,
+                    AgreementLink = new LinkViewModel()
+                    {
+                        Text = _localizationService["Details_Label"].Value,
+                        Url = _linkGenerator.GetUriByAction(
+                            _httpContextAccessor.HttpContext!,
+                            "Agreement",
+                            "Dossier",
+                            new { id = dossier.Id })
+                    }
+                }
+            };
+
+            await _emailSender.SendEmailAsync(emailDescriptor);
         }
 
         private async Task UpdateDossierPropertiesAsync(ApplicationDossier dossier, DossierEditViewModel input)
