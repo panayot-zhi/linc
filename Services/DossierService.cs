@@ -76,8 +76,8 @@ namespace linc.Services
 
             if (string.IsNullOrEmpty(sortPropertyName))
             {
-                sortPropertyName = nameof(ApplicationDossier.Status);
-                sortOrder = SiteSortOrder.Asc;
+                sortPropertyName = nameof(ApplicationDossier.LastUpdated);
+                sortOrder = SiteSortOrder.Desc;
             }
 
             var dossiersDbSet = _context.Dossiers;
