@@ -53,6 +53,16 @@ public class ContentService : IContentService
             EditorsBoardCount = 9
         };
 
+        var viewModel = new IndexViewModel()
+        {
+            CountsViewModel = countsViewModel,
+        };
+
+        if (!_dbContext.Issues.Any())
+        {
+            return viewModel;
+        }
+
         var issuesList = await _dbContext.Issues
             .Include(x => x.Files)
             .OrderByDescending(x => x.LastUpdated)
@@ -83,17 +93,18 @@ public class ContentService : IContentService
                 .ToList()
         };
 
-        var viewModel = new IndexViewModel()
-        {
-            CountsViewModel = countsViewModel,
-            PortfolioViewModel = issuesViewModel
-        };
+        viewModel.PortfolioViewModel = issuesViewModel;
 
         return viewModel;
     }
 
     public List<SourceSuggestionViewModel> GetSourceSuggestions(int count = 3)
     {
+        if (!_dbContext.Issues.Any())
+        {
+            return new List<SourceSuggestionViewModel>();
+        }
+
         var lastIssue = _dbContext.Issues.Max(x => x.Id);
         var sources = _dbContext.Sources
             .Include(x => x.Issue)
@@ -145,8 +156,17 @@ public class ContentService : IContentService
         return result;  
     }
 
-    public string GetVersion()
+    // cache version for as long
+    // as the application is running
+    private static string _version;
+
+    public static string GetVersion()
     {
+        if (_version != null)
+        {
+            return _version;
+        }
+
         var result = "0.0.1";
 
         var assembly = typeof(Program).Assembly.GetName();
@@ -161,6 +181,8 @@ public class ContentService : IContentService
             var buildDate = File.GetLastWriteTime(assemblyFileName);
             result += $" - {buildDate:MMMM dd, yyyy}";
         }
+
+        _version = result;
 
         return result;
     }
