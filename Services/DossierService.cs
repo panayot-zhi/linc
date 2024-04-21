@@ -679,14 +679,21 @@ namespace linc.Services
 
             await _context.SaveChangesAsync();
 
-            // send publication agreement document (to editor and to all user mails available)
+            // send publication agreement document
+            // - cc to editor (if any assigned)
+            // - to the dossier author email
 
-            var editor = _context.Users
-                .First(x => x.Id == dossier.AssignedToId);
+            var ccEMails = new List<string>();
+            if (dossier.AssignedToId != null)
+            {
+                var editor = _context.Users
+                    .First(x => x.Id == dossier.AssignedToId);
+                ccEMails.Add(editor.Email);
+            }
 
             var emailDescriptor = new SiteEmailDescriptor<AgreementReceived>()
             {
-                CcEmails = new List<string>() { editor.Email },
+                CcEmails = ccEMails,
                 Emails = new List<string>() { dossier.Email },
                 Subject = _localizationService["Email_AgreementReceived_Subject"].Value,
                 ViewModel = new AgreementReceived()
