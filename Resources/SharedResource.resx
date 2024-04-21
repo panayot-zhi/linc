@@ -1660,4 +1660,7 @@
   <data name="PublicationAgreement_SuccessMessage" xml:space="preserve">
     <value>Споразумението за публикуване беше успешно прикачено към Вашия ръкопис! Благодаря Ви за съдействието.</value>
   </data>
+  <data name="Email_Agreement_Subject" xml:space="preserve">
+    <value>Декларация за публикуване</value>
+  </data>
 </root>

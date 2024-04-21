@@ -1698,6 +1698,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Декларация за публикуване.
+        /// </summary>
+        public static string Email_Agreement_Subject {
+            get {
+                return ResourceManager.GetString("Email_Agreement_Subject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Потвърди.
         /// </summary>
         public static string Email_ConfirmEmail_ConfirmButton_Label {

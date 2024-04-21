@@ -37,10 +37,10 @@ namespace linc.Controllers
             : base(localizationService)
         {
             _logger = logger;
+            _converter = converter;
             _config = configOptions.Value;
             _dossierService = dossierService;
             _viewRenderer = viewRenderer;
-            _converter = converter;
             _userService = userService;
         }
 
