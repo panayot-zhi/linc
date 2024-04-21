@@ -3419,6 +3419,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Споразумението за публикуване беше успешно прикачено към Вашия ръкопис! Благодаря Ви за съдействието..
+        /// </summary>
+        public static string PublicationAgreement_SuccessMessage {
+            get {
+                return ResourceManager.GetString("PublicationAgreement_SuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Изпратихме Ви писмо, което съдържа връзка за потвърждение на email адресът Ви. Моля, преди да влезете в сайта, потвърдете електронна си поща..
         /// </summary>
         public static string Register_EmailConfirmation_Required {

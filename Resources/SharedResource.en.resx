@@ -1659,4 +1659,7 @@ The manuscript file must have a .doc or .docx extension.</value>
   <data name="SourceSuggestion_IssueInformation_Template" xml:space="preserve">
     <value>&lt;a href="{0}"&gt;issue {1} / {2}&lt;/a&gt; page &lt;a target="_blank" href="{3}"&gt;{4}&lt;/a&gt;</value>
   </data>
+  <data name="PublicationAgreement_SuccessMessage" xml:space="preserve">
+    <value>The publication agreement has been attached to your submission successfully! Thank you for your cooperation.</value>
+  </data>
 </root>
