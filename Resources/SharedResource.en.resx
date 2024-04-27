@@ -983,7 +983,7 @@
     <value>Submit</value>
   </data>
   <data name="NavItem_Team" xml:space="preserve">
-    <value>Team</value>
+    <value>Editorial Team</value>
   </data>
   <data name="NavItem_Terms" xml:space="preserve">
     <value>Terms of use</value>
@@ -1242,7 +1242,7 @@
     <value>Journal's &lt;span&gt;team&lt;/span&gt;</value>
   </data>
   <data name="Team_Title" xml:space="preserve">
-    <value>Team</value>
+    <value>Editorial Team</value>
   </data>
   <data name="Team_V.Marovska_Member" xml:space="preserve">
     <value>Prof. Vera Marovska, DSc</value>
