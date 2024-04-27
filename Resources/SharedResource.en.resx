@@ -1296,10 +1296,10 @@
     <value>Editorial Assistant</value>
   </data>
   <data name="Team_LanguageAndCulture_SubTitle" xml:space="preserve">
-    <value>Language and Culture</value>
+    <value>&lt;span&gt;Language&lt;/span&gt; and Culture</value>
   </data>
   <data name="Team_LiteratureAndCulture_SubTitle" xml:space="preserve">
-    <value>Literature and Culture</value>
+    <value>&lt;span&gt;Literature&lt;/span&gt; and Culture</value>
   </data>
   <data name="Team_V.Georgieva_Member" xml:space="preserve">
     <value>Аssistant Professor Vanya Georgieva, PhD</value>
@@ -1645,7 +1645,7 @@ The manuscript file must have a .doc or .docx extension.</value>
     <value>Find the technical requirements (guidelines for authors) for formatting of submissions.</value>
   </data>
   <data name="FaqSection_Description" xml:space="preserve">
-    <value>Explore our frequently asked questions for quick and clear answers to your most common queries.</value>
+    <value>Frequently asked questions:</value>
   </data>
   <data name="Team_Description" xml:space="preserve">
     <value>The editorial team consists of Professors and Associate Professors from the Faculty of Philology at Paisii Hilendarski University of Plovdiv. Members of the Editorial Board are internationally renowned researchers.</value>

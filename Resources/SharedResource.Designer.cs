@@ -1788,7 +1788,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Разгледайте нашите често задавани въпроси за бързи и ясни отговори на най-честите Ви въпроси..
+        ///   Looks up a localized string similar to Често задавани въпроси:.
         /// </summary>
         public static string FaqSection_Description {
             get {
