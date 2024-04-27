@@ -61,7 +61,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Текстовете, постъпили в редакцията на списанието, подлежат на двойно анонимно рецензиране от двама независими рецензенти – експерти в съответната научна област..
+        ///   Looks up a localized string similar to Публикациите в „Лингвистика, интерпретация, концепции“ са на български или на английски език и могат да бъдат полезни на специалисти от различни сфери на хуманитаристиката..
         /// </summary>
         public static string AboutSection_Content_Description {
             get {
