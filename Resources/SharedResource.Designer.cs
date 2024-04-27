@@ -367,7 +367,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Прегледайте авторите от всички издания по азбучен ред или търсете конкретно име или заглавие. Можете да прегледате и &lt;a href=&quot;{0}&quot;&gt;всички произведения по години и броеве&lt;/a&gt;..
+        ///   Looks up a localized string similar to Прегледайте авторите от всички броеве или търсете конкретно име/заглавие. Можете да прегледате и &lt;a href=&quot;{0}&quot;&gt;всички публикации по години и броеве&lt;/a&gt;..
         /// </summary>
         public static string AuthorsSection_Description {
             get {

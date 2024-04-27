@@ -1334,7 +1334,7 @@
     <comment>Se</comment>
   </data>
   <data name="AuthorsSection_Description" xml:space="preserve">
-    <value>Прегледайте авторите от всички издания по азбучен ред или търсете конкретно име или заглавие. Можете да прегледате и &lt;a href="{0}"&gt;всички произведения по години и броеве&lt;/a&gt;.</value>
+    <value>Прегледайте авторите от всички броеве или търсете конкретно име/заглавие. Можете да прегледате и &lt;a href="{0}"&gt;всички публикации по години и броеве&lt;/a&gt;.</value>
   </data>
   <data name="Source_IndexPage_SearchDescription" xml:space="preserve">
     <value>търсене по първа буква от фамилното име</value>
