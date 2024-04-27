@@ -2609,7 +2609,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Лингвистика, Интерпретация, Концепции.
+        ///   Looks up a localized string similar to Лингвистика, интерпретация, концепции.
         /// </summary>
         public static string Logo_Long {
             get {
