@@ -1632,7 +1632,7 @@
   <data name="ContactSection_PublicationAgreement_Description" xml:space="preserve">
     <value>Prior to publishing, we will send you a declaration of consent for the article to be published.</value>
   </data>
-  <data name="ContactSection_Submit_Guideliness" xml:space="preserve">
+  <data name="ContactSection_Submit_Guidelines" xml:space="preserve">
     <value>The text proposed for publication is sent as an email attachment to the Editorial team of the journal.
 An editor will then contact you on this email.
 Before publication, we will send you a declaration of consent for the article/study to be published.

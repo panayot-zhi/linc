@@ -970,9 +970,9 @@ namespace linc.Resources {
         ///&lt;br/&gt;
         ///Файлът с ръкописа трябва да е с разширение .doc или .docx..
         /// </summary>
-        public static string ContactSection_Submit_Guideliness {
+        public static string ContactSection_Submit_Guidelines {
             get {
-                return ResourceManager.GetString("ContactSection_Submit_Guideliness", resourceCulture);
+                return ResourceManager.GetString("ContactSection_Submit_Guidelines", resourceCulture);
             }
         }
         
