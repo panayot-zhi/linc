@@ -6,8 +6,8 @@ on:
       - v.*
 
 jobs:
-  publish:
-
+  publish-test:
+    if: "contains(github.ref, '-test')"
     runs-on: ubuntu-22.04
 
     steps:
@@ -51,8 +51,9 @@ jobs:
 
     - name: List Result
       run: cd release && ls -la
-
-    - name: Stop Service
+      
+    # Push build to staging ONLY
+    - name: Stop Service (test.linc.service)
       uses: garygrossgarten/github-action-ssh@release
       with:
         command: sudo systemctl stop test.linc.service
@@ -60,7 +61,7 @@ jobs:
         username: ${{ secrets.SSH_USER }}
         privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
 
-    - name: SFTP Sync
+    - name: SFTP Sync (test.linc.uni-plovdiv.bg)
       uses: swillner/sftp-sync-action@v1.0
       with:
         server: ${{ secrets.SSH_HOST }}
@@ -70,10 +71,110 @@ jobs:
         local: ./release/
         mirror_options: "--only-newer"
 
-    - name: Start Service
+    - name: Start Service (test.linc.service)
       uses: garygrossgarten/github-action-ssh@release
       with:
         command: sudo systemctl start test.linc.service
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USER }}
+        privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
+        
+  publish-prod:
+    if: "!contains(github.ref, '-test')"
+    runs-on: ubuntu-22.04
+
+    steps:
+
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        ref: master
+        # git-restore-mtime-bare uses the ref log to find the correct timestamp
+        # for each file. This requires a full git history. The default value (1)
+        # creates a shallow checkout.
+        fetch-depth: 0
+
+    # Fix Timestamps
+    - name: Fix Timestamps
+      uses: chetan/git-restore-mtime-action@v1
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 6.0.x
+
+    - name: Restore Dependencies
+      run: dotnet restore
+
+    - name: Release Build
+      run: dotnet build --no-restore --configuration Release
+
+    - name: Run Tests
+      run: dotnet test --no-build --configuration Release --verbosity normal
+
+    - name: Publish Release
+      run: |
+
+        csproj_file="linc.csproj"
+        version_line=$(grep '<Version>' "$csproj_file")
+        current_version=$(echo $version_line | sed -n 's/.*<Version>\(.*\)<\/Version>.*/\1/p')
+        current_version+=".${{ github.run_number }}"
+
+        dotnet publish /p:PublishProfile=Properties/PublishProfiles/FolderProfile.pubxml /p:Version=$current_version --configuration Release
+
+    - name: List Result
+      run: cd release && ls -la
+      
+    # Push build to staging
+    - name: Stop Service (test.linc.service)
+      uses: garygrossgarten/github-action-ssh@release
+      with:
+        command: sudo systemctl stop test.linc.service
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USER }}
+        privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: SFTP Sync (test.linc.uni-plovdiv.bg)
+      uses: swillner/sftp-sync-action@v1.0
+      with:
+        server: ${{ secrets.SSH_HOST }}
+        user: ${{ secrets.SSH_USER }}
+        user_private_key: "${{ secrets.SSH_PRIVATE_KEY }}"
+        remote: /var/www/test.linc.uni-plovdiv.bg
+        local: ./release/
+        mirror_options: "--only-newer"
+
+    - name: Start Service (test.linc.service)
+      uses: garygrossgarten/github-action-ssh@release
+      with:
+        command: sudo systemctl start test.linc.service
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USER }}
+        privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    # Push build to production
+    - name: Stop Service (linc.service)
+      uses: garygrossgarten/github-action-ssh@release
+      with:
+        command: sudo systemctl stop linc.service
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USER }}
+        privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: SFTP Sync (linc.uni-plovdiv.bg)
+      uses: swillner/sftp-sync-action@v1.0
+      with:
+        server: ${{ secrets.SSH_HOST }}
+        user: ${{ secrets.SSH_USER }}
+        user_private_key: "${{ secrets.SSH_PRIVATE_KEY }}"
+        remote: /var/www/linc.uni-plovdiv.bg
+        local: ./release/
+        mirror_options: "--only-newer"
+
+    - name: Start Service (linc.service)
+      uses: garygrossgarten/github-action-ssh@release
+      with:
+        command: sudo systemctl start linc.service
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USER }}
         privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
