@@ -1108,7 +1108,7 @@
     <value>Reset</value>
   </data>
   <data name="ResetPasswordPage_Procedure" xml:space="preserve">
-    <value>&lt;p&gt;&lt;small&gt;Eneter the email address that you registered with.&lt;/small&gt;&lt;/p&gt;
+    <value>&lt;p&gt;&lt;small&gt;Enter the email address that you registered with.&lt;/small&gt;&lt;/p&gt;
 &lt;p&gt;&lt;small&gt;Enter your new desired password and confirm it.&lt;/small&gt;&lt;/p&gt;
 &lt;p&gt;&lt;small&gt;You will be prompted to login afterwards again.&lt;/small&gt;&lt;/p&gt;</value>
   </data>
@@ -1296,10 +1296,10 @@
     <value>Editorial Assistant</value>
   </data>
   <data name="Team_LanguageAndCulture_SubTitle" xml:space="preserve">
-    <value>Language and Culture</value>
+    <value>&lt;span&gt;Language&lt;/span&gt; and Culture</value>
   </data>
   <data name="Team_LiteratureAndCulture_SubTitle" xml:space="preserve">
-    <value>Literature and Culture</value>
+    <value>&lt;span&gt;Literature&lt;/span&gt; and Culture</value>
   </data>
   <data name="Team_V.Georgieva_Member" xml:space="preserve">
     <value>Аssistant Professor Vanya Georgieva, PhD</value>
@@ -1632,10 +1632,10 @@
   <data name="ContactSection_PublicationAgreement_Description" xml:space="preserve">
     <value>Prior to publishing, we will send you a declaration of consent for the article to be published.</value>
   </data>
-  <data name="ContactSection_Submit_Guideliness" xml:space="preserve">
+  <data name="ContactSection_Submit_Guidelines" xml:space="preserve">
     <value>The text proposed for publication is sent as an email attachment to the Editorial team of the journal.
 An editor will then contact you on this email.
-Before publication, we will send you a declaration of consent for the article/study to be published.
+Before publication, we will send you a declaration of consent for the paper to be published.
 To accept it, you must be a &lt;strong&gt;registered user&lt;/strong&gt; in the system.
 &lt;br/&gt;
 &lt;br/&gt;
@@ -1645,7 +1645,7 @@ The manuscript file must have a .doc or .docx extension.</value>
     <value>Find the technical requirements (guidelines for authors) for formatting of submissions.</value>
   </data>
   <data name="FaqSection_Description" xml:space="preserve">
-    <value>Explore our frequently asked questions for quick and clear answers to your most common queries.</value>
+    <value>Frequently asked questions:</value>
   </data>
   <data name="Team_Description" xml:space="preserve">
     <value>The editorial team consists of Professors and Associate Professors from the Faculty of Philology at Paisii Hilendarski University of Plovdiv. Members of the Editorial Board are internationally renowned researchers.</value>

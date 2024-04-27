@@ -61,7 +61,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Текстовете, постъпили в редакцията на списанието, подлежат на двойно анонимно рецензиране от двама независими рецензенти – експерти в съответната научна област..
+        ///   Looks up a localized string similar to Публикациите в „Лингвистика, интерпретация, концепции“ са на български или на английски език и могат да бъдат полезни на специалисти от различни сфери на хуманитаристиката..
         /// </summary>
         public static string AboutSection_Content_Description {
             get {
@@ -367,7 +367,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Прегледайте авторите от всички издания по азбучен ред или търсете конкретно име или заглавие. Можете да прегледате и &lt;a href=&quot;{0}&quot;&gt;всички произведения по години и броеве&lt;/a&gt;..
+        ///   Looks up a localized string similar to Прегледайте авторите от всички броеве или търсете конкретно име/заглавие. Можете да прегледате и &lt;a href=&quot;{0}&quot;&gt;всички публикации по години и броеве&lt;/a&gt;..
         /// </summary>
         public static string AuthorsSection_Description {
             get {
@@ -970,14 +970,14 @@ namespace linc.Resources {
         ///&lt;br/&gt;
         ///Файлът с ръкописа трябва да е с разширение .doc или .docx..
         /// </summary>
-        public static string ContactSection_Submit_Guideliness {
+        public static string ContactSection_Submit_Guidelines {
             get {
-                return ResourceManager.GetString("ContactSection_Submit_Guideliness", resourceCulture);
+                return ResourceManager.GetString("ContactSection_Submit_Guidelines", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;p&gt;Моля, запознайте се с &lt;a href=&quot;{0}&quot;&gt;Техническите изисквания за публикуване&lt;/a&gt; преди да изпратите ръкописа си. В официална комуникация с Вас ще влезе редактор, а като последна стъпка преди публикуване, ще Ви изпратим &lt;a href=&quot;{1}&quot;&gt;Декларация за съгласие&lt;/a&gt; статията/студията Ви да бъде издадена, за което се изисква да сте &lt;strong&gt;регистриран потренител&lt;/strong&gt; в системата.&lt;/p&gt;
+        ///   Looks up a localized string similar to &lt;p&gt;Запознайте се с &lt;a href=&quot;{0}&quot;&gt;Техническите изисквания за публикуване&lt;/a&gt;, преди да изпратите ръкописа си. В официална комуникация с Вас ще влезе редактор; като последна стъпка преди публикуване ще Ви изпратим &lt;a href=&quot;{1}&quot;&gt;Декларация за съгласие&lt;/a&gt; статията/студията Ви да бъде издадена; за да я получите, се изисква да сте &lt;strong&gt;регистриран потребител&lt;/strong&gt; в системата.&lt;/p&gt;
         ///&lt;p&gt;Приеманите от редакцията файлове са с разширение .doc, .docx.&lt;/p&gt;.
         /// </summary>
         public static string ContactSection_SubmitDescription {
@@ -1788,7 +1788,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Разгледайте нашите често задавани въпроси за бързи и ясни отговори на най-честите Ви въпроси..
+        ///   Looks up a localized string similar to Често задавани въпроси:.
         /// </summary>
         public static string FaqSection_Description {
             get {
@@ -2609,7 +2609,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Лингвистика, Интерпретация, Концепции.
+        ///   Looks up a localized string similar to Лингвистика, интерпретация, концепции.
         /// </summary>
         public static string Logo_Long {
             get {
