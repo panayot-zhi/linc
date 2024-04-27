@@ -79,7 +79,7 @@ jobs:
         username: ${{ secrets.SSH_USER }}
         privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
         
-  publish-prod:
+  publish-test-prod:
     if: "!contains(github.ref, '-test')"
     runs-on: ubuntu-22.04
 
