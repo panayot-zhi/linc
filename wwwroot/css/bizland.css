@@ -979,7 +979,7 @@ section {
 --------------------------------------------------------------*/
 .testimonials {
   padding: 80px 0;
-  background: url("../img/testimonials-bg.jpg") no-repeat;
+  /* background: url("../img/testimonials-bg.jpg") no-repeat; */
   background-position: center center;
   background-size: cover;
   position: relative;
@@ -992,7 +992,9 @@ section {
   right: 0;
   top: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
+  /* background: rgba(0, 0, 0, 0.7); */
+  /* background: rgba(12, 59, 99, 0.6); */
+  background: rgb(158, 177, 193);
 }
 
 .testimonials .section-header {
@@ -1532,7 +1534,7 @@ section {
 }
 
 .contact .info-box p {
-  padding: 0;
+  padding: 0 6px;
   line-height: 24px;
   font-size: 14px;
   margin-bottom: 0;
