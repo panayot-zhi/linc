@@ -10,7 +10,7 @@
 		<SatelliteResourceLanguages>bg;en</SatelliteResourceLanguages>
 		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
 		<DockerfileContext>.</DockerfileContext>
-		<Version>1.17.19</Version>
+		<Version>1.17.20</Version>
 		<Company />
 	</PropertyGroup>
 
