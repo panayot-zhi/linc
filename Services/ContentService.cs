@@ -81,7 +81,7 @@ public class ContentService : IContentService
                 //     .ToList()
 
             })
-            .Take(12)
+            .Take(6)
             .ToListAsync();
 
         var issuesViewModel = new PortfolioViewModel()
