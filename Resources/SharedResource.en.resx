@@ -614,8 +614,8 @@
   <data name="IssueCreate_PdfFile" xml:space="preserve">
     <value>Attach the issue as PDF</value>
   </data>
-  <data name="IssueCreate_ReleaseYear" xml:space="preserve">
-    <value>Release year</value>
+  <data name="IssueCreate_ReleaseDate" xml:space="preserve">
+    <value>Release date</value>
   </data>
   <data name="Issue_CreatePage_Notes_Title" xml:space="preserve">
     <value>Notes</value>

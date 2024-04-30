@@ -16,7 +16,7 @@ namespace linc.Data
         public int IssueNumber { get; set; }
 
         [Required]
-        public int ReleaseYear { get; set; }
+        public DateOnly ReleaseDate { get; set; }
 
         [MaxLength(1024)]
         public string Description { get; set; }
@@ -26,6 +26,9 @@ namespace linc.Data
 
         public ICollection<ApplicationDocument> Files { get; set; } = new List<ApplicationDocument>();
 
+
+        [NotMapped]
+        public int ReleaseYear => ReleaseDate.Year;
 
         [NotMapped]
         public List<ApplicationDocument> IndexPages =>

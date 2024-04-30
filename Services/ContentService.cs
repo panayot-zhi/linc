@@ -73,7 +73,7 @@ public class ContentService : IContentService
                 Description = x.Description,
                 IssueNumber = x.IssueNumber,
                 ReleaseYear = x.ReleaseYear,
-                ReleaseDate = x.DateCreated,
+                ReleaseDate = x.ReleaseDate,
                 CoverPageId = x.CoverPage.Id,
                 CoverPageRelativePath = x.CoverPage.RelativePath,
                 // IndexPageIds = x.IndexPages

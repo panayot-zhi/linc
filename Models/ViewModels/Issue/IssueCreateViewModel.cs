@@ -9,9 +9,9 @@ namespace linc.Models.ViewModels.Issue
         [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         public int? IssueNumber { get; set; }
 
-        [Display(Name = "IssueCreate_ReleaseYear", ResourceType = typeof(Resources.SharedResource))]
+        [Display(Name = "IssueCreate_ReleaseDate", ResourceType = typeof(Resources.SharedResource))]
         [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
-        public int? ReleaseYear { get; set; }
+        public DateTime? ReleaseDate { get; set; }
 
         [Display(Name = "IssueCreate_Description", ResourceType = typeof(Resources.SharedResource))]
         [MaxLength(1024, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
