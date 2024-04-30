@@ -3401,7 +3401,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Прегледайте последните издадени броеве на списанието по години..
+        ///   Looks up a localized string similar to Прегледайте броевете на списанието..
         /// </summary>
         public static string PortfolioSection_Description {
             get {

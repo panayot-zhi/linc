@@ -1339,7 +1339,7 @@
     <value>Attach the source as PDF</value>
   </data>
   <data name="PortfolioSection_Description" xml:space="preserve">
-    <value>Browse through the most recently published issues by year.</value>
+    <value>Browse issues of the magazine.</value>
   </data>
   <data name="Source_CreatePage_SubTitle" xml:space="preserve">
     <value>Create a new source from the index page</value>
