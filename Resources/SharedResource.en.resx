@@ -614,8 +614,8 @@
   <data name="IssueCreate_PdfFile" xml:space="preserve">
     <value>Attach the issue as PDF</value>
   </data>
-  <data name="IssueCreate_ReleaseYear" xml:space="preserve">
-    <value>Release year</value>
+  <data name="IssueCreate_ReleaseDate" xml:space="preserve">
+    <value>Release date</value>
   </data>
   <data name="Issue_CreatePage_Notes_Title" xml:space="preserve">
     <value>Notes</value>
@@ -1339,7 +1339,7 @@
     <value>Attach the source as PDF</value>
   </data>
   <data name="PortfolioSection_Description" xml:space="preserve">
-    <value>Browse through the most recently published issues by year.</value>
+    <value>Browse issues of the magazine.</value>
   </data>
   <data name="Source_CreatePage_SubTitle" xml:space="preserve">
     <value>Create a new source from the index page</value>

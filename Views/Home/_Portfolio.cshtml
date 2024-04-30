@@ -34,7 +34,7 @@
                     </a>
                     <div class="portfolio-info">
                         <h4>@HtmlLocalizer["Issue_Number_Label"] @issue.IssueNumber</h4>
-                        <p>@issue.ReleaseDate.ToString("dddd, dd MMMM yyyy")</p>
+                        <p>@issue.ReleaseDate.ToString("MMMM yyyy")</p>
                         @if (!string.IsNullOrEmpty(issue.Description))
                         {
                             <pre class="pt-2">@issue.Description</pre>

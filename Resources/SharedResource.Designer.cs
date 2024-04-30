@@ -2402,11 +2402,11 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Година на издаване.
+        ///   Looks up a localized string similar to Дата на издаване.
         /// </summary>
-        public static string IssueCreate_ReleaseYear {
+        public static string IssueCreate_ReleaseDate {
             get {
-                return ResourceManager.GetString("IssueCreate_ReleaseYear", resourceCulture);
+                return ResourceManager.GetString("IssueCreate_ReleaseDate", resourceCulture);
             }
         }
         
@@ -3401,7 +3401,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Прегледайте последните издадени броеве на списанието по години..
+        ///   Looks up a localized string similar to Прегледайте броевете на списанието..
         /// </summary>
         public static string PortfolioSection_Description {
             get {

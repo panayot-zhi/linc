@@ -61,7 +61,8 @@ namespace linc.Services
         {
             // validation should guard these from being nulls
             var issueNumber = input.IssueNumber!.Value;
-            var releaseYear = input.ReleaseYear!.Value;
+            var releaseDate = input.ReleaseDate!.Value;
+            var releaseYear = releaseDate.Year;
 
             var pdf = await SaveIssuePdf(input.PdfFile, releaseYear, issueNumber);
             var cover = await SaveIssueCoverPage(input.CoverPage, releaseYear, issueNumber);
@@ -73,7 +74,7 @@ namespace linc.Services
 
                 Description = input.Description,
                 IssueNumber = input.IssueNumber.Value,
-                ReleaseYear = input.ReleaseYear.Value
+                ReleaseDate = DateOnly.FromDateTime(releaseDate)
             };
 
             entry.Files.Add(pdf);

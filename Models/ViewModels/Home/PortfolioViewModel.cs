@@ -15,7 +15,7 @@
 
         public int ReleaseYear { get; set; }
 
-        public DateTime ReleaseDate { get; set; }
+        public DateOnly ReleaseDate { get; set; }
 
         public string Description { get; set; }
 
