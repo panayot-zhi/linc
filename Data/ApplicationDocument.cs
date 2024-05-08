@@ -35,6 +35,7 @@ namespace linc.Data
         [MaxLength(512)]
         public string RelativePath { get; set; }
 
+        #region Navigation
 
         public ApplicationSource Source { get; set; }
 
@@ -42,6 +43,7 @@ namespace linc.Data
 
         public ICollection<ApplicationIssue> Issues { get; set; }
 
+        #endregion Navigation
 
         #region Automatic
 
