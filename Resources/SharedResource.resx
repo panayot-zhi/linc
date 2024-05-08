@@ -1151,8 +1151,8 @@
   <data name="Issue_DetailsPage_ContentTitle" xml:space="preserve">
     <value>Съдържание</value>
   </data>
-  <data name="Issue_DetailsPage_IssueCreated" xml:space="preserve">
-    <value>Създаден</value>
+  <data name="Issue_DetailsPage_IssueReleased" xml:space="preserve">
+    <value>Издаден</value>
   </data>
   <data name="Issue_DetailsPage_IssueDescription" xml:space="preserve">
     <value>Допълнителна информация</value>

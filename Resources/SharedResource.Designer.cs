@@ -2249,15 +2249,6 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Създаден.
-        /// </summary>
-        public static string Issue_DetailsPage_IssueCreated {
-            get {
-                return ResourceManager.GetString("Issue_DetailsPage_IssueCreated", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Допълнителна информация.
         /// </summary>
         public static string Issue_DetailsPage_IssueDescription {
@@ -2290,6 +2281,15 @@ namespace linc.Resources {
         public static string Issue_DetailsPage_IssuePdf {
             get {
                 return ResourceManager.GetString("Issue_DetailsPage_IssuePdf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Издаден.
+        /// </summary>
+        public static string Issue_DetailsPage_IssueReleased {
+            get {
+                return ResourceManager.GetString("Issue_DetailsPage_IssueReleased", resourceCulture);
             }
         }
         

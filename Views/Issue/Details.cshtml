@@ -60,7 +60,7 @@
                     <ul>
                         @* <li><strong>@HtmlLocalizer["Issue_DetailsPage_IssueNumber"]</strong>: @Model.IssueNumber</li> *@
                         <li><strong>@HtmlLocalizer["Issue_DetailsPage_IssueISSN"]</strong>: @SiteConstant.ISSN</li>
-                        <li><strong>@HtmlLocalizer["Issue_DetailsPage_IssueCreated"]</strong>: @Model.DateCreated.ToString("dd MMMM, yyyy")</li>
+                        <li><strong>@HtmlLocalizer["Issue_DetailsPage_IssueReleased"]</strong>: @Model.ReleaseDate.ToString("MMMM, yyyy")</li>
                         <li>
                             <strong>@HtmlLocalizer["Issue_DetailsPage_IssueDescription"]</strong>:
                             <pre class="pt-2">@Model.Description</pre>
