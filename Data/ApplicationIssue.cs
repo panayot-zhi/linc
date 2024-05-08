@@ -36,9 +36,6 @@ namespace linc.Data
         public int ReleaseYear => ReleaseDate.Year;
 
         [NotMapped]
-        public int ReleaseYear => ReleaseDate.Year;
-
-        [NotMapped]
         public List<ApplicationDocument> IndexPages =>
             Files.Where(x => x.DocumentType == ApplicationDocumentType.IndexPage).ToList();
 
