@@ -36,6 +36,9 @@ namespace linc.Data
 
         public bool IsReviewer { get; set; }
 
+        [PersonalData]
+        public DateTime? LastLogin { get; set; }
+
 
         #region Avatar
 
@@ -53,9 +56,6 @@ namespace linc.Data
 
         [PersonalData]
         public string InternalAvatarPath { get; set; }
-
-        [PersonalData]
-        public DateTime? LastLogin { get; set; }
 
         #endregion Avatar
 

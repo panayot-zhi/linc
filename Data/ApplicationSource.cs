@@ -42,6 +42,8 @@ namespace linc.Data
         public int LastPage { get; set; }
 
 
+        #region Navigation
+
         [ForeignKey(nameof(Language))]
         public int LanguageId { get; set; }
 
@@ -66,6 +68,7 @@ namespace linc.Data
 
         public ApplicationUser Author { get; set; }
 
+        #endregion Navigation
 
         #region Automatic
 

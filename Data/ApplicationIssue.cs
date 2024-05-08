@@ -22,10 +22,15 @@ namespace linc.Data
         public string Description { get; set; }
 
 
+        #region Navigation
+
         public ICollection<ApplicationSource> Sources { get; set; } = new List<ApplicationSource>();
 
         public ICollection<ApplicationDocument> Files { get; set; } = new List<ApplicationDocument>();
 
+        #endregion Navigation
+
+        #region NotMapped
 
         [NotMapped]
         public int ReleaseYear => ReleaseDate.Year;
@@ -42,6 +47,7 @@ namespace linc.Data
         public ApplicationDocument Pdf =>
             Files.FirstOrDefault(x => x.DocumentType == ApplicationDocumentType.IssuePdf);
 
+        #endregion NotMapped
 
         #region Automatic
 
