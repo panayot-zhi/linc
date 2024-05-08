@@ -41,6 +41,7 @@ namespace linc.Data
 
         public int LastPage { get; set; }
 
+
         #region Navigation
 
         [ForeignKey(nameof(Language))]
