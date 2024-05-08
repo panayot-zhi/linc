@@ -45,7 +45,7 @@ namespace linc.Services
             var sourcesDbSet = _context.Sources;
             var query = sourcesDbSet
                 .Include(x => x.Issue)
-                .Where(x => x.LanguageId == languageId)
+                //.Where(x => x.LanguageId == languageId)
                 .AsQueryable();
 
             if (issueId.HasValue)
@@ -101,7 +101,7 @@ namespace linc.Services
         {
             return await _context.Sources
                 .Include(x => x.Issue)
-                .GroupBy(x => x.Issue.ReleaseYear)
+                .GroupBy(x => x.Issue.ReleaseDate.Year)
                 .Select(x => new SourceCountByYears()
                 {
                     Year = x.Key,
