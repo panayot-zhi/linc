@@ -28,6 +28,8 @@ namespace linc.Data
         [MaxLength(1024)]
         public string AuthorNotes { get; set; }
 
+        public bool IssueTheme { get; set; }
+
 
         [MaxLength(512)]
         public string Title { get; set; }
