@@ -1635,8 +1635,8 @@
   <data name="ContactSection_Submit_Guidelines" xml:space="preserve">
     <value>The text proposed for publication is sent as an email attachment to the Editorial team of the journal.
 An editor will then contact you on this email.
-Before publication, we will send you a declaration of consent for the paper to be published.
-To accept it, you must be a &lt;strong&gt;registered user&lt;/strong&gt; in the system.
+Before publication we will send you a declaration of consent for the paper to be published.
+To accept the declaration you must be a &lt;strong&gt;registered user&lt;/strong&gt; in the system.
 &lt;br/&gt;
 &lt;br/&gt;
 The manuscript file must have a .doc or .docx extension.</value>
