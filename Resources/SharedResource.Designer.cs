@@ -88,7 +88,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Годишно излизат &lt;span&gt;два броя&lt;/span&gt;, единият от които е &lt;span&gt;тематичен&lt;/span&gt;..
+        ///   Looks up a localized string similar to Годишно излизат &lt;span&gt;два броя&lt;/span&gt; (януарски и юнски), единият от които е &lt;span&gt;тематичен&lt;/span&gt;..
         /// </summary>
         public static string AboutSection_Description_SecondRow {
             get {
@@ -964,8 +964,8 @@ namespace linc.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Предложеният за публикуване текст се изпраща като прикачен файл към email до Редакцията на списанието. 
         ///С Вас на този email ще влезе в комуникация редактор на списанието.
-        ///Преди публикуване, ще Ви изпратим декларация за съгласие статията/студията да бъде издадена.
-        ///За да я приемете, трябва да сте &lt;strong&gt;регистриран потребител&lt;/strong&gt; в системата.
+        ///Преди публикуване ще Ви изпратим декларация за съгласие статията/студията да бъде издадена.
+        ///За да приемете декларацията, трябда да сте &lt;strong&gt;регистриран потребител&lt;/strong&gt; в системата.
         ///&lt;br/&gt;
         ///&lt;br/&gt;
         ///Файлът с ръкописа трябва да е с разширение .doc или .docx..

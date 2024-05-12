@@ -314,19 +314,27 @@ public static class StartupExtensions
         return services;
     }
 
-    public static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddDatabase(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
     {
         var connectionString = configuration.GetConnectionString("DefaultConnection") ??
                                throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-
+        
         services.AddDbContext<ApplicationDbContext>(
             contextLifetime: ServiceLifetime.Scoped,
-            optionsAction: options =>
-                options
-                    .EnableDetailedErrors()
+            optionsAction: optionsBuilder =>
+            {
+                optionsBuilder
                     .UseSnakeCaseNamingConvention()
                     .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
-                    .UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+                    .UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+
+                if (!environment.IsProduction())
+                {
+                    optionsBuilder
+                        .EnableDetailedErrors()
+                        .EnableSensitiveDataLogging();
+                }
+            });
 
         return services;
     }
