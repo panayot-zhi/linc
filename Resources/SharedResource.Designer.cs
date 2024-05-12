@@ -88,7 +88,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Годишно излизат &lt;span&gt;два броя&lt;/span&gt;(януарски и юнски), единият от които е &lt;span&gt;тематичен&lt;/span&gt;..
+        ///   Looks up a localized string similar to Годишно излизат &lt;span&gt;два броя&lt;/span&gt; (януарски и юнски), единият от които е &lt;span&gt;тематичен&lt;/span&gt;..
         /// </summary>
         public static string AboutSection_Description_SecondRow {
             get {
