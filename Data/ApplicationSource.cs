@@ -22,7 +22,6 @@ namespace linc.Data
         [MaxLength(255)]
         public string LastName { get; set; }
 
-        [Required]
         [MaxLength(512)]
         public string AuthorNames { get; init; }
 
