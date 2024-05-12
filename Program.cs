@@ -17,7 +17,7 @@ public class Program
         host.UseSerilog(ConfigureLogger);
 
         services
-            .AddDatabase(configuration)
+            .AddDatabase(configuration, environment)
             .AddConfigurations(configuration)
             .AddAuthentications(configuration)
             .AddApplicationIdentity(environment)
