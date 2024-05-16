@@ -59,7 +59,8 @@
                     <h3>@HtmlLocalizer["Issue_DetailsPage_IssueTitle"]</h3>
                     <ul>
                         @* <li><strong>@HtmlLocalizer["Issue_DetailsPage_IssueNumber"]</strong>: @Model.IssueNumber</li> *@
-                        <li><strong>@HtmlLocalizer["Issue_DetailsPage_IssueISSN"]</strong>: @SiteConstant.ISSN</li>
+                        <li><strong>@HtmlLocalizer["Issue_DetailsPage_IssueISSN"]</strong>: @SiteConstant.PrintISSN (@HtmlLocalizer["Issue_DetailsPage_IssuePrintISSN"])</li>
+                        <li><strong>@HtmlLocalizer["Issue_DetailsPage_IssueISSN"]</strong>: @SiteConstant.OnlineISSN (@HtmlLocalizer["Issue_DetailsPage_IssueOnlineISSN"])</li>
                         <li><strong>@HtmlLocalizer["Issue_DetailsPage_IssueReleased"]</strong>: @Model.ReleaseDate.ToString("MMMM, yyyy")</li>
                         <li>
                             <strong>@HtmlLocalizer["Issue_DetailsPage_IssueDescription"]</strong>:
