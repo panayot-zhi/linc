@@ -2276,11 +2276,29 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Online.
+        /// </summary>
+        public static string Issue_DetailsPage_IssueOnlineISSN {
+            get {
+                return ResourceManager.GetString("Issue_DetailsPage_IssueOnlineISSN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Свали PDF.
         /// </summary>
         public static string Issue_DetailsPage_IssuePdf {
             get {
                 return ResourceManager.GetString("Issue_DetailsPage_IssuePdf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Print.
+        /// </summary>
+        public static string Issue_DetailsPage_IssuePrintISSN {
+            get {
+                return ResourceManager.GetString("Issue_DetailsPage_IssuePrintISSN", resourceCulture);
             }
         }
         
