@@ -35,7 +35,7 @@ namespace linc.Services
             return await _context.Sources.FindAsync(id);
         }
 
-        public async Task<SourceIndexViewModel> GetSourcesPagedAsync(string filter, int languageId, int? year, int? issueId, int? pageIndex, int pageSize = 10)
+        public async Task<SourceIndexViewModel> GetSourcesPagedAsync(string filter, int? year, int? issueId, int? pageIndex, int pageSize = 10)
         {
             if (!pageIndex.HasValue)
             {
