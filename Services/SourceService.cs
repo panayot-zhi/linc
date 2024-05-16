@@ -80,9 +80,9 @@ namespace linc.Services
             }
             else
             {
-                query = query.OrderBy(x => x.DateCreated).
-                    ThenByDescending(x => x.LastUpdated)
-                    .ThenBy(x => x.StartingPage);
+                query = query.OrderBy(x => x.LanguageId)
+                    .ThenBy(x => x.Issue.ReleaseDate)
+                        .ThenBy(x => x.StartingPage);
             }
 
             var count = await query.CountAsync();

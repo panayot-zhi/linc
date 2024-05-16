@@ -7,7 +7,7 @@ namespace linc.Contracts
     {
         Task<ApplicationSource> GetSourceAsync(int id);
 
-        Task<SourceIndexViewModel> GetSourcesPagedAsync(string filter, int languageId, int? year, int? issueId,
+        Task<SourceIndexViewModel> GetSourcesPagedAsync(string filter, int? year, int? issueId,
             int? pageIndex, int pageSize = 10);
 
         Task<List<SourceCountByYears>> GetSourcesCountByYears();

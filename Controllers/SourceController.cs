@@ -28,8 +28,8 @@ namespace linc.Controllers
         public async Task<IActionResult> Index(int? page, int? year, string filter, int? issueId)
         {
             filter = System.Net.WebUtility.UrlDecode(filter);
-            var languageId = LocalizationService.GetCurrentLanguageId();
-            var viewModel = await _sourceService.GetSourcesPagedAsync(filter: filter, languageId: languageId, 
+            //var languageId = LocalizationService.GetCurrentLanguageId();
+            var viewModel = await _sourceService.GetSourcesPagedAsync(filter: filter, 
                 year: year, issueId: issueId, pageIndex: page);
             
             viewModel.YearFilter = await _sourceService.GetSourcesCountByYears();
