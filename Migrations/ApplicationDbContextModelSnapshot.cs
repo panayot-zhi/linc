@@ -354,6 +354,10 @@ namespace linc.Migrations
                         .HasColumnType("int")
                         .HasColumnName("issue_id");
 
+                    b.Property<bool>("IssueTheme")
+                        .HasColumnType("tinyint(1)")
+                        .HasColumnName("issue_theme");
+
                     b.Property<int>("LanguageId")
                         .HasColumnType("int")
                         .HasColumnName("language_id");
