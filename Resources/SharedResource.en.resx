@@ -1671,4 +1671,10 @@ The manuscript file must have a .doc or .docx extension.</value>
   <data name="Email_Agreement_Subject" xml:space="preserve">
     <value>Publication agreement</value>
   </data>
+  <data name="Issue_DetailsPage_IssueOnlineISSN" xml:space="preserve">
+    <value>Online</value>
+  </data>
+  <data name="Issue_DetailsPage_IssuePrintISSN" xml:space="preserve">
+    <value>Print</value>
+  </data>
 </root>

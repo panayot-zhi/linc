@@ -28,7 +28,9 @@ namespace linc.Data
         [MaxLength(1024)]
         public string AuthorNotes { get; set; }
 
-        public bool IssueTheme { get; set; }
+        public bool IsSection { get; set; }
+
+        public bool IsTheme { get; set; }
 
 
         [MaxLength(512)]

@@ -11,7 +11,9 @@ public static class SiteConstant
 
     public const string TempDataEditableKey = "Editable";
 
-    public const string ISSN = "ISSN 3033-0181";
+    public const string PrintISSN = "3033-0181";
+
+    public const string OnlineISSN = "3033-0599";
 
     public const string SiteName = "linc";
 

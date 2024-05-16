@@ -1,4 +1,5 @@
-﻿<!-- ======= About Section ======= -->
+﻿@using linc.Utility
+<!-- ======= About Section ======= -->
 <section id="about" class="about section-bg">
     <div class="container" data-aos="fade-up">
 
@@ -79,8 +80,8 @@
                     @HtmlLocalizer["AboutSection_Footer_RowThree"]
                 </p>
                 <p>
-                    ISSN: 3033-0181 (Print) <br/>
-                    ISSN: ………… (Online)
+                    ISSN: @SiteConstant.PrintISSN (@HtmlLocalizer["Issue_DetailsPage_IssuePrintISSN"]) <br />
+                    ISSN: @SiteConstant.OnlineISSN (@HtmlLocalizer["Issue_DetailsPage_IssueOnlineISSN"])
                 </p>
             </div>
         </div>

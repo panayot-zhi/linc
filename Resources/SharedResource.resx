@@ -1669,4 +1669,10 @@
   <data name="Email_Agreement_Subject" xml:space="preserve">
     <value>Декларация за публикуване</value>
   </data>
+  <data name="Issue_DetailsPage_IssueOnlineISSN" xml:space="preserve">
+    <value>Online</value>
+  </data>
+  <data name="Issue_DetailsPage_IssuePrintISSN" xml:space="preserve">
+    <value>Print</value>
+  </data>
 </root>

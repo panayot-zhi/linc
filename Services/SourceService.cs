@@ -80,9 +80,13 @@ namespace linc.Services
             }
             else
             {
-                query = query.OrderBy(x => x.DateCreated).
-                    ThenByDescending(x => x.LastUpdated)
-                    .ThenBy(x => x.StartingPage);
+                // orders the items such that the items with LanguageId equal to the specifiedLanguageId come first.
+                // The ternary operator assigns 0 to items with the specific LanguageId and 1 to others,
+                // effectively pushing the desired LanguageId to the top.
+                query = query.OrderBy(x => x.LanguageId == languageId ? 0 : 1)
+                    .ThenBy(x => x.LanguageId)
+                        .ThenBy(x => x.Issue.ReleaseDate)
+                            .ThenBy(x => x.StartingPage);
             }
 
             var count = await query.CountAsync();
