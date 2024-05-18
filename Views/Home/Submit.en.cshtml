@@ -149,16 +149,7 @@
 </section>
 
 @section Newsletter {
-    <div class="footer-newsletter">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <p>@HtmlLocalizer["HomeSubmit_SubmitButton_Description"]</p>
-                    <a href="mailto:@SiteConstant.ReviewsEmail" class="w-100 btn btn-lg btn-primary">@HtmlLocalizer["HomeSubmit_SubmitButton_Label"]</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <partial name="Newsletter/_Submit" />
 }
 
 @section Scripts {
