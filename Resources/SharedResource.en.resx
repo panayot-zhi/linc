@@ -1052,10 +1052,10 @@
     <value>Register</value>
   </data>
   <data name="RegisterPage_Requirements" xml:space="preserve">
-    <value>&lt;p&gt;&lt;small&gt;To confirm your e-mail address. We will send you a confirmation letter on the email provided.&lt;/small&gt;&lt;/p&gt;
+    <value>&lt;p&gt;&lt;small&gt;To confirm your e-mail address we will send you a confirmation letter to the email provided.&lt;/small&gt;&lt;/p&gt;
 &lt;p&gt;&lt;small&gt;Your password must contain:&lt;/small&gt;&lt;/p&gt;
 &lt;ul&gt;
-    &lt;li&gt;&lt;small&gt;symbols in &lt;span class="text-decoration-underline"&gt;latin&lt;/span&gt; only&lt;/small&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;small&gt;symbols from the &lt;span class="text-decoration-underline"&gt;Latin alphabet&lt;/span&gt; only&lt;/small&gt;&lt;/li&gt;
     &lt;li&gt;&lt;small&gt;at least six symbols&lt;/small&gt;&lt;/li&gt;
     &lt;li&gt;&lt;small&gt;at least four &lt;span class="text-decoration-underline"&gt;distinct&lt;/span&gt; symbols&lt;/small&gt;&lt;/li&gt;
     &lt;li&gt;&lt;small&gt;at least one capital letter&lt;/small&gt;&lt;/li&gt;
