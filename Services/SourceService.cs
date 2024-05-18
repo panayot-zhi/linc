@@ -80,9 +80,11 @@ namespace linc.Services
             }
             else
             {
-                // orders the items such that the items with LanguageId equal to the specifiedLanguageId come first.
+                // Orders the items such that the items with LanguageId equal to the specifiedLanguageId come first.
                 // The ternary operator assigns 0 to items with the specific LanguageId and 1 to others,
                 // effectively pushing the desired LanguageId to the top.
+                // ThenBy(x => x.LanguageId) is added to maintain the order of the remaining LanguageIds
+                // after the specific one is ordered first.
                 query = query.OrderBy(x => x.LanguageId == languageId ? 0 : 1)
                     .ThenBy(x => x.LanguageId)
                         .ThenBy(x => x.Issue.ReleaseDate)
