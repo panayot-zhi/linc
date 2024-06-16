@@ -935,7 +935,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Преди публикуване, ще Ви изпратим декларация за съгласие статията да бъде издадена..
+        ///   Looks up a localized string similar to Преди публикуване ще Ви изпратим декларация за съгласие статията да бъде издадена..
         /// </summary>
         public static string ContactSection_PublicationAgreement_Description {
             get {

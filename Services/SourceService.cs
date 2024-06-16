@@ -241,7 +241,7 @@ namespace linc.Services
 
         public async Task DeleteSourceAsync(int id)
         {
-            // TODO: perform cleanup 
+            // TODO: perform cleanup of everything related to the source
             var source = await _context.Sources.FindAsync(id);
 
             ArgumentNullException.ThrowIfNull(source);

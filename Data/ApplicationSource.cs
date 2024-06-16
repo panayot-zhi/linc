@@ -38,6 +38,7 @@ namespace linc.Data
         [NotMapped]
         public bool HasDOI => !string.IsNullOrEmpty(DOI);
 
+        
         public bool IsSection { get; set; }
 
         public bool IsTheme { get; set; }
