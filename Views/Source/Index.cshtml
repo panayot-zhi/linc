@@ -107,6 +107,15 @@
                                         </p>
                                     }
 
+                                    @if (!string.IsNullOrWhiteSpace(source.DOI))
+                                    {
+                                        <p class="source-doi">
+                                            <a href="@source.DOI" target="_blank">
+                                                <small>@source.DOI <sup><i class="bi bi-box-arrow-up-right"></i></sup></small>
+                                            </a>
+                                        </p>
+                                    }
+
                                     <p class="source-title annotate">
                                         <a href="@Url.Action("LoadSourceDocument", "Document", new { sourceId = source.Id })" target="_blank">@source.Title</a>
                                     </p>

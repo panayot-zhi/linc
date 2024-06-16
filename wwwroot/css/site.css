@@ -335,6 +335,15 @@ section#testimonials {
 }
 
 .source-container .source-author {
+    margin-bottom: 0;
+}
+
+.source-container .source-doi {
+    margin: 5px 0;
+}
+
+.source-container .source-doi sup {
+    padding: 0 5px;
 }
 
 .source-container .source-title {
