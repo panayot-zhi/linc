@@ -17,6 +17,8 @@ public static class SiteConstant
 
     public const string SiteName = "linc";
 
+    public const string LandingPageArea = "LandingPage";
+
     public static readonly Dictionary<int, string> SupportedCultures = new() {
         // NOTE: Key is database id
         // value is the culture
