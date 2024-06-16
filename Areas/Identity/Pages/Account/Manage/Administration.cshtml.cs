@@ -6,7 +6,7 @@ namespace linc.Areas.Identity.Pages.Account.Manage
 {
     // TODO: Impersonate
 
-    [SiteAuthorize(SiteRole.HeadEditor)]
+    [SiteAuthorize(SiteRole.Editor)]
     public class AdministrationModel : PageModel
     {
 
