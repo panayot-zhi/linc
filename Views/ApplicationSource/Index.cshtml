@@ -1,0 +1,132 @@
+﻿@model IEnumerable<linc.Data.ApplicationSource>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AuthorNames)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AuthorNotes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DOI)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsSection)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsTheme)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TitleNotes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartingPage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastPage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Language)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Issue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pdf)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Author)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastUpdated)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateCreated)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AuthorNames)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AuthorNotes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DOI)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsSection)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsTheme)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TitleNotes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartingPage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastPage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Language.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Issue.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pdf.Extension)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Author.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastUpdated)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateCreated)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
