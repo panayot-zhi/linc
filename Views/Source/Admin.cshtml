@@ -1,0 +1,116 @@
+﻿@using linc.Utility
+@model SourceIndexViewModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Breadcrumbs {
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+        <div class="container">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>@ViewData["Title"]</h2>
+                <ol>
+                    <li>
+                        <a href="/">@HtmlLocalizer["NavItem_Home"]</a>
+                    </li>
+                    <li>
+                        <a asp-area="Identity" asp-page="/Account/Manage/Administration">@HtmlLocalizer["ManageNavItem_Administration"]</a>
+                    </li>
+                    <li>
+                        @HtmlLocalizer["List_Label"]
+                    </li>
+                </ol>
+            </div>
+
+        </div>
+    </section>
+    <!-- End Breadcrumbs -->
+}
+
+<h1>Index</h1>
+
+<ul class="list-operations">
+    <li>
+        <a asp-area="Identity" asp-page="/Account/Manage/Administration">Administration</a>
+    </li>
+    <li>
+        <a asp-action="Create">Create New</a>
+    </li>
+</ul>
+
+<hr />
+
+<div class="table-responsive">
+    <table class="table">
+        <thead class="table-light">
+        <tr>
+            <th>
+                Author
+            </th>
+            <th>
+                Title
+            </th>
+            <th>
+                Pages
+            </th>
+            <th>
+                Language
+            </th>
+            <th>
+                Issue
+            </th>
+            <th>
+                Updated
+            </th>
+            <th>
+                Created
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.Records)
+        {
+            <tr>
+                <td>
+                    @* TODO: Link to user admin screen if exist *@
+                    @Html.DisplayFor(modelItem => item.AuthorNames) <br/>
+                    @Html.DisplayFor(modelItem => item.AuthorNotes)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">
+                        @Html.DisplayFor(modelItem => item.Title) 
+                    </a><br/>
+                    @Html.DisplayFor(modelItem => item.TitleNotes)
+                </td>
+                <td>
+                    <a href="@Url.Action("LoadSourceDocument", "Document", new { sourceId = item.Id })" target="_blank">
+                        @Html.DisplayFor(modelItem => item.StartingPage)-@Html.DisplayFor(modelItem => item.LastPage)
+                    </a>
+                </td>
+                <td>
+                    @SiteConstant.SupportedCultures[item.LanguageId]
+                </td>
+                <td>
+                    @* TODO: Link to issue admin screen *@
+                    @Html.DisplayFor(modelItem => item.Issue.IssueNumber) / @Html.DisplayFor(modelItem => item.Issue.ReleaseYear)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastUpdated)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateCreated)
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+    
+    @if (Model.TotalPages > 1)
+    {
+        @await Html.PartialAsync("_Paging", Model)
+    }
+</div>

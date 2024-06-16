@@ -308,7 +308,7 @@
         {
             @await RenderSectionAsync("Newsletter")
         } 
-        else if ("Identity".Equals(ViewData["Area"]))
+        else if (!"LandingPage".Equals(ViewData["Area"]))
         {
             if (User.IsAtLeast(SiteRole.Editor))
             {

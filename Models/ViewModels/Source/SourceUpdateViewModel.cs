@@ -3,8 +3,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace linc.Models.ViewModels.Source
 {
-    public class SourceCreateViewModel
+    public class SourceUpdateViewModel
     {
+        public int Id { get; set; }
+
+
+
         [MaxLength(512, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         [Display(Name = "SourceCreate_Title", ResourceType = typeof(Resources.SharedResource))]
         public string Title { get; set; }
@@ -44,19 +48,25 @@ namespace linc.Models.ViewModels.Source
 
 
 
-        [Display(Name = "SourceCreate_PdfFile", ResourceType = typeof(Resources.SharedResource))]
-        public IFormFile PdfFile { get; set; }
-
-
         [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         [Display(Name = "SourceCreate_IssueId", ResourceType = typeof(Resources.SharedResource))]
-        public int? IssueId { get; set; }
+        public int IssueId { get; set; }
 
         [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         [Display(Name = "SourceCreate_LanguageId", ResourceType = typeof(Resources.SharedResource))]
         public int LanguageId { get; set; }
 
 
+
+        [Display(Name = "SourceCreate_IsTheme", ResourceType = typeof(Resources.SharedResource))]
+        public bool IsTheme { get; set; }
+
+        [Display(Name = "SourceCreate_IsSection", ResourceType = typeof(Resources.SharedResource))]
+        public bool IsSection { get; set; }
+
+
+
+        public List<SelectListItem> Users { get; set; }
 
         public List<SelectListItem> Languages { get; set; }
 

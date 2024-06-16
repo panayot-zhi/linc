@@ -22,7 +22,7 @@
             
             <li>
                 <i class="bx bx-chevron-right"></i>
-                <a asp-controller="ApplicationSource" asp-action="Index">Manage Sources</a>
+                <a asp-controller="Source" asp-action="Admin">@HtmlLocalizer["Source_AdminPage_Title"]</a>
             </li>
 
             @if (User.Is(SiteRole.Administrator))
