@@ -6,3 +6,4 @@ appsettings.Development.json
 appsettings.Production.json
 appsettings.Staging.json
 *.user
+backups/
