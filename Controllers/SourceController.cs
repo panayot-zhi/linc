@@ -4,6 +4,7 @@ using linc.Models.Enumerations;
 using linc.Utility;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using linc.Models.ViewModels.Source;
+using linc.Data;
 
 namespace linc.Controllers
 {
@@ -43,24 +44,24 @@ namespace linc.Controllers
             return View(viewModel);
         }
 
-        // TODO
-        // public async Task<IActionResult> Details(int? id)
-        // {
-        //     if (id == null)
-        //     {
-        //         return NotFound();
-        //     }
-        //
-        //     var applicationSource = await _sourceService.GetSourceAsync(id.Value);
-        //     if (applicationSource == null)
-        //     {
-        //         _logger.LogWarning("Could not find source with the id of {@Id}",
-        //             id.Value);
-        //         return NotFound();
-        //     }
-        //
-        //     return View(applicationSource);
-        // }
+        [SiteAuthorize(SiteRole.Editor)]
+        public async Task<IActionResult> Admin(int? page, int? year, string filter, int? issueId)
+        {
+            filter = System.Net.WebUtility.UrlDecode(filter);
+            var languageId = LocalizationService.GetCurrentLanguageId();
+            var viewModel = await _sourceService.GetSourcesPagedAsync(filter: filter, languageId: languageId,
+                year: year, issueId: issueId, pageIndex: page);
+
+            viewModel.YearFilter = await _sourceService.GetSourcesCountByYears();
+            viewModel.IssuesFilter = await _sourceService.GetSourcesCountByIssues();
+
+            viewModel.AuthorsFilter = filter;
+            viewModel.CurrentIssueId = issueId;
+            viewModel.CurrentAuthorsFilter = filter;
+            viewModel.CurrentYearFilter = year;
+
+            return View(viewModel);
+        }
 
         [SiteAuthorize(SiteRole.Editor)]
         public async Task<IActionResult> Create()
@@ -97,6 +98,80 @@ namespace linc.Controllers
                 sourceId);
 
             return RedirectToAction("Details", "Issue", new { id = vModel.IssueId });
+        }
+
+        [SiteAuthorize(SiteRole.HeadEditor)]
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var source = await _sourceService.GetSourceAsync(id.Value);
+            if (source == null)
+            {
+                return NotFound();
+            }
+
+            var vModel = new SourceUpdateViewModel()
+            {
+                Id = source.Id,
+                Title = source.Title,
+                TitleNotes = source.TitleNotes,
+
+                DOI = source.DOI,
+
+                FirstName = source.FirstName,
+                LastName = source.LastName,
+                AuthorNotes = source.AuthorNotes,
+
+                StartingPage = source.StartingPage,
+                LastPage = source.LastPage,
+
+
+                IssueId = source.IssueId,
+                LanguageId = source.LanguageId,
+
+                IsTheme = source.IsTheme,
+                IsSection = source.IsSection,
+
+                Issues = await GetIssuesAsync(),
+                Languages = GetLanguages(),
+            };
+
+            return View(vModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [SiteAuthorize(SiteRole.Administrator)]
+        public async Task<IActionResult> Edit(SourceUpdateViewModel vModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                vModel.Issues = await GetIssuesAsync();
+                vModel.Languages = GetLanguages();
+
+                return View(vModel);
+            }
+
+            await _sourceService.UpdateSourceAsync(vModel);
+            return RedirectToAction(nameof(Admin));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [SiteAuthorize(SiteRole.Administrator)]
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            await _sourceService.DeleteSourceAsync(id.Value);
+            return RedirectToAction(nameof(Admin));
         }
 
         private async Task<List<SelectListItem>> GetIssuesAsync()

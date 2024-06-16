@@ -109,6 +109,7 @@ public class ContentService : IContentService
         var sources = _dbContext.Sources
             .Include(x => x.Issue)
             .Where(x => x.IssueId == lastIssue)
+            .Where(x => !x.IsSection)
             .Select(x => new SourceSuggestionViewModel()
             {
                 SourceId = x.Id,

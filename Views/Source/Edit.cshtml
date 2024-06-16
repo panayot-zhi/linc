@@ -1,7 +1,9 @@
-﻿@model SourceCreateViewModel
+﻿@model SourceUpdateViewModel
+
+@* TODO: Localize *@
 
 @{
-    ViewData["Title"] = HtmlLocalizer["Source_CreatePage_Title"];
+    ViewData["Title"] = "Edit";
 }
 
 @section Breadcrumbs {
@@ -22,7 +24,7 @@
                         <a asp-action="Admin">@HtmlLocalizer["List_Label"]</a>
                     </li>
                     <li>
-                        @ViewData["Title"]
+                        #@Model.Id
                     </li>
                 </ol>
             </div>
@@ -34,8 +36,9 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <form asp-action="Create" enctype="multipart/form-data">
-            <h3>@HtmlLocalizer["Source_CreatePage_SubTitle"]</h3>
+        <form asp-action="Edit">
+            
+            <h3>@HtmlLocalizer["Source_EditPage_SubTitle"]</h3>
             
             <ul class="list-operations">
                 <li>
@@ -46,21 +49,22 @@
 
             <hr />
 
-            <div asp-validation-summary="All" class="text-danger"></div>
-                    
+            <div asp-validation-summary="All" class="invalid-feedback"></div>
+
+            <input type="hidden" asp-for="Id"/>
+
             <div class="form-floating ">
-                <input asp-for="Title" class="form-control"/>
+                <input asp-for="Title" class="form-control" />
                 <label asp-for="Title" class="form-label"></label>
                 <span asp-validation-for="Title" class="invalid-feedback"></span>
             </div>
-                    
+
             <div class="form-group">
                 <label asp-for="TitleNotes" class="form-label"></label>
                 <textarea asp-for="TitleNotes" class="form-control" rows="6"></textarea>
                 <span asp-validation-for="TitleNotes" class="invalid-feedback"></span>
             </div>
             
-
             <div class="form-group">
                 <label asp-for="DOI" class="form-label"></label> 
                 (<a href="https://www.doi.org/the-identifier/what-is-a-doi/" target="_blank">what-is-a-doi
@@ -92,26 +96,30 @@
                 <textarea asp-for="AuthorNotes" class="form-control" rows="6"></textarea>
                 <span asp-validation-for="AuthorNotes" class="invalid-feedback"></span>
             </div>
-                    
-            <div class="form-group">
-                <div class="mb-3">
-                    <label asp-for="PdfFile" class="form-label"></label>
-                    <input asp-for="PdfFile" class="form-control" accept=".pdf" />
-                    <span asp-validation-for="PdfFile" class="invalid-feedback"></span>
-                </div>
+            
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsTheme"/> @Html.DisplayNameFor(model => model.IsTheme)
+                </label>
             </div>
-                    
+
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsSection"/> @Html.DisplayNameFor(model => model.IsSection)
+                </label>
+            </div>
+
             <div class="row">
                 <div class="col-sm-3">
                     <div class="form-floating">
-                        <input asp-for="StartingPage" class="form-control" />
+                        <input asp-for="StartingPage" class="form-control" readonly="readonly" disabled="disabled" />
                         <label asp-for="StartingPage" class="form-label"></label>
                         <span asp-validation-for="StartingPage" class="invalid-feedback"></span>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-floating">
-                        <input asp-for="LastPage" class="form-control" />
+                        <input asp-for="LastPage" class="form-control" readonly="readonly" disabled="disabled" />
                         <label asp-for="LastPage" class="form-label"></label>
                         <span asp-validation-for="LastPage" class="invalid-feedback"></span>
                     </div>
@@ -135,23 +143,52 @@
             <hr/>
 
             <div class="text-end">
-                <button type="reset" class="btn btn-lg btn-outline-secondary">
-                    @HtmlLocalizer["Reset_Button_Label"]
-                </button>
+                <a id="submit-delete-form" class="btn btn-lg btn-danger submit-link" href="#">
+                    @HtmlLocalizer["Delete_Button_Label"]
+                </a>
 
                 <button id="change-password-button" type="submit" class="w-50 btn btn-lg btn-primary">
                     @HtmlLocalizer["Save_Button_Label"]
                 </button>
             </div>
+
+        </form>
+        
+        <form id="delete-form" asp-action="Delete">
+            <input type="hidden" asp-for="Id" />
         </form>
     </div>
-
 </div>
 
-@section Newsletter {
-    <partial name="Newsletter/_ReportBug" />
-}
-
 @section Scripts {
-    <partial name="_ValidationScripts" />
+    <partial name="_ValidationScripts"/>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            document.getElementById('submit-delete-form').addEventListener('click', (e) => {
+
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
+
+                Swal.fire({
+
+                    icon: "question",
+                    title: "Are you sure?",
+                    text: "The source will be deleted.",
+                    showCancelButton: true,
+                    cancelButtonColor: "#d33"
+
+                }).then((result) => {
+                    if (!result.isConfirmed) {
+                        return;
+                    }
+
+                    window.showPreloader();
+
+                    document.getElementById('delete-form').submit();
+                });
+            })
+        });
+    </script>
 }

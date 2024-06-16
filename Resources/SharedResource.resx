@@ -1675,4 +1675,22 @@
   <data name="Issue_DetailsPage_IssuePrintISSN" xml:space="preserve">
     <value>Print</value>
   </data>
+  <data name="List_Label" xml:space="preserve">
+    <value>Списък</value>
+  </data>
+  <data name="SourceCreate_DOI" xml:space="preserve">
+    <value>DOI</value>
+  </data>
+  <data name="SourceCreate_IsSection" xml:space="preserve">
+    <value>Секция</value>
+  </data>
+  <data name="SourceCreate_IsTheme" xml:space="preserve">
+    <value>Тема на броя</value>
+  </data>
+  <data name="Source_AdminPage_Title" xml:space="preserve">
+    <value>Списък източници</value>
+  </data>
+  <data name="Source_EditPage_SubTitle" xml:space="preserve">
+    <value>Редакция на източник</value>
+  </data>
 </root>

@@ -19,22 +19,27 @@
                     <a asp-controller="Issue" asp-action="Create">@HtmlLocalizer["Admin_CreateIssue"]</a>
                 </li>
             }
+            
             <li>
                 <i class="bx bx-chevron-right"></i>
-                <a asp-controller="Source" asp-action="Create">@HtmlLocalizer["Admin_CreateSource"]</a>
+                <a asp-controller="Source" asp-action="Admin">@HtmlLocalizer["Source_AdminPage_Title"]</a>
             </li>
-            <li>
-                <i class="bx bx-chevron-right"></i>
-                <a asp-controller="Admin" asp-action="TestSendEmail">Test Send Email Default</a>
-            </li>
-            <li>
-                <i class="bx bx-chevron-right"></i>
-                <a asp-controller="Admin" asp-action="TestSendEmail" asp-route-id="bg">Test Send Email (bg)</a>
-            </li>
-            <li>
-                <i class="bx bx-chevron-right"></i>
-                <a asp-controller="Admin" asp-action="TestSendEmail" asp-route-id="en">Test Send Email (en)</a>
-            </li>
+
+            @if (User.Is(SiteRole.Administrator))
+            {
+                <li>
+                    <i class="bx bx-chevron-right"></i>
+                    <a asp-controller="Admin" asp-action="TestSendEmail">Test Send Email Default</a>
+                </li>
+                <li>
+                    <i class="bx bx-chevron-right"></i>
+                    <a asp-controller="Admin" asp-action="TestSendEmail" asp-route-id="bg">Test Send Email (bg)</a>
+                </li>
+                <li>
+                    <i class="bx bx-chevron-right"></i>
+                    <a asp-controller="Admin" asp-action="TestSendEmail" asp-route-id="en">Test Send Email (en)</a>
+                </li>
+            }
         </ul>
     </div>
 </div>

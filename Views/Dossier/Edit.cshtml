@@ -32,288 +32,282 @@
     <!-- End Breadcrumbs -->
 }
 
-<section class="inner-page">
-    <div class="container">
-        
-        <div class="row">
-            <div class="col-lg-8 offset-lg-2 col-md-8 offset-md-2">
-                <form asp-action="Edit" enctype="multipart/form-data">
-                    
-                    <input asp-for="Status" type="hidden" />
+<div class="row">
+    <div class="col-lg-8 offset-lg-2 col-md-8 offset-md-2">
+        <form asp-action="Edit" enctype="multipart/form-data">
 
-                    <h3>@HtmlLocalizer["Dossier_EditPage_SubTitle"]</h3>
-                    <small>@HtmlLocalizer["Dossier_ListHeader_Status"]: @(EnumHelper<ApplicationDossierStatus>.GetDisplayName(Model.Status))</small>
+            <input asp-for="Status" type="hidden" />
 
-                    <ul id="dossier-operations" class="text-end">
-                        
-                        @* NOTE: Resolve allowed operations here *@
-                        
-                        @if (Model.Status == ApplicationDossierStatus.Prepared)
-                        {
-                            <li>
-                                <a asp-action="UpdateStatus" asp-route-id="@Model.Id" asp-route-status="InReview" class="requires-confirm">
-                                    <i class='bx bx-fast-forward'></i>
-                                    @HtmlLocalizer["Dossier_EditPage_ToStatus"]
-                                    '@(EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.InReview))'
-                                </a>
-                            </li>
-                        }
-                        else if (Model.Status == ApplicationDossierStatus.Reviewed)
-                        {
-                            <li>
-                                <a asp-action="UpdateStatus" asp-route-id="@Model.Id" asp-route-status="Accepted" class="requires-confirm text-success">
-                                    <i class='bx bx-check-double'></i>
-                                    @(EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.Accepted))
-                                </a>
-                            </li>
+            <h3>@HtmlLocalizer["Dossier_EditPage_SubTitle"]</h3>
+            <small>@HtmlLocalizer["Dossier_ListHeader_Status"]: @(EnumHelper<ApplicationDossierStatus>.GetDisplayName(Model.Status))</small>
 
-                            <li>
-                                <a asp-action="UpdateStatus" asp-route-id="@Model.Id" asp-route-status="AwaitingCorrections" class="requires-confirm">
-                                    <i class='bx bx-check'></i>
-                                    @(EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.AwaitingCorrections))
-                                </a>
-                            </li>
+            <ul class="list-operations">
 
-                            <li>
-                                <a asp-action="UpdateStatus" asp-route-id="@Model.Id" asp-route-status="Rejected" class="requires-confirm text-danger">
-                                    <i class='bx bxs-x-circle'></i>
-                                    @(EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.Rejected))
-                                </a>
-                            </li>
-                        }
-                        else if (Model.Status == ApplicationDossierStatus.AwaitingCorrections && Model.Redacted != null)
-                        {
-                            <li>
-                                <a asp-action="UpdateStatus" asp-route-id="@Model.Id" asp-route-status="AcceptedWithCorrections" class="requires-confirm">
-                                    <i class='bx bx-check'></i>
-                                    @(EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.AcceptedWithCorrections))
-                                </a>
-                            </li>
-                        }
-                        else if (User.IsAtLeast(SiteRole.HeadEditor) && Model.Status is ApplicationDossierStatus.Accepted or ApplicationDossierStatus.AcceptedWithCorrections)
-                        {
-                            <li>
-                                <a asp-action="UpdateStatus" asp-route-id="@Model.Id" asp-route-status="AwaitingCorrections" class="requires-confirm">
-                                    <i class='bx bx-rewind'></i>
-                                    @HtmlLocalizer["Dossier_EditPage_BackToStatus"] 
-                                    '@(EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.AwaitingCorrections))'
-                                </a>
-                            </li>
-                        }
-                        else
-                        {
-                            <li>
-                                <a asp-action="Details" asp-route-id="@Model.Id">
-                                    @HtmlLocalizer["Dossier_BackToDetails_Label"]
-                                </a>
-                            </li>
-                        }
+                @* NOTE: Resolve allowed operations here *@
 
-                    </ul>
+                @if (Model.Status == ApplicationDossierStatus.Prepared)
+                {
+                    <li>
+                        <a asp-action="UpdateStatus" asp-route-id="@Model.Id" asp-route-status="InReview" class="requires-confirm">
+                            <i class='bx bx-fast-forward'></i>
+                            @HtmlLocalizer["Dossier_EditPage_ToStatus"]
+                            '@(EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.InReview))'
+                        </a>
+                    </li>
+                }
+                else if (Model.Status == ApplicationDossierStatus.Reviewed)
+                {
+                    <li>
+                        <a asp-action="UpdateStatus" asp-route-id="@Model.Id" asp-route-status="Accepted" class="requires-confirm text-success">
+                            <i class='bx bx-check-double'></i>
+                            @(EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.Accepted))
+                        </a>
+                    </li>
 
-                    <hr />
+                    <li>
+                        <a asp-action="UpdateStatus" asp-route-id="@Model.Id" asp-route-status="AwaitingCorrections" class="requires-confirm">
+                            <i class='bx bx-check'></i>
+                            @(EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.AwaitingCorrections))
+                        </a>
+                    </li>
 
-                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <li>
+                        <a asp-action="UpdateStatus" asp-route-id="@Model.Id" asp-route-status="Rejected" class="requires-confirm text-danger">
+                            <i class='bx bxs-x-circle'></i>
+                            @(EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.Rejected))
+                        </a>
+                    </li>
+                }
+                else if (Model.Status == ApplicationDossierStatus.AwaitingCorrections && Model.Redacted != null)
+                {
+                    <li>
+                        <a asp-action="UpdateStatus" asp-route-id="@Model.Id" asp-route-status="AcceptedWithCorrections" class="requires-confirm">
+                            <i class='bx bx-check'></i>
+                            @(EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.AcceptedWithCorrections))
+                        </a>
+                    </li>
+                }
+                else if (User.IsAtLeast(SiteRole.HeadEditor) && Model.Status is ApplicationDossierStatus.Accepted or ApplicationDossierStatus.AcceptedWithCorrections)
+                {
+                    <li>
+                        <a asp-action="UpdateStatus" asp-route-id="@Model.Id" asp-route-status="AwaitingCorrections" class="requires-confirm">
+                            <i class='bx bx-rewind'></i>
+                            @HtmlLocalizer["Dossier_EditPage_BackToStatus"]
+                            '@(EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.AwaitingCorrections))'
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a asp-action="Details" asp-route-id="@Model.Id">
+                            @HtmlLocalizer["Dossier_BackToDetails_Label"]
+                        </a>
+                    </li>
+                }
 
-                    <div class="form-floating">
-                        <input asp-for="Title" class="form-control" readonly="readonly" />
-                        <label asp-for="Title" class="form-label"></label>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-floating">
-                                <input asp-for="FirstName" class="form-control" readonly="readonly" />
-                                <label asp-for="FirstName" class="form-label"></label>
-                            </div>
-                        </div>
+            </ul>
 
-                        <div class="col-sm-6">
-                            <div class="form-floating">
-                                <input asp-for="LastName" class="form-control" readonly="readonly" />
-                                <label asp-for="LastName" class="form-label"></label>
-                            </div>
-                        </div>
-                    </div>
+            <hr />
 
-                    <div class="col-lg-8 offset-lg-2">
-                        <div class="form-floating">
-                            <input asp-for="Email" class="form-control" readonly="readonly" />
-                            <label asp-for="Email" class="form-label"></label>
-                        </div>
-                    </div>
-                    
-                    @if (User.IsAtLeast(SiteRole.HeadEditor))
-                    {
-                        <div class="form-floating">
-                            <select asp-for="AssigneeId" asp-items="@Model.Editors" class="form-select"></select>
-                            <label asp-for="AssigneeId" class="form-label"></label>
-                            <span asp-validation-for="AssigneeId" class="invalid-feedback"></span>
-                        </div>
-                    }
-                    else
-                    {
-                        <input asp-for="AssigneeId" type="hidden" />
+            <div asp-validation-summary="All" class="text-danger"></div>
 
-                        <div class="form-floating">
-                            <input asp-for="AssigneeNames" class="form-control" readonly="readonly" />
-                            <label asp-for="AssigneeNames" class="form-label"></label>
-                        </div>
-                    }
-
-                    @* NOTE: Resolve allowed input for operations here *@
-
-                    @if (Model.Status == ApplicationDossierStatus.New)
-                    {
-                        <hr />
-
-                        // allow uploading an Anonymized document
-                        <input asp-for="DocumentType" type="hidden" value="@ApplicationDocumentType.Anonymized" />
-
-                        <div class="alert alert-info" role="alert">
-                            <i class='bx bxs-info-circle'></i>
-                            @HtmlLocalizer["Dossier_EditPage_UploadAnonymizedDocument_Info", 
-                                EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.Prepared)]
-                        </div>
-
-                        <div class="form-group">
-                            <div class="mb-3">
-                                <label asp-for="Document" class="form-label">
-                                    @HtmlLocalizer["Dossier_EditPage_UploadAnonymizedDocument"]
-                                </label>
-                                <input asp-for="Document" class="form-control" accept=".doc,.docx" />
-                                <span asp-validation-for="Document" class="invalid-feedback"></span>
-                            </div>
-                        </div>
-                    }
-                    else if (Model.Status == ApplicationDossierStatus.Prepared)
-                    {
-                        <hr />
-
-                        // allow overriding an Anonymized document
-                        <input asp-for="DocumentType" type="hidden" value="@ApplicationDocumentType.Anonymized" />
-
-                        <div class="alert alert-warning" role="alert">
-                            <i class='bx bxs-error'></i>
-                            @HtmlLocalizer["Dossier_EditPage_UploadAnonymizedDocument_Warning"]
-                        </div>
-
-                        <div class="form-group">
-                            <div class="mb-3">
-                                <label asp-for="Document" class="form-label">
-                                    @HtmlLocalizer["Dossier_EditPage_UploadAnonymizedDocument"]
-                                </label>
-                                <input asp-for="Document" class="form-control" accept=".doc,.docx" />
-                                <span asp-validation-for="Document" class="invalid-feedback"></span>
-                            </div>
-                        </div>
-                    }
-                    else if (Model.Status == ApplicationDossierStatus.InReview)
-                    {
-                        <hr />
-
-                        if (Model.Reviews.Count > 0)
-                        {
-                            <div class="alert alert-info" role="alert">
-                                <i class='bx bxs-info-circle'></i>
-                                @HtmlLocalizer["Dossier_EditPage_UploadReviewDocument_Info", EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.Reviewed)]
-                            </div>
-                        }
-
-                        // allow uploading a Review document
-                        <input asp-for="DocumentType" type="hidden" value="@ApplicationDocumentType.Review" />
-
-                        <div class="form-group">
-                            <div class="mb-3">
-                                <label asp-for="Document" class="form-label">
-                                    @HtmlLocalizer["Dossier_EditPage_UploadReviewDocument"]
-                                </label>
-                                <input asp-for="Document" class="form-control" accept=".doc,.docx" />
-                                <span asp-validation-for="Document" class="invalid-feedback"></span>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-floating">
-                                    <input asp-for="ReviewerFirstName" class="form-control" />
-                                    <label asp-for="ReviewerFirstName" class="form-label"></label>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6">
-                                <div class="form-floating">
-                                    <input asp-for="ReviewerLastName" class="form-control" />
-                                    <label asp-for="ReviewerLastName" class="form-label"></label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-8 offset-lg-2">
-                            <div class="form-floating">
-                                <input asp-for="ReviewerEmail" class="form-control" />
-                                <label asp-for="ReviewerEmail" class="form-label"></label>
-                            </div>
-                        </div>
-                    }
-                    else if (Model.Status == ApplicationDossierStatus.AwaitingCorrections)
-                    {
-                        <hr />
-
-                        if (Model.Redacted != null)
-                        {
-                            <div class="alert alert-warning" role="alert">
-                                <i class='bx bxs-error'></i>
-                                @HtmlLocalizer["Dossier_EditPage_UploadRedactedDocument_Warning"]
-                            </div>
-                        }
-
-                        // allow uploading a Redacted document
-                        <input asp-for="DocumentType" type="hidden" value="@ApplicationDocumentType.Redacted" />
-
-                        <div class="form-group">
-                            <div class="mb-3">
-                                <label asp-for="Document" class="form-label">
-                                    @HtmlLocalizer["Dossier_EditPage_UploadRedactedDocument"]
-                                </label>
-                                <input asp-for="Document" class="form-control" accept=".doc,.docx" />
-                                <span asp-validation-for="Document" class="invalid-feedback"></span>
-                            </div>
-                        </div>
-                    }
-                    
-                    <hr />
-
-                    <div class="text-end">
-                        <button type="reset" class="btn btn-lg btn-outline-secondary">
-                            @HtmlLocalizer["Reset_Button_Label"]
-                        </button>
-
-                        <button id="change-password-button" type="submit" class="w-50 btn btn-lg btn-primary">
-                            @HtmlLocalizer["Save_Button_Label"]
-                        </button>
-                    </div>
-                </form>
-
+            <div class="form-floating">
+                <input asp-for="Title" class="form-control" readonly="readonly" />
+                <label asp-for="Title" class="form-label"></label>
             </div>
-        </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-floating">
+                        <input asp-for="FirstName" class="form-control" readonly="readonly" />
+                        <label asp-for="FirstName" class="form-label"></label>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-floating">
+                        <input asp-for="LastName" class="form-control" readonly="readonly" />
+                        <label asp-for="LastName" class="form-label"></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-8 offset-lg-2">
+                <div class="form-floating">
+                    <input asp-for="Email" class="form-control" readonly="readonly" />
+                    <label asp-for="Email" class="form-label"></label>
+                </div>
+            </div>
+
+            @if (User.IsAtLeast(SiteRole.HeadEditor))
+            {
+                <div class="form-floating">
+                    <select asp-for="AssigneeId" asp-items="@Model.Editors" class="form-select"></select>
+                    <label asp-for="AssigneeId" class="form-label"></label>
+                    <span asp-validation-for="AssigneeId" class="invalid-feedback"></span>
+                </div>
+            }
+            else
+            {
+                <input asp-for="AssigneeId" type="hidden" />
+
+                <div class="form-floating">
+                    <input asp-for="AssigneeNames" class="form-control" readonly="readonly" />
+                    <label asp-for="AssigneeNames" class="form-label"></label>
+                </div>
+            }
+
+            @* NOTE: Resolve allowed input for operations here *@
+
+            @if (Model.Status == ApplicationDossierStatus.New)
+            {
+                <hr />
+
+                // allow uploading an Anonymized document
+                <input asp-for="DocumentType" type="hidden" value="@ApplicationDocumentType.Anonymized" />
+
+                <div class="alert alert-info" role="alert">
+                    <i class='bx bxs-info-circle'></i>
+                    @HtmlLocalizer["Dossier_EditPage_UploadAnonymizedDocument_Info",
+                             EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.Prepared)]
+                </div>
+
+                <div class="form-group">
+                    <div class="mb-3">
+                        <label asp-for="Document" class="form-label">
+                            @HtmlLocalizer["Dossier_EditPage_UploadAnonymizedDocument"]
+                        </label>
+                        <input asp-for="Document" class="form-control" accept=".doc,.docx" />
+                        <span asp-validation-for="Document" class="invalid-feedback"></span>
+                    </div>
+                </div>
+            }
+            else if (Model.Status == ApplicationDossierStatus.Prepared)
+            {
+                <hr />
+
+                // allow overriding an Anonymized document
+                <input asp-for="DocumentType" type="hidden" value="@ApplicationDocumentType.Anonymized" />
+
+                <div class="alert alert-warning" role="alert">
+                    <i class='bx bxs-error'></i>
+                    @HtmlLocalizer["Dossier_EditPage_UploadAnonymizedDocument_Warning"]
+                </div>
+
+                <div class="form-group">
+                    <div class="mb-3">
+                        <label asp-for="Document" class="form-label">
+                            @HtmlLocalizer["Dossier_EditPage_UploadAnonymizedDocument"]
+                        </label>
+                        <input asp-for="Document" class="form-control" accept=".doc,.docx" />
+                        <span asp-validation-for="Document" class="invalid-feedback"></span>
+                    </div>
+                </div>
+            }
+            else if (Model.Status == ApplicationDossierStatus.InReview)
+            {
+                <hr />
+
+                if (Model.Reviews.Count > 0)
+                {
+                    <div class="alert alert-info" role="alert">
+                        <i class='bx bxs-info-circle'></i>
+                        @HtmlLocalizer["Dossier_EditPage_UploadReviewDocument_Info", EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.Reviewed)]
+                    </div>
+                }
+
+                // allow uploading a Review document
+                <input asp-for="DocumentType" type="hidden" value="@ApplicationDocumentType.Review" />
+
+                <div class="form-group">
+                    <div class="mb-3">
+                        <label asp-for="Document" class="form-label">
+                            @HtmlLocalizer["Dossier_EditPage_UploadReviewDocument"]
+                        </label>
+                        <input asp-for="Document" class="form-control" accept=".doc,.docx" />
+                        <span asp-validation-for="Document" class="invalid-feedback"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-floating">
+                            <input asp-for="ReviewerFirstName" class="form-control" />
+                            <label asp-for="ReviewerFirstName" class="form-label"></label>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="form-floating">
+                            <input asp-for="ReviewerLastName" class="form-control" />
+                            <label asp-for="ReviewerLastName" class="form-label"></label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-8 offset-lg-2">
+                    <div class="form-floating">
+                        <input asp-for="ReviewerEmail" class="form-control" />
+                        <label asp-for="ReviewerEmail" class="form-label"></label>
+                    </div>
+                </div>
+            }
+            else if (Model.Status == ApplicationDossierStatus.AwaitingCorrections)
+            {
+                <hr />
+
+                if (Model.Redacted != null)
+                {
+                    <div class="alert alert-warning" role="alert">
+                        <i class='bx bxs-error'></i>
+                        @HtmlLocalizer["Dossier_EditPage_UploadRedactedDocument_Warning"]
+                    </div>
+                }
+
+                // allow uploading a Redacted document
+                <input asp-for="DocumentType" type="hidden" value="@ApplicationDocumentType.Redacted" />
+
+                <div class="form-group">
+                    <div class="mb-3">
+                        <label asp-for="Document" class="form-label">
+                            @HtmlLocalizer["Dossier_EditPage_UploadRedactedDocument"]
+                        </label>
+                        <input asp-for="Document" class="form-control" accept=".doc,.docx" />
+                        <span asp-validation-for="Document" class="invalid-feedback"></span>
+                    </div>
+                </div>
+            }
+
+            <hr />
+
+            <div class="text-end">
+                <button type="reset" class="btn btn-lg btn-outline-secondary">
+                    @HtmlLocalizer["Reset_Button_Label"]
+                </button>
+
+                <button id="change-password-button" type="submit" class="w-50 btn btn-lg btn-primary">
+                    @HtmlLocalizer["Save_Button_Label"]
+                </button>
+            </div>
+        </form>
 
     </div>
-</section>
+</div>
 
 @section Newsletter {
     <partial name="Newsletter/_ReportBug" />
 }
 
 @section Scripts {
-    <partial name="_ValidationScripts"/>
+    <partial name="_ValidationScripts" />
 
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
             let elements = document.querySelectorAll('.requires-confirm');
             elements.forEach((element) => {
                 element.addEventListener('click', (e) => {
-                    e.preventDefault();                    
+                    e.preventDefault();
 
                     Swal.fire({
 
@@ -326,7 +320,7 @@
                         if (!result.isConfirmed) {
                             return;
                         }
-                        
+
                         window.showPreloader();
                         window.location.href = e.target.href;
                     });

@@ -2501,6 +2501,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Списък.
+        /// </summary>
+        public static string List_Label {
+            get {
+                return ResourceManager.GetString("List_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Този акаунт е заключен, моля, опитайте отново по-късно..
         /// </summary>
         public static string Lockout_WarningMessage {
@@ -3951,6 +3960,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Списък източници.
+        /// </summary>
+        public static string Source_AdminPage_Title {
+            get {
+                return ResourceManager.GetString("Source_AdminPage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Създаване на нов източник от съдържанието.
         /// </summary>
         public static string Source_CreatePage_SubTitle {
@@ -3965,6 +3983,15 @@ namespace linc.Resources {
         public static string Source_CreatePage_Title {
             get {
                 return ResourceManager.GetString("Source_CreatePage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Редакция на източник.
+        /// </summary>
+        public static string Source_EditPage_SubTitle {
+            get {
+                return ResourceManager.GetString("Source_EditPage_SubTitle", resourceCulture);
             }
         }
         
@@ -4032,6 +4059,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DOI.
+        /// </summary>
+        public static string SourceCreate_DOI {
+            get {
+                return ResourceManager.GetString("SourceCreate_DOI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Име.
         /// </summary>
         public static string SourceCreate_FirstName {
@@ -4041,11 +4077,29 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Секция.
+        /// </summary>
+        public static string SourceCreate_IsSection {
+            get {
+                return ResourceManager.GetString("SourceCreate_IsSection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Брой.
         /// </summary>
         public static string SourceCreate_IssueId {
             get {
                 return ResourceManager.GetString("SourceCreate_IssueId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Тема на броя.
+        /// </summary>
+        public static string SourceCreate_IsTheme {
+            get {
+                return ResourceManager.GetString("SourceCreate_IsTheme", resourceCulture);
             }
         }
         

@@ -1677,4 +1677,22 @@ The manuscript file must have a .doc or .docx extension.</value>
   <data name="Issue_DetailsPage_IssuePrintISSN" xml:space="preserve">
     <value>Print</value>
   </data>
+  <data name="List_Label" xml:space="preserve">
+    <value>List</value>
+  </data>
+  <data name="SourceCreate_DOI" xml:space="preserve">
+    <value>DOI</value>
+  </data>
+  <data name="SourceCreate_IsSection" xml:space="preserve">
+    <value>Section</value>
+  </data>
+  <data name="SourceCreate_IsTheme" xml:space="preserve">
+    <value>Topic</value>
+  </data>
+  <data name="Source_AdminPage_Title" xml:space="preserve">
+    <value>List of sources</value>
+  </data>
+  <data name="Source_EditPage_SubTitle" xml:space="preserve">
+    <value>Edit source</value>
+  </data>
 </root>

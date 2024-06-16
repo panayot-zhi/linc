@@ -5,6 +5,7 @@
 
 @{
     ViewData["Title"] = HtmlLocalizer["HomeIndex_Title"];
+    ViewData["Area"] = SiteConstant.LandingPageArea;
 
     var requestCulture = Context.Features.Get<IRequestCultureFeature>();
     var currentCulture = requestCulture?.RequestCulture.UICulture.Name ?? "bg";

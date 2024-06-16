@@ -15,8 +15,9 @@ namespace linc.Utility
         }
     }
 
-    // NOTE: as class authorization is not easily overridable, we mark actions only
-    [AttributeUsage(AttributeTargets.Method /* | AttributeTargets.Class*/)]
+    // NOTE: ~as class authorization is not easily overridable, we mark actions only~
+    // NOTE: but, since page models are classes we must allow the attribute targets to protect them
+    [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]
     public class SiteAuthorizeAttribute : AuthorizeAttribute
     {
         /// <summary>

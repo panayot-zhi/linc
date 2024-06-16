@@ -180,6 +180,46 @@ namespace linc.Services
             return entityEntry.Entity.Id;
         }
 
+        public async Task UpdateSourceAsync(SourceUpdateViewModel input)
+        {
+            var source = await _context.Sources.FindAsync(input.Id);
+            var authorId = await FindAuthorByNamesAsync(input.FirstName, input.LastName);
+
+            ArgumentNullException.ThrowIfNull(source);
+
+            _context.Sources.Attach(source);
+
+            source.Title = input.Title;
+            source.TitleNotes = input.TitleNotes;
+
+            source.DOI = input.DOI;
+
+            source.FirstName = input.FirstName;
+            source.LastName = input.LastName;
+            source.AuthorNotes = input.AuthorNotes;
+
+            source.IssueId = input.IssueId;
+            source.LanguageId = input.LanguageId;
+
+            source.IsTheme = input.IsTheme;
+            source.IsSection = input.IsSection;
+
+            source.AuthorId = authorId;
+
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteSourceAsync(int id)
+        {
+            // TODO: perform cleanup of everything related to the source
+            var source = await _context.Sources.FindAsync(id);
+
+            ArgumentNullException.ThrowIfNull(source);
+
+            _context.Sources.Remove(source);
+            await _context.SaveChangesAsync();
+        }
+
         private async Task<ApplicationDocument> GenerateSourcePdf(ApplicationIssue issue, int startingPage, int lastPage)
         {
             var issuePdf = await _documentService.GetDocumentAsync(issue.Pdf.Id);

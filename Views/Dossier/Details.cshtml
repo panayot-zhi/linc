@@ -30,162 +30,156 @@
     <!-- End Breadcrumbs -->
 }
 
-<section>
-    <div class="container">
-        
-        <h1>@Model.Title</h1>
-        <small>@HtmlLocalizer["Dossier_ListHeader_Status"]: @(EnumHelper<ApplicationDossierStatus>.GetDisplayName(Model.Status))</small>
+<h1>@Model.Title</h1>
+<small>@HtmlLocalizer["Dossier_ListHeader_Status"]: @(EnumHelper<ApplicationDossierStatus>.GetDisplayName(Model.Status))</small>
             
-        <ul id="dossier-operations" class="text-end">
-            @if (User.IsAtLeast(SiteRole.HeadEditor) || (User.Is(SiteRole.Editor) && User.GetUserId() == Model.AssignedToId))
+<ul class="list-operations">
+    @if (User.IsAtLeast(SiteRole.HeadEditor) || (User.Is(SiteRole.Editor) && User.GetUserId() == Model.AssignedToId))
+    {
+        <li>
+            <a asp-action="Edit" asp-route-id="@Model.Id">@HtmlLocalizer["Edit_Label"]</a>
+        </li>
+    }
+    else if (string.IsNullOrEmpty(Model.AssignedTo))
+    {
+        <li>
+            <a asp-action="UpdateAssignee" asp-route-id="@Model.Id">
+                @HtmlLocalizer["DossierDetails_AssignToMe"]
+            </a>
+        </li>
+    }
+    <li>
+        <a asp-action="Index">
+            @HtmlLocalizer["Dossier_BackToList_Label"]
+        </a>
+    </li>
+</ul>
+
+<hr/>
+
+<div class="row">
+    <div class="col-lg-9">
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.AuthorNames)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.AuthorNames)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.AuthorEmail)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.AuthorEmail)
+            </dd>
+
+            @if (string.IsNullOrEmpty(Model.AssignedTo))
             {
-                <li>
-                    <a asp-action="Edit" asp-route-id="@Model.Id">@HtmlLocalizer["Edit_Label"]</a>
-                </li>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.AssignedTo)
+                </dt>
+                <dd class="col-sm-10 bg-warning-subtle">
+                    @HtmlLocalizer["Dossier_DetailsPage_NoEditorAssigned"]
+                </dd>
             }
-            else if (string.IsNullOrEmpty(Model.AssignedTo))
+            else
             {
-                <li>
-                    <a asp-action="UpdateAssignee" asp-route-id="@Model.Id">
-                        @HtmlLocalizer["DossierDetails_AssignToMe"]
-                    </a>
-                </li>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.AssignedTo)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.AssignedTo)
+                </dd>
             }
-            <li>
-                <a asp-action="Index">
-                    @HtmlLocalizer["Dossier_BackToList_Label"]
-                </a>
-            </li>
-        </ul>
-
-        <hr/>
-
-        <div class="row">
-            <div class="col-lg-9">
-                <dl class="row">
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.AuthorNames)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.AuthorNames)
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.AuthorEmail)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.AuthorEmail)
-                    </dd>
-
-                    @if (string.IsNullOrEmpty(Model.AssignedTo))
-                    {
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.AssignedTo)
-                        </dt>
-                        <dd class="col-sm-10 bg-warning-subtle">
-                            @HtmlLocalizer["Dossier_DetailsPage_NoEditorAssigned"]
-                        </dd>
-                    }
-                    else
-                    {
-                        <dt class="col-sm-2">
-                            @Html.DisplayNameFor(model => model.AssignedTo)
-                        </dt>
-                        <dd class="col-sm-10">
-                            @Html.DisplayFor(model => model.AssignedTo)
-                        </dd>
-                    }
                     
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.DateCreated)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Model.DateCreated.ToString("f")
-                    </dd>
-                    <dt class="col-sm-2">
-                        @Html.DisplayNameFor(model => model.LastUpdated)
-                    </dt>
-                    <dd class="col-sm-10">
-                        @Model.LastUpdated.ToString("f")
-                    </dd>
-                </dl>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.DateCreated)
+            </dt>
+            <dd class="col-sm-10">
+                @Model.DateCreated.ToString("f")
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.LastUpdated)
+            </dt>
+            <dd class="col-sm-10">
+                @Model.LastUpdated.ToString("f")
+            </dd>
+        </dl>
                 
-                <hr />
+        <hr />
                 
-                <table class="table table-hover">
-                    <thead class="table-light">
-                    <tr>
-                        <th class="col-md-2">
-                            @HtmlLocalizer["DossierDocument_ListHeader_DocumentType"]
-                        </th>
-                        <th class="col-md-7">
-                            @HtmlLocalizer["DossierDocument_ListHeader_OriginalFileName"]
-                        </th>
-                        <th class="text-center col-md-2">
-                            @HtmlLocalizer["DossierDocument_ListHeader_DateCreated"]
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    @foreach (var item in Model.Documents)
-                    {
-                        <tr>
-                            <td class="col-md-2">
-                                @Html.DisplayFor(modelItem => item.DocumentType)
-                            </td>
-                            <td class="col-md-8">
+        <table class="table table-hover">
+            <thead class="table-light">
+            <tr>
+                <th class="col-md-2">
+                    @HtmlLocalizer["DossierDocument_ListHeader_DocumentType"]
+                </th>
+                <th class="col-md-7">
+                    @HtmlLocalizer["DossierDocument_ListHeader_OriginalFileName"]
+                </th>
+                <th class="text-center col-md-2">
+                    @HtmlLocalizer["DossierDocument_ListHeader_DateCreated"]
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model.Documents)
+            {
+                <tr>
+                    <td class="col-md-2">
+                        @Html.DisplayFor(modelItem => item.DocumentType)
+                    </td>
+                    <td class="col-md-8">
                                 
-                                <a asp-action="LoadDossierDocument" asp-controller="Document" asp-route-dossierId="@Model.Id" , asp-route-documentId="@item.Id">
-                                    @Html.DisplayFor(modelItem => item.OriginalFileName)
-                                </a>
+                        <a asp-action="LoadDossierDocument" asp-controller="Document" asp-route-dossierId="@Model.Id" , asp-route-documentId="@item.Id">
+                            @Html.DisplayFor(modelItem => item.OriginalFileName)
+                        </a>
 
-                                @if (item.DocumentType == ApplicationDocumentType.Review)
-                                {
-                                    var dossierReview = Model.Reviews.First(x => x.ReviewId == item.Id);
-                                    <p>
-                                        <small>@HtmlLocalizer["Reviewer_Label"]: @dossierReview.Names (<a href="mailto:@dossierReview.Email" target="_blank">@dossierReview.Email</a>)</small>
-                                    </p>
-                                }
+                        @if (item.DocumentType == ApplicationDocumentType.Review)
+                        {
+                            var dossierReview = Model.Reviews.First(x => x.ReviewId == item.Id);
+                            <p>
+                                <small>@HtmlLocalizer["Reviewer_Label"]: @dossierReview.Names (<a href="mailto:@dossierReview.Email" target="_blank">@dossierReview.Email</a>)</small>
+                            </p>
+                        }
 
-                            </td>
-                            <td class="text-center col-md-2">
-                                    @item.DateCreated.ToString("dd MMM yyyy")
-                            </td>
-                        </tr>
-                    }
-                    </tbody>
+                    </td>
+                    <td class="text-center col-md-2">
+                        @item.DateCreated.ToString("dd MMM yyyy")
+                    </td>
+                </tr>
+            }
+            </tbody>
 
-                </table>
-
-            </div>
-            <div class="col-lg-3">
-                <div class="journal-entries">
-                    @foreach (var entry in Model.Journals)
-                    {
-                        <p class="journal-entry">
-                            <small>@entry.DateCreated.ToString("dd MMM yyyy HH:mm"), @entry.PerformedBy.Names</small><br/>
-                            
-                            @{
-                                object[] messageArguments = { };
-                                if (entry.MessageArguments != null)
-                                {
-                                    messageArguments = new object[entry.MessageArguments.Length];
-                                    for (var index = 0; index < entry.MessageArguments.Length; index++)
-                                    {
-                                        messageArguments[index] = HtmlLocalizer[entry.MessageArguments[index]];
-                                    }
-                                }
-                            }
-
-                            @HtmlLocalizer[entry.Message, messageArguments]
-
-                        </p>
-                    }
-                </div>
-            </div>
-        </div>
+        </table>
 
     </div>
-</section>
+    <div class="col-lg-3">
+        <div class="journal-entries">
+            @foreach (var entry in Model.Journals)
+            {
+                <p class="journal-entry">
+                    <small>@entry.DateCreated.ToString("dd MMM yyyy HH:mm"), @entry.PerformedBy.Names</small><br/>
+                            
+                    @{
+                        object[] messageArguments = { };
+                        if (entry.MessageArguments != null)
+                        {
+                            messageArguments = new object[entry.MessageArguments.Length];
+                            for (var index = 0; index < entry.MessageArguments.Length; index++)
+                            {
+                                messageArguments[index] = HtmlLocalizer[entry.MessageArguments[index]];
+                            }
+                        }
+                    }
+
+                    @HtmlLocalizer[entry.Message, messageArguments]
+
+                </p>
+            }
+        </div>
+    </div>
+</div>
 
 @section Newsletter {
     <partial name="Newsletter/_ReportBug" />

@@ -15,5 +15,9 @@ namespace linc.Contracts
         Task<List<SourceCountByIssues>> GetSourcesCountByIssues();
 
         Task<int> CreateSourceAsync(SourceCreateViewModel input);
+
+        Task UpdateSourceAsync(SourceUpdateViewModel input);
+
+        Task DeleteSourceAsync(int id);
     }
 }
