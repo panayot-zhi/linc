@@ -35,6 +35,9 @@ namespace linc.Data
         [MaxLength(255)]
         public string DOI { get; set; }
 
+        [NotMapped]
+        public bool HasDOI => !string.IsNullOrEmpty(DOI);
+
         public bool IsSection { get; set; }
 
         public bool IsTheme { get; set; }

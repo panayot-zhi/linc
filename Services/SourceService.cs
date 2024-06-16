@@ -45,7 +45,8 @@ namespace linc.Services
             var sourcesDbSet = _context.Sources;
             var query = sourcesDbSet
                 .Include(x => x.Issue)
-                //.Where(x => x.LanguageId == languageId)
+                .Where(x => !x.IsSection)
+                .Where(x => !x.IsTheme)
                 .AsQueryable();
 
             if (issueId.HasValue)
@@ -90,6 +91,35 @@ namespace linc.Services
                         .ThenBy(x => x.Issue.ReleaseDate)
                             .ThenBy(x => x.StartingPage);
             }
+
+            var count = await query.CountAsync();
+
+            var sources = query
+                .Skip((pageIndex.Value - 1) * pageSize)
+                .Take(pageSize);
+
+            return new SourceIndexViewModel(count, pageIndex.Value, pageSize)
+            {
+                Records = await sources.ToListAsync()
+            };
+        }
+
+        public async Task<SourceIndexViewModel> GetAdminSourcesPagedAsync(int languageId, int? pageIndex, int pageSize = 15)
+        {
+            if (!pageIndex.HasValue)
+            {
+                pageIndex = 1;
+            }
+
+            var sourcesDbSet = _context.Sources;
+            var query = sourcesDbSet
+                .Include(x => x.Issue)
+                .Where(x => x.LanguageId == languageId)
+                .AsQueryable();
+
+            query = query
+                .OrderBy(x => x.Issue.ReleaseDate)
+                .ThenBy(x => x.StartingPage);
 
             var count = await query.CountAsync();
 
@@ -211,7 +241,7 @@ namespace linc.Services
 
         public async Task DeleteSourceAsync(int id)
         {
-            // TODO: perform cleanup of everything related to the source
+            // TODO: perform cleanup 
             var source = await _context.Sources.FindAsync(id);
 
             ArgumentNullException.ThrowIfNull(source);

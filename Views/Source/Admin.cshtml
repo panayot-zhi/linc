@@ -1,9 +1,15 @@
 ﻿@using linc.Utility
+@using Microsoft.AspNetCore.Localization
 @model SourceIndexViewModel
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    var requestCulture = Context.Features.Get<IRequestCultureFeature>();
+    var currentCulture = requestCulture?.RequestCulture.UICulture.Name ?? "bg";
 }
 
 @section Breadcrumbs {
@@ -33,6 +39,8 @@
 
 <h1>Index</h1>
 
+<small>Language: @currentCulture</small>
+
 <ul class="list-operations">
     <li>
         <a asp-area="Identity" asp-page="/Account/Manage/Administration">Administration</a>
@@ -57,11 +65,14 @@
             <th>
                 Pages
             </th>
-            <th>
-                Language
-            </th>
+            @* <th> *@
+            @*     Language *@
+            @* </th> *@
             <th class="text-center">
                 Issue
+            </th>
+            <th class="text-center">
+                DOI
             </th>
             <th>
                 Updated
@@ -101,13 +112,16 @@
                         @Html.DisplayFor(modelItem => item.StartingPage)-@Html.DisplayFor(modelItem => item.LastPage)
                     </a>
                 </td>
-                <td>
-                    @SiteConstant.SupportedCultures[item.LanguageId]
-                </td>
+                @* <td> *@
+                @*     @SiteConstant.SupportedCultures[item.LanguageId] *@
+                @* </td> *@
                 <td class="text-center">
                     <a asp-action="Details" asp-controller="Issue" asp-route-id="@item.IssueId">
                         @Html.DisplayFor(modelItem => item.Issue.IssueNumber) / @Html.DisplayFor(modelItem => item.Issue.ReleaseYear)
                     </a>
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.HasDOI)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.LastUpdated)

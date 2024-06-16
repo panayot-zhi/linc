@@ -45,20 +45,10 @@ namespace linc.Controllers
         }
 
         [SiteAuthorize(SiteRole.Editor)]
-        public async Task<IActionResult> Admin(int? page, int? year, string filter, int? issueId)
+        public async Task<IActionResult> Admin(int? page)
         {
-            filter = System.Net.WebUtility.UrlDecode(filter);
             var languageId = LocalizationService.GetCurrentLanguageId();
-            var viewModel = await _sourceService.GetSourcesPagedAsync(filter: filter, languageId: languageId,
-                year: year, issueId: issueId, pageIndex: page);
-
-            viewModel.YearFilter = await _sourceService.GetSourcesCountByYears();
-            viewModel.IssuesFilter = await _sourceService.GetSourcesCountByIssues();
-
-            viewModel.AuthorsFilter = filter;
-            viewModel.CurrentIssueId = issueId;
-            viewModel.CurrentAuthorsFilter = filter;
-            viewModel.CurrentYearFilter = year;
+            var viewModel = await _sourceService.GetAdminSourcesPagedAsync(languageId: languageId, pageIndex: page);
 
             return View(viewModel);
         }
