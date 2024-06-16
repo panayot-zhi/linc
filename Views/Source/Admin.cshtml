@@ -60,7 +60,7 @@
             <th>
                 Language
             </th>
-            <th>
+            <th class="text-center">
                 Issue
             </th>
             <th>
@@ -74,7 +74,17 @@
         <tbody>
         @foreach (var item in Model.Records)
         {
-            <tr>
+            var rowClass = string.Empty;
+            if (item.IsTheme)
+            {
+                rowClass = "table-primary";
+            }
+            else if (item.IsSection)
+            {
+                rowClass = "table-light";
+            }
+
+            <tr class="@rowClass">
                 <td>
                     @* TODO: Link to user admin screen if exist *@
                     @Html.DisplayFor(modelItem => item.AuthorNames) <br/>
@@ -94,9 +104,10 @@
                 <td>
                     @SiteConstant.SupportedCultures[item.LanguageId]
                 </td>
-                <td>
-                    @* TODO: Link to issue admin screen *@
-                    @Html.DisplayFor(modelItem => item.Issue.IssueNumber) / @Html.DisplayFor(modelItem => item.Issue.ReleaseYear)
+                <td class="text-center">
+                    <a asp-action="Details" asp-controller="Issue" asp-route-id="@item.IssueId">
+                        @Html.DisplayFor(modelItem => item.Issue.IssueNumber) / @Html.DisplayFor(modelItem => item.Issue.ReleaseYear)
+                    </a>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.LastUpdated)
