@@ -1628,7 +1628,7 @@
     <value>Процедура по приемане, рецензиране и публикуване на текст.</value>
   </data>
   <data name="ContactSection_PublicationAgreement_Description" xml:space="preserve">
-    <value>Преди публикуване, ще Ви изпратим декларация за съгласие статията да бъде издадена.</value>
+    <value>Преди публикуване ще Ви изпратим декларация за съгласие статията да бъде издадена.</value>
   </data>
   <data name="ContactSection_Submit_Guidelines" xml:space="preserve">
     <value>Предложеният за публикуване текст се изпраща като прикачен файл към email до Редакцията на списанието. 
