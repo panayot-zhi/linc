@@ -36,7 +36,7 @@
         <h1>@Model.Title</h1>
         <small>@HtmlLocalizer["Dossier_ListHeader_Status"]: @(EnumHelper<ApplicationDossierStatus>.GetDisplayName(Model.Status))</small>
             
-        <ul id="dossier-operations" class="text-end">
+        <ul class="list-operations">
             @if (User.IsAtLeast(SiteRole.HeadEditor) || (User.Is(SiteRole.Editor) && User.GetUserId() == Model.AssignedToId))
             {
                 <li>

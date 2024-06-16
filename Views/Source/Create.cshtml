@@ -29,113 +29,109 @@
     <!-- End Breadcrumbs -->
 }
 
-<section class="inner-page">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8">
-                <form asp-action="Create" enctype="multipart/form-data">
-                    <h3>@HtmlLocalizer["Source_CreatePage_SubTitle"]</h3>
-                    <hr />
-                    <div asp-validation-summary="All" class="text-danger"></div>
+<div class="row">
+    <div class="col-lg-8">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <h3>@HtmlLocalizer["Source_CreatePage_SubTitle"]</h3>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
                     
-                    <div class="form-floating ">
-                        <input asp-for="Title" class="form-control"/>
-                        <label asp-for="Title" class="form-label"></label>
-                        <span asp-validation-for="Title" class="invalid-feedback"></span>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label asp-for="TitleNotes" class="form-label"></label>
-                        <textarea asp-for="TitleNotes" class="form-control" rows="6"></textarea>
-                        <span asp-validation-for="TitleNotes" class="invalid-feedback"></span>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-floating ">
-                                <input asp-for="FirstName" class="form-control" />
-                                <label asp-for="FirstName" class="form-label"></label>
-                                <span asp-validation-for="FirstName" class="invalid-feedback"></span>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-floating ">
-                                <input asp-for="LastName" class="form-control" />
-                                <label asp-for="LastName" class="form-label"></label>
-                                <span asp-validation-for="LastName" class="invalid-feedback"></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label asp-for="AuthorNotes" class="form-label"></label>
-                        <textarea asp-for="AuthorNotes" class="form-control" rows="6"></textarea>
-                        <span asp-validation-for="AuthorNotes" class="invalid-feedback"></span>
-                    </div>
-                    
-                    <div class="form-group">
-                        <div class="mb-3">
-                            <label asp-for="PdfFile" class="form-label"></label>
-                            <input asp-for="PdfFile" class="form-control" accept=".pdf" />
-                            <span asp-validation-for="PdfFile" class="invalid-feedback"></span>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <div class="form-floating">
-                                <input asp-for="StartingPage" class="form-control" />
-                                <label asp-for="StartingPage" class="form-label"></label>
-                                <span asp-validation-for="StartingPage" class="invalid-feedback"></span>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-floating">
-                                <input asp-for="LastPage" class="form-control" />
-                                <label asp-for="LastPage" class="form-label"></label>
-                                <span asp-validation-for="LastPage" class="invalid-feedback"></span>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-floating">
-                                <select asp-for="LanguageId" asp-items="@Model.Languages" class="form-select"></select>
-                                <label asp-for="LanguageId" class="form-label"></label>
-                                <span asp-validation-for="LanguageId" class="invalid-feedback"></span>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-floating">
-                                <select asp-for="IssueId" asp-items="@Model.Issues" class="form-select"></select>
-                                <label asp-for="IssueId" class="form-label"></label>
-                                <span asp-validation-for="IssueId" class="invalid-feedback"></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <hr/>
-
-                    <div class="text-end">
-                        <button type="reset" class="btn btn-lg btn-outline-secondary">
-                            @HtmlLocalizer["Reset_Button_Label"]
-                        </button>
-
-                        <button id="change-password-button" type="submit" class="w-50 btn btn-lg btn-primary">
-                            @HtmlLocalizer["Save_Button_Label"]
-                        </button>
-                    </div>
-                </form>
+            <div class="form-floating ">
+                <input asp-for="Title" class="form-control"/>
+                <label asp-for="Title" class="form-label"></label>
+                <span asp-validation-for="Title" class="invalid-feedback"></span>
             </div>
-            
-            <div class="col-lg-4">
-                <h3>@HtmlLocalizer["Issue_CreatePage_Notes_Title"]</h3>
-                <hr>
-                <div contenteditable-for="Issue_CreatePage_Notes" contenteditable-allowed-for="SiteRole.Administrator">
+                    
+            <div class="form-group">
+                <label asp-for="TitleNotes" class="form-label"></label>
+                <textarea asp-for="TitleNotes" class="form-control" rows="6"></textarea>
+                <span asp-validation-for="TitleNotes" class="invalid-feedback"></span>
+            </div>
 
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-floating ">
+                        <input asp-for="FirstName" class="form-control" />
+                        <label asp-for="FirstName" class="form-label"></label>
+                        <span asp-validation-for="FirstName" class="invalid-feedback"></span>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-floating ">
+                        <input asp-for="LastName" class="form-control" />
+                        <label asp-for="LastName" class="form-label"></label>
+                        <span asp-validation-for="LastName" class="invalid-feedback"></span>
+                    </div>
                 </div>
             </div>
+
+            <div class="form-group">
+                <label asp-for="AuthorNotes" class="form-label"></label>
+                <textarea asp-for="AuthorNotes" class="form-control" rows="6"></textarea>
+                <span asp-validation-for="AuthorNotes" class="invalid-feedback"></span>
+            </div>
+                    
+            <div class="form-group">
+                <div class="mb-3">
+                    <label asp-for="PdfFile" class="form-label"></label>
+                    <input asp-for="PdfFile" class="form-control" accept=".pdf" />
+                    <span asp-validation-for="PdfFile" class="invalid-feedback"></span>
+                </div>
+            </div>
+                    
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-floating">
+                        <input asp-for="StartingPage" class="form-control" />
+                        <label asp-for="StartingPage" class="form-label"></label>
+                        <span asp-validation-for="StartingPage" class="invalid-feedback"></span>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-floating">
+                        <input asp-for="LastPage" class="form-control" />
+                        <label asp-for="LastPage" class="form-label"></label>
+                        <span asp-validation-for="LastPage" class="invalid-feedback"></span>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-floating">
+                        <select asp-for="LanguageId" asp-items="@Model.Languages" class="form-select"></select>
+                        <label asp-for="LanguageId" class="form-label"></label>
+                        <span asp-validation-for="LanguageId" class="invalid-feedback"></span>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-floating">
+                        <select asp-for="IssueId" asp-items="@Model.Issues" class="form-select"></select>
+                        <label asp-for="IssueId" class="form-label"></label>
+                        <span asp-validation-for="IssueId" class="invalid-feedback"></span>
+                    </div>
+                </div>
+            </div>
+
+            <hr/>
+
+            <div class="text-end">
+                <button type="reset" class="btn btn-lg btn-outline-secondary">
+                    @HtmlLocalizer["Reset_Button_Label"]
+                </button>
+
+                <button id="change-password-button" type="submit" class="w-50 btn btn-lg btn-primary">
+                    @HtmlLocalizer["Save_Button_Label"]
+                </button>
+            </div>
+        </form>
+    </div>
+            
+    <div class="col-lg-4">
+        <h3>@HtmlLocalizer["Issue_CreatePage_Notes_Title"]</h3>
+        <hr>
+        <div contenteditable-for="Issue_CreatePage_Notes" contenteditable-allowed-for="SiteRole.Administrator">
+
         </div>
     </div>
-</section>
+</div>
 
 @section Newsletter {
     <partial name="Newsletter/_ReportBug" />

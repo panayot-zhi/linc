@@ -285,17 +285,17 @@
     <!-- ======= #main ======= -->
     <main id="main" @*data-aos="fade-up"*@>
         
-        @if ("Identity".Equals(ViewData["Area"]))
+        @if ("LandingPage".Equals(ViewData["Area"]))
         {
-            <section class="identity">
+            @RenderBody()
+        }
+        else
+        {
+            <section class="inner-page">
                 <div class="container">
                     @RenderBody()
                 </div>
             </section>
-        }
-        else
-        {
-            @RenderBody()
         }
 
     </main>

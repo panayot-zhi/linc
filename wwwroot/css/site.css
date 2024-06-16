@@ -119,19 +119,21 @@ th.sortable::before {
 }
 
 /* 
-    dossier
+    dossier operations ^ promote to list-operations
 */
-#dossier-operations {
+
+.list-operations {
+    text-align: right; /* Aligns operations right above table */
     list-style-type: none; /* Removes default list styling */
     padding: 0; /* Removes default padding */
 }
 
-#dossier-operations li {
+.list-operations li {
     display: inline; /* Display items inline */
     margin-right: 4px; /* Right margin of 4px */
 }
 
-#dossier-operations li:not(:last-child)::after {
+.list-operations li:not(:last-child)::after {
     content: " |"; /* Add separator after each item except the last one */
     margin-left: 4px; /* Left margin of 4px to the separator */
 }
