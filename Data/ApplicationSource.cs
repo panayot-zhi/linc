@@ -28,6 +28,13 @@ namespace linc.Data
         [MaxLength(1024)]
         public string AuthorNotes { get; set; }
 
+        /// <summary>
+        /// Digital Object Identifier
+        /// for each article
+        /// </summary>
+        [MaxLength(255)]
+        public string DOI { get; set; }
+
         public bool IsSection { get; set; }
 
         public bool IsTheme { get; set; }
