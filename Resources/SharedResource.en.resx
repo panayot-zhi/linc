@@ -1695,4 +1695,7 @@ The manuscript file must have a .doc or .docx extension.</value>
   <data name="Source_EditPage_SubTitle" xml:space="preserve">
     <value>Edit source</value>
   </data>
+  <data name="Dossier_ListHeader_HasAgreement" xml:space="preserve">
+    <value>Agreement</value>
+  </data>
 </root>

@@ -93,7 +93,7 @@ namespace linc.Services
             var query = dossiersDbSet
                 .Include(x => x.CreatedBy)
                 .Include(x => x.AssignedTo)
-                // .Include(x => x.Documents)
+                .Include(x => x.Documents)
                 .OrderBy(sortPropertyName, sortOrder)
                 .AsQueryable();
 

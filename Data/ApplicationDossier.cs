@@ -77,6 +77,9 @@ namespace linc.Data
             Documents.FirstOrDefault(x => x.DocumentType == ApplicationDocumentType.Agreement);
 
         [NotMapped]
+        public bool HasAgreement => Agreement != null;
+
+        [NotMapped]
         public ApplicationDocument Redacted =>
             Documents.FirstOrDefault(x => x.DocumentType == ApplicationDocumentType.Redacted);
 

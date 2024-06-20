@@ -48,6 +48,9 @@
             <th sortable-for="Title" class="col-md-7">
                 @HtmlLocalizer["Dossier_ListHeader_Title"]
             </th>
+            <th class="col-md-1">
+                @HtmlLocalizer["Dossier_ListHeader_HasAgreement"]
+            </th>
             <th sortable-for="DateCreated" class="text-center col-md-2">
                 @HtmlLocalizer["Dossier_ListHeader_Creator"]
             </th>
@@ -72,6 +75,9 @@
                             @Html.DisplayFor(modelItem => item.Names)
                         </small>
                     </p>
+                </td>
+                <td class="col-md-1 text-center">
+                    @Html.DisplayFor(modelItem => item.HasAgreement)
                 </td>
                 <td class="text-center col-md-2">
                     @Html.DisplayFor(modelItem => item.CreatedBy.Names) <br/>
