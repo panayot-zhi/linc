@@ -416,42 +416,37 @@ namespace linc.Services
 
             if (status is ApplicationDossierStatus.Accepted or ApplicationDossierStatus.AcceptedWithCorrections)
             {
-                await SendAgreementLink(status, dossier);
-            }
-        }
+                // check for agreement document
+                var agreement = _context.Dossiers
+                    .Include(x => x.Documents
+                        .Where(document => document.DocumentType == ApplicationDocumentType.Agreement))
+                    .FirstOrDefault(x => x.Id == dossier.Id)?.Agreement;
 
-        private async Task SendAgreementLink(ApplicationDossierStatus status, ApplicationDossier dossier)
-        {
-            // check for agreement document
-            var agreement = _context.Dossiers
-                .Include(x => x.Documents
-                    .Where(document => document.DocumentType == ApplicationDocumentType.Agreement))
-                .FirstOrDefault(x => x.Id == dossier.Id)?.Agreement;
-
-            if (agreement == null)
-            {
-                // send publication agreement link
-                var emailDescriptor = new SiteEmailDescriptor<Agreement>()
+                if (agreement == null)
                 {
-                    Emails = new List<string>() { dossier.Email },
-                    Subject = _localizationService["Email_Agreement_Subject"].Value,
-                    ViewModel = new Agreement()
+                    // send publication agreement link
+                    var emailDescriptor = new SiteEmailDescriptor<Agreement>()
                     {
-                        Names = dossier.Names,
-                        DossierStatus = EnumHelper<ApplicationDossierStatus>.GetDisplayName(status),
-                        AgreementLink = new LinkViewModel()
+                        Emails = new List<string>() { dossier.Email },
+                        Subject = _localizationService["Email_Agreement_Subject"].Value,
+                        ViewModel = new Agreement()
                         {
-                            Text = _localizationService["Details_Label"].Value,
-                            Url = _linkGenerator.GetUriByAction(
-                                _httpContextAccessor.HttpContext!,
-                                "Agreement",
-                                "Dossier",
-                                new { id = dossier.Id })
+                            Names = dossier.Names,
+                            DossierStatus = EnumHelper<ApplicationDossierStatus>.GetDisplayName(status),
+                            AgreementLink = new LinkViewModel()
+                            {
+                                Text = _localizationService["Details_Label"].Value,
+                                Url = _linkGenerator.GetUriByAction(
+                                    _httpContextAccessor.HttpContext!,
+                                    "Agreement",
+                                    "Dossier",
+                                    new { id = dossier.Id })
+                            }
                         }
-                    }
-                };
+                    };
 
-                await _emailSender.SendEmailAsync(emailDescriptor);
+                    await _emailSender.SendEmailAsync(emailDescriptor);
+                }
             }
         }
 
