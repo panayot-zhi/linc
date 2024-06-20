@@ -163,7 +163,9 @@ namespace linc.Services
 
         private async Task SendMimeMessages(IEnumerable<MimeMessage> mimeMessages)
         {
-            using (var client = new SmtpClient())
+            var client = new SmtpClient();
+
+            try
             {
                 if (_env.IsDevelopment())
                 {
@@ -181,24 +183,25 @@ namespace linc.Services
 
                 foreach (var mimeMessage in mimeMessages)
                 {
-                    await SendMimeMessage(client, mimeMessage);
+                    await client.SendAsync(mimeMessage);
                 }
 
                 await client.DisconnectAsync(quit: true);
             }
-        }
-
-        private async Task SendMimeMessage(SmtpClient client, MimeMessage mimeMessage)
-        {
-            try
-            {
-                await client.SendAsync(mimeMessage);
-            }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error occurred while trying to send mime message: {MimeMessage}, using client: {Client}", 
-                    mimeMessage, client);
+                _logger.LogError(ex, "Error occurred while trying to send mime messages");
             }
+            finally
+            {
+                if (client.IsConnected)
+                {
+                    await client.DisconnectAsync(quit: true);
+                }
+
+                client.Dispose();
+            }
+
         }
 
         private string GetEmailPreviewLink(string templateName, dynamic viewModel)
