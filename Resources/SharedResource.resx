@@ -1693,4 +1693,7 @@
   <data name="Source_EditPage_SubTitle" xml:space="preserve">
     <value>Редакция на източник</value>
   </data>
+  <data name="Dossier_ListHeader_HasAgreement" xml:space="preserve">
+    <value>Декларация</value>
+  </data>
 </root>

@@ -1365,6 +1365,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Декларация.
+        /// </summary>
+        public static string Dossier_ListHeader_HasAgreement {
+            get {
+                return ResourceManager.GetString("Dossier_ListHeader_HasAgreement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Статус.
         /// </summary>
         public static string Dossier_ListHeader_Status {
