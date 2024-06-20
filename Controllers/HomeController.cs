@@ -55,17 +55,15 @@ namespace linc.Controllers
         }
 
         [ResponseCache(CacheProfileName = SiteCacheProfile.Yearly)]
-        public IActionResult Submit()
+        public IActionResult Procedure()
         {
-            // TODO: view according to language
             var language = LocalizationService.GetCurrentLanguage();
-            return View($"Submit.{language}");
+            return View($"Procedure.{language}");
         }
 
         [ResponseCache(CacheProfileName = SiteCacheProfile.Yearly)]
         public IActionResult Terms()
         {
-            // TODO: view according to language
             var language = LocalizationService.GetCurrentLanguage();
             return View($"Terms.{language}");
         }
@@ -73,7 +71,6 @@ namespace linc.Controllers
         [ResponseCache(CacheProfileName = SiteCacheProfile.Yearly)]
         public IActionResult Privacy()
         {
-            // TODO: view according to language
             var language = LocalizationService.GetCurrentLanguage();
             return View($"Privacy.{language}");
         }
