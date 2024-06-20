@@ -181,10 +181,23 @@ namespace linc.Services
 
                 foreach (var mimeMessage in mimeMessages)
                 {
-                    await client.SendAsync(mimeMessage);
+                    await SendMimeMessage(client, mimeMessage);
                 }
 
                 await client.DisconnectAsync(quit: true);
+            }
+        }
+
+        private async Task SendMimeMessage(SmtpClient client, MimeMessage mimeMessage)
+        {
+            try
+            {
+                await client.SendAsync(mimeMessage);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error occurred while trying to send mime message: {MimeMessage}, using client: {Client}", 
+                    mimeMessage, client);
             }
         }
 
