@@ -71,6 +71,13 @@ namespace linc.Models.ViewModels.Source
         public bool IsSection { get; set; }
 
 
+        [Display(Name = "LastUpdated_Label", ResourceType = typeof(Resources.SharedResource))]
+        public DateTime LastUpdated { get; set; }
+
+        [Display(Name = "DateCreated_Label", ResourceType = typeof(Resources.SharedResource))]
+        public DateTime DateCreated { get; set; }
+
+
 
         public List<SelectListItem> Users { get; set; }
 
