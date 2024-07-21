@@ -35,17 +35,26 @@ namespace linc.Models.ViewModels.Source
 
 
         [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
-        [Display(Name = "SourceCreate_StartingPage", ResourceType = typeof(Resources.SharedResource))]
+        [Display(Name = "SourceCreate_StartingPdfPage", ResourceType = typeof(Resources.SharedResource))]
         public int? StartingPdfPage { get; set; }
 
         [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
-        [Display(Name = "SourceCreate_LastPage", ResourceType = typeof(Resources.SharedResource))]
+        [Display(Name = "SourceCreate_LastPdfPage", ResourceType = typeof(Resources.SharedResource))]
         public int? LastPdfPage { get; set; }
+
+        [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+        [Display(Name = "SourceCreate_StartingIndexPage", ResourceType = typeof(Resources.SharedResource))]
+        public int? StartingIndexPage { get; set; }
+
+        [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+        [Display(Name = "SourceCreate_LastIndexPage", ResourceType = typeof(Resources.SharedResource))]
+        public int? LastIndexPage { get; set; }
 
 
 
         [Display(Name = "SourceCreate_PdfFile", ResourceType = typeof(Resources.SharedResource))]
         public IFormFile PdfFile { get; set; }
+
 
 
         [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
@@ -55,6 +64,14 @@ namespace linc.Models.ViewModels.Source
         [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         [Display(Name = "SourceCreate_LanguageId", ResourceType = typeof(Resources.SharedResource))]
         public int LanguageId { get; set; }
+
+
+
+        [Display(Name = "SourceCreate_IsTheme", ResourceType = typeof(Resources.SharedResource))]
+        public bool IsTheme { get; set; }
+
+        [Display(Name = "SourceCreate_IsSection", ResourceType = typeof(Resources.SharedResource))]
+        public bool IsSection { get; set; }
 
 
 
