@@ -731,3 +731,8 @@ section#testimonials {
 #editorial-assisstants {
     padding: 20px 0;
 }
+
+input[readonly],
+input[readonly]:focus {
+    background-color: var(--bs-secondary-bg);
+}
