@@ -87,7 +87,7 @@ namespace linc.Controllers
             _logger.LogInformation("Source {SourceId} has been created successfully, redirecting...", 
                 sourceId);
 
-            return RedirectToAction("Details", "Issue", new { id = vModel.IssueId });
+            return RedirectToAction("Edit", new { id = sourceId });
         }
 
         [SiteAuthorize(SiteRole.HeadEditor)]
