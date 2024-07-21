@@ -184,6 +184,24 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="row">
+                <div class="col-sm-6 col-lg-3">
+                    <div class="form-group">
+                        <label asp-for="LastUpdated" class="form-label"></label>
+                        <input asp-for="LastUpdated" class="form-control" readonly="readonly" />
+                        <span asp-validation-for="LastUpdated" class="invalid-feedback"></span>
+                        
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3 offset-lg-6">
+                    <div class="form-group">
+                        <label asp-for="DateCreated" class="form-label"></label>
+                        <input asp-for="DateCreated" class="form-control" readonly="readonly" />
+                        <span asp-validation-for="DateCreated" class="invalid-feedback"></span>
+                    </div>
+                </div>
+            </div>
 
             <hr/>
 
