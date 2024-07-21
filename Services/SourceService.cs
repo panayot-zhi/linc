@@ -89,7 +89,7 @@ namespace linc.Services
                 query = query.OrderBy(x => x.LanguageId == languageId ? 0 : 1)
                     .ThenBy(x => x.LanguageId)
                         .ThenBy(x => x.Issue.ReleaseDate)
-                            .ThenBy(x => x.StartingPage);
+                            .ThenBy(x => x.StartingPdfPage);
             }
 
             var count = await query.CountAsync();
@@ -119,7 +119,7 @@ namespace linc.Services
 
             query = query
                 .OrderBy(x => x.Issue.ReleaseDate)
-                .ThenBy(x => x.StartingPage);
+                .ThenBy(x => x.StartingPdfPage);
 
             var count = await query.CountAsync();
 
@@ -191,8 +191,8 @@ namespace linc.Services
                 LastName = input.LastName,
                 AuthorNotes = input.AuthorNotes,
 
-                StartingPage = startingPage,
-                LastPage = lastPage,
+                StartingPdfPage = startingPage,
+                LastPdfPage = lastPage,
 
                 Title = input.Title,
                 TitleNotes = input.TitleNotes,

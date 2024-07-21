@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using linc.Data;
 
@@ -10,9 +11,10 @@ using linc.Data;
 namespace linc.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240721072410_TieSourcePagesWithPdfPosition")]
+    partial class TieSourcePagesWithPdfPosition
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -363,10 +365,6 @@ namespace linc.Migrations
                         .HasColumnType("int")
                         .HasColumnName("language_id");
 
-                    b.Property<int>("LastIndexPage")
-                        .HasColumnType("int")
-                        .HasColumnName("last_index_page");
-
                     b.Property<string>("LastName")
                         .HasMaxLength(255)
                         .HasColumnType("varchar(255)")
@@ -383,10 +381,6 @@ namespace linc.Migrations
                     b.Property<int>("PdfId")
                         .HasColumnType("int")
                         .HasColumnName("pdf_id");
-
-                    b.Property<int>("StartingIndexPage")
-                        .HasColumnType("int")
-                        .HasColumnName("starting_index_page");
 
                     b.Property<int>("StartingPdfPage")
                         .HasColumnType("int")

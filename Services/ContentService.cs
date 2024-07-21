@@ -116,7 +116,7 @@ public class ContentService : IContentService
                 IssueId = x.IssueId,
                 AuthorNames = x.AuthorNames,
                 Title = x.Title,
-                StartingPage = x.StartingPage,
+                StartingPage = x.StartingPdfPage,
                 IssueNumber = x.Issue.IssueNumber,
                 IssueYear = x.Issue.ReleaseYear
 

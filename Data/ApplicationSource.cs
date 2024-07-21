@@ -51,9 +51,13 @@ namespace linc.Data
         public string TitleNotes { get; set; }
 
 
-        public int StartingPage { get; set; }
+        public int StartingPdfPage { get; set; }
 
-        public int LastPage { get; set; }
+        public int StartingIndexPage { get; set; }
+
+        public int LastPdfPage { get; set; }
+
+        public int LastIndexPage { get; set; }
 
 
         #region Navigation

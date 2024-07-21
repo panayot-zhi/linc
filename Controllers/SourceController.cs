@@ -116,8 +116,8 @@ namespace linc.Controllers
                 LastName = source.LastName,
                 AuthorNotes = source.AuthorNotes,
 
-                StartingPage = source.StartingPage,
-                LastPage = source.LastPage,
+                StartingPage = source.StartingPdfPage,
+                LastPage = source.LastPdfPage,
 
 
                 IssueId = source.IssueId,

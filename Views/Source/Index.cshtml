@@ -121,7 +121,7 @@
                                     </p>
 
                                     <p class="source-page text-end">
-                                        <strong><a href="@Url.Action("LoadIssueDocument", "Document", new { issueId = source.IssueId })#page=@source.StartingPage" target="_blank">@source.StartingPage</a></strong>
+                                        <strong><a href="@Url.Action("LoadIssueDocument", "Document", new { issueId = source.IssueId })#page=@source.StartingPdfPage" target="_blank">@source.StartingPdfPage</a></strong>
                                     </p>
 
                                     @if (!string.IsNullOrEmpty(source.TitleNotes))
