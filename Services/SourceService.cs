@@ -191,6 +191,8 @@ namespace linc.Services
                 LastName = input.LastName,
                 AuthorNotes = input.AuthorNotes,
 
+                DOI = input.DOI,
+
                 StartingPdfPage = startingPage,
                 LastPdfPage = lastPage,
 
