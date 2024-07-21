@@ -99,7 +99,7 @@
                 <td>
                     @* TODO: Link to user admin screen if exist *@
                     @Html.DisplayFor(modelItem => item.AuthorNames) <br/>
-                    @Html.DisplayFor(modelItem => item.AuthorNotes)
+                    @Html.Raw(item.AuthorNotes?.ReplaceLineEndings("<br>"))
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">
@@ -109,7 +109,7 @@
                 </td>
                 <td>
                     <a href="@Url.Action("LoadSourceDocument", "Document", new { sourceId = item.Id })" target="_blank">
-                        @Html.DisplayFor(modelItem => item.StartingPage)-@Html.DisplayFor(modelItem => item.LastPage)
+                        @Html.DisplayFor(modelItem => item.StartingIndexPage)-@Html.DisplayFor(modelItem => item.LastIndexPage)
                     </a>
                 </td>
                 @* <td> *@

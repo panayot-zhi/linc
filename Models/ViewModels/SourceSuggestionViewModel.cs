@@ -18,5 +18,9 @@ public class SourceSuggestionViewModel
 
     public int IssueYear { get; set; }
 
-    public int StartingPage { get; set; }
+    public int StartingPdfPage { get; set; }
+
+    public int StartingIndexPage { get; set; }
+
+    public int LastIndexPage { get; set; }
 }

@@ -48,10 +48,22 @@
 
             <div asp-validation-summary="All" class="text-danger"></div>
                     
+            <div class="form-group form-check text-end">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsTheme" /> @Html.DisplayNameFor(model => model.IsTheme)
+                </label>
+            </div>
+
             <div class="form-floating ">
                 <input asp-for="Title" class="form-control"/>
                 <label asp-for="Title" class="form-label"></label>
                 <span asp-validation-for="Title" class="invalid-feedback"></span>
+            </div>
+            
+            <div class="form-group form-check text-end">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsSection" /> @Html.DisplayNameFor(model => model.IsSection)
+                </label>
             </div>
                     
             <div class="form-group">
@@ -93,27 +105,46 @@
                 <span asp-validation-for="AuthorNotes" class="invalid-feedback"></span>
             </div>
                     
-            <div class="form-group">
-                <div class="mb-3">
-                    <label asp-for="PdfFile" class="form-label"></label>
-                    <input asp-for="PdfFile" class="form-control" accept=".pdf" />
-                    <span asp-validation-for="PdfFile" class="invalid-feedback"></span>
+            <div class="row">            
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="mb-3">
+                            <label asp-for="PdfFile" class="form-label"></label>
+                            <input asp-for="PdfFile" class="form-control" accept=".pdf" />
+                            <span asp-validation-for="PdfFile" class="invalid-feedback"></span>
+                        </div>
+                    </div>
                 </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label asp-for="StartingPdfPage" class="form-label"></label>
+                        <input asp-for="StartingPdfPage" class="form-control"/>
+                        <span asp-validation-for="StartingPdfPage" class="invalid-feedback"></span>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label asp-for="LastPdfPage" class="form-label"></label>
+                        <input asp-for="LastPdfPage" class="form-control"/>
+                        <span asp-validation-for="LastPdfPage" class="invalid-feedback"></span>
+                    </div>
+                </div>
+
             </div>
                     
             <div class="row">
                 <div class="col-sm-3">
                     <div class="form-floating">
-                        <input asp-for="StartingPage" class="form-control" />
-                        <label asp-for="StartingPage" class="form-label"></label>
-                        <span asp-validation-for="StartingPage" class="invalid-feedback"></span>
+                        <input asp-for="StartingIndexPage" class="form-control" />
+                        <label asp-for="StartingIndexPage" class="form-label"></label>
+                        <span asp-validation-for="StartingIndexPage" class="invalid-feedback"></span>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-floating">
-                        <input asp-for="LastPage" class="form-control" />
-                        <label asp-for="LastPage" class="form-label"></label>
-                        <span asp-validation-for="LastPage" class="invalid-feedback"></span>
+                        <input asp-for="LastIndexPage" class="form-control" />
+                        <label asp-for="LastIndexPage" class="form-label"></label>
+                        <span asp-validation-for="LastIndexPage" class="invalid-feedback"></span>
                     </div>
                 </div>
                 <div class="col-sm-3">

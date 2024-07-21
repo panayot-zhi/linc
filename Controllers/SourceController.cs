@@ -87,7 +87,7 @@ namespace linc.Controllers
             _logger.LogInformation("Source {SourceId} has been created successfully, redirecting...", 
                 sourceId);
 
-            return RedirectToAction("Details", "Issue", new { id = vModel.IssueId });
+            return RedirectToAction("Edit", new { id = sourceId });
         }
 
         [SiteAuthorize(SiteRole.HeadEditor)]
@@ -116,9 +116,11 @@ namespace linc.Controllers
                 LastName = source.LastName,
                 AuthorNotes = source.AuthorNotes,
 
-                StartingPage = source.StartingPage,
-                LastPage = source.LastPage,
+                StartingPdfPage = source.StartingPdfPage,
+                LastPdfPage = source.LastPdfPage,
 
+                StartingIndexPage = source.StartingIndexPage,
+                LastIndexPage = source.LastIndexPage,
 
                 IssueId = source.IssueId,
                 LanguageId = source.LanguageId,

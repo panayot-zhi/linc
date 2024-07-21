@@ -116,7 +116,9 @@ public class ContentService : IContentService
                 IssueId = x.IssueId,
                 AuthorNames = x.AuthorNames,
                 Title = x.Title,
-                StartingPage = x.StartingPage,
+                StartingPdfPage = x.StartingPdfPage,
+                StartingIndexPage = x.StartingIndexPage,
+                LastIndexPage = x.LastIndexPage,
                 IssueNumber = x.Issue.IssueNumber,
                 IssueYear = x.Issue.ReleaseYear
 
@@ -134,7 +136,7 @@ public class ContentService : IContentService
                 "LoadIssueDocument",
                 "Document",
                 new { issueId = x.IssueId },
-                fragment: new FragmentString($"#page={x.StartingPage}"));
+                fragment: new FragmentString($"#page={x.StartingPdfPage}"));
 
             var issueDetailsLink = _linkGenerator.GetUriByAction(
                 _httpContextAccessor.HttpContext!,
@@ -143,7 +145,7 @@ public class ContentService : IContentService
                 new { id = x.IssueId });
 
             x.IssueInformation = _localizationService["SourceSuggestion_IssueInformation_Template",
-                issueDetailsLink, x.IssueNumber, x.IssueYear, sourceIssueLink, x.StartingPage].Value;
+                issueDetailsLink, x.IssueNumber, x.IssueYear, sourceIssueLink, $"{x.StartingIndexPage}-{x.LastIndexPage}"].Value;
 
             x.SourceLink =
                 // NOTE: link to the source pdf itself

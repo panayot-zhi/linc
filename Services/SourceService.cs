@@ -89,7 +89,7 @@ namespace linc.Services
                 query = query.OrderBy(x => x.LanguageId == languageId ? 0 : 1)
                     .ThenBy(x => x.LanguageId)
                         .ThenBy(x => x.Issue.ReleaseDate)
-                            .ThenBy(x => x.StartingPage);
+                            .ThenBy(x => x.StartingPdfPage);
             }
 
             var count = await query.CountAsync();
@@ -118,8 +118,8 @@ namespace linc.Services
                 .AsQueryable();
 
             query = query
-                .OrderBy(x => x.Issue.ReleaseDate)
-                .ThenBy(x => x.StartingPage);
+                .OrderByDescending(x => x.Issue.ReleaseDate)
+                .ThenBy(x => x.StartingPdfPage);
 
             var count = await query.CountAsync();
 
@@ -161,8 +161,8 @@ namespace linc.Services
         public async Task<int> CreateSourceAsync(SourceCreateViewModel input)
         {
             // validation should guard these from being nulls
-            var startingPage = input.StartingPage!.Value;
-            var lastPage = input.LastPage!.Value;
+            var startingPage = input.StartingPdfPage!.Value;
+            var lastPage = input.LastPdfPage!.Value;
             var issueId = input.IssueId!.Value;
 
             await using var transaction = await _context.Database.BeginTransactionAsync();
@@ -191,8 +191,11 @@ namespace linc.Services
                 LastName = input.LastName,
                 AuthorNotes = input.AuthorNotes,
 
-                StartingPage = startingPage,
-                LastPage = lastPage,
+                StartingPdfPage = startingPage,
+                LastPdfPage = lastPage,
+
+                StartingIndexPage = input.StartingIndexPage ?? startingPage,
+                LastIndexPage = input.LastIndexPage ?? lastPage,
 
                 Title = input.Title,
                 TitleNotes = input.TitleNotes,
@@ -228,7 +231,9 @@ namespace linc.Services
             source.LastName = input.LastName;
             source.AuthorNotes = input.AuthorNotes;
 
-            source.IssueId = input.IssueId;
+            source.StartingIndexPage = input.StartingIndexPage!.Value;
+            source.LastIndexPage = input.LastIndexPage!.Value;
+
             source.LanguageId = input.LanguageId;
 
             source.IsTheme = input.IsTheme;
