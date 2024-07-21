@@ -1187,8 +1187,8 @@
   <data name="SourceCreate_LastName" xml:space="preserve">
     <value>Last name</value>
   </data>
-  <data name="SourceCreate_StartingPage" xml:space="preserve">
-    <value>Starting page</value>
+  <data name="SourceCreate_StartingPdfPage" xml:space="preserve">
+    <value>Starting page (PDF)</value>
   </data>
   <data name="SourceCreate_Title" xml:space="preserve">
     <value>Title</value>
@@ -1289,8 +1289,8 @@
   <data name="Board_Joaquín.García-Medall_MemberWork" xml:space="preserve">
     <value>University of Valladolid, Spain</value>
   </data>
-  <data name="SourceCreate_LastPage" xml:space="preserve">
-    <value>Last page</value>
+  <data name="SourceCreate_LastPdfPage" xml:space="preserve">
+    <value>Last page (PDF)</value>
   </data>
   <data name="Team_EditorialAssistants_SubTitle" xml:space="preserve">
     <value>Editorial Assistant</value>
@@ -1697,5 +1697,11 @@ The manuscript file must have a .doc or .docx extension.</value>
   </data>
   <data name="Dossier_ListHeader_HasAgreement" xml:space="preserve">
     <value>Agreement</value>
+  </data>
+  <data name="SourceCreate_LastIndexPage" xml:space="preserve">
+    <value>Last page (index)</value>
+  </data>
+  <data name="SourceCreate_StartingIndexPage" xml:space="preserve">
+    <value>Starting page (index)</value>
   </data>
 </root>

@@ -1187,8 +1187,8 @@
   <data name="SourceCreate_LastName" xml:space="preserve">
     <value>Фамилия</value>
   </data>
-  <data name="SourceCreate_StartingPage" xml:space="preserve">
-    <value>Начална страница</value>
+  <data name="SourceCreate_StartingPdfPage" xml:space="preserve">
+    <value>Начална страница (PDF)</value>
   </data>
   <data name="SourceCreate_Title" xml:space="preserve">
     <value>Заглавие</value>
@@ -1290,8 +1290,8 @@
   <data name="Board_Joaquín.García-Medall_MemberWork" xml:space="preserve">
     <value>Университет на Валядолид, Испания</value>
   </data>
-  <data name="SourceCreate_LastPage" xml:space="preserve">
-    <value>Последна страница</value>
+  <data name="SourceCreate_LastPdfPage" xml:space="preserve">
+    <value>Последна страница (PDF)</value>
   </data>
   <data name="Team_EditorialAssistants_SubTitle" xml:space="preserve">
     <value>Технически сътрудник</value>
@@ -1695,5 +1695,11 @@
   </data>
   <data name="Dossier_ListHeader_HasAgreement" xml:space="preserve">
     <value>Декларация</value>
+  </data>
+  <data name="SourceCreate_LastIndexPage" xml:space="preserve">
+    <value>Последна страница (съдържание)</value>
+  </data>
+  <data name="SourceCreate_StartingIndexPage" xml:space="preserve">
+    <value>Начална страница (съдържание)</value>
   </data>
 </root>

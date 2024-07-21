@@ -4122,6 +4122,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Последна страница (съдържание).
+        /// </summary>
+        public static string SourceCreate_LastIndexPage {
+            get {
+                return ResourceManager.GetString("SourceCreate_LastIndexPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Фамилия.
         /// </summary>
         public static string SourceCreate_LastName {
@@ -4131,11 +4140,11 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Последна страница.
+        ///   Looks up a localized string similar to Последна страница (PDF).
         /// </summary>
-        public static string SourceCreate_LastPage {
+        public static string SourceCreate_LastPdfPage {
             get {
-                return ResourceManager.GetString("SourceCreate_LastPage", resourceCulture);
+                return ResourceManager.GetString("SourceCreate_LastPdfPage", resourceCulture);
             }
         }
         
@@ -4149,11 +4158,20 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Начална страница.
+        ///   Looks up a localized string similar to Начална страница (съдържание).
         /// </summary>
-        public static string SourceCreate_StartingPage {
+        public static string SourceCreate_StartingIndexPage {
             get {
-                return ResourceManager.GetString("SourceCreate_StartingPage", resourceCulture);
+                return ResourceManager.GetString("SourceCreate_StartingIndexPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Начална страница (PDF).
+        /// </summary>
+        public static string SourceCreate_StartingPdfPage {
+            get {
+                return ResourceManager.GetString("SourceCreate_StartingPdfPage", resourceCulture);
             }
         }
         
