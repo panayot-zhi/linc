@@ -21,6 +21,4 @@ public class SourceSuggestionViewModel
     public int StartingPdfPage { get; set; }
 
     public int StartingIndexPage { get; set; }
-
-    public int LastIndexPage { get; set; }
 }

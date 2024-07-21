@@ -42,13 +42,8 @@ namespace linc.Models.ViewModels.Source
         [Display(Name = "SourceCreate_LastPdfPage", ResourceType = typeof(Resources.SharedResource))]
         public int? LastPdfPage { get; set; }
 
-        [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         [Display(Name = "SourceCreate_StartingIndexPage", ResourceType = typeof(Resources.SharedResource))]
         public int? StartingIndexPage { get; set; }
-
-        [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
-        [Display(Name = "SourceCreate_LastIndexPage", ResourceType = typeof(Resources.SharedResource))]
-        public int? LastIndexPage { get; set; }
 
 
 

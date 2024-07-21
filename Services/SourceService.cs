@@ -196,8 +196,7 @@ namespace linc.Services
                 StartingPdfPage = startingPage,
                 LastPdfPage = lastPage,
 
-                StartingIndexPage = input.StartingIndexPage ?? startingPage,
-                LastIndexPage = input.LastIndexPage ?? lastPage,
+                StartingIndexPage = input.StartingIndexPage,
 
                 Title = input.Title,
                 TitleNotes = input.TitleNotes,
@@ -233,8 +232,7 @@ namespace linc.Services
             source.LastName = input.LastName;
             source.AuthorNotes = input.AuthorNotes;
 
-            source.StartingIndexPage = input.StartingIndexPage!.Value;
-            source.LastIndexPage = input.LastIndexPage!.Value;
+            source.StartingIndexPage = input.StartingIndexPage;
 
             source.LanguageId = input.LanguageId;
 

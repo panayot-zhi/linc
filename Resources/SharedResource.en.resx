@@ -1698,10 +1698,7 @@ The manuscript file must have a .doc or .docx extension.</value>
   <data name="Dossier_ListHeader_HasAgreement" xml:space="preserve">
     <value>Agreement</value>
   </data>
-  <data name="SourceCreate_LastIndexPage" xml:space="preserve">
-    <value>Last page (index)</value>
-  </data>
   <data name="SourceCreate_StartingIndexPage" xml:space="preserve">
-    <value>Starting page (index)</value>
+    <value>Starting page (in index)</value>
   </data>
 </root>

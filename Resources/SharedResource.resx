@@ -1696,10 +1696,7 @@
   <data name="Dossier_ListHeader_HasAgreement" xml:space="preserve">
     <value>Декларация</value>
   </data>
-  <data name="SourceCreate_LastIndexPage" xml:space="preserve">
-    <value>Последна страница (съдържание)</value>
-  </data>
   <data name="SourceCreate_StartingIndexPage" xml:space="preserve">
-    <value>Начална страница (съдържание)</value>
+    <value>Начална страница (по съдържание)</value>
   </data>
 </root>

@@ -110,6 +110,7 @@ public class ContentService : IContentService
             .Include(x => x.Issue)
             .Where(x => x.IssueId == lastIssue)
             .Where(x => !x.IsSection)
+            .Where(x => x.StartingIndexPage.HasValue)
             .Select(x => new SourceSuggestionViewModel()
             {
                 SourceId = x.Id,
@@ -117,8 +118,7 @@ public class ContentService : IContentService
                 AuthorNames = x.AuthorNames,
                 Title = x.Title,
                 StartingPdfPage = x.StartingPdfPage,
-                StartingIndexPage = x.StartingIndexPage,
-                LastIndexPage = x.LastIndexPage,
+                StartingIndexPage = x.StartingIndexPage.Value,
                 IssueNumber = x.Issue.IssueNumber,
                 IssueYear = x.Issue.ReleaseYear
 
@@ -145,7 +145,7 @@ public class ContentService : IContentService
                 new { id = x.IssueId });
 
             x.IssueInformation = _localizationService["SourceSuggestion_IssueInformation_Template",
-                issueDetailsLink, IIssueService.DisplayIssueLabelInformation(x.IssueNumber, x.IssueYear), sourceIssueLink, $"{x.StartingIndexPage}-{x.LastIndexPage}"].Value;
+                issueDetailsLink, IIssueService.DisplayIssueLabelInformation(x.IssueNumber, x.IssueYear), sourceIssueLink, $"{x.StartingIndexPage}"].Value;
 
             x.SourceLink =
                 // NOTE: link to the source pdf itself
