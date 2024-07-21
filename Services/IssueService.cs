@@ -54,7 +54,9 @@ namespace linc.Services
 
         public async Task<List<ApplicationIssue>> GetIssuesAsync()
         {
-            return await _context.Issues.ToListAsync();
+            return await _context.Issues
+                .OrderByDescending(x => x.ReleaseDate)
+                .ToListAsync();
         }
 
         public async Task<int> CreateIssueAsync(IssueCreateViewModel input)
