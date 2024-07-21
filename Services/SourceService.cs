@@ -173,7 +173,11 @@ namespace linc.Services
             var authorId = await FindAuthorByNamesAsync(input.FirstName, input.LastName);
 
             ApplicationDocument pdf;
-            if (input.PdfFile != null)
+            if (input.IsSection)
+            {
+                // no-op, sections do not have a dedicated pdf
+            }
+            else if (input.PdfFile != null)
             {
                 // pdf file was provided, just save it and continue
                 pdf = await SaveSourcePdf(input.PdfFile, startingPage, issue.ReleaseYear, issue.IssueNumber);
