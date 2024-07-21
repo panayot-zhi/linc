@@ -110,7 +110,15 @@
                 <span asp-validation-for="AuthorNotes" class="invalid-feedback"></span>
             </div>
 
-            <div class="row">            
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label asp-for="StartingPdfPage" class="form-label"></label>
+                        <input asp-for="StartingPdfPage" class="form-control" readonly="readonly" disabled="disabled" />
+                        <span asp-validation-for="StartingPdfPage" class="invalid-feedback"></span>
+                    </div>
+                </div>
+                
                 <div class="col-sm-6">
                     <div class="form-group">
                         <div class="mb-3">
@@ -124,13 +132,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label asp-for="StartingPdfPage" class="form-label"></label>
-                        <input asp-for="StartingPdfPage" class="form-control" readonly="readonly" disabled="disabled" />
-                        <span asp-validation-for="StartingPdfPage" class="invalid-feedback"></span>
-                    </div>
-                </div>
+
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label asp-for="LastPdfPage" class="form-label"></label>
@@ -151,13 +153,6 @@
                 </div>
                 <div class="col-sm-3">
                     <div class="form-floating">
-                        <input asp-for="LastIndexPage" class="form-control" />
-                        <label asp-for="LastIndexPage" class="form-label"></label>
-                        <span asp-validation-for="LastIndexPage" class="invalid-feedback"></span>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="form-floating">
                         <select asp-for="LanguageId" asp-items="@Model.Languages" class="form-select"></select>
                         <label asp-for="LanguageId" class="form-label"></label>
                         <span asp-validation-for="LanguageId" class="invalid-feedback"></span>
@@ -169,20 +164,22 @@
                             <select asp-for="IssueId" asp-items="@Model.Issues" class="form-select" disabled="disabled"></select>
                             <a type="button" href="@Url.Action("Details", "Issue", new { id = Model.IssueId })" class="btn btn-outline-secondary" target="_blank">@HtmlLocalizer["SourceCreate_IssueId"]</a>
                         </div>
+                        
+                        @{
+                            var chosenIssue = Model.Issues.First(x => x.Selected).Text;
+                            var issueDetailsLink = Url.Action("Details", "Issue", new { id = Model.IssueId });
+                            var sourceIssueLink = Url.Action(
+                                action: "LoadIssueDocument", 
+                                controller: "Document", 
+                                values: new { id = Model.IssueId },
+                                protocol: Context.Request.Protocol,
+                                host: Context.Request.Host.Host,
+                                fragment: $"#page={Model.StartingPdfPage}");
+                        }
+
                         <span class="text-muted">
-                            @{
-                                var chosenIssue = Model.Issues.First(x => x.Selected).Text;
-                                var issueDetailsLink = Url.Action("Details", "Issue", new { id = Model.IssueId });
-                                var sourceIssueLink = Url.Action(
-                                    action: "LoadIssueDocument", 
-                                    controller: "Document", 
-                                    values: new { id = Model.IssueId },
-                                    protocol: Context.Request.Protocol,
-                                    host: Context.Request.Host.Host,
-                                    fragment: $"#page={Model.StartingPdfPage}");
-                            }
                             @HtmlLocalizer["SourceSuggestion_IssueInformation_Template",
-                                     issueDetailsLink, chosenIssue, sourceIssueLink, $"{Model.StartingIndexPage}-{Model.LastIndexPage}"]
+                                     issueDetailsLink, chosenIssue, sourceIssueLink, $"{Model.StartingIndexPage}"]
                         </span>
                     </div>
                 </div>

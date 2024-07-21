@@ -1333,7 +1333,7 @@
     <value>Browse authors from all issues alphabetically or search for a specific name or title. You can also browse &lt;a href="{0}"&gt;all works by year and issue&lt;/a&gt;.</value>
   </data>
   <data name="Source_IndexPage_SearchDescription" xml:space="preserve">
-    <value>search by first letter of the author's last name</value>
+    <value>search by first letter of the author's &lt;b&gt;last&lt;/b&gt; name</value>
   </data>
   <data name="SourceCreate_PdfFile" xml:space="preserve">
     <value>Attach the source as PDF</value>
@@ -1698,10 +1698,7 @@ The manuscript file must have a .doc or .docx extension.</value>
   <data name="Dossier_ListHeader_HasAgreement" xml:space="preserve">
     <value>Agreement</value>
   </data>
-  <data name="SourceCreate_LastIndexPage" xml:space="preserve">
-    <value>Last page (index)</value>
-  </data>
   <data name="SourceCreate_StartingIndexPage" xml:space="preserve">
-    <value>Starting page (index)</value>
+    <value>Starting page (in index)</value>
   </data>
 </root>

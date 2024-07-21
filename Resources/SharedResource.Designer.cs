@@ -4032,7 +4032,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to търсене по първа буква от фамилното име.
+        ///   Looks up a localized string similar to търсене по първа буква от &lt;b&gt;фамилното&lt;/b&gt; име.
         /// </summary>
         public static string Source_IndexPage_SearchDescription {
             get {
@@ -4122,15 +4122,6 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Последна страница (съдържание).
-        /// </summary>
-        public static string SourceCreate_LastIndexPage {
-            get {
-                return ResourceManager.GetString("SourceCreate_LastIndexPage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Фамилия.
         /// </summary>
         public static string SourceCreate_LastName {
@@ -4158,7 +4149,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Начална страница (съдържание).
+        ///   Looks up a localized string similar to Начална страница (по съдържание).
         /// </summary>
         public static string SourceCreate_StartingIndexPage {
             get {

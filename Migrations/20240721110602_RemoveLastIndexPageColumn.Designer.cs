@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using linc.Data;
 
@@ -10,9 +11,10 @@ using linc.Data;
 namespace linc.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240721110602_RemoveLastIndexPageColumn")]
+    partial class RemoveLastIndexPageColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -380,7 +382,7 @@ namespace linc.Migrations
                         .HasColumnType("int")
                         .HasColumnName("pdf_id");
 
-                    b.Property<int?>("StartingIndexPage")
+                    b.Property<int>("StartingIndexPage")
                         .HasColumnType("int")
                         .HasColumnName("starting_index_page");
 

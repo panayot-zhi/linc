@@ -105,7 +105,15 @@
                 <span asp-validation-for="AuthorNotes" class="invalid-feedback"></span>
             </div>
                     
-            <div class="row">            
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label asp-for="StartingPdfPage" class="form-label"></label>
+                        <input asp-for="StartingPdfPage" class="form-control"/>
+                        <span asp-validation-for="StartingPdfPage" class="invalid-feedback"></span>
+                    </div>
+                </div>
+                
                 <div class="col-sm-6">
                     <div class="form-group">
                         <div class="mb-3">
@@ -115,13 +123,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-3">
-                    <div class="form-group">
-                        <label asp-for="StartingPdfPage" class="form-label"></label>
-                        <input asp-for="StartingPdfPage" class="form-control"/>
-                        <span asp-validation-for="StartingPdfPage" class="invalid-feedback"></span>
-                    </div>
-                </div>
+
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label asp-for="LastPdfPage" class="form-label"></label>
@@ -138,13 +140,6 @@
                         <input asp-for="StartingIndexPage" class="form-control" />
                         <label asp-for="StartingIndexPage" class="form-label"></label>
                         <span asp-validation-for="StartingIndexPage" class="invalid-feedback"></span>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="form-floating">
-                        <input asp-for="LastIndexPage" class="form-control" />
-                        <label asp-for="LastIndexPage" class="form-label"></label>
-                        <span asp-validation-for="LastIndexPage" class="invalid-feedback"></span>
                     </div>
                 </div>
                 <div class="col-sm-3">

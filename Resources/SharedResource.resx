@@ -1337,7 +1337,7 @@
     <value>Прегледайте авторите от всички броеве или търсете конкретно име/заглавие. Можете да прегледате и &lt;a href="{0}"&gt;всички публикации по години и броеве&lt;/a&gt;.</value>
   </data>
   <data name="Source_IndexPage_SearchDescription" xml:space="preserve">
-    <value>търсене по първа буква от фамилното име</value>
+    <value>търсене по първа буква от &lt;b&gt;фамилното&lt;/b&gt; име</value>
   </data>
   <data name="SourceCreate_PdfFile" xml:space="preserve">
     <value>Прикачете източника като PDF</value>
@@ -1696,10 +1696,7 @@
   <data name="Dossier_ListHeader_HasAgreement" xml:space="preserve">
     <value>Декларация</value>
   </data>
-  <data name="SourceCreate_LastIndexPage" xml:space="preserve">
-    <value>Последна страница (съдържание)</value>
-  </data>
   <data name="SourceCreate_StartingIndexPage" xml:space="preserve">
-    <value>Начална страница (съдържание)</value>
+    <value>Начална страница (по съдържание)</value>
   </data>
 </root>

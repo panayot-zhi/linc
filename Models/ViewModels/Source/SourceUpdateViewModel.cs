@@ -47,9 +47,6 @@ namespace linc.Models.ViewModels.Source
         [Display(Name = "SourceCreate_StartingIndexPage", ResourceType = typeof(Resources.SharedResource))]
         public int? StartingIndexPage { get; set; }
 
-        [Display(Name = "SourceCreate_LastIndexPage", ResourceType = typeof(Resources.SharedResource))]
-        public int? LastIndexPage { get; set; }
-
 
 
         [Display(Name = "SourceCreate_PdfFile", ResourceType = typeof(Resources.SharedResource))]
