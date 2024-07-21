@@ -12,5 +12,10 @@ namespace linc.Contracts
         Task<List<ApplicationIssue>> GetIssuesAsync();
 
         Task<int> CreateIssueAsync(IssueCreateViewModel input);
+
+        static string DisplayIssueLabelInformation(int issueNumber, int releaseYear)
+        {
+            return $"{issueNumber} / {releaseYear}";
+        }
     }
 }

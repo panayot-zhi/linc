@@ -1215,7 +1215,7 @@
     <value>Преглед на брой</value>
   </data>
   <data name="Issue_Zoom_Label" xml:space="preserve">
-    <value>Корица на брой №{0}, {1}</value>
+    <value>Корица на брой {0}</value>
   </data>
   <data name="NavItem_Authors" xml:space="preserve">
     <value>Автори</value>
@@ -1655,7 +1655,7 @@
     <value>Когато прикачите анонимизиран документ, досието автоматично ще премине в статус '{0}'.</value>
   </data>
   <data name="SourceSuggestion_IssueInformation_Template" xml:space="preserve">
-    <value>&lt;a href="{0}"&gt;брой {1} / {2}&lt;/a&gt; стр. &lt;a target="_blank" href="{3}"&gt;{4}&lt;/a&gt;</value>
+    <value>&lt;a href="{0}"&gt;брой {1}&lt;/a&gt; стр. &lt;a target="_blank" href="{2}"&gt;{3}&lt;/a&gt;</value>
   </data>
   <data name="PublicationAgreement_SuccessMessage" xml:space="preserve">
     <value>Споразумението за публикуване беше успешно прикачено към Вашия ръкопис! Благодаря Ви за съдействието.</value>

@@ -669,7 +669,7 @@
     <value>Issue #</value>
   </data>
   <data name="Issue_Zoom_Label" xml:space="preserve">
-    <value>Cover page, issue #{0}, {1}</value>
+    <value>Cover page, issue {0}</value>
   </data>
   <data name="LibraryIndex_Title" xml:space="preserve">
     <value>Library</value>
@@ -1657,7 +1657,7 @@ The manuscript file must have a .doc or .docx extension.</value>
     <value>When you attach an anonymized document, the dossier will automatically transition to status '{0}'.</value>
   </data>
   <data name="SourceSuggestion_IssueInformation_Template" xml:space="preserve">
-    <value>&lt;a href="{0}"&gt;issue {1} / {2}&lt;/a&gt; page &lt;a target="_blank" href="{3}"&gt;{4}&lt;/a&gt;</value>
+    <value>&lt;a href="{0}"&gt;issue {1}&lt;/a&gt; page &lt;a target="_blank" href="{2}"&gt;{3}&lt;/a&gt;</value>
   </data>
   <data name="PublicationAgreement_SuccessMessage" xml:space="preserve">
     <value>The publication agreement has been attached to your submission successfully! Thank you for your cooperation.</value>

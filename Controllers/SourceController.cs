@@ -4,7 +4,6 @@ using linc.Models.Enumerations;
 using linc.Utility;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using linc.Models.ViewModels.Source;
-using linc.Data;
 
 namespace linc.Controllers
 {
@@ -170,7 +169,7 @@ namespace linc.Controllers
         {
             var issues = await _issuesService.GetIssuesAsync();
             return issues.Select(x =>
-                    new SelectListItem($"{x.IssueNumber}/{x.ReleaseYear}", x.Id.ToString()))
+                    new SelectListItem(IIssueService.DisplayIssueLabelInformation(x.IssueNumber, x.ReleaseYear), x.Id.ToString()))
                 .ToList();
         }
 
