@@ -265,7 +265,7 @@ namespace linc.Services
             var releaseYear = issue.ReleaseYear;
 
             const ApplicationDocumentType type = ApplicationDocumentType.SourcePdf;
-            var fileName = $"{issue.ReleaseYear}-{issueNumber.ToString().PadLeft(3, '0')}-{HelperFunctions.ToKebabCase(type.ToString())}-{startingPage}";
+            var fileName = $"{issue.ReleaseYear}-{issueNumber.ToString().PadLeft(3, '0')}-{HelperFunctions.ToKebabCase(type.ToString())}-{startingPage}-{lastPage}";
 
             var rootFolderPath = Path.Combine(_config.RepositoryPath, SiteConstant.IssuesFolderName);
             var directoryPath = Path.Combine(rootFolderPath, releaseYear.ToString());
