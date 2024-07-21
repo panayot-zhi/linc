@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace linc.Data
 {
+    [Index(nameof(PdfId), IsUnique = false)]
     [Index(nameof(FirstName), IsUnique = false)]
     [Index(nameof(LastName), IsUnique = false)]
     [Index(nameof(AuthorNames), IsUnique = false)]
