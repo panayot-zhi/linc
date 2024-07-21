@@ -119,6 +119,8 @@ namespace linc.Controllers
                 StartingPdfPage = source.StartingPdfPage,
                 LastPdfPage = source.LastPdfPage,
 
+                StartingIndexPage = source.StartingIndexPage,
+                LastIndexPage = source.LastIndexPage,
 
                 IssueId = source.IssueId,
                 LanguageId = source.LanguageId,
