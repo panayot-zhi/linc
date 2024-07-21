@@ -4032,7 +4032,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to търсене по първа буква от фамилното име.
+        ///   Looks up a localized string similar to търсене по първа буква от &lt;b&gt;фамилното&lt;/b&gt; име.
         /// </summary>
         public static string Source_IndexPage_SearchDescription {
             get {
