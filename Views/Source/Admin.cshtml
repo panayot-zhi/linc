@@ -99,7 +99,7 @@
                 <td>
                     @* TODO: Link to user admin screen if exist *@
                     @Html.DisplayFor(modelItem => item.AuthorNames) <br/>
-                    @Html.DisplayFor(modelItem => item.AuthorNotes)
+                    @Html.Raw(item.AuthorNotes?.ReplaceLineEndings("<br>"))
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">

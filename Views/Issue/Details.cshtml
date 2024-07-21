@@ -109,7 +109,9 @@
                                         @if (!string.IsNullOrEmpty(source.AuthorNotes))
                                         {
                                             <br/>
-                                            <small>@source.AuthorNotes</small>
+                                            <small>
+                                                @Html.Raw(source.AuthorNotes.ReplaceLineEndings("<br>"))
+                                            </small>
                                         }
                                     </p>
                                 }
