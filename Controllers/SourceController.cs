@@ -128,6 +128,9 @@ namespace linc.Controllers
 
                 Issues = await GetIssuesAsync(source.IssueId),
                 Languages = GetLanguages(source.LanguageId),
+
+                LastUpdated = source.LastUpdated,
+                DateCreated = source.DateCreated,
             };
 
             return View(vModel);

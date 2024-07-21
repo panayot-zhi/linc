@@ -1,5 +1,4 @@
-﻿@using Org.BouncyCastle.Asn1.Ocsp
-@model SourceUpdateViewModel
+﻿@model SourceUpdateViewModel
 
 @* TODO: Localize *@
 
@@ -53,6 +52,7 @@
             <div asp-validation-summary="All" class="invalid-feedback"></div>
 
             <input type="hidden" asp-for="Id"/>
+            <input type="hidden" asp-for="IssueId" />
             
             <div class="form-group form-check text-end">
                 <label class="form-check-label">
@@ -114,7 +114,7 @@
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label asp-for="StartingPdfPage" class="form-label"></label>
-                        <input asp-for="StartingPdfPage" class="form-control" readonly="readonly" disabled="disabled" />
+                        <input asp-for="StartingPdfPage" class="form-control" readonly="readonly" />
                         <span asp-validation-for="StartingPdfPage" class="invalid-feedback"></span>
                     </div>
                 </div>
@@ -136,7 +136,7 @@
                 <div class="col-sm-3">
                     <div class="form-group">
                         <label asp-for="LastPdfPage" class="form-label"></label>
-                        <input asp-for="LastPdfPage" class="form-control" readonly="readonly" disabled="disabled" />
+                        <input asp-for="LastPdfPage" class="form-control" readonly="readonly" />
                         <span asp-validation-for="LastPdfPage" class="invalid-feedback"></span>
                     </div>
                 </div>
@@ -159,7 +159,7 @@
                     </div>
                 </div>
                 <div class="col-sm-3">
-                    <div class="form-floating">
+                    <div class="form-floating text-end">
                         <div class="input-group">
                             <select asp-for="IssueId" asp-items="@Model.Issues" class="form-select" disabled="disabled"></select>
                             <a type="button" href="@Url.Action("Details", "Issue", new { id = Model.IssueId })" class="btn btn-outline-secondary" target="_blank">@HtmlLocalizer["SourceCreate_IssueId"]</a>
@@ -169,8 +169,8 @@
                             var chosenIssue = Model.Issues.First(x => x.Selected).Text;
                             var issueDetailsLink = Url.Action("Details", "Issue", new { id = Model.IssueId });
                             var sourceIssueLink = Url.Action(
-                                action: "LoadIssueDocument", 
-                                controller: "Document", 
+                                action: "LoadIssueDocument",
+                                controller: "Document",
                                 values: new { id = Model.IssueId },
                                 protocol: Context.Request.Protocol,
                                 host: Context.Request.Host.Host,
@@ -178,9 +178,26 @@
                         }
 
                         <span class="text-muted">
-                            @HtmlLocalizer["SourceSuggestion_IssueInformation_Template",
-                                     issueDetailsLink, chosenIssue, sourceIssueLink, $"{Model.StartingIndexPage}"]
+                            @HtmlLocalizer["SourceSuggestion_IssueInformation_Template", issueDetailsLink, chosenIssue, sourceIssueLink, $"{Model.StartingIndexPage}"]
                         </span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-sm-6 col-lg-3">
+                    <div class="form-group">
+                        <label asp-for="LastUpdated" class="form-label"></label>
+                        <input asp-for="LastUpdated" class="form-control" readonly="readonly" />
+                        <span asp-validation-for="LastUpdated" class="invalid-feedback"></span>
+                        
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3 offset-lg-6">
+                    <div class="form-group">
+                        <label asp-for="DateCreated" class="form-label"></label>
+                        <input asp-for="DateCreated" class="form-control" readonly="readonly" />
+                        <span asp-validation-for="DateCreated" class="invalid-feedback"></span>
                     </div>
                 </div>
             </div>

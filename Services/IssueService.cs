@@ -29,7 +29,9 @@ namespace linc.Services
             if (sourcesLanguageId.HasValue)
             {
                 query = query.Include(x => x.Sources
-                    .Where(source => source.LanguageId == sourcesLanguageId.Value));
+                    .Where(source => source.LanguageId == sourcesLanguageId.Value)
+                    .OrderBy(source => source.StartingPdfPage)  // some sections begin on the same pages
+                    .ThenBy(source => source.DateCreated));     // order additionally by the date created
             }
 
             return await query.FirstOrDefaultAsync();

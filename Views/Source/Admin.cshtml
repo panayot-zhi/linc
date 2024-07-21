@@ -62,20 +62,14 @@
             <th>
                 Title
             </th>
-            <th>
+            <th class="text-center">
                 Pages
             </th>
-            @* <th> *@
-            @*     Language *@
-            @* </th> *@
             <th class="text-center">
                 Issue
             </th>
             <th class="text-center">
                 DOI
-            </th>
-            <th>
-                Updated
             </th>
             <th>
                 Created
@@ -104,27 +98,26 @@
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">
                         @Html.DisplayFor(modelItem => item.Title) 
-                    </a><br/>
+                    </a>
+                    <br/>
                     @Html.DisplayFor(modelItem => item.TitleNotes)
                 </td>
-                <td>
+                <td class="text-center">
+                    <a href="@Url.Action("LoadIssueDocument", "Document", new { issueId = item.IssueId })#page=@item.StartingPdfPage" target="_blank">
+                        @item.StartingIndexPage
+                    </a>
+                    <br />
                     <a href="@Url.Action("LoadSourceDocument", "Document", new { sourceId = item.Id })" target="_blank">
-                        @Html.DisplayFor(modelItem => item.StartingIndexPage)
+                        @Html.DisplayFor(modelItem => item.StartingPdfPage)-@Html.DisplayFor(modelItem => item.LastPdfPage)
                     </a>
                 </td>
-                @* <td> *@
-                @*     @SiteConstant.SupportedCultures[item.LanguageId] *@
-                @* </td> *@
                 <td class="text-center">
                     <a asp-action="Details" asp-controller="Issue" asp-route-id="@item.IssueId">
-                            @IIssueService.DisplayIssueLabelInformation(item.Issue.IssueNumber, item.Issue.ReleaseYear)
+                        @IIssueService.DisplayIssueLabelInformation(item.Issue.IssueNumber, item.Issue.ReleaseYear)
                     </a>
                 </td>
                 <td class="text-center">
                     @Html.DisplayFor(modelItem => item.HasDOI)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.LastUpdated)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.DateCreated)
