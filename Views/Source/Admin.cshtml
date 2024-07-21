@@ -108,7 +108,7 @@
                     </a>
                     <br />
                     <a href="@Url.Action("LoadSourceDocument", "Document", new { sourceId = item.Id })" target="_blank">
-                        @item.StartingPdfPage-@item.LastPdfPage
+                        @Html.DisplayFor(modelItem => item.StartingPdfPage)-@Html.DisplayFor(modelItem => item.LastPdfPage)
                     </a>
                 </td>
                 <td class="text-center">

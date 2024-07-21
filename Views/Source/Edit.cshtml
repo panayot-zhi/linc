@@ -164,7 +164,7 @@
                             <select asp-for="IssueId" asp-items="@Model.Issues" class="form-select" disabled="disabled"></select>
                             <a type="button" href="@Url.Action("Details", "Issue", new { id = Model.IssueId })" class="btn btn-outline-secondary" target="_blank">@HtmlLocalizer["SourceCreate_IssueId"]</a>
                         </div>
-
+                        
                         @{
                             var chosenIssue = Model.Issues.First(x => x.Selected).Text;
                             var issueDetailsLink = Url.Action("Details", "Issue", new { id = Model.IssueId });
