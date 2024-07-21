@@ -105,7 +105,7 @@ public class ContentService : IContentService
             return new List<SourceSuggestionViewModel>();
         }
 
-        var lastIssue = _dbContext.Issues.Max(x => x.Id);
+        var lastIssue = _dbContext.Issues.Where(x => x.IsAvailable).Max(x => x.Id);
         var sources = _dbContext.Sources
             .Include(x => x.Issue)
             .Where(x => x.IssueId == lastIssue)
@@ -145,7 +145,7 @@ public class ContentService : IContentService
                 new { id = x.IssueId });
 
             x.IssueInformation = _localizationService["SourceSuggestion_IssueInformation_Template",
-                issueDetailsLink, x.IssueNumber, x.IssueYear, sourceIssueLink, $"{x.StartingIndexPage}-{x.LastIndexPage}"].Value;
+                issueDetailsLink, IIssueService.DisplayIssueLabelInformation(x.IssueNumber, x.IssueYear), sourceIssueLink, $"{x.StartingIndexPage}-{x.LastIndexPage}"].Value;
 
             x.SourceLink =
                 // NOTE: link to the source pdf itself

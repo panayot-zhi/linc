@@ -89,7 +89,7 @@
                                         <p class="source-orgin">
                                             <small>
                                                 <a asp-controller="Issue" asp-action="Details" asp-route-id="@source.IssueId">
-                                                    @source.Issue.IssueNumber / @source.Issue.ReleaseYear
+                                                    @IIssueService.DisplayIssueLabelInformation(source.Issue.IssueNumber, source.Issue.ReleaseYear)
                                                 </a>
                                             </small>
                                         </p>

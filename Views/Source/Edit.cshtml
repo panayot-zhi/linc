@@ -1,4 +1,5 @@
-﻿@model SourceUpdateViewModel
+﻿@using Org.BouncyCastle.Asn1.Ocsp
+@model SourceUpdateViewModel
 
 @* TODO: Localize *@
 
@@ -168,6 +169,21 @@
                             <select asp-for="IssueId" asp-items="@Model.Issues" class="form-select" disabled="disabled"></select>
                             <a type="button" href="@Url.Action("Details", "Issue", new { id = Model.IssueId })" class="btn btn-outline-secondary" target="_blank">@HtmlLocalizer["SourceCreate_IssueId"]</a>
                         </div>
+                        <span class="text-muted">
+                            @{
+                                var chosenIssue = Model.Issues.First(x => x.Selected).Text;
+                                var issueDetailsLink = Url.Action("Details", "Issue", new { id = Model.IssueId });
+                                var sourceIssueLink = Url.Action(
+                                    action: "LoadIssueDocument", 
+                                    controller: "Document", 
+                                    values: new { id = Model.IssueId },
+                                    protocol: Context.Request.Protocol,
+                                    host: Context.Request.Host.Host,
+                                    fragment: $"#page={Model.StartingPdfPage}");
+                            }
+                            @HtmlLocalizer["SourceSuggestion_IssueInformation_Template",
+                                     issueDetailsLink, chosenIssue, sourceIssueLink, $"{Model.StartingIndexPage}-{Model.LastIndexPage}"]
+                        </span>
                     </div>
                 </div>
             </div>

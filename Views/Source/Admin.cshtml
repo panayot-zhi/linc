@@ -117,7 +117,7 @@
                 @* </td> *@
                 <td class="text-center">
                     <a asp-action="Details" asp-controller="Issue" asp-route-id="@item.IssueId">
-                        @Html.DisplayFor(modelItem => item.Issue.IssueNumber) / @Html.DisplayFor(modelItem => item.Issue.ReleaseYear)
+                            @IIssueService.DisplayIssueLabelInformation(item.Issue.IssueNumber, item.Issue.ReleaseYear)
                     </a>
                 </td>
                 <td class="text-center">

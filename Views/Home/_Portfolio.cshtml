@@ -39,7 +39,7 @@
                         {
                             <pre class="pt-2">@issue.Description</pre>
                         }
-                        <a href="@issue.CoverPageRelativePath" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="@HtmlLocalizer["Issue_Zoom_Label", issue.IssueNumber, issue.ReleaseYear]">
+                        <a href="@issue.CoverPageRelativePath" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="@HtmlLocalizer["Issue_Zoom_Label", IIssueService.DisplayIssueLabelInformation(issue.IssueNumber, issue.ReleaseYear)]">
                             <i class="bx bx-zoom-in"></i>
                         </a>
                         <a asp-controller="Issue" asp-action="Details" asp-route-id="@issue.Id" class="details-link" title="@HtmlLocalizer["Issue_Details_Label"]">

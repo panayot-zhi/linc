@@ -153,7 +153,7 @@ namespace linc.Services
                 .Select(group => new SourceCountByIssues
                 {
                     IssueId = group.Key,
-                    IssueTitle = $"{group.First().Issue.IssueNumber}/{group.First().Issue.DateCreated.Year}",
+                    IssueTitle = IIssueService.DisplayIssueLabelInformation(group.First().Issue.IssueNumber, group.First().Issue.DateCreated.Year),
                     Count = group.Count()
                 }).ToListAsync();
         }
@@ -190,6 +190,8 @@ namespace linc.Services
                 FirstName = input.FirstName,
                 LastName = input.LastName,
                 AuthorNotes = input.AuthorNotes,
+
+                DOI = input.DOI,
 
                 StartingPdfPage = startingPage,
                 LastPdfPage = lastPage,
