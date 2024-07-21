@@ -1701,4 +1701,10 @@ The manuscript file must have a .doc or .docx extension.</value>
   <data name="SourceCreate_StartingIndexPage" xml:space="preserve">
     <value>Starting page (in index)</value>
   </data>
+  <data name="DateCreated_Label" xml:space="preserve">
+    <value>Date created</value>
+  </data>
+  <data name="LastUpdated_Label" xml:space="preserve">
+    <value>Last updated</value>
+  </data>
 </root>

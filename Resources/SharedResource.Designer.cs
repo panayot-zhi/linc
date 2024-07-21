@@ -1050,6 +1050,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Дата на създаване.
+        /// </summary>
+        public static string DateCreated_Label {
+            get {
+                return ResourceManager.GetString("DateCreated_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Изтрий.
         /// </summary>
         public static string Delete_Button_Label {
@@ -2497,6 +2506,15 @@ namespace linc.Resources {
         public static string JournalDossier_StatusUpdated {
             get {
                 return ResourceManager.GetString("JournalDossier_StatusUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Посл. промяна.
+        /// </summary>
+        public static string LastUpdated_Label {
+            get {
+                return ResourceManager.GetString("LastUpdated_Label", resourceCulture);
             }
         }
         

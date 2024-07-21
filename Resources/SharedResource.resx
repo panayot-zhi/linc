@@ -1699,4 +1699,10 @@
   <data name="SourceCreate_StartingIndexPage" xml:space="preserve">
     <value>Начална страница (по съдържание)</value>
   </data>
+  <data name="DateCreated_Label" xml:space="preserve">
+    <value>Дата на създаване</value>
+  </data>
+  <data name="LastUpdated_Label" xml:space="preserve">
+    <value>Посл. промяна</value>
+  </data>
 </root>
