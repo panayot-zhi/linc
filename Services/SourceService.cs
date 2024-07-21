@@ -118,7 +118,7 @@ namespace linc.Services
                 .AsQueryable();
 
             query = query
-                .OrderBy(x => x.Issue.ReleaseDate)
+                .OrderByDescending(x => x.Issue.ReleaseDate)
                 .ThenBy(x => x.StartingPdfPage);
 
             var count = await query.CountAsync();
