@@ -46,7 +46,6 @@ namespace linc.Services
             var query = sourcesDbSet
                 .Include(x => x.Issue)
                 .Where(x => !x.IsSection)
-                .Where(x => !x.IsTheme)
                 .AsQueryable();
 
             if (issueId.HasValue)
