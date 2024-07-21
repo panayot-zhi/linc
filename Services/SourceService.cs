@@ -200,6 +200,9 @@ namespace linc.Services
                 Title = input.Title,
                 TitleNotes = input.TitleNotes,
 
+                IsTheme = input.IsTheme,
+                IsSection = input.IsSection,
+
                 LanguageId = input.LanguageId,
                 IssueId = issueId,
                 AuthorId = authorId,
