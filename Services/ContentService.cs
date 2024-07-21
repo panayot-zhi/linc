@@ -105,7 +105,7 @@ public class ContentService : IContentService
             return new List<SourceSuggestionViewModel>();
         }
 
-        var lastIssue = _dbContext.Issues.Max(x => x.Id);
+        var lastIssue = _dbContext.Issues.Where(x => x.IsAvailable).Max(x => x.Id);
         var sources = _dbContext.Sources
             .Include(x => x.Issue)
             .Where(x => x.IssueId == lastIssue)
