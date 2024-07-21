@@ -39,10 +39,10 @@ namespace linc.Models.ViewModels.Source
 
 
         [Display(Name = "SourceCreate_StartingPage", ResourceType = typeof(Resources.SharedResource))]
-        public int? StartingPage { get; set; }
+        public int? StartingPdfPage { get; set; }
 
         [Display(Name = "SourceCreate_LastPage", ResourceType = typeof(Resources.SharedResource))]
-        public int? LastPage { get; set; }
+        public int? LastPdfPage { get; set; }
 
 
 

@@ -161,8 +161,8 @@ namespace linc.Services
         public async Task<int> CreateSourceAsync(SourceCreateViewModel input)
         {
             // validation should guard these from being nulls
-            var startingPage = input.StartingPage!.Value;
-            var lastPage = input.LastPage!.Value;
+            var startingPage = input.StartingPdfPage!.Value;
+            var lastPage = input.LastPdfPage!.Value;
             var issueId = input.IssueId!.Value;
 
             await using var transaction = await _context.Database.BeginTransactionAsync();
