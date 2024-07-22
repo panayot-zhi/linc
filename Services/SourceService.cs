@@ -248,13 +248,21 @@ namespace linc.Services
 
         public async Task DeleteSourceAsync(int id)
         {
-            // TODO: perform cleanup of everything related to the source
             var source = await _context.Sources.FindAsync(id);
 
             ArgumentNullException.ThrowIfNull(source);
 
-            _context.Sources.Remove(source);
-            await _context.SaveChangesAsync();
+            // If this is the last PDF document connected to a source it
+            // will automatically delete the source because of cascading deletion:
+            // no source can exist without a corresponding pdf file
+            var documentDeleted = await _documentService.DeleteDocumentAsync(source.PdfId);
+            if (!documentDeleted)
+            {
+                // If the document was not deleted, because it is connected to other sources
+                // we need to still perform remove of the source from the database
+                _context.Sources.Remove(source);
+                await _context.SaveChangesAsync();
+            }
         }
 
         private async Task<ApplicationDocument> GenerateSourcePdf(ApplicationIssue issue, int startingPage, int lastPage)
@@ -265,42 +273,45 @@ namespace linc.Services
             var releaseYear = issue.ReleaseYear;
 
             const ApplicationDocumentType type = ApplicationDocumentType.SourcePdf;
-            var fileName = $"{issue.ReleaseYear}-{issueNumber.ToString().PadLeft(3, '0')}-{HelperFunctions.ToKebabCase(type.ToString())}-{startingPage}";
+            var fileName = $"{issue.ReleaseYear}-{issueNumber.ToString().PadLeft(3, '0')}-{HelperFunctions.ToKebabCase(type.ToString())}-{startingPage}-{lastPage}";
 
             var rootFolderPath = Path.Combine(_config.RepositoryPath, SiteConstant.IssuesFolderName);
             var directoryPath = Path.Combine(rootFolderPath, releaseYear.ToString());
             var filePath = Path.Combine(directoryPath, $"{fileName}.pdf");
 
-            if (!File.Exists(filePath))
-            {
-                await using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    var document = new Document();
-                    var issuePdfReader = new PdfReader(issuePdfPath);
-                    var pdfWriter = new PdfCopy(document, stream);
-
-                    document.Open();
-
-                    // Loop through the specified range and add the pages to the new document
-                    for (var pageNumber = startingPage; pageNumber <= lastPage; pageNumber++)
-                    {
-                        var page = pdfWriter.GetImportedPage(issuePdfReader, pageNumber);
-                        pdfWriter.AddPage(page);
-                    }
-
-                    document.Close();
-                    pdfWriter.Close();
-                    issuePdfReader.Close();
-                }
-            }
-            else
-            {
-                _logger.LogWarning("SourcePdf could not be generated, because the file at the specified location already exists {FilePath}.{NewLine}" +
-                                   "This can occur when two sources point to the same part of the pdf.",
-                    filePath, Environment.NewLine);
-            }
-
             var relativePath = Path.Combine(SiteConstant.IssuesFolderName, releaseYear.ToString(), $"{fileName}.pdf");
+
+            if (File.Exists(filePath))
+            {
+                _logger.LogWarning(
+                    "SourcePdf could not be generated, because the file at the specified location already exists {FilePath}.{NewLine}" +
+                    "This can occur when two sources point to the same part of the pdf. Linking the same database document...",
+                    filePath, Environment.NewLine);
+
+                return _context.Documents.First(x =>
+                    x.RelativePath == relativePath);
+
+            }
+
+            await using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                var document = new Document();
+                var issuePdfReader = new PdfReader(issuePdfPath);
+                var pdfWriter = new PdfCopy(document, stream);
+
+                document.Open();
+
+                // Loop through the specified range and add the pages to the new document
+                for (var pageNumber = startingPage; pageNumber <= lastPage; pageNumber++)
+                {
+                    var page = pdfWriter.GetImportedPage(issuePdfReader, pageNumber);
+                    pdfWriter.AddPage(page);
+                }
+
+                document.Close();
+                pdfWriter.Close();
+                issuePdfReader.Close();
+            }
 
             var entry = new ApplicationDocument()
             {
@@ -332,20 +343,21 @@ namespace linc.Services
             var relativePath = Path.Combine(SiteConstant.IssuesFolderName, releaseYear.ToString(),
                 $"{fileName}.{fileExtension}");
 
-            if (!File.Exists(filePath))
+            if (File.Exists(filePath))
             {
-                await using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    await inputFile.CopyToAsync(fileStream);
-                }
-            }
-            else
-            {
-                _logger.LogWarning("SourcePdf could not be saved, because the file at the specified location already exists {FilePath}.{NewLine}" +
-                                   "This can occur when two sources point to the same part of the pdf.",
+                _logger.LogWarning(
+                    "SourcePdf could not be saved, because the file at the specified location already exists {FilePath}.{NewLine}" +
+                    "This can occur when two sources point to the same part of the pdf. Linking the same database document...",
                     filePath, Environment.NewLine);
+
+                return _context.Documents.First(x => 
+                    x.RelativePath == relativePath);
             }
 
+            await using (var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                await inputFile.CopyToAsync(fileStream);
+            }
 
             var entry = new ApplicationDocument()
             {

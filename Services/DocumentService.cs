@@ -1,6 +1,8 @@
 ﻿using linc.Contracts;
 using linc.Data;
 using linc.Models.ConfigModels;
+using linc.Utility;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
 namespace linc.Services
@@ -37,6 +39,31 @@ namespace linc.Services
             _logger.LogWarning("Could not find physical file for document {@Document}", document);
 
             return null;
+        }
+
+        public async Task<bool> DeleteDocumentAsync(int documentId)
+        {
+            var document = _context.Documents
+                .Include(x => x.Sources)
+                .FirstOrDefault(x => x.Id == documentId);
+
+            ArgumentNullException.ThrowIfNull(document);
+
+            if (document.Sources.Count > 1)
+            {
+                _logger.LogWarning("Document is connected to more than one source. Skipping deletion.");
+                return false;
+            }
+
+            var repositoryPath = _config.RepositoryPath;
+            var filePath = Path.Combine(repositoryPath, document.RelativePath);
+
+            File.Delete(filePath);
+
+            _context.Documents.Remove(document);
+            await _context.SaveChangesAsync();
+
+            return true;
         }
     }
 }

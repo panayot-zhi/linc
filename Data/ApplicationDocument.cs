@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using linc.Models.Enumerations;
+using Microsoft.EntityFrameworkCore;
 
 namespace linc.Data
 {
+    [Index(nameof(RelativePath), IsUnique = true)]
     public class ApplicationDocument
     {
         public int Id { get; set; }
@@ -37,7 +39,7 @@ namespace linc.Data
 
         #region Navigation
 
-        public ApplicationSource Source { get; set; }
+        public ICollection<ApplicationSource> Sources { get; set; }
 
         public ICollection<ApplicationDossier> Dossiers { get; set; }
 

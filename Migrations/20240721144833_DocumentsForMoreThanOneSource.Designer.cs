@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using linc.Data;
 
@@ -10,9 +11,10 @@ using linc.Data;
 namespace linc.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240721144833_DocumentsForMoreThanOneSource")]
+    partial class DocumentsForMoreThanOneSource
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -110,10 +112,6 @@ namespace linc.Migrations
 
                     b.HasKey("Id")
                         .HasName("pk_documents");
-
-                    b.HasIndex("RelativePath")
-                        .IsUnique()
-                        .HasDatabaseName("ix_documents_relative_path");
 
                     b.ToTable("documents", (string)null);
                 });
@@ -1135,7 +1133,7 @@ namespace linc.Migrations
                         .HasConstraintName("fk_sources_languages_language_id");
 
                     b.HasOne("linc.Data.ApplicationDocument", "Pdf")
-                        .WithMany("Sources")
+                        .WithMany()
                         .HasForeignKey("PdfId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
@@ -1289,11 +1287,6 @@ namespace linc.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_asp_net_user_tokens_asp_net_users_user_id");
-                });
-
-            modelBuilder.Entity("linc.Data.ApplicationDocument", b =>
-                {
-                    b.Navigation("Sources");
                 });
 
             modelBuilder.Entity("linc.Data.ApplicationDossier", b =>

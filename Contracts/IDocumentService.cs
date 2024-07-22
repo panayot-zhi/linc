@@ -7,5 +7,7 @@ namespace linc.Contracts
         Task<ApplicationDocument> GetDocumentAsync(int id);
 
         string GetDocumentFilePath(ApplicationDocument document);
+
+        Task<bool> DeleteDocumentAsync(int documentId);
     }
 }
