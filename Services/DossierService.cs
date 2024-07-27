@@ -36,6 +36,7 @@ namespace linc.Services
 
             public const string DocumentUploaded = $"{Prefix}_{nameof(DocumentUploaded)}";
             public const string DocumentReUploaded = $"{Prefix}_{nameof(DocumentReUploaded)}";
+            public const string DocumentDeleted = $"{Prefix}_{nameof(DocumentDeleted)}";
             public const string ClearedAssignment = $"{Prefix}_{nameof(ClearedAssignment)}";
         }
 
@@ -205,9 +206,33 @@ namespace linc.Services
                 Editors = GetEditors(dossier.AssignedToId),
                 Reviewers = GetReviewers(),
 
+                CanAttachAgreement = CanAttachAgreement(dossier),
+                CanDeleteAgreement = CanDeleteAgreement(dossier)
+
             };
 
             return viewModel;
+        }
+
+        private static bool CanAttachAgreement(ApplicationDossier dossier)
+        {
+            // if we haven't got an agreement yet
+            return dossier.Agreement is null &&
+                   // and if the status of the dossier is not Accepted or AcceptedWithCorrections
+                   // because in this status we send the declaration to the user for signing, so we await for it
+                   dossier.Status is not ApplicationDossierStatus.Accepted or 
+                       ApplicationDossierStatus.AcceptedWithCorrections;
+        }
+
+        private static bool CanDeleteAgreement(ApplicationDossier dossier)
+        {
+            // if we have an agreement
+            return dossier.Agreement is not null &&
+                   // and if the status of the dossier is not Accepted or AcceptedWithCorrections
+                   // because in this status we send the declaration to the user for signing
+                   // and a signed declaration from a user cannot be deleted
+                   dossier.Status is not ApplicationDossierStatus.Accepted or
+                       ApplicationDossierStatus.AcceptedWithCorrections;
         }
 
         public async Task<ApplicationDossier> GetDossierAsync(int id)
@@ -713,11 +738,48 @@ namespace linc.Services
             await _emailSender.SendEmailAsync(emailDescriptor);
         }
 
+        public async Task DeleteAgreementAsync(ApplicationDossier dossier)
+        {
+            await DeleteDossierDocument(dossier, dossier.Agreement);
+
+            var currentUserId = GetCurrentUserId();
+            dossier.Journals.Add(new DossierJournal
+            {
+                PerformedById = currentUserId,
+                Message = JournalEntryKeys.DocumentDeleted,
+                MessageArguments = new[]
+                {
+                    "DocumentType_Agreement"
+                }
+            });
+
+            await _context.SaveChangesAsync();
+        }
+
         private async Task UpdateDossierPropertiesAsync(ApplicationDossier dossier, DossierEditViewModel input)
         {
             if (dossier.AssignedToId != input.AssigneeId)
             {
                 await UpdateAssigneeAsync(dossier.Id, input.AssigneeId);
+            }
+
+            if (input.AgreementDocument is not null)
+            {
+                // allow uploading of an agreement document
+                var document = await SaveDossierDocumentAsync(input.AgreementDocument, dossier.Id, ApplicationDocumentType.Agreement);
+                
+                dossier.Documents.Add(document);
+                
+                var currentUserId = GetCurrentUserId();
+                dossier.Journals.Add(new DossierJournal
+                {
+                    PerformedById = currentUserId,
+                    Message = JournalEntryKeys.DocumentUploaded,
+                    MessageArguments = new[]
+                    {
+                        "DocumentType_Agreement"
+                    }
+                });
             }
 
             // NOTE: if need be add statements for other properties here...

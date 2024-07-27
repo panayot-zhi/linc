@@ -292,7 +292,7 @@ namespace linc.Controllers
             return Redirect("/");
         }
 
-        [HttpDelete("dossier/{id:int}/agreement")]
+        [HttpPost("dossier/{id:int}/delete-agreement")]
         [ValidateAntiForgeryToken]
         [SiteAuthorize(SiteRole.HeadEditor)]
         public async Task<IActionResult> DeleteAgreement(int id)
@@ -303,18 +303,7 @@ namespace linc.Controllers
                 return NotFound();
             }
 
-            await _documentService.DeleteDocumentAsync(dossier.Agreement.Id);
-
-            var currentUserId = User.GetUserId();
-            dossier.Journals.Add(new DossierJournal
-            {
-                PerformedById = currentUserId,
-                Message = DossierService.JournalEntryKeys.DocumentDeleted,
-                MessageArguments = new[]
-                {
-                    "DocumentType_Agreement"
-                }
-            });
+            await _dossierService.DeleteAgreementAsync(dossier);
 
             return RedirectToAction("Edit", new { id = dossier.Id });
         }
