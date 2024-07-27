@@ -4,6 +4,7 @@ using System.Text.Json;
 using linc.Contracts;
 using linc.Models.ConfigModels;
 using linc.Models.ViewModels.Emails;
+using linc.Utility;
 using MailKit.Net.Smtp;
 using MailKit.Security;
 using Microsoft.Extensions.Options;
@@ -69,16 +70,35 @@ namespace linc.Services
 
             foreach (var email in siteEmailDescriptor.Emails)
             {
+                if (!_env.IsProduction())
+                {
+                    // send to self
+                    mimeMessage.To.Add(MailboxAddress.Parse(SiteConstant.AdministratorEmail));
+                    continue;
+                }
+
                 mimeMessage.To.Add(MailboxAddress.Parse(email));
             }
 
             foreach (var email in siteEmailDescriptor.CcEmails)
             {
+                if (!_env.IsProduction())
+                {
+                    // send to self
+                    mimeMessage.To.Add(MailboxAddress.Parse(SiteConstant.AdministratorEmail));
+                    continue;
+                }
+
                 mimeMessage.Cc.Add(MailboxAddress.Parse(email));
             }
 
             foreach (var email in siteEmailDescriptor.BccEmails.Union(EmailConfig.BlindCarbonCopies))
             {
+                if (!_env.IsProduction())
+                {
+                    continue;
+                }
+
                 mimeMessage.Bcc.Add(MailboxAddress.Parse(email));
             }
 
