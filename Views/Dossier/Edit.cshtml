@@ -97,14 +97,12 @@
                         </a>
                     </li>
                 }
-                else
-                {
-                    <li>
-                        <a asp-action="Details" asp-route-id="@Model.Id">
-                            @HtmlLocalizer["Dossier_BackToDetails_Label"]
-                        </a>
-                    </li>
-                }
+
+                <li>
+                    <a asp-action="Details" asp-route-id="@Model.Id">
+                        @HtmlLocalizer["Dossier_BackToDetails_Label"]
+                    </a>
+                </li>
 
             </ul>
 
