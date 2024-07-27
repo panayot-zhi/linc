@@ -1713,4 +1713,13 @@ The manuscript file must have a .doc or .docx extension.</value>
   <data name="JournalDossier_DocumentDeleted" xml:space="preserve">
     <value>Deleted document of type '{0}'.</value>
   </data>
+  <data name="DossierEdit_Agreement" xml:space="preserve">
+    <value>Attach a publication agreement</value>
+  </data>
+  <data name="DossierEdit_ConfirmDeleteAgreement" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DossierEdit_ConfirmDeleteAgreement_Title" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
 </root>
