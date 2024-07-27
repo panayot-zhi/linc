@@ -1705,4 +1705,10 @@
   <data name="LastUpdated_Label" xml:space="preserve">
     <value>Посл. промяна</value>
   </data>
+  <data name="DossierStatus_Published" xml:space="preserve">
+    <value>Публикуван</value>
+  </data>
+  <data name="JournalDossier_DocumentDeleted" xml:space="preserve">
+    <value>Изтрит документ от тип '{0}'.</value>
+  </data>
 </root>

@@ -1707,4 +1707,10 @@ The manuscript file must have a .doc or .docx extension.</value>
   <data name="LastUpdated_Label" xml:space="preserve">
     <value>Last updated</value>
   </data>
+  <data name="DossierStatus_Published" xml:space="preserve">
+    <value>Published</value>
+  </data>
+  <data name="JournalDossier_DocumentDeleted" xml:space="preserve">
+    <value>Deleted document of type '{0}'.</value>
+  </data>
 </root>

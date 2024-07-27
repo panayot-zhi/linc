@@ -1689,6 +1689,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Публикуван.
+        /// </summary>
+        public static string DossierStatus_Published {
+            get {
+                return ResourceManager.GetString("DossierStatus_Published", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Отхвърлен.
         /// </summary>
         public static string DossierStatus_Rejected {
@@ -2470,6 +2479,15 @@ namespace linc.Resources {
         public static string JournalDossier_Created {
             get {
                 return ResourceManager.GetString("JournalDossier_Created", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изтрит документ от тип &apos;{0}&apos;..
+        /// </summary>
+        public static string JournalDossier_DocumentDeleted {
+            get {
+                return ResourceManager.GetString("JournalDossier_DocumentDeleted", resourceCulture);
             }
         }
         
