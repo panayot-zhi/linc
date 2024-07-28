@@ -4,9 +4,8 @@ using linc.Data;
 using linc.Models.Enumerations;
 using linc.Utility;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace linc.Areas.Identity.Pages.Account.Manage
 {
@@ -46,8 +45,13 @@ namespace linc.Areas.Identity.Pages.Account.Manage
         [TempData]
         public string StatusMessage { get; set; }
 
+        public List<SelectListItem> SupportedLanguages { get; set; }
+
         public class InputModel
         {
+            [Display(Name = "ManagePreferences_PreferredLanguageId", ResourceType = typeof(Resources.SharedResource))]
+            public int PreferredLanguageId { get; set; }
+
             [Display(Name = "ManagePreferences_DisplayNameType", ResourceType = typeof(Resources.SharedResource))]
             public UserDisplayNameType DisplayNameType { get; set; }
 
@@ -66,6 +70,7 @@ namespace linc.Areas.Identity.Pages.Account.Manage
         {
             Input = new InputModel
             {
+                PreferredLanguageId = user.PreferredLanguageId,
                 DisplayEmail = user.DisplayEmail,
                 DisplayNameType = user.DisplayNameType,
                 Description = user.Description,
@@ -77,8 +82,15 @@ namespace linc.Areas.Identity.Pages.Account.Manage
             Email = user.Email;
 
             CurrentDisplayName = user.GetDisplayName(LocalizationService);
-
             IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
+            SupportedLanguages = SiteConstant.SupportedCultures.Select(x => new SelectListItem()
+            {
+                Value = x.Key.ToString(),
+                Text = x.Value,
+
+                Selected = x.Key == user.PreferredLanguageId
+
+            }).ToList();
         }
 
         public async Task<IActionResult> OnGetAsync()
@@ -116,7 +128,14 @@ namespace linc.Areas.Identity.Pages.Account.Manage
             user.DisplayEmail = Input.DisplayEmail;
             user.DisplayNameType = Input.DisplayNameType;
             user.CurrentProfile.Description = Input.Description;    // todo
+            
             user.Subscribed = Input.Subscribed;
+
+            if (Input.PreferredLanguageId != user.PreferredLanguageId)
+            {
+                user.PreferredLanguageId = Input.PreferredLanguageId;
+                Response.SetCurrentLanguage(user.PreferredLanguageId);
+            }
 
             var result = await _userManager.UpdateAsync(user);
             if (!result.Succeeded)

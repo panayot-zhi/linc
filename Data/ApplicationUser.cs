@@ -48,6 +48,9 @@ namespace linc.Data
 
         #region Navigation
 
+        // TODO: figure out what to use preferred language for
+        // - when sending emails
+
         [ForeignKey(nameof(PreferredLanguage))]
         public int PreferredLanguageId { get; set; } = SiteConstant.BulgarianCulture.Key;
 
