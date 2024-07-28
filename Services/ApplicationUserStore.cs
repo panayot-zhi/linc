@@ -11,25 +11,11 @@ public class ApplicationUserStore : UserStore<ApplicationUser>, IApplicationUser
     {
     }
 
-    public async Task UpdateUserProfiles(ApplicationUser user, ApplicationUserProfile[] profiles)
+    public async Task UpdateUserProfiles(ApplicationUser user)
     {
-        foreach (var profile in profiles)
+        foreach (var profile in user.Profiles)
         {
-            var userProfile = user.Profiles.First(x =>
-                x.UserId == user.Id && x.LanguageId == profile.LanguageId);
-
-            Context.Attach(userProfile);
-
-            if (userProfile.FirstName != profile.FirstName)
-                userProfile.FirstName = profile.FirstName;
-
-            if (userProfile.LastName != profile.LastName)
-                userProfile.LastName = profile.LastName;
-
-            if (userProfile.Description != profile.Description)
-                userProfile.Description = profile.Description;
-
-            Context.Update(userProfile);
+            Context.Attach(profile);
         }
 
         await Context.SaveChangesAsync();

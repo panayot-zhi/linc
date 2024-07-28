@@ -14,11 +14,11 @@ public class ApplicationUserManager : UserManager<ApplicationUser>
         _applicationUserStore = store;
     }
 
-    public virtual async Task<IdentityResult> UpdateUserProfiles(ApplicationUser user, ApplicationUserProfile[] profiles)
+    public virtual async Task<IdentityResult> UpdateUserProfiles(ApplicationUser user)
     {
         ThrowIfDisposed();
         ArgumentNullException.ThrowIfNull(user);
-        await _applicationUserStore.UpdateUserProfiles(user, profiles);
+        await _applicationUserStore.UpdateUserProfiles(user);
         await UpdateSecurityStampAsync(user);
         return await UpdateUserAsync(user);
     }

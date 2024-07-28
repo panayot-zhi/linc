@@ -5,6 +5,6 @@ namespace linc.Contracts
 {
     public interface IApplicationUserStore : IUserStore<ApplicationUser>
     {
-        Task UpdateUserProfiles(ApplicationUser user, ApplicationUserProfile[] profiles);
+        Task UpdateUserProfiles(ApplicationUser user);
     }
 }
