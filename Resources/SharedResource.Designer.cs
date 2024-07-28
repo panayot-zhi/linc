@@ -3176,6 +3176,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Предпочитан език.
+        /// </summary>
+        public static string ManagePreferences_PreferredLanguageId {
+            get {
+                return ResourceManager.GetString("ManagePreferences_PreferredLanguageId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Абонирай ме за известия (по email), когато излезе нов брой.
         /// </summary>
         public static string ManagePreferences_Subscribed {

@@ -1722,4 +1722,7 @@ The manuscript file must have a .doc or .docx extension.</value>
   <data name="DossierEdit_ConfirmDeleteAgreement_Title" xml:space="preserve">
     <value>Confirm</value>
   </data>
+  <data name="ManagePreferences_PreferredLanguageId" xml:space="preserve">
+    <value>Preferred language</value>
+  </data>
 </root>

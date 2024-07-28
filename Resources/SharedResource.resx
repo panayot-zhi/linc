@@ -1720,4 +1720,7 @@
   <data name="JournalDossier_DocumentDeleted" xml:space="preserve">
     <value>Изтрит документ от тип '{0}'.</value>
   </data>
+  <data name="ManagePreferences_PreferredLanguageId" xml:space="preserve">
+    <value>Предпочитан език</value>
+  </data>
 </root>
