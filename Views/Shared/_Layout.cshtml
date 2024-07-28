@@ -11,7 +11,8 @@
 
 @{
     var requestCulture = Context.Features.Get<IRequestCultureFeature>();
-    var currentCulture = requestCulture?.RequestCulture.UICulture.Name ?? "bg";
+    var currentCulture = requestCulture?.RequestCulture.UICulture.Name ?? 
+                         SiteConstant.BulgarianCulture.Value;
 }
 
 <!DOCTYPE html>
