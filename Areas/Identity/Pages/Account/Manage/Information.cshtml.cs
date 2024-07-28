@@ -115,7 +115,7 @@ namespace linc.Areas.Identity.Pages.Account.Manage
 
             user.DisplayEmail = Input.DisplayEmail;
             user.DisplayNameType = Input.DisplayNameType;
-            user.Description = Input.Description;
+            user.CurrentProfile.Description = Input.Description;    // todo
             user.Subscribed = Input.Subscribed;
 
             var result = await _userManager.UpdateAsync(user);

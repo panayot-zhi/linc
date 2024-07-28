@@ -104,8 +104,9 @@ namespace linc.Areas.Identity.Pages.Account.Manage
                 return Page();
             }
 
-            user.FirstName = Input.FirstName;
-            user.LastName = Input.LastName;
+            // todo
+            user.CurrentProfile.FirstName = Input.FirstName;
+            user.CurrentProfile.LastName = Input.LastName;
 
             var result = await _userManager.UpdateAsync(user);
             if (!result.Succeeded)

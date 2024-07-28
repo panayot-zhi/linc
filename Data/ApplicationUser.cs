@@ -9,36 +9,23 @@ namespace linc.Data
     public class ApplicationUser : IdentityUser
     {
         [PersonalData]
-        [MaxLength(1024)]
-        public string Description { get; set; }
-
-        [Required]
-        [MaxLength(255)]
-        [ProtectedPersonalData]
-        public string FirstName { get; set; }
-
-        [Required]
-        [MaxLength(255)]
-        [ProtectedPersonalData]
-        public string LastName { get; set; }
-
-        [PersonalData]
-        [MaxLength(127)]
-        public UserDisplayNameType DisplayNameType { get; set; }
-
-        [PersonalData]
         public bool DisplayEmail { get; set; }
 
         [PersonalData]
         public bool Subscribed { get; set; }
 
+        [PersonalData]
         public bool IsAuthor { get; set; }
 
+        [PersonalData]
         public bool IsReviewer { get; set; }
 
         [PersonalData]
         public DateTime? LastLogin { get; set; }
 
+        [PersonalData]
+        [MaxLength(127)]
+        public UserDisplayNameType DisplayNameType { get; set; }
 
         #region Avatar
 
@@ -61,6 +48,15 @@ namespace linc.Data
 
         #region Navigation
 
+        [ForeignKey(nameof(PreferredLanguage))]
+        public int PreferredLanguageId { get; set; } = SiteConstant.BulgarianCulture.Key;
+
+        public ApplicationLanguage PreferredLanguage { get; set; }
+
+
+        [InverseProperty(nameof(ApplicationUserProfile.User))]
+        public ICollection<ApplicationUserProfile> Profiles { get; set; }
+
         [InverseProperty(nameof(ApplicationDossier.CreatedBy))]
         public ICollection<ApplicationDossier> CreatedDossiers { get; set; }
 
@@ -74,6 +70,21 @@ namespace linc.Data
 
         #region NotMapped
 
+        [NotMapped]
+        public ApplicationUserProfile CurrentProfile => Profiles.First(x => x.LanguageId == PreferredLanguageId);
+        
+        [NotMapped]
+        [MaxLength(1024)]
+        public string Description => CurrentProfile.Description;
+        
+        [ProtectedPersonalData]
+        public string FirstName => CurrentProfile.FirstName;
+        
+        [Required]
+        [MaxLength(255)]
+        [ProtectedPersonalData]
+        public string LastName => CurrentProfile.LastName;
+        
         [NotMapped]
         [PersonalData]
         public string Names => $"{FirstName} {LastName}";
