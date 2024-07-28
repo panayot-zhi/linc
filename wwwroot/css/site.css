@@ -47,10 +47,17 @@ a.requires-confirm {
   /* keep */
 }
 
+.count-remaining-symbols {
+    height: inherit !important;
+}
+
+.remaining-symbols {
+    /* keep */
+}
+
 /* 
     Publication Agreement
 */
-
 #agreement-form label {
     padding-right: 20%;
     cursor: pointer;
