@@ -2,6 +2,7 @@
 using linc.Contracts;
 using linc.Data;
 using linc.Models.Enumerations;
+using linc.Services;
 using linc.Utility;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -11,12 +12,12 @@ namespace linc.Areas.Identity.Pages.Account.Manage
 {
     public partial class InfoModel : BasePageModel
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly ApplicationUserManager _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<InfoModel> _logger;
 
         public InfoModel(
-            UserManager<ApplicationUser> userManager,
+            ApplicationUserManager userManager,
             SignInManager<ApplicationUser> signInManager,
             ILocalizationService localizationService,
             ILogger<InfoModel> logger)
@@ -49,7 +50,10 @@ namespace linc.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
-            [Display(Name = "ManagePreferences_PreferredLanguageId", ResourceType = typeof(Resources.SharedResource))]
+            public ApplicationUserProfile[] Profiles { get; set; }
+
+
+            [Display(Name = nameof(Resources.SharedResource.ManagePreferences_PreferredLanguageId), ResourceType = typeof(Resources.SharedResource))]
             public int PreferredLanguageId { get; set; }
 
             [Display(Name = "ManagePreferences_DisplayNameType", ResourceType = typeof(Resources.SharedResource))]
@@ -57,10 +61,6 @@ namespace linc.Areas.Identity.Pages.Account.Manage
 
             [Display(Name = "ManagePreferences_DisplayEmail", ResourceType = typeof(Resources.SharedResource))]
             public bool DisplayEmail { get; set; }
-
-            [Display(Name = "ManagePreferences_Description", ResourceType = typeof(Resources.SharedResource))]
-            [MaxLength(1024, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
-            public string Description { get; set; }
 
             [Display(Name = "ManagePreferences_Subscribed", ResourceType = typeof(Resources.SharedResource))]
             public bool Subscribed { get; set; }
@@ -70,10 +70,11 @@ namespace linc.Areas.Identity.Pages.Account.Manage
         {
             Input = new InputModel
             {
+                Profiles = user.Profiles.ToArray(),
+
                 PreferredLanguageId = user.PreferredLanguageId,
                 DisplayEmail = user.DisplayEmail,
                 DisplayNameType = user.DisplayNameType,
-                Description = user.Description,
                 Subscribed = user.Subscribed
             };
 
@@ -127,8 +128,6 @@ namespace linc.Areas.Identity.Pages.Account.Manage
 
             user.DisplayEmail = Input.DisplayEmail;
             user.DisplayNameType = Input.DisplayNameType;
-            user.CurrentProfile.Description = Input.Description;    // todo
-            
             user.Subscribed = Input.Subscribed;
 
             if (Input.PreferredLanguageId != user.PreferredLanguageId)
@@ -149,6 +148,33 @@ namespace linc.Areas.Identity.Pages.Account.Manage
                 StatusMessage = ErrorStatusMessage(
                     LocalizationService["ManagePreferences_Update_ErrorStatusMessage"]
                 );
+
+                return RedirectToPage();
+            }
+
+            foreach (var profile in Input.Profiles)
+            {
+                var userProfile = user.Profiles.First(x =>
+                    x.LanguageId == profile.LanguageId);
+
+                if (userProfile.Description != profile.Description)
+                    userProfile.Description = profile.Description;
+            }
+
+            result = await _userManager.UpdateUserProfiles(user);
+
+            if (!result.Succeeded)
+            {
+                if (result.Errors.Any())
+                {
+                    ModelState.AddIdentityErrors(result.Errors);
+                    return Page();
+                }
+
+                StatusMessage = ErrorStatusMessage(
+                    LocalizationService["ManagePreferences_Update_ErrorStatusMessage"]
+                );
+
                 return RedirectToPage();
             }
 

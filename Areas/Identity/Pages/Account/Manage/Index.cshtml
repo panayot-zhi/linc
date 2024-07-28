@@ -51,13 +51,25 @@
 
                         <div class="form-floating">
                             <input asp-for="Input.Profiles[index].FirstName" class="form-control"/>
-                            <label asp-for="Input.Profiles[index].FirstName" class="form-label"></label>
+                            <label asp-for="Input.Profiles[index].FirstName" class="form-label">
+                                @HtmlLocalizer["RegisterModel_FirstName"]
+                                @if (culture != currentCulture)
+                                {
+                                    @:(@HtmlLocalizer[$"InAlphabet_{culture}_Name"])
+                                }
+                            </label>
                             <span asp-validation-for="Input.Profiles[index].FirstName" class="invalid-feedback"></span>
                         </div>
 
                         <div class="form-floating">
                             <input asp-for="Input.Profiles[index].LastName" class="form-control"/>
-                            <label asp-for="Input.Profiles[index].LastName" class="form-label"></label>
+                            <label asp-for="Input.Profiles[index].LastName" class="form-label">
+                                @HtmlLocalizer["RegisterModel_LastName"]
+                                @if (culture != currentCulture)
+                                {
+                                    @:(@HtmlLocalizer[$"InAlphabet_{culture}_Name"])
+                                }
+                            </label>
                             <span asp-validation-for="Input.Profiles[index].LastName" class="invalid-feedback"></span>
                         </div>
                     </div>

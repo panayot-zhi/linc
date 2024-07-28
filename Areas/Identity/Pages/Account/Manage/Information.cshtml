@@ -1,10 +1,19 @@
 ﻿@page
 @using linc.Models.Enumerations
+@using linc.Utility
+@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.TagHelpers
 @model InfoModel
 
 @{
     ViewData["Title"] = HtmlLocalizer["ManagePreferences_Title"];
     ViewData["ActivePage"] = ManageNavPages.Information;
+}
+
+@{
+    var requestCulture = HttpContext.Features.Get<IRequestCultureFeature>();
+    var currentCulture = requestCulture?.RequestCulture.UICulture.Name ??
+                         SiteConstant.BulgarianCulture.Value;
 }
 
 <div class="row">
@@ -38,21 +47,52 @@
                     <span asp-validation-for="Input.DisplayEmail" class="invalid-feedback"></span>
                 </div>
             </div>
-
-            <div class="form-group">
-                <label asp-for="Input.Description"></label>
-                <textarea asp-for="Input.Description" class="form-control" rows="6"></textarea>
-                <span asp-validation-for="Input.Description" class="invalid-feedback"></span>
-            </div>
-
-            @*
-            <div class="form-floating">
-                <label asp-for="Input.PhoneNumber"></label>
-                <input asp-for="Input.PhoneNumber" class="form-control" maxlength="14" />
-                <span asp-validation-for="Input.PhoneNumber" class="invalid-feedback"></span>
-            </div>
-            *@
             
+            <ul class="nav nav-tabs" role="tablist">
+
+                @for (var i = 0; i < SiteConstant.SupportedCultures.Count; i++)
+                {
+                    var supportedCulture = SiteConstant.SupportedCultures.ElementAt(i).Value;
+
+                    <li class="nav-item @(i == 0 ? "ms-auto" : string.Empty)" role="presentation">
+                        <button class="nav-link @(supportedCulture == currentCulture ? "active" : string.Empty)" id="display-language-@supportedCulture" data-bs-toggle="tab" data-bs-target="#language-@supportedCulture-tab-pane" type="button" role="tab" aria-controls="language-@supportedCulture-tab-pane" aria-selected="@(supportedCulture == currentCulture)">
+                            @supportedCulture
+                        </button>
+                    </li>
+                }
+
+            </ul>
+            <div class="tab-content">
+
+                @for (var i = 0; i < Model.Input.Profiles.Length; i++)
+                {
+                    var index = i;
+                    var languageId = Model.Input.Profiles[index].LanguageId;
+                    var culture = SiteConstant.SupportedCultures[languageId];
+
+                    <div class="tab-pane fade @(culture == currentCulture ? "show active" : string.Empty)" id="language-@culture-tab-pane" role="tabpanel" aria-labelledby="display-language-@culture" tabindex="0">
+
+                        <input asp-for="Input.Profiles[index].LanguageId" type="hidden" />
+                        
+                        <div class="form-floating">
+                            <textarea asp-for="Input.Profiles[index].Description" class="form-control count-remaining-symbols" rows="6"></textarea>
+                            <label asp-for="Input.Profiles[index].Description">
+                                @HtmlLocalizer["ManagePreferences_Description"]
+                                @if (culture != currentCulture)
+                                {
+                                    @:(@HtmlLocalizer[$"InAlphabet_{culture}_Name"])
+                                }
+                            </label>
+                            <span asp-validation-for="Input.Profiles[index].Description" class="invalid-feedback"></span>
+                            <div class="text-end text-muted"><span class="remaining-symbols">@(1000 - (Model.Input.Profiles[index].Description?.Length ?? 0))</span>/1000</div>
+                        </div>
+                        
+
+                    </div>
+                }
+
+            </div>
+
             <div class="form-check">
                 <input class="form-check-input" asp-for="Input.Subscribed" />
                 <label class="form-check-label" asp-for="Input.Subscribed">
@@ -84,3 +124,14 @@
 @section scripts {
     <partial name="_ValidationScripts" />
 }
+
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        let elements = document.querySelectorAll('.count-remaining-symbols');
+        elements.forEach((element) => {
+            element.addEventListener('keyup', (e) => {
+                $(e.target).parent().find(".remaining-symbols").text(1000 - e.target.value.length)
+            })
+        });                                
+    });
+</script>

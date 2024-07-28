@@ -37,24 +37,10 @@ namespace linc.Areas.Identity.Pages.Account.Manage
         [BindProperty]
         public InputModel Input { get; set; }
 
-        public class UserProfile
-        {
-            public int LanguageId  { get; set; }
-
-            // [Display(Name = "RegisterModel_FirstName", ResourceType = typeof(Resources.SharedResource))]
-            //[Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
-            [MaxLength(255, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
-            public string FirstName { get; set; }
-
-            //[Display(Name = "RegisterModel_LastName", ResourceType = typeof(Resources.SharedResource))]
-            //[Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
-            [MaxLength(255, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
-            public string LastName { get; set; }
-        }
-
         public class InputModel
         {
             public ApplicationUserProfile[] Profiles { get; set; }
+
 
             [Display(Name = "RegisterModel_UserName", ResourceType = typeof(Resources.SharedResource))]
             [MaxLength(127, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
@@ -113,7 +99,7 @@ namespace linc.Areas.Identity.Pages.Account.Manage
 
             // todo: validate
 
-            await _userManager.UpdateUserProfiles(user, Input.Profiles);
+            
 
             var result = await _userManager.UpdateAsync(user);
             if (!result.Succeeded)
@@ -166,6 +152,33 @@ namespace linc.Areas.Identity.Pages.Account.Manage
                     );
                     return RedirectToPage();
                 }
+            }
+
+            foreach (var profile in Input.Profiles)
+            {
+                var userProfile = user.Profiles.First(x => 
+                    x.LanguageId == profile.LanguageId);
+
+                if (userProfile.FirstName != profile.FirstName)
+                    userProfile.FirstName = profile.FirstName;
+
+                if (userProfile.LastName != profile.LastName)
+                    userProfile.LastName = profile.LastName;
+            }
+
+            result = await _userManager.UpdateUserProfiles(user);
+            if (!result.Succeeded)
+            {
+                if (result.Errors.Any())
+                {
+                    ModelState.AddIdentityErrors(result.Errors);
+                    return Page();
+                }
+
+                StatusMessage = ErrorStatusMessage(
+                    LocalizationService["ManageIndex_SetNames_ErrorStatusMessage"]
+                );
+                return RedirectToPage();
             }
 
             await _signInManager.RefreshSignInAsync(user);
