@@ -146,7 +146,7 @@ namespace linc.Services
 
                 viewModel.FooterLinks.Add(new()
                 {
-                    Text = _localizationService["Footer_GuidelinesPolicies_PrivacyPolicy"].Value,
+                    Text = _localizationService["Footer_GuidelinesPolicies_PrivacyPolicyAndCookies"].Value,
                     Url = GetActionLink("Privacy", "Home")
                 });
 
