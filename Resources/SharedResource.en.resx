@@ -1707,4 +1707,19 @@ The manuscript file must have a .doc or .docx extension.</value>
   <data name="LastUpdated_Label" xml:space="preserve">
     <value>Last updated</value>
   </data>
+  <data name="DossierStatus_Published" xml:space="preserve">
+    <value>Published</value>
+  </data>
+  <data name="JournalDossier_DocumentDeleted" xml:space="preserve">
+    <value>Deleted document of type '{0}'.</value>
+  </data>
+  <data name="DossierEdit_Agreement" xml:space="preserve">
+    <value>Attach a publication agreement</value>
+  </data>
+  <data name="DossierEdit_ConfirmDeleteAgreement" xml:space="preserve">
+    <value>Are you sure you want to delete the declaration attach to this dossier?</value>
+  </data>
+  <data name="DossierEdit_ConfirmDeleteAgreement_Title" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
 </root>

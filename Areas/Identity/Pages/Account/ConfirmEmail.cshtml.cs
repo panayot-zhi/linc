@@ -51,6 +51,7 @@ namespace linc.Areas.Identity.Pages.Account
             var result = await _userManager.ConfirmEmailAsync(user, code);
             if (result.Succeeded)
             {
+                // TODO: Check if user is an author
                 StatusMessage = LocalizationService["ConfirmEmail_SuccessMessage"].Value;
                 AddAlertMessage(LocalizationService["ConfirmEmail_SuccessMessage"],
                     type: AlertMessageType.Success);

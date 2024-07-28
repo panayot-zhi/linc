@@ -105,9 +105,11 @@ public class ContentService : IContentService
             return new List<SourceSuggestionViewModel>();
         }
 
+        var currentLanguageId = _localizationService.GetCurrentLanguageId();
         var lastIssue = _dbContext.Issues.Where(x => x.IsAvailable).Max(x => x.Id);
         var sources = _dbContext.Sources
             .Include(x => x.Issue)
+            .Where(x => x.LanguageId == currentLanguageId)
             .Where(x => x.IssueId == lastIssue)
             .Where(x => !x.IsSection)
             .Where(x => x.StartingIndexPage.HasValue)

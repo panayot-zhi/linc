@@ -28,6 +28,10 @@ public enum ApplicationDossierStatus
     AcceptedWithCorrections = 55,
 
 
+    [Display(Name = "DossierStatus_Published", ResourceType = typeof(Resources.SharedResource))]
+    Published = 60,
+
+
     [Display(Name = "DossierStatus_Rejected", ResourceType = typeof(Resources.SharedResource))]
     Rejected = 90
 }

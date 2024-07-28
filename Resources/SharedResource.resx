@@ -1705,4 +1705,19 @@
   <data name="LastUpdated_Label" xml:space="preserve">
     <value>Посл. промяна</value>
   </data>
+  <data name="DossierEdit_Agreement" xml:space="preserve">
+    <value>Прикачете декларация за публикуване</value>
+  </data>
+  <data name="DossierEdit_ConfirmDeleteAgreement" xml:space="preserve">
+    <value>Сигурни ли сте, че искате да изтриете декларацията свързана към това досие?</value>
+  </data>
+  <data name="DossierEdit_ConfirmDeleteAgreement_Title" xml:space="preserve">
+    <value>Потвърждение</value>
+  </data>
+  <data name="DossierStatus_Published" xml:space="preserve">
+    <value>Публикуван</value>
+  </data>
+  <data name="JournalDossier_DocumentDeleted" xml:space="preserve">
+    <value>Изтрит документ от тип '{0}'.</value>
+  </data>
 </root>

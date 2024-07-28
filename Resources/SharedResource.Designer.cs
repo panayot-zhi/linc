@@ -1509,6 +1509,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Прикачете декларация за публикуване.
+        /// </summary>
+        public static string DossierEdit_Agreement {
+            get {
+                return ResourceManager.GetString("DossierEdit_Agreement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Изберете редактор за досието.
         /// </summary>
         public static string DossierEdit_AssignEditor_Prompt {
@@ -1523,6 +1532,24 @@ namespace linc.Resources {
         public static string DossierEdit_Assignee {
             get {
                 return ResourceManager.GetString("DossierEdit_Assignee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Сигурни ли сте, че искате да изтриете декларацията свързана към това досие?.
+        /// </summary>
+        public static string DossierEdit_ConfirmDeleteAgreement {
+            get {
+                return ResourceManager.GetString("DossierEdit_ConfirmDeleteAgreement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Потвърждение.
+        /// </summary>
+        public static string DossierEdit_ConfirmDeleteAgreement_Title {
+            get {
+                return ResourceManager.GetString("DossierEdit_ConfirmDeleteAgreement_Title", resourceCulture);
             }
         }
         
@@ -1685,6 +1712,15 @@ namespace linc.Resources {
         public static string DossierStatus_Prepared {
             get {
                 return ResourceManager.GetString("DossierStatus_Prepared", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Публикуван.
+        /// </summary>
+        public static string DossierStatus_Published {
+            get {
+                return ResourceManager.GetString("DossierStatus_Published", resourceCulture);
             }
         }
         
@@ -2470,6 +2506,15 @@ namespace linc.Resources {
         public static string JournalDossier_Created {
             get {
                 return ResourceManager.GetString("JournalDossier_Created", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Изтрит документ от тип &apos;{0}&apos;..
+        /// </summary>
+        public static string JournalDossier_DocumentDeleted {
+            get {
+                return ResourceManager.GetString("JournalDossier_DocumentDeleted", resourceCulture);
             }
         }
         

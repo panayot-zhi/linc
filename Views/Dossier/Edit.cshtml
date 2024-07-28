@@ -97,14 +97,12 @@
                         </a>
                     </li>
                 }
-                else
-                {
-                    <li>
-                        <a asp-action="Details" asp-route-id="@Model.Id">
-                            @HtmlLocalizer["Dossier_BackToDetails_Label"]
-                        </a>
-                    </li>
-                }
+
+                <li>
+                    <a asp-action="Details" asp-route-id="@Model.Id">
+                        @HtmlLocalizer["Dossier_BackToDetails_Label"]
+                    </a>
+                </li>
 
             </ul>
 
@@ -155,6 +153,27 @@
                 <div class="form-floating">
                     <input asp-for="AssigneeNames" class="form-control" readonly="readonly" />
                     <label asp-for="AssigneeNames" class="form-label"></label>
+                </div>
+            }
+        
+            @if (Model.Agreement is not null)
+            {
+                <div class="input-group">
+                    <span class="input-group-text">@Html.DisplayNameFor(x => x.Agreement)</span>
+                    <input asp-for="AgreementDocument" type="text" class="form-control" disabled="disabled" readonly="readonly" value="@Model.Agreement.OriginalFileName"/>
+                    <a class="btn btn-outline-primary" id="download-declaration" href="@Url.Action("LoadDossierDocument", "Document", new { dossierId = Model.Id, documentId = Model.Agreement.Id })">@HtmlLocalizer["Download_Button_Label"]</a>
+                    @if (Model.CanDeleteAgreement)
+                    {
+                        <a id="delete-agreement-button" class="btn btn-outline-danger" href="#delete-agreement-form">@HtmlLocalizer["Delete_Button_Label"]</a>
+                    }
+                </div>
+            }
+            else if (Model.CanAttachAgreement)
+            {
+                <div class="form-group">
+                    <label asp-for="AgreementDocument" class="form-label"></label>
+                    <input asp-for="AgreementDocument" class="form-control" accept=".doc,.docx, .pdf" />
+                    <span asp-validation-for="AgreementDocument" class="invalid-feedback"></span>
                 </div>
             }
 
@@ -291,6 +310,14 @@
                 </button>
             </div>
         </form>
+        
+        @if (Model.CanDeleteAgreement)
+        {
+            <form id="delete-agreement-form" asp-action="DeleteAgreement" asp-route-id="@Model.Id">
+                <input asp-for="Id" hidden="hidden"/>
+                <input asp-for="Agreement.Id" hidden="hidden" />
+            </form>
+        }
 
     </div>
 </div>
@@ -300,7 +327,7 @@
 }
 
 @section Scripts {
-    <partial name="_ValidationScripts" />
+    <partial name="_ValidationScripts"/>
 
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
@@ -326,6 +353,31 @@
                     });
                 })
             });
+
+            let deleteAgreementButton = document.getElementById("delete-agreement-button");
+            if(deleteAgreementButton) {
+                deleteAgreementButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+
+                    Swal.fire({
+
+                        icon: "question",
+                        title: window.jsLocalizer["DossierEdit_ConfirmDeleteAgreement_Title"],
+                        text: window.jsLocalizer["DossierEdit_ConfirmDeleteAgreement"],
+                        showCancelButton: true
+
+                    }).then((result) => {
+                        if (!result.isConfirmed) {
+                            return;
+                        }
+                        
+                        let target = $(e.target).attr("href");
+                        target = $(target);
+                        target.submit();
+                        
+                    });
+                })
+            }
         });
     </script>
 }
