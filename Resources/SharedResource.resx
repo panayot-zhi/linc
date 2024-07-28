@@ -1723,4 +1723,22 @@
   <data name="ManagePreferences_PreferredLanguageId" xml:space="preserve">
     <value>Предпочитан език</value>
   </data>
+  <data name="Alphabet_bg_Name" xml:space="preserve">
+    <value>кирилица</value>
+  </data>
+  <data name="Alphabet_en_Name" xml:space="preserve">
+    <value>латиница</value>
+  </data>
+  <data name="InAlphabet_bg_Name" xml:space="preserve">
+    <value>на кирилица</value>
+  </data>
+  <data name="InAlphabet_en_Name" xml:space="preserve">
+    <value>на латиница</value>
+  </data>
+  <data name="Language_bg_Name" xml:space="preserve">
+    <value>български</value>
+  </data>
+  <data name="Language_en_Name" xml:space="preserve">
+    <value>английски</value>
+  </data>
 </root>
