@@ -5,6 +5,7 @@
 using System.ComponentModel.DataAnnotations;
 using linc.Contracts;
 using linc.Data;
+using linc.Services;
 using linc.Utility;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -14,12 +15,12 @@ namespace linc.Areas.Identity.Pages.Account.Manage
 {
     public class IndexModel : BasePageModel
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly ApplicationUserManager _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<IndexModel> _logger;
 
         public IndexModel(
-            UserManager<ApplicationUser> userManager,
+            ApplicationUserManager userManager,
             SignInManager<ApplicationUser> signInManager,
             ILocalizationService localizationService, 
             ILogger<IndexModel> logger)
@@ -36,17 +37,24 @@ namespace linc.Areas.Identity.Pages.Account.Manage
         [BindProperty]
         public InputModel Input { get; set; }
 
-        public class InputModel
+        public class UserProfile
         {
-            [Display(Name = "RegisterModel_FirstName", ResourceType = typeof(Resources.SharedResource))]
-            [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+            public int LanguageId  { get; set; }
+
+            // [Display(Name = "RegisterModel_FirstName", ResourceType = typeof(Resources.SharedResource))]
+            //[Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
             [MaxLength(255, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
             public string FirstName { get; set; }
 
-            [Display(Name = "RegisterModel_LastName", ResourceType = typeof(Resources.SharedResource))]
-            [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+            //[Display(Name = "RegisterModel_LastName", ResourceType = typeof(Resources.SharedResource))]
+            //[Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
             [MaxLength(255, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
             public string LastName { get; set; }
+        }
+
+        public class InputModel
+        {
+            public ApplicationUserProfile[] Profiles { get; set; }
 
             [Display(Name = "RegisterModel_UserName", ResourceType = typeof(Resources.SharedResource))]
             [MaxLength(127, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
@@ -65,8 +73,7 @@ namespace linc.Areas.Identity.Pages.Account.Manage
 
             Input = new InputModel
             {
-                FirstName = user.FirstName,
-                LastName = user.LastName,
+                Profiles = user.Profiles.ToArray(),
 
                 UserName = userName,
                 PhoneNumber = phoneNumber
@@ -104,9 +111,9 @@ namespace linc.Areas.Identity.Pages.Account.Manage
                 return Page();
             }
 
-            // todo
-            user.CurrentProfile.FirstName = Input.FirstName;
-            user.CurrentProfile.LastName = Input.LastName;
+            // todo: validate
+
+            await _userManager.UpdateUserProfiles(user, Input.Profiles);
 
             var result = await _userManager.UpdateAsync(user);
             if (!result.Succeeded)
