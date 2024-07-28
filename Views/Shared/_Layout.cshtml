@@ -86,10 +86,10 @@
                     <environment exclude="Production">
                         @* <span class="me-2">Session: @Context.Session.GetString("Hi")</span> *@
                         @{
-                            var editable = "False";
+                            var editable = SiteConstant.False;
                             if (User.IsAtLeast(SiteRole.Editor) && TempData.ContainsKey(SiteConstant.TempDataEditableKey))
                             {
-                                editable = TempData.Peek(SiteConstant.TempDataEditableKey)?.ToString() ?? "False";
+                                editable = TempData.Peek(SiteConstant.TempDataEditableKey)?.ToString() ?? SiteConstant.False;
                             }
                         }
                         <span class="me-2">Editable: @editable</span>

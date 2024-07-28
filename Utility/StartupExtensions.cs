@@ -175,7 +175,7 @@ public static class StartupExtensions
 
         services.Configure<RequestLocalizationOptions>(options =>
         {
-            var supportedCultures = new[] { "bg", "en" };
+            var supportedCultures = SiteConstant.SupportedCultures.Values.ToArray();
             options.SetDefaultCulture(supportedCultures.First())
                 .AddSupportedCultures(supportedCultures)
                 .AddSupportedUICultures(supportedCultures);
