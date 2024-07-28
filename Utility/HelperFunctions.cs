@@ -1,6 +1,5 @@
-﻿using System.Security.Claims;
+﻿using System.Globalization;
 using System.Security.Cryptography;
-using System.Security.Principal;
 using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
@@ -8,6 +7,7 @@ using linc.Contracts;
 using linc.Models.Enumerations;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.StaticFiles;
@@ -201,6 +201,25 @@ public static class HelperFunctions
         return contentType;
     }
 
+    public static void SetCurrentLanguage(this HttpResponse response, string culture)
+    {
+        Thread.CurrentThread.CurrentUICulture = new CultureInfo(culture);
+
+        response.Cookies.Append(
+            SiteCookieName.Language,
+            CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+            new CookieOptions
+            {
+                Expires = DateTimeOffset.UtcNow.AddYears(7)
+            }
+        );
+    }
+
+    public static void SetCurrentLanguage(this HttpResponse response, int languageId)
+    {
+        var culture = SiteConstant.SupportedCultures[languageId];
+        SetCurrentLanguage(response, culture);
+    }
 
     public static T Get<T>(this ViewDataDictionary viedDataDictionary, string key)
     {
