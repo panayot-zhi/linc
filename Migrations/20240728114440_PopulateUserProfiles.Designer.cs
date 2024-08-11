@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using linc.Data;
 
@@ -10,9 +11,10 @@ using linc.Data;
 namespace linc.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240728114440_PopulateUserProfiles")]
+    partial class PopulateUserProfiles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -502,6 +504,11 @@ namespace linc.Migrations
                         .HasColumnType("datetime(6)")
                         .HasColumnName("date_created");
 
+                    b.Property<string>("Description")
+                        .HasMaxLength(1024)
+                        .HasColumnType("varchar(1024)")
+                        .HasColumnName("description");
+
                     b.Property<bool>("DisplayEmail")
                         .HasColumnType("tinyint(1)")
                         .HasColumnName("display_email");
@@ -524,6 +531,12 @@ namespace linc.Migrations
                         .HasColumnType("longtext")
                         .HasColumnName("facebook_avatar_path");
 
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("first_name");
+
                     b.Property<string>("GoogleAvatarPath")
                         .HasColumnType("longtext")
                         .HasColumnName("google_avatar_path");
@@ -543,6 +556,12 @@ namespace linc.Migrations
                     b.Property<DateTime?>("LastLogin")
                         .HasColumnType("datetime(6)")
                         .HasColumnName("last_login");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("last_name");
 
                     b.Property<DateTime>("LastUpdated")
                         .HasColumnType("datetime(6)")
@@ -626,12 +645,15 @@ namespace linc.Migrations
                             AvatarType = "Gravatar",
                             ConcurrencyStamp = "00000000-0000-0000-0000-000000000000",
                             DateCreated = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "System administrator. / Администратор на системата.",
                             DisplayEmail = true,
                             DisplayNameType = 2,
                             Email = "admin-linc@uni-plovdiv.bg",
                             EmailConfirmed = true,
+                            FirstName = "Panayot",
                             IsAuthor = false,
                             IsReviewer = false,
+                            LastName = "Ivanov",
                             LastUpdated = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN-LINC@UNI-PLOVDIV.BG",

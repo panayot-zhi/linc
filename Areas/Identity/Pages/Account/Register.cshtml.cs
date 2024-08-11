@@ -194,16 +194,33 @@ namespace linc.Areas.Identity.Pages.Account
 
         private ApplicationUser CreateUser()
         {
-            return new ApplicationUser
+            // todo
+            var currentLanguageId = LocalizationService.GetCurrentLanguageId();
+
+            var user = new ApplicationUser
             {
-                FirstName = Input.FirstName,
-                LastName = Input.LastName,
+                Email = Input.Email,
                 UserName = Input.UserName,
-                Email = Input.Email
+                PreferredLanguageId = currentLanguageId
             };
 
-        }
+            var userProfiles = SiteConstant.SupportedCultures
+                .Select(x => new ApplicationUserProfile()
+                {
+                    User = user,
+                    LanguageId = x.Key
 
+                }).ToList();
+
+            user.Profiles = userProfiles;
+
+            var currentProfile = user.CurrentProfile;
+            currentProfile.FirstName = Input.FirstName;
+            currentProfile.LastName = Input.LastName;
+
+            return user;
+        }
+            
         private IUserEmailStore<ApplicationUser> GetEmailStore()
         {
             if (!_userManager.SupportsUserEmail)

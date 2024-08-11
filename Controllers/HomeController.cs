@@ -129,14 +129,7 @@ namespace linc.Controllers
         [HttpPost]
         public IActionResult SetLanguage(string culture, string returnUrl = "/")
         {
-            Response.Cookies.Append(
-                SiteCookieName.Language,
-                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
-                new CookieOptions
-                {
-                    Expires = DateTimeOffset.UtcNow.AddYears(7)
-                }
-            );
+            Response.SetCurrentLanguage(culture);
 
             return LocalRedirect(returnUrl);
         }

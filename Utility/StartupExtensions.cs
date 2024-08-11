@@ -1,14 +1,12 @@
 ﻿using linc.Data;
 using linc.Services;
 using linc.Models.ConfigModels;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using linc.Contracts;
-using Microsoft.Extensions.DependencyInjection;
 using DinkToPdf.Contracts;
 using DinkToPdf;
 
@@ -175,7 +173,7 @@ public static class StartupExtensions
 
         services.Configure<RequestLocalizationOptions>(options =>
         {
-            var supportedCultures = new[] { "bg", "en" };
+            var supportedCultures = SiteConstant.SupportedCultures.Values.ToArray();
             options.SetDefaultCulture(supportedCultures.First())
                 .AddSupportedCultures(supportedCultures)
                 .AddSupportedUICultures(supportedCultures);
@@ -392,6 +390,8 @@ public static class StartupExtensions
     public static IServiceCollection AddServices(this IServiceCollection services)
     {
         services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
+        services.AddScoped<IApplicationUserStore, ApplicationUserStore>();
+        services.AddScoped<ApplicationUserManager>();
 
         services.AddScoped<IRazorViewToStringRenderer, RazorViewToStringRenderer>();
         services.AddScoped<ILocalizationService, LocalizationService>();
