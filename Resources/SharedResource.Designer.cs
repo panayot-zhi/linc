@@ -358,6 +358,24 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to кирилица.
+        /// </summary>
+        public static string Alphabet_bg_Name {
+            get {
+                return ResourceManager.GetString("Alphabet_bg_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to латиница.
+        /// </summary>
+        public static string Alphabet_en_Name {
+            get {
+                return ResourceManager.GetString("Alphabet_en_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Анонимен.
         /// </summary>
         public static string Anonymous_Label {
@@ -2249,6 +2267,24 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to на кирилица.
+        /// </summary>
+        public static string InAlphabet_bg_Name {
+            get {
+                return ResourceManager.GetString("InAlphabet_bg_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to на латиница.
+        /// </summary>
+        public static string InAlphabet_en_Name {
+            get {
+                return ResourceManager.GetString("InAlphabet_en_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Бележки.
         /// </summary>
         public static string Issue_CreatePage_Notes_Title {
@@ -2551,6 +2587,24 @@ namespace linc.Resources {
         public static string JournalDossier_StatusUpdated {
             get {
                 return ResourceManager.GetString("JournalDossier_StatusUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to български.
+        /// </summary>
+        public static string Language_bg_Name {
+            get {
+                return ResourceManager.GetString("Language_bg_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to английски.
+        /// </summary>
+        public static string Language_en_Name {
+            get {
+                return ResourceManager.GetString("Language_en_Name", resourceCulture);
             }
         }
         
@@ -3172,6 +3226,15 @@ namespace linc.Resources {
         public static string ManagePreferences_PageDescription {
             get {
                 return ResourceManager.GetString("ManagePreferences_PageDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Предпочитан език.
+        /// </summary>
+        public static string ManagePreferences_PreferredLanguageId {
+            get {
+                return ResourceManager.GetString("ManagePreferences_PreferredLanguageId", resourceCulture);
             }
         }
         

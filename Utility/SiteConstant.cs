@@ -19,11 +19,22 @@ public static class SiteConstant
 
     public const string LandingPageArea = "LandingPage";
 
+    // These should be never accessed outside
+    // instead SupportedCulture dictionary should be used
+    private const string EnglishLanguageShortName = "en";
+    private const string BulgarianLanguageShortName = "bg";
+
+    public static KeyValuePair<int, string> EnglishCulture => SupportedCultures
+        .First(x => EnglishLanguageShortName.Equals(x.Value));
+
+    public static KeyValuePair<int, string> BulgarianCulture => SupportedCultures
+        .First(x => BulgarianLanguageShortName.Equals(x.Value));
+
     public static readonly Dictionary<int, string> SupportedCultures = new() {
         // NOTE: Key is database id
         // value is the culture
-        {1, "bg"}, 
-        {2, "en"}
+        {1, BulgarianLanguageShortName}, 
+        {2, EnglishLanguageShortName}
     };
 
     public const string PublicationAgreementFileName = "publication_agreement.doc";

@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using System.Reflection.Emit;
 
 namespace linc.Data;
 
@@ -98,50 +97,69 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         // Snake case naming convention for identity tables
         builder.Entity<IdentityRole>(x => x.ToTable("asp_net_roles"));
         builder.Entity<ApplicationUser>(x => x.ToTable("asp_net_users"));
+        builder.Entity<ApplicationUserProfile>(x => x.ToTable("asp_net_user_profiles"));
         builder.Entity<IdentityRoleClaim<string>>(x => x.ToTable("asp_net_role_claims"));
         builder.Entity<IdentityUserClaim<string>>(x => x.ToTable("asp_net_user_claims"));
         builder.Entity<IdentityUserLogin<string>>(x => x.ToTable("asp_net_user_logins"));
         builder.Entity<IdentityUserRole<string>>(x => x.ToTable("asp_net_user_roles"));
         builder.Entity<IdentityUserToken<string>>(x => x.ToTable("asp_net_user_tokens"));
 
+        // set primary composite keys
+        builder.Entity<ApplicationUserProfile>()
+            .HasKey(x => new { x.UserId, x.LanguageId });
+
+        // NOTE: always include profiles for user
+        builder.Entity<ApplicationUser>()
+            .Navigation(x => x.Profiles)
+            .AutoInclude();
+
         // Generate database entries for supported cultures
 
         foreach (var supportedCulture in SiteConstant.SupportedCultures)
         {
+            // seed application languages
             builder.Entity<ApplicationLanguage>()
                 .HasData(new ApplicationLanguage
                 {
                     Id = supportedCulture.Key,
                     Culture = supportedCulture.Value
                 });
+
+            // seed administrator profiles
+            builder.Entity<ApplicationUserProfile>()
+                .HasData(new ApplicationUserProfile()
+                {
+                    LanguageId = supportedCulture.Key,
+                    UserId = SiteConstant.ZeroGuid
+                });
         }
-        
+
         // Seed administrator
-        
+
         builder.Entity<ApplicationUser>()
             .HasData(new ApplicationUser
             {
                 Id = SiteConstant.ZeroGuid,
                 ConcurrencyStamp = SiteConstant.ZeroGuid,
                 SecurityStamp = SiteConstant.ZeroGuid,
-        
+
                 PasswordHash = "CHANGE_ME",
-        
+
                 UserName = SiteConstant.AdministratorUserName,
                 NormalizedUserName = SiteConstant.AdministratorUserName.ToUpper(),
-                FirstName = SiteConstant.AdministratorFirstName,
-                LastName = SiteConstant.AdministratorLastName,
                 Email = SiteConstant.AdministratorEmail,
                 NormalizedEmail = SiteConstant.AdministratorEmail.ToUpper(),
-                Description = "System administrator. / Администратор на системата.",
-        
+
                 AvatarType = UserAvatarType.Gravatar,
                 DisplayNameType = UserDisplayNameType.NamesAndUserName,
+
                 DisplayEmail = true,
                 EmailConfirmed = true,
-        
+
                 DateCreated = DateTime.Parse("2024-01-01"),
                 LastUpdated = DateTime.Parse("2024-01-01"),
+
+                PreferredLanguageId = SiteConstant.EnglishCulture.Key
             });
         
         // Seed roles

@@ -1717,9 +1717,30 @@ The manuscript file must have a .doc or .docx extension.</value>
     <value>Attach a publication agreement</value>
   </data>
   <data name="DossierEdit_ConfirmDeleteAgreement" xml:space="preserve">
-    <value />
+    <value>Are you sure you want to delete the declaration attach to this dossier?</value>
   </data>
   <data name="DossierEdit_ConfirmDeleteAgreement_Title" xml:space="preserve">
     <value>Confirm</value>
+  </data>
+  <data name="Alphabet_bg_Name" xml:space="preserve">
+    <value>cyrillic</value>
+  </data>
+  <data name="Alphabet_en_Name" xml:space="preserve">
+    <value>latin</value>
+  </data>
+  <data name="InAlphabet_bg_Name" xml:space="preserve">
+    <value>in cyrillic</value>
+  </data>
+  <data name="InAlphabet_en_Name" xml:space="preserve">
+    <value>in latin</value>
+  </data>
+  <data name="Language_bg_Name" xml:space="preserve">
+    <value>bulgarian</value>
+  </data>
+  <data name="Language_en_Name" xml:space="preserve">
+    <value>english</value>
+  </data>
+  <data name="ManagePreferences_PreferredLanguageId" xml:space="preserve">
+    <value>Preferred language</value>
   </data>
 </root>

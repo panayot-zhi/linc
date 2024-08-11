@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Localization
+@using linc.Utility
 
 @{
     var requestCulture = Context.Features.Get<IRequestCultureFeature>();
@@ -8,7 +9,7 @@
 <script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
 <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 
-@if (!"en".Equals(currentCulture))  // this is the default culture for the library
+@if (!SiteConstant.EnglishCulture.Value.Equals(currentCulture))  // this is the default culture for the library
 {
     <script src="@Url.Content($"~/lib/jquery-validate/localization/messages_{currentCulture}.min.js")"></script>
 }
