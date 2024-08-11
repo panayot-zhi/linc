@@ -1,4 +1,4 @@
-name: GitFlow Version Increment on Merge to master
+name: Git Version Increment & Create Pre-release on Merge to master
 
 on:
   pull_request:
@@ -79,3 +79,15 @@ jobs:
           git add --all
           git commit -am "Auto-incremented version to v.${{ steps.update-version.outputs.NEW_VERSION }}"
           git push
+
+    - name: Install GitHub CLI
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y gh
+
+    - name: Create Pre-release
+      if: ${{ steps.update-version.outputs.NEW_VERSION }}
+      run: |
+        gh release create "v.${{ steps.update-version.outputs.NEW_VERSION }}-test" --prerelease \
+          --title "Pre-release v.${{ steps.update-version.outputs.NEW_VERSION }}-test" \
+          --notes "This is a pre-release version based on the merge from ${{ github.head_ref }}."
