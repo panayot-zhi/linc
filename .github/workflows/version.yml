@@ -83,14 +83,13 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
       
-    - name: Create Pre-release
-      id: create-release
+    - name: Create Pre-release      
       uses: actions/create-release@v1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.PAT }}
       with:
         tag_name: v.${{ steps.update-version.outputs.NEW_VERSION }}-test
         release_name: v.${{ steps.update-version.outputs.NEW_VERSION }}-test
-        body: This is a pre-release version based on the merge from ${{ github.head_ref }}.        
+        body: This is a pre-release version based on the merge from ${{ github.head_ref }}.
         prerelease: true
         draft: false
