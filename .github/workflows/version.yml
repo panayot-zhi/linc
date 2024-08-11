@@ -85,8 +85,10 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y gh
 
-    - name: Create Pre-release
+    - name: Create Github Pre-release
       if: ${{ steps.update-version.outputs.NEW_VERSION }}
+      env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         gh release create "v.${{ steps.update-version.outputs.NEW_VERSION }}-test" --prerelease \
           --title "Pre-release v.${{ steps.update-version.outputs.NEW_VERSION }}-test" \
