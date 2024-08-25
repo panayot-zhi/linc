@@ -7,7 +7,7 @@ on:
 
 jobs:
   publish-test:
-    if: "contains(github.ref, '-test')"
+    if: "endsWith(github.ref, '-test')"
     runs-on: ubuntu-22.04
 
     steps:
@@ -80,7 +80,7 @@ jobs:
         privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
         
   publish-test-prod:
-    if: "!contains(github.ref, '-test')"
+    if: "!endsWith(github.ref, '-test')"
     runs-on: ubuntu-22.04
 
     steps:
