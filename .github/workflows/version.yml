@@ -64,13 +64,6 @@ jobs:
             echo "Branch is not part of version automation."
         fi
 
-    - name: Update README.md
-      run: |
-        # Simple sed command to replace a placeholder or existing version in README.md
-        # This example assumes a placeholder like <!--version-->x.x.x<!--version-->
-        # Use sed to find and replace the badge image URL with the new version
-        sed -i "s/badge\/latest-v\..*-/badge\/latest-v.${{ steps.update-version.outputs.NEW_VERSION }}-/" README.md
-
     - name: Commit and push changes
       if: ${{ steps.update-version.outputs.NEW_VERSION }}
       run: |

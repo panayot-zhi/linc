@@ -45,12 +45,9 @@ jobs:
         csproj_file="linc.csproj"
         version_line=$(grep '<Version>' "$csproj_file")
         current_version=$(echo $version_line | sed -n 's/.*<Version>\(.*\)<\/Version>.*/\1/p')
-        current_version+=".${{ github.run_number }}"
+        current_version+=".${{ github.run_number }}"        
 
-        dotnet publish /p:PublishProfile=Properties/PublishProfiles/FolderProfile.pubxml /p:Version=$current_version --configuration Release
-
-    - name: List Result
-      run: cd release && ls -la
+        dotnet publish /p:PublishProfile=Properties/PublishProfiles/FolderProfile.pubxml /p:Version=$current_version --configuration Release        
       
     # Push build to staging ONLY
     - name: Stop Service (test.linc.service)
@@ -113,6 +110,7 @@ jobs:
       run: dotnet test --no-build --configuration Release --verbosity normal
 
     - name: Publish Release
+      id: publish-release
       run: |
 
         csproj_file="linc.csproj"
@@ -122,8 +120,7 @@ jobs:
 
         dotnet publish /p:PublishProfile=Properties/PublishProfiles/FolderProfile.pubxml /p:Version=$current_version --configuration Release
 
-    - name: List Result
-      run: cd release && ls -la
+        echo "CURRENT_VERSION=$current_version" >> $GITHUB_OUTPUT
       
     # Push build to staging
     - name: Stop Service (test.linc.service)
@@ -178,3 +175,10 @@ jobs:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USER }}
         privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Update README.md
+      run: |
+        # Simple sed command to replace a placeholder or existing version in README.md
+        # This example assumes a placeholder like <!--version-->x.x.x<!--version-->
+        # Use sed to find and replace the badge image URL with the new version
+        sed -i "s/badge\/latest-v\..*-/badge\/latest-v.${{ steps.publish-release.outputs.CURRENT_VERSION }}-/" README.md
