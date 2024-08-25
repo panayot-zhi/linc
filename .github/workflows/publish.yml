@@ -182,3 +182,11 @@ jobs:
         # This example assumes a placeholder like <!--version-->x.x.x<!--version-->
         # Use sed to find and replace the badge image URL with the new version
         sed -i "s/badge\/latest-v\..*-/badge\/latest-v.${{ steps.publish-release.outputs.CURRENT_VERSION }}-/" README.md
+
+    - name: Commit and push changes      
+      run: |
+          git config --global user.name 'Admin-Linc'
+          git config --global user.email 'admin-linc@uni-plovdiv.bg'
+          git add --all
+          git commit -am "Updated README.md version to v.${{ steps.publish-release.outputs.CURRENT_VERSION }}"
+          git push
