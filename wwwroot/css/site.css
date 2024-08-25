@@ -186,6 +186,47 @@ th.sortable::before {
     display: inline;
 }
 
+/*
+    social icons on board members
+*/
+.testimonials .social {
+    opacity: 0;
+    visibility: hidden;
+    transition: ease-in-out 0.3s;
+    text-align: center;
+}
+
+.testimonials .social a {
+    transition: color 0.3s;
+    color: #222222;
+    margin: 0 3px;
+    padding-top: 7px;
+    border-radius: 4px;
+    width: 36px;
+    height: 36px;
+    background: rgba(16, 110, 234, 0.8);
+    transition: ease-in-out 0.3s;
+    display: none;
+    color: #fff;
+}
+
+.testimonials .social a:hover {
+    background: #3b8af2;
+}
+
+.testimonials .social i {
+    font-size: 18px;
+}
+
+.testimonials:hover .social a {
+    display: inline-block;
+}
+
+.testimonials:hover .social {
+    visibility: visible;
+    opacity: 1;
+}
+
 /*--------------------------------------------------------------
 # Identity
 --------------------------------------------------------------*/
