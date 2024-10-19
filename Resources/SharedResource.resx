@@ -1741,4 +1741,7 @@
   <data name="Language_en_Name" xml:space="preserve">
     <value>английски</value>
   </data>
+  <data name="Team_Y.Chankova_Member" xml:space="preserve">
+    <value>доц. д-р Яна Чанкова</value>
+  </data>
 </root>

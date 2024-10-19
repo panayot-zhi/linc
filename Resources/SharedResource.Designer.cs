@@ -4482,6 +4482,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to доц. д-р Яна Чанкова.
+        /// </summary>
+        public static string Team_Y_Chankova_Member {
+            get {
+                return ResourceManager.GetString("Team_Y.Chankova_Member", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to доц. д-р Яна Роуланд.
         /// </summary>
         public static string Team_Y_Rowland_Member {

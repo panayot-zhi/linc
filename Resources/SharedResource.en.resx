@@ -1743,4 +1743,7 @@ The manuscript file must have a .doc or .docx extension.</value>
   <data name="ManagePreferences_PreferredLanguageId" xml:space="preserve">
     <value>Preferred language</value>
   </data>
+  <data name="Team_Y.Chankova_Member" xml:space="preserve">
+    <value>Assoc. Prof. Yana Chankova, PhD</value>
+  </data>
 </root>
