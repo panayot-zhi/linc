@@ -50,7 +50,7 @@
                         <input asp-for="Input.Profiles[index].LanguageId" type="hidden"/>
 
                         <div class="form-floating">
-                            <input asp-for="Input.Profiles[index].FirstName" class="form-control"/>
+                            <input asp-for="Input.Profiles[index].FirstName" class="form-control trim"/>
                             <label asp-for="Input.Profiles[index].FirstName" class="form-label">
                                 @HtmlLocalizer["RegisterModel_FirstName"]
                                 @if (culture != currentCulture)
@@ -62,7 +62,7 @@
                         </div>
 
                         <div class="form-floating">
-                            <input asp-for="Input.Profiles[index].LastName" class="form-control"/>
+                            <input asp-for="Input.Profiles[index].LastName" class="form-control trim" />
                             <label asp-for="Input.Profiles[index].LastName" class="form-label">
                                 @HtmlLocalizer["RegisterModel_LastName"]
                                 @if (culture != currentCulture)

@@ -168,6 +168,11 @@ public static class HelperFunctions
         return builder.ToString();
     }
 
+    public static string ToScreamingSnakeCase(string input)
+    {
+        return ToSnakeCase(input).ToUpperInvariant();
+    }
+
     public static void Shuffle<T>(this IList<T> list)
     {
         var n = list.Count;

@@ -816,35 +816,32 @@ namespace linc.Services
 
         private List<SelectListItem> GetEditors(string assigneeId)
         {
-            var editors = _context.GetAllByRole(SiteRole.Editor.ToString());
-            var headEditors = _context.GetAllByRole(SiteRole.HeadEditor.ToString());
+            var editors = _context.GetAllByRole(HelperFunctions.ToScreamingSnakeCase(SiteRole.Editor.ToString()));
+            var headEditors = _context.GetAllByRole(HelperFunctions.ToScreamingSnakeCase(SiteRole.HeadEditor.ToString()));
 
             var selectList = new List<SelectListItem>()
             {
                 new(_localizationService["DossierEdit_AssignEditor_Prompt"].Value, string.Empty)
             };
 
-            selectList.AddRange(editors.Select(x => new SelectListItem(text: x.Names, x.Id, x.Id == assigneeId)));
             selectList.AddRange(headEditors.Select(x => new SelectListItem(text: x.Names, x.Id, x.Id == assigneeId)));
+            selectList.AddRange(editors.Select(x => new SelectListItem(text: x.Names, x.Id, x.Id == assigneeId)));
 
             return selectList;
         }
 
         private async Task<string> FindReviewerAsync(string inputEmail, string inputFirstName, string inputLastName)
         {
-            var user = _context.Users.FirstOrDefault(x => x.Email == inputEmail);
+            var user = await FindReviewerByEmailAsync(inputEmail);
             if (user == null)
             {
                 // second try by names
-                user = _context.Users
-                    .FirstOrDefault(x =>
-                        EF.Functions.Like(x.FirstName, $"{inputFirstName}")&&
-                        EF.Functions.Like(x.LastName, $"{inputLastName}")
-                    );
+                user = await FindReviewerByNamesAsync(inputFirstName, inputLastName);
             }
 
             if (user is null)
             {
+                // no luck
                 return null;
             }
 
@@ -855,6 +852,42 @@ namespace linc.Services
             await _context.SaveChangesAsync();
 
             return user.Id;
+        }
+
+        private async Task<ApplicationUser> FindReviewerByEmailAsync(string inputEmail)
+        {
+            return await _context.Users.FirstOrDefaultAsync(x => x.Email == inputEmail);
+        }
+
+        private async Task<ApplicationUser> FindReviewerByNamesAsync(string inputFirstName, string inputLastName)
+        {
+            // second try by names
+            var userProfiles = await _context.UserProfiles.AsTracking()
+                .Include(x => x.User)
+                .Where(x =>
+                    EF.Functions.Like(x.FirstName, $"{inputFirstName}") &&
+                    EF.Functions.Like(x.LastName, $"{inputLastName}")
+                )
+                .ToArrayAsync();
+
+            // if we have users that filled both names the same way for all profiles
+            userProfiles = userProfiles
+                .DistinctBy(x => x.UserId)
+                .ToArray();
+
+            if (!userProfiles.Any())
+            {
+                return null;
+            }
+
+            if (userProfiles.Length > 1)
+            {
+                _logger.LogWarning("FindReviewerByNamesAsync found more than 1 match for the reviewer with names {FirstName} {LastName} and will not assign user.",
+                    inputFirstName, inputLastName);
+                return null;
+            }
+
+            return userProfiles.First().User;
         }
     }
 }

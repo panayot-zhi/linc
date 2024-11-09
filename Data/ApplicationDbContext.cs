@@ -37,6 +37,8 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     public DbSet<ApplicationLanguage> Languages { get; set; }
 
     public DbSet<ApplicationStringResource> StringResources { get; set; }
+
+    public DbSet<ApplicationUserProfile> UserProfiles { get; set; }
     
 
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)

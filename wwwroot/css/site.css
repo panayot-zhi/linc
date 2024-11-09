@@ -15,6 +15,10 @@
     These are used from javascript
 */
 
+input.trim {
+  /* keep */
+}
+
 a.scrollto {
   /* keep */
 }

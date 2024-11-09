@@ -50,6 +50,9 @@
     // Bind Submit targets href form
     $(".submit-link").on('click', doSubmit);
     $("form:not(.no-preloader)").on('submit', onSubmit);
+    $('input.trim').on('blur', (e) => {
+        e.target.value = e.target.value.trim();
+    });
     //$("a[href=\"#\"].nav-link").on('click', (e) => {
     //   e.preventDefault();
     //    return false;
