@@ -816,16 +816,16 @@ namespace linc.Services
 
         private List<SelectListItem> GetEditors(string assigneeId)
         {
-            var editors = _context.GetAllByRole(SiteRole.Editor.ToString());
-            var headEditors = _context.GetAllByRole(SiteRole.HeadEditor.ToString());
+            var editors = _context.GetAllByRole(HelperFunctions.ToScreamingSnakeCase(SiteRole.Editor.ToString()));
+            var headEditors = _context.GetAllByRole(HelperFunctions.ToScreamingSnakeCase(SiteRole.HeadEditor.ToString()));
 
             var selectList = new List<SelectListItem>()
             {
                 new(_localizationService["DossierEdit_AssignEditor_Prompt"].Value, string.Empty)
             };
 
-            selectList.AddRange(editors.Select(x => new SelectListItem(text: x.Names, x.Id, x.Id == assigneeId)));
             selectList.AddRange(headEditors.Select(x => new SelectListItem(text: x.Names, x.Id, x.Id == assigneeId)));
+            selectList.AddRange(editors.Select(x => new SelectListItem(text: x.Names, x.Id, x.Id == assigneeId)));
 
             return selectList;
         }
