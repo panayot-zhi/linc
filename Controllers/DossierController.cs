@@ -12,7 +12,6 @@ using DinkToPdf;
 using linc.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
-using linc.Services;
 
 namespace linc.Controllers
 {
