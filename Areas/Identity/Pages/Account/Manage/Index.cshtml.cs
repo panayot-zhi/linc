@@ -156,10 +156,10 @@ namespace linc.Areas.Identity.Pages.Account.Manage
                     x.LanguageId == profile.LanguageId);
 
                 if (userProfile.FirstName != profile.FirstName)
-                    userProfile.FirstName = profile.FirstName;
+                    userProfile.FirstName = profile.FirstName?.Trim();
 
                 if (userProfile.LastName != profile.LastName)
-                    userProfile.LastName = profile.LastName;
+                    userProfile.LastName = profile.LastName?.Trim();
             }
 
             result = await _userManager.UpdateUserProfiles(user);
