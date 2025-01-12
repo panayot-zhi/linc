@@ -194,10 +194,10 @@ namespace linc.Services
             {
                 Id = dossier.Id,
 
-                Title = dossier.Title,
-                FirstName = dossier.FirstName,
-                LastName = dossier.LastName,
-                Email = dossier.Email,
+                Title = dossier.Title?.Trim(),
+                FirstName = dossier.FirstName?.Trim(),
+                LastName = dossier.LastName?.Trim(),
+                Email = dossier.Email?.Trim(),
 
                 Status = dossier.Status,
 
@@ -258,10 +258,10 @@ namespace linc.Services
             await using var transaction = await _context.Database.BeginTransactionAsync();
             var entry = new ApplicationDossier
             {
-                Title = input.Title,
-                FirstName = input.FirstName,
-                LastName = input.LastName,
-                Email = input.Email,
+                Title = input.Title?.Trim(),
+                FirstName = input.FirstName?.Trim(),
+                LastName = input.LastName?.Trim(),
+                Email = input.Email?.Trim(),
 
                 Status = ApplicationDossierStatus.New,
 
@@ -563,9 +563,9 @@ namespace linc.Services
                     var userReviewerId = await FindReviewerAsync(input.ReviewerEmail, input.ReviewerFirstName, input.ReviewerLastName);
                     var dossierReview = new ApplicationDossierReview()
                     {
-                        FirstName = input.ReviewerFirstName,
-                        LastName = input.ReviewerLastName,
-                        Email = input.ReviewerEmail,
+                        FirstName = input.ReviewerFirstName?.Trim(),
+                        LastName = input.ReviewerLastName?.Trim(),
+                        Email = input.ReviewerEmail?.Trim(),
 
                         ReviewerId = userReviewerId,
 
