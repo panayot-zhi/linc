@@ -18,6 +18,7 @@ namespace linc.Services
     {
         private readonly LinkGenerator _linkGenerator;
         private readonly ISiteEmailSender _emailSender;
+        private readonly IApplicationUserStore _applicationUserStore;
         private readonly ILocalizationService _localizationService;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly ILogger<DossierService> _logger;
@@ -41,7 +42,8 @@ namespace linc.Services
         }
 
         public DossierService(ApplicationDbContext context, 
-            IOptions<ApplicationConfig> configOptions, 
+            IOptions<ApplicationConfig> configOptions,
+            IApplicationUserStore applicationUserStore,
             IHttpContextAccessor httpContextAccessor, 
             ILocalizationService localizationService,
             ISiteEmailSender emailSender,
@@ -53,6 +55,7 @@ namespace linc.Services
             _httpContextAccessor = httpContextAccessor;
             _localizationService = localizationService;
             _linkGenerator = linkGenerator;
+            _applicationUserStore = applicationUserStore;
             _config = configOptions.Value;
             _emailSender = emailSender;
         }
@@ -832,11 +835,11 @@ namespace linc.Services
 
         private async Task<string> FindReviewerAsync(string inputEmail, string inputFirstName, string inputLastName)
         {
-            var user = await FindReviewerByEmailAsync(inputEmail);
+            var user = await _applicationUserStore.FindUserByEmailAsync(inputEmail);
             if (user == null)
             {
                 // second try by names
-                user = await FindReviewerByNamesAsync(inputFirstName, inputLastName);
+                user = await _applicationUserStore.FindUserByNamesAsync(inputFirstName, inputLastName);
             }
 
             if (user is null)
@@ -854,40 +857,6 @@ namespace linc.Services
             return user.Id;
         }
 
-        private async Task<ApplicationUser> FindReviewerByEmailAsync(string inputEmail)
-        {
-            return await _context.Users.FirstOrDefaultAsync(x => x.Email == inputEmail);
-        }
-
-        private async Task<ApplicationUser> FindReviewerByNamesAsync(string inputFirstName, string inputLastName)
-        {
-            // second try by names
-            var userProfiles = await _context.UserProfiles.AsTracking()
-                .Include(x => x.User)
-                .Where(x =>
-                    EF.Functions.Like(x.FirstName, $"{inputFirstName}") &&
-                    EF.Functions.Like(x.LastName, $"{inputLastName}")
-                )
-                .ToArrayAsync();
-
-            // if we have users that filled both names the same way for all profiles
-            userProfiles = userProfiles
-                .DistinctBy(x => x.UserId)
-                .ToArray();
-
-            if (!userProfiles.Any())
-            {
-                return null;
-            }
-
-            if (userProfiles.Length > 1)
-            {
-                _logger.LogWarning("FindReviewerByNamesAsync found more than 1 match for the reviewer with names {FirstName} {LastName} and will not assign user.",
-                    inputFirstName, inputLastName);
-                return null;
-            }
-
-            return userProfiles.First().User;
-        }
+        
     }
 }
