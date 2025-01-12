@@ -395,5 +395,46 @@ namespace linc.Services
             await _context.SaveChangesAsync();
             return entityEntry.Entity;
         }
+
+        public async Task UpdateAuthorAsync(ApplicationUser user)
+        {
+            var userProfiles = _context.UserProfiles
+                .Where(x => x.UserId == user.Id)
+                .ToList();
+
+            var dbSources = _context.Sources
+                .Where(x => x.AuthorId == null)
+                .Where(x => x.FirstName != null)
+                .Where(x => x.LastName != null)
+                .ToList();
+
+            foreach (var userProfile in userProfiles)
+            {
+                var sources = dbSources
+                    .Where(x => string.Equals(x.FirstName, userProfile.FirstName, StringComparison.CurrentCultureIgnoreCase))
+                    .Where(x => string.Equals(x.LastName, userProfile.LastName, StringComparison.CurrentCultureIgnoreCase))
+                    .ToList();
+
+                if (!sources.Any())
+                {
+                    continue;
+                }
+
+                if (!user.IsAuthor)
+                {
+                    _context.Users.Attach(user);
+                    user.IsAuthor = true;
+                }
+
+                foreach (var source in sources)
+                {
+                    _context.Sources.Attach(source);
+                    source.AuthorId = user.Id;
+                }
+
+                await _context.SaveChangesAsync();
+            }
+        }
+
     }
 }

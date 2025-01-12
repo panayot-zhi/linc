@@ -23,9 +23,14 @@ namespace linc.Contracts
         Task UpdateStatusAsync(int id, ApplicationDossierStatus status);
 
         Task UpdateDossierAsync(DossierEditViewModel input);
+        
+        Task UpdateAuthorAsync(ApplicationUser user);
+        
+        Task UpdateReviewerAsync(ApplicationUser user);
 
         Task SaveAgreementAsync(ApplicationDossier dossier, byte[] stampedPdfFile);
 
         Task DeleteAgreementAsync(ApplicationDossier dossier);
+
     }
 }
