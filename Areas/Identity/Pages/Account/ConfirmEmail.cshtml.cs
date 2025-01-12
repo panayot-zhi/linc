@@ -16,13 +16,16 @@ namespace linc.Areas.Identity.Pages.Account
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<ConfirmEmailModel> _logger;
+        private readonly IDossierService _dossierService;
 
         public ConfirmEmailModel(UserManager<ApplicationUser> userManager, 
             ILogger<ConfirmEmailModel> logger, 
-            ILocalizationService localizationService)
+            ILocalizationService localizationService,
+            IDossierService dossierService)
         : base(localizationService)
         {
             _logger = logger;
+            _dossierService = dossierService;
             _userManager = userManager;
         }
 
@@ -51,7 +54,9 @@ namespace linc.Areas.Identity.Pages.Account
             var result = await _userManager.ConfirmEmailAsync(user, code);
             if (result.Succeeded)
             {
-                // TODO: Check if user is an author
+                // TODO: make asynchronous
+                await Sync(user);
+
                 StatusMessage = LocalizationService["ConfirmEmail_SuccessMessage"].Value;
                 AddAlertMessage(LocalizationService["ConfirmEmail_SuccessMessage"],
                     type: AlertMessageType.Success);
@@ -69,6 +74,12 @@ namespace linc.Areas.Identity.Pages.Account
             // return Page();
 
             return RedirectToPage("./Login");
+        }
+
+        private async Task Sync(ApplicationUser user)
+        {
+            await _dossierService.UpdateAuthorAsync(user);
+            await _dossierService.UpdateReviewerAsync(user);
         }
     }
 }

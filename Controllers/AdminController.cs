@@ -19,18 +19,24 @@ namespace linc.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ISiteEmailSender _emailSender;
+        private readonly IDossierService _dossierService;
+        private readonly ISourceService _sourceService;
 
         public AdminController(
             ILogger<AdminController> logger,
             UserManager<ApplicationUser> userManager, 
             SignInManager<ApplicationUser> signInManager,
             ILocalizationService localizationService, 
-            ISiteEmailSender emailSender)
+            ISiteEmailSender emailSender, 
+            IDossierService dossierService, 
+            ISourceService sourceService)
         : base(localizationService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
+            _dossierService = dossierService;
+            _sourceService = sourceService;
             _logger = logger;
         }
 
@@ -60,6 +66,20 @@ namespace linc.Controllers
             await HttpContext.SignInAsync(IdentityConstants.ApplicationScheme, userPrincipal);
 
             return RedirectToAction("Index", "Home");
+        }
+
+        [SiteAuthorize(SiteRole.Administrator)]
+        public async Task<IActionResult> SyncUser(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user is null)
+            {
+                return NotFound();
+            }
+
+            await Sync(user);
+
+            return Ok("User synchronized successfully.");
         }
 
         [SiteAuthorize]
@@ -123,6 +143,13 @@ namespace linc.Controllers
             //AddAlertMessage("Sent");
 
             return View($"Emails/TestEmail.{viewModel.Language}", viewModel);
+        }
+
+        private async Task Sync(ApplicationUser user)
+        {
+            await _sourceService.UpdateAuthorAsync(user);
+            await _dossierService.UpdateAuthorAsync(user);
+            await _dossierService.UpdateReviewerAsync(user);
         }
     }
 }
