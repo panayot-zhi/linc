@@ -194,7 +194,6 @@ namespace linc.Areas.Identity.Pages.Account
 
         private ApplicationUser CreateUser()
         {
-            // todo
             var currentLanguageId = LocalizationService.GetCurrentLanguageId();
 
             var user = new ApplicationUser

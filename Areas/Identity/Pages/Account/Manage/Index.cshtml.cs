@@ -97,10 +97,6 @@ namespace linc.Areas.Identity.Pages.Account.Manage
                 return Page();
             }
 
-            // todo: validate
-
-            
-
             var result = await _userManager.UpdateAsync(user);
             if (!result.Succeeded)
             {
