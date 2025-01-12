@@ -198,8 +198,8 @@ namespace linc.Areas.Identity.Pages.Account
 
             var user = new ApplicationUser
             {
-                Email = Input.Email,
-                UserName = Input.UserName,
+                Email = Input.Email?.Trim(),
+                UserName = Input.UserName?.Trim(),
                 PreferredLanguageId = currentLanguageId
             };
 
@@ -214,8 +214,8 @@ namespace linc.Areas.Identity.Pages.Account
             user.Profiles = userProfiles;
 
             var currentProfile = user.CurrentProfile;
-            currentProfile.FirstName = Input.FirstName;
-            currentProfile.LastName = Input.LastName;
+            currentProfile.FirstName = Input.FirstName?.Trim();
+            currentProfile.LastName = Input.LastName?.Trim();
 
             return user;
         }
