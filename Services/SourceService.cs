@@ -14,6 +14,7 @@ namespace linc.Services
 {
     public class SourceService : ISourceService
     {
+        private readonly IApplicationUserStore _applicationUserStore;
         private readonly IDocumentService _documentService;
         private readonly ILogger<SourceService> _logger;
         private readonly ApplicationDbContext _context;
@@ -22,10 +23,12 @@ namespace linc.Services
         public SourceService(ApplicationDbContext context, 
             IOptions<ApplicationConfig> config, 
             ILogger<SourceService> logger,
+            IApplicationUserStore applicationUserStore,
             IDocumentService documentService)
         {
             _context = context;
             _documentService = documentService;
+            _applicationUserStore = applicationUserStore;
             _config = config.Value;
             _logger = logger;
         }
@@ -170,7 +173,16 @@ namespace linc.Services
                 .Include(x => x.Files)
                 .First(x => x.Id == issueId);
 
-            var authorId = await FindAuthorByNamesAsync(input.FirstName, input.LastName);
+            var author = await _applicationUserStore.FindUserByNamesAsync(input.FirstName, input.LastName);
+
+            string authorId = null;
+            if (author is not null)
+            {
+                _context.Users.Attach(author);
+                author.IsAuthor = true;
+                await _context.SaveChangesAsync();
+                authorId = author.Id;
+            }
 
             ApplicationDocument pdf;
             if (input.PdfFile != null)
@@ -219,9 +231,19 @@ namespace linc.Services
         public async Task UpdateSourceAsync(SourceUpdateViewModel input)
         {
             var source = await _context.Sources.FindAsync(input.Id);
-            var authorId = await FindAuthorByNamesAsync(input.FirstName, input.LastName);
 
             ArgumentNullException.ThrowIfNull(source);
+
+            var author = await _applicationUserStore.FindUserByNamesAsync(input.FirstName, input.LastName);
+
+            string authorId = null;
+            if (author is not null)
+            {
+                _context.Users.Attach(author);
+                author.IsAuthor = true;
+                await _context.SaveChangesAsync();
+                authorId = author.Id;
+            }
 
             _context.Sources.Attach(source);
 
@@ -372,29 +394,6 @@ namespace linc.Services
             var entityEntry = await _context.Documents.AddAsync(entry);
             await _context.SaveChangesAsync();
             return entityEntry.Entity;
-        }
-
-
-        private async Task<string> FindAuthorByNamesAsync(string inputFirstName, string inputLastName)
-        {
-            var user = await _context.Users
-                .FirstOrDefaultAsync(x =>
-                    EF.Functions.Like(x.FirstName, $"{inputFirstName}") &&
-                    EF.Functions.Like(x.LastName, $"{inputLastName}")
-                );
-
-            if (user is null)
-            {
-                return null;
-            }
-
-            _context.Users.Attach(user);
-            
-            user.IsAuthor = true;
-
-            await _context.SaveChangesAsync();
-
-            return user.Id;
         }
     }
 }
