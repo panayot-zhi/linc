@@ -198,18 +198,18 @@ namespace linc.Services
 
             var entity = new ApplicationSource
             {
-                FirstName = input.FirstName,
-                LastName = input.LastName,
+                FirstName = input.FirstName?.Trim(),
+                LastName = input.LastName?.Trim(),
                 AuthorNotes = input.AuthorNotes,
 
-                DOI = input.DOI,
+                DOI = input.DOI?.Trim(),
 
                 StartingPdfPage = startingPage,
                 LastPdfPage = lastPage,
 
                 StartingIndexPage = input.StartingIndexPage,
 
-                Title = input.Title,
+                Title = input.Title?.Trim(),
                 TitleNotes = input.TitleNotes,
 
                 IsTheme = input.IsTheme,
@@ -247,13 +247,13 @@ namespace linc.Services
 
             _context.Sources.Attach(source);
 
-            source.Title = input.Title;
+            source.Title = input.Title?.Trim();
             source.TitleNotes = input.TitleNotes;
 
-            source.DOI = input.DOI;
+            source.DOI = input.DOI?.Trim();
 
-            source.FirstName = input.FirstName;
-            source.LastName = input.LastName;
+            source.FirstName = input.FirstName?.Trim();
+            source.LastName = input.LastName?.Trim();
             source.AuthorNotes = input.AuthorNotes;
 
             source.StartingIndexPage = input.StartingIndexPage;
