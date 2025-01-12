@@ -731,34 +731,34 @@ namespace linc.Services
 
             await File.WriteAllBytesAsync(filePath, inputFile);
 
-            var entry = new ApplicationDocument()
-            {
-                DocumentType = ApplicationDocumentType.Agreement,
-                Extension = "pdf",
-                FileName = fileName,
-                MimeType = MediaTypeNames.Application.Pdf,
-                OriginalFileName = fileName,
-                RelativePath = relativePath
-            };
+            // var entry = new ApplicationDocument()
+            // {
+            //     DocumentType = ApplicationDocumentType.Agreement,
+            //     Extension = "pdf",
+            //     FileName = fileName,
+            //     MimeType = MediaTypeNames.Application.Pdf,
+            //     OriginalFileName = fileName,
+            //     RelativePath = relativePath
+            // };
+            //
+            // dossier.Journals.Add(new DossierJournal
+            // {
+            //     PerformedById = currentUserId,
+            //     Message = JournalEntryKeys.DocumentUploaded,
+            //     MessageArguments = new[]
+            //     {
+            //         "DocumentType_Agreement"
+            //     }
+            // });
 
-            dossier.Journals.Add(new DossierJournal
-            {
-                PerformedById = currentUserId,
-                Message = JournalEntryKeys.DocumentUploaded,
-                MessageArguments = new[]
-                {
-                    "DocumentType_Agreement"
-                }
-            });
+            // await _context.Documents.AddAsync(entry);
 
-            await _context.Documents.AddAsync(entry);
+            // _context.Dossiers.Attach(dossier);
 
-            _context.Dossiers.Attach(dossier);
+            // dossier.Documents.Add(entry);
+            // dossier.AuthorId = currentUserId;
 
-            dossier.Documents.Add(entry);
-            dossier.AuthorId = currentUserId;
-
-            await _context.SaveChangesAsync();
+            // await _context.SaveChangesAsync();
 
             // send publication agreement document
             // - cc to editor (if any assigned)
