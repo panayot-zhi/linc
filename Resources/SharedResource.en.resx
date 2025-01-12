@@ -1543,7 +1543,7 @@
     <value>There is already an anonymized document attached to the file, if you attach a new one it will replace the old one.</value>
   </data>
   <data name="Dossier_EditPage_UploadRedactedDocument" xml:space="preserve">
-    <value>Attach redacted document</value>
+    <value>Attach edited document</value>
   </data>
   <data name="Dossier_EditPage_UploadRedactedDocument_Warning" xml:space="preserve">
     <value>There is already an edited document attached, if you attach a new one it will replace the old one.</value>
