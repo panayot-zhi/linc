@@ -17,17 +17,14 @@ namespace linc.Areas.Identity.Pages.Account
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ILogger<ConfirmEmailModel> _logger;
         private readonly IDossierService _dossierService;
-        private readonly ISourceService _sourceService;
 
         public ConfirmEmailModel(UserManager<ApplicationUser> userManager, 
             ILogger<ConfirmEmailModel> logger, 
             ILocalizationService localizationService,
-            IDossierService dossierService,
-            ISourceService sourcesService)
+            IDossierService dossierService)
         : base(localizationService)
         {
             _logger = logger;
-            _sourceService = sourcesService;
             _dossierService = dossierService;
             _userManager = userManager;
         }
@@ -81,7 +78,6 @@ namespace linc.Areas.Identity.Pages.Account
 
         private async Task Sync(ApplicationUser user)
         {
-            await _sourceService.UpdateAuthorAsync(user);
             await _dossierService.UpdateAuthorAsync(user);
             await _dossierService.UpdateReviewerAsync(user);
         }
