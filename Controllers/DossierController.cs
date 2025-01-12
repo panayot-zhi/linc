@@ -191,14 +191,26 @@ namespace linc.Controllers
                 {
                     // - the original author
                     // if this is the user's agreement, let him view it
-                    return await GetDocumentFile(dossier.Agreement.Id);
+                    var document = await GetDocumentFile(dossier.Agreement.Id);
+                    if (document is null)
+                    {
+                        return NotFound();
+                    }
+
+                    return document;
                 }
 
                 if (dossier.AssignedToId == currentUserId)
                 {
                     // - the editor that the dossier is assigned to
                     // if this dossier is assigned to this editor - let him download
-                    return await GetDocumentFile(dossier.Agreement.Id);
+                    var document = await GetDocumentFile(dossier.Agreement.Id);
+                    if (document is null)
+                    {
+                        return NotFound();
+                    }
+
+                    return document;
                 }
 
                 // otherwise - forbid interaction
