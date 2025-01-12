@@ -33,7 +33,10 @@ public class ApplicationUserStore : UserStore<ApplicationUser>, IApplicationUser
         
     public async Task<ApplicationUser> FindUserByNamesAsync(string inputFirstName, string inputLastName)
     {
-        // second try by names
+        // trim input names
+        inputFirstName = inputFirstName?.Trim();
+        inputLastName = inputLastName?.Trim();
+
         var userProfiles = await _context.UserProfiles.AsTracking()
             .Include(x => x.User)
             .Where(x =>
