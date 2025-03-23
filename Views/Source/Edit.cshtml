@@ -168,17 +168,22 @@
                         @{
                             var chosenIssue = Model.Issues.First(x => x.Selected).Text;
                             var issueDetailsLink = Url.Action("Details", "Issue", new { id = Model.IssueId });
-                            var sourceIssueLink = Url.Action(
-                                action: "LoadIssueDocument",
-                                controller: "Document",
-                                values: new { id = Model.IssueId },
-                                protocol: Context.Request.Protocol,
-                                host: Context.Request.Host.Host,
-                                fragment: $"#page={Model.StartingPdfPage}");
+                            var sourceIssueLink = Url.RouteUrl(
+                                routeName: "LoadIssueDocument", 
+                                values: new
+                                {
+                                    controller = "Document",
+                                    action = "LoadIssueDocument",
+                                    issueId = Model.IssueId
+                                },
+                                protocol: Context.Request.Scheme,
+                                host: Context.Request.Host.Value,
+                                fragment: $"page={Model.StartingPdfPage}"
+                            );
                         }
 
                         <span class="text-muted">
-                            @HtmlLocalizer["SourceSuggestion_IssueInformation_Template", issueDetailsLink, chosenIssue, sourceIssueLink, $"{Model.StartingIndexPage}"]
+                            @HtmlLocalizer["SourceSuggestion_IssueInformation_Template", issueDetailsLink!, chosenIssue, sourceIssueLink!, $"{Model.StartingIndexPage ?? Model.StartingPdfPage}"]
                         </span>
                     </div>
                 </div>
