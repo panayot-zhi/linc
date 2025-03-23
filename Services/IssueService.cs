@@ -30,8 +30,9 @@ namespace linc.Services
             {
                 query = query.Include(x => x.Sources
                     .Where(source => source.LanguageId == sourcesLanguageId.Value)
-                    .OrderBy(source => source.StartingPdfPage)  // some sections begin on the same pages
-                    .ThenBy(source => source.DateCreated));     // order additionally by the date created
+                    .OrderBy(source => source.StartingPdfPage)      // order first and foremost by the starting page number
+                    .ThenByDescending(source => source.IsSection)   // some sections begin on the same pages, they should be displayed first
+                    .ThenBy(source => source.DateCreated));         // order additionally by the date created
             }
 
             return await query.FirstOrDefaultAsync();

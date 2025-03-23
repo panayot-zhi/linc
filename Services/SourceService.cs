@@ -121,8 +121,9 @@ namespace linc.Services
 
             query = query
                 .OrderByDescending(x => x.Issue.ReleaseDate)
-                .ThenBy(x => x.StartingPdfPage)
-                .ThenBy(x => x.DateCreated);
+                .ThenBy(source => source.StartingPdfPage)       // order first and foremost by the starting page number
+                .ThenByDescending(source => source.IsSection)   // some sections begin on the same pages, they should be displayed first
+                .ThenBy(source => source.DateCreated);          // order additionally by the date created
 
             var count = await query.CountAsync();
             var sources = query
