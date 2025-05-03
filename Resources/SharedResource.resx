@@ -1744,4 +1744,13 @@
   <data name="Team_Y.Chankova_Member" xml:space="preserve">
     <value>доц. д-р Яна Чанкова</value>
   </data>
+  <data name="DossierStatus_InSuperReview" xml:space="preserve">
+    <value>В арбитражна рецензия</value>
+  </data>
+  <data name="Index_Title" xml:space="preserve">
+    <value>Начало</value>
+  </data>
+  <data name="NavItem_Library_Archive" xml:space="preserve">
+    <value>Архив</value>
+  </data>
 </root>
