@@ -662,7 +662,9 @@ namespace linc.Services
                 case ApplicationDossierStatus.Rejected:
                     // aw, out of luck
                     break;
-
+                case ApplicationDossierStatus.Published:
+                    // end of the line
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
