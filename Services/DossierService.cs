@@ -553,14 +553,19 @@ namespace linc.Services
                     break;
 
                 case ApplicationDossierStatus.InReview:
+                case ApplicationDossierStatus.InSuperReview:
 
                     if (input.Document == null)
                     {
                         break;
                     }
 
-                    // allow uploading a review document
-                    var review = await SaveDossierDocumentAsync(input.Document, dossier.Id, ApplicationDocumentType.Review);
+                    // allow uploading a (super) review document
+                    var documentType = dossier.Status == ApplicationDossierStatus.InReview
+                        ? ApplicationDocumentType.Review
+                        : ApplicationDocumentType.SuperReview;
+
+                    var review = await SaveDossierDocumentAsync(input.Document, dossier.Id, documentType);
                     var userReviewerId = await FindReviewerAsync(input.ReviewerEmail, input.ReviewerFirstName, input.ReviewerLastName);
                     var dossierReview = new ApplicationDossierReview()
                     {
@@ -576,6 +581,8 @@ namespace linc.Services
 
                     dossier.Reviews.Add(dossierReview);
 
+                    dossier.SuperReviewed = dossier.Status == ApplicationDossierStatus.InSuperReview;
+
                     dossier.Journals.Add(new DossierJournal
                     {
                         PerformedById = currentUserId,
@@ -589,9 +596,9 @@ namespace linc.Services
                     // create a checkpoint here
                     await _context.SaveChangesAsync();
 
-                    // check if there are 2 reviews available
+                    // check if there are 2 or more reviews available
                     // if yes - advance dossier status
-                    if (dossier.Reviews.Count == 2)
+                    if (dossier.Reviews.Count >= 2)
                     {
                         // update dossier status
                         await UpdateStatusAsync(dossier.Id, ApplicationDossierStatus.Reviewed);
