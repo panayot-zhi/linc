@@ -1549,7 +1549,7 @@
     <value>Attach a review</value>
   </data>
   <data name="Dossier_EditPage_UploadReviewDocument_Info" xml:space="preserve">
-    <value>There is one review attached to the dossier, when you attach the second one it will automatically change to '{0}' status.</value>
+    <value>There is &lt;b&gt;one&lt;/b&gt; review attached to the dossier, when you attach the second one it will automatically change to '{0}' status.</value>
   </data>
   <data name="JournalDossier_AssignedTo" xml:space="preserve">
     <value>Assigned {0} as editor for the dossier.</value>
@@ -1751,5 +1751,14 @@ The manuscript file must have a .doc or .docx extension.</value>
   </data>
   <data name="NavItem_Library_Archive" xml:space="preserve">
     <value>Archive</value>
+  </data>
+  <data name="Dossier_EditPage_UploadSuperReviewDocument_Info" xml:space="preserve">
+    <value>There are &lt;b&gt;two&lt;/b&gt; reviews attached to the dossier, when you attach the arbitration one it will automatically change to '{0}' status again.</value>
+  </data>
+  <data name="Dossier_EditPage_UploadSuperReviewDocument" xml:space="preserve">
+    <value>Attach an arbitration review</value>
+  </data>
+  <data name="DocumentType_SuperReview" xml:space="preserve">
+    <value>Arbitration review</value>
   </data>
 </root>

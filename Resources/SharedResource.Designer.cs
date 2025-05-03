@@ -1176,6 +1176,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Арбитражна рецензия.
+        /// </summary>
+        public static string DocumentType_SuperReview {
+            get {
+                return ResourceManager.GetString("DocumentType_SuperReview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Неизвестен.
         /// </summary>
         public static string DocumentType_Unknown {
@@ -1329,11 +1338,29 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Към досието има прикачена една рецензия, когато прикачите втората, то автоматично ще премине в статус &apos;{0}&apos;..
+        ///   Looks up a localized string similar to Към досието има прикачена &lt;b&gt;една&lt;/b&gt; рецензия, когато прикачите втората, то автоматично ще премине в статус &apos;{0}&apos;..
         /// </summary>
         public static string Dossier_EditPage_UploadReviewDocument_Info {
             get {
                 return ResourceManager.GetString("Dossier_EditPage_UploadReviewDocument_Info", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Прикачете арбитражна рецензия.
+        /// </summary>
+        public static string Dossier_EditPage_UploadSuperReviewDocument {
+            get {
+                return ResourceManager.GetString("Dossier_EditPage_UploadSuperReviewDocument", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Към досието има прикачени &lt;b&gt;две&lt;/b&gt; рецензии, когато прикачите арбитражна, то автоматично ще премине в статус &apos;{0}&apos; отново..
+        /// </summary>
+        public static string Dossier_EditPage_UploadSuperReviewDocument_Info {
+            get {
+                return ResourceManager.GetString("Dossier_EditPage_UploadSuperReviewDocument_Info", resourceCulture);
             }
         }
         
@@ -3415,6 +3442,15 @@ namespace linc.Resources {
         public static string NavItem_Library {
             get {
                 return ResourceManager.GetString("NavItem_Library", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Архив.
+        /// </summary>
+        public static string NavItem_Library_Archive {
+            get {
+                return ResourceManager.GetString("NavItem_Library_Archive", resourceCulture);
             }
         }
         

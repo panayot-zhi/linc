@@ -1550,7 +1550,7 @@
     <value>Прикачете рецензия</value>
   </data>
   <data name="Dossier_EditPage_UploadReviewDocument_Info" xml:space="preserve">
-    <value>Към досието има прикачена една рецензия, когато прикачите втората, то автоматично ще премине в статус '{0}'.</value>
+    <value>Към досието има прикачена &lt;b&gt;една&lt;/b&gt; рецензия, когато прикачите втората, то автоматично ще премине в статус '{0}'.</value>
   </data>
   <data name="JournalDossier_AssignedTo" xml:space="preserve">
     <value>Назначен {0} за редактор на досието.</value>
@@ -1752,5 +1752,14 @@
   </data>
   <data name="NavItem_Library_Archive" xml:space="preserve">
     <value>Архив</value>
+  </data>
+  <data name="Dossier_EditPage_UploadSuperReviewDocument_Info" xml:space="preserve">
+    <value>Към досието има прикачени &lt;b&gt;две&lt;/b&gt; рецензии, когато прикачите арбитражна, то автоматично ще премине в статус '{0}' отново.</value>
+  </data>
+  <data name="Dossier_EditPage_UploadSuperReviewDocument" xml:space="preserve">
+    <value>Прикачете арбитражна рецензия</value>
+  </data>
+  <data name="DocumentType_SuperReview" xml:space="preserve">
+    <value>Арбитражна рецензия</value>
   </data>
 </root>
