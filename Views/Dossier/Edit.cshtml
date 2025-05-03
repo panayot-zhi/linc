@@ -65,12 +65,15 @@
                         </a>
                     </li>
 
-                    <li>
-                        <a asp-action="UpdateStatus" asp-route-id="@Model.Id" asp-route-status="InSuperReview" class="requires-confirm text-warning">
-                            <i class='bx bx-comment-error'></i>
-                            @(EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.InSuperReview))
-                        </a>
-                    </li>
+                    @if (!Model.SuperReviewed)
+                    {
+                        <li>
+                            <a asp-action="UpdateStatus" asp-route-id="@Model.Id" asp-route-status="InSuperReview" class="requires-confirm text-warning">
+                                <i class='bx bx-comment-error'></i>
+                                @(EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.InSuperReview))
+                            </a>
+                        </li>
+                    }
 
                     <li>
                         <a asp-action="UpdateStatus" asp-route-id="@Model.Id" asp-route-status="AwaitingCorrections" class="requires-confirm">
