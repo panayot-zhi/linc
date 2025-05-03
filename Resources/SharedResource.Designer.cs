@@ -1716,6 +1716,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to В арбитражна рецензия.
+        /// </summary>
+        public static string DossierStatus_InSuperReview {
+            get {
+                return ResourceManager.GetString("DossierStatus_InSuperReview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Нов.
         /// </summary>
         public static string DossierStatus_New {
@@ -2281,6 +2290,15 @@ namespace linc.Resources {
         public static string InAlphabet_en_Name {
             get {
                 return ResourceManager.GetString("InAlphabet_en_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Начало.
+        /// </summary>
+        public static string Index_Title {
+            get {
+                return ResourceManager.GetString("Index_Title", resourceCulture);
             }
         }
         
