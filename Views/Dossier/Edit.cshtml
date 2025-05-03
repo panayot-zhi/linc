@@ -240,14 +240,14 @@
                 {
                     <div class="alert alert-info" role="alert">
                         <i class='bx bxs-info-circle'></i>
-                        @HtmlLocalizer["Dossier_EditPage_UploadReviewDocument_Info", EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.Reviewed)]
+                        <span>@HtmlLocalizer["Dossier_EditPage_UploadReviewDocument_Info", EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.Reviewed)]</span>
                     </div>
                 }
                 else if (Model.Reviews.Count == 2)
                 {
                     <div class="alert alert-info" role="alert">
                         <i class='bx bxs-info-circle'></i>
-                        @HtmlLocalizer["Dossier_EditPage_UploadSuperReviewDocument_Info", EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.Reviewed)]
+                        <span>@HtmlLocalizer["Dossier_EditPage_UploadSuperReviewDocument_Info", EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.Reviewed)]</span>
                     </div>
                 }
 
