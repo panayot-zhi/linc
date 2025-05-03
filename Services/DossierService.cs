@@ -200,6 +200,7 @@ namespace linc.Services
                 Email = dossier.Email?.Trim(),
 
                 Status = dossier.Status,
+                SuperReviewed = dossier.SuperReviewed,
 
                 AssigneeId = dossier.AssignedToId,
                 AssigneeNames = dossier.AssignedTo != null ?
