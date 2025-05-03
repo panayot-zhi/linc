@@ -97,6 +97,16 @@
                         </a>
                     </li>
                 }
+                
+                @if (Model.Status is < ApplicationDossierStatus.Reviewed or ApplicationDossierStatus.AwaitingCorrections)
+                {
+                    <li>
+                        <a asp-action="UpdateStatus" asp-route-id="@Model.Id" asp-route-status="Rejected" class="requires-confirm text-danger">
+                            <i class='bx bxs-x-circle'></i>
+                            @(EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.Rejected))
+                        </a>
+                    </li>
+                }
 
                 <li>
                     <a asp-action="Details" asp-route-id="@Model.Id">
