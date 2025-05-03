@@ -37,6 +37,7 @@
         <form asp-action="Edit" enctype="multipart/form-data">
 
             <input asp-for="Status" type="hidden" />
+            <input asp-for="SuperReviewed" type="hidden" />
 
             <h3>@HtmlLocalizer["Dossier_EditPage_SubTitle"]</h3>
             <small>@HtmlLocalizer["Dossier_ListHeader_Status"]: @(EnumHelper<ApplicationDossierStatus>.GetDisplayName(Model.Status))</small>
@@ -63,6 +64,16 @@
                             @(EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.Accepted))
                         </a>
                     </li>
+
+                    @if (!Model.SuperReviewed)
+                    {
+                        <li>
+                            <a asp-action="UpdateStatus" asp-route-id="@Model.Id" asp-route-status="InSuperReview" class="requires-confirm text-warning">
+                                <i class='bx bx-comment-error'></i>
+                                @(EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.InSuperReview))
+                            </a>
+                        </li>
+                    }
 
                     <li>
                         <a asp-action="UpdateStatus" asp-route-id="@Model.Id" asp-route-status="AwaitingCorrections" class="requires-confirm">
@@ -234,25 +245,46 @@
                     </div>
                 </div>
             }
-            else if (Model.Status == ApplicationDossierStatus.InReview)
+            else if (Model.Status is ApplicationDossierStatus.InReview or ApplicationDossierStatus.InSuperReview)
             {
                 <hr />
 
-                if (Model.Reviews.Count > 0)
+                if (Model.Reviews.Count == 1)
                 {
                     <div class="alert alert-info" role="alert">
                         <i class='bx bxs-info-circle'></i>
-                        @HtmlLocalizer["Dossier_EditPage_UploadReviewDocument_Info", EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.Reviewed)]
+                        <span>@HtmlLocalizer["Dossier_EditPage_UploadReviewDocument_Info", EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.Reviewed)]</span>
+                    </div>
+                }
+                else if (Model.Reviews.Count == 2)
+                {
+                    <div class="alert alert-info" role="alert">
+                        <i class='bx bxs-info-circle'></i>
+                        <span>@HtmlLocalizer["Dossier_EditPage_UploadSuperReviewDocument_Info", EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.Reviewed)]</span>
                     </div>
                 }
 
                 // allow uploading a Review document
-                <input asp-for="DocumentType" type="hidden" value="@ApplicationDocumentType.Review" />
+                @if (Model.Status == ApplicationDossierStatus.InSuperReview)
+                {
+                    <input asp-for="DocumentType" type="hidden" value="@ApplicationDocumentType.SuperReview" />
+                }
+                else
+                {
+                    <input asp-for="DocumentType" type="hidden" value="@ApplicationDocumentType.Review" />
+                }
 
                 <div class="form-group">
                     <div class="mb-3">
                         <label asp-for="Document" class="form-label">
-                            @HtmlLocalizer["Dossier_EditPage_UploadReviewDocument"]
+                            @if (Model.Status == ApplicationDossierStatus.InSuperReview)
+                            {
+                                @HtmlLocalizer["Dossier_EditPage_UploadSuperReviewDocument"]
+                            }
+                            else
+                            {
+                                @HtmlLocalizer["Dossier_EditPage_UploadReviewDocument"]
+                            }
                         </label>
                         <input asp-for="Document" class="form-control" accept=".doc,.docx" />
                         <span asp-validation-for="Document" class="invalid-feedback"></span>

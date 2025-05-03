@@ -42,6 +42,8 @@ namespace linc.Models.ViewModels.Dossier
 
         public ApplicationDossierStatus Status { get; set; }
 
+        public bool SuperReviewed { get; set; }
+
 
         [Display(Name = "DossierEdit_Assignee", ResourceType = typeof(Resources.SharedResource))]
         public string AssigneeId { get; set; }
@@ -82,7 +84,7 @@ namespace linc.Models.ViewModels.Dossier
             _documents.FirstOrDefault(x => x.DocumentType == ApplicationDocumentType.Redacted);
 
         public List<ApplicationDocument> Reviews =>
-            _documents.Where(x => x.DocumentType == ApplicationDocumentType.Review).ToList();
+            _documents.Where(x => x.DocumentType is ApplicationDocumentType.Review or ApplicationDocumentType.SuperReview).ToList();
 
 
         [Display(Name = "DossierEdit_Agreement", ResourceType = typeof(Resources.SharedResource))]

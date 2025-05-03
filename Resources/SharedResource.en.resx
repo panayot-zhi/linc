@@ -138,18 +138,6 @@
   <data name="AboutSection_Title" xml:space="preserve">
     <value>About the journal</value>
   </data>
-  <data name="AdminIndex_Operations_Title" xml:space="preserve">
-    <value>Administrative operations</value>
-  </data>
-  <data name="AdminIndex_Title" xml:space="preserve">
-    <value>Administration</value>
-  </data>
-  <data name="Admin_CreateIssue" xml:space="preserve">
-    <value>Create an issue</value>
-  </data>
-  <data name="Admin_CreateSource" xml:space="preserve">
-    <value>Create index entry</value>
-  </data>
   <data name="AlertMessage_400Warning" xml:space="preserve">
     <value>The data that you are sending is invalid.</value>
   </data>
@@ -180,14 +168,8 @@
   <data name="AlertMessage_Warning_Title" xml:space="preserve">
     <value>Attention!</value>
   </data>
-  <data name="All_Label" xml:space="preserve">
-    <value>All</value>
-  </data>
   <data name="Anonymous_Label" xml:space="preserve">
     <value>Anonymous</value>
-  </data>
-  <data name="AuthorsSection_Title" xml:space="preserve">
-    <value>Authors</value>
   </data>
   <data name="Board_Aleksander.Mikołajczak_Member" xml:space="preserve">
     <value>Prof. Aleksander Wojciech Mikołajczak, DSc</value>
@@ -266,15 +248,6 @@
   </data>
   <data name="ChangeEmail_Button_Label" xml:space="preserve">
     <value>Change email</value>
-  </data>
-  <data name="ChangePasswordModel_ConfirmPassword" xml:space="preserve">
-    <value>Confirm new password</value>
-  </data>
-  <data name="ChangePasswordModel_NewPassword" xml:space="preserve">
-    <value>New password</value>
-  </data>
-  <data name="ChangePasswordModel_OldPassword" xml:space="preserve">
-    <value>Old password</value>
   </data>
   <data name="Close_Label" xml:space="preserve">
     <value>Close</value>
@@ -460,12 +433,6 @@
   <data name="CurrentDisplayName_Label" xml:space="preserve">
     <value>Current</value>
   </data>
-  <data name="Delete_Button_Label" xml:space="preserve">
-    <value>Delete</value>
-  </data>
-  <data name="Download_Button_Label" xml:space="preserve">
-    <value>Download</value>
-  </data>
   <data name="EmailModel_Email" xml:space="preserve">
     <value>Email address</value>
   </data>
@@ -483,9 +450,6 @@
   </data>
   <data name="FeaturedSection_Review_Title" xml:space="preserve">
     <value>Anonymous review</value>
-  </data>
-  <data name="FeaturedSection_Submit_Description" xml:space="preserve">
-    <value>Send your manuscript to the editorial staff at &lt;a class="nav-link" href="mailto:review-linc@uni-plovdiv.bg"&gt;review-linc@uni-plovdiv.bg&lt;/a&gt;. First, read &lt;a target="_blank" class="nav-link" href="https://test.linc.uni-plovdiv.bg/docs/en/technical_requirements.doc"&gt;the technical requirements&lt;/a&gt; for submitting manuscripts and &lt;a class="nav-link scrollto" href="#codex"&gt;the Code of Ethics&lt;/a&gt;.</value>
   </data>
   <data name="FeaturedSection_Submit_Title" xml:space="preserve">
     <value>Submit a publication</value>
@@ -596,69 +560,6 @@
   <data name="HomeTerms_Title" xml:space="preserve">
     <value>Terms of use</value>
   </data>
-  <data name="Index_Title" xml:space="preserve">
-    <value>Home</value>
-  </data>
-  <data name="IssueCreate_CoverPage" xml:space="preserve">
-    <value>Attach image with the cover page</value>
-  </data>
-  <data name="IssueCreate_Description" xml:space="preserve">
-    <value>Additional information</value>
-  </data>
-  <data name="IssueCreate_IndexPages" xml:space="preserve">
-    <value>Attach images with the index pages</value>
-  </data>
-  <data name="IssueCreate_IssueNumber" xml:space="preserve">
-    <value>Issue number</value>
-  </data>
-  <data name="IssueCreate_PdfFile" xml:space="preserve">
-    <value>Attach the issue as PDF</value>
-  </data>
-  <data name="IssueCreate_ReleaseDate" xml:space="preserve">
-    <value>Release date</value>
-  </data>
-  <data name="Issue_CreatePage_Notes_Title" xml:space="preserve">
-    <value>Notes</value>
-  </data>
-  <data name="Issue_CreatePage_SubTitle" xml:space="preserve">
-    <value>Create new issue</value>
-  </data>
-  <data name="Issue_CreatePage_Title" xml:space="preserve">
-    <value>Create issue</value>
-  </data>
-  <data name="Issue_DetailsPage_ContentTitle" xml:space="preserve">
-    <value>Contents</value>
-  </data>
-  <data name="Issue_DetailsPage_InfoTitle" xml:space="preserve">
-    <value>Information about the issue</value>
-  </data>
-  <data name="Issue_DetailsPage_IssueReleased" xml:space="preserve">
-    <value>Released</value>
-  </data>
-  <data name="Issue_DetailsPage_IssueDescription" xml:space="preserve">
-    <value>Additional information</value>
-  </data>
-  <data name="Issue_DetailsPage_IssueISSN" xml:space="preserve">
-    <value>ISSN</value>
-  </data>
-  <data name="Issue_DetailsPage_IssueNumber" xml:space="preserve">
-    <value>Issue number</value>
-  </data>
-  <data name="Issue_DetailsPage_IssuePdf" xml:space="preserve">
-    <value>Download PDF</value>
-  </data>
-  <data name="Issue_DetailsPage_IssueTitle" xml:space="preserve">
-    <value>Issue details</value>
-  </data>
-  <data name="Issue_DetailsPage_PageTitle" xml:space="preserve">
-    <value>#{0} Issue details</value>
-  </data>
-  <data name="Issue_DetailsPage_Title" xml:space="preserve">
-    <value>View issue</value>
-  </data>
-  <data name="Issue_Details_Label" xml:space="preserve">
-    <value>View issue</value>
-  </data>
   <data name="Issue_IndexPage_Label" xml:space="preserve">
     <value>Contents</value>
   </data>
@@ -667,9 +568,6 @@
   </data>
   <data name="Issue_Number_Label" xml:space="preserve">
     <value>Issue #</value>
-  </data>
-  <data name="Issue_Zoom_Label" xml:space="preserve">
-    <value>Cover page, issue {0}</value>
   </data>
   <data name="LibraryIndex_Title" xml:space="preserve">
     <value>Library</value>
@@ -734,42 +632,14 @@
   <data name="Logo_Short" xml:space="preserve">
     <value>LInC</value>
   </data>
-  <data name="ManageDeletePersonalData_DeleteButtonLabel" xml:space="preserve">
-    <value>Delete data and close my account</value>
-  </data>
-  <data name="ManageDeletePersonalData_Description" xml:space="preserve">
-    <value>Deleting this data will permanently remove your account, and this cannot be recovered.</value>
-  </data>
-  <data name="ManageDeletePersonalData_IncorrectPassword_ErrorMessage" xml:space="preserve">
-    <value>Incorrect password.</value>
-  </data>
-  <data name="ManageDeletePersonalData_Title" xml:space="preserve">
-    <value>Delete Personal Data</value>
-  </data>
-  <data name="ManageDownloadPersonalData_Title" xml:space="preserve">
-    <value>Download Your Data</value>
-  </data>
   <data name="ManageEmail_ChangeEmail_SuccessMessage" xml:space="preserve">
     <value>Confirmation link to change email sent. Please check your email.</value>
   </data>
   <data name="ManageEmail_ChangeEmail_WarningMessage" xml:space="preserve">
     <value>Your email is unchanged.</value>
   </data>
-  <data name="ManageEmail_Description" xml:space="preserve">
-    <value>&lt;p&gt;&lt;small&gt;If you decide to change your email address, &lt;span class="text-decoration-underline"&gt;you will need to confirm it via a verification email again&lt;/span&gt; before you can enter the site.&lt;/ small&gt;&lt;/p&gt;
-&lt;p&gt;&lt;small&gt;LInC &lt;span class="text-decoration-underline"&gt;does not use your email address for marketing purposes and promotions&lt;/span&gt;. We will only send you a notification about a new issue, if you have &lt;a href="/identity/account/manage/information"&gt;specified it in your preferences&lt;/a&gt;.&lt;/small&gt;&lt;/p&gt;</value>
-  </data>
-  <data name="ManageEmail_ReSendConfirmation_Description" xml:space="preserve">
-    <value>&lt;p&gt;&lt;small&gt;There are cases when the verification email fails to reach your mailbox. Please, in case you do not receive a verification email within a few minutes, try to resend it.&lt;/small&gt;&lt;/p&gt;</value>
-  </data>
   <data name="ManageEmail_ReSendVerificationEmail_SuccessMessage" xml:space="preserve">
     <value>Verification email was re-sent. Please check your email.</value>
-  </data>
-  <data name="ManageEmail_ReSendVerification_Confirmation" xml:space="preserve">
-    <value>We will send another email with a new confirmation link. Please, check your spam and trash folders for it.</value>
-  </data>
-  <data name="ManageEmail_ReSendVerification_Confirmation_Title" xml:space="preserve">
-    <value>Are you sure?</value>
   </data>
   <data name="ManageEmail_Title" xml:space="preserve">
     <value>Manage email</value>
@@ -837,41 +707,6 @@
   <data name="ManageNavItem_TwoFactorAuthentication" xml:space="preserve">
     <value>Two-factor authentication</value>
   </data>
-  <data name="ManagePassword_Description" xml:space="preserve">
-    <value>&lt;p&gt;&lt;small&gt;In order to ensure maximum security of your access to the web site, we require your password to contain:&lt;/small&gt;&lt;/p&gt;
-
- &lt;ul&gt;
-	 &lt;li&gt;&lt;small&gt;characters &lt;span class="text-decoration-underline"&gt;only in Latin&lt;/span&gt;&lt;/small&gt;&lt;/li&gt;
-	 &lt;li&gt;&lt;small&gt;at least six characters&lt;/small&gt;&lt;/li&gt;
-	 &lt;li&gt;&lt;small&gt;at least four &lt;span class="text-decoration-underline"&gt;different&lt;/span&gt; characters&lt;/small&gt;&lt;/li&gt;
-	 &lt;li&gt;&lt;small&gt;at least one capital letter&lt;/small&gt;&lt;/li&gt;
-	 &lt;li&gt;&lt;small&gt;at least one digit&lt;/small&gt;&lt;/li&gt;
- &lt;/ul&gt;
-
- &lt;p&gt;&lt;small&gt;Please do not use passwords that you use elsewhere.&lt;/small&gt;&lt;/p&gt;
- &lt;p&gt;&lt;small&gt;Your password is the key to accessing the site, keep it secret!&lt;/small&gt;&lt;/p&gt;</value>
-  </data>
-  <data name="ManagePassword_SubmitButton_Label" xml:space="preserve">
-    <value>Update Password</value>
-  </data>
-  <data name="ManagePassword_Title" xml:space="preserve">
-    <value>Change Password</value>
-  </data>
-  <data name="ManagePassword_Update_SuccessMessage" xml:space="preserve">
-    <value>Your password has been changed.</value>
-  </data>
-  <data name="ManagePersonalData_Description" xml:space="preserve">
-    <value>Your account contains personal data that you have given us. This page allows you to download or delete that data.</value>
-  </data>
-  <data name="ManagePersonalData_PageDescription" xml:space="preserve">
-    <value>&lt;p&gt;&lt;small&gt;All personal data collected on the Page Magazine site can be downloaded and viewed in &lt;a href="http://www.google.com/search?q=json" target="_blank"&gt;machine readable format (JSON)&lt;/a&gt;.&lt;/small&gt;&lt;/p&gt;
-&lt;p&gt;&lt;small&gt;Site does not collect personal information other than what you provide to us. At any time, the information we hold about you can be reviewed and (see below) deleted.&lt;/small&gt;&lt;/p&gt;
-&lt;p&gt;&lt;small&gt;Deletion of information required for your authentication in the system will result in &lt;b&gt;deletion of your user from the system&lt;/b&gt;.&lt;/small&gt;&lt;/p&gt;
-&lt;p&gt;&lt;small&gt;&lt;b&gt;Caution! If you delete your user from the system, you will not be able to enter the site and any information associated with you will be deleted!&lt;/b&gt;&lt;/small&gt;&lt;/p&gt;</value>
-  </data>
-  <data name="ManagePersonalData_Title" xml:space="preserve">
-    <value>Personal data</value>
-  </data>
   <data name="ManagePreferences_Description" xml:space="preserve">
     <value>Short description</value>
   </data>
@@ -916,9 +751,6 @@
   <data name="NavItem_About" xml:space="preserve">
     <value>About</value>
   </data>
-  <data name="NavItem_Authors" xml:space="preserve">
-    <value>Authors</value>
-  </data>
   <data name="NavItem_Categories" xml:space="preserve">
     <value>Categories</value>
   </data>
@@ -942,9 +774,6 @@
   </data>
   <data name="NavItem_Library" xml:space="preserve">
     <value>Library</value>
-  </data>
-  <data name="NavItem_Library_Archive" xml:space="preserve">
-    <value>Archive</value>
   </data>
   <data name="NavItem_Library_ByAuthors" xml:space="preserve">
     <value>By authors</value>
@@ -997,9 +826,6 @@
   <data name="NewsletterSection_Title" xml:space="preserve">
     <value>Subscribe for new issues</value>
   </data>
-  <data name="NextPage_Label" xml:space="preserve">
-    <value>Next</value>
-  </data>
   <data name="PortfolioSection_Filter_All" xml:space="preserve">
     <value>All</value>
   </data>
@@ -1008,9 +834,6 @@
   </data>
   <data name="PortfolioSection_Title" xml:space="preserve">
     <value>Issues</value>
-  </data>
-  <data name="PreviousPage_Label" xml:space="preserve">
-    <value>Previous</value>
   </data>
   <data name="RegisterConfirmation_InfoMessage" xml:space="preserve">
     <value>We've sent you a confirmation email. Please, follow the link inside it to confirm your account.</value>
@@ -1075,15 +898,6 @@
   </data>
   <data name="Register_EmailConfirmation_Required" xml:space="preserve">
     <value>We have sent you a letter of confirmation. Please, prior to entering, confirm your email with the link inside it.</value>
-  </data>
-  <data name="ReportBugSection_SubmitButton_Label" xml:space="preserve">
-    <value>Report</value>
-  </data>
-  <data name="ReportBug_Description_Top" xml:space="preserve">
-    <value>If you have encountered an issue or an inconsistency, please, report this to the site administrator so he can take up measures immediately.</value>
-  </data>
-  <data name="ReportBug_Title" xml:space="preserve">
-    <value>Report a bug</value>
   </data>
   <data name="ResendEmailConfirmationPage_Button_Label" xml:space="preserve">
     <value>Resend</value>
@@ -1172,48 +986,6 @@
   <data name="SiteRole_Users" xml:space="preserve">
     <value>Users</value>
   </data>
-  <data name="SourceCreate_AuthorNotes" xml:space="preserve">
-    <value>Notes for the author</value>
-  </data>
-  <data name="SourceCreate_FirstName" xml:space="preserve">
-    <value>First name</value>
-  </data>
-  <data name="SourceCreate_IssueId" xml:space="preserve">
-    <value>Issue</value>
-  </data>
-  <data name="SourceCreate_LanguageId" xml:space="preserve">
-    <value>Language</value>
-  </data>
-  <data name="SourceCreate_LastName" xml:space="preserve">
-    <value>Last name</value>
-  </data>
-  <data name="SourceCreate_StartingPdfPage" xml:space="preserve">
-    <value>Starting page (PDF)</value>
-  </data>
-  <data name="SourceCreate_Title" xml:space="preserve">
-    <value>Title</value>
-  </data>
-  <data name="SourceCreate_TitleNotes" xml:space="preserve">
-    <value>Notes to the manuscript</value>
-  </data>
-  <data name="Sources_All_Description" xml:space="preserve">
-    <value>View all authors</value>
-  </data>
-  <data name="Source_IndexPage_FilterByIssues_Title" xml:space="preserve">
-    <value>By issues</value>
-  </data>
-  <data name="Source_IndexPage_FilterByYears_Title" xml:space="preserve">
-    <value>By years</value>
-  </data>
-  <data name="Source_IndexPage_NoResults" xml:space="preserve">
-    <value>No results for the given criteria.</value>
-  </data>
-  <data name="Source_IndexPage_SubTitle" xml:space="preserve">
-    <value>Library</value>
-  </data>
-  <data name="Source_IndexPage_Title" xml:space="preserve">
-    <value>Authors</value>
-  </data>
   <data name="StatusMessage_Error_Prefix" xml:space="preserve">
     <value>Error:</value>
   </data>
@@ -1271,6 +1043,234 @@
   <data name="Welcome_Message" xml:space="preserve">
     <value>Welcome to &lt;span&gt;LInC.uni-plovdiv.bg&lt;/span&gt;</value>
   </data>
+  <data name="ChangePasswordModel_ConfirmPassword" xml:space="preserve">
+    <value>Confirm new password</value>
+  </data>
+  <data name="ChangePasswordModel_NewPassword" xml:space="preserve">
+    <value>New password</value>
+  </data>
+  <data name="ChangePasswordModel_OldPassword" xml:space="preserve">
+    <value>Old password</value>
+  </data>
+  <data name="Delete_Button_Label" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Download_Button_Label" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="ManageDeletePersonalData_DeleteButtonLabel" xml:space="preserve">
+    <value>Delete data and close my account</value>
+  </data>
+  <data name="ManageDeletePersonalData_Description" xml:space="preserve">
+    <value>Deleting this data will permanently remove your account, and this cannot be recovered.</value>
+  </data>
+  <data name="ManageDeletePersonalData_IncorrectPassword_ErrorMessage" xml:space="preserve">
+    <value>Incorrect password.</value>
+  </data>
+  <data name="ManageDeletePersonalData_Title" xml:space="preserve">
+    <value>Delete Personal Data</value>
+  </data>
+  <data name="ManageDownloadPersonalData_Title" xml:space="preserve">
+    <value>Download Your Data</value>
+  </data>
+  <data name="ManageEmail_Description" xml:space="preserve">
+    <value>&lt;p&gt;&lt;small&gt;If you decide to change your email address, &lt;span class="text-decoration-underline"&gt;you will need to confirm it via a verification email again&lt;/span&gt; before you can enter the site.&lt;/ small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;LInC &lt;span class="text-decoration-underline"&gt;does not use your email address for marketing purposes and promotions&lt;/span&gt;. We will only send you a notification about a new issue, if you have &lt;a href="/identity/account/manage/information"&gt;specified it in your preferences&lt;/a&gt;.&lt;/small&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="ManageEmail_ReSendConfirmation_Description" xml:space="preserve">
+    <value>&lt;p&gt;&lt;small&gt;There are cases when the verification email fails to reach your mailbox. Please, in case you do not receive a verification email within a few minutes, try to resend it.&lt;/small&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="ManageEmail_ReSendVerification_Confirmation" xml:space="preserve">
+    <value>We will send another email with a new confirmation link. Please, check your spam and trash folders for it.</value>
+  </data>
+  <data name="ManageEmail_ReSendVerification_Confirmation_Title" xml:space="preserve">
+    <value>Are you sure?</value>
+  </data>
+  <data name="ManagePassword_Description" xml:space="preserve">
+    <value>&lt;p&gt;&lt;small&gt;In order to ensure maximum security of your access to the web site, we require your password to contain:&lt;/small&gt;&lt;/p&gt;
+
+ &lt;ul&gt;
+	 &lt;li&gt;&lt;small&gt;characters &lt;span class="text-decoration-underline"&gt;only in Latin&lt;/span&gt;&lt;/small&gt;&lt;/li&gt;
+	 &lt;li&gt;&lt;small&gt;at least six characters&lt;/small&gt;&lt;/li&gt;
+	 &lt;li&gt;&lt;small&gt;at least four &lt;span class="text-decoration-underline"&gt;different&lt;/span&gt; characters&lt;/small&gt;&lt;/li&gt;
+	 &lt;li&gt;&lt;small&gt;at least one capital letter&lt;/small&gt;&lt;/li&gt;
+	 &lt;li&gt;&lt;small&gt;at least one digit&lt;/small&gt;&lt;/li&gt;
+ &lt;/ul&gt;
+
+ &lt;p&gt;&lt;small&gt;Please do not use passwords that you use elsewhere.&lt;/small&gt;&lt;/p&gt;
+ &lt;p&gt;&lt;small&gt;Your password is the key to accessing the site, keep it secret!&lt;/small&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="ManagePassword_SubmitButton_Label" xml:space="preserve">
+    <value>Update Password</value>
+  </data>
+  <data name="ManagePassword_Title" xml:space="preserve">
+    <value>Change Password</value>
+  </data>
+  <data name="ManagePassword_Update_SuccessMessage" xml:space="preserve">
+    <value>Your password has been changed.</value>
+  </data>
+  <data name="ManagePersonalData_Description" xml:space="preserve">
+    <value>Your account contains personal data that you have given us. This page allows you to download or delete that data.</value>
+  </data>
+  <data name="ManagePersonalData_PageDescription" xml:space="preserve">
+    <value>&lt;p&gt;&lt;small&gt;All personal data collected on the Page Magazine site can be downloaded and viewed in &lt;a href="http://www.google.com/search?q=json" target="_blank"&gt;machine readable format (JSON)&lt;/a&gt;.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Site does not collect personal information other than what you provide to us. At any time, the information we hold about you can be reviewed and (see below) deleted.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;Deletion of information required for your authentication in the system will result in &lt;b&gt;deletion of your user from the system&lt;/b&gt;.&lt;/small&gt;&lt;/p&gt;
+&lt;p&gt;&lt;small&gt;&lt;b&gt;Caution! If you delete your user from the system, you will not be able to enter the site and any information associated with you will be deleted!&lt;/b&gt;&lt;/small&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="ManagePersonalData_Title" xml:space="preserve">
+    <value>Personal data</value>
+  </data>
+  <data name="IssueCreate_CoverPage" xml:space="preserve">
+    <value>Attach image with the cover page</value>
+  </data>
+  <data name="IssueCreate_Description" xml:space="preserve">
+    <value>Additional information</value>
+  </data>
+  <data name="IssueCreate_IndexPages" xml:space="preserve">
+    <value>Attach images with the index pages</value>
+  </data>
+  <data name="IssueCreate_IssueNumber" xml:space="preserve">
+    <value>Issue number</value>
+  </data>
+  <data name="IssueCreate_PdfFile" xml:space="preserve">
+    <value>Attach the issue as PDF</value>
+  </data>
+  <data name="IssueCreate_ReleaseDate" xml:space="preserve">
+    <value>Release date</value>
+  </data>
+  <data name="Issue_CreatePage_Notes_Title" xml:space="preserve">
+    <value>Notes</value>
+  </data>
+  <data name="Issue_CreatePage_SubTitle" xml:space="preserve">
+    <value>Create new issue</value>
+  </data>
+  <data name="Issue_CreatePage_Title" xml:space="preserve">
+    <value>Create issue</value>
+  </data>
+  <data name="Issue_DetailsPage_ContentTitle" xml:space="preserve">
+    <value>Contents</value>
+  </data>
+  <data name="Issue_DetailsPage_IssueReleased" xml:space="preserve">
+    <value>Released</value>
+  </data>
+  <data name="Issue_DetailsPage_IssueDescription" xml:space="preserve">
+    <value>Additional information</value>
+  </data>
+  <data name="Issue_DetailsPage_IssueISSN" xml:space="preserve">
+    <value>ISSN</value>
+  </data>
+  <data name="Issue_DetailsPage_IssueNumber" xml:space="preserve">
+    <value>Issue number</value>
+  </data>
+  <data name="Issue_DetailsPage_IssuePdf" xml:space="preserve">
+    <value>Download PDF</value>
+  </data>
+  <data name="Issue_DetailsPage_IssueTitle" xml:space="preserve">
+    <value>Issue details</value>
+  </data>
+  <data name="Issue_DetailsPage_Title" xml:space="preserve">
+    <value>View issue</value>
+  </data>
+  <data name="SourceCreate_AuthorNotes" xml:space="preserve">
+    <value>Notes for the author</value>
+  </data>
+  <data name="SourceCreate_FirstName" xml:space="preserve">
+    <value>First name</value>
+  </data>
+  <data name="SourceCreate_IssueId" xml:space="preserve">
+    <value>Issue</value>
+  </data>
+  <data name="SourceCreate_LanguageId" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="SourceCreate_LastName" xml:space="preserve">
+    <value>Last name</value>
+  </data>
+  <data name="SourceCreate_StartingPdfPage" xml:space="preserve">
+    <value>Starting page (PDF)</value>
+  </data>
+  <data name="SourceCreate_Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="SourceCreate_TitleNotes" xml:space="preserve">
+    <value>Notes to the manuscript</value>
+  </data>
+  <data name="Source_CreatePage_SubTitle" xml:space="preserve">
+    <value>Create a new source from the index page</value>
+  </data>
+  <data name="Source_CreatePage_Title" xml:space="preserve">
+    <value>Create source</value>
+  </data>
+  <data name="Issue_DetailsPage_InfoTitle" xml:space="preserve">
+    <value>Information about the issue</value>
+  </data>
+  <data name="Issue_DetailsPage_PageTitle" xml:space="preserve">
+    <value>#{0} Issue details</value>
+  </data>
+  <data name="AuthorsSection_Title" xml:space="preserve">
+    <value>Authors</value>
+  </data>
+  <data name="Issue_Details_Label" xml:space="preserve">
+    <value>View issue</value>
+  </data>
+  <data name="Issue_Zoom_Label" xml:space="preserve">
+    <value>Cover page, issue {0}</value>
+  </data>
+  <data name="NavItem_Authors" xml:space="preserve">
+    <value>Authors</value>
+  </data>
+  <data name="ReportBugSection_SubmitButton_Label" xml:space="preserve">
+    <value>Report</value>
+  </data>
+  <data name="ReportBug_Description_Top" xml:space="preserve">
+    <value>If you have encountered an issue or an inconsistency, please, report this to the site administrator so he can take up measures immediately.</value>
+  </data>
+  <data name="ReportBug_Title" xml:space="preserve">
+    <value>Report a bug</value>
+  </data>
+  <data name="AdminIndex_Operations_Title" xml:space="preserve">
+    <value>Administrative operations</value>
+  </data>
+  <data name="AdminIndex_Title" xml:space="preserve">
+    <value>Administration</value>
+  </data>
+  <data name="Admin_CreateIssue" xml:space="preserve">
+    <value>Create an issue</value>
+  </data>
+  <data name="Admin_CreateSource" xml:space="preserve">
+    <value>Create index entry</value>
+  </data>
+  <data name="All_Label" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="FeaturedSection_Submit_Description" xml:space="preserve">
+    <value>Send your manuscript to the editorial staff at &lt;a class="nav-link" href="mailto:review-linc@uni-plovdiv.bg"&gt;review-linc@uni-plovdiv.bg&lt;/a&gt;. First, read &lt;a target="_blank" class="nav-link" href="https://test.linc.uni-plovdiv.bg/docs/en/technical_requirements.doc"&gt;the technical requirements&lt;/a&gt; for submitting manuscripts and &lt;a class="nav-link scrollto" href="#codex"&gt;the Code of Ethics&lt;/a&gt;.</value>
+  </data>
+  <data name="NextPage_Label" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="PreviousPage_Label" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="Sources_All_Description" xml:space="preserve">
+    <value>View all authors</value>
+  </data>
+  <data name="Source_IndexPage_FilterByIssues_Title" xml:space="preserve">
+    <value>By issues</value>
+  </data>
+  <data name="Source_IndexPage_FilterByYears_Title" xml:space="preserve">
+    <value>By years</value>
+  </data>
+  <data name="Source_IndexPage_NoResults" xml:space="preserve">
+    <value>No results for the given criteria.</value>
+  </data>
+  <data name="Source_IndexPage_SubTitle" xml:space="preserve">
+    <value>Library</value>
+  </data>
+  <data name="Source_IndexPage_Title" xml:space="preserve">
+    <value>Authors</value>
+  </data>
   <data name="Board_Ana.Kocheva_Member" xml:space="preserve">
     <value>Prof. Ana Kocheva, PhD</value>
   </data>
@@ -1313,6 +1313,9 @@
   <data name="BaseEmailModel_FooterText" xml:space="preserve">
     <value>Linguistics, Interpretation, Concepts magazine is published by Plovdiv University Publishing House</value>
   </data>
+  <data name="Email_ConfirmEmailChange_Subject" xml:space="preserve">
+    <value>Confirm changed email</value>
+  </data>
   <data name="Email_ConfirmEmail_ConfirmButton_Label" xml:space="preserve">
     <value>Confirm</value>
   </data>
@@ -1341,17 +1344,8 @@
   <data name="PortfolioSection_Description" xml:space="preserve">
     <value>Browse issues of the magazine.</value>
   </data>
-  <data name="Source_CreatePage_SubTitle" xml:space="preserve">
-    <value>Create a new source from the index page</value>
-  </data>
-  <data name="Source_CreatePage_Title" xml:space="preserve">
-    <value>Create source</value>
-  </data>
   <data name="Create_Label" xml:space="preserve">
     <value>Create</value>
-  </data>
-  <data name="Edit_Label" xml:space="preserve">
-    <value>Edit</value>
   </data>
   <data name="DossierCreate_Email" xml:space="preserve">
     <value>Email</value>
@@ -1382,6 +1376,9 @@
   </data>
   <data name="Dossier_List_Label" xml:space="preserve">
     <value>Dossiers</value>
+  </data>
+  <data name="Edit_Label" xml:space="preserve">
+    <value>Edit</value>
   </data>
   <data name="Dossiers_IndexPage_NoResults" xml:space="preserve">
     <value>No dossiers found.</value>
@@ -1552,7 +1549,7 @@
     <value>Attach a review</value>
   </data>
   <data name="Dossier_EditPage_UploadReviewDocument_Info" xml:space="preserve">
-    <value>There is one review attached to the dossier, when you attach the second one it will automatically change to '{0}' status.</value>
+    <value>There is &lt;b&gt;one&lt;/b&gt; review attached to the dossier, when you attach the second one it will automatically change to '{0}' status.</value>
   </data>
   <data name="JournalDossier_AssignedTo" xml:space="preserve">
     <value>Assigned {0} as editor for the dossier.</value>
@@ -1707,12 +1704,6 @@ The manuscript file must have a .doc or .docx extension.</value>
   <data name="LastUpdated_Label" xml:space="preserve">
     <value>Last updated</value>
   </data>
-  <data name="DossierStatus_Published" xml:space="preserve">
-    <value>Published</value>
-  </data>
-  <data name="JournalDossier_DocumentDeleted" xml:space="preserve">
-    <value>Deleted document of type '{0}'.</value>
-  </data>
   <data name="DossierEdit_Agreement" xml:space="preserve">
     <value>Attach a publication agreement</value>
   </data>
@@ -1721,6 +1712,15 @@ The manuscript file must have a .doc or .docx extension.</value>
   </data>
   <data name="DossierEdit_ConfirmDeleteAgreement_Title" xml:space="preserve">
     <value>Confirm</value>
+  </data>
+  <data name="DossierStatus_Published" xml:space="preserve">
+    <value>Published</value>
+  </data>
+  <data name="JournalDossier_DocumentDeleted" xml:space="preserve">
+    <value>Deleted document of type '{0}'.</value>
+  </data>
+  <data name="ManagePreferences_PreferredLanguageId" xml:space="preserve">
+    <value>Preferred language</value>
   </data>
   <data name="Alphabet_bg_Name" xml:space="preserve">
     <value>cyrillic</value>
@@ -1740,10 +1740,25 @@ The manuscript file must have a .doc or .docx extension.</value>
   <data name="Language_en_Name" xml:space="preserve">
     <value>english</value>
   </data>
-  <data name="ManagePreferences_PreferredLanguageId" xml:space="preserve">
-    <value>Preferred language</value>
-  </data>
   <data name="Team_Y.Chankova_Member" xml:space="preserve">
     <value>Assoc. Prof. Yana Chankova, PhD</value>
+  </data>
+  <data name="DossierStatus_InSuperReview" xml:space="preserve">
+    <value>In arbitration review</value>
+  </data>
+  <data name="Index_Title" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="NavItem_Library_Archive" xml:space="preserve">
+    <value>Archive</value>
+  </data>
+  <data name="Dossier_EditPage_UploadSuperReviewDocument_Info" xml:space="preserve">
+    <value>There are &lt;b&gt;two&lt;/b&gt; reviews attached to the dossier, when you attach the arbitration one it will automatically change to '{0}' status again.</value>
+  </data>
+  <data name="Dossier_EditPage_UploadSuperReviewDocument" xml:space="preserve">
+    <value>Attach an arbitration review</value>
+  </data>
+  <data name="DocumentType_SuperReview" xml:space="preserve">
+    <value>Arbitration review</value>
   </data>
 </root>
