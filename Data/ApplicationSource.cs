@@ -92,7 +92,7 @@ namespace linc.Data
         public ApplicationDossier Dossier { get; set; }
 
 
-        // public virtual ICollection<ApplicationAuthor> Authors { get; set; } = new List<ApplicationAuthor>();
+        public virtual ICollection<ApplicationAuthor> Authors { get; set; } = new List<ApplicationAuthor>();
 
         #endregion Navigation
 
