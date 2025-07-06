@@ -4,7 +4,7 @@
 
 namespace linc.Migrations
 {
-    public partial class MiddleTableRefactor : Migration
+    public partial class ApplicationDocumentMiddleTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,8 +12,8 @@ namespace linc.Migrations
                 name: "dossier_documents",
                 columns: table => new
                 {
-                    dossier_id = table.Column<int>(type: "int", nullable: false),
                     document_id = table.Column<int>(type: "int", nullable: false),
+                    dossier_id = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -37,8 +37,8 @@ namespace linc.Migrations
                 name: "issue_documents",
                 columns: table => new
                 {
-                    issue_id = table.Column<int>(type: "int", nullable: false),
-                    document_id = table.Column<int>(type: "int", nullable: false)
+                    document_id = table.Column<int>(type: "int", nullable: false),
+                    issue_id = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
