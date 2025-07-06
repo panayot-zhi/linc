@@ -23,7 +23,7 @@ namespace linc.Services
         public async Task<ApplicationIssue> GetIssueAsync(int id, int? sourcesLanguageId = null)
         {
             var query = _context.Issues
-                .Include(x => x.Files)
+                .Include(x => x.Documents)
                 .Where(x => x.Id == id);
 
             if (sourcesLanguageId.HasValue)
@@ -41,7 +41,7 @@ namespace linc.Services
         public async Task<ApplicationDocument> GetIssueDocumentAsync(int id, int? documentId)
         {
             var query = _context.Issues
-                .Include(x => x.Files)
+                .Include(x => x.Documents)
                 .Where(x => x.Id == id);
 
             var issue = await query.FirstOrDefaultAsync();
@@ -51,7 +51,7 @@ namespace linc.Services
             }
 
             return documentId.HasValue ? 
-                issue.Files.FirstOrDefault(x => x.Id == documentId) :
+                issue.Documents.FirstOrDefault(x => x.Id == documentId) :
                 issue.Pdf;
         }
 
@@ -82,12 +82,12 @@ namespace linc.Services
                 ReleaseDate = DateOnly.FromDateTime(releaseDate)
             };
 
-            entry.Files.Add(pdf);
-            entry.Files.Add(cover);
+            entry.Documents.Add(pdf);
+            entry.Documents.Add(cover);
 
             foreach (var indexPage in indexPages)
             {
-                entry.Files.Add(indexPage);
+                entry.Documents.Add(indexPage);
             }
 
             var entityEntry = await _context.Issues.AddAsync(entry);

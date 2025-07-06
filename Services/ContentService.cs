@@ -64,7 +64,7 @@ public class ContentService : IContentService
         }
 
         var issuesList = await _dbContext.Issues
-            .Include(x => x.Files)
+            .Include(x => x.Documents)
             .OrderByDescending(x => x.LastUpdated)
             .Where(x => x.IsAvailable)
             .Select(x => new IssueViewModel()

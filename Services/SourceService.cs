@@ -171,7 +171,7 @@ namespace linc.Services
             await using var transaction = await _context.Database.BeginTransactionAsync();
 
             var issue = _context.Issues
-                .Include(x => x.Files)
+                .Include(x => x.Documents)
                 .First(x => x.Id == issueId);
 
             var author = await _applicationUserStore.FindUserByNamesAsync(input.FirstName, input.LastName);
