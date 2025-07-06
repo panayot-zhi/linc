@@ -63,6 +63,8 @@ namespace linc.Data
 
         public virtual ICollection<ApplicationDocument> Documents { get; set; } = new List<ApplicationDocument>();
 
+        public virtual ICollection<ApplicationAuthor> Authors { get; set; } = new List<ApplicationAuthor>();
+
         public virtual ICollection<DossierJournal> Journals { get; set; } = new HashSet<DossierJournal>();
 
         #endregion Navigation

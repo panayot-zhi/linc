@@ -14,6 +14,8 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 
     public readonly DbContextOptions<ApplicationDbContext> Options;
 
+    
+    public DbSet<ApplicationAuthor> Authors { get; set; }
 
     public DbSet<ApplicationIssue> Issues { get; set; }
 
@@ -234,6 +236,10 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
                     $"{HelperFunctions.ToSnakeCase(nameof(ApplicationSource.LastName))})"
                 );
         });
+
+        builder.Entity<ApplicationAuthor>()
+            .MapDossiersTable()
+            .MapSourcesTable();
     }
 
     private static readonly ValueComparer StringArrayValueComparer = new ValueComparer<string[]>(

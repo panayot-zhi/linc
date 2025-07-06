@@ -86,6 +86,8 @@ namespace linc.Data
 
         public ApplicationUser Author { get; set; }
 
+        public virtual ICollection<ApplicationAuthor> Authors { get; set; } = new List<ApplicationAuthor>();
+
         #endregion Navigation
 
         #region Automatic
