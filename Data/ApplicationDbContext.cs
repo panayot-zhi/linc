@@ -237,7 +237,15 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
                 );
         });
 
-        // Configure many-to-many relationship
+        // Configure one-to-one relationships
+
+        builder.Entity<ApplicationSource>()
+            .HasOne(source => source.Dossier)
+            .WithOne(dossier => dossier.Source)
+            .HasForeignKey<ApplicationSource>(source => source.DossierId)
+            .OnDelete(DeleteBehavior.SetNull);
+
+        // Configure many-to-many relationships
         // with dedicated mapping extension methods
 
         builder.Entity<ApplicationDocument>()

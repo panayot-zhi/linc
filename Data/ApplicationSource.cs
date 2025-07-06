@@ -86,6 +86,12 @@ namespace linc.Data
 
         public ApplicationUser Author { get; set; }
 
+        [ForeignKey(nameof(Dossier))]
+        public int? DossierId { get; set; }
+
+        public ApplicationDossier Dossier { get; set; }
+
+
         // public virtual ICollection<ApplicationAuthor> Authors { get; set; } = new List<ApplicationAuthor>();
 
         #endregion Navigation
