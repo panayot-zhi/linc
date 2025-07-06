@@ -14,7 +14,6 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 
     public readonly DbContextOptions<ApplicationDbContext> Options;
 
-    public DbSet<ApplicationAuthor> Authors { get; set; }
 
     public DbSet<ApplicationIssue> Issues { get; set; }
 
