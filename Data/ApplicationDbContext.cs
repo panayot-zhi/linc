@@ -243,10 +243,6 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         builder.Entity<ApplicationDocument>()
             .MapDossiersTable()
             .MapIssuesTable();
-
-        builder.Entity<ApplicationAuthor>()
-            .MapDossiersTable()
-            .MapSourcesTable();
     }
 
     private static readonly ValueComparer StringArrayValueComparer = new ValueComparer<string[]>(
