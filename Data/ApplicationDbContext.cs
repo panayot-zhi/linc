@@ -237,6 +237,13 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
                 );
         });
 
+        // Configure many-to-many relationship
+        // with dedicated mapping extension methods
+
+        builder.Entity<ApplicationDocument>()
+            .MapDossiersTable()
+            .MapIssuesTable();
+
         builder.Entity<ApplicationAuthor>()
             .MapDossiersTable()
             .MapSourcesTable();
