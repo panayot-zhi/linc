@@ -19,25 +19,6 @@ namespace linc.Migrations
                 .HasAnnotation("ProductVersion", "6.0.23")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("dossier_authors", b =>
-                {
-                    b.Property<int>("author_id")
-                        .HasColumnType("int")
-                        .HasColumnName("author_id");
-
-                    b.Property<int>("dossier_id")
-                        .HasColumnType("int")
-                        .HasColumnName("dossier_id");
-
-                    b.HasKey("author_id", "dossier_id")
-                        .HasName("pk_dossier_authors");
-
-                    b.HasIndex("dossier_id")
-                        .HasDatabaseName("ix_dossier_authors_dossier_id");
-
-                    b.ToTable("dossier_authors", (string)null);
-                });
-
             modelBuilder.Entity("dossier_documents", b =>
                 {
                     b.Property<int>("document_id")
@@ -74,68 +55,6 @@ namespace linc.Migrations
                         .HasDatabaseName("ix_issue_documents_issue_id");
 
                     b.ToTable("issue_documents", (string)null);
-                });
-
-            modelBuilder.Entity("linc.Data.ApplicationAuthor", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime(6)")
-                        .HasColumnName("date_created");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)")
-                        .HasColumnName("email");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)")
-                        .HasColumnName("first_name");
-
-                    b.Property<int>("LanguageId")
-                        .HasColumnType("int")
-                        .HasColumnName("language_id");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)")
-                        .HasColumnName("last_name");
-
-                    b.Property<DateTime>("LastUpdated")
-                        .HasColumnType("datetime(6)")
-                        .HasColumnName("last_updated");
-
-                    b.Property<string>("UserId")
-                        .HasMaxLength(127)
-                        .HasColumnType("varchar(127)")
-                        .HasColumnName("user_id");
-
-                    b.HasKey("Id")
-                        .HasName("pk_authors");
-
-                    b.HasIndex("Email")
-                        .HasDatabaseName("ix_authors_email");
-
-                    b.HasIndex("FirstName")
-                        .HasDatabaseName("ix_authors_first_name");
-
-                    b.HasIndex("LanguageId")
-                        .HasDatabaseName("ix_authors_language_id");
-
-                    b.HasIndex("LastName")
-                        .HasDatabaseName("ix_authors_last_name");
-
-                    b.HasIndex("UserId")
-                        .HasDatabaseName("ix_authors_user_id");
-
-                    b.ToTable("authors", (string)null);
                 });
 
             modelBuilder.Entity("linc.Data.ApplicationDocument", b =>
@@ -1151,42 +1070,6 @@ namespace linc.Migrations
                     b.ToTable("asp_net_user_tokens", (string)null);
                 });
 
-            modelBuilder.Entity("source_authors", b =>
-                {
-                    b.Property<int>("author_id")
-                        .HasColumnType("int")
-                        .HasColumnName("author_id");
-
-                    b.Property<int>("source_id")
-                        .HasColumnType("int")
-                        .HasColumnName("source_id");
-
-                    b.HasKey("author_id", "source_id")
-                        .HasName("pk_source_authors");
-
-                    b.HasIndex("source_id")
-                        .HasDatabaseName("ix_source_authors_source_id");
-
-                    b.ToTable("source_authors", (string)null);
-                });
-
-            modelBuilder.Entity("dossier_authors", b =>
-                {
-                    b.HasOne("linc.Data.ApplicationAuthor", null)
-                        .WithMany()
-                        .HasForeignKey("author_id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_dossier_authors_author_id");
-
-                    b.HasOne("linc.Data.ApplicationDossier", null)
-                        .WithMany()
-                        .HasForeignKey("dossier_id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_dossier_authors_dossier_id");
-                });
-
             modelBuilder.Entity("dossier_documents", b =>
                 {
                     b.HasOne("linc.Data.ApplicationDocument", null)
@@ -1219,25 +1102,6 @@ namespace linc.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_issue_documents_issue_id");
-                });
-
-            modelBuilder.Entity("linc.Data.ApplicationAuthor", b =>
-                {
-                    b.HasOne("linc.Data.ApplicationLanguage", "Language")
-                        .WithMany()
-                        .HasForeignKey("LanguageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_authors_languages_language_id");
-
-                    b.HasOne("linc.Data.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .HasConstraintName("fk_authors_users_user_id");
-
-                    b.Navigation("Language");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("linc.Data.ApplicationDossier", b =>
@@ -1512,23 +1376,6 @@ namespace linc.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_asp_net_user_tokens_asp_net_users_user_id");
-                });
-
-            modelBuilder.Entity("source_authors", b =>
-                {
-                    b.HasOne("linc.Data.ApplicationAuthor", null)
-                        .WithMany()
-                        .HasForeignKey("author_id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_source_authors_author_id");
-
-                    b.HasOne("linc.Data.ApplicationSource", null)
-                        .WithMany()
-                        .HasForeignKey("source_id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("fk_source_authors_source_id");
                 });
 
             modelBuilder.Entity("linc.Data.ApplicationDocument", b =>
