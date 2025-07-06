@@ -53,6 +53,12 @@ namespace linc.Data
         public virtual ApplicationUser Author { get; set; }
 
 
+        [ForeignKey(nameof(Language))]
+        public int LanguageId { get; set; }
+
+        public virtual ApplicationLanguage Language { get; set; }
+
+
         public virtual ICollection<ApplicationDossierReview> Reviews { get; set; } = new List<ApplicationDossierReview>();
 
         public virtual ICollection<ApplicationDocument> Documents { get; set; } = new List<ApplicationDocument>();
