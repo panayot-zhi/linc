@@ -381,8 +381,8 @@
                                         <i class="bx bx-chevron-right"></i>
                                         <div class="w-100">
                                             <small class="d-block">
-                                                <a href="@Url.Action("Index", "Source", new { filter = WebUtility.UrlEncode(suggestion.AuthorNames) })">
-                                                    @suggestion.AuthorNames
+                                                <a href="@Url.Action("Index", "Source", new { filter = WebUtility.UrlEncode(suggestion.Authors) })">
+                                                    @suggestion.Authors
                                                 </a>
                                             </small>
                                             <a class="p-1" target="_blank" href="@suggestion.SourceLink">@suggestion.Title</a>
