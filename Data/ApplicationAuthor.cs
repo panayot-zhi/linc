@@ -24,6 +24,11 @@ namespace linc.Data
         public string Email { get; set; }
 
 
+        // NOTE: Computed
+        [MaxLength(512)]
+        public string Names { get; set; }
+
+
 
         #region Navigation
 

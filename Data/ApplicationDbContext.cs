@@ -248,15 +248,15 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         // declare computed columns
         // NOTE: this is database specific (for MySQL)
 
-        /*builder.Entity<ApplicationSource>(entity =>
+        builder.Entity<ApplicationAuthor>(entity =>
         {
-            entity.Property(e => e.AuthorNames)
+            entity.Property(e => e.Names)
                 .HasComputedColumnSql(
-                    $"CONCAT({HelperFunctions.ToSnakeCase(nameof(ApplicationSource.FirstName))}, " +
+                    $"CONCAT({HelperFunctions.ToSnakeCase(nameof(ApplicationAuthor.FirstName))}, " +
                     "' ', " +
-                    $"{HelperFunctions.ToSnakeCase(nameof(ApplicationSource.LastName))})"
+                    $"{HelperFunctions.ToSnakeCase(nameof(ApplicationAuthor.LastName))})"
                 );
-        });*/
+        });
 
         // Configure one-to-one relationships
 
