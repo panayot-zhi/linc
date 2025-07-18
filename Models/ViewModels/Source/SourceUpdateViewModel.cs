@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using linc.Models.ViewModels.Author;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
 namespace linc.Models.ViewModels.Source
@@ -23,13 +24,14 @@ namespace linc.Models.ViewModels.Source
         public string DOI { get; set; }
 
 
-
+        [Obsolete("DELETE THIS")]
         [MaxLength(255, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
-        [Display(Name = "SourceCreate_FirstName", ResourceType = typeof(Resources.SharedResource))]
+        [Display(Name = "SourceAuthor_FirstName", ResourceType = typeof(Resources.SharedResource))]
         public string FirstName { get; set; }
 
+        [Obsolete("DELETE THIS")]
         [MaxLength(255, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
-        [Display(Name = "SourceCreate_LastName", ResourceType = typeof(Resources.SharedResource))]
+        [Display(Name = "SourceAuthor_LastName", ResourceType = typeof(Resources.SharedResource))]
         public string LastName { get; set; }
 
         [MaxLength(1024, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
@@ -78,6 +80,7 @@ namespace linc.Models.ViewModels.Source
         public DateTime DateCreated { get; set; }
 
 
+        public List<SourceAuthorViewModel> Authors { get; set; } = new();
 
         public List<SelectListItem> Users { get; set; }
 
