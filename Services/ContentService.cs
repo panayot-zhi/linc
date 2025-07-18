@@ -109,6 +109,7 @@ public class ContentService : IContentService
         var lastIssue = _dbContext.Issues.Where(x => x.IsAvailable).Max(x => x.Id);
         var sources = _dbContext.Sources
             .Include(x => x.Issue)
+            .Include(x => x.Authors)
             .Where(x => x.LanguageId == currentLanguageId)
             .Where(x => x.IssueId == lastIssue)
             .Where(x => !x.IsSection)
@@ -117,7 +118,7 @@ public class ContentService : IContentService
             {
                 SourceId = x.Id,
                 IssueId = x.IssueId,
-                AuthorNames = x.AuthorNames,
+                Authors = x.Authors.Select(author => $"{author.FirstName} {author.LastName}").ToArray(),
                 Title = x.Title,
                 StartingPdfPage = x.StartingPdfPage,
                 StartingIndexPage = x.StartingIndexPage.Value,

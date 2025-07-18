@@ -6,7 +6,7 @@ public class SourceSuggestionViewModel
 
     public int IssueId { get; set; }
 
-    public string Authors { get; set; }
+    public string[] Authors { get; set; }
 
     public string Title { get; set; }
 
