@@ -9,7 +9,6 @@ namespace linc.Data
     [Index(nameof(LastName), IsUnique = false)]
     [Index(nameof(AuthorNames), IsUnique = false)]
     // [Index(nameof(AuthorNotes), IsUnique = false)]
-
     [Index(nameof(Title), IsUnique = false)]
     // [Index(nameof(TitleNotes), IsUnique = false)]
     public class ApplicationSource
@@ -17,12 +16,15 @@ namespace linc.Data
         public int Id { get; set; }
 
 
+        [Obsolete("DELETE THIS")]
         [MaxLength(255)]
         public string FirstName { get; set; }
 
+        [Obsolete("DELETE THIS")]
         [MaxLength(255)]
         public string LastName { get; set; }
 
+        [Obsolete("DELETE THIS")]
         [MaxLength(512)]
         public string AuthorNames { get; init; }
 
@@ -80,10 +82,12 @@ namespace linc.Data
         public ApplicationDocument Pdf { get; set; }
 
 
+        [Obsolete("DELETE THIS")]
         [MaxLength(127)]
         [ForeignKey(nameof(Author))]
         public string AuthorId { get; set; }
 
+        [Obsolete("DELETE THIS")]
         public ApplicationUser Author { get; set; }
 
         [ForeignKey(nameof(Dossier))]

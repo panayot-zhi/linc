@@ -258,6 +258,16 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
                 );
         });
 
+        builder.Entity<ApplicationSource>(entity =>
+        {
+            entity.Property(e => e.AuthorNames)
+                .HasComputedColumnSql(
+                    $"CONCAT({HelperFunctions.ToSnakeCase(nameof(ApplicationSource.FirstName))}, " +
+                    "' ', " +
+                    $"{HelperFunctions.ToSnakeCase(nameof(ApplicationSource.LastName))})"
+                );
+        });
+
         // Configure one-to-one relationships
 
         builder.Entity<ApplicationSource>()
