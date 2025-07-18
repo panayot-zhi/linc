@@ -53,6 +53,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         TrackCreatedEntities();
         TrackUpdatedEntities();
+        StandardizeAuthorNames();
 
         return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
     }
@@ -92,6 +93,26 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
                 entry.Property(AutoUpdateProperty).CurrentValue = now;
             }
         });
+    }
+
+    private void StandardizeAuthorNames()
+    {
+        var authorEntries = ChangeTracker.Entries<ApplicationAuthor>()
+            .Where(entry => entry.State is EntityState.Added or EntityState.Modified);
+
+        foreach (var entry in authorEntries)
+        {
+            var author = entry.Entity;
+            if (!string.IsNullOrWhiteSpace(author.FirstName))
+            {
+                author.FirstName = char.ToUpper(author.FirstName[0]) + author.FirstName[1..].ToLower();
+            }
+
+            if (!string.IsNullOrWhiteSpace(author.LastName))
+            {
+                author.LastName = author.LastName.ToUpper();
+            }
+        }
     }
 
     protected override void OnModelCreating(ModelBuilder builder)
