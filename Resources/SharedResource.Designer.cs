@@ -4239,6 +4239,42 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string SourceAuthor_Email {
+            get {
+                return ResourceManager.GetString("SourceAuthor_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Име.
+        /// </summary>
+        public static string SourceAuthor_FirstName {
+            get {
+                return ResourceManager.GetString("SourceAuthor_FirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Фамилия.
+        /// </summary>
+        public static string SourceAuthor_LastName {
+            get {
+                return ResourceManager.GetString("SourceAuthor_LastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Потребителско име.
+        /// </summary>
+        public static string SourceAuthor_UserName {
+            get {
+                return ResourceManager.GetString("SourceAuthor_UserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Бележки за автора.
         /// </summary>
         public static string SourceCreate_AuthorNotes {
@@ -4253,15 +4289,6 @@ namespace linc.Resources {
         public static string SourceCreate_DOI {
             get {
                 return ResourceManager.GetString("SourceCreate_DOI", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Име.
-        /// </summary>
-        public static string SourceCreate_FirstName {
-            get {
-                return ResourceManager.GetString("SourceCreate_FirstName", resourceCulture);
             }
         }
         
@@ -4298,15 +4325,6 @@ namespace linc.Resources {
         public static string SourceCreate_LanguageId {
             get {
                 return ResourceManager.GetString("SourceCreate_LanguageId", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Фамилия.
-        /// </summary>
-        public static string SourceCreate_LastName {
-            get {
-                return ResourceManager.GetString("SourceCreate_LastName", resourceCulture);
             }
         }
         

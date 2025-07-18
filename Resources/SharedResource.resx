@@ -1175,7 +1175,7 @@
   <data name="SourceCreate_AuthorNotes" xml:space="preserve">
     <value>Бележки за автора</value>
   </data>
-  <data name="SourceCreate_FirstName" xml:space="preserve">
+  <data name="SourceAuthor_FirstName" xml:space="preserve">
     <value>Име</value>
   </data>
   <data name="SourceCreate_IssueId" xml:space="preserve">
@@ -1184,7 +1184,7 @@
   <data name="SourceCreate_LanguageId" xml:space="preserve">
     <value>Език</value>
   </data>
-  <data name="SourceCreate_LastName" xml:space="preserve">
+  <data name="SourceAuthor_LastName" xml:space="preserve">
     <value>Фамилия</value>
   </data>
   <data name="SourceCreate_StartingPdfPage" xml:space="preserve">
@@ -1761,5 +1761,11 @@
   </data>
   <data name="DocumentType_SuperReview" xml:space="preserve">
     <value>Арбитражна рецензия</value>
+  </data>
+  <data name="SourceAuthor_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="SourceAuthor_UserName" xml:space="preserve">
+    <value>Потребителско име</value>
   </data>
 </root>
