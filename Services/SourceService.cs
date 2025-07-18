@@ -35,7 +35,10 @@ namespace linc.Services
 
         public async Task<ApplicationSource> GetSourceAsync(int id)
         {
-            return await _context.Sources.FindAsync(id);
+            return await _context.Sources
+                .Include(x => x.Authors)
+                    .ThenInclude(x => x.User)
+                .FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<SourceIndexViewModel> GetSourcesPagedAsync(string filter, int languageId, int? year, int? issueId, int? pageIndex, int pageSize = 10)
@@ -48,6 +51,7 @@ namespace linc.Services
             var sourcesDbSet = _context.Sources;
             var query = sourcesDbSet
                 .Include(x => x.Issue)
+                .Include(x => x.Authors)
                 .Where(x => !x.IsSection)
                 .AsQueryable();
 
@@ -71,7 +75,7 @@ namespace linc.Services
                 {
                     // perform search by
                     query = query.Where(x =>
-                        EF.Functions.Like(x.AuthorNames, $"%{filter}%") ||
+                        x.Authors.Any(a => EF.Functions.Like(a.FirstName, $"%{filter}%") || EF.Functions.Like(a.LastName, $"%{filter}%")) ||
                         EF.Functions.Like(x.AuthorNotes, $"%{filter}%")
                     );
                 }
@@ -116,6 +120,8 @@ namespace linc.Services
             var sourcesDbSet = _context.Sources;
             var query = sourcesDbSet
                 .Include(x => x.Issue)
+                .Include(x => x.Authors)
+                    .ThenInclude(x => x.User)
                 .Where(x => x.LanguageId == languageId)
                 .AsQueryable();
 
