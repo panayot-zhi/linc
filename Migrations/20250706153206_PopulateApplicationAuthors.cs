@@ -33,7 +33,7 @@ namespace linc.Migrations
                     last_name, 
                     email, 
                     language_id, 
-                    created_by_id AS user_id, 
+                    author_id AS user_id, 
                     id AS dossier_id, 
                     date_created, 
                     last_updated
