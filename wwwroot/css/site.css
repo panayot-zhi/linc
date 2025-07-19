@@ -29,6 +29,7 @@ a.requires-confirm { }
 .search-authors-results { }
 .author-first-name { }
 .author-last-name { }
+.author-user-id { }
 .remove-author { }
 .author-card { }
 /* ReSharper restore DeclarationIsEmpty */
