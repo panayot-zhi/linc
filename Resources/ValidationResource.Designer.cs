@@ -268,7 +268,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Полето {0} трябва да съдържа поне {1} запис..
+        ///   Looks up a localized string similar to За {0}, моля, въведете поне {1}..
         /// </summary>
         public static string MinCountAttribute_ValidationError {
             get {
