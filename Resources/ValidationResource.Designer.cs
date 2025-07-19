@@ -268,6 +268,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Полето {0} трябва да съдържа поне {1} запис..
+        /// </summary>
+        public static string MinCountAttribute_ValidationError {
+            get {
+                return ResourceManager.GetString("MinCountAttribute_ValidationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MinLengthAttribute must have a Length value that is zero or greater..
         /// </summary>
         public static string MinLengthAttribute_InvalidMinLength {

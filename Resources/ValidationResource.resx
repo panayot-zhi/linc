@@ -186,6 +186,9 @@
   <data name="MaxLengthAttribute_ValidationError" xml:space="preserve">
     <value>Полето {0} трябва да е с максимална дължина '{1}'.</value>
   </data>
+  <data name="MinCountAttribute_ValidationError" xml:space="preserve">
+    <value>Полето {0} трябва да съдържа поне {1} запис.</value>
+  </data>
   <data name="MinLengthAttribute_InvalidMinLength" xml:space="preserve">
     <value>MinLengthAttribute must have a Length value that is zero or greater.</value>
   </data>
