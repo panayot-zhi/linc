@@ -9,6 +9,8 @@ using linc.Utility;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System.Net.Mime;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace linc.Services
 {
@@ -19,18 +21,21 @@ namespace linc.Services
         private readonly ILogger<SourceService> _logger;
         private readonly ApplicationDbContext _context;
         private readonly ApplicationConfig _config;
+        private readonly IAuthorService _authorService;
 
         public SourceService(ApplicationDbContext context, 
             IOptions<ApplicationConfig> config, 
             ILogger<SourceService> logger,
             IApplicationUserStore applicationUserStore,
-            IDocumentService documentService)
+            IDocumentService documentService,
+            IAuthorService authorService)
         {
             _context = context;
             _documentService = documentService;
             _applicationUserStore = applicationUserStore;
             _config = config.Value;
             _logger = logger;
+            _authorService = authorService;
         }
 
         public async Task<ApplicationSource> GetSourceAsync(int id)
@@ -180,17 +185,6 @@ namespace linc.Services
                 .Include(x => x.Documents)
                 .First(x => x.Id == issueId);
 
-            var author = await _applicationUserStore.FindUserByNamesAsync(input.FirstName, input.LastName);
-
-            string authorId = null;
-            if (author is not null)
-            {
-                _context.Users.Attach(author);
-                author.IsAuthor = true;
-                await _context.SaveChangesAsync();
-                authorId = author.Id;
-            }
-
             ApplicationDocument pdf;
             if (input.PdfFile != null)
             {
@@ -205,29 +199,26 @@ namespace linc.Services
 
             var entity = new ApplicationSource
             {
-                FirstName = input.FirstName?.Trim(),
-                LastName = input.LastName?.Trim(),
                 AuthorNotes = input.AuthorNotes,
-
                 DOI = input.DOI?.Trim(),
-
                 StartingPdfPage = startingPage,
                 LastPdfPage = lastPage,
-
                 StartingIndexPage = input.StartingIndexPage,
-
                 Title = input.Title?.Trim(),
                 TitleNotes = input.TitleNotes,
-
                 IsTheme = input.IsTheme,
                 IsSection = input.IsSection,
-
                 LanguageId = input.LanguageId,
                 IssueId = issueId,
-                AuthorId = authorId,
-
                 PdfId = pdf.Id
             };
+
+            // Use AuthorService to create authors
+            var authors = await _authorService.CreateAuthorsAsync(input.Authors, input.LanguageId);
+            foreach (var author in authors)
+            {
+                entity.Authors.Add(author);
+            }
 
             var entityEntry = await _context.Sources.AddAsync(entity);
             await _context.SaveChangesAsync();

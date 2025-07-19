@@ -16,7 +16,7 @@ namespace linc.Services
             _applicationUserStore = applicationUserStore;
         }
 
-        public async Task<List<SourceAuthorViewModel>> SearchAuthorsAsync(string searchTerm)
+        public async Task<List<SourceAuthorViewModel>> SearchAuthorsAsync(int languageId, string searchTerm)
         {
             if (string.IsNullOrWhiteSpace(searchTerm))
             {
@@ -26,6 +26,7 @@ namespace linc.Services
             searchTerm = searchTerm.Trim();
             return await _context.Authors
                 .Include(a => a.User)
+                .Where(a => a.LanguageId == languageId)
                 .Where(a => a.Names.ToLower().Contains(searchTerm.ToLower()))
                 .Select(a => new SourceAuthorViewModel()
                 {

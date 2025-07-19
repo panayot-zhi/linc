@@ -14,7 +14,7 @@ namespace linc.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Search(string q)
+        public async Task<IActionResult> Search(int? languageId, string q)
         {
             if (string.IsNullOrWhiteSpace(q))
             {
@@ -26,7 +26,9 @@ namespace linc.Controllers
                 return BadRequest($"Search term '{nameof(q)}' must be at least 3 characters long.");
             }
 
-            var authors = await _authorService.SearchAuthorsAsync(q);
+            languageId ??= LocalizationService.GetCurrentLanguageId();
+
+            var authors = await _authorService.SearchAuthorsAsync(languageId.Value, q);
 
             return Json(authors);
         }

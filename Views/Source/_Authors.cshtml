@@ -146,7 +146,8 @@
 
             if (searchAuthors) {
                 searchAuthors.addEventListener('input', function () {
-                    const query = searchAuthors.value;
+                    const query = searchAuthors.value;                    
+
                     if (query.length < 3) {
                         clearResults();
                         lastQuery = '';
@@ -156,11 +157,18 @@
                     if (query === lastQuery) {
                         return;
                     }
+                    
+                    let authorSearchFetchUrl = `/author/search?q=${encodeURIComponent(query)}`
+                    const languageId = document.getElementById('LanguageId')?.value;
+
+                    if(languageId) {
+                        authorSearchFetchUrl += `&languageId=${languageId}`
+                    }
 
                     lastQuery = query;
                     clearTimeout(debounceTimeout);
                     debounceTimeout = setTimeout(function () {
-                        fetch(`/author/search?q=${encodeURIComponent(query)}`)
+                        fetch(authorSearchFetchUrl)
                             .then(response => {
                                 if (!response.ok) 
                                     throw new Error('Network response was not ok');
