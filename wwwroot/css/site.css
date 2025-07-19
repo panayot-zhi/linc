@@ -30,6 +30,10 @@ a.requires-confirm { }
     height: inherit !important;
 }
 
+.choose-author {
+    cursor: pointer;
+}
+
 /* 
     Publication Agreement
 */
