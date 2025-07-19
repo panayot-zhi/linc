@@ -50,6 +50,7 @@ public static class HelperFunctions
         return GetFileExtension(formFile.FileName);
     }
 
+    [Obsolete("Use 'fetch' instead.")]
     public static bool IsAjax(this HttpRequest request, string httpVerb = "")
     {
         if (request == null)
