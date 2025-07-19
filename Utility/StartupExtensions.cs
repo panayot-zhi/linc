@@ -401,6 +401,7 @@ public static class StartupExtensions
         services.AddTransient<ISourceService, SourceService>();
         services.AddTransient<IIssueService, IssueService>();
         services.AddTransient<ISiteEmailSender, SiteEmailSender>();
+        services.AddTransient<IAuthorService, AuthorService>();
         //services.AddTransient<ISharedViewLocalizer, SharedViewLocalizer>();
 
         return services;
