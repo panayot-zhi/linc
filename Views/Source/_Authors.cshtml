@@ -24,6 +24,7 @@
                                 </div>
                             </div>
                         </div>
+                        <input type="hidden" id="Authors[@i].UserId" name="Authors[@i].UserId" class="author-user-id" value="@Model[i].UserId" />
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-floating ">
@@ -71,6 +72,7 @@
                 </div>
             </div>
         </div>
+        <input type="hidden" id="Authors[__index__].UserId" name="Authors[__index__].UserId" class="author-user-id" />
         <div class="row">
             <div class="col-sm-6">
                 <div class="form-floating ">
@@ -179,6 +181,7 @@
                                         a.href = '#';
                                         a.dataset.firstname = author.firstName;
                                         a.dataset.lastname = author.lastName;
+                                        a.dataset.userid = author.userId || '';
                                         li.appendChild(a);
                                         searchAuthorsResults.appendChild(li);
                                     });
@@ -200,8 +203,10 @@
                     e.preventDefault();
                     const firstName = e.target.dataset.firstname;
                     const lastName = e.target.dataset.lastname;
+                    const userId = e.target.dataset.userid;
                     card.querySelector('.author-first-name').value = firstName;
                     card.querySelector('.author-last-name').value = lastName;
+                    card.querySelector('.author-user-id').value = userId;
                     searchAuthorsResultsDropdown.hide();
                 }
             });
@@ -215,6 +220,7 @@
             const card = tempDiv.firstElementChild;
             if (data.FirstName) card.querySelector('.author-first-name').value = data.FirstName;
             if (data.LastName) card.querySelector('.author-last-name').value = data.LastName;
+            if (data.UserId) card.querySelector('.author-user-id').value = data.UserId;
             authorsList.appendChild(card);
             updateIndices();
             attachSearchFunctionality(card);
