@@ -1,4 +1,4 @@
-﻿@model SourceAuthorViewModel
+﻿@model List<linc.Models.ViewModels.Author.SourceAuthorViewModel>
 
 <div class="form-group">
     <div class="card">
@@ -6,43 +6,48 @@
             Authors
         </div>
 
-        <div id="author-card" class="card-body">
-            <div class="row">
-                <div class="col-sm-12">
-                    <label for="search-authors" class="form-label">Search for authors</label>
-                    <div class="input-group mb-3">
-                        <input id="search-authors" type="search" class="form-control no-validate" aria-label="Search for authors">
-                        <button id="search-authors-results-toggle" class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Results</button>
-                        <ul id="search-authors-results" class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item">No results</a></li>
-                        </ul>
+        <div id="authors-list" class="card-body">
+            @if (Model is { Count: > 0 })
+            {
+                for (var i = 0; i < Model.Count; i++)
+                {
+                    <div class="author-card mb-3" data-index="@i">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label for="Authors[@i].Search" class="form-label">Search for authors</label>
+                                <div class="input-group mb-3">
+                                    <input id="Authors[@i].Search" type="search" class="form-control no-validate search-authors" aria-label="Search for authors">
+                                    <button class="btn btn-outline-secondary dropdown-toggle search-authors-results-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Results</button>
+                                    <ul class="dropdown-menu dropdown-menu-end search-authors-results">
+                                        <li><a class="dropdown-item">No results</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-floating ">
+                                    <input id="Authors[@i].FirstName" name="Authors[@i].FirstName" class="form-control author-first-name" value="@Model[i].FirstName" />
+                                    <label for="Authors[@i].FirstName" class="form-label">First Name</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-floating ">
+                                    <input id="Authors[@i].LastName" name="Authors[@i].LastName" class="form-control author-last-name" value="@Model[i].LastName" />
+                                    <label for="Authors[@i].LastName" class="form-label">Last Name</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 text-end">    
+                                <a class="btn btn-danger remove-author">Remove Author</a>
+                            </div>
+                        </div>
                     </div>
-                </div>
-
-            </div>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-floating ">
-                        <input id="AuthorFirstName" asp-for="FirstName" name="Authors[0].FirstName" class="form-control" />
-                        <label asp-for="FirstName" class="form-label"></label>
-                        <span asp-validation-for="FirstName" class="invalid-feedback"></span>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="form-floating ">
-                        <input asp-for="LastName" name="Authors[0].LastName" class="form-control" />
-                        <label asp-for="LastName" class="form-label"></label>
-                        <span asp-validation-for="LastName" class="invalid-feedback"></span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="row">
-                <div class="col-sm-12 text-end">
-                    <a class="btn btn-danger">Remove Author</a>
-                </div>
-            </div>
+                }
+            }
         </div>
+
         <div class="card-footer">
             <div class="row">
                 <button id="add-author" class="btn btn-outline-secondary" type="button">Add Author</button>
@@ -51,87 +56,187 @@
     </div>
 </div>
 
+<!-- Hidden template for new author -->
+<div id="author-template" class="d-none">
+    <div class="author-card mb-3" data-index="__index__">
+        <div class="row">
+            <div class="col-sm-12">
+                <label for="Authors[__index__].Search" class="form-label">Search for authors</label>
+                <div class="input-group mb-3">
+                    <input id="Authors[__index__].Search" type="search" class="form-control no-validate search-authors" aria-label="Search for authors">
+                    <button class="btn btn-outline-secondary dropdown-toggle search-authors-results-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Results</button>
+                    <ul class="dropdown-menu dropdown-menu-end search-authors-results">
+                        <li><a class="dropdown-item">No results</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-floating ">
+                    <input id="Authors[__index__].FirstName" name="Authors[__index__].FirstName" class="form-control author-first-name" />
+                    <label for="Authors[__index__].FirstName" class="form-label">First Name</label>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-floating ">
+                    <input id="Authors[__index__].LastName" name="Authors[__index__].LastName" class="form-control author-last-name" />
+                    <label for="Authors[__index__].LastName" class="form-label">Last Name</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 text-end">
+                <a class="btn btn-danger remove-author">Remove Author</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
-
     document.addEventListener('DOMContentLoaded', function () {
-        const authorCard = document.getElementById('author-card');
-        const searchAuthors = document.getElementById('search-authors');
-        const searchAuthorsResults = document.getElementById('search-authors-results');
-        const searchAuthorsResultsToggle = document.getElementById('search-authors-results-toggle');
-        const searchAuthorsResultsDropDown = new bootstrap.Dropdown(searchAuthorsResultsToggle);
+        const addAuthor = document.getElementById('add-author');
+        const authorsList = document.getElementById('authors-list');        
+        const authorTemplate = document.getElementById('author-template').innerHTML;
 
-        let lastQuery = '';
-        let debounceTimeout;
-
-        function clearResults() {
-            searchAuthorsResultsDropDown.hide();
-            searchAuthorsResults.innerHTML = '<li><a class="dropdown-item">No results</a></li>';            
+        function getAuthorCards() {
+            return authorsList.querySelectorAll('.author-card');
         }
 
-        searchAuthors.addEventListener('input', function () {
-            const query = searchAuthors.value;
+        function updateIndices() {
+            getAuthorCards().forEach((card, idx) => {
+                card.setAttribute('data-index', idx);
+                card.querySelectorAll('[name^="Authors["]').forEach(input => {
+                    const name = input.getAttribute('name');
+                    if (name) {
+                        input.setAttribute('name', name.replace(/Authors\[\d+\]/, `Authors[${idx}]`));
+                    }
+                });
+                card.querySelectorAll('[id^="Authors["]').forEach(input => {
+                    const id = input.getAttribute('id');
+                    if (id) {
+                        input.setAttribute('id', id.replace(/Authors\[\d+\]/, `Authors[${idx}]`));
+                    }
+                });
+                card.querySelectorAll('label[for^="Authors["]').forEach(label => {
+                    const htmlFor = label.getAttribute('for');
+                    if (htmlFor) {
+                        label.setAttribute('for', htmlFor.replace(/Authors\[\d+\]/, `Authors[${idx}]`));
+                    }
+                });
+            });
+        }
 
-            if (query.length < 3) {
-                clearResults();
-                lastQuery = '';
-                return;
+        function attachSearchFunctionality(card) {
+
+            const searchAuthors = card.querySelector('.search-authors');
+            const searchAuthorsResults = card.querySelector('.search-authors-results');
+            const searchAuthorsResultsToggle = card.querySelector('.search-authors-results-toggle');
+            const searchAuthorsResultsDropdown = new bootstrap.Dropdown(searchAuthorsResultsToggle);            
+
+            let lastQuery = '';
+            let debounceTimeout;
+
+            function clearResults() {
+                searchAuthorsResultsDropdown.hide();
+                searchAuthorsResults.innerHTML = '<li><a class="dropdown-item">No results</a></li>';
             }
 
-            if (query === lastQuery)
-                return;
-
-            lastQuery = query;
-            clearTimeout(debounceTimeout);
-            debounceTimeout = setTimeout(function () {
-                fetch(`/author/search?q=${encodeURIComponent(query)}`)
-                    .then(response => {
-                        if (!response.ok)
-                            throw new Error('Network response was not ok');
-                        return response.json();
-                    })
-                    .then(authors => {
-                        console.log(authors);
-                        if (Array.isArray(authors) && authors.length > 0) {
-                            searchAuthorsResults.innerHTML = '';
-                            authors.forEach(function (author) {
-
-                                let label = author.firstName + ' ' + author.lastName;
-                                if (author.userName) {
-                                    label += ' (' + author.userName + ')';
-                                }
-
-                                const li = document.createElement('li');
-                                const a = document.createElement('a');
-                                a.id = `author`;
-                                a.className = 'dropdown-item choose-author';
-                                a.textContent = label;
-                                li.appendChild(a);
-
-                                searchAuthorsResults.appendChild(li);
-                            });
-                            
-                            searchAuthorsResultsDropDown.show();
-                            searchAuthors.focus();
-
-                        } else {
-                            clearResults();
-                        }
-                    })
-                    .catch(() => {
+            if (searchAuthors) {
+                searchAuthors.addEventListener('input', function () {
+                    const query = searchAuthors.value;
+                    if (query.length < 3) {
                         clearResults();
-                    });
-            }, 300);
+                        lastQuery = '';
+                        return;
+                    }
 
+                    if (query === lastQuery) {
+                        return;
+                    }
+
+                    lastQuery = query;
+                    clearTimeout(debounceTimeout);
+                    debounceTimeout = setTimeout(function () {
+                        fetch(`/author/search?q=${encodeURIComponent(query)}`)
+                            .then(response => {
+                                if (!response.ok) 
+                                    throw new Error('Network response was not ok');
+                                return response.json();
+                            })
+                            .then(authors => {
+                                if (Array.isArray(authors) && authors.length > 0) {
+                                    searchAuthorsResults.innerHTML = '';
+                                    authors.forEach(function (author) {
+                                        let label = author.firstName + ' ' + author.lastName;
+                                        if (author.userName) {
+                                            label += ' (' + author.userName + ')';
+                                        }
+                                        const li = document.createElement('li');
+                                        const a = document.createElement('a');
+                                        a.className = 'dropdown-item choose-author';
+                                        a.textContent = label;
+                                        a.href = '#';
+                                        a.dataset.firstname = author.firstName;
+                                        a.dataset.lastname = author.lastName;
+                                        li.appendChild(a);
+                                        searchAuthorsResults.appendChild(li);
+                                    });
+                                    searchAuthorsResultsDropdown.show();
+                                    searchAuthors.focus();
+                                } else {
+                                    clearResults();
+                                }
+                            })
+                            .catch(() => {
+                                clearResults();
+                            });
+                    }, 300);
+                });
+            }
+
+            searchAuthorsResults.addEventListener('click', function (e) {
+                if (e.target && e.target.classList.contains('choose-author')) {
+                    e.preventDefault();
+                    const firstName = e.target.dataset.firstname;
+                    const lastName = e.target.dataset.lastname;
+                    card.querySelector('.author-first-name').value = firstName;
+                    card.querySelector('.author-last-name').value = lastName;
+                    searchAuthorsResultsDropdown.hide();
+                }
+            });
+        }
+
+        function addAuthorCard(data = {}) {
+            const idx = getAuthorCards().length;
+            let html = authorTemplate.replace(/__index__/g, idx);
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = html;
+            const card = tempDiv.firstElementChild;
+            if (data.FirstName) card.querySelector('.author-first-name').value = data.FirstName;
+            if (data.LastName) card.querySelector('.author-last-name').value = data.LastName;
+            authorsList.appendChild(card);
+            updateIndices();
+            attachSearchFunctionality(card);
+        }
+
+        addAuthor.addEventListener('click', function () {
+            addAuthorCard();
         });
 
-        authorCard.addEventListener('click', function (e) {
-            if (e.target && e.target.classList.contains('choose-author')) {
-                e.preventDefault();
-
-                const names = e.target.innerText.split(' ');
-                const firstName = names[0]
+        authorsList.addEventListener('click', function (e) {
+            if (e.target && e.target.classList.contains('remove-author')) {
+                e.target.closest('.author-card').remove();
+                updateIndices();
             }
         });
-    });
 
+        // Ensure at least one author card exists
+        if (getAuthorCards().length === 0) {
+            addAuthorCard();
+        } else {
+            getAuthorCards().forEach(card => 
+                attachSearchFunctionality(card));
+        }
+    });
 </script>
