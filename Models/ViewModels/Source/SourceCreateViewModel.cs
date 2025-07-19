@@ -1,12 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using linc.Models.ViewModels.Author;
+using linc.Utility;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
-using linc.Models.ViewModels.Author;
 
 namespace linc.Models.ViewModels.Source
 {
     public class SourceCreateViewModel
     {
         [MaxLength(512, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+        [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         [Display(Name = "SourceCreate_Title", ResourceType = typeof(Resources.SharedResource))]
         public string Title { get; set; }
 
@@ -71,7 +73,7 @@ namespace linc.Models.ViewModels.Source
         public bool IsSection { get; set; }
 
 
-
+        [MinCount(1, ErrorMessageResourceName = "MinCountAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         public List<SourceAuthorViewModel> Authors { get; set; } = new();
 
 
