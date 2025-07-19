@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Net;
+using System.Net.Mime;
 using linc.Data;
 using linc.Utility;
 using linc.Contracts;
@@ -139,7 +140,7 @@ namespace linc.Controllers
         {
             var errorViewModel = GetErrorViewModel(id);
 
-            if (Request.IsAjax())
+            if (Request.Headers.Accept.Contains(MediaTypeNames.Application.Json))
             {
                 if ("401".Equals(id))
                 {
