@@ -16,6 +16,29 @@ namespace linc.Services
             _applicationUserStore = applicationUserStore;
         }
 
+        private async Task<ApplicationUser> FindApplicationUser(SourceAuthorViewModel authorViewModel)
+        {
+            ApplicationUser user;
+
+            if (!string.IsNullOrEmpty(authorViewModel.UserId))
+            {
+                user = await _context.Users.FindAsync(authorViewModel.UserId);
+            }
+            else
+            {
+                user = await _applicationUserStore.FindUserByNamesAsync(authorViewModel.FirstName, authorViewModel.LastName);
+            }
+
+            if (user != null)
+            {
+                _context.Users.Attach(user);
+                user.IsAuthor = true;
+                await _context.SaveChangesAsync();
+            }
+
+            return user;
+        }
+
         public async Task<List<SourceAuthorViewModel>> SearchAuthorsAsync(int languageId, string searchTerm)
         {
             if (string.IsNullOrWhiteSpace(searchTerm))
