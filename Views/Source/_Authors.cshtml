@@ -25,6 +25,7 @@
                             </div>
                         </div>
                         <input type="hidden" id="Authors[@i].UserId" name="Authors[@i].UserId" class="author-user-id" value="@Model[i].UserId" />
+                        <input type="hidden" id="Authors[@i].Id" name="Authors[@i].Id" class="author-applicationauthor-id" value="@(Model[i].Id.HasValue ? Model[i].Id.Value.ToString() : string.Empty)" />
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-floating ">
@@ -73,6 +74,7 @@
             </div>
         </div>
         <input type="hidden" id="Authors[__index__].UserId" name="Authors[__index__].UserId" class="author-user-id" />
+        <input type="hidden" id="Authors[__index__].Id" name="Authors[__index__].Id" class="author-applicationauthor-id" />
         <div class="row">
             <div class="col-sm-6">
                 <div class="form-floating ">
@@ -178,7 +180,7 @@
                                 if (Array.isArray(authors) && authors.length > 0) {
                                     searchAuthorsResults.innerHTML = '';
                                     authors.forEach(function (author) {
-                                        let label = author.firstName + ' ' + author.lastName;
+                                        let label = author.names;
                                         if (author.userName) {
                                             label += ' (' + author.userName + ')';
                                         }
@@ -190,6 +192,7 @@
                                         a.dataset.firstname = author.firstName;
                                         a.dataset.lastname = author.lastName;
                                         a.dataset.userid = author.userId || '';
+                                        a.dataset.id = author.id;
                                         li.appendChild(a);
                                         searchAuthorsResults.appendChild(li);
                                     });
@@ -212,9 +215,11 @@
                     const firstName = e.target.dataset.firstname;
                     const lastName = e.target.dataset.lastname;
                     const userId = e.target.dataset.userid;
+                    const id = e.target.dataset.id;
                     card.querySelector('.author-first-name').value = firstName;
                     card.querySelector('.author-last-name').value = lastName;
                     card.querySelector('.author-user-id').value = userId;
+                    card.querySelector('.author-applicationauthor-id').value = id;
                     searchAuthorsResultsDropdown.hide();
                 }
             });
@@ -229,6 +234,7 @@
             if (data.FirstName) card.querySelector('.author-first-name').value = data.FirstName;
             if (data.LastName) card.querySelector('.author-last-name').value = data.LastName;
             if (data.UserId) card.querySelector('.author-user-id').value = data.UserId;
+            if (data.Id) card.querySelector('.author-applicationauthor-id').value = data.Id;
             authorsList.appendChild(card);
             updateIndices();
             attachSearchFunctionality(card);
