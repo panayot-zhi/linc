@@ -25,6 +25,7 @@
                             </div>
                         </div>
                         <input type="hidden" id="Authors[@i].UserId" name="Authors[@i].UserId" class="author-user-id" value="@Model[i].UserId" />
+                        <input type="hidden" id="Authors[@i].Id" name="Authors[@i].Id" class="author-id" value="@Model[i].Id" />
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-floating ">
@@ -178,7 +179,7 @@
                                 if (Array.isArray(authors) && authors.length > 0) {
                                     searchAuthorsResults.innerHTML = '';
                                     authors.forEach(function (author) {
-                                        let label = author.firstName + ' ' + author.lastName;
+                                        let label = author.names;
                                         if (author.userName) {
                                             label += ' (' + author.userName + ')';
                                         }
