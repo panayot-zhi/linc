@@ -78,14 +78,17 @@ namespace linc.Services
                 {
                     // perform search by
                     query = query.Where(x =>
-                        x.Authors.Any(a => EF.Functions.Like(a.FirstName, $"%{filter}%") || EF.Functions.Like(a.LastName, $"%{filter}%")) ||
+                        x.Authors.Any(a => 
+                            EF.Functions.Like(a.Names, $"%{filter}%") ||
+                            EF.Functions.Like(a.Notes, $"%{filter}%")) ||
                         EF.Functions.Like(x.AuthorsNotes, $"%{filter}%")
                     );
                 }
                 else
                 {
-                    query = query.Where(x => x.LastName.StartsWith(filter));
-                    query = query.OrderBy(x => x.LastName);
+                    query = query.Where(x => 
+                        x.Authors.Any(a => a.LastName.StartsWith(filter)));
+                    query = query.OrderBy(x => x.Authors.Min(a => a.LastName));
                 }
             }
             else
@@ -375,6 +378,7 @@ namespace linc.Services
             return entityEntry.Entity;
         }
 
+        /*
         public async Task UpdateAuthorAsync(ApplicationUser user)
         {
             var userProfiles = _context.UserProfiles
@@ -414,6 +418,7 @@ namespace linc.Services
                 await _context.SaveChangesAsync();
             }
         }
+        */
 
     }
 }
