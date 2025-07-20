@@ -29,13 +29,6 @@ namespace linc.Services
                 user = await _applicationUserStore.FindUserByNamesAsync(authorViewModel.FirstName, authorViewModel.LastName);
             }
 
-            if (user != null)
-            {
-                _context.Users.Attach(user);
-                user.IsAuthor = true;
-                await _context.SaveChangesAsync();
-            }
-
             return user;
         }
 
