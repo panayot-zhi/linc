@@ -64,32 +64,21 @@
                 @HtmlLocalizer["DossierDetails_Authors"]
             </dt>
             <dd class="col-sm-10">
-                @if (Model.Authors != null && Model.Authors.Count > 0)
-                {
-                    <ul>
-                        @foreach (var author in Model.Authors)
-                        {
-                            <li>
-                                @author.FirstName @author.LastName
-                                (<a href="mailto:@author.Email">@author.Email</a>
-                                @if (!string.IsNullOrEmpty(author.UserName))
-                                {
-                                    <text>, @author.UserName</text>
-                                })
-                            </li>
-                        }
-                    </ul>
-                }
-                else
-                {
-                    <span class="text-muted">@HtmlLocalizer["DossierDetails_NoAuthors"]</span>
-                }
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.AuthorEmail)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.AuthorEmail)
+                <ul>
+                    @foreach (var author in Model.Authors)
+                    {
+                        @* TODO: Link to author screen *@
+                        @* TODO: Link to user screen, if UserId *@
+                        <li>
+                            @author.FirstName @author.LastName
+                            ( <a href="mailto:@author.Email">@author.Email</a>
+                            @if (!string.IsNullOrEmpty(author.UserName))
+                            {
+                                <text>, @author.UserName </text>
+                            })
+                        </li>
+                    }
+                </ul>
             </dd>
 
             @if (string.IsNullOrEmpty(Model.AssignedTo))

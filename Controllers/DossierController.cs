@@ -1,17 +1,18 @@
-﻿using System.Net.Mime;
+﻿using DinkToPdf;
+using DinkToPdf.Contracts;
 using iTextSharp.text.pdf;
 using linc.Contracts;
-using Microsoft.AspNetCore.Mvc;
+using linc.Data;
+using linc.Models.ConfigModels;
 using linc.Models.Enumerations;
 using linc.Models.ViewModels.Dossier;
-using linc.Utility;
-using linc.Models.ConfigModels;
 using linc.Models.ViewModels.Pdfs;
-using DinkToPdf.Contracts;
-using DinkToPdf;
-using linc.Data;
+using linc.Utility;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Options;
+using System.Net.Mime;
 
 namespace linc.Controllers
 {
@@ -75,7 +76,13 @@ namespace linc.Controllers
         [SiteAuthorize(SiteRole.HeadEditor)]
         public IActionResult Create()
         {
-            return View();
+            var vModel = new DossierCreateViewModel
+            {
+                Languages = GetLanguages(),
+                LanguageId = LocalizationService.GetCurrentLanguageId()
+            };
+
+            return View(vModel);
         }
 
         [HttpPost]
@@ -402,5 +409,18 @@ namespace linc.Controllers
             }
         }
 
+        private List<SelectListItem> GetLanguages(int? languageId = null)
+        {
+            var currentLanguageId = LocalizationService.GetCurrentLanguageId();
+            var list = SiteConstant.SupportedCultures.Select(supportedCulture =>
+                    new SelectListItem(
+                        supportedCulture.Value,
+                        supportedCulture.Key.ToString(),
+                        languageId.HasValue ? supportedCulture.Key == languageId :
+                            supportedCulture.Key == currentLanguageId))
+                .ToList();
+
+            return list;
+        }
     }
 }

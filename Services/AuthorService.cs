@@ -2,6 +2,9 @@ using linc.Contracts;
 using linc.Data;
 using linc.Models.ViewModels.Author;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace linc.Services
 {
@@ -66,7 +69,7 @@ namespace linc.Services
             }).ToList();
         }
 
-        public async Task<List<ApplicationAuthor>> CreateAuthorsAsync(int languageId, List<SourceAuthorViewModel> authors)
+        public async Task<List<ApplicationAuthor>> CreateSourceAuthorsAsync(int languageId, List<SourceAuthorViewModel> authors)
         {
             var result = new List<ApplicationAuthor>();
             foreach (var authorViewModel in authors)
@@ -93,7 +96,29 @@ namespace linc.Services
             return result;
         }
 
-        public async Task UpdateAuthorsAsync(ApplicationSource source, List<SourceAuthorViewModel> newAuthors)
+        public async Task<List<ApplicationAuthor>> CreateDossierAuthorsAsync(int languageId, List<DossierAuthorViewModel> authors, int dossierId)
+        {
+            var result = new List<ApplicationAuthor>();
+            foreach (var authorViewModel in authors)
+            {
+                var user = !string.IsNullOrEmpty(authorViewModel.UserId)
+                    ? await _context.Users.FindAsync(authorViewModel.UserId)
+                    : null;
+                var author = new ApplicationAuthor
+                {
+                    FirstName = authorViewModel.FirstName.Trim(),
+                    LastName = authorViewModel.LastName.Trim(),
+                    Email = authorViewModel.Email?.Trim(),
+                    LanguageId = languageId,
+                    UserId = user?.Id,
+                    DossierId = dossierId
+                };
+                result.Add(author);
+            }
+            return result;
+        }
+
+        public async Task UpdateSourceAuthorsAsync(ApplicationSource source, List<SourceAuthorViewModel> newAuthors)
         {
             // Load existing authors for the source
             await _context.Entry(source).Collection(s => s.Authors).LoadAsync();
@@ -161,12 +186,81 @@ namespace linc.Services
 
             // Add new authors
             var newToAdd = newAuthors.Where(a => !a.Id.HasValue).ToList();
-            var addedAuthors = await CreateAuthorsAsync(source.LanguageId, newToAdd);
+            var addedAuthors = await CreateSourceAuthorsAsync(source.LanguageId, newToAdd);
             foreach (var author in addedAuthors)
             {
                 source.Authors.Add(author);
             }
 
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateDossierAuthorsAsync(ApplicationDossier dossier, List<DossierAuthorViewModel> newAuthors)
+        {
+            await _context.Entry(dossier).Collection(d => d.Authors).LoadAsync();
+            var existingAuthors = dossier.Authors.ToList();
+
+            // Remove authors not in new list
+            var newAuthorIds = newAuthors.Where(a => a.Id.HasValue).Select(a => a.Id.Value).ToHashSet();
+            var toRemove = existingAuthors.Where(ea => !newAuthorIds.Contains(ea.Id)).ToList();
+            _context.Authors.RemoveRange(toRemove);
+
+            // Update existing authors
+            foreach (var existing in existingAuthors)
+            {
+                var updated = newAuthors.FirstOrDefault(a => a.Id == existing.Id);
+                if (updated is null)
+                {
+                    continue;
+                }
+                var firstName = updated.FirstName.Trim();
+                var lastName = updated.LastName.Trim();
+                var email = updated.Email?.Trim();
+                var changed = false;
+                if (!string.Equals(existing.FirstName, firstName, System.StringComparison.OrdinalIgnoreCase))
+                {
+                    existing.FirstName = firstName;
+                    changed = true;
+                }
+                if (!string.Equals(existing.LastName, lastName, System.StringComparison.OrdinalIgnoreCase))
+                {
+                    existing.LastName = lastName;
+                    changed = true;
+                }
+                if (!string.Equals(existing.Email, email, System.StringComparison.OrdinalIgnoreCase))
+                {
+                    existing.Email = email;
+                    changed = true;
+                }
+                if (existing.UserId != updated.UserId)
+                {
+                    existing.UserId = updated.UserId;
+                    changed = true;
+                }
+                if (changed)
+                {
+                    _context.Authors.Update(existing);
+                }
+            }
+
+            // Add new authors
+            var newToAdd = newAuthors.Where(a => !a.Id.HasValue).ToList();
+            foreach (var authorViewModel in newToAdd)
+            {
+                var user = !string.IsNullOrEmpty(authorViewModel.UserId)
+                    ? await _context.Users.FindAsync(authorViewModel.UserId)
+                    : null;
+                var author = new ApplicationAuthor
+                {
+                    FirstName = authorViewModel.FirstName.Trim(),
+                    LastName = authorViewModel.LastName.Trim(),
+                    Email = authorViewModel.Email?.Trim(),
+                    LanguageId = dossier.LanguageId,
+                    UserId = user?.Id,
+                    DossierId = dossier.Id
+                };
+                dossier.Authors.Add(author);
+            }
             await _context.SaveChangesAsync();
         }
 

@@ -11,6 +11,7 @@ using linc.Utility;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using linc.Models.ViewModels.Author;
 
 namespace linc.Services
 {
@@ -24,6 +25,7 @@ namespace linc.Services
         private readonly ILogger<DossierService> _logger;
         private readonly ApplicationDbContext _context;
         private readonly ApplicationConfig _config;
+        private readonly IAuthorService _authorService;
 
         public class JournalEntryKeys
         {
@@ -48,7 +50,8 @@ namespace linc.Services
             ILocalizationService localizationService,
             ISiteEmailSender emailSender,
             ILogger<DossierService> logger, 
-            LinkGenerator linkGenerator)
+            LinkGenerator linkGenerator,
+            IAuthorService authorService)
         {
             _logger = logger;
             _context = context;
@@ -58,6 +61,7 @@ namespace linc.Services
             _applicationUserStore = applicationUserStore;
             _config = configOptions.Value;
             _emailSender = emailSender;
+            _authorService = authorService;
         }
 
         public async Task<ApplicationDocument> GetDossierDocumentAsync(int id, int documentId)
@@ -128,6 +132,8 @@ namespace linc.Services
         public async Task<DossierDetailsViewModel> GetDossierDetailsViewModelAsync(int id)
         {
             var query = _context.Dossiers
+                .Include(x => x.Authors)
+                    .ThenInclude(a => a.User)
                 .Include(x => x.Reviews)
                     .ThenInclude(x => x.Review)
                 .Include(x => x.Reviews)
@@ -150,32 +156,33 @@ namespace linc.Services
             {
                 Id = dossier.Id,
                 Title = dossier.Title,
-                AuthorNames = dossier.Names,
-                AuthorEmail = dossier.Email,
                 Status = dossier.Status,
-
                 AssignedToId = dossier.AssignedToId,
                 AssignedTo = dossier.AssignedTo != null ? 
                     dossier.AssignedTo.Names : 
                     string.Empty,
-
                 DateCreated = dossier.DateCreated,
                 LastUpdated = dossier.LastUpdated,
-
-                // TODO: filter?
                 Journals = dossier.Journals.ToList(),
                 Reviews = dossier.Reviews.ToList(),
-                Documents = allDocuments
-                    .OrderBy(x => x.DocumentType)
-                    .ToList()
+                Documents = allDocuments.OrderBy(x => x.DocumentType).ToList(),
+                Authors = dossier.Authors.Select(a => new DossierAuthorViewModel {
+                    Id = a.Id,
+                    FirstName = a.FirstName,
+                    LastName = a.LastName,
+                    Email = a.Email,
+                    UserId = a.UserId,
+                    UserName = a.User?.UserName
+                }).ToList()
             };
-
             return viewModel;
         }
 
         public async Task<DossierEditViewModel> GetDossierEditViewModelAsync(int id)
         {
             var query = _context.Dossiers
+                .Include(x => x.Authors)
+                    .ThenInclude(a => a.User)
                 .Include(x => x.Reviews)
                     .ThenInclude(x => x.Review)
                 .Include(x => x.Documents)
@@ -193,28 +200,27 @@ namespace linc.Services
             var viewModel = new DossierEditViewModel(allDocuments.ToList())
             {
                 Id = dossier.Id,
-
                 Title = dossier.Title?.Trim(),
-                FirstName = dossier.FirstName?.Trim(),
-                LastName = dossier.LastName?.Trim(),
-                Email = dossier.Email?.Trim(),
-
                 Status = dossier.Status,
                 SuperReviewed = dossier.SuperReviewed,
-
                 AssigneeId = dossier.AssignedToId,
                 AssigneeNames = dossier.AssignedTo != null ?
                     dossier.AssignedTo.Names :
                     string.Empty,
-
                 Editors = GetEditors(dossier.AssignedToId),
                 Reviewers = GetReviewers(),
-
                 CanAttachAgreement = CanAttachAgreement(dossier),
-                CanDeleteAgreement = CanDeleteAgreement(dossier)
-
+                CanDeleteAgreement = CanDeleteAgreement(dossier),
+                
+                Authors = dossier.Authors.Select(a => new DossierAuthorViewModel {
+                    Id = a.Id,
+                    FirstName = a.FirstName,
+                    LastName = a.LastName,
+                    Email = a.Email,
+                    UserId = a.UserId,
+                    UserName = a.User?.UserName
+                }).ToList()
             };
-
             return viewModel;
         }
 
@@ -260,23 +266,22 @@ namespace linc.Services
             var entry = new ApplicationDossier
             {
                 Title = input.Title?.Trim(),
-                FirstName = input.FirstName?.Trim(),
-                LastName = input.LastName?.Trim(),
-                Email = input.Email?.Trim(),
-
                 Status = ApplicationDossierStatus.New,
-
-                CreatedById = currentUserId
+                CreatedById = currentUserId,
+                LanguageId = input.LanguageId
             };
 
-            var entityEntry = await _context.Dossiers.AddAsync(entry);
+            var authors = await _authorService.CreateDossierAuthorsAsync(entry.LanguageId, input.Authors, entry.Id);
+            foreach (var author in authors)
+            {
+                entry.Authors.Add(author);
+            }
 
+            var entityEntry = await _context.Dossiers.AddAsync(entry);
             await _context.SaveChangesAsync();
 
             var original = await SaveDossierDocumentAsync(input.OriginalFile, entry.Id, ApplicationDocumentType.Original);
-
             entry.Documents.Add(original);
-
             entry.Journals.Add(new DossierJournal
             {
                 PerformedById = currentUserId,
@@ -485,6 +490,7 @@ namespace linc.Services
 
             var currentUserId = GetCurrentUserId();
             var dossier = _context.Dossiers
+                .Include(x => x.Authors)
                 .Include(x => x.Reviews)
                 .Include(x => x.Documents)
                 .FirstOrDefault(x => x.Id == input.Id);
@@ -496,6 +502,13 @@ namespace linc.Services
             _context.Dossiers.Attach(dossier);
 
             await UpdateDossierPropertiesAsync(dossier, input);
+
+            // Update authors
+            await _authorService.UpdateDossierAuthorsAsync(dossier, input.Authors);
+            foreach (var author in dossier.Authors)
+            {
+                author.LanguageId = dossier.LanguageId;
+            }
 
             // NOTE: Perform clearly defined actions based on the current dossier status
 

@@ -142,13 +142,6 @@
                 </div>
             </div>
 
-            <div class="col-lg-8 offset-lg-2">
-                <div class="form-floating">
-                    <input asp-for="Email" class="form-control" readonly="readonly" />
-                    <label asp-for="Email" class="form-label"></label>
-                </div>
-            </div>
-
             @if (User.IsAtLeast(SiteRole.HeadEditor))
             {
                 <div class="form-floating">

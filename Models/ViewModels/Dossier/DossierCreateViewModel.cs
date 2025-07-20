@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using linc.Models.ViewModels.Author;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using linc.Models.ViewModels.Author;
 
 namespace linc.Models.ViewModels.Dossier
 {
@@ -19,5 +20,11 @@ namespace linc.Models.ViewModels.Dossier
         [Required]
         [MinLength(1, ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         public List<DossierAuthorViewModel> Authors { get; set; } = new();
+
+        [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+        [Display(Name = "SourceCreate_LanguageId", ResourceType = typeof(Resources.SharedResource))]
+        public int LanguageId { get; set; }
+
+        public List<SelectListItem> Languages { get; set; }
     }
 }

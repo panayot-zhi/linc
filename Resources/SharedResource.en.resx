@@ -1776,4 +1776,25 @@ The manuscript file must have a .doc or .docx extension.</value>
   <data name="SourceAuthor_Notes" xml:space="preserve">
     <value>Notes for the author</value>
   </data>
+  <data name="DossierDetails_Authors" xml:space="preserve">
+    <value>Authors</value>
+  </data>
+  <data name="DossierCreate_Authors" xml:space="preserve">
+    <value>Authors</value>
+  </data>
+  <data name="DossierCreate_Authors_SearchLabel" xml:space="preserve">
+    <value>Search for author</value>
+  </data>
+  <data name="DossierCreate_Authors_NoResults" xml:space="preserve">
+    <value>No results</value>
+  </data>
+  <data name="DossierCreate_Authors_Results" xml:space="preserve">
+    <value>Results</value>
+  </data>
+  <data name="DossierCreate_Authors_Add" xml:space="preserve">
+    <value>Add author</value>
+  </data>
+  <data name="DossierCreate_Authors_Remove" xml:space="preserve">
+    <value>Remove author</value>
+  </data>
 </root>

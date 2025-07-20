@@ -1446,6 +1446,60 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Автори.
+        /// </summary>
+        public static string DossierCreate_Authors {
+            get {
+                return ResourceManager.GetString("DossierCreate_Authors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Добавяне на автор.
+        /// </summary>
+        public static string DossierCreate_Authors_Add {
+            get {
+                return ResourceManager.GetString("DossierCreate_Authors_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Няма намерени.
+        /// </summary>
+        public static string DossierCreate_Authors_NoResults {
+            get {
+                return ResourceManager.GetString("DossierCreate_Authors_NoResults", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Премахни автор.
+        /// </summary>
+        public static string DossierCreate_Authors_Remove {
+            get {
+                return ResourceManager.GetString("DossierCreate_Authors_Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Резултати.
+        /// </summary>
+        public static string DossierCreate_Authors_Results {
+            get {
+                return ResourceManager.GetString("DossierCreate_Authors_Results", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Търси автор.
+        /// </summary>
+        public static string DossierCreate_Authors_SearchLabel {
+            get {
+                return ResourceManager.GetString("DossierCreate_Authors_SearchLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email адрес.
         /// </summary>
         public static string DossierCreate_Email {
@@ -1523,6 +1577,15 @@ namespace linc.Resources {
         public static string DossierDetails_AuthorNames {
             get {
                 return ResourceManager.GetString("DossierDetails_AuthorNames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Автори.
+        /// </summary>
+        public static string DossierDetails_Authors {
+            get {
+                return ResourceManager.GetString("DossierDetails_Authors", resourceCulture);
             }
         }
         
