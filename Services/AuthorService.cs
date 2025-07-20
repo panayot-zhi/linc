@@ -48,7 +48,7 @@ namespace linc.Services
                 .Select(g => g.OrderBy(a => a.Id).First())
                 .Take(10)
                 .ToListAsync();
-            
+
             return authors.Select(a => new SourceAuthorViewModel()
             {
                 // Do not return ID
@@ -66,7 +66,7 @@ namespace linc.Services
             }).ToList();
         }
 
-        public async Task<List<ApplicationAuthor>> CreateAuthorsAsync(List<SourceAuthorViewModel> authors, int languageId)
+        public async Task<List<ApplicationAuthor>> CreateAuthorsAsync(int languageId, List<SourceAuthorViewModel> authors)
         {
             var result = new List<ApplicationAuthor>();
             foreach (var authorViewModel in authors)
@@ -80,9 +80,9 @@ namespace linc.Services
                 {
                     FirstName = authorViewModel.FirstName,
                     LastName = authorViewModel.LastName,
-                    Email = authorViewModel.Email,
-                    UserId = user?.Id,
-                    LanguageId = languageId
+                    // Email = authorViewModel.Email,
+                    LanguageId = languageId,
+                    UserId = user?.Id
                 };
 
                 result.Add(author);
@@ -90,5 +90,91 @@ namespace linc.Services
 
             return result;
         }
+
+        public async Task UpdateAuthorsAsync(ApplicationSource source, List<SourceAuthorViewModel> newAuthors)
+        {
+            // Load existing authors for the source
+            await _context.Entry(source).Collection(s => s.Authors).LoadAsync();
+            var existingAuthors = source.Authors.ToList();
+
+            // Remove authors not in new list
+            var newAuthorIds = newAuthors.Where(a => a.Id.HasValue).Select(a => a.Id.Value).ToHashSet();
+            var toRemove = existingAuthors.Where(ea => !newAuthorIds.Contains(ea.Id)).ToList();
+            _context.Authors.RemoveRange(toRemove);
+
+            // Update existing authors
+            foreach (var existing in existingAuthors)
+            {
+                var updated = newAuthors.First(a => a.Id == existing.Id);
+
+                var firstName = updated.FirstName.Trim();
+                var lastName = updated.LastName.Trim();
+                // var email = updated.Email?.Trim();
+
+                // var user = await FindApplicationUser(updated);
+
+                var changed = false;
+                if (!string.Equals(existing.FirstName, firstName, StringComparison.OrdinalIgnoreCase))
+                {
+                    existing.FirstName = firstName;
+                    changed = true;
+                }
+
+                if (!string.Equals(existing.LastName, lastName, StringComparison.OrdinalIgnoreCase))
+                {
+                    existing.LastName = lastName;
+                    changed = true;
+                }
+
+                // if (!string.Equals(existing.Email, email, StringComparison.Ordinal))
+                // {
+                //     existing.Email = email;
+                //     changed = true;
+                // }
+
+                // if (existing.UserId != user?.Id)
+                // {
+                //     existing.UserId = user?.Id;
+                //     changed = true;
+                // }
+
+                if (changed)
+                {
+                    _context.Authors.Update(existing);
+                }
+            }
+
+            // Add new authors
+            var newToAdd = newAuthors.Where(a => !a.Id.HasValue).ToList();
+            var addedAuthors = await CreateAuthorsAsync(source.LanguageId, newToAdd);
+            foreach (var author in addedAuthors)
+            {
+                source.Authors.Add(author);
+            }
+
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateAuthorUserAsync(ApplicationUser user)
+        {
+            var authors = _context.Authors
+                .Where(x => x.UserId == null)
+                .Where(x => x.Email == user.Email)
+                .ToList();
+
+            if (!authors.Any())
+            {
+                return;
+            }
+
+            foreach (var author in authors)
+            {
+                _context.Authors.Attach(author);
+                author.UserId = user.Id;
+            }
+
+            await _context.SaveChangesAsync();
+        }
+
     }
 }
