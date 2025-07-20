@@ -37,7 +37,8 @@ namespace linc.Migrations
                         name: "fk_authors_dossiers_dossier_id",
                         column: x => x.dossier_id,
                         principalTable: "dossiers",
-                        principalColumn: "id");
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "fk_authors_languages_language_id",
                         column: x => x.language_id,
@@ -48,14 +49,20 @@ namespace linc.Migrations
                         name: "fk_authors_sources_source_id",
                         column: x => x.source_id,
                         principalTable: "sources",
-                        principalColumn: "id");
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
                         name: "fk_authors_users_user_id",
                         column: x => x.user_id,
                         principalTable: "asp_net_users",
-                        principalColumn: "id");
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.SetNull);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
+
+            // TODO: Note that a curious case arises when both the source_id AND the dossier_id are set to NULL
+            // for an author - the entry becomes orphaned and needs to be cleaned up
+            // maybe through a UI list that will highlight this lack of relationship
 
             migrationBuilder.CreateIndex(
                 name: "ix_authors_dossier_id",
