@@ -9,8 +9,6 @@ using linc.Utility;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System.Net.Mime;
-using System.Threading.Tasks;
-using System.Collections.Generic;
 
 namespace linc.Services
 {
@@ -197,7 +195,6 @@ namespace linc.Services
                 pdf = await GenerateSourcePdf(issue, startingPage, lastPage);
             }
 
-            // Create main source entry, properties are alphabetically sorted
             var entity = new ApplicationSource
             {
                 AuthorNotes = input.AuthorNotes?.Trim(),
@@ -214,7 +211,6 @@ namespace linc.Services
                 TitleNotes = input.TitleNotes?.Trim()
             };
 
-            // Use AuthorService to create authors
             var authors = await _authorService.CreateAuthorsAsync(input.Authors, input.LanguageId);
             foreach (var author in authors)
             {
@@ -233,36 +229,18 @@ namespace linc.Services
 
             ArgumentNullException.ThrowIfNull(source);
 
-            var author = await _applicationUserStore.FindUserByNamesAsync(input.FirstName, input.LastName);
-
-            string authorId = null;
-            if (author is not null)
-            {
-                _context.Users.Attach(author);
-                author.IsAuthor = true;
-                await _context.SaveChangesAsync();
-                authorId = author.Id;
-            }
-
             _context.Sources.Attach(source);
 
-            source.Title = input.Title?.Trim();
-            source.TitleNotes = input.TitleNotes;
-
+            source.AuthorNotes = input.AuthorNotes?.Trim();
             source.DOI = input.DOI?.Trim();
-
-            source.FirstName = input.FirstName?.Trim();
-            source.LastName = input.LastName?.Trim();
-            source.AuthorNotes = input.AuthorNotes;
-
-            source.StartingIndexPage = input.StartingIndexPage;
-
-            source.LanguageId = input.LanguageId;
-
-            source.IsTheme = input.IsTheme;
             source.IsSection = input.IsSection;
+            source.IsTheme = input.IsTheme;
+            source.LanguageId = input.LanguageId;
+            source.StartingIndexPage = input.StartingIndexPage;
+            source.Title = input.Title?.Trim();
+            source.TitleNotes = input.TitleNotes?.Trim();
 
-            source.AuthorId = authorId;
+            await _authorService.UpdateAuthorsAsync(source, input.Authors);
 
             await _context.SaveChangesAsync();
         }
