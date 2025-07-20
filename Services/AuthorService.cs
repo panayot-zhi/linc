@@ -39,21 +39,29 @@ namespace linc.Services
                 return new List<SourceAuthorViewModel>();
             }
 
-            searchTerm = searchTerm.Trim();
-            return await _context.Authors
+            searchTerm = searchTerm.Trim().ToLower();
+            var authors = await _context.Authors
                 .Include(a => a.User)
                 .Where(a => a.LanguageId == languageId)
-                .Where(a => a.Names.ToLower().Contains(searchTerm.ToLower()))
-                .Select(a => new SourceAuthorViewModel()
-                {
-                    FirstName = a.FirstName,
-                    LastName = a.LastName,
-                    Email = a.Email,
-
-                    UserId = a.UserId,
-                    UserName = a.User.UserName,
-                })
+                .Where(a => a.Names.ToLower().Contains(searchTerm))
+                .GroupBy(a => a.Names)
+                .Select(g => g.OrderBy(a => a.Id).First())
+                .Take(10)
                 .ToListAsync();
+            
+            return authors.Select(a => new SourceAuthorViewModel()
+            {
+                Id = a.Id,
+
+                Names = a.Names,
+                FirstName = a.FirstName,
+                LastName = a.LastName,
+                Email = a.Email,
+
+                UserId = a.UserId,
+                UserName = a.User?.UserName
+
+            }).ToList();
         }
 
         public async Task<List<ApplicationAuthor>> CreateAuthorsAsync(List<SourceAuthorViewModel> authors, int languageId)
