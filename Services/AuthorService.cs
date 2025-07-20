@@ -51,7 +51,9 @@ namespace linc.Services
             
             return authors.Select(a => new SourceAuthorViewModel()
             {
-                Id = a.Id,
+                // Do not return ID
+                // all records MUST be new
+                // Id = a.Id,
 
                 Names = a.Names,
                 FirstName = a.FirstName,
