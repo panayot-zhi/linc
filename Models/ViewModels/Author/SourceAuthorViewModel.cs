@@ -16,6 +16,8 @@ namespace linc.Models.ViewModels.Author
         [Display(Name = "SourceAuthor_LastName", ResourceType = typeof(Resources.SharedResource))]
         public string LastName { get; set; }
 
+        public string Names { get; set; }
+
 
         [EmailAddress(ErrorMessageResourceName = "EmailAddressAttribute_Invalid", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         [MaxLength(255, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
