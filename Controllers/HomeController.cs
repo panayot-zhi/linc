@@ -98,7 +98,6 @@ namespace linc.Controllers
             return View($"~/Views/Shared/Emails/{id}.{baseViewModel.Language}.cshtml", viewModel);
         }
         
-        [Ajax]
         [HttpPost]
         [SiteAuthorize(SiteRole.Editor)]
         public async Task<IActionResult> SetStringResource([FromBody][Bind("Key,Value,EditedById")] ApplicationStringResource stringResource)
