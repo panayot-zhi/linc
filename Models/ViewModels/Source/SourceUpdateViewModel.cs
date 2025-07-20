@@ -24,12 +24,12 @@ namespace linc.Models.ViewModels.Source
         public string DOI { get; set; }
 
 
-        [Obsolete("DELETE THIS")]
+        [Obsolete("Do not use this property, it is pending deletion. Use the 'Authors' collection instead.")]
         [MaxLength(255, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         [Display(Name = "SourceAuthor_FirstName", ResourceType = typeof(Resources.SharedResource))]
         public string FirstName { get; set; }
 
-        [Obsolete("DELETE THIS")]
+        [Obsolete("Do not use this property, it is pending deletion. Use the 'Authors' collection instead.")]
         [MaxLength(255, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         [Display(Name = "SourceAuthor_LastName", ResourceType = typeof(Resources.SharedResource))]
         public string LastName { get; set; }

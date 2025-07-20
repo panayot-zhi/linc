@@ -16,15 +16,15 @@ namespace linc.Data
         public int Id { get; set; }
 
 
-        [Obsolete("DELETE THIS")]
+        [Obsolete("Do not use this property, it is pending deletion. Use the 'Authors' collection instead.")]
         [MaxLength(255)]
         public string FirstName { get; set; }
 
-        [Obsolete("DELETE THIS")]
+        [Obsolete("Do not use this property, it is pending deletion. Use the 'Authors' collection instead.")]
         [MaxLength(255)]
         public string LastName { get; set; }
 
-        [Obsolete("DELETE THIS")]
+        [Obsolete("Do not use this property, it is pending deletion. Use the 'Authors' collection instead.")]
         [MaxLength(512)]
         public string AuthorNames { get; init; }
 
@@ -82,12 +82,12 @@ namespace linc.Data
         public ApplicationDocument Pdf { get; set; }
 
 
-        [Obsolete("DELETE THIS")]
+        [Obsolete("Do not use this property, it is pending deletion. Use the 'Authors' collection instead.")]
         [MaxLength(127)]
         [ForeignKey(nameof(Author))]
         public string AuthorId { get; set; }
 
-        [Obsolete("DELETE THIS")]
+        [Obsolete("Do not use this property, it is pending deletion. Use the 'Authors' collection instead.")]
         public ApplicationUser Author { get; set; }
 
         [ForeignKey(nameof(Dossier))]
