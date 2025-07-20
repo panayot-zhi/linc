@@ -28,11 +28,14 @@ namespace linc.Services
 
             if (sourcesLanguageId.HasValue)
             {
-                query = query.Include(x => x.Sources
-                    .Where(source => source.LanguageId == sourcesLanguageId.Value)
-                    .OrderBy(source => source.StartingPdfPage)      // order first and foremost by the starting page number
-                    .ThenByDescending(source => source.IsSection)   // some sections begin on the same pages, they should be displayed first
-                    .ThenBy(source => source.DateCreated));         // order additionally by the date created
+                query = query
+                    .Include(x => x.Sources
+                            .Where(source => source.LanguageId == sourcesLanguageId.Value)
+                            .OrderBy(source => source.StartingPdfPage)      // order first and foremost by the starting page number
+                            .ThenByDescending(source => source.IsSection)   // some sections begin on the same pages, they should be displayed first
+                            .ThenBy(source => source.DateCreated))          // order additionally by the date created
+                        .ThenInclude(s => s.Authors)
+                    .AsSplitQuery();
             }
 
             return await query.FirstOrDefaultAsync();
