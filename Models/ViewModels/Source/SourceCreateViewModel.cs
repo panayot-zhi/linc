@@ -1,11 +1,10 @@
 ﻿using linc.Models.ViewModels.Author;
-using linc.Utility;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
 namespace linc.Models.ViewModels.Source
 {
-    public class SourceCreateViewModel
+    public class SourceCreateViewModel : IValidatableObject
     {
         [MaxLength(512, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
@@ -77,13 +76,23 @@ namespace linc.Models.ViewModels.Source
 
 
         [Display(Name = "SourceCreate_Authors", ResourceType = typeof(Resources.SharedResource))]
-        [MinCount(1, ErrorMessageResourceName = "MinCountAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         public List<SourceAuthorViewModel> Authors { get; set; } = new();
 
-        
+
         public List<SelectListItem> Languages { get; set; }
 
         public List<SelectListItem> Issues { get; set; }
-    }
 
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            const int minimumAuthorsCount = 1;
+            if (!IsSection && !IsTheme && (Authors == null || Authors.Count < minimumAuthorsCount))
+            {
+                yield return new ValidationResult(
+                    string.Format(Resources.ValidationResource.MinCountAttribute_ValidationError,
+                        Resources.SharedResource.SourceCreate_Authors, minimumAuthorsCount),
+                    new[] { nameof(Authors) });
+            }
+        }
+    }
 }
