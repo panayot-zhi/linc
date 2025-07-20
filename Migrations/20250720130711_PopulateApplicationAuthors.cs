@@ -48,6 +48,25 @@ namespace linc.Migrations
                 WHERE id NOT IN (SELECT DISTINCT dossier_id FROM authors WHERE dossier_id IS NOT NULL) AND first_name IS NOT NULL AND last_name IS NOT NULL
             ");
 
+            // NOTE: the following two updates are needed because we have excluded inserting authors from dossiers with id's
+            // already populated from source table (SELECT DISTINCT dossier_id FROM authors WHERE dossier_id IS NOT NULL)
+
+            // Update all records in authors table: email shoud be obtained from dossier table by id
+            migrationBuilder.Sql(@"
+                UPDATE authors a
+                JOIN dossiers d ON a.dossier_id = d.id
+                SET a.email = d.email
+                WHERE a.dossier_id IS NOT NULL
+            ");
+
+            // Update all records in authors table: user_id shoud be obtained from dossier table by id
+            migrationBuilder.Sql(@"
+                UPDATE authors a
+                JOIN dossiers d ON a.dossier_id = d.id
+                SET a.user_id = d.author_id
+                WHERE a.user_id IS NULL AND d.author_id IS NOT NULL
+            ");
+
             // Update all records in authors table: last_name to UPPER CASE, first_name to capitalize first letter only
             migrationBuilder.Sql(@"
                 UPDATE authors
