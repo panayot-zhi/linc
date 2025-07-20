@@ -39,6 +39,12 @@
                                     <label for="Authors[@i].LastName" class="form-label">Last Name</label>
                                 </div>
                             </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="Authors[@i].Notes" class="form-label">Notes</label>
+                                    <textarea id="Authors[@i].Notes" name="Authors[@i].Notes" class="form-control author-notes" rows="6">@Model[i].Notes</textarea>
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col-sm-12 text-end">    
@@ -85,6 +91,12 @@
                 <div class="form-floating ">
                     <input id="Authors[__index__].LastName" name="Authors[__index__].LastName" class="form-control author-last-name" />
                     <label for="Authors[__index__].LastName" class="form-label">Last Name</label>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="Authors[__index__].Notes" class="form-label">Notes</label>
+                    <textarea id="Authors[__index__].Notes" name="Authors[__index__].Notes" class="form-control author-notes" rows="6"></textarea>
                 </div>
             </div>
         </div>

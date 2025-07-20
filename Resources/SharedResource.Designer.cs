@@ -4266,6 +4266,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Бележки за автора.
+        /// </summary>
+        public static string SourceAuthor_Notes {
+            get {
+                return ResourceManager.GetString("SourceAuthor_Notes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Потребителско име.
         /// </summary>
         public static string SourceAuthor_UserName {

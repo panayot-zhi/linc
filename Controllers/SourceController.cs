@@ -124,6 +124,7 @@ namespace linc.Controllers
                     Id = a.Id,
                     FirstName = a.FirstName,
                     LastName = a.LastName,
+                    Notes = a.Notes,
                     Email = a.Email,
                     UserId = a.UserId,
                     UserName = a.User?.UserName

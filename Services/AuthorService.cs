@@ -73,6 +73,7 @@ namespace linc.Services
             {
                 authorViewModel.FirstName = authorViewModel.FirstName.Trim();
                 authorViewModel.LastName = authorViewModel.LastName.Trim();
+                authorViewModel.Notes = authorViewModel.Notes?.Trim();
 
                 var user = await FindApplicationUser(authorViewModel);
 
@@ -80,6 +81,7 @@ namespace linc.Services
                 {
                     FirstName = authorViewModel.FirstName,
                     LastName = authorViewModel.LastName,
+                    Notes = authorViewModel.Notes,
                     // Email = authorViewModel.Email,
                     LanguageId = languageId,
                     UserId = user?.Id
@@ -115,6 +117,7 @@ namespace linc.Services
 
                 var firstName = updated.FirstName.Trim();
                 var lastName = updated.LastName.Trim();
+                var notes = updated.Notes?.Trim();
                 // var email = updated.Email?.Trim();
 
                 // var user = await FindApplicationUser(updated);
@@ -129,6 +132,12 @@ namespace linc.Services
                 if (!string.Equals(existing.LastName, lastName, StringComparison.OrdinalIgnoreCase))
                 {
                     existing.LastName = lastName;
+                    changed = true;
+                }
+
+                if (!string.Equals(existing.Notes, notes, StringComparison.OrdinalIgnoreCase))
+                {
+                    existing.Notes = notes;
                     changed = true;
                 }
 

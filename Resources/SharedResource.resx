@@ -1774,4 +1774,7 @@
   <data name="SourceCreate_DossierId" xml:space="preserve">
     <value>Досие</value>
   </data>
+  <data name="SourceAuthor_Notes" xml:space="preserve">
+    <value>Бележки за автора</value>
+  </data>
 </root>

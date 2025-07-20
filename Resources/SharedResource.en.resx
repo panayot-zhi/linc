@@ -1773,4 +1773,7 @@ The manuscript file must have a .doc or .docx extension.</value>
   <data name="SourceCreate_DossierId" xml:space="preserve">
     <value>Dossier</value>
   </data>
+  <data name="SourceAuthor_Notes" xml:space="preserve">
+    <value>Notes for the author</value>
+  </data>
 </root>

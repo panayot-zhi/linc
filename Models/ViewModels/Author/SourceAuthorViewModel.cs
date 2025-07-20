@@ -16,6 +16,10 @@ namespace linc.Models.ViewModels.Author
         [Display(Name = "SourceAuthor_LastName", ResourceType = typeof(Resources.SharedResource))]
         public string LastName { get; set; }
 
+        [MaxLength(1024, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+        [Display(Name = "SourceAuthor_Notes", ResourceType = typeof(Resources.SharedResource))]
+        public string Notes { get; set; }
+
         public string Names { get; set; }
 
 
