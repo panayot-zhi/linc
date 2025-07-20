@@ -105,11 +105,13 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
             var author = entry.Entity;
             if (!string.IsNullOrWhiteSpace(author.FirstName))
             {
+                author.FirstName = author.FirstName.Trim();
                 author.FirstName = char.ToUpper(author.FirstName[0]) + author.FirstName[1..].ToLower();
             }
 
             if (!string.IsNullOrWhiteSpace(author.LastName))
             {
+                author.FirstName = author.LastName.Trim();
                 author.LastName = author.LastName.ToUpper();
             }
         }
