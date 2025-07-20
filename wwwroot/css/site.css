@@ -27,10 +27,10 @@ a.requires-confirm { }
 .search-authors { }
 .search-authors-results-toggle { }
 .search-authors-results { }
-.author-applicationauthor-id { }
 .author-first-name { }
 .author-last-name { }
 .author-user-id { }
+.author-id { }
 .remove-author { }
 .author-card { }
 /* ReSharper restore DeclarationIsEmpty */
