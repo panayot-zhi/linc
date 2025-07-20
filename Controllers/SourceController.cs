@@ -133,7 +133,7 @@ namespace linc.Controllers
                     Email = a.Email,
 
                     UserId = a.UserId,
-                    UserName = a.User.UserName
+                    UserName = a.User?.UserName
 
                 }).ToList(),
 
