@@ -197,20 +197,21 @@ namespace linc.Services
                 pdf = await GenerateSourcePdf(issue, startingPage, lastPage);
             }
 
+            // Create main source entry, properties are alphabetically sorted
             var entity = new ApplicationSource
             {
-                AuthorNotes = input.AuthorNotes,
+                AuthorNotes = input.AuthorNotes?.Trim(),
                 DOI = input.DOI?.Trim(),
-                StartingPdfPage = startingPage,
-                LastPdfPage = lastPage,
-                StartingIndexPage = input.StartingIndexPage,
-                Title = input.Title?.Trim(),
-                TitleNotes = input.TitleNotes,
-                IsTheme = input.IsTheme,
                 IsSection = input.IsSection,
-                LanguageId = input.LanguageId,
+                IsTheme = input.IsTheme,
                 IssueId = issueId,
-                PdfId = pdf.Id
+                LanguageId = input.LanguageId,
+                LastPdfPage = lastPage,
+                PdfId = pdf.Id,
+                StartingIndexPage = input.StartingIndexPage,
+                StartingPdfPage = startingPage,
+                Title = input.Title?.Trim(),
+                TitleNotes = input.TitleNotes?.Trim()
             };
 
             // Use AuthorService to create authors
