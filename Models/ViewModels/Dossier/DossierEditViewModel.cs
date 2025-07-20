@@ -1,7 +1,9 @@
-﻿using linc.Data;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using linc.Models.Enumerations;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using linc.Data;
+using linc.Models.Enumerations;
+using linc.Models.ViewModels.Author;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using linc.Contracts;
 
 namespace linc.Models.ViewModels.Dossier
@@ -29,15 +31,10 @@ namespace linc.Models.ViewModels.Dossier
         [Display(Name = "DossierCreate_Title", ResourceType = typeof(Resources.SharedResource))]
         public string Title { get; set; }
 
-        [Display(Name = "DossierCreate_FirstName", ResourceType = typeof(Resources.SharedResource))]
-        public string FirstName { get; set; }
-
-        [Display(Name = "DossierCreate_LastName", ResourceType = typeof(Resources.SharedResource))]
-        public string LastName { get; set; }
-
-        [EmailAddress(ErrorMessageResourceName = "EmailAddressAttribute_Invalid", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
-        [Display(Name = "DossierCreate_Email", ResourceType = typeof(Resources.SharedResource))]
-        public string Email { get; set; }
+        // New: Authors collection for Dossier
+        [Required]
+        [MinLength(1, ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+        public List<DossierAuthorViewModel> Authors { get; set; } = new();
 
 
         public ApplicationDossierStatus Status { get; set; }
