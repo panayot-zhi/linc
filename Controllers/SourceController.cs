@@ -1,6 +1,7 @@
 ﻿using linc.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using linc.Models.Enumerations;
+using linc.Models.ViewModels.Author;
 using linc.Utility;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using linc.Models.ViewModels.Source;
@@ -111,8 +112,6 @@ namespace linc.Controllers
 
                 DOI = source.DOI,
 
-                FirstName = source.FirstName,
-                LastName = source.LastName,
                 AuthorNotes = source.AuthorNotes,
 
                 StartingPdfPage = source.StartingPdfPage,
@@ -125,6 +124,18 @@ namespace linc.Controllers
 
                 IsTheme = source.IsTheme,
                 IsSection = source.IsSection,
+
+                Authors = source.Authors.Select(a => new SourceAuthorViewModel
+                {
+                    Id = a.Id,
+                    FirstName = a.FirstName,
+                    LastName = a.LastName,
+                    Email = a.Email,
+
+                    UserId = a.UserId,
+                    UserName = a.User.UserName
+
+                }).ToList(),
 
                 Issues = await GetIssuesAsync(source.IssueId),
                 Languages = GetLanguages(source.LanguageId),
