@@ -73,7 +73,7 @@ namespace linc.Services
 
                 var user = await FindApplicationUser(authorViewModel);
 
-                var appAuthor = new ApplicationAuthor
+                var author = new ApplicationAuthor
                 {
                     FirstName = authorViewModel.FirstName,
                     LastName = authorViewModel.LastName,
@@ -82,7 +82,7 @@ namespace linc.Services
                     LanguageId = languageId
                 };
 
-                result.Add(appAuthor);
+                result.Add(author);
             }
 
             return result;
