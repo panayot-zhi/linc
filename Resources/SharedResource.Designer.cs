@@ -4284,6 +4284,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Автори.
+        /// </summary>
+        public static string SourceCreate_Authors {
+            get {
+                return ResourceManager.GetString("SourceCreate_Authors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DOI.
         /// </summary>
         public static string SourceCreate_DOI {

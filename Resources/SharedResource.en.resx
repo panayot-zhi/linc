@@ -1767,4 +1767,7 @@ The manuscript file must have a .doc or .docx extension.</value>
   <data name="SourceAuthor_UserName" xml:space="preserve">
     <value>Username</value>
   </data>
+  <data name="SourceCreate_Authors" xml:space="preserve">
+    <value>Authors</value>
+  </data>
 </root>

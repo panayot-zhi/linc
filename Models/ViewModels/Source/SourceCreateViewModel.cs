@@ -73,11 +73,11 @@ namespace linc.Models.ViewModels.Source
         public bool IsSection { get; set; }
 
 
+        [Display(Name = "SourceCreate_Authors", ResourceType = typeof(Resources.SharedResource))]
         [MinCount(1, ErrorMessageResourceName = "MinCountAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         public List<SourceAuthorViewModel> Authors { get; set; } = new();
 
-
-
+        
         public List<SelectListItem> Languages { get; set; }
 
         public List<SelectListItem> Issues { get; set; }

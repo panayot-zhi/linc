@@ -1768,4 +1768,7 @@
   <data name="SourceAuthor_UserName" xml:space="preserve">
     <value>Потребителско име</value>
   </data>
+  <data name="SourceCreate_Authors" xml:space="preserve">
+    <value>Автори</value>
+  </data>
 </root>

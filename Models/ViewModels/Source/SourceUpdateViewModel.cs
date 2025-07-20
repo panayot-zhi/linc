@@ -1,4 +1,5 @@
 ﻿using linc.Models.ViewModels.Author;
+using linc.Utility;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
@@ -79,8 +80,10 @@ namespace linc.Models.ViewModels.Source
         [Display(Name = "DateCreated_Label", ResourceType = typeof(Resources.SharedResource))]
         public DateTime DateCreated { get; set; }
 
-
+        [Display(Name = "SourceCreate_Authors", ResourceType = typeof(Resources.SharedResource))]
+        [MinCount(1, ErrorMessageResourceName = "MinCountAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         public List<SourceAuthorViewModel> Authors { get; set; } = new();
+
 
         public List<SelectListItem> Users { get; set; }
 

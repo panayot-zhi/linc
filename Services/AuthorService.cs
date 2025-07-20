@@ -105,7 +105,13 @@ namespace linc.Services
             // Update existing authors
             foreach (var existing in existingAuthors)
             {
-                var updated = newAuthors.First(a => a.Id == existing.Id);
+                var updated = newAuthors.FirstOrDefault(a => a.Id == existing.Id);
+                if (updated is null)
+                {
+                    // NOTE: Author is brand new
+                    // not an existing one to be updated
+                    continue;
+                }
 
                 var firstName = updated.FirstName.Trim();
                 var lastName = updated.LastName.Trim();
