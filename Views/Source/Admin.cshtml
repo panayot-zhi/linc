@@ -91,9 +91,19 @@
 
             <tr class="@rowClass">
                 <td>
-                    @* TODO: Link to user admin screen if exist *@
-                    @Html.DisplayFor(modelItem => item.AuthorNames) <br/>
-                    @Html.Raw(item.AuthorsNotes?.ReplaceLineEndings("<br>"))
+                        @* TODO: Link to user admin screen if exist *@
+                    @if (item.Authors.Any())
+                    {
+                        foreach (var author in item.Authors)
+                        {
+                            @Html.DisplayFor(modelItem => author.Names)
+                            <br/>
+                            @Html.DisplayFor(modelItem => author.Notes)
+                            <br/>
+                        }
+
+                        @Html.Raw(item.AuthorsNotes?.ReplaceLineEndings("<br>"))
+                    }
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">

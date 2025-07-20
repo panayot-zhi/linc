@@ -26,6 +26,12 @@ namespace linc.Migrations
                 WHERE first_name IS NOT NULL AND last_name IS NOT NULL
             ");
 
+            // Update all records in authors table: last_name to UPPER CASE, first_name to capitalize first letter only
+            migrationBuilder.Sql(@"
+                UPDATE sources
+                SET authors_notes = NULL
+            ");
+
             // Migrate data from dossiers to authors, excluding already inserted records and records with NULL first_name or last_name
             migrationBuilder.Sql(@"
                 INSERT INTO authors (first_name, last_name, email, language_id, user_id, dossier_id, date_created, last_updated)

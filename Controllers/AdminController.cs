@@ -147,7 +147,7 @@ namespace linc.Controllers
 
         private async Task Sync(ApplicationUser user)
         {
-            await _sourceService.UpdateAuthorAsync(user);
+            // await _sourceService.UpdateAuthorAsync(user);
             await _dossierService.UpdateAuthorAsync(user);
             await _dossierService.UpdateReviewerAsync(user);
         }

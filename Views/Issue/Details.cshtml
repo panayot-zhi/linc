@@ -98,24 +98,35 @@
                         @foreach (var source in Model.Sources)
                         {
                             <li class="source-container">
-
-                                @if (!string.IsNullOrWhiteSpace(source.AuthorNames))
-                                {
-                                    <p class="source-author">
-
-                                        <a asp-controller="Source" asp-action="Index" asp-route-filter="@WebUtility.UrlEncode(source.AuthorNames)">
-                                            @source.AuthorNames
-                                        </a>
-                                        @if (!string.IsNullOrEmpty(source.AuthorsNotes))
-                                        {
-                                            <br/>
-                                            <small>
-                                                @Html.Raw(source.AuthorsNotes.ReplaceLineEndings("<br>"))
-                                            </small>
-                                        }
-                                    </p>
-                                }
                                 
+                                @if (source.Authors.Any())
+                                {
+                                    foreach (var author in source.Authors)
+                                    {
+                                        <p class="source-author">
+
+                                            <a asp-controller="Source" asp-action="Index" asp-route-filter="@WebUtility.UrlEncode(author.Names)">
+                                                @author.Names
+                                            </a>
+                                            @if (!string.IsNullOrEmpty(author.Notes))
+                                            {
+                                                <br/>
+                                                <small>
+                                                    @Html.Raw(author.Notes.ReplaceLineEndings("<br>"))
+                                                </small>
+                                            }
+                                        </p>
+                                    }
+
+                                    @if (!string.IsNullOrEmpty(source.AuthorsNotes))
+                                    {
+                                        <br/>
+                                        <small>
+                                            @Html.Raw(source.AuthorsNotes.ReplaceLineEndings("<br>"))
+                                        </small>
+                                    }
+                                }
+
                                 @if (!string.IsNullOrWhiteSpace(source.DOI))
                                 {
                                     <p class="source-doi">
