@@ -60,6 +60,9 @@ namespace linc.Models.ViewModels.Source
         [Display(Name = "SourceCreate_IssueId", ResourceType = typeof(Resources.SharedResource))]
         public int? IssueId { get; set; }
 
+        [Display(Name = "SourceCreate_DossierId", ResourceType = typeof(Resources.SharedResource))]
+        public int? DossierId { get; set; }
+
         [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         [Display(Name = "SourceCreate_LanguageId", ResourceType = typeof(Resources.SharedResource))]
         public int LanguageId { get; set; }

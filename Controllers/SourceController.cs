@@ -111,6 +111,7 @@ namespace linc.Controllers
                 TitleNotes = source.TitleNotes,
 
                 DOI = source.DOI,
+                DossierId = source.DossierId,
 
                 AuthorNotes = source.AuthorNotes,
 

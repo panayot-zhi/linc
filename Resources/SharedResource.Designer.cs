@@ -4302,6 +4302,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Досие.
+        /// </summary>
+        public static string SourceCreate_DossierId {
+            get {
+                return ResourceManager.GetString("SourceCreate_DossierId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Секция.
         /// </summary>
         public static string SourceCreate_IsSection {

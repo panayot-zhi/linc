@@ -61,6 +61,9 @@ namespace linc.Models.ViewModels.Source
         [Display(Name = "SourceCreate_IssueId", ResourceType = typeof(Resources.SharedResource))]
         public int IssueId { get; set; }
 
+        [Display(Name = "SourceCreate_DossierId", ResourceType = typeof(Resources.SharedResource))]
+        public int? DossierId { get; set; }
+
         [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         [Display(Name = "SourceCreate_LanguageId", ResourceType = typeof(Resources.SharedResource))]
         public int LanguageId { get; set; }
@@ -79,6 +82,7 @@ namespace linc.Models.ViewModels.Source
 
         [Display(Name = "DateCreated_Label", ResourceType = typeof(Resources.SharedResource))]
         public DateTime DateCreated { get; set; }
+
 
         [Display(Name = "SourceCreate_Authors", ResourceType = typeof(Resources.SharedResource))]
         [MinCount(1, ErrorMessageResourceName = "MinCountAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]

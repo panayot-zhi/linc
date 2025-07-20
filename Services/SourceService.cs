@@ -199,6 +199,7 @@ namespace linc.Services
             {
                 AuthorNotes = input.AuthorNotes?.Trim(),
                 DOI = input.DOI?.Trim(),
+                DossierId = input.DossierId,
                 IsSection = input.IsSection,
                 IsTheme = input.IsTheme,
                 IssueId = issueId,
@@ -208,7 +209,7 @@ namespace linc.Services
                 StartingIndexPage = input.StartingIndexPage,
                 StartingPdfPage = startingPage,
                 Title = input.Title?.Trim(),
-                TitleNotes = input.TitleNotes?.Trim()
+                TitleNotes = input.TitleNotes?.Trim(),
             };
 
             var authors = await _authorService.CreateAuthorsAsync(input.LanguageId, input.Authors);
@@ -233,6 +234,7 @@ namespace linc.Services
 
             source.AuthorNotes = input.AuthorNotes?.Trim();
             source.DOI = input.DOI?.Trim();
+            source.DossierId = input.DossierId;
             source.IsSection = input.IsSection;
             source.IsTheme = input.IsTheme;
             source.LanguageId = input.LanguageId;
