@@ -7,7 +7,7 @@ namespace linc.Contracts
     {
         Task<List<SourceAuthorViewModel>> SearchAuthorsAsync(int languageId, string searchTerm);
 
-        Task<List<ApplicationAuthor>> CreateAuthorsAsync(List<SourceAuthorViewModel> authors, int languageId);
+        Task<List<ApplicationAuthor>> CreateAuthorsAsync(int languageId, List<SourceAuthorViewModel> authors);
 
         Task UpdateAuthorsAsync(ApplicationSource source, List<SourceAuthorViewModel> newAuthors);
 
