@@ -11,7 +11,7 @@ using linc.Data;
 namespace linc.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250706153206_PopulateApplicationAuthors")]
+    [Migration("20250720130711_PopulateApplicationAuthors")]
     partial class PopulateApplicationAuthors
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -99,6 +99,18 @@ namespace linc.Migrations
                         .HasColumnType("datetime(6)")
                         .HasColumnName("last_updated");
 
+                    b.Property<string>("Names")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasMaxLength(512)
+                        .HasColumnType("varchar(512)")
+                        .HasColumnName("names")
+                        .HasComputedColumnSql("CONCAT(first_name, ' ', last_name)");
+
+                    b.Property<string>("Notes")
+                        .HasMaxLength(1024)
+                        .HasColumnType("varchar(1024)")
+                        .HasColumnName("notes");
+
                     b.Property<int?>("SourceId")
                         .HasColumnType("int")
                         .HasColumnName("source_id");
@@ -126,11 +138,26 @@ namespace linc.Migrations
                     b.HasIndex("LastName")
                         .HasDatabaseName("ix_authors_last_name");
 
+                    b.HasIndex("Names")
+                        .HasDatabaseName("ix_authors_names");
+
                     b.HasIndex("SourceId")
                         .HasDatabaseName("ix_authors_source_id");
 
                     b.HasIndex("UserId")
                         .HasDatabaseName("ix_authors_user_id");
+
+                    b.HasIndex("Names", "DossierId")
+                        .IsUnique()
+                        .HasDatabaseName("ix_authors_names_dossier_id");
+
+                    b.HasIndex("Names", "SourceId")
+                        .IsUnique()
+                        .HasDatabaseName("ix_authors_names_source_id");
+
+                    b.HasIndex("Names", "SourceId", "DossierId")
+                        .IsUnique()
+                        .HasDatabaseName("ix_authors_names_source_id_dossier_id");
 
                     b.ToTable("authors", (string)null);
                 });
@@ -421,10 +448,10 @@ namespace linc.Migrations
                         .HasColumnName("author_names")
                         .HasComputedColumnSql("CONCAT(first_name, ' ', last_name)");
 
-                    b.Property<string>("AuthorNotes")
+                    b.Property<string>("AuthorsNotes")
                         .HasMaxLength(1024)
                         .HasColumnType("varchar(1024)")
-                        .HasColumnName("author_notes");
+                        .HasColumnName("authors_notes");
 
                     b.Property<string>("DOI")
                         .HasMaxLength(255)

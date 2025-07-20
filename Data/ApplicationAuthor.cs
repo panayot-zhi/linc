@@ -27,6 +27,8 @@ namespace linc.Data
         [MaxLength(255)]
         public string Email { get; set; }
 
+        [MaxLength(1024)]
+        public string Notes { get; set; }
 
         // NOTE: Computed
         [MaxLength(512)]

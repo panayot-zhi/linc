@@ -10,10 +10,11 @@ namespace linc.Migrations
         {
             // Migrate data from sources to authors (including dossier_id), excluding records with NULL first_name or last_name
             migrationBuilder.Sql(@"
-                INSERT INTO authors (first_name, last_name, email, language_id, user_id, source_id, dossier_id, date_created, last_updated)
+                INSERT INTO authors (first_name, last_name, notes, email, language_id, user_id, source_id, dossier_id, date_created, last_updated)
                 SELECT 
                     TRIM(first_name), 
                     TRIM(last_name), 
+                    authors_notes AS notes,
                     NULL AS email, 
                     language_id, 
                     author_id AS user_id, 
