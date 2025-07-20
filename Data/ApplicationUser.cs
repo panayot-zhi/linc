@@ -14,9 +14,11 @@ namespace linc.Data
         [PersonalData]
         public bool Subscribed { get; set; }
 
+        [Obsolete("Author flag should be resolved through 'Authors' table with a relationship to 'Users'.")]
         [PersonalData]
         public bool IsAuthor { get; set; }
 
+        [Obsolete("Reviewer flag should be resolved through 'Reviewers' table with a relationship to 'Users'.")]
         [PersonalData]
         public bool IsReviewer { get; set; }
 
