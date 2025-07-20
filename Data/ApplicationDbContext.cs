@@ -111,7 +111,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 
             if (!string.IsNullOrWhiteSpace(author.LastName))
             {
-                author.FirstName = author.LastName.Trim();
+                author.LastName = author.LastName.Trim();
                 author.LastName = author.LastName.ToUpper();
             }
         }
