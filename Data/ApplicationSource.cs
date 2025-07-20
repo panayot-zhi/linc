@@ -5,28 +5,11 @@ using Microsoft.EntityFrameworkCore;
 namespace linc.Data
 {
     [Index(nameof(PdfId), IsUnique = false)]
-    [Index(nameof(FirstName), IsUnique = false)]
-    [Index(nameof(LastName), IsUnique = false)]
-    [Index(nameof(AuthorNames), IsUnique = false)]
-    // [Index(nameof(AuthorsNotes), IsUnique = false)]
     [Index(nameof(Title), IsUnique = false)]
-    // [Index(nameof(TitleNotes), IsUnique = false)]
     public class ApplicationSource
     {
         public int Id { get; set; }
 
-
-        [Obsolete("Do not use this property, it is pending deletion. Use the 'Authors' collection instead.")]
-        [MaxLength(255)]
-        public string FirstName { get; set; }
-
-        [Obsolete("Do not use this property, it is pending deletion. Use the 'Authors' collection instead.")]
-        [MaxLength(255)]
-        public string LastName { get; set; }
-
-        [Obsolete("Do not use this property, it is pending deletion. Use the 'Authors' collection instead.")]
-        [MaxLength(512)]
-        public string AuthorNames { get; init; }
 
         [MaxLength(1024)]
         public string AuthorsNotes { get; set; }
@@ -81,14 +64,6 @@ namespace linc.Data
 
         public ApplicationDocument Pdf { get; set; }
 
-
-        [Obsolete("Do not use this property, it is pending deletion. Use the 'Authors' collection instead.")]
-        [MaxLength(127)]
-        [ForeignKey(nameof(Author))]
-        public string AuthorId { get; set; }
-
-        [Obsolete("Do not use this property, it is pending deletion. Use the 'Authors' collection instead.")]
-        public ApplicationUser Author { get; set; }
 
         [ForeignKey(nameof(Dossier))]
         public int? DossierId { get; set; }
