@@ -12,8 +12,8 @@ namespace linc.Migrations
             migrationBuilder.Sql(@"
                 INSERT INTO authors (first_name, last_name, email, language_id, user_id, source_id, dossier_id, date_created, last_updated)
                 SELECT 
-                    first_name, 
-                    last_name, 
+                    TRIM(first_name), 
+                    TRIM(last_name), 
                     NULL AS email, 
                     language_id, 
                     author_id AS user_id, 
@@ -29,8 +29,8 @@ namespace linc.Migrations
             migrationBuilder.Sql(@"
                 INSERT INTO authors (first_name, last_name, email, language_id, user_id, dossier_id, date_created, last_updated)
                 SELECT 
-                    first_name, 
-                    last_name, 
+                    TRIM(first_name), 
+                    TRIM(last_name), 
                     email, 
                     language_id, 
                     author_id AS user_id, 
