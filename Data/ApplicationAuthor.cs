@@ -4,6 +4,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace linc.Data
 {
+    [Index(nameof(Names), IsUnique = false)]
+    [Index(nameof(Names), nameof(SourceId), IsUnique = true)]
+    [Index(nameof(Names), nameof(DossierId), IsUnique = true)]
+    [Index(nameof(Names), nameof(SourceId), nameof(DossierId), IsUnique = true)]
     [Index(nameof(FirstName), IsUnique = false)]
     [Index(nameof(LastName), IsUnique = false)]
     [Index(nameof(Email), IsUnique = false)]
