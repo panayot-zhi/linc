@@ -106,11 +106,11 @@
                                         <a asp-controller="Source" asp-action="Index" asp-route-filter="@WebUtility.UrlEncode(source.AuthorNames)">
                                             @source.AuthorNames
                                         </a>
-                                        @if (!string.IsNullOrEmpty(source.AuthorNotes))
+                                        @if (!string.IsNullOrEmpty(source.AuthorsNotes))
                                         {
                                             <br/>
                                             <small>
-                                                @Html.Raw(source.AuthorNotes.ReplaceLineEndings("<br>"))
+                                                @Html.Raw(source.AuthorsNotes.ReplaceLineEndings("<br>"))
                                             </small>
                                         }
                                     </p>

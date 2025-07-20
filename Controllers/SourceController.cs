@@ -109,38 +109,27 @@ namespace linc.Controllers
                 Id = source.Id,
                 Title = source.Title,
                 TitleNotes = source.TitleNotes,
-
                 DOI = source.DOI,
                 DossierId = source.DossierId,
-
-                AuthorNotes = source.AuthorNotes,
-
+                AuthorsNotes = source.AuthorsNotes,
                 StartingPdfPage = source.StartingPdfPage,
                 LastPdfPage = source.LastPdfPage,
-
                 StartingIndexPage = source.StartingIndexPage,
-
                 IssueId = source.IssueId,
                 LanguageId = source.LanguageId,
-
                 IsTheme = source.IsTheme,
                 IsSection = source.IsSection,
-
                 Authors = source.Authors.Select(a => new SourceAuthorViewModel
                 {
                     Id = a.Id,
                     FirstName = a.FirstName,
                     LastName = a.LastName,
                     Email = a.Email,
-
                     UserId = a.UserId,
                     UserName = a.User?.UserName
-
                 }).ToList(),
-
                 Issues = await GetIssuesAsync(source.IssueId),
                 Languages = GetLanguages(source.LanguageId),
-
                 LastUpdated = source.LastUpdated,
                 DateCreated = source.DateCreated,
             };

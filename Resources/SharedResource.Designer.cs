@@ -4275,20 +4275,20 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Бележки за автора.
-        /// </summary>
-        public static string SourceCreate_AuthorNotes {
-            get {
-                return ResourceManager.GetString("SourceCreate_AuthorNotes", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Автори.
         /// </summary>
         public static string SourceCreate_Authors {
             get {
                 return ResourceManager.GetString("SourceCreate_Authors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Бележки за авторите.
+        /// </summary>
+        public static string SourceCreate_AuthorsNotes {
+            get {
+                return ResourceManager.GetString("SourceCreate_AuthorsNotes", resourceCulture);
             }
         }
         

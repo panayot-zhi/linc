@@ -8,7 +8,7 @@ namespace linc.Data
     [Index(nameof(FirstName), IsUnique = false)]
     [Index(nameof(LastName), IsUnique = false)]
     [Index(nameof(AuthorNames), IsUnique = false)]
-    // [Index(nameof(AuthorNotes), IsUnique = false)]
+    // [Index(nameof(AuthorsNotes), IsUnique = false)]
     [Index(nameof(Title), IsUnique = false)]
     // [Index(nameof(TitleNotes), IsUnique = false)]
     public class ApplicationSource
@@ -29,7 +29,7 @@ namespace linc.Data
         public string AuthorNames { get; init; }
 
         [MaxLength(1024)]
-        public string AuthorNotes { get; set; }
+        public string AuthorsNotes { get; set; }
 
         /// <summary>
         /// Digital Object Identifier

@@ -79,7 +79,7 @@ namespace linc.Services
                     // perform search by
                     query = query.Where(x =>
                         x.Authors.Any(a => EF.Functions.Like(a.FirstName, $"%{filter}%") || EF.Functions.Like(a.LastName, $"%{filter}%")) ||
-                        EF.Functions.Like(x.AuthorNotes, $"%{filter}%")
+                        EF.Functions.Like(x.AuthorsNotes, $"%{filter}%")
                     );
                 }
                 else
@@ -197,7 +197,7 @@ namespace linc.Services
 
             var entity = new ApplicationSource
             {
-                AuthorNotes = input.AuthorNotes?.Trim(),
+                AuthorsNotes = input.AuthorsNotes?.Trim(),
                 DOI = input.DOI?.Trim(),
                 DossierId = input.DossierId,
                 IsSection = input.IsSection,
@@ -232,7 +232,7 @@ namespace linc.Services
 
             _context.Sources.Attach(source);
 
-            source.AuthorNotes = input.AuthorNotes?.Trim();
+            source.AuthorsNotes = input.AuthorsNotes?.Trim();
             source.DOI = input.DOI?.Trim();
             source.DossierId = input.DossierId;
             source.IsSection = input.IsSection;

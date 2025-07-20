@@ -1172,8 +1172,8 @@
   <data name="Issue_DetailsPage_Title" xml:space="preserve">
     <value>View issue</value>
   </data>
-  <data name="SourceCreate_AuthorNotes" xml:space="preserve">
-    <value>Notes for the author</value>
+  <data name="SourceCreate_AuthorsNotes" xml:space="preserve">
+    <value>Notes for the authors</value>
   </data>
   <data name="SourceAuthor_FirstName" xml:space="preserve">
     <value>First name</value>

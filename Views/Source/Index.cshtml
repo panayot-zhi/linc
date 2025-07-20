@@ -99,11 +99,11 @@
                                     {
                                         <p class="source-author annotate">
                                             @source.AuthorNames
-                                            @if (!string.IsNullOrEmpty(source.AuthorNotes))
+                                            @if (!string.IsNullOrEmpty(source.AuthorsNotes))
                                             {
                                                 <br/>
                                                 <small>
-                                                    @Html.Raw(source.AuthorNotes.ReplaceLineEndings("<br>"))
+                                                    @Html.Raw(source.AuthorsNotes.ReplaceLineEndings("<br>"))
                                                 </small>
                                             }
                                         </p>
