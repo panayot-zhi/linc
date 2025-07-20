@@ -71,23 +71,7 @@ namespace linc.Services
                 authorViewModel.FirstName = authorViewModel.FirstName.Trim();
                 authorViewModel.LastName = authorViewModel.LastName.Trim();
 
-                ApplicationUser user;
-
-                if (!string.IsNullOrEmpty(authorViewModel.UserId))
-                {
-                    user = await _context.Users.FindAsync(authorViewModel.UserId);
-                }
-                else
-                {
-                    user = await _applicationUserStore.FindUserByNamesAsync(authorViewModel.FirstName, authorViewModel.LastName);
-                }
-
-                if (user != null)
-                {
-                    _context.Users.Attach(user);
-                    user.IsAuthor = true;
-                    await _context.SaveChangesAsync();
-                }
+                var user = await FindApplicationUser(authorViewModel);
 
                 var appAuthor = new ApplicationAuthor
                 {
