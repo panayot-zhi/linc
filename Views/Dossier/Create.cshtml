@@ -38,7 +38,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                    @await Html.PartialAsync("_Authors", Model.Authors)
+                    <partial name="_CreateAuthors" model="Model.Authors" />
                 </div>
             </div>
             <div class="row">

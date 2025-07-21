@@ -1,0 +1,277 @@
+@model List<linc.Models.ViewModels.Author.DossierAuthorViewModel>
+
+<div class="form-group">
+    <div class="card">
+        <div class="card-header">
+            @HtmlLocalizer["DossierCreate_Authors"]
+        </div>
+
+        <div id="authors-list" class="card-body">
+            @if (Model is { Count: > 0 })
+            {
+                for (var i = 0; i < Model.Count; i++)
+                {
+                    <div class="author-card mb-3" data-index="@i">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label for="Authors[@i].Search" class="form-label">@HtmlLocalizer["DossierCreate_Authors_SearchLabel"]</label>
+                                <div class="input-group mb-3">
+                                    <input id="Authors[@i].Search" type="search" class="form-control no-validate search-authors" aria-label="Search for authors">
+                                    <button class="btn btn-outline-secondary dropdown-toggle search-authors-results-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">@HtmlLocalizer["DossierCreate_Authors_Results"]</button>
+                                    <ul class="dropdown-menu dropdown-menu-end search-authors-results">
+                                        <li><a class="dropdown-item">@HtmlLocalizer["DossierCreate_Authors_NoResults"]</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" id="Authors[@i].UserId" name="Authors[@i].UserId" class="author-user-id" value="@Model[i].UserId" />
+                        <input type="hidden" id="Authors[@i].Id" name="Authors[@i].Id" class="author-id" value="@Model[i].Id" />
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-floating ">
+                                    <input id="Authors[@i].FirstName" name="Authors[@i].FirstName" class="form-control author-first-name" value="@Model[i].FirstName" />
+                                    <label for="Authors[@i].FirstName" class="form-label">@HtmlLocalizer["SourceAuthor_FirstName"]</label>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-floating ">
+                                    <input id="Authors[@i].LastName" name="Authors[@i].LastName" class="form-control author-last-name" value="@Model[i].LastName" />
+                                    <label for="Authors[@i].LastName" class="form-label">@HtmlLocalizer["SourceAuthor_LastName"]</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-floating ">
+                                    <input id="Authors[@i].Email" name="Authors[@i].Email" class="form-control author-email" value="@Model[i].Email" />
+                                    <label for="Authors[@i].Email" class="form-label">@HtmlLocalizer["SourceAuthor_Email"]</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12 text-end">
+                                <a class="btn btn-danger remove-author">@HtmlLocalizer["DossierCreate_Authors_Remove"]</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+
+        <div class="card-footer">
+            <div class="row">
+                <button id="add-author" class="btn btn-outline-secondary" type="button">@HtmlLocalizer["DossierCreate_Authors_Add"]</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Hidden template for new author -->
+<div id="author-template" class="d-none">
+    <div class="author-card mb-3" data-index="__index__">
+        <div class="row">
+            <div class="col-sm-12">
+                <label for="Authors[__index__].Search" class="form-label">@HtmlLocalizer["DossierCreate_Authors_SearchLabel"]</label>
+                <div class="input-group mb-3">
+                    <input id="Authors[__index__].Search" type="search" class="form-control no-validate search-authors" aria-label="Search for authors">
+                    <button class="btn btn-outline-secondary dropdown-toggle search-authors-results-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">@HtmlLocalizer["DossierCreate_Authors_Results"]</button>
+                    <ul class="dropdown-menu dropdown-menu-end search-authors-results">
+                        <li><a class="dropdown-item">@HtmlLocalizer["DossierCreate_Authors_NoResults"]</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" id="Authors[__index__].UserId" name="Authors[__index__].UserId" class="author-user-id" />
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-floating ">
+                    <input id="Authors[__index__].FirstName" name="Authors[__index__].FirstName" class="form-control author-first-name" />
+                    <label for="Authors[__index__].FirstName" class="form-label">@HtmlLocalizer["SourceAuthor_FirstName"]</label>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-floating ">
+                    <input id="Authors[__index__].LastName" name="Authors[__index__].LastName" class="form-control author-last-name" />
+                    <label for="Authors[__index__].LastName" class="form-label">@HtmlLocalizer["SourceAuthor_LastName"]</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-floating ">
+                    <input id="Authors[__index__].Email" name="Authors[__index__].Email" class="form-control author-email" />
+                    <label for="Authors[__index__].Email" class="form-label">@HtmlLocalizer["SourceAuthor_Email"]</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 text-end">
+                <a class="btn btn-danger remove-author">@HtmlLocalizer["DossierCreate_Authors_Remove"]</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const addAuthor = document.getElementById('add-author');
+        const authorsList = document.getElementById('authors-list');
+        const authorTemplate = document.getElementById('author-template').innerHTML;
+
+        function getAuthorCards() {
+            return authorsList.querySelectorAll('.author-card');
+        }
+
+        function updateIndices() {
+            getAuthorCards().forEach((card, idx) => {
+                card.setAttribute('data-index', idx);
+                card.querySelectorAll('[name^="Authors["]').forEach(input => {
+                    const name = input.getAttribute('name');
+                    if (name) {
+                        input.setAttribute('name', name.replace(/Authors\[\d+\]/, `Authors[${idx}]`));
+                    }
+                });
+                card.querySelectorAll('[id^="Authors["]').forEach(input => {
+                    const id = input.getAttribute('id');
+                    if (id) {
+                        input.setAttribute('id', id.replace(/Authors\[\d+\]/, `Authors[${idx}]`));
+                    }
+                });
+                card.querySelectorAll('label[for^="Authors["]').forEach(label => {
+                    const htmlFor = label.getAttribute('for');
+                    if (htmlFor) {
+                        label.setAttribute('for', htmlFor.replace(/Authors\[\d+\]/, `Authors[${idx}]`));
+                    }
+                });
+            });
+        }
+
+        function attachSearchFunctionality(card) {
+
+            const searchAuthors = card.querySelector('.search-authors');
+            const searchAuthorsResults = card.querySelector('.search-authors-results');
+            const searchAuthorsResultsToggle = card.querySelector('.search-authors-results-toggle');
+            const searchAuthorsResultsDropdown = new bootstrap.Dropdown(searchAuthorsResultsToggle);
+
+            let lastQuery = '';
+            let debounceTimeout;
+
+            function clearResults() {
+                searchAuthorsResultsDropdown.hide();
+                searchAuthorsResults.innerHTML = '<li><a class="dropdown-item">@HtmlLocalizer["DossierCreate_Authors_NoResults"]</a></li>';
+            }
+
+            if (searchAuthors) {
+                searchAuthors.addEventListener('input', function () {
+                    const query = searchAuthors.value;
+
+                    if (query.length < 3) {
+                        clearResults();
+                        lastQuery = '';
+                        return;
+                    }
+
+                    if (query === lastQuery) {
+                        return;
+                    }
+
+                    let authorSearchFetchUrl = `/author/search?q=${encodeURIComponent(query)}`
+                    const languageId = document.getElementById('LanguageId')?.value;
+
+                    if(languageId) {
+                        authorSearchFetchUrl += `&languageId=${languageId}`
+                    }
+
+                    lastQuery = query;
+                    clearTimeout(debounceTimeout);
+                    debounceTimeout = setTimeout(function () {
+                        fetch(authorSearchFetchUrl)
+                            .then(response => {
+                                if (!response.ok)
+                                    throw new Error('Network response was not ok');
+                                return response.json();
+                            })
+                            .then(authors => {
+                                if (Array.isArray(authors) && authors.length > 0) {
+                                    searchAuthorsResults.innerHTML = '';
+                                    authors.forEach(function (author) {
+                                        let label = author.names;
+                                        if (author.userName) {
+                                            label += ' (' + author.userName + ')';
+                                        }
+                                        const li = document.createElement('li');
+                                        const a = document.createElement('a');
+                                        a.className = 'dropdown-item choose-author';
+                                        a.textContent = label;
+                                        a.href = '#';
+                                        a.dataset.firstname = author.firstName;
+                                        a.dataset.lastname = author.lastName;
+                                        a.dataset.userid = author.userId || '';
+                                        a.dataset.email = author.email || '';
+                                        li.appendChild(a);
+                                        searchAuthorsResults.appendChild(li);
+                                    });
+                                    searchAuthorsResultsDropdown.show();
+                                    searchAuthors.focus();
+                                } else {
+                                    clearResults();
+                                }
+                            })
+                            .catch(() => {
+                                clearResults();
+                            });
+                    }, 300);
+                });
+            }
+
+            searchAuthorsResults.addEventListener('click', function (e) {
+                if (e.target && e.target.classList.contains('choose-author')) {
+                    e.preventDefault();
+                    const firstName = e.target.dataset.firstname;
+                    const lastName = e.target.dataset.lastname;
+                    const userId = e.target.dataset.userid;
+                    const email = e.target.dataset.email;
+                    card.querySelector('.author-first-name').value = firstName;
+                    card.querySelector('.author-last-name').value = lastName;
+                    card.querySelector('.author-user-id').value = userId;
+                    card.querySelector('.author-email').value = email;
+                    searchAuthorsResultsDropdown.hide();
+                }
+            });
+        }
+
+        function addAuthorCard(data = {}) {
+            const idx = getAuthorCards().length;
+            let html = authorTemplate.replace(/__index__/g, idx);
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = html;
+            const card = tempDiv.firstElementChild;
+            if (data.FirstName) card.querySelector('.author-first-name').value = data.FirstName;
+            if (data.LastName) card.querySelector('.author-last-name').value = data.LastName;
+            if (data.UserId) card.querySelector('.author-user-id').value = data.UserId;
+            if (data.Email) card.querySelector('.author-email').value = data.Email;
+            authorsList.appendChild(card);
+            updateIndices();
+            attachSearchFunctionality(card);
+        }
+
+        addAuthor.addEventListener('click', function () {
+            addAuthorCard();
+        });
+
+        authorsList.addEventListener('click', function (e) {
+            if (e.target && e.target.classList.contains('remove-author')) {
+                e.target.closest('.author-card').remove();
+                updateIndices();
+            }
+        });
+
+        // Ensure at least one author card exists
+        if (getAuthorCards().length === 0) {
+            addAuthorCard();
+        } else {
+            getAuthorCards().forEach(card =>
+                attachSearchFunctionality(card));
+        }
+    });
+</script>
