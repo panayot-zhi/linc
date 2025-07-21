@@ -72,7 +72,7 @@
                     </a>
                     <p>
                         <small>
-                            @Html.DisplayFor(modelItem => item.Names)
+                            @string.Join(", ", item.Authors.Select(a => a.Names))<br/>
                         </small>
                     </p>
                 </td>
