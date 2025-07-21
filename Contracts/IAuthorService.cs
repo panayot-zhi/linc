@@ -17,6 +17,6 @@ namespace linc.Contracts
 
         Task UpdateDossierAuthorsAsync(ApplicationDossier dossier, List<DossierAuthorViewModel> newAuthors);
 
-        Task UpdateAuthorUserAsync(ApplicationUser user);
+        Task UpdateAuthorsUserAsync(ApplicationUser user);
     }
 }

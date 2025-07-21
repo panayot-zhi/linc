@@ -267,7 +267,7 @@ namespace linc.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateAuthorUserAsync(ApplicationUser user)
+        public async Task UpdateAuthorsUserAsync(ApplicationUser user)
         {
             var authors = _context.Authors
                 .Where(x => x.UserId == null)
