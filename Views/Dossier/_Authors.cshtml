@@ -49,7 +49,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-12 text-end">    
+                            <div class="col-sm-12 text-end">
                                 <a class="btn btn-danger remove-author">@HtmlLocalizer["DossierCreate_Authors_Remove"]</a>
                             </div>
                         </div>
@@ -115,7 +115,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const addAuthor = document.getElementById('add-author');
-        const authorsList = document.getElementById('authors-list');        
+        const authorsList = document.getElementById('authors-list');
         const authorTemplate = document.getElementById('author-template').innerHTML;
 
         function getAuthorCards() {
@@ -150,7 +150,7 @@
             const searchAuthors = card.querySelector('.search-authors');
             const searchAuthorsResults = card.querySelector('.search-authors-results');
             const searchAuthorsResultsToggle = card.querySelector('.search-authors-results-toggle');
-            const searchAuthorsResultsDropdown = new bootstrap.Dropdown(searchAuthorsResultsToggle);            
+            const searchAuthorsResultsDropdown = new bootstrap.Dropdown(searchAuthorsResultsToggle);
             let lastQuery = '';
             let debounceTimeout;
             function clearResults() {
@@ -159,22 +159,31 @@
             }
             if (searchAuthors) {
                 searchAuthors.addEventListener('input', function () {
-                    const query = searchAuthors.value;                    
+                    const query = searchAuthors.value;
+
                     if (query.length < 3) {
                         clearResults();
                         lastQuery = '';
                         return;
                     }
+
                     if (query === lastQuery) {
                         return;
                     }
+
                     let authorSearchFetchUrl = `/author/search?q=${encodeURIComponent(query)}`
+                    const languageId = document.getElementById('LanguageId')?.value;
+
+                    if(languageId) {
+                        authorSearchFetchUrl += `&languageId=${languageId}`
+                    }
+
                     lastQuery = query;
                     clearTimeout(debounceTimeout);
                     debounceTimeout = setTimeout(function () {
                         fetch(authorSearchFetchUrl)
                             .then(response => {
-                                if (!response.ok) 
+                                if (!response.ok)
                                     throw new Error('Network response was not ok');
                                 return response.json();
                             })
@@ -252,7 +261,7 @@
         if (getAuthorCards().length === 0) {
             addAuthorCard();
         } else {
-            getAuthorCards().forEach(card => 
+            getAuthorCards().forEach(card =>
                 attachSearchFunctionality(card));
         }
     });
