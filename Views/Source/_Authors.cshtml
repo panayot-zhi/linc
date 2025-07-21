@@ -205,6 +205,7 @@
                                         a.dataset.firstname = author.firstName;
                                         a.dataset.lastname = author.lastName;
                                         a.dataset.userid = author.userId || '';
+                                        a.dataset.email = author.email || '';
                                         li.appendChild(a);
                                         searchAuthorsResults.appendChild(li);
                                     });
@@ -227,9 +228,11 @@
                     const firstName = e.target.dataset.firstname;
                     const lastName = e.target.dataset.lastname;
                     const userId = e.target.dataset.userid;
+                    const email = e.target.dataset.email;
                     card.querySelector('.author-first-name').value = firstName;
                     card.querySelector('.author-last-name').value = lastName;
                     card.querySelector('.author-user-id').value = userId;
+                    card.querySelector('.author-email').value = email;
                     searchAuthorsResultsDropdown.hide();
                 }
             });

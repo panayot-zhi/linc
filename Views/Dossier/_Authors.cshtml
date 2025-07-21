@@ -147,16 +147,20 @@
         }
 
         function attachSearchFunctionality(card) {
+
             const searchAuthors = card.querySelector('.search-authors');
             const searchAuthorsResults = card.querySelector('.search-authors-results');
             const searchAuthorsResultsToggle = card.querySelector('.search-authors-results-toggle');
             const searchAuthorsResultsDropdown = new bootstrap.Dropdown(searchAuthorsResultsToggle);
+
             let lastQuery = '';
             let debounceTimeout;
+
             function clearResults() {
                 searchAuthorsResultsDropdown.hide();
                 searchAuthorsResults.innerHTML = '<li><a class="dropdown-item">@HtmlLocalizer["DossierCreate_Authors_NoResults"]</a></li>';
             }
+
             if (searchAuthors) {
                 searchAuthors.addEventListener('input', function () {
                     const query = searchAuthors.value;
@@ -219,6 +223,7 @@
                     }, 300);
                 });
             }
+
             searchAuthorsResults.addEventListener('click', function (e) {
                 if (e.target && e.target.classList.contains('choose-author')) {
                     e.preventDefault();
@@ -234,6 +239,7 @@
                 }
             });
         }
+
         function addAuthorCard(data = {}) {
             const idx = getAuthorCards().length;
             let html = authorTemplate.replace(/__index__/g, idx);
@@ -248,15 +254,18 @@
             updateIndices();
             attachSearchFunctionality(card);
         }
+
         addAuthor.addEventListener('click', function () {
             addAuthorCard();
         });
+
         authorsList.addEventListener('click', function (e) {
             if (e.target && e.target.classList.contains('remove-author')) {
                 e.target.closest('.author-card').remove();
                 updateIndices();
             }
         });
+
         // Ensure at least one author card exists
         if (getAuthorCards().length === 0) {
             addAuthorCard();
