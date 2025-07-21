@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using linc.Data;
 using linc.Models.Enumerations;
 using linc.Models.ViewModels.Author;
@@ -31,9 +30,7 @@ namespace linc.Models.ViewModels.Dossier
         [Display(Name = "DossierCreate_Title", ResourceType = typeof(Resources.SharedResource))]
         public string Title { get; set; }
 
-        // New: Authors collection for Dossier
-        [Required]
-        [MinLength(1, ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+        [Display(Name = "SourceCreate_Authors", ResourceType = typeof(Resources.SharedResource))]
         public List<DossierAuthorViewModel> Authors { get; set; } = new();
 
 
@@ -125,7 +122,14 @@ namespace linc.Models.ViewModels.Dossier
                 }
             }
 
-            yield break;
+            const int minimumAuthorsCount = 1;
+            if (Authors == null || Authors.Count < minimumAuthorsCount)
+            {
+                yield return new ValidationResult(
+                    string.Format(Resources.ValidationResource.MinCountAttribute_ValidationError,
+                        Resources.SharedResource.SourceCreate_Authors, minimumAuthorsCount),
+                    new[] { nameof(Authors) });
+            }
         }
     }
 }
