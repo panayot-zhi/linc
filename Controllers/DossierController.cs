@@ -219,6 +219,19 @@ namespace linc.Controllers
                     return document;
                 }
 
+                if (User.IsAtLeast(SiteRole.HeadEditor))
+                {
+                    // - the head editor and the system administrator
+                    // should always be able to download the agreement
+                    var document = await GetDocumentFile(dossier.Agreement.Id);
+                    if (document is null)
+                    {
+                        return NotFound();
+                    }
+
+                    return document;
+                }
+
                 // otherwise - forbid interaction
                 return Forbid();
 
