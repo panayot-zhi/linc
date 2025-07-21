@@ -14,7 +14,7 @@ namespace linc.Contracts
 
         Task UpdateDossierAsync(DossierEditViewModel input);
         
-        Task SaveAgreementAsync(ApplicationDossier dossier, byte[] stampedPdfFile);
+        Task SaveAgreementAsync(ApplicationDossier dossier, ApplicationAuthor author, byte[] stampedPdfFile);
 
         Task DeleteAgreementAsync(ApplicationDossier dossier);
 

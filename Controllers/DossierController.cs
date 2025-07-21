@@ -172,16 +172,16 @@ namespace linc.Controllers
 
         [HttpGet("dossier/{id:int}/agreement")]
         [SiteAuthorize]
-        public async Task<IActionResult> Agreement(int id)
+        public async Task<IActionResult> Agreement(int id, int? aid)
         {
             var dossier = await _dossierService.GetDossierAsync(id);
             if (dossier == null)
             {
                 _logger.LogWarning(
-                    "An attempt was made to sign agreement document for a dossier that does not exist: {DossierId}",
+                    "An attempt was made to sign agreement document for a dossier that does not exist: '{DossierId}'",
                     id);
 
-                return null;
+                return NotFound("Dossier was not found.");
             }
 
             var currentUserId = User.GetUserId();
@@ -194,9 +194,9 @@ namespace linc.Controllers
             {
                 // allow preview of the document for:
 
-                var registeredDossierAuthor = dossier.Authors
+                var signedDossierAuthor = dossier.Authors
                     .FirstOrDefault(x => x.UserId == currentUserId);
-                if (registeredDossierAuthor is not null)
+                if (signedDossierAuthor is not null)
                 {
                     // - the original author
                     // if this is the user's agreement, let him view it
@@ -237,12 +237,30 @@ namespace linc.Controllers
 
                 // otherwise - forbid interaction
                 return Forbid();
-
             }
 
-            if (dossier.Names != currentUser.Names)
+            if (!aid.HasValue)
             {
-                if (dossier.Email != currentUser.Email)
+                _logger.LogWarning(
+                    "An attempt was made to sign agreement document without passed authorId (dossierId: {DossierId})",
+                    id);
+
+                return NotFound("Author was not passed.");
+            }
+
+            var author = dossier.Authors.FirstOrDefault(x => x.Id == aid.Value);
+            if (author is null)
+            {
+                _logger.LogWarning(
+                    "An attempt was made to sign agreement document with an unknown authorId: (dossierId: {DossierId}, authorId: {AuthorId})",
+                    id, aid);
+
+                return NotFound("Author was not found.");
+            }
+
+            if (author.Names != currentUser.Names)
+            {
+                if (author.Email != currentUser.Email)
                 {
                     // if the emails differ also - deny interaction
                     AddAlertMessage(LocalizationService["Agreement_DifferentUser_Warning"],
@@ -251,13 +269,15 @@ namespace linc.Controllers
                 }
 
                 _logger.LogWarning("Publication agreement was requested by a user with different names than those in the dossier, but the email was the same: {DossierNames} != {CurrentUserNames}, {Email}",
-                    dossier.Names, currentUser.Names, dossier.Email);
+                    author.Names, currentUser.Names, author.Email);
             }
 
             var viewModel = new AgreementViewModel
             {
+                AuthorId = author.Id,
+
                 DossierId = dossier.Id,
-                AuthorNames = dossier.Names,
+                AuthorNames = author.Names,
                 SignerNames = currentUser.Names,
                 Title = dossier.Title,
                 CurrentDate = DateTime.Now.ToString("dd.MM.yyyy"),
@@ -273,14 +293,15 @@ namespace linc.Controllers
         [HttpPost("dossier/{id:int}/agreement")]
         [ValidateAntiForgeryToken]
         [SiteAuthorize]
-        public async Task<IActionResult> SaveAgreement(int id, [Bind("agreement")] string agreement)
+        public async Task<IActionResult> SaveAgreement(int id, [Bind("aid")] int aid, 
+            [Bind("agreement")] string agreement)
         {
             if (string.IsNullOrEmpty(agreement))
             {
                 AddAlertMessage("Please check that you agree with the terms of this agreement!", 
                     type: AlertMessageType.Warning);
 
-                return RedirectToAction(nameof(Agreement), new { id });
+                return RedirectToAction(nameof(Agreement), new { id, aid });
             }
 
             var dossier = await _dossierService.GetDossierAsync(id);
@@ -294,16 +315,20 @@ namespace linc.Controllers
             }
 
             var currentUserId = User.GetUserId();
-            var user = await _userService.FindByIdAsync(currentUserId,
+            var currentUser = await _userService.FindByIdAsync(currentUserId,
                 CancellationToken.None);
 
-            ArgumentNullException.ThrowIfNull(user);
+            ArgumentNullException.ThrowIfNull(currentUser);
+
+            var author = dossier.Authors.First(x => x.Id == aid);
 
             var viewModel = new AgreementViewModel
             {
+                AuthorId = author.Id,
+
                 DossierId = dossier.Id,
-                AuthorNames = dossier.Names,
-                SignerNames = user.Names,
+                AuthorNames = author.Names,
+                SignerNames = currentUser.Names,
                 Title = dossier.Title,
                 CurrentDate = DateTime.Now.ToString("dd.MM.yyyy"),
                 SiteLink = _config.ServerUrl,
@@ -318,7 +343,7 @@ namespace linc.Controllers
 
             //return File(stampedPdfFile, MediaTypeNames.Application.Pdf, fileDownloadName: "test.pdf");
 
-            await _dossierService.SaveAgreementAsync(dossier, stampedPdfFile);
+            await _dossierService.SaveAgreementAsync(dossier, author, stampedPdfFile);
 
             AddAlertMessage(LocalizationService["PublicationAgreement_SuccessMessage"], 
                 type: AlertMessageType.Success);

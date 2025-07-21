@@ -92,6 +92,7 @@
                 <div class="col-lg-6">
                     <form id="agreement-form" asp-action="Agreement" asp-route-id="@Model.DossierId">
                         <label for="agreement">
+                            <input id="aid" name="aid" type="hidden" value="@Model.AuthorId" />
                             <input id="agreement" name="agreement" type="checkbox" required="required" />
                             <strong>I HAVE READ AND AGREE FULLY WITH THE TERMS OF THIS AGREEMENT</strong>
                         </label>
