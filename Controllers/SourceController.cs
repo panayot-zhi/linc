@@ -77,8 +77,6 @@ namespace linc.Controllers
                 vModel.Issues = await GetIssuesAsync(vModel.IssueId);
                 vModel.Languages = GetLanguages(vModel.LanguageId);
 
-                vModel.LanguageId = LocalizationService.GetCurrentLanguageId();
-
                 return View(vModel);
             }
 
