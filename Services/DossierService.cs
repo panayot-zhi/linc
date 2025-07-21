@@ -16,13 +16,14 @@ namespace linc.Services
     {
         private readonly LinkGenerator _linkGenerator;
         private readonly ISiteEmailSender _emailSender;
+        private readonly IAuthorService _authorService;
+        private readonly IDocumentService _documentService;
         private readonly IApplicationUserStore _applicationUserStore;
         private readonly ILocalizationService _localizationService;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly ILogger<DossierService> _logger;
         private readonly ApplicationDbContext _context;
         private readonly ApplicationConfig _config;
-        private readonly IAuthorService _authorService;
 
         public class JournalEntryKeys
         {
@@ -45,10 +46,11 @@ namespace linc.Services
             IApplicationUserStore applicationUserStore,
             IHttpContextAccessor httpContextAccessor,
             ILocalizationService localizationService,
+            IDocumentService documentService,
+            IAuthorService authorService, 
             ISiteEmailSender emailSender,
             ILogger<DossierService> logger,
-            LinkGenerator linkGenerator,
-            IAuthorService authorService)
+            LinkGenerator linkGenerator)
         {
             _logger = logger;
             _context = context;
@@ -59,6 +61,7 @@ namespace linc.Services
             _config = configOptions.Value;
             _emailSender = emailSender;
             _authorService = authorService;
+            _documentService = documentService;
         }
 
         public async Task<int> CreateDossierAsync(DossierCreateViewModel input)
@@ -197,46 +200,44 @@ namespace linc.Services
 
             if (status is ApplicationDossierStatus.Accepted or ApplicationDossierStatus.AcceptedWithCorrections)
             {
-                // check for agreement document
-                var agreement = _context.Dossiers
-                    .Include(x => x.Documents
-                        .Where(document => document.DocumentType == ApplicationDocumentType.Agreement))
-                    .FirstOrDefault(x => x.Id == dossier.Id)?.Agreement;
+                await _context.Entry(dossier).Collection(s => s.Authors).LoadAsync();
 
-                if (agreement == null)
+                foreach (var author in dossier.Authors)
                 {
-                    await _context.Entry(dossier).Collection(s => s.Authors).LoadAsync();
-
-                    foreach (var author in dossier.Authors)
+                    if (author.AgreementId.HasValue)
                     {
-                        // send publication agreement link
-                        var emailDescriptor = new SiteEmailDescriptor<Agreement>()
-                        {
-                            Emails = new List<string>() { author.Email },
-                            Subject = _localizationService["Email_Agreement_Subject"].Value,
-                            ViewModel = new Agreement()
-                            {
-                                Names = author.Names,
-                                DossierStatus = EnumHelper<ApplicationDossierStatus>.GetDisplayName(status),
-                                AgreementLink = new LinkViewModel()
-                                {
-                                    Text = _localizationService["Details_Label"].Value,
-                                    Url = _linkGenerator.GetUriByAction(
-                                        _httpContextAccessor.HttpContext!,
-                                        "Agreement",
-                                        "Dossier",
-                                        new
-                                        {
-                                            id = dossier.Id,
-                                            aid = author.Id
-                                        })
-                                }
-                            }
-                        };
-
-                        await _emailSender.SendEmailAsync(emailDescriptor);
+                        _logger.LogInformation(
+                            "Dossier {DossierId} author {AuthorId} already signed a publication agreement, skipping email sending...",
+                            dossier.Id, author.Id);
+                        continue;
                     }
 
+                    // send publication agreement link
+                    var emailDescriptor = new SiteEmailDescriptor<Agreement>()
+                    {
+                        Emails = new List<string>() { author.Email },
+                        Subject = _localizationService["Email_Agreement_Subject"].Value,
+                        ViewModel = new Agreement()
+                        {
+                            Names = author.Names,
+                            DossierStatus = EnumHelper<ApplicationDossierStatus>.GetDisplayName(status),
+                            AgreementLink = new LinkViewModel()
+                            {
+                                Text = _localizationService["Details_Label"].Value,
+                                Url = _linkGenerator.GetUriByAction(
+                                    _httpContextAccessor.HttpContext!,
+                                    "Agreement",
+                                    "Dossier",
+                                    new
+                                    {
+                                        id = dossier.Id,
+                                        aid = author.Id
+                                    })
+                            }
+                        }
+                    };
+
+                    await _emailSender.SendEmailAsync(emailDescriptor);
                 }
             }
         }
@@ -306,7 +307,7 @@ namespace linc.Services
                     }
 
                     // allow overriding of anonymized document
-                    await DeleteDossierDocument(dossier, dossier.Anonymized);
+                    await _documentService.DeleteDocumentAsync(dossier.Anonymized.Id);
                     var anonymizedDocument = await SaveDossierDocumentAsync(input.Document, dossier.Id, ApplicationDocumentType.Anonymized);
                     dossier.Documents.Add(anonymizedDocument);
 
@@ -391,7 +392,7 @@ namespace linc.Services
                     // allow uploading/overriding of a redacted version document
                     if (dossier.Redacted != null)
                     {
-                        await DeleteDossierDocument(dossier, dossier.Redacted);
+                        await _documentService.DeleteDocumentAsync(dossier.Redacted.Id);
 
                         dossier.Journals.Add(new DossierJournal
                         {
