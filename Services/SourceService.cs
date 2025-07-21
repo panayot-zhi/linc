@@ -215,7 +215,7 @@ namespace linc.Services
                 TitleNotes = input.TitleNotes?.Trim(),
             };
 
-            var authors = await _authorService.CreateAuthorsAsync(input.LanguageId, input.Authors);
+            var authors = await _authorService.CreateSourceAuthorsAsync(input.LanguageId, input.Authors);
             foreach (var author in authors)
             {
                 entity.Authors.Add(author);
@@ -245,7 +245,7 @@ namespace linc.Services
             source.Title = input.Title?.Trim();
             source.TitleNotes = input.TitleNotes?.Trim();
 
-            await _authorService.UpdateAuthorsAsync(source, input.Authors);
+            await _authorService.UpdateSourceAuthorsAsync(source, input.Authors);
 
             await _context.SaveChangesAsync();
         }

@@ -19,17 +19,17 @@ namespace linc.Services
             _applicationUserStore = applicationUserStore;
         }
 
-        private async Task<ApplicationUser> FindApplicationUser(SourceAuthorViewModel authorViewModel)
+        private async Task<ApplicationUser> FindApplicationUser(string userId, string firstName, string lastName)
         {
             ApplicationUser user;
 
-            if (!string.IsNullOrEmpty(authorViewModel.UserId))
+            if (!string.IsNullOrEmpty(userId))
             {
-                user = await _context.Users.FindAsync(authorViewModel.UserId);
+                user = await _context.Users.FindAsync(userId);
             }
             else
             {
-                user = await _applicationUserStore.FindUserByNamesAsync(authorViewModel.FirstName, authorViewModel.LastName);
+                user = await _applicationUserStore.FindUserByNamesAsync(firstName, lastName);
             }
 
             return user;
@@ -48,7 +48,7 @@ namespace linc.Services
                 .Where(a => a.LanguageId == languageId)
                 .Where(a => a.Names.ToLower().Contains(searchTerm))
                 .GroupBy(a => a.Names)
-                .Select(g => g.OrderBy(a => a.Id).First())
+                .Select(g => g.OrderByDescending(a => a.Email).First())
                 .Take(10)
                 .ToListAsync();
 
@@ -78,7 +78,7 @@ namespace linc.Services
                 authorViewModel.LastName = authorViewModel.LastName.Trim();
                 authorViewModel.Notes = authorViewModel.Notes?.Trim();
 
-                var user = await FindApplicationUser(authorViewModel);
+                var user = await FindApplicationUser(authorViewModel.UserId, authorViewModel.FirstName, authorViewModel.LastName);
 
                 var author = new ApplicationAuthor
                 {
@@ -101,9 +101,12 @@ namespace linc.Services
             var result = new List<ApplicationAuthor>();
             foreach (var authorViewModel in authors)
             {
-                var user = !string.IsNullOrEmpty(authorViewModel.UserId)
-                    ? await _context.Users.FindAsync(authorViewModel.UserId)
-                    : null;
+                authorViewModel.FirstName = authorViewModel.FirstName.Trim();
+                authorViewModel.LastName = authorViewModel.LastName.Trim();
+                authorViewModel.Email = authorViewModel.Email?.Trim();
+
+                var user = await FindApplicationUser(authorViewModel.UserId, authorViewModel.FirstName, authorViewModel.LastName);
+
                 var author = new ApplicationAuthor
                 {
                     FirstName = authorViewModel.FirstName.Trim(),
