@@ -85,7 +85,7 @@ namespace linc.Services
                     FirstName = authorViewModel.FirstName,
                     LastName = authorViewModel.LastName,
                     Notes = authorViewModel.Notes,
-                    // Email = authorViewModel.Email,
+                    Email = authorViewModel.Email,
                     LanguageId = languageId,
                     UserId = user?.Id
                 };
@@ -146,9 +146,9 @@ namespace linc.Services
                 var firstName = updated.FirstName.Trim();
                 var lastName = updated.LastName.Trim();
                 var notes = updated.Notes?.Trim();
-                // var email = updated.Email?.Trim();
+                var email = updated.Email;
 
-                // var user = await FindApplicationUser(updated);
+                var user = await FindApplicationUser(updated.UserId, updated.FirstName, updated.LastName);
 
                 var changed = false;
                 if (!string.Equals(existing.FirstName, firstName, StringComparison.OrdinalIgnoreCase))
@@ -169,17 +169,17 @@ namespace linc.Services
                     changed = true;
                 }
 
-                // if (!string.Equals(existing.Email, email, StringComparison.Ordinal))
-                // {
-                //     existing.Email = email;
-                //     changed = true;
-                // }
+                if (!string.Equals(existing.Email, email, StringComparison.Ordinal))
+                {
+                    existing.Email = email;
+                    changed = true;
+                }
 
-                // if (existing.UserId != user?.Id)
-                // {
-                //     existing.UserId = user?.Id;
-                //     changed = true;
-                // }
+                if (existing.UserId != user?.Id)
+                {
+                    existing.UserId = user?.Id;
+                    changed = true;
+                }
 
                 if (changed)
                 {
