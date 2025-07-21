@@ -686,60 +686,6 @@ namespace linc.Services
             await transaction.CommitAsync();
         }
 
-        public async Task UpdateAuthorAsync(ApplicationUser user)
-        {
-            var dossiers = _context.Dossiers
-                .Where(x => x.AuthorId == null)
-                .Where(x => x.Email == user.Email)
-                .ToList();
-
-            if (!dossiers.Any())
-            {
-                return;
-            }
-
-            if (!user.IsAuthor)
-            {
-                _context.Users.Attach(user);
-                user.IsAuthor = true;
-            }
-
-            foreach (var dossier in dossiers)
-            {
-                _context.Dossiers.Attach(dossier);
-                dossier.AuthorId = user.Id;
-            }
-
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task UpdateReviewerAsync(ApplicationUser user)
-        {
-            var dossierReviews = _context.DossierReviews
-                .Where(x => x.ReviewerId == null)
-                .Where(x => x.Email == user.Email)
-                .ToList();
-
-            if (!dossierReviews.Any())
-            {
-                return;
-            }
-
-            if (!user.IsAuthor)
-            {
-                _context.Users.Attach(user);
-                user.IsAuthor = true;
-            }
-
-            foreach (var dossierReview in dossierReviews)
-            {
-                _context.DossierReviews.Attach(dossierReview);
-                dossierReview.ReviewerId = user.Id;
-            }
-
-            await _context.SaveChangesAsync();
-        }
-
         public async Task SaveAgreementAsync(ApplicationDossier dossier, byte[] inputFile)
         {
             const string fileName = "publication_agreement.pdf";
