@@ -140,6 +140,6 @@
     
     @if (Model.TotalPages > 1)
     {
-        @await Html.PartialAsync("_Paging", Model)
+        <partial name="_Paging" model="Model" />
     }
 </div>

@@ -89,7 +89,7 @@
 
             <div class="row">
                 <div class="col-sm-12">
-                    @await Html.PartialAsync("_Authors", Model.Authors.OrderBy(x => x.Id).ToList())
+                    <partial name="_Authors" model="Model.Authors.OrderBy(x => x.Id).ToList()" />
                 </div>
             </div>
 
