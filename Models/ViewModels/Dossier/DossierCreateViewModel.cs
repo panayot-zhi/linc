@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace linc.Models.ViewModels.Dossier
 {
-    public class DossierCreateViewModel
+    public class DossierCreateViewModel : IValidatableObject
     {
         [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         [MaxLength(1024, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
@@ -16,9 +16,7 @@ namespace linc.Models.ViewModels.Dossier
         [Display(Name = "DossierCreate_OriginalFile", ResourceType = typeof(Resources.SharedResource))]
         public IFormFile OriginalFile { get; set; }
 
-        // New: Authors collection for Dossier
-        [Required]
-        [MinLength(1, ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+        [Display(Name = "SourceCreate_Authors", ResourceType = typeof(Resources.SharedResource))]
         public List<DossierAuthorViewModel> Authors { get; set; } = new();
 
         [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
@@ -26,5 +24,17 @@ namespace linc.Models.ViewModels.Dossier
         public int LanguageId { get; set; }
 
         public List<SelectListItem> Languages { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            const int minimumAuthorsCount = 1;
+            if (Authors == null || Authors.Count < minimumAuthorsCount)
+            {
+                yield return new ValidationResult(
+                    string.Format(Resources.ValidationResource.MinCountAttribute_ValidationError,
+                        Resources.SharedResource.SourceCreate_Authors, minimumAuthorsCount),
+                    new[] { nameof(Authors) });
+            }
+        }
     }
 }
