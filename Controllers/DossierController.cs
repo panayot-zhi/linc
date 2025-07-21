@@ -92,6 +92,8 @@ namespace linc.Controllers
         {
             if (!ModelState.IsValid)
             {
+                viewModel.Languages = GetLanguages(viewModel.LanguageId);
+
                 return View(viewModel);
             }
 
