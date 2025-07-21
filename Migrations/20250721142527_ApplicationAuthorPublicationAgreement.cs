@@ -24,7 +24,8 @@ namespace linc.Migrations
                 table: "authors",
                 column: "agreement_id",
                 principalTable: "documents",
-                principalColumn: "id");
+                principalColumn: "id",
+                onDelete: ReferentialAction.SetNull);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
