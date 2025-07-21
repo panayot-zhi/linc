@@ -58,7 +58,16 @@ namespace linc.Services
             var repositoryPath = _config.RepositoryPath;
             var filePath = Path.Combine(repositoryPath, document.RelativePath);
 
-            File.Delete(filePath);
+            if (!File.Exists(filePath))
+            {
+                _logger.LogWarning(
+                    "Could not find a physical file path for document {DocumentId}, deleting only from the database...",
+                    document.Id);
+            }
+            else
+            {
+                File.Delete(filePath);
+            }
 
             _context.Documents.Remove(document);
             await _context.SaveChangesAsync();
