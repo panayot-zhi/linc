@@ -13,21 +13,6 @@ namespace linc.Data
         [MaxLength(1024)]
         public string Title { get; set; }
 
-        [Obsolete("Do not use this property, it is pending deletion. Use the 'Authors' collection instead.")]
-        [Required]
-        [MaxLength(255)]
-        public string FirstName { get; set; }
-
-        [Obsolete("Do not use this property, it is pending deletion. Use the 'Authors' collection instead.")]
-        [Required]
-        [MaxLength(255)]
-        public string LastName { get; set; }
-
-        [Obsolete("Do not use this property, it is pending deletion. Use the 'Authors' collection instead.")]
-        [Required]
-        [MaxLength(255)]
-        public string Email { get; set; }
-
 
         [Required]
         public ApplicationDossierStatus Status { get; set; }
@@ -48,14 +33,6 @@ namespace linc.Data
         public string AssignedToId { get; set; }
 
         public virtual ApplicationUser AssignedTo { get; set; }
-
-
-        [Obsolete("Do not use this property, it is pending deletion. Use the 'Authors' collection instead.")]
-        [ForeignKey(nameof(Author))]
-        public string AuthorId { get; set; }
-
-        [Obsolete("Do not use this property, it is pending deletion. Use the 'Authors' collection instead.")]
-        public virtual ApplicationUser Author { get; set; }
 
 
         [ForeignKey(nameof(Language))]
@@ -79,9 +56,6 @@ namespace linc.Data
         #endregion Navigation
 
         #region NotMapped
-
-        [NotMapped]
-        public string Names => $"{FirstName} {LastName}";
 
         [NotMapped]
         public ApplicationDocument Original =>

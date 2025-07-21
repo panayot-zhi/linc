@@ -1,17 +1,9 @@
-using System.Net.Mime;
 using System.Security.Claims;
-using linc.Contracts;
 using linc.Data;
-using linc.Models.ConfigModels;
 using linc.Models.Enumerations;
-using linc.Models.ViewModels;
 using linc.Models.ViewModels.Dossier;
-using linc.Models.ViewModels.Emails;
 using linc.Utility;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using linc.Models.ViewModels.Author;
 
 namespace linc.Services
 {
