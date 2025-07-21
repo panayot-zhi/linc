@@ -59,6 +59,11 @@ namespace linc.Data
 
         public ApplicationDossier Dossier { get; set; }
 
+        [ForeignKey(nameof(Agreement))]
+        public int? AgreementId { get; set; }
+
+        public ApplicationDocument Agreement { get; set; }
+
         #endregion Navigation
 
         #region Automatic
