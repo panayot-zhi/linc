@@ -25,6 +25,7 @@
                             </div>
                         </div>
                         <input type="hidden" id="Authors[@i].UserId" name="Authors[@i].UserId" class="author-user-id" value="@Model[i].UserId" />
+                        <input type="hidden" id="Authors[@i].Email" name="Authors[@i].Email" class="author-email" value="@Model[i].Email" />
                         <input type="hidden" id="Authors[@i].Id" name="Authors[@i].Id" class="author-id" value="@Model[i].Id" />
                         <div class="row">
                             <div class="col-sm-6">
@@ -47,7 +48,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-sm-12 text-end">    
+                            <div class="col-sm-12 text-end">
                                 <a class="btn btn-danger remove-author">Remove Author</a>
                             </div>
                         </div>
@@ -79,6 +80,7 @@
                 </div>
             </div>
         </div>
+        <input type="hidden" id="Authors[__index__].Email" name="Authors[__index__].Email" class="author-email" />
         <input type="hidden" id="Authors[__index__].UserId" name="Authors[__index__].UserId" class="author-user-id" />
         <div class="row">
             <div class="col-sm-6">
@@ -111,7 +113,7 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const addAuthor = document.getElementById('add-author');
-        const authorsList = document.getElementById('authors-list');        
+        const authorsList = document.getElementById('authors-list');
         const authorTemplate = document.getElementById('author-template').innerHTML;
 
         function getAuthorCards() {
@@ -147,7 +149,7 @@
             const searchAuthors = card.querySelector('.search-authors');
             const searchAuthorsResults = card.querySelector('.search-authors-results');
             const searchAuthorsResultsToggle = card.querySelector('.search-authors-results-toggle');
-            const searchAuthorsResultsDropdown = new bootstrap.Dropdown(searchAuthorsResultsToggle);            
+            const searchAuthorsResultsDropdown = new bootstrap.Dropdown(searchAuthorsResultsToggle);
 
             let lastQuery = '';
             let debounceTimeout;
@@ -159,7 +161,7 @@
 
             if (searchAuthors) {
                 searchAuthors.addEventListener('input', function () {
-                    const query = searchAuthors.value;                    
+                    const query = searchAuthors.value;
 
                     if (query.length < 3) {
                         clearResults();
@@ -170,7 +172,7 @@
                     if (query === lastQuery) {
                         return;
                     }
-                    
+
                     let authorSearchFetchUrl = `/author/search?q=${encodeURIComponent(query)}`
                     const languageId = document.getElementById('LanguageId')?.value;
 
@@ -183,7 +185,7 @@
                     debounceTimeout = setTimeout(function () {
                         fetch(authorSearchFetchUrl)
                             .then(response => {
-                                if (!response.ok) 
+                                if (!response.ok)
                                     throw new Error('Network response was not ok');
                                 return response.json();
                             })
@@ -242,6 +244,7 @@
             if (data.FirstName) card.querySelector('.author-first-name').value = data.FirstName;
             if (data.LastName) card.querySelector('.author-last-name').value = data.LastName;
             if (data.UserId) card.querySelector('.author-user-id').value = data.UserId;
+            if (data.Email) card.querySelector('.author-email').value = data.Email;
             authorsList.appendChild(card);
             updateIndices();
             attachSearchFunctionality(card);
@@ -262,7 +265,7 @@
         if (getAuthorCards().length === 0) {
             addAuthorCard();
         } else {
-            getAuthorCards().forEach(card => 
+            getAuthorCards().forEach(card =>
                 attachSearchFunctionality(card));
         }
     });
