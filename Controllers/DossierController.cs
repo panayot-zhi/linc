@@ -192,8 +192,11 @@ namespace linc.Controllers
 
             if (dossier.Agreement != null)
             {
-                // allow preview of the document for
-                if (dossier.AuthorId == currentUserId)
+                // allow preview of the document for:
+
+                var registeredDossierAuthor = dossier.Authors
+                    .FirstOrDefault(x => x.UserId == currentUserId);
+                if (registeredDossierAuthor is not null)
                 {
                     // - the original author
                     // if this is the user's agreement, let him view it
