@@ -19,8 +19,7 @@ namespace linc.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ISiteEmailSender _emailSender;
-        private readonly IDossierService _dossierService;
-        private readonly ISourceService _sourceService;
+        private readonly IAuthorService _authorService;
 
         public AdminController(
             ILogger<AdminController> logger,
@@ -28,15 +27,13 @@ namespace linc.Controllers
             SignInManager<ApplicationUser> signInManager,
             ILocalizationService localizationService, 
             ISiteEmailSender emailSender, 
-            IDossierService dossierService, 
-            ISourceService sourceService)
+            IAuthorService authorService)
         : base(localizationService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
-            _dossierService = dossierService;
-            _sourceService = sourceService;
+            _authorService = authorService;
             _logger = logger;
         }
 
@@ -147,9 +144,7 @@ namespace linc.Controllers
 
         private async Task Sync(ApplicationUser user)
         {
-            // await _sourceService.UpdateAuthorAsync(user);
-            await _dossierService.UpdateAuthorAsync(user);
-            await _dossierService.UpdateReviewerAsync(user);
+            await _authorService.UpdateAuthorsUserAsync(user);
         }
     }
 }
