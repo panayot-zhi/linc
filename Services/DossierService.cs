@@ -248,6 +248,8 @@ namespace linc.Services
         public async Task<ApplicationDossier> GetDossierAsync(int id)
         {
             var query = _context.Dossiers
+                .Include(x => x.Authors)
+                    .ThenInclude(a => a.User)
                 .Include(x => x.Documents);
 
             var dossier = await query.FirstOrDefaultAsync(x => x.Id == id);
