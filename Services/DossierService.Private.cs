@@ -23,7 +23,7 @@ namespace linc.Services
                        ApplicationDossierStatus.AcceptedWithCorrections;
         }*/
 
-        private async Task<ApplicationDocument> SaveDossierDocumentAsync(IFormFile inputFile, int dossierId, ApplicationDocumentType type)
+        /*private async Task<ApplicationDocument> SaveDossierDocumentAsync(IFormFile inputFile, int dossierId, ApplicationDocumentType type)
         {
             if (inputFile == null)
             {
@@ -58,7 +58,7 @@ namespace linc.Services
             var entityEntry = await _context.Documents.AddAsync(entry);
             await _context.SaveChangesAsync();
             return entityEntry.Entity;
-        }
+        }*/
 
         /*private async Task DeleteDossierDocument(ApplicationDossier dossier, ApplicationDocument document)
         {

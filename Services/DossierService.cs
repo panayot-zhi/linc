@@ -5,11 +5,8 @@ using linc.Models.Enumerations;
 using linc.Models.ViewModels;
 using linc.Models.ViewModels.Dossier;
 using linc.Models.ViewModels.Emails;
-using linc.Models.ViewModels.Home;
 using linc.Utility;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using System.Net.Mime;
 
 namespace linc.Services
 {
@@ -24,7 +21,6 @@ namespace linc.Services
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly ILogger<DossierService> _logger;
         private readonly ApplicationDbContext _context;
-        private readonly ApplicationConfig _config;
 
         public class JournalEntryKeys
         {
@@ -43,7 +39,6 @@ namespace linc.Services
         }
 
         public DossierService(ApplicationDbContext context,
-            IOptions<ApplicationConfig> configOptions,
             IApplicationUserStore applicationUserStore,
             IHttpContextAccessor httpContextAccessor,
             ILocalizationService localizationService,
@@ -59,7 +54,6 @@ namespace linc.Services
             _localizationService = localizationService;
             _linkGenerator = linkGenerator;
             _applicationUserStore = applicationUserStore;
-            _config = configOptions.Value;
             _emailSender = emailSender;
             _authorService = authorService;
             _documentService = documentService;
@@ -86,8 +80,10 @@ namespace linc.Services
             var entityEntry = await _context.Dossiers.AddAsync(entry);
             await _context.SaveChangesAsync();
 
-            var original = await SaveDossierDocumentAsync(input.OriginalFile, entry.Id, ApplicationDocumentType.Original);
-            entry.Documents.Add(original);
+            var originalDocumentDescriptor = await input.OriginalFile.ToDescriptorAsync(ApplicationDocumentType.Original);
+            var originalDocument = await _documentService.SaveDossierDocumentAsync(entry.Id, originalDocumentDescriptor);
+
+            entry.Documents.Add(originalDocument);
             entry.Journals.Add(new DossierJournal
             {
                 PerformedById = currentUserId,
@@ -269,7 +265,7 @@ namespace linc.Services
             // Update authors
             await _authorService.UpdateDossierAuthorsAsync(dossier, input.Authors);
 
-            // Update author language and agreement
+            // Update author language and agreement document (if any)
             foreach (var author in dossier.Authors)
             {
                 author.LanguageId = dossier.LanguageId;
@@ -277,11 +273,10 @@ namespace linc.Services
                 var authorViewModel = input.Authors.FirstOrDefault(x => x.Id == author.Id);
                 if (authorViewModel?.AgreementDocument is not null)
                 {
-                    await using (var memoryStream = new MemoryStream())
-                    {
-                        await authorViewModel.AgreementDocument.CopyToAsync(memoryStream);
-                        await SaveAgreementAsync(dossier, author, memoryStream.ToArray());
-                    }
+                    var agreementFileDescriptor = await authorViewModel.AgreementDocument
+                        .ToDescriptorAsync(ApplicationDocumentType.Agreement);
+
+                    await SaveAgreementAsync(dossier, author, agreementFileDescriptor);
                 }
             }
 
@@ -297,7 +292,8 @@ namespace linc.Services
                     }
 
                     // allow uploading an anonymized document
-                    var document = await SaveDossierDocumentAsync(input.Document, dossier.Id, ApplicationDocumentType.Anonymized);
+                    var documentDescriptor = await input.Document.ToDescriptorAsync(ApplicationDocumentType.Anonymized);
+                    var document = await _documentService.SaveDossierDocumentAsync(dossier.Id, documentDescriptor);
 
                     dossier.Documents.Add(document);
 
@@ -325,7 +321,8 @@ namespace linc.Services
 
                     // allow overriding of anonymized document
                     await _documentService.DeleteDocumentAsync(dossier.Anonymized.Id);
-                    var anonymizedDocument = await SaveDossierDocumentAsync(input.Document, dossier.Id, ApplicationDocumentType.Anonymized);
+                    var anonymizedDocumentDescriptor = await input.Document.ToDescriptorAsync(ApplicationDocumentType.Anonymized);
+                    var anonymizedDocument = await _documentService.SaveDossierDocumentAsync(dossier.Id, anonymizedDocumentDescriptor);
                     dossier.Documents.Add(anonymizedDocument);
 
                     dossier.Journals.Add(new DossierJournal
@@ -353,7 +350,8 @@ namespace linc.Services
                         ? ApplicationDocumentType.Review
                         : ApplicationDocumentType.SuperReview;
 
-                    var review = await SaveDossierDocumentAsync(input.Document, dossier.Id, documentType);
+                    var reviewDocumentDescriptor = await input.Document.ToDescriptorAsync(documentType);
+                    var reviewDocument = await _documentService.SaveDossierDocumentAsync(dossier.Id, reviewDocumentDescriptor);
                     var userReviewerId = await FindReviewerAsync(input.ReviewerEmail, input.ReviewerFirstName, input.ReviewerLastName);
                     var dossierReview = new ApplicationDossierReview()
                     {
@@ -364,7 +362,7 @@ namespace linc.Services
                         ReviewerId = userReviewerId,
 
                         Dossier = dossier,
-                        Review = review
+                        Review = reviewDocument
                     };
 
                     dossier.Reviews.Add(dossierReview);
@@ -434,7 +432,8 @@ namespace linc.Services
                         });
                     }
 
-                    var redactedDocument = await SaveDossierDocumentAsync(input.Document, dossier.Id, ApplicationDocumentType.Redacted);
+                    var redactedDocumentDescriptor = await input.Document.ToDescriptorAsync(ApplicationDocumentType.Redacted);
+                    var redactedDocument = await _documentService.SaveDossierDocumentAsync(dossier.Id, redactedDocumentDescriptor);
                     dossier.Documents.Add(redactedDocument);
 
                     break;
@@ -461,27 +460,9 @@ namespace linc.Services
             await transaction.CommitAsync();
         }
 
-        public async Task SaveAgreementAsync(ApplicationDossier dossier, ApplicationAuthor author, byte[] agreementFile)
+        public async Task SaveAgreementAsync(ApplicationDossier dossier, ApplicationAuthor author, ApplicationDocumentDescriptor documentDescriptor)
         {
-            var fileName = $"publication_agreement-{author.Id}.pdf";
-            var rootFolderPath = Path.Combine(_config.RepositoryPath, SiteConstant.DossiersFolderName, dossier.Id.ToString());
-            var filePath = Path.Combine(rootFolderPath, fileName);
-
-            Directory.CreateDirectory(rootFolderPath);
-
-            var relativePath = Path.Combine(SiteConstant.DossiersFolderName, dossier.Id.ToString(), fileName);
-
-            await File.WriteAllBytesAsync(filePath, agreementFile);
-
-            var entry = new ApplicationDocument()
-            {
-                DocumentType = ApplicationDocumentType.Agreement,
-                Extension = "pdf",
-                FileName = fileName,
-                MimeType = MediaTypeNames.Application.Pdf,
-                OriginalFileName = fileName,
-                RelativePath = relativePath
-            };
+            var entry = await _documentService.SaveDossierDocumentAsync(dossier.Id, documentDescriptor);
 
             dossier.Journals.Add(new DossierJournal
             {
@@ -492,8 +473,6 @@ namespace linc.Services
                     "DocumentType_Agreement"
                 }
             });
-
-            await _context.Documents.AddAsync(entry);
 
             _context.Dossiers.Attach(dossier);
             _context.Authors.Attach(author);

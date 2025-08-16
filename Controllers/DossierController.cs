@@ -343,7 +343,15 @@ namespace linc.Controllers
 
             //return File(stampedPdfFile, MediaTypeNames.Application.Pdf, fileDownloadName: "test.pdf");
 
-            await _dossierService.SaveAgreementAsync(dossier, author, stampedPdfFile);
+            var agreementDocumentDescriptor = new ApplicationDocumentDescriptor
+            {
+                FileName = $"generated_publication_agreement_{author.Id}.pdf",
+                Type = ApplicationDocumentType.Agreement,
+                ContentType = MediaTypeNames.Application.Pdf,
+                Content = stampedPdfFile
+            };
+
+            await _dossierService.SaveAgreementAsync(dossier, author, agreementDocumentDescriptor);
 
             AddAlertMessage(LocalizationService["PublicationAgreement_SuccessMessage"], 
                 type: AlertMessageType.Success);

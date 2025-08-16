@@ -208,6 +208,7 @@ namespace linc.Services
             // Remove authors not in new list
             var newAuthorIds = newAuthors.Where(a => a.Id.HasValue).Select(a => a.Id.Value).ToHashSet();
             var toRemove = existingAuthors.Where(ea => !newAuthorIds.Contains(ea.Id)).ToList();
+
             _context.Authors.RemoveRange(toRemove);
 
             // Update existing authors

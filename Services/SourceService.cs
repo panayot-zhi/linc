@@ -334,7 +334,7 @@ namespace linc.Services
 
         private async Task<ApplicationDocument> SaveSourcePdf(IFormFile inputFile, int startingPage, int releaseYear, int issueNumber)
         {
-            var fileExtension = inputFile.Extension();
+            var fileExtension = inputFile.GetExtension();
             const ApplicationDocumentType type = ApplicationDocumentType.SourcePdf;
             var fileName = $"{releaseYear}-{issueNumber.ToString().PadLeft(3, '0')}-{HelperFunctions.ToKebabCase(type.ToString())}-{startingPage}";
 

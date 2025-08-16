@@ -1,6 +1,7 @@
 ﻿using linc.Models.Enumerations;
 using linc.Models.ViewModels.Dossier;
 using linc.Data;
+using linc.Models.ConfigModels;
 
 namespace linc.Contracts
 {
@@ -14,7 +15,7 @@ namespace linc.Contracts
 
         Task UpdateDossierAsync(DossierEditViewModel input);
         
-        Task SaveAgreementAsync(ApplicationDossier dossier, ApplicationAuthor author, byte[] agreementFile);
+        Task SaveAgreementAsync(ApplicationDossier dossier, ApplicationAuthor author, ApplicationDocumentDescriptor documentDescriptor);
 
         Task DeleteAgreementAsync(ApplicationDossier dossier, ApplicationAuthor author);
 

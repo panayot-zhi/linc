@@ -125,7 +125,7 @@ namespace linc.Services
         private async Task<ApplicationDocument> SaveIssuePage(IFormFile inputFile, ApplicationDocumentType type, 
             int releaseYear, int issueNumber)
         {
-            var fileExtension = inputFile.Extension();
+            var fileExtension = inputFile.GetExtension();
             var fileName = $"{releaseYear}-{issueNumber.ToString().PadLeft(3, '0')}-{HelperFunctions.ToKebabCase(type.ToString())}";
             if (type == ApplicationDocumentType.IndexPage)
             {
