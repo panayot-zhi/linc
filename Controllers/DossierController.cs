@@ -174,7 +174,7 @@ namespace linc.Controllers
 
         [HttpGet("dossier/{id:int}/agreement")]
         [SiteAuthorize]
-        public async Task<IActionResult> Agreement(int id, int? aid)
+        public async Task<IActionResult> Agreement(int id, int aid)
         {
             var dossier = await _dossierService.GetDossierAsync(id);
             if (dossier == null)
@@ -192,17 +192,25 @@ namespace linc.Controllers
 
             ArgumentNullException.ThrowIfNull(currentUser);
 
-            if (dossier.Agreement != null)
+            var author = dossier.Authors.FirstOrDefault(x => x.Id == aid);
+            if (author is null)
+            {
+                _logger.LogWarning(
+                    "An attempt was made to sign agreement document with an unknown authorId: (dossierId: {DossierId}, authorId: {AuthorId})",
+                    id, aid);
+
+                return NotFound("Author was not found.");
+            }
+
+            if (author.AgreementId.HasValue)
             {
                 // allow preview of the document for:
 
-                var signedDossierAuthor = dossier.Authors
-                    .FirstOrDefault(x => x.UserId == currentUserId);
-                if (signedDossierAuthor is not null)
+                if (author.UserId == currentUserId)
                 {
                     // - the original author
                     // if this is the user's agreement, let him view it
-                    var document = await GetDocumentFile(dossier.Agreement.Id);
+                    var document = await GetDocumentFile(author.AgreementId.Value);
                     if (document is null)
                     {
                         return NotFound();
@@ -215,7 +223,7 @@ namespace linc.Controllers
                 {
                     // - the editor that the dossier is assigned to
                     // if this dossier is assigned to this editor - let him download
-                    var document = await GetDocumentFile(dossier.Agreement.Id);
+                    var document = await GetDocumentFile(author.AgreementId.Value);
                     if (document is null)
                     {
                         return NotFound();
@@ -228,7 +236,7 @@ namespace linc.Controllers
                 {
                     // - the head editor and the system administrator
                     // should always be able to download the agreement
-                    var document = await GetDocumentFile(dossier.Agreement.Id);
+                    var document = await GetDocumentFile(author.AgreementId.Value);
                     if (document is null)
                     {
                         return NotFound();
@@ -239,25 +247,6 @@ namespace linc.Controllers
 
                 // otherwise - forbid interaction
                 return Forbid();
-            }
-
-            if (!aid.HasValue)
-            {
-                _logger.LogWarning(
-                    "An attempt was made to sign agreement document without passed authorId (dossierId: {DossierId})",
-                    id);
-
-                return NotFound("Author was not passed.");
-            }
-
-            var author = dossier.Authors.FirstOrDefault(x => x.Id == aid.Value);
-            if (author is null)
-            {
-                _logger.LogWarning(
-                    "An attempt was made to sign agreement document with an unknown authorId: (dossierId: {DossierId}, authorId: {AuthorId})",
-                    id, aid);
-
-                return NotFound("Author was not found.");
             }
 
             if (author.Names != currentUser.Names)
@@ -295,8 +284,9 @@ namespace linc.Controllers
         [HttpPost("dossier/{id:int}/agreement")]
         [ValidateAntiForgeryToken]
         [SiteAuthorize]
-        public async Task<IActionResult> SaveAgreement(int id, [Bind("aid")] int aid, 
-            [Bind("agreement")] string agreement)
+        public async Task<IActionResult> SaveAgreement(int id,
+            [Bind("agreement")] string agreement,
+            [Bind("aid")] int aid)
         {
             if (string.IsNullOrEmpty(agreement))
             {
@@ -313,7 +303,17 @@ namespace linc.Controllers
                     "An attempt was made to sign agreement document for a dossier that does not exist: {DossierId}",
                     id);
 
-                return NotFound();
+                return NotFound("Dossier was not found.");
+            }
+
+            var author = dossier.Authors.FirstOrDefault(x => x.Id == aid);
+            if (author is null)
+            {
+                _logger.LogWarning(
+                    "An attempt was made to sign agreement document with an unknown authorId: (dossierId: {DossierId}, authorId: {AuthorId})",
+                    id, aid);
+
+                return NotFound("Author was not found.");
             }
 
             var currentUserId = User.GetUserId();
@@ -321,8 +321,6 @@ namespace linc.Controllers
                 CancellationToken.None);
 
             ArgumentNullException.ThrowIfNull(currentUser);
-
-            var author = dossier.Authors.First(x => x.Id == aid);
 
             var viewModel = new AgreementViewModel
             {
@@ -356,7 +354,7 @@ namespace linc.Controllers
         [HttpPost("dossier/{id:int}/delete-agreement")]
         [ValidateAntiForgeryToken]
         [SiteAuthorize(SiteRole.HeadEditor)]
-        public async Task<IActionResult> DeleteAgreement(int id)
+        public async Task<IActionResult> DeleteAgreement(int id, int aid)
         {
             var dossier = await _dossierService.GetDossierAsync(id);
             if (dossier == null)
@@ -364,7 +362,13 @@ namespace linc.Controllers
                 return NotFound();
             }
 
-            await _dossierService.DeleteAgreementAsync(dossier);
+            var author = dossier.Authors.FirstOrDefault(x => x.Id == aid);
+            if (author is null)
+            {
+                return NotFound();
+            }
+
+            await _dossierService.DeleteAgreementAsync(dossier, author);
 
             return RedirectToAction("Edit", new { id = dossier.Id });
         }

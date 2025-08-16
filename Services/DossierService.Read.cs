@@ -44,6 +44,7 @@ namespace linc.Services
 
             var dossiersDbSet = _context.Dossiers;
             var query = dossiersDbSet
+                .Include(x => x.Authors)
                 .Include(x => x.CreatedBy)
                 .Include(x => x.AssignedTo)
                 .Include(x => x.Documents)
@@ -79,6 +80,8 @@ namespace linc.Services
             var query = _context.Dossiers
                 .Include(x => x.Authors)
                     .ThenInclude(a => a.User)
+                .Include(x => x.Authors)
+                    .ThenInclude(a => a.Agreement)
                 .Include(x => x.Reviews)
                     .ThenInclude(x => x.Review)
                 .Include(x => x.Reviews)
@@ -129,6 +132,8 @@ namespace linc.Services
             var query = _context.Dossiers
                 .Include(x => x.Authors)
                     .ThenInclude(a => a.User)
+                .Include(x => x.Authors)
+                    .ThenInclude(a => a.Agreement)
                 .Include(x => x.Reviews)
                     .ThenInclude(x => x.Review)
                 .Include(x => x.Documents)
@@ -155,8 +160,6 @@ namespace linc.Services
                     string.Empty,
                 Editors = GetEditors(dossier.AssignedToId),
                 Reviewers = GetReviewers(),
-                CanAttachAgreement = CanAttachAgreement(dossier),
-                CanDeleteAgreement = CanDeleteAgreement(dossier),
 
                 Authors = dossier.Authors.Select(a => new DossierAuthorViewModel
                 {

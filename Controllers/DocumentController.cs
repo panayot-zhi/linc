@@ -13,10 +13,12 @@ namespace linc.Controllers
         private readonly ILogger<DocumentController> _logger;
         private readonly IDossierService _dossierService;
         private readonly ISourceService _sourceService;
+        private readonly IAuthorService _authorService;
         private readonly IIssueService _issueService;
 
         public DocumentController(
             IIssueService issueService,
+            IAuthorService authorService,
             ISourceService sourceService,
             IDossierService dossierService,
             IDocumentService documentService,
@@ -25,6 +27,7 @@ namespace linc.Controllers
             : base(localizationService)
         {
             _logger = logger;
+            _authorService = authorService;
             _documentService = documentService;
             _dossierService = dossierService;
             _issueService = issueService;
@@ -83,6 +86,38 @@ namespace linc.Controllers
             }
 
             var result = await GetDocumentFile(documentId, download);
+            if (result is null)
+            {
+                return NotFound();
+            }
+
+            return result;
+        }
+
+        [HttpGet("dossier/{dossierId:int}/author/{authorId:int}")]
+        [SiteAuthorize(SiteRole.Editor)]
+        public async Task<IActionResult> LoadAuthorAgreement(int dossierId, int authorId, bool download = true)
+        {
+            // NOTE: most of the time one would wish to download the dossier file so download is true by default
+
+            var dossier = await _dossierService.GetDossierAsync(dossierId);
+            if (dossier == null)
+            {
+                return NotFound();
+            }
+
+            var author = await _authorService.GetAuthorAsync(authorId);
+            if (author == null)
+            {
+                return NotFound();
+            }
+
+            if (!author.AgreementId.HasValue)
+            {
+                return BadRequest("There is no publication agreement attached for this user and dossier.");
+            }
+
+            var result = await GetDocumentFile(author.AgreementId.Value, download);
             if (result is null)
             {
                 return NotFound();

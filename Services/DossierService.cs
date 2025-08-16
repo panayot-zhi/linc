@@ -1,14 +1,15 @@
-﻿using System.Net.Mime;
-using linc.Contracts;
+﻿using linc.Contracts;
 using linc.Data;
 using linc.Models.ConfigModels;
 using linc.Models.Enumerations;
 using linc.Models.ViewModels;
 using linc.Models.ViewModels.Dossier;
 using linc.Models.ViewModels.Emails;
+using linc.Models.ViewModels.Home;
 using linc.Utility;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using System.Net.Mime;
 
 namespace linc.Services
 {
@@ -259,13 +260,29 @@ namespace linc.Services
 
             _context.Dossiers.Attach(dossier);
 
-            await UpdateDossierPropertiesAsync(dossier, input);
+            // Update dossier properties
+            if (dossier.AssignedToId != input.AssigneeId)
+            {
+                await UpdateAssigneeAsync(dossier.Id, input.AssigneeId);
+            }
 
             // Update authors
             await _authorService.UpdateDossierAuthorsAsync(dossier, input.Authors);
+
+            // Update author language and agreement
             foreach (var author in dossier.Authors)
             {
                 author.LanguageId = dossier.LanguageId;
+
+                var authorViewModel = input.Authors.FirstOrDefault(x => x.Id == author.Id);
+                if (authorViewModel?.AgreementDocument is not null)
+                {
+                    await using (var memoryStream = new MemoryStream())
+                    {
+                        await authorViewModel.AgreementDocument.CopyToAsync(memoryStream);
+                        await SaveAgreementAsync(dossier, author, memoryStream.ToArray());
+                    }
+                }
             }
 
             // NOTE: Perform clearly defined actions based on the current dossier status
@@ -444,11 +461,11 @@ namespace linc.Services
             await transaction.CommitAsync();
         }
 
-        public async Task SaveAgreementAsync(ApplicationDossier dossier, ApplicationAuthor author, byte[] inputFile)
+        public async Task SaveAgreementAsync(ApplicationDossier dossier, ApplicationAuthor author, byte[] agreementFile)
         {
             var currentUser = GetCurrentUser();
             var currentUserId = currentUser.GetUserId();
-            var fileName = $"publication_agreement-{currentUserId}.pdf";
+            var fileName = $"publication_agreement-{author.Id}.pdf";
             var rootFolderPath = Path.Combine(_config.RepositoryPath, SiteConstant.DossiersFolderName, dossier.Id.ToString());
             var filePath = Path.Combine(rootFolderPath, fileName);
 
@@ -456,7 +473,7 @@ namespace linc.Services
 
             var relativePath = Path.Combine(SiteConstant.DossiersFolderName, dossier.Id.ToString(), fileName);
 
-            await File.WriteAllBytesAsync(filePath, inputFile);
+            await File.WriteAllBytesAsync(filePath, agreementFile);
 
             var entry = new ApplicationDocument()
             {
@@ -483,8 +500,8 @@ namespace linc.Services
             _context.Dossiers.Attach(dossier);
             _context.Authors.Attach(author);
 
-            dossier.Documents.Add(entry);
             author.UserId = currentUserId;
+            author.Agreement = entry;
 
             await _context.SaveChangesAsync();
 
@@ -527,9 +544,11 @@ namespace linc.Services
             await _emailSender.SendEmailAsync(emailDescriptor);
         }
 
-        public async Task DeleteAgreementAsync(ApplicationDossier dossier)
+        public async Task DeleteAgreementAsync(ApplicationDossier dossier, ApplicationAuthor author)
         {
-            await DeleteDossierDocument(dossier, dossier.Agreement);
+            ArgumentNullException.ThrowIfNull(author.AgreementId);
+
+            await _documentService.DeleteDocumentAsync(author.AgreementId.Value);
 
             var currentUserId = GetCurrentUserId();
             dossier.Journals.Add(new DossierJournal

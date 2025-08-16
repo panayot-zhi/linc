@@ -2,9 +2,6 @@ using linc.Contracts;
 using linc.Data;
 using linc.Models.ViewModels.Author;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace linc.Services
 {
@@ -33,6 +30,11 @@ namespace linc.Services
             }
 
             return user;
+        }
+
+        public async Task<ApplicationAuthor> GetAuthorAsync(int id)
+        {
+            return await _context.Authors.FindAsync(id);
         }
 
         public async Task<List<SourceAuthorViewModel>> SearchAuthorsAsync(int languageId, string searchTerm)
@@ -216,30 +218,36 @@ namespace linc.Services
                 {
                     continue;
                 }
+
                 var firstName = updated.FirstName.Trim();
                 var lastName = updated.LastName.Trim();
                 var email = updated.Email?.Trim();
                 var changed = false;
-                if (!string.Equals(existing.FirstName, firstName, System.StringComparison.OrdinalIgnoreCase))
+
+                if (!string.Equals(existing.FirstName, firstName, StringComparison.OrdinalIgnoreCase))
                 {
                     existing.FirstName = firstName;
                     changed = true;
                 }
-                if (!string.Equals(existing.LastName, lastName, System.StringComparison.OrdinalIgnoreCase))
+
+                if (!string.Equals(existing.LastName, lastName, StringComparison.OrdinalIgnoreCase))
                 {
                     existing.LastName = lastName;
                     changed = true;
                 }
-                if (!string.Equals(existing.Email, email, System.StringComparison.OrdinalIgnoreCase))
+
+                if (!string.Equals(existing.Email, email, StringComparison.OrdinalIgnoreCase))
                 {
                     existing.Email = email;
                     changed = true;
                 }
+
                 if (existing.UserId != updated.UserId)
                 {
                     existing.UserId = updated.UserId;
                     changed = true;
                 }
+
                 if (changed)
                 {
                     _context.Authors.Update(existing);
@@ -253,6 +261,7 @@ namespace linc.Services
                 var user = !string.IsNullOrEmpty(authorViewModel.UserId)
                     ? await _context.Users.FindAsync(authorViewModel.UserId)
                     : null;
+
                 var author = new ApplicationAuthor
                 {
                     FirstName = authorViewModel.FirstName.Trim(),
@@ -262,8 +271,10 @@ namespace linc.Services
                     UserId = user?.Id,
                     DossierId = dossier.Id
                 };
+
                 dossier.Authors.Add(author);
             }
+
             await _context.SaveChangesAsync();
         }
 

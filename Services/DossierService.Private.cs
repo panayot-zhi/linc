@@ -9,7 +9,7 @@ namespace linc.Services
 {
     public partial class DossierService
     {
-        private static bool CanAttachAgreement(ApplicationDossier dossier)
+        /*private static bool CanAttachAgreement(ApplicationDossier dossier)
         {
             return dossier.Agreement is null &&
                    dossier.Status is not ApplicationDossierStatus.Accepted or
@@ -21,7 +21,7 @@ namespace linc.Services
             return dossier.Agreement is not null &&
                    dossier.Status is not ApplicationDossierStatus.Accepted or
                        ApplicationDossierStatus.AcceptedWithCorrections;
-        }
+        }*/
 
         private async Task<ApplicationDocument> SaveDossierDocumentAsync(IFormFile inputFile, int dossierId, ApplicationDocumentType type)
         {
@@ -60,7 +60,7 @@ namespace linc.Services
             return entityEntry.Entity;
         }
 
-        private async Task DeleteDossierDocument(ApplicationDossier dossier, ApplicationDocument document)
+        /*private async Task DeleteDossierDocument(ApplicationDossier dossier, ApplicationDocument document)
         {
             var filePath = Path.Combine(_config.RepositoryPath, document.RelativePath);
             if (!File.Exists(filePath))
@@ -76,33 +76,7 @@ namespace linc.Services
 
             _context.Documents.Remove(document);
             await _context.SaveChangesAsync();
-        }
-
-        private async Task UpdateDossierPropertiesAsync(ApplicationDossier dossier, DossierEditViewModel input)
-        {
-            if (dossier.AssignedToId != input.AssigneeId)
-            {
-                await UpdateAssigneeAsync(dossier.Id, input.AssigneeId);
-            }
-
-            if (input.AgreementDocument is not null)
-            {
-                var document = await SaveDossierDocumentAsync(input.AgreementDocument, dossier.Id, ApplicationDocumentType.Agreement);
-
-                dossier.Documents.Add(document);
-
-                var currentUserId = GetCurrentUserId();
-                dossier.Journals.Add(new DossierJournal
-                {
-                    PerformedById = currentUserId,
-                    Message = JournalEntryKeys.DocumentUploaded,
-                    MessageArguments = new[]
-                    {
-                        "DocumentType_Agreement"
-                    }
-                });
-            }
-        }
+        }*/
 
         private ClaimsPrincipal GetCurrentUser()
         {

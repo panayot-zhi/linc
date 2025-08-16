@@ -7,6 +7,8 @@ namespace linc.Contracts
 {
     public interface IAuthorService
     {
+        Task<ApplicationAuthor> GetAuthorAsync(int id);
+
         Task<List<SourceAuthorViewModel>> SearchAuthorsAsync(int languageId, string searchTerm);
 
         Task<List<ApplicationAuthor>> CreateSourceAuthorsAsync(int languageId, List<SourceAuthorViewModel> authors);
