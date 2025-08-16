@@ -35,6 +35,8 @@ namespace linc.Models.ViewModels.Author
         [Display(Name = "DocumentType_Agreement", ResourceType = typeof(Resources.SharedResource))]
         public ApplicationDocument Agreement { get; set; }
 
+        public int? AgreementId { get; set; }
+
 
         [Display(Name = "DossierEdit_Agreement", ResourceType = typeof(Resources.SharedResource))]
         public IFormFile AgreementDocument { get; set; }

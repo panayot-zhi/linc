@@ -337,7 +337,7 @@
             </div>
         </form>
         
-        @foreach (var author in Model.Authors.Where(x => x.Agreement is not null))
+        @foreach (var author in Model.Authors.Where(x => x.AgreementId.HasValue))
         {
             <form id="delete-agreement-form-@author.Id" asp-controller="Dossier" asp-action="DeleteAgreement" asp-route-id="@author.DossierId" asp-route-aid="@author.Id">
                 <input name="id" value="@author.DossierId" hidden="hidden" />

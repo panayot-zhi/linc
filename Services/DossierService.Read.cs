@@ -117,11 +117,14 @@ namespace linc.Services
                 Authors = dossier.Authors.Select(a => new DossierAuthorViewModel
                 {
                     Id = a.Id,
+                    DossierId = a.DossierId!.Value,
                     FirstName = a.FirstName,
                     LastName = a.LastName,
                     Email = a.Email,
                     UserId = a.UserId,
-                    UserName = a.User?.UserName
+                    UserName = a.User?.UserName,
+                    AgreementId = a.AgreementId
+
                 }).ToList()
             };
             return viewModel;
@@ -170,6 +173,7 @@ namespace linc.Services
                     Email = a.Email,
                     UserId = a.UserId,
                     UserName = a.User?.UserName,
+                    AgreementId = a.AgreementId,
                     Agreement = a.AgreementId.HasValue ? 
                         a.Agreement : 
                         null

@@ -76,6 +76,10 @@
                             {
                                 <text>, @author.UserName </text>
                             })
+                            @if (author.AgreementId.HasValue)
+                            {
+                                <text> + <a href="@Url.Action("LoadAuthorAgreement", "Document", new { dossierId = author.DossierId, authorId = author.Id })">@HtmlLocalizer["Email_Agreement_Subject"]</a> </text>
+                            }
                         </li>
                     }
                 </ul>
