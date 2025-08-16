@@ -164,11 +164,15 @@ namespace linc.Services
                 Authors = dossier.Authors.Select(a => new DossierAuthorViewModel
                 {
                     Id = a.Id,
+                    DossierId = a.DossierId!.Value,
                     FirstName = a.FirstName,
                     LastName = a.LastName,
                     Email = a.Email,
                     UserId = a.UserId,
-                    UserName = a.User?.UserName
+                    UserName = a.User?.UserName,
+                    Agreement = a.AgreementId.HasValue ? 
+                        a.Agreement : 
+                        null
                 }).ToList()
             };
             return viewModel;

@@ -463,8 +463,6 @@ namespace linc.Services
 
         public async Task SaveAgreementAsync(ApplicationDossier dossier, ApplicationAuthor author, byte[] agreementFile)
         {
-            var currentUser = GetCurrentUser();
-            var currentUserId = currentUser.GetUserId();
             var fileName = $"publication_agreement-{author.Id}.pdf";
             var rootFolderPath = Path.Combine(_config.RepositoryPath, SiteConstant.DossiersFolderName, dossier.Id.ToString());
             var filePath = Path.Combine(rootFolderPath, fileName);
@@ -487,7 +485,7 @@ namespace linc.Services
 
             dossier.Journals.Add(new DossierJournal
             {
-                PerformedById = currentUserId,
+                PerformedById = GetCurrentUserId(),
                 Message = JournalEntryKeys.DocumentUploaded,
                 MessageArguments = new[]
                 {
@@ -500,7 +498,7 @@ namespace linc.Services
             _context.Dossiers.Attach(dossier);
             _context.Authors.Attach(author);
 
-            author.UserId = currentUserId;
+            author.UserId = author.UserId;
             author.Agreement = entry;
 
             await _context.SaveChangesAsync();
