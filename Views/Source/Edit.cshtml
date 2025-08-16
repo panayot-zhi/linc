@@ -151,7 +151,7 @@
                     <div class="form-floating text-end">
                         <div class="input-group">
                             <select asp-for="IssueId" asp-items="@Model.Issues" class="form-select" disabled="disabled"></select>
-                            <a type="button" href="@Url.Action("Details", "Issue", new { id = Model.IssueId })" class="btn btn-outline-secondary" target="_blank">@HtmlLocalizer["SourceCreate_IssueId"]</a>
+                            <a type="button" href="@Url.Action("Details", "Issue", new { id = Model.IssueId })" class="btn btn-outline-secondary" target="_blank">@HtmlLocalizer["Source_IssueId"]</a>
                         </div>
                         
                         @{

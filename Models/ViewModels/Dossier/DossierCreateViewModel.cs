@@ -16,11 +16,11 @@ namespace linc.Models.ViewModels.Dossier
         [Display(Name = "DossierCreate_OriginalFile", ResourceType = typeof(Resources.SharedResource))]
         public IFormFile OriginalFile { get; set; }
 
-        [Display(Name = "SourceCreate_Authors", ResourceType = typeof(Resources.SharedResource))]
+        [Display(Name = "Authors", ResourceType = typeof(Resources.SharedResource))]
         public List<DossierAuthorViewModel> Authors { get; set; } = new();
 
         [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
-        [Display(Name = "SourceCreate_LanguageId", ResourceType = typeof(Resources.SharedResource))]
+        [Display(Name = "Source_LanguageId", ResourceType = typeof(Resources.SharedResource))]
         public int LanguageId { get; set; }
 
         public List<SelectListItem> Languages { get; set; }
@@ -32,7 +32,7 @@ namespace linc.Models.ViewModels.Dossier
             {
                 yield return new ValidationResult(
                     string.Format(Resources.ValidationResource.MinCountAttribute_ValidationError,
-                        Resources.SharedResource.SourceCreate_Authors, minimumAuthorsCount),
+                        Resources.SharedResource.Authors, minimumAuthorsCount),
                     new[] { nameof(Authors) });
             }
         }

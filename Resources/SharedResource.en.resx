@@ -1172,28 +1172,22 @@
   <data name="Issue_DetailsPage_Title" xml:space="preserve">
     <value>View issue</value>
   </data>
-  <data name="SourceCreate_AuthorsNotes" xml:space="preserve">
+  <data name="Source_AuthorsNotes" xml:space="preserve">
     <value>Notes for the authors</value>
   </data>
-  <data name="SourceAuthor_FirstName" xml:space="preserve">
-    <value>First name</value>
-  </data>
-  <data name="SourceCreate_IssueId" xml:space="preserve">
+  <data name="Source_IssueId" xml:space="preserve">
     <value>Issue</value>
   </data>
-  <data name="SourceCreate_LanguageId" xml:space="preserve">
+  <data name="Source_LanguageId" xml:space="preserve">
     <value>Language</value>
   </data>
-  <data name="SourceAuthor_LastName" xml:space="preserve">
-    <value>Last name</value>
-  </data>
-  <data name="SourceCreate_StartingPdfPage" xml:space="preserve">
+  <data name="Source_StartingPdfPage" xml:space="preserve">
     <value>Starting page (PDF)</value>
   </data>
-  <data name="SourceCreate_Title" xml:space="preserve">
+  <data name="Source_Title" xml:space="preserve">
     <value>Title</value>
   </data>
-  <data name="SourceCreate_TitleNotes" xml:space="preserve">
+  <data name="Source_TitleNotes" xml:space="preserve">
     <value>Notes to the manuscript</value>
   </data>
   <data name="Source_CreatePage_SubTitle" xml:space="preserve">
@@ -1289,7 +1283,7 @@
   <data name="Board_Joaquín.García-Medall_MemberWork" xml:space="preserve">
     <value>University of Valladolid, Spain</value>
   </data>
-  <data name="SourceCreate_LastPdfPage" xml:space="preserve">
+  <data name="Source_LastPdfPage" xml:space="preserve">
     <value>Last page (PDF)</value>
   </data>
   <data name="Team_EditorialAssistants_SubTitle" xml:space="preserve">
@@ -1338,7 +1332,7 @@
   <data name="Source_IndexPage_SearchDescription" xml:space="preserve">
     <value>search by first letter of the author's &lt;b&gt;last&lt;/b&gt; name</value>
   </data>
-  <data name="SourceCreate_PdfFile" xml:space="preserve">
+  <data name="Source_PdfFile" xml:space="preserve">
     <value>Attach the source as PDF</value>
   </data>
   <data name="PortfolioSection_Description" xml:space="preserve">
@@ -1677,13 +1671,13 @@ The manuscript file must have a .doc or .docx extension.</value>
   <data name="List_Label" xml:space="preserve">
     <value>List</value>
   </data>
-  <data name="SourceCreate_DOI" xml:space="preserve">
+  <data name="Source_DOI" xml:space="preserve">
     <value>DOI</value>
   </data>
-  <data name="SourceCreate_IsSection" xml:space="preserve">
+  <data name="Source_IsSection" xml:space="preserve">
     <value>Section</value>
   </data>
-  <data name="SourceCreate_IsTheme" xml:space="preserve">
+  <data name="Source_IsTheme" xml:space="preserve">
     <value>Topic</value>
   </data>
   <data name="Source_AdminPage_Title" xml:space="preserve">
@@ -1695,7 +1689,7 @@ The manuscript file must have a .doc or .docx extension.</value>
   <data name="Dossier_ListHeader_HasAgreement" xml:space="preserve">
     <value>Agreement</value>
   </data>
-  <data name="SourceCreate_StartingIndexPage" xml:space="preserve">
+  <data name="Source_StartingIndexPage" xml:space="preserve">
     <value>Starting page (in index)</value>
   </data>
   <data name="DateCreated_Label" xml:space="preserve">
@@ -1761,40 +1755,43 @@ The manuscript file must have a .doc or .docx extension.</value>
   <data name="DocumentType_SuperReview" xml:space="preserve">
     <value>Arbitration review</value>
   </data>
-  <data name="SourceAuthor_Email" xml:space="preserve">
-    <value>Email</value>
-  </data>
-  <data name="SourceAuthor_UserName" xml:space="preserve">
+  <data name="Author_UserName" xml:space="preserve">
     <value>Username</value>
   </data>
-  <data name="SourceCreate_Authors" xml:space="preserve">
-    <value>Authors</value>
-  </data>
-  <data name="SourceCreate_DossierId" xml:space="preserve">
+  <data name="Source_DossierId" xml:space="preserve">
     <value>Dossier</value>
-  </data>
-  <data name="SourceAuthor_Notes" xml:space="preserve">
-    <value>Notes for the author</value>
   </data>
   <data name="DossierDetails_Authors" xml:space="preserve">
     <value>Authors</value>
   </data>
-  <data name="DossierCreate_Authors" xml:space="preserve">
+  <data name="Authors" xml:space="preserve">
     <value>Authors</value>
   </data>
-  <data name="DossierCreate_Authors_SearchLabel" xml:space="preserve">
-    <value>Search for author</value>
-  </data>
-  <data name="DossierCreate_Authors_NoResults" xml:space="preserve">
+  <data name="Authors_SearchNoResults" xml:space="preserve">
     <value>No results</value>
   </data>
-  <data name="DossierCreate_Authors_Results" xml:space="preserve">
+  <data name="Authors_SearchResults" xml:space="preserve">
     <value>Results</value>
   </data>
-  <data name="DossierCreate_Authors_Add" xml:space="preserve">
+  <data name="Authors_Add" xml:space="preserve">
     <value>Add author</value>
   </data>
-  <data name="DossierCreate_Authors_Remove" xml:space="preserve">
+  <data name="Authors_Remove" xml:space="preserve">
     <value>Remove author</value>
+  </data>
+  <data name="Authors_Search" xml:space="preserve">
+    <value>Search for authors</value>
+  </data>
+  <data name="Author_Notes" xml:space="preserve">
+    <value>Notes for the author</value>
+  </data>
+  <data name="Author_FirstName" xml:space="preserve">
+    <value>First name</value>
+  </data>
+  <data name="Author_LastName" xml:space="preserve">
+    <value>Last name</value>
+  </data>
+  <data name="Author_Email" xml:space="preserve">
+    <value>Email</value>
   </data>
 </root>

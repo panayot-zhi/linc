@@ -1172,28 +1172,22 @@
   <data name="Issue_DetailsPage_Title" xml:space="preserve">
     <value>Преглед на брой</value>
   </data>
-  <data name="SourceCreate_AuthorsNotes" xml:space="preserve">
+  <data name="Source_AuthorsNotes" xml:space="preserve">
     <value>Бележки за авторите</value>
   </data>
-  <data name="SourceAuthor_FirstName" xml:space="preserve">
-    <value>Име</value>
-  </data>
-  <data name="SourceCreate_IssueId" xml:space="preserve">
+  <data name="Source_IssueId" xml:space="preserve">
     <value>Брой</value>
   </data>
-  <data name="SourceCreate_LanguageId" xml:space="preserve">
+  <data name="Source_LanguageId" xml:space="preserve">
     <value>Език</value>
   </data>
-  <data name="SourceAuthor_LastName" xml:space="preserve">
-    <value>Фамилия</value>
-  </data>
-  <data name="SourceCreate_StartingPdfPage" xml:space="preserve">
+  <data name="Source_StartingPdfPage" xml:space="preserve">
     <value>Начална страница (PDF)</value>
   </data>
-  <data name="SourceCreate_Title" xml:space="preserve">
+  <data name="Source_Title" xml:space="preserve">
     <value>Заглавие</value>
   </data>
-  <data name="SourceCreate_TitleNotes" xml:space="preserve">
+  <data name="Source_TitleNotes" xml:space="preserve">
     <value>Бележки към ръкописа</value>
   </data>
   <data name="Source_CreatePage_SubTitle" xml:space="preserve">
@@ -1290,7 +1284,7 @@
   <data name="Board_Joaquín.García-Medall_MemberWork" xml:space="preserve">
     <value>Университет на Валядолид, Испания</value>
   </data>
-  <data name="SourceCreate_LastPdfPage" xml:space="preserve">
+  <data name="Source_LastPdfPage" xml:space="preserve">
     <value>Последна страница (PDF)</value>
   </data>
   <data name="Team_EditorialAssistants_SubTitle" xml:space="preserve">
@@ -1339,7 +1333,7 @@
   <data name="Source_IndexPage_SearchDescription" xml:space="preserve">
     <value>търсене по първа буква от &lt;b&gt;фамилното&lt;/b&gt; име</value>
   </data>
-  <data name="SourceCreate_PdfFile" xml:space="preserve">
+  <data name="Source_PdfFile" xml:space="preserve">
     <value>Прикачете източника като PDF</value>
   </data>
   <data name="PortfolioSection_Description" xml:space="preserve">
@@ -1678,13 +1672,13 @@
   <data name="List_Label" xml:space="preserve">
     <value>Списък</value>
   </data>
-  <data name="SourceCreate_DOI" xml:space="preserve">
+  <data name="Source_DOI" xml:space="preserve">
     <value>DOI</value>
   </data>
-  <data name="SourceCreate_IsSection" xml:space="preserve">
+  <data name="Source_IsSection" xml:space="preserve">
     <value>Секция</value>
   </data>
-  <data name="SourceCreate_IsTheme" xml:space="preserve">
+  <data name="Source_IsTheme" xml:space="preserve">
     <value>Тема на броя</value>
   </data>
   <data name="Source_AdminPage_Title" xml:space="preserve">
@@ -1696,7 +1690,7 @@
   <data name="Dossier_ListHeader_HasAgreement" xml:space="preserve">
     <value>Декларация</value>
   </data>
-  <data name="SourceCreate_StartingIndexPage" xml:space="preserve">
+  <data name="Source_StartingIndexPage" xml:space="preserve">
     <value>Начална страница (по съдържание)</value>
   </data>
   <data name="DateCreated_Label" xml:space="preserve">
@@ -1762,40 +1756,43 @@
   <data name="DocumentType_SuperReview" xml:space="preserve">
     <value>Арбитражна рецензия</value>
   </data>
-  <data name="SourceAuthor_Email" xml:space="preserve">
-    <value>Email</value>
-  </data>
-  <data name="SourceAuthor_UserName" xml:space="preserve">
+  <data name="Author_UserName" xml:space="preserve">
     <value>Потребителско име</value>
   </data>
-  <data name="SourceCreate_Authors" xml:space="preserve">
-    <value>Автори</value>
-  </data>
-  <data name="SourceCreate_DossierId" xml:space="preserve">
+  <data name="Source_DossierId" xml:space="preserve">
     <value>Досие</value>
-  </data>
-  <data name="SourceAuthor_Notes" xml:space="preserve">
-    <value>Бележки за автора</value>
   </data>
   <data name="DossierDetails_Authors" xml:space="preserve">
     <value>Автори</value>
   </data>
-  <data name="DossierCreate_Authors" xml:space="preserve">
+  <data name="Authors" xml:space="preserve">
     <value>Автори</value>
   </data>
-  <data name="DossierCreate_Authors_SearchLabel" xml:space="preserve">
-    <value>Търси автор</value>
-  </data>
-  <data name="DossierCreate_Authors_NoResults" xml:space="preserve">
+  <data name="Authors_SearchNoResults" xml:space="preserve">
     <value>Няма намерени</value>
   </data>
-  <data name="DossierCreate_Authors_Results" xml:space="preserve">
+  <data name="Authors_SearchResults" xml:space="preserve">
     <value>Резултати</value>
   </data>
-  <data name="DossierCreate_Authors_Add" xml:space="preserve">
+  <data name="Authors_Add" xml:space="preserve">
     <value>Добавяне на автор</value>
   </data>
-  <data name="DossierCreate_Authors_Remove" xml:space="preserve">
+  <data name="Authors_Remove" xml:space="preserve">
     <value>Премахни автор</value>
+  </data>
+  <data name="Author_Notes" xml:space="preserve">
+    <value>Бележки за автора</value>
+  </data>
+  <data name="Author_FirstName" xml:space="preserve">
+    <value>Име</value>
+  </data>
+  <data name="Author_LastName" xml:space="preserve">
+    <value>Фамилия</value>
+  </data>
+  <data name="Author_Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Authors_Search" xml:space="preserve">
+    <value>Търси автори</value>
   </data>
 </root>

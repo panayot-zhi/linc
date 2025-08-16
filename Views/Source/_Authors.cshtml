@@ -3,7 +3,7 @@
 <div class="form-group">
     <div class="card">
         <div class="card-header">
-            @HtmlLocalizer["SourceCreate_Authors"]
+            @HtmlLocalizer["Authors"]
         </div>
 
         <div id="authors-list" class="card-body">
@@ -14,12 +14,12 @@
                     <div class="author-card mb-3" data-index="@i">
                         <div class="row">
                             <div class="col-sm-12">
-                                <label for="Authors[@i].Search" class="form-label">Search for authors</label>
+                                <label for="Authors[@i].Search" class="form-label">@HtmlLocalizer["Authors_Search"]</label>
                                 <div class="input-group mb-3">
-                                    <input id="Authors[@i].Search" type="search" class="form-control no-validate search-authors" aria-label="Search for authors">
-                                    <button class="btn btn-outline-secondary dropdown-toggle search-authors-results-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Results</button>
+                                    <input id="Authors[@i].Search" type="search" class="form-control no-validate search-authors" aria-label="@HtmlLocalizer["Authors_Search"]">
+                                    <button class="btn btn-outline-secondary dropdown-toggle search-authors-results-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">@HtmlLocalizer["Authors_SearchResults"]</button>
                                     <ul class="dropdown-menu dropdown-menu-end search-authors-results">
-                                        <li><a class="dropdown-item">No results</a></li>
+                                        <li><a class="dropdown-item">@HtmlLocalizer["Authors_SearchNoResults"]</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -31,13 +31,13 @@
                             <div class="col-sm-6">
                                 <div class="form-floating ">
                                     <input id="Authors[@i].FirstName" name="Authors[@i].FirstName" class="form-control author-first-name" value="@Model[i].FirstName" />
-                                    <label for="Authors[@i].FirstName" class="form-label">First Name</label>
+                                    <label for="Authors[@i].FirstName" class="form-label">@HtmlLocalizer["Author_FirstName"]</label>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-floating ">
                                     <input id="Authors[@i].LastName" name="Authors[@i].LastName" class="form-control author-last-name" value="@Model[i].LastName" />
-                                    <label for="Authors[@i].LastName" class="form-label">Last Name</label>
+                                    <label for="Authors[@i].LastName" class="form-label">@HtmlLocalizer["Author_LastName"]</label>
                                 </div>
                             </div>
                             <div class="col-sm-12">
@@ -49,7 +49,7 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12 text-end">
-                                <a class="btn btn-danger remove-author">Remove Author</a>
+                                <a class="btn btn-danger remove-author">@HtmlLocalizer["Authors_Remove"]</a>
                             </div>
                         </div>
                     </div>
@@ -59,7 +59,7 @@
 
         <div class="card-footer">
             <div class="row">
-                <button id="add-author" class="btn btn-outline-secondary" type="button">Add Author</button>
+                <button id="add-author" class="btn btn-outline-secondary" type="button">@HtmlLocalizer["Authors_Add"]</button>
             </div>
         </div>
     </div>
@@ -70,12 +70,12 @@
     <div class="author-card mb-3" data-index="__index__">
         <div class="row">
             <div class="col-sm-12">
-                <label for="Authors[__index__].Search" class="form-label">Search for authors</label>
+                <label for="Authors[__index__].Search" class="form-label">@HtmlLocalizer["Authors_Search"]</label>
                 <div class="input-group mb-3">
-                    <input id="Authors[__index__].Search" type="search" class="form-control no-validate search-authors" aria-label="Search for authors">
-                    <button class="btn btn-outline-secondary dropdown-toggle search-authors-results-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Results</button>
+                    <input id="Authors[__index__].Search" type="search" class="form-control no-validate search-authors" aria-label="@HtmlLocalizer["Authors_Search"]">
+                    <button class="btn btn-outline-secondary dropdown-toggle search-authors-results-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">@HtmlLocalizer["Authors_SearchResults"]</button>
                     <ul class="dropdown-menu dropdown-menu-end search-authors-results">
-                        <li><a class="dropdown-item">No results</a></li>
+                        <li><a class="dropdown-item">@HtmlLocalizer["Authors_SearchNoResults"]</a></li>
                     </ul>
                 </div>
             </div>
@@ -86,25 +86,25 @@
             <div class="col-sm-6">
                 <div class="form-floating ">
                     <input id="Authors[__index__].FirstName" name="Authors[__index__].FirstName" class="form-control author-first-name" />
-                    <label for="Authors[__index__].FirstName" class="form-label">First Name</label>
+                    <label for="Authors[__index__].FirstName" class="form-label">@HtmlLocalizer["Author_FirstName"]</label>
                 </div>
             </div>
             <div class="col-sm-6">
                 <div class="form-floating ">
                     <input id="Authors[__index__].LastName" name="Authors[__index__].LastName" class="form-control author-last-name" />
-                    <label for="Authors[__index__].LastName" class="form-label">Last Name</label>
+                    <label for="Authors[__index__].LastName" class="form-label">@HtmlLocalizer["Author_LastName"]</label>
                 </div>
             </div>
             <div class="col-sm-12">
                 <div class="form-group">
-                    <label for="Authors[__index__].Notes" class="form-label">Notes</label>
+                    <label for="Authors[__index__].Notes" class="form-label">@HtmlLocalizer["Author_Notes"]</label>
                     <textarea id="Authors[__index__].Notes" name="Authors[__index__].Notes" class="form-control author-notes" rows="6"></textarea>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-12 text-end">
-                <a class="btn btn-danger remove-author">Remove Author</a>
+                <a class="btn btn-danger remove-author">@HtmlLocalizer["Authors_Remove"]</a>
             </div>
         </div>
     </div>
@@ -156,7 +156,7 @@
 
             function clearResults() {
                 searchAuthorsResultsDropdown.hide();
-                searchAuthorsResults.innerHTML = '<li><a class="dropdown-item">No results</a></li>';
+                searchAuthorsResults.innerHTML = '<li><a class="dropdown-item">@HtmlLocalizer["Authors_SearchNoResults"]</a></li>';
             }
 
             if (searchAuthors) {

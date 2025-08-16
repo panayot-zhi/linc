@@ -65,14 +65,14 @@ namespace linc.Data
         public ApplicationDocument Anonymized =>
             Documents.FirstOrDefault(x => x.DocumentType == ApplicationDocumentType.Anonymized);
 
-        [Obsolete("Moved to Authors")]
-        [NotMapped]
-        public ApplicationDocument Agreement =>
-            Documents.FirstOrDefault(x => x.DocumentType == ApplicationDocumentType.Agreement);
-
-        [Obsolete("Moved to Authors")]
-        [NotMapped]
-        public bool HasAgreement => Agreement != null;
+        // [Obsolete("Moved to Authors")]
+        // [NotMapped]
+        // public ApplicationDocument Agreement =>
+        //     Documents.FirstOrDefault(x => x.DocumentType == ApplicationDocumentType.Agreement);
+        //
+        // [Obsolete("Moved to Authors")]
+        // [NotMapped]
+        // public bool HasAgreement => Agreement != null;
 
         [NotMapped]
         public ApplicationDocument Redacted =>

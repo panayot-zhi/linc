@@ -30,7 +30,7 @@ namespace linc.Models.ViewModels.Dossier
         [Display(Name = "DossierCreate_Title", ResourceType = typeof(Resources.SharedResource))]
         public string Title { get; set; }
 
-        [Display(Name = "SourceCreate_Authors", ResourceType = typeof(Resources.SharedResource))]
+        [Display(Name = "Authors", ResourceType = typeof(Resources.SharedResource))]
         public List<DossierAuthorViewModel> Authors { get; set; } = new();
 
 
@@ -127,7 +127,7 @@ namespace linc.Models.ViewModels.Dossier
             {
                 yield return new ValidationResult(
                     string.Format(Resources.ValidationResource.MinCountAttribute_ValidationError,
-                        Resources.SharedResource.SourceCreate_Authors, minimumAuthorsCount),
+                        Resources.SharedResource.Authors, minimumAuthorsCount),
                     new[] { nameof(Authors) });
             }
         }

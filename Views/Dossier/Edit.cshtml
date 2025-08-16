@@ -337,14 +337,14 @@
             </div>
         </form>
         
-        @*@if (Model.CanDeleteAgreement)
+        @foreach (var author in Model.Authors.Where(x => x.Agreement is not null))
         {
-            <form id="delete-agreement-form" asp-action="DeleteAgreement" asp-route-id="@Model.Id">
-                <input asp-for="Id" hidden="hidden"/>
-                <input asp-for="Agreement.Id" hidden="hidden" />
+            <form id="delete-agreement-form-@author.Id" asp-controller="Dossier" asp-action="DeleteAgreement" asp-route-id="@author.DossierId" asp-route-aid="@author.Id">
+                <input name="id" value="@author.DossierId" hidden="hidden" />
+                <input name="aid" value="@author.Id" hidden="hidden"/>
             </form>
-        }*@
-
+        }
+   
     </div>
 </div>
 
@@ -357,9 +357,10 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
-            let elements = document.querySelectorAll('.requires-confirm');
-            elements.forEach((element) => {
-                element.addEventListener('click', (e) => {
+
+            let confirmElements = document.querySelectorAll('.requires-confirm');
+            confirmElements.forEach((confirmElement) => {
+                confirmElement.addEventListener('click', (e) => {
                     e.preventDefault();
 
                     Swal.fire({
@@ -380,8 +381,8 @@
                 })
             });
 
-            let deleteAgreementButton = document.getElementById("delete-agreement-button");
-            if(deleteAgreementButton) {
+            const deleteAgreementButtons = document.querySelectorAll('.delete-agreement-button');
+            deleteAgreementButtons.forEach((deleteAgreementButton) => {
                 deleteAgreementButton.addEventListener('click', (e) => {
                     e.preventDefault();
 
@@ -396,14 +397,14 @@
                         if (!result.isConfirmed) {
                             return;
                         }
-                        
+
                         let target = $(e.target).attr("href");
                         target = $(target);
                         target.submit();
-                        
+
                     });
-                })
-            }
+                });
+            });
         });
     </script>
 }

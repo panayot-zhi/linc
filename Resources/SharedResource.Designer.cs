@@ -385,6 +385,105 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string Author_Email {
+            get {
+                return ResourceManager.GetString("Author_Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Име.
+        /// </summary>
+        public static string Author_FirstName {
+            get {
+                return ResourceManager.GetString("Author_FirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Фамилия.
+        /// </summary>
+        public static string Author_LastName {
+            get {
+                return ResourceManager.GetString("Author_LastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Бележки за автора.
+        /// </summary>
+        public static string Author_Notes {
+            get {
+                return ResourceManager.GetString("Author_Notes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Потребителско име.
+        /// </summary>
+        public static string Author_UserName {
+            get {
+                return ResourceManager.GetString("Author_UserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Автори.
+        /// </summary>
+        public static string Authors {
+            get {
+                return ResourceManager.GetString("Authors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Добавяне на автор.
+        /// </summary>
+        public static string Authors_Add {
+            get {
+                return ResourceManager.GetString("Authors_Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Премахни автор.
+        /// </summary>
+        public static string Authors_Remove {
+            get {
+                return ResourceManager.GetString("Authors_Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Търси автори.
+        /// </summary>
+        public static string Authors_Search {
+            get {
+                return ResourceManager.GetString("Authors_Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Няма намерени.
+        /// </summary>
+        public static string Authors_SearchNoResults {
+            get {
+                return ResourceManager.GetString("Authors_SearchNoResults", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Резултати.
+        /// </summary>
+        public static string Authors_SearchResults {
+            get {
+                return ResourceManager.GetString("Authors_SearchResults", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Прегледайте авторите от всички броеве или търсете конкретно име/заглавие. Можете да прегледате и &lt;a href=&quot;{0}&quot;&gt;всички публикации по години и броеве&lt;/a&gt;..
         /// </summary>
         public static string AuthorsSection_Description {
@@ -1442,60 +1541,6 @@ namespace linc.Resources {
         public static string Dossier_ListHeader_Title {
             get {
                 return ResourceManager.GetString("Dossier_ListHeader_Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Автори.
-        /// </summary>
-        public static string DossierCreate_Authors {
-            get {
-                return ResourceManager.GetString("DossierCreate_Authors", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Добавяне на автор.
-        /// </summary>
-        public static string DossierCreate_Authors_Add {
-            get {
-                return ResourceManager.GetString("DossierCreate_Authors_Add", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Няма намерени.
-        /// </summary>
-        public static string DossierCreate_Authors_NoResults {
-            get {
-                return ResourceManager.GetString("DossierCreate_Authors_NoResults", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Премахни автор.
-        /// </summary>
-        public static string DossierCreate_Authors_Remove {
-            get {
-                return ResourceManager.GetString("DossierCreate_Authors_Remove", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Резултати.
-        /// </summary>
-        public static string DossierCreate_Authors_Results {
-            get {
-                return ResourceManager.GetString("DossierCreate_Authors_Results", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Търси автор.
-        /// </summary>
-        public static string DossierCreate_Authors_SearchLabel {
-            get {
-                return ResourceManager.GetString("DossierCreate_Authors_SearchLabel", resourceCulture);
             }
         }
         
@@ -4221,6 +4266,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Бележки за авторите.
+        /// </summary>
+        public static string Source_AuthorsNotes {
+            get {
+                return ResourceManager.GetString("Source_AuthorsNotes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Създаване на нов източник от съдържанието.
         /// </summary>
         public static string Source_CreatePage_SubTitle {
@@ -4235,6 +4289,24 @@ namespace linc.Resources {
         public static string Source_CreatePage_Title {
             get {
                 return ResourceManager.GetString("Source_CreatePage_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DOI.
+        /// </summary>
+        public static string Source_DOI {
+            get {
+                return ResourceManager.GetString("Source_DOI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Досие.
+        /// </summary>
+        public static string Source_DossierId {
+            get {
+                return ResourceManager.GetString("Source_DossierId", resourceCulture);
             }
         }
         
@@ -4302,173 +4374,92 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Email.
-        /// </summary>
-        public static string SourceAuthor_Email {
-            get {
-                return ResourceManager.GetString("SourceAuthor_Email", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Име.
-        /// </summary>
-        public static string SourceAuthor_FirstName {
-            get {
-                return ResourceManager.GetString("SourceAuthor_FirstName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Фамилия.
-        /// </summary>
-        public static string SourceAuthor_LastName {
-            get {
-                return ResourceManager.GetString("SourceAuthor_LastName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Бележки за автора.
-        /// </summary>
-        public static string SourceAuthor_Notes {
-            get {
-                return ResourceManager.GetString("SourceAuthor_Notes", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Потребителско име.
-        /// </summary>
-        public static string SourceAuthor_UserName {
-            get {
-                return ResourceManager.GetString("SourceAuthor_UserName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Автори.
-        /// </summary>
-        public static string SourceCreate_Authors {
-            get {
-                return ResourceManager.GetString("SourceCreate_Authors", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Бележки за авторите.
-        /// </summary>
-        public static string SourceCreate_AuthorsNotes {
-            get {
-                return ResourceManager.GetString("SourceCreate_AuthorsNotes", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to DOI.
-        /// </summary>
-        public static string SourceCreate_DOI {
-            get {
-                return ResourceManager.GetString("SourceCreate_DOI", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Досие.
-        /// </summary>
-        public static string SourceCreate_DossierId {
-            get {
-                return ResourceManager.GetString("SourceCreate_DossierId", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Секция.
         /// </summary>
-        public static string SourceCreate_IsSection {
+        public static string Source_IsSection {
             get {
-                return ResourceManager.GetString("SourceCreate_IsSection", resourceCulture);
+                return ResourceManager.GetString("Source_IsSection", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Брой.
         /// </summary>
-        public static string SourceCreate_IssueId {
+        public static string Source_IssueId {
             get {
-                return ResourceManager.GetString("SourceCreate_IssueId", resourceCulture);
+                return ResourceManager.GetString("Source_IssueId", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Тема на броя.
         /// </summary>
-        public static string SourceCreate_IsTheme {
+        public static string Source_IsTheme {
             get {
-                return ResourceManager.GetString("SourceCreate_IsTheme", resourceCulture);
+                return ResourceManager.GetString("Source_IsTheme", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Език.
         /// </summary>
-        public static string SourceCreate_LanguageId {
+        public static string Source_LanguageId {
             get {
-                return ResourceManager.GetString("SourceCreate_LanguageId", resourceCulture);
+                return ResourceManager.GetString("Source_LanguageId", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Последна страница (PDF).
         /// </summary>
-        public static string SourceCreate_LastPdfPage {
+        public static string Source_LastPdfPage {
             get {
-                return ResourceManager.GetString("SourceCreate_LastPdfPage", resourceCulture);
+                return ResourceManager.GetString("Source_LastPdfPage", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Прикачете източника като PDF.
         /// </summary>
-        public static string SourceCreate_PdfFile {
+        public static string Source_PdfFile {
             get {
-                return ResourceManager.GetString("SourceCreate_PdfFile", resourceCulture);
+                return ResourceManager.GetString("Source_PdfFile", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Начална страница (по съдържание).
         /// </summary>
-        public static string SourceCreate_StartingIndexPage {
+        public static string Source_StartingIndexPage {
             get {
-                return ResourceManager.GetString("SourceCreate_StartingIndexPage", resourceCulture);
+                return ResourceManager.GetString("Source_StartingIndexPage", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Начална страница (PDF).
         /// </summary>
-        public static string SourceCreate_StartingPdfPage {
+        public static string Source_StartingPdfPage {
             get {
-                return ResourceManager.GetString("SourceCreate_StartingPdfPage", resourceCulture);
+                return ResourceManager.GetString("Source_StartingPdfPage", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Заглавие.
         /// </summary>
-        public static string SourceCreate_Title {
+        public static string Source_Title {
             get {
-                return ResourceManager.GetString("SourceCreate_Title", resourceCulture);
+                return ResourceManager.GetString("Source_Title", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Бележки към ръкописа.
         /// </summary>
-        public static string SourceCreate_TitleNotes {
+        public static string Source_TitleNotes {
             get {
-                return ResourceManager.GetString("SourceCreate_TitleNotes", resourceCulture);
+                return ResourceManager.GetString("Source_TitleNotes", resourceCulture);
             }
         }
         
