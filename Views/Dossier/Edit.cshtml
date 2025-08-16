@@ -161,13 +161,13 @@
                 </div>
             }
         
-            @if (Model.Agreement is not null)
+            @*@if (Model.Agreement is not null)
             {
                 <div class="input-group">
                     <span class="input-group-text">@Html.DisplayNameFor(x => x.Agreement)</span>
                     <input asp-for="AgreementDocument" type="text" class="form-control" disabled="disabled" readonly="readonly" value="@Model.Agreement.OriginalFileName"/>
                     <a class="btn btn-outline-primary" id="download-declaration" href="@Url.Action("LoadDossierDocument", "Document", new { dossierId = Model.Id, documentId = Model.Agreement.Id })">@HtmlLocalizer["Download_Button_Label"]</a>
-                    @if (Model.CanDeleteAgreement)
+                    @if (User.IsAtLeast(SiteRole.HeadEditor))
                     {
                         <a id="delete-agreement-button" class="btn btn-outline-danger" href="#delete-agreement-form">@HtmlLocalizer["Delete_Button_Label"]</a>
                     }
@@ -180,7 +180,7 @@
                     <input asp-for="AgreementDocument" class="form-control" accept=".doc,.docx, .pdf" />
                     <span asp-validation-for="AgreementDocument" class="invalid-feedback"></span>
                 </div>
-            }
+            }*@
 
             @* NOTE: Resolve allowed input for operations here *@
 
@@ -337,13 +337,13 @@
             </div>
         </form>
         
-        @if (Model.CanDeleteAgreement)
+        @*@if (Model.CanDeleteAgreement)
         {
             <form id="delete-agreement-form" asp-action="DeleteAgreement" asp-route-id="@Model.Id">
                 <input asp-for="Id" hidden="hidden"/>
                 <input asp-for="Agreement.Id" hidden="hidden" />
             </form>
-        }
+        }*@
 
     </div>
 </div>

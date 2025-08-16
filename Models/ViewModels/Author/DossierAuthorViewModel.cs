@@ -1,11 +1,15 @@
-using System.ComponentModel.DataAnnotations;
+using linc.Data;
+using linc.Models.Enumerations;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace linc.Models.ViewModels.Author
 {
     public class DossierAuthorViewModel
     {
         public int? Id { get; set; }
+
+        public int DossierId { get; set; }
 
         [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         [MaxLength(255, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
@@ -28,5 +32,13 @@ namespace linc.Models.ViewModels.Author
 
         [Display(Name = "SourceAuthor_UserName", ResourceType = typeof(Resources.SharedResource))]
         public string UserName { get; set; }
+
+
+        [Display(Name = "DocumentType_Agreement", ResourceType = typeof(Resources.SharedResource))]
+        public ApplicationDocument Agreement { get; set; }
+
+
+        [Display(Name = "DossierEdit_Agreement", ResourceType = typeof(Resources.SharedResource))]
+        public IFormFile AgreementDocument { get; set; }
     }
 }

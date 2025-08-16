@@ -48,6 +48,32 @@
                                 </div>
                             </div>
                         </div>
+
+                        @if (Model[i].Agreement is not null)
+                        {
+                            var author = Model[i];
+
+                            <div class="input-group">
+                                <span class="input-group-text">@HtmlLocalizer["DocumentType_Agreement"]</span>
+                                <input  class="form-control author-last-name" value="@Model[i].LastName" />
+                                <input id="Authors[@i].AgreementDocument" name="Authors[@i].AgreementDocument" type="text" class="form-control" disabled="disabled" readonly="readonly" value="@Model[i].Agreement.OriginalFileName" />
+                                <a class="btn btn-outline-primary" id="download-declaration" href="@Url.Action("LoadAuthorAgreement", "Document", new { dossierId = Model[i].DossierId, authorId = Model[i].Agreement.Id })">@HtmlLocalizer["Download_Button_Label"]</a>
+                                <a class="btn btn-outline-danger delete-agreement-button" href="#delete-agreement-form-@author.Id">@HtmlLocalizer["Delete_Button_Label"]</a>
+                            </div>
+
+                            <form id="delete-agreement-form-@author.Id" asp-controller="Dossier" asp-action="DeleteAgreement" asp-route-id="@author.Id">
+                                <input name="id" value="@author.DossierId" hidden="hidden" />
+                                <input name="aid" value="@author.Id" hidden="hidden"/>
+                            </form>
+                        }
+                        else
+                        {
+                            <div class="form-group">
+                                <label for="Authors[@i].AgreementDocument" class="form-label">@HtmlLocalizer["DossierEdit_Agreement"]</label>
+                                <input id="Authors[@i].AgreementDocument" name="Authors[@i].AgreementDocument" type="file" class="form-control" accept=".doc,.docx, .pdf" />
+                            </div>
+                        }
+
                         <div class="row">
                             <div class="col-sm-12 text-end">
                                 <a class="btn btn-danger remove-author">@HtmlLocalizer["DossierCreate_Authors_Remove"]</a>
@@ -117,6 +143,29 @@
         const addAuthor = document.getElementById('add-author');
         const authorsList = document.getElementById('authors-list');
         const authorTemplate = document.getElementById('author-template').innerHTML;
+        
+        const deleteAgreementButton = document.getElementsByClassName('delete-agreement-button');
+        deleteAgreementButton.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            Swal.fire({
+
+                icon: "question",
+                title: window.jsLocalizer["DossierEdit_ConfirmDeleteAgreement_Title"],
+                text: window.jsLocalizer["DossierEdit_ConfirmDeleteAgreement"],
+                showCancelButton: true
+
+            }).then((result) => {
+                if (!result.isConfirmed) {
+                    return;
+                }
+
+                let target = $(e.target).attr("href");
+                target = $(target);
+                target.submit();
+
+            });
+        })
 
         function getAuthorCards() {
             return authorsList.querySelectorAll('.author-card');

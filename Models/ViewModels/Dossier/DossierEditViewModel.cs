@@ -70,9 +70,9 @@ namespace linc.Models.ViewModels.Dossier
         public ApplicationDocument Anonymized =>
             _documents.FirstOrDefault(x => x.DocumentType == ApplicationDocumentType.Anonymized);
 
-        [Display(Name = "DocumentType_Agreement", ResourceType = typeof(Resources.SharedResource))]
-        public ApplicationDocument Agreement =>
-            _documents.FirstOrDefault(x => x.DocumentType == ApplicationDocumentType.Agreement);
+        // [Display(Name = "DocumentType_Agreement", ResourceType = typeof(Resources.SharedResource))]
+        // public ApplicationDocument Agreement =>
+        //     _documents.FirstOrDefault(x => x.DocumentType == ApplicationDocumentType.Agreement);
 
         public ApplicationDocument Redacted =>
             _documents.FirstOrDefault(x => x.DocumentType == ApplicationDocumentType.Redacted);
@@ -81,8 +81,8 @@ namespace linc.Models.ViewModels.Dossier
             _documents.Where(x => x.DocumentType is ApplicationDocumentType.Review or ApplicationDocumentType.SuperReview).ToList();
 
 
-        [Display(Name = "DossierEdit_Agreement", ResourceType = typeof(Resources.SharedResource))]
-        public IFormFile AgreementDocument { get; set; }
+        // [Display(Name = "DossierEdit_Agreement", ResourceType = typeof(Resources.SharedResource))]
+        // public IFormFile AgreementDocument { get; set; }
 
 
         public ApplicationDocumentType DocumentType { get; set; }
@@ -90,9 +90,9 @@ namespace linc.Models.ViewModels.Dossier
         public IFormFile Document { get; set; }
 
 
-        public bool CanAttachAgreement { get; init; }
+        // public bool CanAttachAgreement { get; init; }
 
-        public bool CanDeleteAgreement { get; init; }
+        // public bool CanDeleteAgreement { get; init; }
 
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
