@@ -27,13 +27,14 @@ a.requires-confirm { }
 .search-authors { }
 .search-authors-results-toggle { }
 .search-authors-results { }
+.author-card { }
 .author-first-name { }
 .author-last-name { }
 .author-email { }
 .author-user-id { }
 .author-id { }
 .remove-author { }
-.author-card { }
+.delete-agreement-button { }
 /* ReSharper restore DeclarationIsEmpty */
 .count-remaining-symbols {
     height: inherit !important;
