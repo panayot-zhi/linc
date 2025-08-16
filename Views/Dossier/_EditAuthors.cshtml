@@ -29,13 +29,13 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-floating ">
-                                    <input id="Authors[@i].FirstName" name="Authors[@i].FirstName" class="form-control author-first-name" value="@Model[i].FirstName" />
+                                    <input id="Authors[@i].FirstName" name="Authors[@i].FirstName" class="form-control author-first-name" value="@Model[i].FirstName" @(Model[i].Agreement != null ? "readonly=\"readonly\"" : "") />
                                     <label for="Authors[@i].FirstName" class="form-label">@HtmlLocalizer["Author_FirstName"]</label>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-floating ">
-                                    <input id="Authors[@i].LastName" name="Authors[@i].LastName" class="form-control author-last-name" value="@Model[i].LastName" />
+                                    <input id="Authors[@i].LastName" name="Authors[@i].LastName" class="form-control author-last-name" value="@Model[i].LastName" @(Model[i].Agreement != null ? "readonly=\"readonly\"" : "") />
                                     <label for="Authors[@i].LastName" class="form-label">@HtmlLocalizer["Author_LastName"]</label>
                                 </div>
                             </div>
@@ -43,7 +43,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-floating ">
-                                    <input id="Authors[@i].Email" name="Authors[@i].Email" class="form-control author-email" value="@Model[i].Email" />
+                                    <input id="Authors[@i].Email" name="Authors[@i].Email" class="form-control author-email" value="@Model[i].Email" @(Model[i].Agreement != null ? "readonly=\"readonly\"" : "") />
                                     <label for="Authors[@i].Email" class="form-label">@HtmlLocalizer["Author_Email"]</label>
                                 </div>
                             </div>
@@ -64,13 +64,13 @@
                         {
                             <div class="form-group">
                                 <label for="Authors[@i].AgreementDocument" class="form-label">@HtmlLocalizer["DossierEdit_Agreement"]</label>
-                                <input id="Authors[@i].AgreementDocument" name="Authors[@i].AgreementDocument" type="file" class="form-control" accept=".doc,.docx, .pdf" />
+                                <input id="Authors[@i].AgreementDocument" name="Authors[@i].AgreementDocument" type="file" class="form-control" accept=".doc,.docx,.pdf" />
                             </div>
                         }
 
                         <div class="row">
                             <div class="col-sm-12 text-end">
-                                <a class="btn btn-danger remove-author">@HtmlLocalizer["Authors_Remove"]</a>
+                                <a class="btn btn-danger remove-author @(Model[i].Agreement != null ? "disabled" : "")">@HtmlLocalizer["Authors_Remove"]</a>
                             </div>
                         </div>
                     </div>
