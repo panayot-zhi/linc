@@ -118,6 +118,7 @@ namespace linc.Services
                     UserId = user?.Id,
                     DossierId = dossierId
                 };
+
                 result.Add(author);
             }
             return result;
@@ -243,14 +244,11 @@ namespace linc.Services
                     changed = true;
                 }
 
-                if (existing.UserId != updated.UserId)
-                {
-                    existing.UserId = updated.UserId;
-                    changed = true;
-                }
-
                 if (changed)
                 {
+                    var user = await FindApplicationUser(updated.UserId, updated.FirstName, updated.LastName);
+                    existing.UserId = user?.Id;
+
                     _context.Authors.Update(existing);
                 }
             }
@@ -259,9 +257,7 @@ namespace linc.Services
             var newToAdd = newAuthors.Where(a => !a.Id.HasValue).ToList();
             foreach (var authorViewModel in newToAdd)
             {
-                var user = !string.IsNullOrEmpty(authorViewModel.UserId)
-                    ? await _context.Users.FindAsync(authorViewModel.UserId)
-                    : null;
+                var user = await FindApplicationUser(authorViewModel.UserId, authorViewModel.FirstName, authorViewModel.LastName);
 
                 var author = new ApplicationAuthor
                 {
