@@ -78,7 +78,7 @@
                             })
                             @if (author.AgreementId.HasValue)
                             {
-                                <text> + <a href="@Url.Action("LoadAuthorAgreement", "Document", new { dossierId = author.DossierId, authorId = author.Id })">@HtmlLocalizer["Email_Agreement_Subject"]</a> </text>
+                                <text> + <a href="@Url.Action("LoadAuthorAgreement", "Document", new { dossierId = author.DossierId, authorId = author.Id, download = false })">@HtmlLocalizer["Email_Agreement_Subject"]</a> </text>
                             }
                         </li>
                     }
@@ -161,6 +161,29 @@
                                 <small>@HtmlLocalizer["Reviewer_Label"]: @dossierReview.Names (<a href="mailto:@dossierReview.Email" target="_blank">@dossierReview.Email</a>@(!string.IsNullOrEmpty(reviewerUserName) ? $", {reviewerUserName}" : string.Empty))</small>
                             </p>
                         }
+
+                    </td>
+                    <td class="text-center col-md-2">
+                        @item.DateCreated.ToString("dd MMM yyyy")
+                    </td>
+                </tr>
+            }
+            
+            @foreach (var author in Model.Authors.Where(x => x.AgreementId.HasValue))
+            {
+                var item = author.Agreement;
+
+                <tr>
+                    <td class="col-md-2">
+                        @Html.DisplayFor(modelItem => item.DocumentType) <br/>
+                        @author.FirstName @author.LastName
+
+                    </td>
+                    <td class="col-md-8">
+                                
+                        <a asp-action="LoadAuthorAgreement" asp-controller="Document" asp-route-dossierId="@Model.Id" asp-route-authorId="@author.Id">
+                            @Html.DisplayFor(modelItem => item.OriginalFileName)
+                        </a>
 
                     </td>
                     <td class="text-center col-md-2">
