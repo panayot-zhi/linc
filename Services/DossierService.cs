@@ -33,8 +33,10 @@ namespace linc.Services
             //public const string PropertyUpdated = $"{Prefix}_{nameof(PropertyUpdated)}";
 
             public const string DocumentUploaded = $"{Prefix}_{nameof(DocumentUploaded)}";
+            public const string DocumentUploadedFor = $"{Prefix}_{nameof(DocumentUploadedFor)}";
             public const string DocumentReUploaded = $"{Prefix}_{nameof(DocumentReUploaded)}";
             public const string DocumentDeleted = $"{Prefix}_{nameof(DocumentDeleted)}";
+            public const string DocumentDeletedFor = $"{Prefix}_{nameof(DocumentDeletedFor)}";
             public const string ClearedAssignment = $"{Prefix}_{nameof(ClearedAssignment)}";
         }
 
@@ -467,10 +469,11 @@ namespace linc.Services
             dossier.Journals.Add(new DossierJournal
             {
                 PerformedById = GetCurrentUserId(),
-                Message = JournalEntryKeys.DocumentUploaded,
+                Message = JournalEntryKeys.DocumentUploadedFor,
                 MessageArguments = new[]
                 {
-                    "DocumentType_Agreement"
+                    "DocumentType_Agreement",
+                    author.Names
                 }
             });
 
@@ -539,12 +542,15 @@ namespace linc.Services
             dossier.Journals.Add(new DossierJournal
             {
                 PerformedById = currentUserId,
-                Message = JournalEntryKeys.DocumentDeleted,
+                Message = JournalEntryKeys.DocumentDeletedFor,
                 MessageArguments = new[]
                 {
-                    "DocumentType_Agreement"
+                    "DocumentType_Agreement",
+                    author.Names
                 }
             });
+
+            _context.Attach(dossier);
 
             await _context.SaveChangesAsync();
         }
