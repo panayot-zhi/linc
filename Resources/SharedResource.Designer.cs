@@ -430,6 +430,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to За да премахнете автора, първо трябва да изтриете прикачената декларация за публикуване..
+        /// </summary>
+        public static string AuthorRemove_PublicationAgreement {
+            get {
+                return ResourceManager.GetString("AuthorRemove_PublicationAgreement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Автори.
         /// </summary>
         public static string Authors {

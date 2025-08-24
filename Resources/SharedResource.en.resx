@@ -1779,9 +1779,6 @@ The manuscript file must have a .doc or .docx extension.</value>
   <data name="Authors_Remove" xml:space="preserve">
     <value>Remove author</value>
   </data>
-  <data name="Authors_Search" xml:space="preserve">
-    <value>Search for authors</value>
-  </data>
   <data name="Author_Notes" xml:space="preserve">
     <value>Notes for the author</value>
   </data>
@@ -1793,5 +1790,12 @@ The manuscript file must have a .doc or .docx extension.</value>
   </data>
   <data name="Author_Email" xml:space="preserve">
     <value>Email</value>
+  </data>
+  <data name="Authors_Search" xml:space="preserve">
+    <value>Search for authors</value>
+  </data>
+  <data name="AuthorRemove_PublicationAgreement" xml:space="preserve">
+    <value>To remove the author, you must first delete the attached publication statement.</value>
+    <comment>AuthorRemove_PublicationAgreement</comment>
   </data>
 </root>
