@@ -494,6 +494,13 @@ namespace linc.Services
                 ccEmails.Add(editor.Email);
             }
 
+            // var language = SiteConstant.SupportedCultures.First(x =>
+                // x.Key == dossier.LanguageId).Value;
+
+            // todo: rewrite SiteEmailDescriptor and models to pass message keys and not the direct message
+            // this way we could pass a language and it would apply to the whole model
+            // uncomment language setting then
+
             var emailDescriptor = new SiteEmailDescriptor<AgreementReceived>()
             {
                 CcEmails = ccEmails,
@@ -501,6 +508,7 @@ namespace linc.Services
                 Subject = _localizationService["Email_AgreementReceived_Subject"].Value,
                 ViewModel = new AgreementReceived()
                 {
+                    // Language = language,
                     Names = author.Names,
                     AgreementLink = new LinkViewModel()
                     {
