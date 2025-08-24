@@ -189,6 +189,11 @@
         function attachSearchFunctionality(card) {
 
             const searchAuthors = card.querySelector('.search-authors');
+            if(!searchAuthors) {
+                // search hidden
+                return;
+            }
+
             const searchAuthorsResults = card.querySelector('.search-authors-results');
             const searchAuthorsResultsToggle = card.querySelector('.search-authors-results-toggle');
             const searchAuthorsResultsDropdown = new bootstrap.Dropdown(searchAuthorsResultsToggle);
