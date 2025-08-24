@@ -123,7 +123,10 @@ namespace linc.Services
                     Email = a.Email,
                     UserId = a.UserId,
                     UserName = a.User?.UserName,
-                    AgreementId = a.AgreementId
+                    AgreementId = a.AgreementId,
+                    Agreement = a.AgreementId.HasValue ?
+                        a.Agreement :
+                        null
 
                 }).ToList()
             };
