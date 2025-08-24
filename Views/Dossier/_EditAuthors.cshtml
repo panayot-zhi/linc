@@ -53,11 +53,14 @@
                         {
                             var author = Model[i];
 
-                            <div class="input-group mb-3">
-                                <span class="input-group-text">@HtmlLocalizer["DocumentType_Agreement"]</span>
-                                <input id="Authors[@i].AgreementDocument" name="Authors[@i].AgreementDocument" type="text" class="form-control" disabled="disabled" readonly="readonly" value="@Model[i].Agreement.OriginalFileName"/>
-                                <a class="btn btn-outline-primary" id="download-declaration" href="@Url.Action("LoadAuthorAgreement", "Document", new { dossierId = Model[i].DossierId, authorId = Model[i].Id })">@HtmlLocalizer["Download_Button_Label"]</a>
-                                <a class="btn btn-outline-danger delete-agreement-button" href="#delete-agreement-form-@author.Id">@HtmlLocalizer["Delete_Button_Label"]</a>
+                            <div class="mb-3">
+                                <div class="input-group">
+                                    <span class="input-group-text">@HtmlLocalizer["DocumentType_Agreement"]</span>
+                                    <input id="Authors[@i].AgreementDocument" name="Authors[@i].AgreementDocument" type="text" class="form-control" disabled="disabled" readonly="readonly" value="@Model[i].Agreement.OriginalFileName"/>
+                                    <a class="btn btn-outline-primary" id="download-declaration" href="@Url.Action("LoadAuthorAgreement", "Document", new { dossierId = Model[i].DossierId, authorId = Model[i].Id })">@HtmlLocalizer["Download_Button_Label"]</a>
+                                    <a class="btn btn-outline-danger delete-agreement-button" href="#delete-agreement-form-@author.Id">@HtmlLocalizer["Delete_Button_Label"]</a>
+                                </div>
+                                <div class="form-text">@HtmlLocalizer["AuthorRemove_PublicationAgreement"]</div>
                             </div>
                         }
                         else
