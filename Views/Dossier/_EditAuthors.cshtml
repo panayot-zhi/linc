@@ -3,93 +3,105 @@
 
 <div class="form-group">
     <div class="card">
-        <div class="card-header">
-            @HtmlLocalizer["Authors"]
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <span>@HtmlLocalizer["Authors"]</span>
+            <button class="btn btn-link p-0" type="button" data-bs-toggle="collapse" data-bs-target="#authors-collapse" aria-expanded="false" aria-controls="authors-collapse" id="authors-collapse-toggle">
+                <i class="bi bi-chevron-double-down" id="authors-collapse-icon"></i>
+            </button>
         </div>
 
-        <div id="authors-list" class="card-body">
-            @if (Model is { Count: > 0 })
-            {
-                for (var i = 0; i < Model.Count; i++)
+        <div id="authors-collapse" class="collapse">
+            <div id="authors-list" class="card-body">
+                @if (Model is { Count: > 0 })
                 {
-                    var firstNameValid = ViewData.ModelState.GetFieldValidationState($"Authors[{i}].FirstName") != ModelValidationState.Invalid;
-                    var lastNameValid = ViewData.ModelState.GetFieldValidationState($"Authors[{i}].LastName") != ModelValidationState.Invalid;
-                    var emailValid = ViewData.ModelState.GetFieldValidationState($"Authors[{i}].Email") != ModelValidationState.Invalid;
+                    for (var i = 0; i < Model.Count; i++)
+                    {
+                        var firstNameValid = ViewData.ModelState.GetFieldValidationState($"Authors[{i}].FirstName") != ModelValidationState.Invalid;
+                        var lastNameValid = ViewData.ModelState.GetFieldValidationState($"Authors[{i}].LastName") != ModelValidationState.Invalid;
+                        var emailValid = ViewData.ModelState.GetFieldValidationState($"Authors[{i}].Email") != ModelValidationState.Invalid;
+                        var readOnly = Model[i].Agreement != null;
 
-                    <div class="author-card mb-3" data-index="@i">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <label for="Authors[@i].Search" class="form-label">@HtmlLocalizer["Authors_Search"]</label>
-                                <div class="input-group mb-3">
-                                    <input id="Authors[@i].Search" type="search" class="form-control no-validate search-authors" aria-label="@HtmlLocalizer["Authors_Search"]" @(Model[i].Agreement != null ? "readonly=\"readonly\"" : "")>
-                                    <button class="btn btn-outline-secondary dropdown-toggle search-authors-results-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">@HtmlLocalizer["Authors_SearchResults"]</button>
-                                    <ul class="dropdown-menu dropdown-menu-end search-authors-results">
-                                        <li><a class="dropdown-item">@HtmlLocalizer["Authors_SearchNoResults"]</a></li>
-                                    </ul>
+                        <div class="author-card mb-3" data-index="@i">
+                            
+                            @if (!readOnly)
+                            {
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <label for="Authors[@i].Search" class="form-label">@HtmlLocalizer["Authors_Search"]</label>
+                                        <div class="input-group mb-3">
+                                            <input id="Authors[@i].Search" type="search" class="form-control no-validate search-authors" aria-label="@HtmlLocalizer["Authors_Search"]">
+                                            <button class="btn btn-outline-secondary dropdown-toggle search-authors-results-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">@HtmlLocalizer["Authors_SearchResults"]</button>
+                                            <ul class="dropdown-menu dropdown-menu-end search-authors-results">
+                                                <li><a class="dropdown-item">@HtmlLocalizer["Authors_SearchNoResults"]</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                           
+                            <input type="hidden" id="Authors[@i].UserId" name="Authors[@i].UserId" class="author-user-id" value="@Model[i].UserId"/>
+                            <input type="hidden" id="Authors[@i].Id" name="Authors[@i].Id" class="author-id" value="@Model[i].Id"/>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-floating ">
+                                        <input id="Authors[@i].FirstName" name="Authors[@i].FirstName" class="form-control author-first-name @(!firstNameValid ? "is-invalid" : string.Empty)" value="@Model[i].FirstName" @(readOnly ? "readonly=\"readonly\"" : "")/>
+                                        <label for="Authors[@i].FirstName" class="form-label">@HtmlLocalizer["Author_FirstName"]</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-floating ">
+                                        <input id="Authors[@i].LastName" name="Authors[@i].LastName" class="form-control author-last-name @(!lastNameValid ? "is-invalid" : string.Empty)" value="@Model[i].LastName" @(readOnly ? "readonly=\"readonly\"" : "")/>
+                                        <label for="Authors[@i].LastName" class="form-label">@HtmlLocalizer["Author_LastName"]</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-floating ">
+                                        <input id="Authors[@i].Email" name="Authors[@i].Email" class="form-control author-email @(!emailValid ? "is-invalid" : string.Empty)" value="@Model[i].Email" @(readOnly ? "readonly=\"readonly\"" : "")/>
+                                        <label for="Authors[@i].Email" class="form-label">@HtmlLocalizer["Author_Email"]</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            @if (Model[i].Agreement is not null)
+                            {
+                                var author = Model[i];
+
+                                <div class="mb-3">
+                                    <div class="input-group">
+                                        <span class="input-group-text">@HtmlLocalizer["DocumentType_Agreement"]</span>
+                                        <input id="Authors[@i].AgreementDocument" name="Authors[@i].AgreementDocument" type="text" class="form-control" disabled="disabled" readonly="readonly" value="@Model[i].Agreement.OriginalFileName"/>
+                                        <a class="btn btn-outline-primary" id="download-declaration" href="@Url.Action("LoadAuthorAgreement", "Document", new { dossierId = Model[i].DossierId, authorId = Model[i].Id })">@HtmlLocalizer["Download_Button_Label"]</a>
+                                        <a class="btn btn-outline-danger delete-agreement-button" href="#delete-agreement-form-@author.Id">@HtmlLocalizer["Delete_Button_Label"]</a>
+                                    </div>
+                                    <div class="form-text">@HtmlLocalizer["AuthorRemove_PublicationAgreement"]</div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="form-group">
+                                    <label for="Authors[@i].AgreementDocument" class="form-label">@HtmlLocalizer["DossierEdit_Agreement"]</label>
+                                    <input id="Authors[@i].AgreementDocument" name="Authors[@i].AgreementDocument" type="file" class="form-control" accept=".doc,.docx,.pdf"/>
+                                </div>
+                            }
+
+                            <div class="row">
+                                <div class="col-sm-12 text-end">
+                                    <a class="btn btn-danger remove-author @(readOnly ? "disabled" : "")">@HtmlLocalizer["Authors_Remove"]</a>
                                 </div>
                             </div>
                         </div>
-                        <input type="hidden" id="Authors[@i].UserId" name="Authors[@i].UserId" class="author-user-id" value="@Model[i].UserId" />
-                        <input type="hidden" id="Authors[@i].Id" name="Authors[@i].Id" class="author-id" value="@Model[i].Id" />
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <div class="form-floating ">
-                                    <input id="Authors[@i].FirstName" name="Authors[@i].FirstName" class="form-control author-first-name @(!firstNameValid ? "is-invalid" : string.Empty)" value="@Model[i].FirstName" @(Model[i].Agreement != null ? "readonly=\"readonly\"" : "") />
-                                    <label for="Authors[@i].FirstName" class="form-label">@HtmlLocalizer["Author_FirstName"]</label>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="form-floating ">
-                                    <input id="Authors[@i].LastName" name="Authors[@i].LastName" class="form-control author-last-name @(!lastNameValid ? "is-invalid" : string.Empty)" value="@Model[i].LastName" @(Model[i].Agreement != null ? "readonly=\"readonly\"" : "") />
-                                    <label for="Authors[@i].LastName" class="form-label">@HtmlLocalizer["Author_LastName"]</label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div class="form-floating ">
-                                    <input id="Authors[@i].Email" name="Authors[@i].Email" class="form-control author-email @(!emailValid ? "is-invalid" : string.Empty)" value="@Model[i].Email" @(Model[i].Agreement != null ? "readonly=\"readonly\"" : "") />
-                                    <label for="Authors[@i].Email" class="form-label">@HtmlLocalizer["Author_Email"]</label>
-                                </div>
-                            </div>
-                        </div>
-
-                        @if (Model[i].Agreement is not null)
-                        {
-                            var author = Model[i];
-
-                            <div class="mb-3">
-                                <div class="input-group">
-                                    <span class="input-group-text">@HtmlLocalizer["DocumentType_Agreement"]</span>
-                                    <input id="Authors[@i].AgreementDocument" name="Authors[@i].AgreementDocument" type="text" class="form-control" disabled="disabled" readonly="readonly" value="@Model[i].Agreement.OriginalFileName"/>
-                                    <a class="btn btn-outline-primary" id="download-declaration" href="@Url.Action("LoadAuthorAgreement", "Document", new { dossierId = Model[i].DossierId, authorId = Model[i].Id })">@HtmlLocalizer["Download_Button_Label"]</a>
-                                    <a class="btn btn-outline-danger delete-agreement-button" href="#delete-agreement-form-@author.Id">@HtmlLocalizer["Delete_Button_Label"]</a>
-                                </div>
-                                <div class="form-text">@HtmlLocalizer["AuthorRemove_PublicationAgreement"]</div>
-                            </div>
-                        }
-                        else
-                        {
-                            <div class="form-group">
-                                <label for="Authors[@i].AgreementDocument" class="form-label">@HtmlLocalizer["DossierEdit_Agreement"]</label>
-                                <input id="Authors[@i].AgreementDocument" name="Authors[@i].AgreementDocument" type="file" class="form-control" accept=".doc,.docx,.pdf" />
-                            </div>
-                        }
-
-                        <div class="row">
-                            <div class="col-sm-12 text-end">
-                                <a class="btn btn-danger remove-author @(Model[i].Agreement != null ? "disabled" : "")">@HtmlLocalizer["Authors_Remove"]</a>
-                            </div>
-                        </div>
-                    </div>
+                    }
                 }
-            }
-        </div>
-
-        <div class="card-footer">
-            <div class="row">
-                <button id="add-author" class="btn btn-outline-secondary" type="button">@HtmlLocalizer["Authors_Add"]</button>
             </div>
+
+            <div class="card-footer">
+                <div class="row">
+                    <button id="add-author" class="btn btn-outline-secondary" type="button">@HtmlLocalizer["Authors_Add"]</button>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
@@ -312,6 +324,21 @@
         } else {
             getAuthorCards().forEach(card =>
                 attachSearchFunctionality(card));
+        }
+
+        // Collapse icon toggle logic
+        var collapseEl = document.getElementById('authors-collapse');
+        var toggleBtn = document.getElementById('authors-collapse-toggle');
+        var iconEl = document.getElementById('authors-collapse-icon');
+        if (collapseEl && toggleBtn && iconEl) {
+            collapseEl.addEventListener('show.bs.collapse', function () {
+                iconEl.classList.remove('bi-chevron-double-down');
+                iconEl.classList.add('bi-chevron-double-up');
+            });
+            collapseEl.addEventListener('hide.bs.collapse', function () {
+                iconEl.classList.remove('bi-chevron-double-up');
+                iconEl.classList.add('bi-chevron-double-down');
+            });
         }
     });
 </script>
