@@ -1702,7 +1702,7 @@ The manuscript file must have a .doc or .docx extension.</value>
     <value>Attach a publication agreement</value>
   </data>
   <data name="DossierEdit_ConfirmDeleteAgreement" xml:space="preserve">
-    <value>Are you sure you want to delete the declaration attach to this dossier?</value>
+    <value>Are you sure you want to delete the declaration attach to this author?</value>
   </data>
   <data name="DossierEdit_ConfirmDeleteAgreement_Title" xml:space="preserve">
     <value>Confirm</value>

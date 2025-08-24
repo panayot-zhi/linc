@@ -1698,7 +1698,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Сигурни ли сте, че искате да изтриете декларацията свързана към това досие?.
+        ///   Looks up a localized string similar to Сигурни ли сте, че искате да изтриете декларацията свързана към този автор?.
         /// </summary>
         public static string DossierEdit_ConfirmDeleteAgreement {
             get {

@@ -1703,7 +1703,7 @@
     <value>Прикачете декларация за публикуване</value>
   </data>
   <data name="DossierEdit_ConfirmDeleteAgreement" xml:space="preserve">
-    <value>Сигурни ли сте, че искате да изтриете декларацията свързана към това досие?</value>
+    <value>Сигурни ли сте, че искате да изтриете декларацията свързана към този автор?</value>
   </data>
   <data name="DossierEdit_ConfirmDeleteAgreement_Title" xml:space="preserve">
     <value>Потвърждение</value>
