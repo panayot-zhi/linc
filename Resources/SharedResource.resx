@@ -1714,6 +1714,9 @@
   <data name="JournalDossier_DocumentDeleted" xml:space="preserve">
     <value>Изтрит документ от тип '{0}'.</value>
   </data>
+  <data name="JournalDossier_DocumentDeletedFor" xml:space="preserve">
+    <value>Изтрит документ от тип '{0}' за {1}.</value>
+  </data>
   <data name="ManagePreferences_PreferredLanguageId" xml:space="preserve">
     <value>Предпочитан език</value>
   </data>
@@ -1797,5 +1800,8 @@
   </data>
   <data name="AuthorRemove_PublicationAgreement" xml:space="preserve">
     <value>За да премахнете автора, първо трябва да изтриете прикачената декларация за публикуване.</value>
+  </data>
+  <data name="JournalDossier_DocumentUploadedFor" xml:space="preserve">
+    <value>Прикачен документ от тип '{0}' за {1}.</value>
   </data>
 </root>

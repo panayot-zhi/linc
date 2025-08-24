@@ -1713,6 +1713,9 @@ The manuscript file must have a .doc or .docx extension.</value>
   <data name="JournalDossier_DocumentDeleted" xml:space="preserve">
     <value>Deleted document of type '{0}'.</value>
   </data>
+  <data name="JournalDossier_DocumentDeletedFor" xml:space="preserve">
+    <value>Deleted document of type '{0}' for {1}.</value>
+  </data>
   <data name="ManagePreferences_PreferredLanguageId" xml:space="preserve">
     <value>Preferred language</value>
   </data>
@@ -1796,5 +1799,8 @@ The manuscript file must have a .doc or .docx extension.</value>
   </data>
   <data name="AuthorRemove_PublicationAgreement" xml:space="preserve">
     <value>To remove the author, you must first delete the attached publication statement.</value>
+  </data>
+  <data name="JournalDossier_DocumentUploadedFor" xml:space="preserve">
+    <value>Uploaded document of type '{0}' for {1}.</value>
   </data>
 </root>

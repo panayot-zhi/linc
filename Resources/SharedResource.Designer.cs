@@ -2717,6 +2717,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Изтрит документ от тип &apos;{0}&apos; за {1}..
+        /// </summary>
+        public static string JournalDossier_DocumentDeletedFor {
+            get {
+                return ResourceManager.GetString("JournalDossier_DocumentDeletedFor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Подменен документ от тип &apos;{0}&apos;..
         /// </summary>
         public static string JournalDossier_DocumentReUploaded {
@@ -2731,6 +2740,15 @@ namespace linc.Resources {
         public static string JournalDossier_DocumentUploaded {
             get {
                 return ResourceManager.GetString("JournalDossier_DocumentUploaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Прикачен документ от тип &apos;{0}&apos; за {1}..
+        /// </summary>
+        public static string JournalDossier_DocumentUploadedFor {
+            get {
+                return ResourceManager.GetString("JournalDossier_DocumentUploadedFor", resourceCulture);
             }
         }
         
