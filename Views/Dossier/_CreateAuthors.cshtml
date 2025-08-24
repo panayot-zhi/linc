@@ -1,3 +1,4 @@
+@using Microsoft.AspNetCore.Mvc.ModelBinding
 @model List<linc.Models.ViewModels.Author.DossierAuthorViewModel>
 
 <div class="form-group">
@@ -11,6 +12,10 @@
             {
                 for (var i = 0; i < Model.Count; i++)
                 {
+                    var firstNameValid = ViewData.ModelState.GetFieldValidationState($"Authors[{i}].FirstName") != ModelValidationState.Invalid;
+                    var lastNameValid = ViewData.ModelState.GetFieldValidationState($"Authors[{i}].LastName") != ModelValidationState.Invalid;
+                    var emailValid = ViewData.ModelState.GetFieldValidationState($"Authors[{i}].Email") != ModelValidationState.Invalid;
+
                     <div class="author-card mb-3" data-index="@i">
                         <div class="row">
                             <div class="col-sm-12">
@@ -29,13 +34,13 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-floating ">
-                                    <input id="Authors[@i].FirstName" name="Authors[@i].FirstName" class="form-control author-first-name" value="@Model[i].FirstName" />
+                                    <input id="Authors[@i].FirstName" name="Authors[@i].FirstName" class="form-control author-first-name @(!firstNameValid ? "is-invalid" : string.Empty)" value="@Model[i].FirstName" />
                                     <label for="Authors[@i].FirstName" class="form-label">@HtmlLocalizer["Author_FirstName"]</label>
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-floating ">
-                                    <input id="Authors[@i].LastName" name="Authors[@i].LastName" class="form-control author-last-name" value="@Model[i].LastName" />
+                                    <input id="Authors[@i].LastName" name="Authors[@i].LastName" class="form-control author-last-name @(!lastNameValid ? "is-invalid" : string.Empty)" value="@Model[i].LastName" />
                                     <label for="Authors[@i].LastName" class="form-label">@HtmlLocalizer["Author_LastName"]</label>
                                 </div>
                             </div>
@@ -43,7 +48,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-floating ">
-                                    <input id="Authors[@i].Email" name="Authors[@i].Email" class="form-control author-email" value="@Model[i].Email" />
+                                    <input id="Authors[@i].Email" name="Authors[@i].Email" class="form-control author-email @(!emailValid ? "is-invalid" : string.Empty)" value="@Model[i].Email" />
                                     <label for="Authors[@i].Email" class="form-label">@HtmlLocalizer["Author_Email"]</label>
                                 </div>
                             </div>
@@ -227,14 +232,26 @@
             searchAuthorsResults.addEventListener('click', function (e) {
                 if (e.target && e.target.classList.contains('choose-author')) {
                     e.preventDefault();
+
                     const firstName = e.target.dataset.firstname;
                     const lastName = e.target.dataset.lastname;
                     const userId = e.target.dataset.userid;
                     const email = e.target.dataset.email;
-                    card.querySelector('.author-first-name').value = firstName;
-                    card.querySelector('.author-last-name').value = lastName;
-                    card.querySelector('.author-user-id').value = userId;
-                    card.querySelector('.author-email').value = email;
+                    
+                    const firstNameInput = card.querySelector('.author-first-name');
+                    firstNameInput.value = firstName;
+                    $(firstNameInput).blur();
+                    
+                    const lastNameInput = card.querySelector('.author-last-name');
+                    lastNameInput.value = lastName;
+                    $(lastNameInput).blur();
+                    
+                    const emailInput = card.querySelector('.author-email');
+                    emailInput.value = email;
+                    $(emailInput).blur();
+
+                    card.querySelector('.author-user-id').value = userId;                    
+
                     searchAuthorsResultsDropdown.hide();
                 }
             });

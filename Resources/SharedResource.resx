@@ -1797,6 +1797,5 @@
   </data>
   <data name="AuthorRemove_PublicationAgreement" xml:space="preserve">
     <value>За да премахнете автора, първо трябва да изтриете прикачената декларация за публикуване.</value>
-    <comment>AuthorRemove_PublicationAgreement</comment>
   </data>
 </root>
