@@ -47,7 +47,9 @@
             <hr />
 
             <div asp-validation-summary="All" class="text-danger"></div>
-                    
+            
+            <input type="hidden" asp-for="DossierId" />
+
             <div class="form-group form-check text-end">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="IsTheme" /> @Html.DisplayNameFor(model => model.IsTheme)

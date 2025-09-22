@@ -1338,6 +1338,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Свържи публикация.
+        /// </summary>
+        public static string Dossier_CreateSource {
+            get {
+                return ResourceManager.GetString("Dossier_CreateSource", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Няма назначен редактор..
         /// </summary>
         public static string Dossier_DetailsPage_NoEditorAssigned {
@@ -3797,7 +3806,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Споразумението за публикуване беше успешно прикачено към Вашия ръкопис! Благодаря Ви за съдействието..
+        ///   Looks up a localized string similar to Споразумението за публикуване беше успешно прикачено към Вашия ръкопис! Благодарим Ви за съдействието..
         /// </summary>
         public static string PublicationAgreement_SuccessMessage {
             get {

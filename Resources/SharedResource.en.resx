@@ -1803,4 +1803,7 @@ The manuscript file must have a .doc or .docx extension.</value>
   <data name="JournalDossier_DocumentUploadedFor" xml:space="preserve">
     <value>Uploaded document of type '{0}' for {1}.</value>
   </data>
+  <data name="Dossier_CreateSource" xml:space="preserve">
+    <value>Link publication</value>
+  </data>
 </root>

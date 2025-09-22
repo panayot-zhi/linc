@@ -6,6 +6,8 @@ namespace linc.Models.ViewModels.Author
     {
         public int? Id { get; set; }
 
+        public int? DossierId { get; set; }
+
         [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         [MaxLength(255, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         [Display(Name = "Author_FirstName", ResourceType = typeof(Resources.SharedResource))]

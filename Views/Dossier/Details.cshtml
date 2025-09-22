@@ -36,6 +36,16 @@
 <ul class="list-operations">
     @if (User.IsAtLeast(SiteRole.HeadEditor) || (User.Is(SiteRole.Editor) && User.GetUserId() == Model.AssignedToId))
     {
+        @if (Model.Status is ApplicationDossierStatus.Accepted or ApplicationDossierStatus.AcceptedWithCorrections &&
+             Model.Authors.All(x => x.AgreementId.HasValue))
+        {
+            <li>
+                <a asp-action="Create" asp-controller="Source" asp-route-dossierId="@Model.Id">
+                    @HtmlLocalizer["Dossier_CreateSource"]
+                </a>
+            </li>
+        }
+
         <li>
             <a asp-action="Edit" asp-route-id="@Model.Id">@HtmlLocalizer["Edit_Label"]</a>
         </li>

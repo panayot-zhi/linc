@@ -1652,7 +1652,7 @@
     <value>&lt;a href="{0}"&gt;брой {1}&lt;/a&gt; стр. &lt;a target="_blank" href="{2}"&gt;{3}&lt;/a&gt;</value>
   </data>
   <data name="PublicationAgreement_SuccessMessage" xml:space="preserve">
-    <value>Споразумението за публикуване беше успешно прикачено към Вашия ръкопис! Благодаря Ви за съдействието.</value>
+    <value>Споразумението за публикуване беше успешно прикачено към Вашия ръкопис! Благодарим Ви за съдействието.</value>
   </data>
   <data name="Agreement_DifferentUser_Warning" xml:space="preserve">
     <value>Споразумението за публикуване е поискано от потребител с имена и email, различни от записаните в досието.</value>
@@ -1803,5 +1803,8 @@
   </data>
   <data name="JournalDossier_DocumentUploadedFor" xml:space="preserve">
     <value>Прикачен документ от тип '{0}' за {1}.</value>
+  </data>
+  <data name="Dossier_CreateSource" xml:space="preserve">
+    <value>Свържи публикация</value>
   </data>
 </root>

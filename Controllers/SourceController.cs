@@ -11,12 +11,14 @@ namespace linc.Controllers
     public class SourceController : BaseController
     {
         private readonly ILogger<SourceController> _logger;
+        private readonly IDossierService _dossierService;
         private readonly ISourceService _sourceService;
         private readonly IIssueService _issuesService;
 
         public SourceController(
             ILocalizationService localizationService,
             ILogger<SourceController> logger,
+            IDossierService dossierService,
             ISourceService sourceService, 
             IIssueService issuesService)
             : base(localizationService)
@@ -24,6 +26,7 @@ namespace linc.Controllers
             _logger = logger;
             _sourceService = sourceService;
             _issuesService = issuesService;
+            _dossierService = dossierService;
         }
 
         public async Task<IActionResult> Index(int? page, int? year, string filter, int? issueId)
@@ -54,15 +57,35 @@ namespace linc.Controllers
         }
 
         [SiteAuthorize(SiteRole.Editor)]
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Create(int? dossierId)
         {
             var vModel = new SourceCreateViewModel
             {
+                DossierId = dossierId,
+
                 Issues = await GetIssuesAsync(),
                 Languages = GetLanguages(),
 
                 LanguageId = LocalizationService.GetCurrentLanguageId()
             };
+
+            if (dossierId.HasValue)
+            {
+                var dossier = await _dossierService.GetDossierAsync(dossierId.Value);
+                
+                vModel.Title = dossier.Title;
+                vModel.LanguageId = dossier.LanguageId;
+                vModel.Authors = dossier.Authors.Select(x => new SourceAuthorViewModel()
+                {
+                    Id = x.Id,
+                    DossierId = x.DossierId,
+                    UserId = x.UserId,
+                    FirstName = x.FirstName,
+                    LastName = x.LastName,
+                    Email = x.Email
+
+                }).ToList();
+            }
 
             return View(vModel);
         }
@@ -120,6 +143,7 @@ namespace linc.Controllers
                 Authors = source.Authors.Select(a => new SourceAuthorViewModel
                 {
                     Id = a.Id,
+                    DossierId = a.DossierId,
                     FirstName = a.FirstName,
                     LastName = a.LastName,
                     Notes = a.Notes,

@@ -146,12 +146,11 @@ namespace linc.Services
                     continue;
                 }
 
+                var dossierId = updated.DossierId;
                 var firstName = updated.FirstName.Trim();
                 var lastName = updated.LastName.Trim();
                 var notes = updated.Notes?.Trim();
                 var email = updated.Email;
-
-                var user = await FindApplicationUser(updated.UserId, updated.FirstName, updated.LastName);
 
                 var changed = false;
                 if (!string.Equals(existing.FirstName, firstName, StringComparison.OrdinalIgnoreCase))
@@ -178,14 +177,17 @@ namespace linc.Services
                     changed = true;
                 }
 
-                if (existing.UserId != user?.Id)
+                if (existing.DossierId != dossierId)
                 {
-                    existing.UserId = user?.Id;
+                    existing.DossierId = dossierId;
                     changed = true;
                 }
 
                 if (changed)
                 {
+                    var user = await FindApplicationUser(updated.UserId, updated.FirstName, updated.LastName);
+                    existing.UserId = user?.Id;
+
                     _context.Authors.Update(existing);
                 }
             }
