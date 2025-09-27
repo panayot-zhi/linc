@@ -5,6 +5,8 @@ VisualStudioVersion = 17.3.32804.467
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "linc", "linc.csproj", "{A87ADCD9-89F8-4231-8BF3-61B83463B3E9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "linc.E2ETests", "Tests\linc.E2ETests.csproj", "{6119AC4A-CDEC-4F13-9813-3D3EFA8ED0DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A87ADCD9-89F8-4231-8BF3-61B83463B3E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A87ADCD9-89F8-4231-8BF3-61B83463B3E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A87ADCD9-89F8-4231-8BF3-61B83463B3E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6119AC4A-CDEC-4F13-9813-3D3EFA8ED0DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6119AC4A-CDEC-4F13-9813-3D3EFA8ED0DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6119AC4A-CDEC-4F13-9813-3D3EFA8ED0DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6119AC4A-CDEC-4F13-9813-3D3EFA8ED0DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

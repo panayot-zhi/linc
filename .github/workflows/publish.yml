@@ -39,9 +39,6 @@ jobs:
     - name: Release Build
       run: dotnet build --no-restore --configuration Release
 
-    - name: Run Tests
-      run: dotnet test --no-build --configuration Release --verbosity normal
-
     - name: Publish Release
       run: |
 
@@ -78,7 +75,10 @@ jobs:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USER }}
         privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
-        
+
+    - name: Run E2E Tests
+      run: dotnet test --environment TestConfig__TestGMailUserPassword="${{ secrets.TEST_GMAIL_USER_PASSWORD }}" --environment TestConfig__BasicAuthPassword="${{ secrets.TEST_BASIC_AUTH_PASSWORD }}"
+      
   publish-test-prod:
     if: "!endsWith(github.ref, '-test')"
     runs-on: ubuntu-22.04
@@ -109,8 +109,9 @@ jobs:
     - name: Release Build
       run: dotnet build --no-restore --configuration Release
 
-    - name: Run Tests
-      run: dotnet test --no-build --configuration Release --verbosity normal
+    # todo: uncomment when we have unit tests
+    # - name: Run Tests
+    #   run: dotnet test --no-build --configuration Release --verbosity normal
 
     - name: Publish Release
       id: publish-release
@@ -152,6 +153,9 @@ jobs:
         username: ${{ secrets.SSH_USER }}
         privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
 
+    - name: Run E2E Tests
+      run: dotnet test --environment TestConfig__TestGMailUserPassword="${{ secrets.TEST_GMAIL_USER_PASSWORD }}" --environment TestConfig__BasicAuthPassword="${{ secrets.TEST_BASIC_AUTH_PASSWORD }}"
+    
     # Push build to production
     - name: Stop Service (linc.service)
       uses: garygrossgarten/github-action-ssh@release
