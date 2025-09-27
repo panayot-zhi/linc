@@ -1,0 +1,14 @@
+{
+  "version": "1.0",
+  "isRoot": true,
+  "tools": {
+    "dotnet-ef": {
+      "version": "7.0.0",
+      "commands": [ "dotnet-ef" ]
+    },
+    "microsoft.playwright.cli": {
+      "version": "1.41.0",
+      "commands": [ "playwright" ]
+    }
+  }
+}
