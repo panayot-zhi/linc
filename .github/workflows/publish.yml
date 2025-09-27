@@ -4,7 +4,7 @@ on:
   push:
     tags:
       - v.*
-      
+
 permissions:
   contents: write
 
@@ -33,6 +33,9 @@ jobs:
       with:
         dotnet-version: 6.0.x
 
+    - name: Restore .NET Tools
+      run: dotnet tool restore
+
     - name: Restore Dependencies
       run: dotnet restore
 
@@ -45,10 +48,10 @@ jobs:
         csproj_file="linc.csproj"
         version_line=$(grep '<Version>' "$csproj_file")
         current_version=$(echo $version_line | sed -n 's/.*<Version>\(.*\)<\/Version>.*/\1/p')
-        current_version+=".${{ github.run_number }}"        
+        current_version+=".${{ github.run_number }}"
 
-        dotnet publish /p:PublishProfile=Properties/PublishProfiles/FolderProfile.pubxml /p:Version=$current_version --configuration Release        
-      
+        dotnet publish /p:PublishProfile=Properties/PublishProfiles/FolderProfile.pubxml /p:Version=$current_version --configuration Release
+
     # Push build to staging ONLY
     - name: Stop Service (test.linc.service)
       uses: garygrossgarten/github-action-ssh@release
@@ -78,10 +81,10 @@ jobs:
 
     - name: Install Playwright Browsers (.NET)
       run: dotnet tool run playwright install
-      
+
     - name: Run E2E Playwright Tests
       run: dotnet test --environment TestConfig__TestGMailUserPassword="${{ secrets.TEST_GMAIL_USER_PASSWORD }}" --environment TestConfig__BasicAuthPassword="${{ secrets.TEST_BASIC_AUTH_PASSWORD }}"
-      
+
   publish-test-prod:
     if: "!endsWith(github.ref, '-test')"
     runs-on: ubuntu-22.04
@@ -106,6 +109,9 @@ jobs:
       with:
         dotnet-version: 6.0.x
 
+    - name: Restore .NET Tools
+      run: dotnet tool restore
+
     - name: Restore Dependencies
       run: dotnet restore
 
@@ -124,7 +130,7 @@ jobs:
         dotnet publish /p:PublishProfile=Properties/PublishProfiles/FolderProfile.pubxml /p:Version=$current_version --configuration Release
 
         echo "CURRENT_VERSION=$current_version" >> $GITHUB_OUTPUT
-      
+
     # Push build to staging
     - name: Stop Service (test.linc.service)
       uses: garygrossgarten/github-action-ssh@release
@@ -154,10 +160,10 @@ jobs:
 
     - name: Install Playwright Browsers (.NET)
       run: dotnet tool run playwright install
-      
+
     - name: Run E2E Playwright Tests
       run: dotnet test --environment TestConfig__TestGMailUserPassword="${{ secrets.TEST_GMAIL_USER_PASSWORD }}" --environment TestConfig__BasicAuthPassword="${{ secrets.TEST_BASIC_AUTH_PASSWORD }}"
-    
+
     # Push build to production
     - name: Stop Service (linc.service)
       uses: garygrossgarten/github-action-ssh@release
@@ -192,7 +198,7 @@ jobs:
         # Use sed to find and replace the badge image URL with the new version
         sed -i "s/badge\/latest-v\..*-/badge\/latest-v.${{ steps.publish-release.outputs.CURRENT_VERSION }}-/" README.md
 
-    - name: Commit and push changes      
+    - name: Commit and push changes
       run: |
           git config --global user.name 'Admin-Linc'
           git config --global user.email 'admin-linc@uni-plovdiv.bg'
