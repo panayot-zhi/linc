@@ -76,7 +76,10 @@ jobs:
         username: ${{ secrets.SSH_USER }}
         privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
 
-    - name: Run E2E Tests
+    - name: Install Playwright Browsers (.NET)
+      run: dotnet tool run playwright install
+      
+    - name: Run E2E Playwright Tests
       run: dotnet test --environment TestConfig__TestGMailUserPassword="${{ secrets.TEST_GMAIL_USER_PASSWORD }}" --environment TestConfig__BasicAuthPassword="${{ secrets.TEST_BASIC_AUTH_PASSWORD }}"
       
   publish-test-prod:
@@ -108,10 +111,6 @@ jobs:
 
     - name: Release Build
       run: dotnet build --no-restore --configuration Release
-
-    # todo: uncomment when we have unit tests
-    # - name: Run Tests
-    #   run: dotnet test --no-build --configuration Release --verbosity normal
 
     - name: Publish Release
       id: publish-release
@@ -153,7 +152,10 @@ jobs:
         username: ${{ secrets.SSH_USER }}
         privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
 
-    - name: Run E2E Tests
+    - name: Install Playwright Browsers (.NET)
+      run: dotnet tool run playwright install
+      
+    - name: Run E2E Playwright Tests
       run: dotnet test --environment TestConfig__TestGMailUserPassword="${{ secrets.TEST_GMAIL_USER_PASSWORD }}" --environment TestConfig__BasicAuthPassword="${{ secrets.TEST_BASIC_AUTH_PASSWORD }}"
     
     # Push build to production
