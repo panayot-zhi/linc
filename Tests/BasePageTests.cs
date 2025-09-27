@@ -10,11 +10,12 @@ namespace linc.E2ETests
     {
         protected Uri BaseUri = null!;
         protected TestConfig Config = null!;
-        protected IPlaywright Playwright = null!;
         protected IBrowserContext BrowserContext = null!;
-        protected IBrowser Browser = null!;
 
-        protected virtual IPage Page { get; set; }
+        protected virtual IPage Page { get; set; } = null!;
+
+        private IPlaywright? _playwright;
+        private IBrowser? _browser;
 
         [OneTimeSetUp]
         public async Task GlobalOneTimeSetUp()
@@ -23,20 +24,25 @@ namespace linc.E2ETests
                 .AddEnvironmentVariables()
                 .Build();
 
-            Config = configuration.GetSection("TestConfig").Get<TestConfig>() ?? 
+            // load test configuration to object instance of TestConfig
+            Config = configuration.GetSection("TestConfig").Get<TestConfig>() ??
                 throw new InvalidDataException("Could not load test configuration.");
 
-            // Validate TestConfig data annotations
+            // validate TestConfig data annotations
             Validator.ValidateObject(Config, new ValidationContext(Config), validateAllProperties: true);
 
+            // initialize common configuration
             BaseUri = new Uri(Config.ServerBaseUrl);
-            Playwright = await Microsoft.Playwright.Playwright.CreateAsync();
-            Browser = await Playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
+
+            // define private internal fields
+            _playwright = await Playwright.CreateAsync();
+            _browser = await _playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
             {
                 Headless = false,
                 SlowMo = 500
             });
 
+            // define usable protected properties for children pages
             var browserContextOptions = new BrowserNewContextOptions();
             if (!string.IsNullOrEmpty(Config.BasicAuthUsername) && !string.IsNullOrEmpty(Config.BasicAuthPassword))
             {
@@ -47,15 +53,19 @@ namespace linc.E2ETests
                 };
             }
 
-            BrowserContext = await Browser.NewContextAsync(browserContextOptions);
+            BrowserContext = await _browser.NewContextAsync(browserContextOptions);
             Page = await BrowserContext.NewPageAsync();
         }
 
         [OneTimeTearDown]
         public async Task GlobalOneTimeTearDown()
         {
-            await Browser.CloseAsync();
-            Playwright.Dispose();
+            if (_browser is not null)
+            {
+                await _browser.CloseAsync();
+            }
+
+            _playwright?.Dispose();
         }
     }
 }

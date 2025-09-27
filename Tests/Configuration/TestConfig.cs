@@ -5,15 +5,15 @@ namespace linc.E2ETests.Configuration
     public class TestConfig
     {
         [Required]
-        public string ServerBaseUrl { get; set; } = null!;
+        public string ServerBaseUrl { get; set; } = "https://test.linc.uni-plovdiv.bg/";
 
         [Required]
-        public string TestGMailUserName { get; set; } = null!;
+        public string TestGMailUserName { get; set; } = "pivanov@uni-plovdiv.bg";
 
         [Required]
-        public string TestGMailUserPassword { get; set; } = null!;
+        public string TestGMailUserPassword { get; set; } = string.Empty;
 
-        public string? BasicAuthUsername { get; set; } = null!;
+        public string? BasicAuthUsername { get; set; } = "admin";
 
         public string? BasicAuthPassword { get; set; } = null!;
     }
