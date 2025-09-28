@@ -90,13 +90,17 @@ namespace linc.E2ETests.Utility
         }
 
 
-        public async Task AssertRegisterConfirmationSent()
+        public async Task AssertRegisterConfirmationSent(string culture)
         {
             var messageId = await GetLastUnseenMessage();
             var message = await _testFolder.GetMessageAsync(messageId);
 
-            // todo: test this for multiple cultures
-            Assert.That(message.Subject.Equals("LInC - Confirm email"));
+            if(culture.Equals("bg"))
+                Assert.That(message.Subject.Equals("ЛИнК - Потвърждение на email"));
+            else if (culture.Equals("en"))
+                Assert.That(message.Subject.Equals("LInC - Confirm email"));
+            else
+                Assert.Fail($"Unsupported culture: '{culture}'");
 
             // todo verify that there's a link containing /identity/account/confirm-email?
         }

@@ -5,27 +5,21 @@ namespace linc.E2ETests
     public class HomePageTests : BasePageTests
     {
         [Test]
-        public async Task HomePage_TitleIsCorrect_ForBulgarianCulture()
+        public async Task bg_HomePage_TitleIsCorrect()
         {
-            var urlBg = new Uri(BaseUri, "/?culture=bg").ToString();
-            await Page.GotoAsync(urlBg);
+            await SetPageCulture("bg");
+            await Page.GotoAsync(BaseUri.ToString());
             var title = await Page.TitleAsync();
             Assert.That(title, Is.EqualTo("Начало - linc"));
         }
 
         [Test]
-        public async Task HomePage_TitleIsCorrect_ForEnglishCulture()
+        public async Task en_HomePage_TitleIsCorrect()
         {
-            var urlEn = new Uri(BaseUri, "/?culture=en").ToString();
-            await Page.GotoAsync(urlEn);
+            await SetPageCulture("en");
+            await Page.GotoAsync(BaseUri.ToString());
             var title = await Page.TitleAsync();
             Assert.That(title, Is.EqualTo("Home - linc"));
-        }
-
-        [OneTimeTearDown]
-        public async Task OneTimeTearDown()
-        {
-            await Page.CloseAsync();
         }
     }
 }
