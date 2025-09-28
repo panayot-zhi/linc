@@ -58,9 +58,35 @@ namespace linc.E2ETests
             Page = await BrowserContext.NewPageAsync();
         }
 
+        protected async Task SetPageCulture(string culture)
+        {
+            await Page.GotoAsync(BaseUri.ToString());
+            await Page.ClickAsync($"button#language_{culture}");
+        }
+
+        protected async Task ConfirmSwalAlert()
+        {
+            await Page.ClickAsync("button.swal2-confirm");
+        }
+
+        protected async Task DismissSwalAlert()
+        {
+            await Page.ClickAsync("button.swal2-cancel");
+        }
+
+        protected async Task Logout()
+        {
+            await Page.ClickAsync("a[href='#logoutForm']");
+        }
+
         [OneTimeTearDown]
         public async Task GlobalOneTimeTearDown()
         {
+            if (Page is not null)
+            {
+                await Page.CloseAsync();
+            }
+
             if (_browser is not null)
             {
                 await _browser.CloseAsync();
