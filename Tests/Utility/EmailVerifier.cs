@@ -65,7 +65,7 @@ namespace linc.E2ETests.Utility
 
                 if (uniqueIds.Count == 1)
                 {
-                    // mark messaged read and processed
+                    // mark message read and processed
 
                     var messageId = uniqueIds.Single();
 
