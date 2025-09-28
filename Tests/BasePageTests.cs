@@ -38,8 +38,9 @@ namespace linc.E2ETests
             _playwright = await Playwright.CreateAsync();
             _browser = await _playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
             {
-                Headless = false,
-                SlowMo = 500
+                // NOTE: use these for debugging locally
+                // Headless = false,
+                // SlowMo = 500
             });
 
             // define usable protected properties for children pages
