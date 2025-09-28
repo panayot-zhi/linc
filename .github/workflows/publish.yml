@@ -43,7 +43,7 @@ jobs:
       run: dotnet build --no-restore --configuration Release
 
     - name: Install Playwright Browsers
-      run: pwsh Tests/bin/Debug/net6.0/playwright.ps1 install
+      run: pwsh Tests/bin/Release/net6.0/playwright.ps1 install
       
     - name: Publish Release
       run: |
@@ -81,9 +81,6 @@ jobs:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USER }}
         privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
-
-    - name: Install Playwright Browsers
-      run: pwsh Tests/bin/Debug/net6.0/playwright.ps1 install
 
     - name: Run E2E Playwright Tests
       run: dotnet test --environment TestConfig__TestGMailUserPassword="${{ secrets.TEST_GMAIL_USER_PASSWORD }}" --environment TestConfig__BasicAuthPassword="${{ secrets.TEST_BASIC_AUTH_PASSWORD }}"
