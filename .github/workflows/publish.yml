@@ -26,7 +26,7 @@ jobs:
 
     # Fix Timestamps
     - name: Fix Timestamps
-      uses: chetan/git-restore-mtime-action@v1
+      uses: chetan/git-restore-mtime-action@v2
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
@@ -42,6 +42,9 @@ jobs:
     - name: Release Build
       run: dotnet build --no-restore --configuration Release
 
+    - name: Install Playwright Browsers
+      run: pwsh Tests/bin/Debug/net6.0/playwright.ps1 install
+      
     - name: Publish Release
       run: |
 
