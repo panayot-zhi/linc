@@ -105,7 +105,7 @@ jobs:
 
     # Fix Timestamps
     - name: Fix Timestamps
-      uses: chetan/git-restore-mtime-action@v1
+      uses: chetan/git-restore-mtime-action@v2
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
@@ -121,6 +121,9 @@ jobs:
     - name: Release Build
       run: dotnet build --no-restore --configuration Release
 
+    - name: Install Playwright Browsers
+      run: pwsh Tests/bin/Release/net6.0/playwright.ps1 install
+      
     - name: Publish Release
       id: publish-release
       run: |
@@ -160,9 +163,6 @@ jobs:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USER }}
         privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
-
-    - name: Install Playwright Browsers (.NET)
-      run: dotnet tool run playwright install
 
     - name: Run E2E Playwright Tests
       run: dotnet test --environment TestConfig__TestGMailUserPassword="${{ secrets.TEST_GMAIL_USER_PASSWORD }}" --environment TestConfig__BasicAuthPassword="${{ secrets.TEST_BASIC_AUTH_PASSWORD }}"
