@@ -44,7 +44,7 @@ jobs:
 
     - name: Install Playwright Browsers
       run: pwsh Tests/bin/Release/net6.0/playwright.ps1 install
-      
+
     - name: Publish Release
       run: |
 
@@ -81,6 +81,20 @@ jobs:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USER }}
         privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Wait for application to be healthy
+      run: |
+        for i in {1..60}; do
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" -u "admin:${{ secrets.TEST_BASIC_AUTH_PASSWORD }}" https://test.linc.uni-plovdiv.bg/health)
+          if [ "$STATUS" -eq 200 ]; then
+            echo "Application is healthy."
+            exit 0
+          fi
+          echo "($i) Waiting for health endpoint..."
+          sleep 5
+        done
+        echo "Timed out waiting for health endpoint!"
+        exit 1
 
     - name: Run E2E Playwright Tests
       run: dotnet test --environment TestConfig__TestGMailUserPassword="${{ secrets.TEST_GMAIL_USER_PASSWORD }}" --environment TestConfig__BasicAuthPassword="${{ secrets.TEST_BASIC_AUTH_PASSWORD }}"
@@ -120,7 +134,7 @@ jobs:
 
     - name: Install Playwright Browsers
       run: pwsh Tests/bin/Release/net6.0/playwright.ps1 install
-      
+
     - name: Publish Release
       id: publish-release
       run: |
@@ -161,6 +175,20 @@ jobs:
         username: ${{ secrets.SSH_USER }}
         privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
 
+    - name: Wait for application to be healthy
+      run: |
+        for i in {1..60}; do
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" -u "admin:${{ secrets.TEST_BASIC_AUTH_PASSWORD }}" https://test.linc.uni-plovdiv.bg/health)
+          if [ "$STATUS" -eq 200 ]; then
+            echo "Application is healthy."
+            exit 0
+          fi
+          echo "($i) Waiting for health endpoint..."
+          sleep 5
+        done
+        echo "Timed out waiting for health endpoint!"
+        exit 1
+
     - name: Run E2E Playwright Tests
       run: dotnet test --environment TestConfig__TestGMailUserPassword="${{ secrets.TEST_GMAIL_USER_PASSWORD }}" --environment TestConfig__BasicAuthPassword="${{ secrets.TEST_BASIC_AUTH_PASSWORD }}"
 
@@ -190,6 +218,20 @@ jobs:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USER }}
         privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Wait for application to be healthy
+      run: |
+        for i in {1..60}; do
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://linc.uni-plovdiv.bg/health)
+          if [ "$STATUS" -eq 200 ]; then
+            echo "Application is healthy."
+            exit 0
+          fi
+          echo "($i) Waiting for health endpoint..."
+          sleep 5
+        done
+        echo "Timed out waiting for health endpoint!"
+        exit 1
 
     - name: Update README.md
       run: |
