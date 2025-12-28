@@ -1,6 +1,7 @@
 using linc.Utility;
 using Microsoft.Extensions.FileProviders;
 using Serilog;
+using linc.Data;
 
 namespace linc;
 
@@ -64,6 +65,7 @@ public class Program
         );
 
         app.MapRazorPages();
+        app.MapHealthChecks("/health");
         app.Run();
     }
 

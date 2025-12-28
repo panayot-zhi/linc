@@ -4,7 +4,7 @@ on:
   push:
     tags:
       - v.*
-      
+
 permissions:
   contents: write
 
@@ -26,12 +26,15 @@ jobs:
 
     # Fix Timestamps
     - name: Fix Timestamps
-      uses: chetan/git-restore-mtime-action@v1
+      uses: chetan/git-restore-mtime-action@v2
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: 6.0.x
+
+    - name: Restore .NET Tools
+      run: dotnet tool restore
 
     - name: Restore Dependencies
       run: dotnet restore
@@ -39,8 +42,8 @@ jobs:
     - name: Release Build
       run: dotnet build --no-restore --configuration Release
 
-    - name: Run Tests
-      run: dotnet test --no-build --configuration Release --verbosity normal
+    - name: Install Playwright Browsers
+      run: pwsh Tests/bin/Release/net6.0/playwright.ps1 install
 
     - name: Publish Release
       run: |
@@ -48,10 +51,10 @@ jobs:
         csproj_file="linc.csproj"
         version_line=$(grep '<Version>' "$csproj_file")
         current_version=$(echo $version_line | sed -n 's/.*<Version>\(.*\)<\/Version>.*/\1/p')
-        current_version+=".${{ github.run_number }}"        
+        current_version+=".${{ github.run_number }}"
 
-        dotnet publish /p:PublishProfile=Properties/PublishProfiles/FolderProfile.pubxml /p:Version=$current_version --configuration Release        
-      
+        dotnet publish /p:PublishProfile=Properties/PublishProfiles/FolderProfile.pubxml /p:Version=$current_version --configuration Release
+
     # Push build to staging ONLY
     - name: Stop Service (test.linc.service)
       uses: garygrossgarten/github-action-ssh@release
@@ -78,7 +81,24 @@ jobs:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USER }}
         privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
-        
+
+    - name: Wait for application to be healthy
+      run: |
+        for i in {1..60}; do
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" -u "admin:${{ secrets.TEST_BASIC_AUTH_PASSWORD }}" https://test.linc.uni-plovdiv.bg/health)
+          if [ "$STATUS" -eq 200 ]; then
+            echo "Application is healthy."
+            exit 0
+          fi
+          echo "($i) Waiting for health endpoint..."
+          sleep 5
+        done
+        echo "Timed out waiting for health endpoint!"
+        exit 1
+
+    - name: Run E2E Playwright Tests
+      run: dotnet test --environment TestConfig__TestGMailUserPassword="${{ secrets.TEST_GMAIL_USER_PASSWORD }}" --environment TestConfig__BasicAuthPassword="${{ secrets.TEST_BASIC_AUTH_PASSWORD }}"
+
   publish-test-prod:
     if: "!endsWith(github.ref, '-test')"
     runs-on: ubuntu-22.04
@@ -96,12 +116,15 @@ jobs:
 
     # Fix Timestamps
     - name: Fix Timestamps
-      uses: chetan/git-restore-mtime-action@v1
+      uses: chetan/git-restore-mtime-action@v2
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: 6.0.x
+
+    - name: Restore .NET Tools
+      run: dotnet tool restore
 
     - name: Restore Dependencies
       run: dotnet restore
@@ -109,8 +132,8 @@ jobs:
     - name: Release Build
       run: dotnet build --no-restore --configuration Release
 
-    - name: Run Tests
-      run: dotnet test --no-build --configuration Release --verbosity normal
+    - name: Install Playwright Browsers
+      run: pwsh Tests/bin/Release/net6.0/playwright.ps1 install
 
     - name: Publish Release
       id: publish-release
@@ -124,7 +147,7 @@ jobs:
         dotnet publish /p:PublishProfile=Properties/PublishProfiles/FolderProfile.pubxml /p:Version=$current_version --configuration Release
 
         echo "CURRENT_VERSION=$current_version" >> $GITHUB_OUTPUT
-      
+
     # Push build to staging
     - name: Stop Service (test.linc.service)
       uses: garygrossgarten/github-action-ssh@release
@@ -151,6 +174,23 @@ jobs:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USER }}
         privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Wait for application to be healthy
+      run: |
+        for i in {1..60}; do
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" -u "admin:${{ secrets.TEST_BASIC_AUTH_PASSWORD }}" https://test.linc.uni-plovdiv.bg/health)
+          if [ "$STATUS" -eq 200 ]; then
+            echo "Application is healthy."
+            exit 0
+          fi
+          echo "($i) Waiting for health endpoint..."
+          sleep 5
+        done
+        echo "Timed out waiting for health endpoint!"
+        exit 1
+
+    - name: Run E2E Playwright Tests
+      run: dotnet test --environment TestConfig__TestGMailUserPassword="${{ secrets.TEST_GMAIL_USER_PASSWORD }}" --environment TestConfig__BasicAuthPassword="${{ secrets.TEST_BASIC_AUTH_PASSWORD }}"
 
     # Push build to production
     - name: Stop Service (linc.service)
@@ -179,6 +219,20 @@ jobs:
         username: ${{ secrets.SSH_USER }}
         privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
 
+    - name: Wait for application to be healthy
+      run: |
+        for i in {1..60}; do
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://linc.uni-plovdiv.bg/health)
+          if [ "$STATUS" -eq 200 ]; then
+            echo "Application is healthy."
+            exit 0
+          fi
+          echo "($i) Waiting for health endpoint..."
+          sleep 5
+        done
+        echo "Timed out waiting for health endpoint!"
+        exit 1
+
     - name: Update README.md
       run: |
         # Simple sed command to replace a placeholder or existing version in README.md
@@ -186,7 +240,7 @@ jobs:
         # Use sed to find and replace the badge image URL with the new version
         sed -i "s/badge\/latest-v\..*-/badge\/latest-v.${{ steps.publish-release.outputs.CURRENT_VERSION }}-/" README.md
 
-    - name: Commit and push changes      
+    - name: Commit and push changes
       run: |
           git config --global user.name 'Admin-Linc'
           git config --global user.email 'admin-linc@uni-plovdiv.bg'

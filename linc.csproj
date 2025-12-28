@@ -10,19 +10,23 @@
 		<SatelliteResourceLanguages>bg;en</SatelliteResourceLanguages>
 		<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
 		<DockerfileContext>.</DockerfileContext>
-		<Version>1.26.55</Version>
+		<Version>1.32.55</Version>
 		<Company />
 	</PropertyGroup>
 
 	<ItemGroup>
 		<Compile Remove="backups\**" />
 		<Compile Remove="release\**" />
+		<Compile Remove="Tests\**" />
 		<Content Remove="backups\**" />
 		<Content Remove="release\**" />
+		<Content Remove="Tests\**" />
 		<EmbeddedResource Remove="backups\**" />
 		<EmbeddedResource Remove="release\**" />
+		<EmbeddedResource Remove="Tests\**" />
 		<None Remove="backups\**" />
 		<None Remove="release\**" />
+		<None Remove="Tests\**" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -68,6 +72,7 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="6.0.3" />
+		<PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="6.0.0" />
 		<PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
 		<PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.2" />
 		<PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />

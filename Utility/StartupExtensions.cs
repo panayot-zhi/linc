@@ -334,6 +334,9 @@ public static class StartupExtensions
                 }
             });
 
+        services.AddHealthChecks()
+            .AddDbContextCheck<ApplicationDbContext>(name: "DbContext");
+
         return services;
     }
 
