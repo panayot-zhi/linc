@@ -1,0 +1,109 @@
+/**
+ * WYSIWYG Editor Styles
+ */
+
+/* Container for the editor */
+.wysiwyg-container {
+    position: relative;
+    margin: 10px 0;
+}
+
+/* Toolbar styles */
+.wysiwyg-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 8px;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-bottom: none;
+    border-radius: 4px 4px 0 0;
+    margin-bottom: 0;
+}
+
+/* Toolbar buttons */
+.wysiwyg-btn {
+    background: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 3px;
+    padding: 6px 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+}
+
+.wysiwyg-btn:hover {
+    background: #e9ecef;
+    border-color: #adb5bd;
+}
+
+.wysiwyg-btn:active {
+    background: #dee2e6;
+}
+
+.wysiwyg-btn i {
+    font-size: 16px;
+    color: #495057;
+}
+
+/* Separator */
+.wysiwyg-separator {
+    width: 1px;
+    height: 24px;
+    background: #dee2e6;
+    margin: 0 4px;
+}
+
+/* Editor when focused */
+.content-editable.wysiwyg-focused {
+    background: #fff !important;
+    border: 1px solid #106eea;
+    border-top: 1px solid #dee2e6;
+    border-radius: 0 0 4px 4px;
+    padding: 12px;
+    min-height: 100px;
+    outline: none;
+}
+
+/* Editor default state - keep existing styles */
+.content-editable:not(.wysiwyg-focused) {
+    border-radius: 4px;
+}
+
+/* Improve formatting inside editor */
+.content-editable h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 10px 0;
+}
+
+.content-editable h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 8px 0;
+}
+
+.content-editable p {
+    margin: 8px 0;
+}
+
+.content-editable ul,
+.content-editable ol {
+    margin: 8px 0;
+    padding-left: 30px;
+}
+
+.content-editable li {
+    margin: 4px 0;
+}
+
+/* Remove toolbar when printing */
+@media print {
+    .wysiwyg-toolbar {
+        display: none;
+    }
+}

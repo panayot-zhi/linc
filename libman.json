@@ -156,6 +156,16 @@
       "files": [
         "purecounter_vanilla.js.map"
       ]
+    },
+    {
+      "library": "quill@2.0.2",
+      "destination": "wwwroot/lib/quill/",
+      "files": [
+        "quill.js",
+        "quill.min.js",
+        "quill.snow.css",
+        "quill.bubble.css"
+      ]
     }
   ]
 }
