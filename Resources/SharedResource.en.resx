@@ -1330,7 +1330,6 @@
   </data>
   <data name="Search_Button_Label" xml:space="preserve">
     <value>Search</value>
-    <comment>Se</comment>
   </data>
   <data name="AuthorsSection_Description" xml:space="preserve">
     <value>Browse authors from all issues alphabetically or search for a specific name or title. You can also browse &lt;a href="{0}"&gt;all works by year and issue&lt;/a&gt;.</value>
@@ -1760,5 +1759,44 @@ The manuscript file must have a .doc or .docx extension.</value>
   </data>
   <data name="DocumentType_SuperReview" xml:space="preserve">
     <value>Arbitration review</value>
+  </data>
+  <data name="Team_S.Mathewson_MemberDescription" xml:space="preserve">
+    <value>Head editor</value>
+  </data>
+  <data name="Team_Y.Chankova_MemberDescription" xml:space="preserve">
+    <value>Editor</value>
+  </data>
+  <data name="Team_B.Yanev_MemberDescription" xml:space="preserve">
+    <value>Editor</value>
+  </data>
+  <data name="Team_F.Boykova_MemberDescription" xml:space="preserve">
+    <value>Editor</value>
+  </data>
+  <data name="Team_I.Peleva_MemberDescription" xml:space="preserve">
+    <value>Head editor</value>
+  </data>
+  <data name="Team_Z.Ivanov_MemberDescription" xml:space="preserve">
+    <value>Editor</value>
+  </data>
+  <data name="Team_M.Vlashki_MemberDescription" xml:space="preserve">
+    <value>Head editor</value>
+  </data>
+  <data name="Team_Y.Rowland_MemberDescription" xml:space="preserve">
+    <value>Editor</value>
+  </data>
+  <data name="Team_G.Krasteva_Member" xml:space="preserve">
+    <value>Assoc. Prof. Gergina Krasteva, PhD</value>
+  </data>
+  <data name="Team_G.Krasteva_MemberDescription" xml:space="preserve">
+    <value>Editor</value>
+  </data>
+  <data name="Team_S.Cherpokova_Member" xml:space="preserve">
+    <value>Assoc. Prof. Svetla Cherpokova, PhD</value>
+  </data>
+  <data name="Team_S.Cherpokova_MemberDescription" xml:space="preserve">
+    <value>Editor</value>
+  </data>
+  <data name="Team_LiteratureAndCulture_2024-2026" xml:space="preserve">
+    <value>Editorial team issues 1-5, 2024/2026</value>
   </data>
 </root>
