@@ -1331,7 +1331,6 @@
   </data>
   <data name="Search_Button_Label" xml:space="preserve">
     <value>Търси</value>
-    <comment>Se</comment>
   </data>
   <data name="AuthorsSection_Description" xml:space="preserve">
     <value>Прегледайте авторите от всички броеве или търсете конкретно име/заглавие. Можете да прегледате и &lt;a href="{0}"&gt;всички публикации по години и броеве&lt;/a&gt;.</value>
@@ -1761,5 +1760,44 @@
   </data>
   <data name="DocumentType_SuperReview" xml:space="preserve">
     <value>Арбитражна рецензия</value>
+  </data>
+  <data name="Team_S.Mathewson_MemberDescription" xml:space="preserve">
+    <value>Главен редактор</value>
+  </data>
+  <data name="Team_Y.Chankova_MemberDescription" xml:space="preserve">
+    <value>Редактор</value>
+  </data>
+  <data name="Team_B.Yanev_MemberDescription" xml:space="preserve">
+    <value>Редактор</value>
+  </data>
+  <data name="Team_F.Boykova_MemberDescription" xml:space="preserve">
+    <value>Редактор</value>
+  </data>
+  <data name="Team_I.Peleva_MemberDescription" xml:space="preserve">
+    <value>Главен редактор</value>
+  </data>
+  <data name="Team_Z.Ivanov_MemberDescription" xml:space="preserve">
+    <value>Редактор</value>
+  </data>
+  <data name="Team_M.Vlashki_MemberDescription" xml:space="preserve">
+    <value>Редактор</value>
+  </data>
+  <data name="Team_Y.Rowland_MemberDescription" xml:space="preserve">
+    <value>Редактор</value>
+  </data>
+  <data name="Team_G.Krasteva_Member" xml:space="preserve">
+    <value>доц. д-р Гергина Кръстева</value>
+  </data>
+  <data name="Team_G.Krasteva_MemberDescription" xml:space="preserve">
+    <value>Редактор</value>
+  </data>
+  <data name="Team_S.Cherpokova_Member" xml:space="preserve">
+    <value>доц. д-р Светла Черпокова</value>
+  </data>
+  <data name="Team_S.Cherpokova_MemberDescription" xml:space="preserve">
+    <value>Редактор</value>
+  </data>
+  <data name="Team_LiteratureAndCulture_2024-2026" xml:space="preserve">
+    <value>Редакторски екип кн. 1–5, 2024/2026</value>
   </data>
 </root>
