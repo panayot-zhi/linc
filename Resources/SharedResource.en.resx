@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
+  <!--
+    Microsoft ResX Schema
+
     Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
     associated with the data types.
-    
+
     Example:
-    
+
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-                
-    There are any number of "resheader" rows that contain simple 
+
+    There are any number of "resheader" rows that contain simple
     name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
     mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
     extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
     read any of the formats listed below.
-    
+
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-    
+
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
+    value   : The object must be serialized into a byte array
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -255,34 +255,34 @@
   <data name="CodexSection_Authors_Content" xml:space="preserve">
     <value>&lt;ul class="mx-2"&gt;
 	&lt;li&gt;
-		may submit to the journal &lt;strong&gt;only their own work&lt;/strong&gt; that has not been either published in or submitted to another journal; 
+		may submit to the journal &lt;strong&gt;only their own work&lt;/strong&gt; that has not been either published in or submitted to another journal;
 	&lt;/li&gt;
 	&lt;li&gt;
-		must have formatted their text in accordance with the LinC Guidelines for Authors; 
+		must have formatted their text in accordance with the LinC Guidelines for Authors;
 	&lt;/li&gt;
 	&lt;li&gt;
-		is/are responsible for the reliability of the primary data they utilise in their research and for the proposed work’s originality; 
+		is/are responsible for the reliability of the primary data they utilise in their research and for the proposed work’s originality;
 	&lt;/li&gt;
 	&lt;li&gt;
-		when their text is published again, they must include a correct bibliographical reference to its first publication in LInC; 
+		when their text is published again, they must include a correct bibliographical reference to its first publication in LInC;
 	&lt;/li&gt;
 	&lt;li&gt;
-		must cite accurately and fully all sources used in the writing of the research paper; 
+		must cite accurately and fully all sources used in the writing of the research paper;
 	&lt;/li&gt;
 	&lt;li&gt;
-		must specify the institutions, organisations, projects, individuals relevant to the preparation of their study (by funding the research that resulted in its production, by providing specific information, working conditions, access to a non-public archive, etc.); 
+		must specify the institutions, organisations, projects, individuals relevant to the preparation of their study (by funding the research that resulted in its production, by providing specific information, working conditions, access to a non-public archive, etc.);
 	&lt;/li&gt;
 	&lt;li&gt;
-		must report any conflicts of interest; 
+		must report any conflicts of interest;
 	&lt;/li&gt;
 	&lt;li&gt;
-		must answer the reviewers’ questions, respond to their comments and, if necessary, make changes to the submitted text; in case of disagreement with the proposed corrective options, the author has the right to withdraw the submitted manuscript; 
+		must answer the reviewers’ questions, respond to their comments and, if necessary, make changes to the submitted text; in case of disagreement with the proposed corrective options, the author has the right to withdraw the submitted manuscript;
 	&lt;/li&gt;
 	&lt;li&gt;
-		must promptly inform the Editors if they discover a serious omission or error in their work after submission; 
+		must promptly inform the Editors if they discover a serious omission or error in their work after submission;
 	&lt;/li&gt;
 	&lt;li&gt;
-		does/do not disclose details of their collaboration with the editorial board as part of the publication process; 
+		does/do not disclose details of their collaboration with the editorial board as part of the publication process;
 	&lt;/li&gt;
 	&lt;li&gt;
 		complies with the journal’s Code of Ethics and with generally accepted academic norms of ethical conduct.
@@ -316,19 +316,19 @@
 		is guided strictly by scholarly criteria, aims and objectives in the selection of texts and does not allow any form of discrimination on the grounds of race, ethnicity, religion, gender or age;
 	&lt;/li&gt;
 	&lt;li&gt;
-		abides by the journal’s copyright policy which complies with the Copyright and Neighbouring Rights Act of the Republic of Bulgaria and with the best global practices in the relevant field (see &lt;a href="/docs/publication_agreement.doc"&gt;Publication Agreement&lt;/a&gt;); 
+		abides by the journal’s copyright policy which complies with the Copyright and Neighbouring Rights Act of the Republic of Bulgaria and with the best global practices in the relevant field (see &lt;a href="/docs/publication_agreement.doc"&gt;Publication Agreement&lt;/a&gt;);
 	&lt;/li&gt;
 	&lt;li&gt;
-		counteracts any malpractice (submissions are vetted for plagiarism; fair co-author relationships are guaranteed by requiring a co-author contribution report indicating each author’s contribution to the specific article/study; potential conflicts of interest are monitored); 
+		counteracts any malpractice (submissions are vetted for plagiarism; fair co-author relationships are guaranteed by requiring a co-author contribution report indicating each author’s contribution to the specific article/study; potential conflicts of interest are monitored);
 	&lt;/li&gt;
 	&lt;li&gt;
-		ensures the verifiability of the work done in the process of accepting, reviewing and publishing texts; 
+		ensures the verifiability of the work done in the process of accepting, reviewing and publishing texts;
 	&lt;/li&gt;
 	&lt;li&gt;
-		strictly follows the procedures of double-blind peer review of articles submitted to the Editorial Office; 
+		strictly follows the procedures of double-blind peer review of articles submitted to the Editorial Office;
 	&lt;/li&gt;
 	&lt;li&gt;
-		informs the authors about the pre-publishing stages of the article/study in a timely manner and helps to improve the submitted manuscript; 
+		informs the authors about the pre-publishing stages of the article/study in a timely manner and helps to improve the submitted manuscript;
 	&lt;/li&gt;
 	&lt;li&gt;
 		ensures the confidentiality of authors and reviewers as well as of correspondence concerning the improvement of the manuscript quality;
@@ -337,7 +337,7 @@
 		does not use for personal gain information obtained in the process of working with authors and reviewers;
 	&lt;/li&gt;
 	&lt;li&gt;
-		in case of a signal of any sort of impropriety or dishonesty in a text that has already been published, makes sure that the audience is informed about the problematic content (discloses the editorial position on the case and/or the opposing opinion and/or the respective author’s corrective text); 
+		in case of a signal of any sort of impropriety or dishonesty in a text that has already been published, makes sure that the audience is informed about the problematic content (discloses the editorial position on the case and/or the opposing opinion and/or the respective author’s corrective text);
 	&lt;/li&gt;
 	&lt;li&gt;
 		in collaboration with the publisher, takes care of the journal’s electronic archive, as well as of the published texts’ permanent visibility on the LInC website.
@@ -1324,7 +1324,6 @@
   </data>
   <data name="Search_Button_Label" xml:space="preserve">
     <value>Search</value>
-    <comment>Se</comment>
   </data>
   <data name="AuthorsSection_Description" xml:space="preserve">
     <value>Browse authors from all issues alphabetically or search for a specific name or title. You can also browse &lt;a href="{0}"&gt;all works by year and issue&lt;/a&gt;.</value>
@@ -1757,6 +1756,45 @@ The manuscript file must have a .doc or .docx extension.</value>
   </data>
   <data name="DocumentType_SuperReview" xml:space="preserve">
     <value>Arbitration review</value>
+  </data>
+  <data name="Team_S.Mathewson_MemberDescription" xml:space="preserve">
+    <value>Head editor</value>
+  </data>
+  <data name="Team_Y.Chankova_MemberDescription" xml:space="preserve">
+    <value>Editor</value>
+  </data>
+  <data name="Team_B.Yanev_MemberDescription" xml:space="preserve">
+    <value>Editor</value>
+  </data>
+  <data name="Team_F.Boykova_MemberDescription" xml:space="preserve">
+    <value>Editor</value>
+  </data>
+  <data name="Team_I.Peleva_MemberDescription" xml:space="preserve">
+    <value>Head editor</value>
+  </data>
+  <data name="Team_Z.Ivanov_MemberDescription" xml:space="preserve">
+    <value>Editor</value>
+  </data>
+  <data name="Team_M.Vlashki_MemberDescription" xml:space="preserve">
+    <value>Head editor</value>
+  </data>
+  <data name="Team_Y.Rowland_MemberDescription" xml:space="preserve">
+    <value>Editor</value>
+  </data>
+  <data name="Team_G.Krasteva_Member" xml:space="preserve">
+    <value>Assoc. Prof. Gergina Krasteva, PhD</value>
+  </data>
+  <data name="Team_G.Krasteva_MemberDescription" xml:space="preserve">
+    <value>Editor</value>
+  </data>
+  <data name="Team_S.Cherpokova_Member" xml:space="preserve">
+    <value>Assoc. Prof. Svetla Cherpokova, PhD</value>
+  </data>
+  <data name="Team_S.Cherpokova_MemberDescription" xml:space="preserve">
+    <value>Editor</value>
+  </data>
+  <data name="Team_LiteratureAndCulture_2024-2026" xml:space="preserve">
+    <value>Editorial team issues 1-5, 2024/2026</value>
   </data>
   <data name="Author_UserName" xml:space="preserve">
     <value>Username</value>

@@ -91,7 +91,7 @@
         let form = e.target;
         let $form = $(e.target);
 
-        // check validity of the form 
+        // check validity of the form
         // with jquery validate unobtrusive
         if ($form.valid && !$form.valid()) {
             return;
@@ -105,6 +105,83 @@
 
         // well - submit then
         window.showPreloader();
-    }    
+    }
+
+    // Team: toggle literature/culture history section (fade-up / fade-down)
+    (function initTeamHistoryToggle() {
+        const toggleId = "display_literature_and_culture_history_2024-2026";
+        const targetId = "literature_and_culture_history_2024-2026";
+
+        const toggle = document.getElementById(toggleId);
+        const target = document.getElementById(targetId);
+
+        if (!toggle || !target) {
+            return;
+        }
+
+        let isAnimating = false;
+
+        function setExpanded(expanded) {
+            toggle.setAttribute("aria-expanded", expanded ? "true" : "false");
+            target.setAttribute("aria-hidden", expanded ? "false" : "true");
+        }
+
+        function show() {
+            if (isAnimating || !target.classList.contains("d-none")) {
+                return;
+            }
+
+            isAnimating = true;
+            target.classList.remove("d-none");
+
+            // restart animation reliably
+            target.classList.remove("lc-history--anim-out");
+            void target.offsetWidth;
+            target.classList.add("lc-history--anim-in");
+            setExpanded(true);
+
+            const done = () => {
+                target.classList.remove("lc-history--anim-in");
+                target.removeEventListener("animationend", done);
+                isAnimating = false;
+            };
+
+            target.addEventListener("animationend", done);
+        }
+
+        function hide() {
+            if (isAnimating || target.classList.contains("d-none")) {
+                return;
+            }
+
+            isAnimating = true;
+            target.classList.remove("lc-history--anim-in");
+            void target.offsetWidth;
+            target.classList.add("lc-history--anim-out");
+
+            const done = () => {
+                target.classList.add("d-none");
+                target.classList.remove("lc-history--anim-out");
+                setExpanded(false);
+                target.removeEventListener("animationend", done);
+                isAnimating = false;
+            };
+
+            target.addEventListener("animationend", done);
+        }
+
+        // ensure consistent initial state
+        setExpanded(!target.classList.contains("d-none"));
+
+        toggle.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            if (target.classList.contains("d-none")) {
+                show();
+            } else {
+                hide();
+            }
+        });
+    })();
 
 })();

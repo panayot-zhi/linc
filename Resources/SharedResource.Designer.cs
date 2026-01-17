@@ -4563,6 +4563,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Редактор.
+        /// </summary>
+        public static string Team_B_Yanev_MemberDescription {
+            get {
+                return ResourceManager.GetString("Team_B.Yanev_MemberDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to В редакторския екип на изданието участват хабилитирани преподаватели от Филологическия факултет на Пловдивския университет „Паисий Хилендарски“..
         /// </summary>
         public static string Team_Description {
@@ -4590,6 +4599,33 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Редактор.
+        /// </summary>
+        public static string Team_F_Boykova_MemberDescription {
+            get {
+                return ResourceManager.GetString("Team_F.Boykova_MemberDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to доц. д-р Гергина Кръстева.
+        /// </summary>
+        public static string Team_G_Krasteva_Member {
+            get {
+                return ResourceManager.GetString("Team_G.Krasteva_Member", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Редактор.
+        /// </summary>
+        public static string Team_G_Krasteva_MemberDescription {
+            get {
+                return ResourceManager.GetString("Team_G.Krasteva_MemberDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to проф. дфн Инна Пелева.
         /// </summary>
         public static string Team_I_Peleva_Member {
@@ -4599,11 +4635,29 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Главен редактор.
+        /// </summary>
+        public static string Team_I_Peleva_MemberDescription {
+            get {
+                return ResourceManager.GetString("Team_I.Peleva_MemberDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;span&gt;Език&lt;/span&gt; и култура.
         /// </summary>
         public static string Team_LanguageAndCulture_SubTitle {
             get {
                 return ResourceManager.GetString("Team_LanguageAndCulture_SubTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Редакторски екип кн. 1–5, 2024/2026.
+        /// </summary>
+        public static string Team_LiteratureAndCulture_2024_2026 {
+            get {
+                return ResourceManager.GetString("Team_LiteratureAndCulture_2024-2026", resourceCulture);
             }
         }
         
@@ -4626,11 +4680,47 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Главен редактор.
+        /// </summary>
+        public static string Team_M_Vlashki_MemberDescription {
+            get {
+                return ResourceManager.GetString("Team_M.Vlashki_MemberDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to доц. д-р Светла Черпокова.
+        /// </summary>
+        public static string Team_S_Cherpokova_Member {
+            get {
+                return ResourceManager.GetString("Team_S.Cherpokova_Member", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Редактор.
+        /// </summary>
+        public static string Team_S_Cherpokova_MemberDescription {
+            get {
+                return ResourceManager.GetString("Team_S.Cherpokova_MemberDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to доц. д-р Снежа Цонева-Матюсън.
         /// </summary>
         public static string Team_S_Mathewson_Member {
             get {
                 return ResourceManager.GetString("Team_S.Mathewson_Member", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Главен редактор.
+        /// </summary>
+        public static string Team_S_Mathewson_MemberDescription {
+            get {
+                return ResourceManager.GetString("Team_S.Mathewson_MemberDescription", resourceCulture);
             }
         }
         
@@ -4680,6 +4770,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Редактор.
+        /// </summary>
+        public static string Team_Y_Chankova_MemberDescription {
+            get {
+                return ResourceManager.GetString("Team_Y.Chankova_MemberDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to доц. д-р Яна Роуланд.
         /// </summary>
         public static string Team_Y_Rowland_Member {
@@ -4689,11 +4788,29 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Редактор.
+        /// </summary>
+        public static string Team_Y_Rowland_MemberDescription {
+            get {
+                return ResourceManager.GetString("Team_Y.Rowland_MemberDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to доц. д-р Живко Иванов.
         /// </summary>
         public static string Team_Z_Ivanov_Member {
             get {
                 return ResourceManager.GetString("Team_Z.Ivanov_Member", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Редактор.
+        /// </summary>
+        public static string Team_Z_Ivanov_MemberDescription {
+            get {
+                return ResourceManager.GetString("Team_Z.Ivanov_MemberDescription", resourceCulture);
             }
         }
         

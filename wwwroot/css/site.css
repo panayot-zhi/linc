@@ -1,5 +1,5 @@
 
-/* 
+/*
     Display the Great Britain flag as a language for english
 */
 
@@ -46,7 +46,7 @@ a.requires-confirm { }
     cursor: pointer;
 }
 
-/* 
+/*
     Publication Agreement
 */
 #agreement-form label {
@@ -61,7 +61,7 @@ a.requires-confirm { }
     height: 40px;
 }
 
-/* 
+/*
     icon-links
 */
 .icon-links li {
@@ -73,7 +73,7 @@ a.requires-confirm { }
     font-size: 1.2em;
 }
 
-/* 
+/*
     paging
 */
 .paging {
@@ -103,7 +103,7 @@ th.sortable::before {
     -moz-osx-font-smoothing: grayscale;
 }
 
-/* 
+/*
     journal
 */
 .journal-entries {
@@ -115,7 +115,7 @@ th.sortable::before {
 /* ReSharper disable once DeclarationIsEmpty */
 .journal-entry { }
 
-/* 
+/*
     dossier operations ^ promote to list-operations
 */
 
@@ -135,7 +135,7 @@ th.sortable::before {
     margin-left: 4px; /* Left margin of 4px to the separator */
 }
 
-/* 
+/*
     various
 */
 .section-title p span {
@@ -144,6 +144,52 @@ th.sortable::before {
 
 .team .member .member-img {
     text-align: center;
+}
+
+/*
+    Team: literature/culture history toggle animations
+*/
+#display_literature_and_culture_history_2024-2026 {
+    cursor: pointer;
+}
+
+#literature_and_culture_history_2024-2026.lc-history--anim-in {
+    animation: lcHistoryFadeUp 600ms ease both;
+    will-change: transform, opacity;
+}
+
+#literature_and_culture_history_2024-2026.lc-history--anim-out {
+    animation: lcHistoryFadeDown 450ms ease both;
+    will-change: transform, opacity;
+}
+
+@keyframes lcHistoryFadeUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 18px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+@keyframes lcHistoryFadeDown {
+    from {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+    to {
+        opacity: 0;
+        transform: translate3d(0, 18px, 0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #literature_and_culture_history_2024-2026.lc-history--anim-in,
+    #literature_and_culture_history_2024-2026.lc-history--anim-out {
+        animation: none;
+    }
 }
 
 .about-cover-page-wrapper {
@@ -245,7 +291,7 @@ th.sortable::before {
     box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, .25);
 }
 
-/* 
+/*
     bootstrap alert
 */
 .alert {
@@ -660,7 +706,7 @@ section#testimonials {
 }
 
 /*--------------------------------------------------------------
-# index alphabet sort 
+# index alphabet sort
 --------------------------------------------------------------*/
 
 .alphabet-sort {
