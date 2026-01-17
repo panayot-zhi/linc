@@ -1,10 +1,10 @@
 using NUnit.Framework;
 using System.Security.Cryptography;
 
-namespace linc.E2ETests
+namespace linc.E2ETests.Pages
 {
     [Parallelizable(ParallelScope.None)]
-    public class RegisterPageTests : BasePageTests
+    public class RegisterPageTests : TestBase
     {
         protected Uri RegisterPageUrl { get; private set; } = null!;
 

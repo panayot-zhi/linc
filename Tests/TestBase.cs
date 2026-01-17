@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace linc.E2ETests
 {
-    public abstract class BasePageTests
+    public abstract class TestBase
     {
         protected Uri BaseUri = null!;
         protected TestConfig Config = null!;

@@ -1,8 +1,8 @@
 using NUnit.Framework;
 
-namespace linc.E2ETests
+namespace linc.E2ETests.Pages
 {
-    public class HomePageTests : BasePageTests
+    public class HomePageTests : TestBase
     {
         [Test]
         public async Task bg_HomePage_TitleIsCorrect()
