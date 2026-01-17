@@ -5,6 +5,7 @@
 using System.ComponentModel.DataAnnotations;
 using linc.Contracts;
 using linc.Data;
+using linc.Services;
 using linc.Utility;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -14,12 +15,12 @@ namespace linc.Areas.Identity.Pages.Account.Manage
 {
     public class IndexModel : BasePageModel
     {
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly ApplicationUserManager _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<IndexModel> _logger;
 
         public IndexModel(
-            UserManager<ApplicationUser> userManager,
+            ApplicationUserManager userManager,
             SignInManager<ApplicationUser> signInManager,
             ILocalizationService localizationService, 
             ILogger<IndexModel> logger)
@@ -38,15 +39,8 @@ namespace linc.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
-            [Display(Name = "RegisterModel_FirstName", ResourceType = typeof(Resources.SharedResource))]
-            [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
-            [MaxLength(255, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
-            public string FirstName { get; set; }
+            public ApplicationUserProfile[] Profiles { get; set; }
 
-            [Display(Name = "RegisterModel_LastName", ResourceType = typeof(Resources.SharedResource))]
-            [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
-            [MaxLength(255, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
-            public string LastName { get; set; }
 
             [Display(Name = "RegisterModel_UserName", ResourceType = typeof(Resources.SharedResource))]
             [MaxLength(127, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
@@ -65,8 +59,7 @@ namespace linc.Areas.Identity.Pages.Account.Manage
 
             Input = new InputModel
             {
-                FirstName = user.FirstName,
-                LastName = user.LastName,
+                Profiles = user.Profiles.ToArray(),
 
                 UserName = userName,
                 PhoneNumber = phoneNumber
@@ -103,9 +96,6 @@ namespace linc.Areas.Identity.Pages.Account.Manage
                 await LoadAsync(user);
                 return Page();
             }
-
-            user.FirstName = Input.FirstName;
-            user.LastName = Input.LastName;
 
             var result = await _userManager.UpdateAsync(user);
             if (!result.Succeeded)
@@ -158,6 +148,33 @@ namespace linc.Areas.Identity.Pages.Account.Manage
                     );
                     return RedirectToPage();
                 }
+            }
+
+            foreach (var profile in Input.Profiles)
+            {
+                var userProfile = user.Profiles.First(x => 
+                    x.LanguageId == profile.LanguageId);
+
+                if (userProfile.FirstName != profile.FirstName)
+                    userProfile.FirstName = profile.FirstName?.Trim();
+
+                if (userProfile.LastName != profile.LastName)
+                    userProfile.LastName = profile.LastName?.Trim();
+            }
+
+            result = await _userManager.UpdateUserProfiles(user);
+            if (!result.Succeeded)
+            {
+                if (result.Errors.Any())
+                {
+                    ModelState.AddIdentityErrors(result.Errors);
+                    return Page();
+                }
+
+                StatusMessage = ErrorStatusMessage(
+                    LocalizationService["ManageIndex_SetNames_ErrorStatusMessage"]
+                );
+                return RedirectToPage();
             }
 
             await _signInManager.RefreshSignInAsync(user);

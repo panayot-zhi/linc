@@ -95,7 +95,7 @@
                     </ul>*@
 
                     <ul>
-                        @foreach (var source in Model.Sources.OrderBy(x => x.StartingPage))
+                        @foreach (var source in Model.Sources)
                         {
                             <li class="source-container">
 
@@ -109,7 +109,9 @@
                                         @if (!string.IsNullOrEmpty(source.AuthorNotes))
                                         {
                                             <br/>
-                                            <small>@source.AuthorNotes</small>
+                                            <small>
+                                                @Html.Raw(source.AuthorNotes.ReplaceLineEndings("<br>"))
+                                            </small>
                                         }
                                     </p>
                                 }
@@ -122,16 +124,37 @@
                                         </a><sup><i class="bi bi-box-arrow-up-right"></i></sup>
                                     </p>
                                 }
+                                
+                                @if (!source.IsSection)
+                                {
+                                    <p class="source-title">
+                                        <a href="@Url.Action("LoadSourceDocument", "Document", new { sourceId = source.Id })">
+                                            @source.Title
+                                        </a>
+                                    </p>
 
-                                <p class="source-title">
-                                    <a href="@Url.Action("LoadSourceDocument", "Document", new { sourceId = source.Id })">
-                                        @source.Title
-                                    </a>
-                                </p>
+                                    <p class="source-page text-end">
+                                        <strong class="d-inline-grid">
+                                            <a href="@Url.Action("LoadIssueDocument", "Document", new { issueId = source.IssueId })#page=@source.StartingPdfPage" target="_blank">
+                                                @source.StartingIndexPage
+                                            </a>
+                                        </strong>
+                                    </p>
+                                }
+                                else
+                                {
+                                    <p class="source-title">
+                                        <a href="@Url.Action("LoadIssueDocument", "Document", new { issueId = source.IssueId })#page=@source.StartingPdfPage" target="_blank">
+                                            @source.Title
+                                        </a>
+                                    </p>
 
-                                <p class="source-page text-end">
-                                    <strong><a href="@Url.Action("LoadIssueDocument", "Document", new { issueId = source.IssueId })#page=@source.StartingPage" target="_blank">@source.StartingPage</a></strong>
-                                </p>
+                                    <p class="source-page text-end">
+                                        <strong class="d-inline-grid">
+                                            @* used for alignment only *@
+                                        </strong>
+                                    </p>
+                                }
 
                                 @if (!string.IsNullOrEmpty(source.TitleNotes))
                                 {

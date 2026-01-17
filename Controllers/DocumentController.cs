@@ -31,7 +31,7 @@ namespace linc.Controllers
             _sourceService = sourceService;
         }
 
-        [HttpGet("issue/{issueId:int}/document/{documentId:int?}")]
+        [HttpGet("issue/{issueId:int}/document/{documentId:int?}", Name = nameof(LoadIssueDocument))]
         [AllowAnonymous]
         public async Task<IActionResult> LoadIssueDocument(int issueId, int? documentId, bool download = false)
         {

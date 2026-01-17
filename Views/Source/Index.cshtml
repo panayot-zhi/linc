@@ -89,7 +89,7 @@
                                         <p class="source-orgin">
                                             <small>
                                                 <a asp-controller="Issue" asp-action="Details" asp-route-id="@source.IssueId">
-                                                    @source.Issue.IssueNumber / @source.Issue.ReleaseYear
+                                                    @IIssueService.DisplayIssueLabelInformation(source.Issue.IssueNumber, source.Issue.ReleaseYear)
                                                 </a>
                                             </small>
                                         </p>
@@ -102,7 +102,9 @@
                                             @if (!string.IsNullOrEmpty(source.AuthorNotes))
                                             {
                                                 <br/>
-                                                <small>@source.AuthorNotes</small>
+                                                <small>
+                                                    @Html.Raw(source.AuthorNotes.ReplaceLineEndings("<br>"))
+                                                </small>
                                             }
                                         </p>
                                     }
@@ -121,7 +123,7 @@
                                     </p>
 
                                     <p class="source-page text-end">
-                                        <strong><a href="@Url.Action("LoadIssueDocument", "Document", new { issueId = source.IssueId })#page=@source.StartingPage" target="_blank">@source.StartingPage</a></strong>
+                                        <strong><a href="@Url.Action("LoadIssueDocument", "Document", new { issueId = source.IssueId })#page=@source.StartingPdfPage" target="_blank">@source.StartingIndexPage</a></strong>
                                     </p>
 
                                     @if (!string.IsNullOrEmpty(source.TitleNotes))

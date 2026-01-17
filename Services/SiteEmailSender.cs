@@ -69,16 +69,36 @@ namespace linc.Services
 
             foreach (var email in siteEmailDescriptor.Emails)
             {
+                if (!string.IsNullOrEmpty(EmailConfig.OverwriteRecipients))
+                {
+                    // send to self
+                    mimeMessage.To.Add(MailboxAddress.Parse(EmailConfig.OverwriteRecipients));
+                    continue;
+                }
+
                 mimeMessage.To.Add(MailboxAddress.Parse(email));
             }
 
             foreach (var email in siteEmailDescriptor.CcEmails)
             {
+                if (!string.IsNullOrEmpty(EmailConfig.OverwriteRecipients))
+                {
+                    // send to self
+                    mimeMessage.Cc.Add(MailboxAddress.Parse(EmailConfig.OverwriteRecipients));
+                    continue;
+                }
+
                 mimeMessage.Cc.Add(MailboxAddress.Parse(email));
             }
 
             foreach (var email in siteEmailDescriptor.BccEmails.Union(EmailConfig.BlindCarbonCopies))
             {
+                if (!string.IsNullOrEmpty(EmailConfig.OverwriteRecipients))
+                {
+                    mimeMessage.Bcc.Add(MailboxAddress.Parse(EmailConfig.OverwriteRecipients));
+                    continue;
+                }
+
                 mimeMessage.Bcc.Add(MailboxAddress.Parse(email));
             }
 
@@ -126,7 +146,7 @@ namespace linc.Services
 
                 viewModel.FooterLinks.Add(new()
                 {
-                    Text = _localizationService["Footer_GuidelinesPolicies_PrivacyPolicy"].Value,
+                    Text = _localizationService["Footer_GuidelinesPolicies_PrivacyPolicyAndCookies"].Value,
                     Url = GetActionLink("Privacy", "Home")
                 });
 

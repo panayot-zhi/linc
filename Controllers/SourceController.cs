@@ -4,7 +4,6 @@ using linc.Models.Enumerations;
 using linc.Utility;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using linc.Models.ViewModels.Source;
-using linc.Data;
 
 namespace linc.Controllers
 {
@@ -74,8 +73,8 @@ namespace linc.Controllers
         {
             if (!ModelState.IsValid)
             {
-                vModel.Issues = await GetIssuesAsync();
-                vModel.Languages = GetLanguages();
+                vModel.Issues = await GetIssuesAsync(vModel.IssueId);
+                vModel.Languages = GetLanguages(vModel.LanguageId);
 
                 vModel.LanguageId = LocalizationService.GetCurrentLanguageId();
 
@@ -87,7 +86,7 @@ namespace linc.Controllers
             _logger.LogInformation("Source {SourceId} has been created successfully, redirecting...", 
                 sourceId);
 
-            return RedirectToAction("Details", "Issue", new { id = vModel.IssueId });
+            return RedirectToAction("Edit", new { id = sourceId });
         }
 
         [SiteAuthorize(SiteRole.HeadEditor)]
@@ -116,9 +115,10 @@ namespace linc.Controllers
                 LastName = source.LastName,
                 AuthorNotes = source.AuthorNotes,
 
-                StartingPage = source.StartingPage,
-                LastPage = source.LastPage,
+                StartingPdfPage = source.StartingPdfPage,
+                LastPdfPage = source.LastPdfPage,
 
+                StartingIndexPage = source.StartingIndexPage,
 
                 IssueId = source.IssueId,
                 LanguageId = source.LanguageId,
@@ -126,8 +126,11 @@ namespace linc.Controllers
                 IsTheme = source.IsTheme,
                 IsSection = source.IsSection,
 
-                Issues = await GetIssuesAsync(),
-                Languages = GetLanguages(),
+                Issues = await GetIssuesAsync(source.IssueId),
+                Languages = GetLanguages(source.LanguageId),
+
+                LastUpdated = source.LastUpdated,
+                DateCreated = source.DateCreated,
             };
 
             return View(vModel);
@@ -140,8 +143,8 @@ namespace linc.Controllers
         {
             if (!ModelState.IsValid)
             {
-                vModel.Issues = await GetIssuesAsync();
-                vModel.Languages = GetLanguages();
+                vModel.Issues = await GetIssuesAsync(vModel.IssueId);
+                vModel.Languages = GetLanguages(vModel.LanguageId);
 
                 return View(vModel);
             }
@@ -164,20 +167,25 @@ namespace linc.Controllers
             return RedirectToAction(nameof(Admin));
         }
 
-        private async Task<List<SelectListItem>> GetIssuesAsync()
+        private async Task<List<SelectListItem>> GetIssuesAsync(int? issueId = null)
         {
             var issues = await _issuesService.GetIssuesAsync();
-            return issues.Select(x =>
-                    new SelectListItem($"{x.IssueNumber}/{x.ReleaseYear}", x.Id.ToString()))
+            return issues.Select(x => new SelectListItem(
+                    IIssueService.DisplayIssueLabelInformation(x.IssueNumber, x.ReleaseYear), 
+                    x.Id.ToString(),
+                    x.Id == issueId))
                 .ToList();
         }
 
-        private List<SelectListItem> GetLanguages()
+        private List<SelectListItem> GetLanguages(int? languageId = null)
         {
             var currentLanguageId = LocalizationService.GetCurrentLanguageId();
             var list = SiteConstant.SupportedCultures.Select(supportedCulture =>
-                    new SelectListItem(supportedCulture.Value, supportedCulture.Key.ToString(), 
-                        supportedCulture.Key == currentLanguageId))
+                    new SelectListItem(
+                        supportedCulture.Value, 
+                        supportedCulture.Key.ToString(),
+                        languageId.HasValue ? supportedCulture.Key == languageId :
+                            supportedCulture.Key == currentLanguageId))
                 .ToList();
 
             return list;

@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace linc.Data
 {
+    [Index(nameof(PdfId), IsUnique = false)]
     [Index(nameof(FirstName), IsUnique = false)]
     [Index(nameof(LastName), IsUnique = false)]
     [Index(nameof(AuthorNames), IsUnique = false)]
@@ -51,9 +52,12 @@ namespace linc.Data
         public string TitleNotes { get; set; }
 
 
-        public int StartingPage { get; set; }
+        public int StartingPdfPage { get; set; }
 
-        public int LastPage { get; set; }
+        public int? StartingIndexPage { get; set; }
+
+        public int LastPdfPage { get; set; }
+
 
 
         #region Navigation

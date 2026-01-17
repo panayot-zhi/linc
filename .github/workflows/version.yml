@@ -1,4 +1,4 @@
-name: GitFlow Version Increment on Merge to master
+name: Git Version Increment & Create Pre-release on Merge to master
 
 on:
   pull_request:
@@ -64,13 +64,6 @@ jobs:
             echo "Branch is not part of version automation."
         fi
 
-    - name: Update README.md
-      run: |
-        # Simple sed command to replace a placeholder or existing version in README.md
-        # This example assumes a placeholder like <!--version-->x.x.x<!--version-->
-        # Use sed to find and replace the badge image URL with the new version
-        sed -i "s/badge\/latest-v\..*-/badge\/latest-v.${{ steps.update-version.outputs.NEW_VERSION }}-/" README.md
-
     - name: Commit and push changes
       if: ${{ steps.update-version.outputs.NEW_VERSION }}
       run: |
@@ -79,3 +72,17 @@ jobs:
           git add --all
           git commit -am "Auto-incremented version to v.${{ steps.update-version.outputs.NEW_VERSION }}"
           git push
+
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Create Pre-release      
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.PAT }}
+      with:
+        tag_name: v.${{ steps.update-version.outputs.NEW_VERSION }}-test
+        release_name: v.${{ steps.update-version.outputs.NEW_VERSION }}-test
+        body: This is a pre-release version based on the merge from ${{ github.head_ref }}.
+        prerelease: true
+        draft: false

@@ -25,45 +25,40 @@
 }
 
 <!-- ======= Portfolio Details Section ======= -->
-<section id="error-page">
-    <div class="container">
+<div class="row gy-4">
 
-        <div class="row gy-4">
-
-            <div class="col-lg-8">
-                <div class="d-flex justify-content-center">
-                    <img src="~/img/internal-server-error.jpg" alt="500 - Internal Server Error">
-                </div>
-            </div>
-
-            <div class="col-lg-4">
-                <div class="portfolio-description">
-                    <h2>За съжаление се натъкнахте на проблем, чиято причина е изцяло по наша вина.</h2>
-                    <p>
-                        Не би трябвало да виждате тази странца, моля, обърнете се към администратора на системата по email за да може да отстрани проблема възможно най-бързо.
-                    </p>
-                    <p>
-                        Моля, при забелязани грешки и други неизправности по системата, свържете се с администратора на системата посредством бутона по-долу.
-                    </p>
-                </div>
-            </div>
-
+    <div class="col-lg-8">
+        <div class="d-flex justify-content-center">
+            <img src="~/img/internal-server-error.jpg" alt="500 - Internal Server Error">
         </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="portfolio-description">
+            <h2>За съжаление се натъкнахте на проблем, чиято причина е изцяло по наша вина.</h2>
+            <p>
+                Не би трябвало да виждате тази странца, моля, обърнете се към администратора на системата по email за да може да отстрани проблема възможно най-бързо.
+            </p>
+            <p>
+                Моля, при забелязани грешки и други неизправности по системата, свържете се с администратора на системата посредством бутона по-долу.
+            </p>
+        </div>
+    </div>
+
+</div>
         
-        <environment exclude="Production">
-            <div class="row gy-4">
+<environment exclude="Production">
+    <div class="row gy-4">
 
-                <div class="col-lg-12">
-                    <h2>@Model.Error</h2>
-                    <h4>@Model.ShortMessage</h4>
-                    <pre>@Model.StackTrace</pre>
-                </div>
-
-            </div>
-        </environment>
+        <div class="col-lg-12">
+            <h2>@Model.Error</h2>
+            <h4>@Model.ShortMessage</h4>
+            <pre>@Model.StackTrace</pre>
+        </div>
 
     </div>
-</section><!-- End Portfolio Details Section -->
+</environment>
+<!-- End Portfolio Details Section -->
 
 @section Newsletter
 {

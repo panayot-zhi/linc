@@ -23,8 +23,10 @@ namespace linc.Models.ViewModels.Dossier
         [Display(Name = "DossierDetails_AssignedTo", ResourceType = typeof(Resources.SharedResource))]
         public string AssignedTo { get; set; }
 
+        [Display(Name = "DateCreated_Label", ResourceType = typeof(Resources.SharedResource))]
         public DateTime DateCreated { get; set; }
 
+        [Display(Name = "LastUpdated_Label", ResourceType = typeof(Resources.SharedResource))]
         public DateTime LastUpdated { get; set; }
 
 

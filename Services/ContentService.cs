@@ -105,18 +105,22 @@ public class ContentService : IContentService
             return new List<SourceSuggestionViewModel>();
         }
 
-        var lastIssue = _dbContext.Issues.Max(x => x.Id);
+        var currentLanguageId = _localizationService.GetCurrentLanguageId();
+        var lastIssue = _dbContext.Issues.Where(x => x.IsAvailable).Max(x => x.Id);
         var sources = _dbContext.Sources
             .Include(x => x.Issue)
+            .Where(x => x.LanguageId == currentLanguageId)
             .Where(x => x.IssueId == lastIssue)
             .Where(x => !x.IsSection)
+            .Where(x => x.StartingIndexPage.HasValue)
             .Select(x => new SourceSuggestionViewModel()
             {
                 SourceId = x.Id,
                 IssueId = x.IssueId,
                 AuthorNames = x.AuthorNames,
                 Title = x.Title,
-                StartingPage = x.StartingPage,
+                StartingPdfPage = x.StartingPdfPage,
+                StartingIndexPage = x.StartingIndexPage.Value,
                 IssueNumber = x.Issue.IssueNumber,
                 IssueYear = x.Issue.ReleaseYear
 
@@ -134,7 +138,7 @@ public class ContentService : IContentService
                 "LoadIssueDocument",
                 "Document",
                 new { issueId = x.IssueId },
-                fragment: new FragmentString($"#page={x.StartingPage}"));
+                fragment: new FragmentString($"#page={x.StartingPdfPage}"));
 
             var issueDetailsLink = _linkGenerator.GetUriByAction(
                 _httpContextAccessor.HttpContext!,
@@ -143,7 +147,7 @@ public class ContentService : IContentService
                 new { id = x.IssueId });
 
             x.IssueInformation = _localizationService["SourceSuggestion_IssueInformation_Template",
-                issueDetailsLink, x.IssueNumber, x.IssueYear, sourceIssueLink, x.StartingPage].Value;
+                issueDetailsLink, IIssueService.DisplayIssueLabelInformation(x.IssueNumber, x.IssueYear), sourceIssueLink, $"{x.StartingIndexPage}"].Value;
 
             x.SourceLink =
                 // NOTE: link to the source pdf itself

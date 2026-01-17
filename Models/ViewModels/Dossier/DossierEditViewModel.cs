@@ -42,6 +42,8 @@ namespace linc.Models.ViewModels.Dossier
 
         public ApplicationDossierStatus Status { get; set; }
 
+        public bool SuperReviewed { get; set; }
+
 
         [Display(Name = "DossierEdit_Assignee", ResourceType = typeof(Resources.SharedResource))]
         public string AssigneeId { get; set; }
@@ -74,6 +76,7 @@ namespace linc.Models.ViewModels.Dossier
         public ApplicationDocument Anonymized =>
             _documents.FirstOrDefault(x => x.DocumentType == ApplicationDocumentType.Anonymized);
 
+        [Display(Name = "DocumentType_Agreement", ResourceType = typeof(Resources.SharedResource))]
         public ApplicationDocument Agreement =>
             _documents.FirstOrDefault(x => x.DocumentType == ApplicationDocumentType.Agreement);
 
@@ -81,12 +84,21 @@ namespace linc.Models.ViewModels.Dossier
             _documents.FirstOrDefault(x => x.DocumentType == ApplicationDocumentType.Redacted);
 
         public List<ApplicationDocument> Reviews =>
-            _documents.Where(x => x.DocumentType == ApplicationDocumentType.Review).ToList();
+            _documents.Where(x => x.DocumentType is ApplicationDocumentType.Review or ApplicationDocumentType.SuperReview).ToList();
+
+
+        [Display(Name = "DossierEdit_Agreement", ResourceType = typeof(Resources.SharedResource))]
+        public IFormFile AgreementDocument { get; set; }
 
 
         public ApplicationDocumentType DocumentType { get; set; }
 
         public IFormFile Document { get; set; }
+
+
+        public bool CanAttachAgreement { get; init; }
+
+        public bool CanDeleteAgreement { get; init; }
 
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)

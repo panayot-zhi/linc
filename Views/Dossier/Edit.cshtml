@@ -37,6 +37,7 @@
         <form asp-action="Edit" enctype="multipart/form-data">
 
             <input asp-for="Status" type="hidden" />
+            <input asp-for="SuperReviewed" type="hidden" />
 
             <h3>@HtmlLocalizer["Dossier_EditPage_SubTitle"]</h3>
             <small>@HtmlLocalizer["Dossier_ListHeader_Status"]: @(EnumHelper<ApplicationDossierStatus>.GetDisplayName(Model.Status))</small>
@@ -63,6 +64,16 @@
                             @(EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.Accepted))
                         </a>
                     </li>
+
+                    @if (!Model.SuperReviewed)
+                    {
+                        <li>
+                            <a asp-action="UpdateStatus" asp-route-id="@Model.Id" asp-route-status="InSuperReview" class="requires-confirm text-warning">
+                                <i class='bx bx-comment-error'></i>
+                                @(EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.InSuperReview))
+                            </a>
+                        </li>
+                    }
 
                     <li>
                         <a asp-action="UpdateStatus" asp-route-id="@Model.Id" asp-route-status="AwaitingCorrections" class="requires-confirm">
@@ -97,14 +108,22 @@
                         </a>
                     </li>
                 }
-                else
+                
+                @if (Model.Status is < ApplicationDossierStatus.Reviewed or ApplicationDossierStatus.AwaitingCorrections)
                 {
                     <li>
-                        <a asp-action="Details" asp-route-id="@Model.Id">
-                            @HtmlLocalizer["Dossier_BackToDetails_Label"]
+                        <a asp-action="UpdateStatus" asp-route-id="@Model.Id" asp-route-status="Rejected" class="requires-confirm text-danger">
+                            <i class='bx bxs-x-circle'></i>
+                            @(EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.Rejected))
                         </a>
                     </li>
                 }
+
+                <li>
+                    <a asp-action="Details" asp-route-id="@Model.Id">
+                        @HtmlLocalizer["Dossier_BackToDetails_Label"]
+                    </a>
+                </li>
 
             </ul>
 
@@ -157,6 +176,27 @@
                     <label asp-for="AssigneeNames" class="form-label"></label>
                 </div>
             }
+        
+            @if (Model.Agreement is not null)
+            {
+                <div class="input-group">
+                    <span class="input-group-text">@Html.DisplayNameFor(x => x.Agreement)</span>
+                    <input asp-for="AgreementDocument" type="text" class="form-control" disabled="disabled" readonly="readonly" value="@Model.Agreement.OriginalFileName"/>
+                    <a class="btn btn-outline-primary" id="download-declaration" href="@Url.Action("LoadDossierDocument", "Document", new { dossierId = Model.Id, documentId = Model.Agreement.Id })">@HtmlLocalizer["Download_Button_Label"]</a>
+                    @if (Model.CanDeleteAgreement)
+                    {
+                        <a id="delete-agreement-button" class="btn btn-outline-danger" href="#delete-agreement-form">@HtmlLocalizer["Delete_Button_Label"]</a>
+                    }
+                </div>
+            }
+            else if (Model.CanAttachAgreement)
+            {
+                <div class="form-group">
+                    <label asp-for="AgreementDocument" class="form-label"></label>
+                    <input asp-for="AgreementDocument" class="form-control" accept=".doc,.docx, .pdf" />
+                    <span asp-validation-for="AgreementDocument" class="invalid-feedback"></span>
+                </div>
+            }
 
             @* NOTE: Resolve allowed input for operations here *@
 
@@ -205,25 +245,46 @@
                     </div>
                 </div>
             }
-            else if (Model.Status == ApplicationDossierStatus.InReview)
+            else if (Model.Status is ApplicationDossierStatus.InReview or ApplicationDossierStatus.InSuperReview)
             {
                 <hr />
 
-                if (Model.Reviews.Count > 0)
+                if (Model.Reviews.Count == 1)
                 {
                     <div class="alert alert-info" role="alert">
                         <i class='bx bxs-info-circle'></i>
-                        @HtmlLocalizer["Dossier_EditPage_UploadReviewDocument_Info", EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.Reviewed)]
+                        <span>@HtmlLocalizer["Dossier_EditPage_UploadReviewDocument_Info", EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.Reviewed)]</span>
+                    </div>
+                }
+                else if (Model.Reviews.Count == 2)
+                {
+                    <div class="alert alert-info" role="alert">
+                        <i class='bx bxs-info-circle'></i>
+                        <span>@HtmlLocalizer["Dossier_EditPage_UploadSuperReviewDocument_Info", EnumHelper<ApplicationDossierStatus>.GetDisplayName(ApplicationDossierStatus.Reviewed)]</span>
                     </div>
                 }
 
                 // allow uploading a Review document
-                <input asp-for="DocumentType" type="hidden" value="@ApplicationDocumentType.Review" />
+                @if (Model.Status == ApplicationDossierStatus.InSuperReview)
+                {
+                    <input asp-for="DocumentType" type="hidden" value="@ApplicationDocumentType.SuperReview" />
+                }
+                else
+                {
+                    <input asp-for="DocumentType" type="hidden" value="@ApplicationDocumentType.Review" />
+                }
 
                 <div class="form-group">
                     <div class="mb-3">
                         <label asp-for="Document" class="form-label">
-                            @HtmlLocalizer["Dossier_EditPage_UploadReviewDocument"]
+                            @if (Model.Status == ApplicationDossierStatus.InSuperReview)
+                            {
+                                @HtmlLocalizer["Dossier_EditPage_UploadSuperReviewDocument"]
+                            }
+                            else
+                            {
+                                @HtmlLocalizer["Dossier_EditPage_UploadReviewDocument"]
+                            }
                         </label>
                         <input asp-for="Document" class="form-control" accept=".doc,.docx" />
                         <span asp-validation-for="Document" class="invalid-feedback"></span>
@@ -291,6 +352,14 @@
                 </button>
             </div>
         </form>
+        
+        @if (Model.CanDeleteAgreement)
+        {
+            <form id="delete-agreement-form" asp-action="DeleteAgreement" asp-route-id="@Model.Id">
+                <input asp-for="Id" hidden="hidden"/>
+                <input asp-for="Agreement.Id" hidden="hidden" />
+            </form>
+        }
 
     </div>
 </div>
@@ -300,7 +369,7 @@
 }
 
 @section Scripts {
-    <partial name="_ValidationScripts" />
+    <partial name="_ValidationScripts"/>
 
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
@@ -326,6 +395,31 @@
                     });
                 })
             });
+
+            let deleteAgreementButton = document.getElementById("delete-agreement-button");
+            if(deleteAgreementButton) {
+                deleteAgreementButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+
+                    Swal.fire({
+
+                        icon: "question",
+                        title: window.jsLocalizer["DossierEdit_ConfirmDeleteAgreement_Title"],
+                        text: window.jsLocalizer["DossierEdit_ConfirmDeleteAgreement"],
+                        showCancelButton: true
+
+                    }).then((result) => {
+                        if (!result.isConfirmed) {
+                            return;
+                        }
+                        
+                        let target = $(e.target).attr("href");
+                        target = $(target);
+                        target.submit();
+                        
+                    });
+                })
+            }
         });
     </script>
 }

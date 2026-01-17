@@ -18,6 +18,7 @@ namespace linc.Services
     {
         private readonly LinkGenerator _linkGenerator;
         private readonly ISiteEmailSender _emailSender;
+        private readonly IApplicationUserStore _applicationUserStore;
         private readonly ILocalizationService _localizationService;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly ILogger<DossierService> _logger;
@@ -36,11 +37,13 @@ namespace linc.Services
 
             public const string DocumentUploaded = $"{Prefix}_{nameof(DocumentUploaded)}";
             public const string DocumentReUploaded = $"{Prefix}_{nameof(DocumentReUploaded)}";
+            public const string DocumentDeleted = $"{Prefix}_{nameof(DocumentDeleted)}";
             public const string ClearedAssignment = $"{Prefix}_{nameof(ClearedAssignment)}";
         }
 
         public DossierService(ApplicationDbContext context, 
-            IOptions<ApplicationConfig> configOptions, 
+            IOptions<ApplicationConfig> configOptions,
+            IApplicationUserStore applicationUserStore,
             IHttpContextAccessor httpContextAccessor, 
             ILocalizationService localizationService,
             ISiteEmailSender emailSender,
@@ -52,6 +55,7 @@ namespace linc.Services
             _httpContextAccessor = httpContextAccessor;
             _localizationService = localizationService;
             _linkGenerator = linkGenerator;
+            _applicationUserStore = applicationUserStore;
             _config = configOptions.Value;
             _emailSender = emailSender;
         }
@@ -190,12 +194,13 @@ namespace linc.Services
             {
                 Id = dossier.Id,
 
-                Title = dossier.Title,
-                FirstName = dossier.FirstName,
-                LastName = dossier.LastName,
-                Email = dossier.Email,
+                Title = dossier.Title?.Trim(),
+                FirstName = dossier.FirstName?.Trim(),
+                LastName = dossier.LastName?.Trim(),
+                Email = dossier.Email?.Trim(),
 
                 Status = dossier.Status,
+                SuperReviewed = dossier.SuperReviewed,
 
                 AssigneeId = dossier.AssignedToId,
                 AssigneeNames = dossier.AssignedTo != null ?
@@ -205,9 +210,33 @@ namespace linc.Services
                 Editors = GetEditors(dossier.AssignedToId),
                 Reviewers = GetReviewers(),
 
+                CanAttachAgreement = CanAttachAgreement(dossier),
+                CanDeleteAgreement = CanDeleteAgreement(dossier)
+
             };
 
             return viewModel;
+        }
+
+        private static bool CanAttachAgreement(ApplicationDossier dossier)
+        {
+            // if we haven't got an agreement yet
+            return dossier.Agreement is null &&
+                   // and if the status of the dossier is not Accepted or AcceptedWithCorrections
+                   // because in this status we send the declaration to the user for signing, so we await for it
+                   dossier.Status is not ApplicationDossierStatus.Accepted or 
+                       ApplicationDossierStatus.AcceptedWithCorrections;
+        }
+
+        private static bool CanDeleteAgreement(ApplicationDossier dossier)
+        {
+            // if we have an agreement
+            return dossier.Agreement is not null &&
+                   // and if the status of the dossier is not Accepted or AcceptedWithCorrections
+                   // because in this status we send the declaration to the user for signing
+                   // and a signed declaration from a user cannot be deleted
+                   dossier.Status is not ApplicationDossierStatus.Accepted or
+                       ApplicationDossierStatus.AcceptedWithCorrections;
         }
 
         public async Task<ApplicationDossier> GetDossierAsync(int id)
@@ -230,10 +259,10 @@ namespace linc.Services
             await using var transaction = await _context.Database.BeginTransactionAsync();
             var entry = new ApplicationDossier
             {
-                Title = input.Title,
-                FirstName = input.FirstName,
-                LastName = input.LastName,
-                Email = input.Email,
+                Title = input.Title?.Trim(),
+                FirstName = input.FirstName?.Trim(),
+                LastName = input.LastName?.Trim(),
+                Email = input.Email?.Trim(),
 
                 Status = ApplicationDossierStatus.New,
 
@@ -524,20 +553,25 @@ namespace linc.Services
                     break;
 
                 case ApplicationDossierStatus.InReview:
+                case ApplicationDossierStatus.InSuperReview:
 
                     if (input.Document == null)
                     {
                         break;
                     }
 
-                    // allow uploading a review document
-                    var review = await SaveDossierDocumentAsync(input.Document, dossier.Id, ApplicationDocumentType.Review);
+                    // allow uploading a (super) review document
+                    var documentType = dossier.Status == ApplicationDossierStatus.InReview
+                        ? ApplicationDocumentType.Review
+                        : ApplicationDocumentType.SuperReview;
+
+                    var review = await SaveDossierDocumentAsync(input.Document, dossier.Id, documentType);
                     var userReviewerId = await FindReviewerAsync(input.ReviewerEmail, input.ReviewerFirstName, input.ReviewerLastName);
                     var dossierReview = new ApplicationDossierReview()
                     {
-                        FirstName = input.ReviewerFirstName,
-                        LastName = input.ReviewerLastName,
-                        Email = input.ReviewerEmail,
+                        FirstName = input.ReviewerFirstName?.Trim(),
+                        LastName = input.ReviewerLastName?.Trim(),
+                        Email = input.ReviewerEmail?.Trim(),
 
                         ReviewerId = userReviewerId,
 
@@ -546,6 +580,8 @@ namespace linc.Services
                     };
 
                     dossier.Reviews.Add(dossierReview);
+
+                    dossier.SuperReviewed = dossier.Status == ApplicationDossierStatus.InSuperReview;
 
                     dossier.Journals.Add(new DossierJournal
                     {
@@ -560,9 +596,9 @@ namespace linc.Services
                     // create a checkpoint here
                     await _context.SaveChangesAsync();
 
-                    // check if there are 2 reviews available
+                    // check if there are 2 or more reviews available
                     // if yes - advance dossier status
-                    if (dossier.Reviews.Count == 2)
+                    if (dossier.Reviews.Count >= 2)
                     {
                         // update dossier status
                         await UpdateStatusAsync(dossier.Id, ApplicationDossierStatus.Reviewed);
@@ -626,13 +662,69 @@ namespace linc.Services
                 case ApplicationDossierStatus.Rejected:
                     // aw, out of luck
                     break;
-
+                case ApplicationDossierStatus.Published:
+                    // end of the line
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
 
             await _context.SaveChangesAsync();
             await transaction.CommitAsync();
+        }
+
+        public async Task UpdateAuthorAsync(ApplicationUser user)
+        {
+            var dossiers = _context.Dossiers
+                .Where(x => x.AuthorId == null)
+                .Where(x => x.Email == user.Email)
+                .ToList();
+
+            if (!dossiers.Any())
+            {
+                return;
+            }
+
+            if (!user.IsAuthor)
+            {
+                _context.Users.Attach(user);
+                user.IsAuthor = true;
+            }
+
+            foreach (var dossier in dossiers)
+            {
+                _context.Dossiers.Attach(dossier);
+                dossier.AuthorId = user.Id;
+            }
+
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateReviewerAsync(ApplicationUser user)
+        {
+            var dossierReviews = _context.DossierReviews
+                .Where(x => x.ReviewerId == null)
+                .Where(x => x.Email == user.Email)
+                .ToList();
+
+            if (!dossierReviews.Any())
+            {
+                return;
+            }
+
+            if (!user.IsAuthor)
+            {
+                _context.Users.Attach(user);
+                user.IsAuthor = true;
+            }
+
+            foreach (var dossierReview in dossierReviews)
+            {
+                _context.DossierReviews.Attach(dossierReview);
+                dossierReview.ReviewerId = user.Id;
+            }
+
+            await _context.SaveChangesAsync();
         }
 
         public async Task SaveAgreementAsync(ApplicationDossier dossier, byte[] inputFile)
@@ -713,11 +805,48 @@ namespace linc.Services
             await _emailSender.SendEmailAsync(emailDescriptor);
         }
 
+        public async Task DeleteAgreementAsync(ApplicationDossier dossier)
+        {
+            await DeleteDossierDocument(dossier, dossier.Agreement);
+
+            var currentUserId = GetCurrentUserId();
+            dossier.Journals.Add(new DossierJournal
+            {
+                PerformedById = currentUserId,
+                Message = JournalEntryKeys.DocumentDeleted,
+                MessageArguments = new[]
+                {
+                    "DocumentType_Agreement"
+                }
+            });
+
+            await _context.SaveChangesAsync();
+        }
+
         private async Task UpdateDossierPropertiesAsync(ApplicationDossier dossier, DossierEditViewModel input)
         {
             if (dossier.AssignedToId != input.AssigneeId)
             {
                 await UpdateAssigneeAsync(dossier.Id, input.AssigneeId);
+            }
+
+            if (input.AgreementDocument is not null)
+            {
+                // allow uploading of an agreement document
+                var document = await SaveDossierDocumentAsync(input.AgreementDocument, dossier.Id, ApplicationDocumentType.Agreement);
+                
+                dossier.Documents.Add(document);
+                
+                var currentUserId = GetCurrentUserId();
+                dossier.Journals.Add(new DossierJournal
+                {
+                    PerformedById = currentUserId,
+                    Message = JournalEntryKeys.DocumentUploaded,
+                    MessageArguments = new[]
+                    {
+                        "DocumentType_Agreement"
+                    }
+                });
             }
 
             // NOTE: if need be add statements for other properties here...
@@ -754,35 +883,32 @@ namespace linc.Services
 
         private List<SelectListItem> GetEditors(string assigneeId)
         {
-            var editors = _context.GetAllByRole(SiteRole.Editor.ToString());
-            var headEditors = _context.GetAllByRole(SiteRole.HeadEditor.ToString());
+            var editors = _context.GetAllByRole(HelperFunctions.ToScreamingSnakeCase(SiteRole.Editor.ToString()));
+            var headEditors = _context.GetAllByRole(HelperFunctions.ToScreamingSnakeCase(SiteRole.HeadEditor.ToString()));
 
             var selectList = new List<SelectListItem>()
             {
                 new(_localizationService["DossierEdit_AssignEditor_Prompt"].Value, string.Empty)
             };
 
-            selectList.AddRange(editors.Select(x => new SelectListItem(text: x.Names, x.Id, x.Id == assigneeId)));
             selectList.AddRange(headEditors.Select(x => new SelectListItem(text: x.Names, x.Id, x.Id == assigneeId)));
+            selectList.AddRange(editors.Select(x => new SelectListItem(text: x.Names, x.Id, x.Id == assigneeId)));
 
             return selectList;
         }
 
         private async Task<string> FindReviewerAsync(string inputEmail, string inputFirstName, string inputLastName)
         {
-            var user = _context.Users.FirstOrDefault(x => x.Email == inputEmail);
+            var user = await _applicationUserStore.FindUserByEmailAsync(inputEmail);
             if (user == null)
             {
                 // second try by names
-                user = _context.Users
-                    .FirstOrDefault(x =>
-                        EF.Functions.Like(x.FirstName, $"{inputFirstName}")&&
-                        EF.Functions.Like(x.LastName, $"{inputLastName}")
-                    );
+                user = await _applicationUserStore.FindUserByNamesAsync(inputFirstName, inputLastName);
             }
 
             if (user is null)
             {
+                // no luck
                 return null;
             }
 

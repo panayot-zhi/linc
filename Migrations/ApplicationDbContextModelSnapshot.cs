@@ -111,6 +111,10 @@ namespace linc.Migrations
                     b.HasKey("Id")
                         .HasName("pk_documents");
 
+                    b.HasIndex("RelativePath")
+                        .IsUnique()
+                        .HasDatabaseName("ix_documents_relative_path");
+
                     b.ToTable("documents", (string)null);
                 });
 
@@ -163,6 +167,10 @@ namespace linc.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int")
                         .HasColumnName("status");
+
+                    b.Property<bool>("SuperReviewed")
+                        .HasColumnType("tinyint(1)")
+                        .HasColumnName("super_reviewed");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -368,9 +376,9 @@ namespace linc.Migrations
                         .HasColumnType("varchar(255)")
                         .HasColumnName("last_name");
 
-                    b.Property<int>("LastPage")
+                    b.Property<int>("LastPdfPage")
                         .HasColumnType("int")
-                        .HasColumnName("last_page");
+                        .HasColumnName("last_pdf_page");
 
                     b.Property<DateTime>("LastUpdated")
                         .HasColumnType("datetime(6)")
@@ -380,9 +388,13 @@ namespace linc.Migrations
                         .HasColumnType("int")
                         .HasColumnName("pdf_id");
 
-                    b.Property<int>("StartingPage")
+                    b.Property<int?>("StartingIndexPage")
                         .HasColumnType("int")
-                        .HasColumnName("starting_page");
+                        .HasColumnName("starting_index_page");
+
+                    b.Property<int>("StartingPdfPage")
+                        .HasColumnType("int")
+                        .HasColumnName("starting_pdf_page");
 
                     b.Property<string>("Title")
                         .HasMaxLength(512)
@@ -416,7 +428,6 @@ namespace linc.Migrations
                         .HasDatabaseName("ix_sources_last_name");
 
                     b.HasIndex("PdfId")
-                        .IsUnique()
                         .HasDatabaseName("ix_sources_pdf_id");
 
                     b.HasIndex("Title")
@@ -495,11 +506,6 @@ namespace linc.Migrations
                         .HasColumnType("datetime(6)")
                         .HasColumnName("date_created");
 
-                    b.Property<string>("Description")
-                        .HasMaxLength(1024)
-                        .HasColumnType("varchar(1024)")
-                        .HasColumnName("description");
-
                     b.Property<bool>("DisplayEmail")
                         .HasColumnType("tinyint(1)")
                         .HasColumnName("display_email");
@@ -522,12 +528,6 @@ namespace linc.Migrations
                         .HasColumnType("longtext")
                         .HasColumnName("facebook_avatar_path");
 
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)")
-                        .HasColumnName("first_name");
-
                     b.Property<string>("GoogleAvatarPath")
                         .HasColumnType("longtext")
                         .HasColumnName("google_avatar_path");
@@ -547,12 +547,6 @@ namespace linc.Migrations
                     b.Property<DateTime?>("LastLogin")
                         .HasColumnType("datetime(6)")
                         .HasColumnName("last_login");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)")
-                        .HasColumnName("last_name");
 
                     b.Property<DateTime>("LastUpdated")
                         .HasColumnType("datetime(6)")
@@ -588,6 +582,10 @@ namespace linc.Migrations
                         .HasColumnType("tinyint(1)")
                         .HasColumnName("phone_number_confirmed");
 
+                    b.Property<int>("PreferredLanguageId")
+                        .HasColumnType("int")
+                        .HasColumnName("preferred_language_id");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("longtext")
                         .HasColumnName("security_stamp");
@@ -619,6 +617,9 @@ namespace linc.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex");
 
+                    b.HasIndex("PreferredLanguageId")
+                        .HasDatabaseName("ix_asp_net_users_preferred_language_id");
+
                     b.ToTable("asp_net_users", (string)null);
 
                     b.HasData(
@@ -629,25 +630,69 @@ namespace linc.Migrations
                             AvatarType = "Gravatar",
                             ConcurrencyStamp = "00000000-0000-0000-0000-000000000000",
                             DateCreated = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "System administrator. / Администратор на системата.",
                             DisplayEmail = true,
                             DisplayNameType = 2,
                             Email = "admin-linc@uni-plovdiv.bg",
                             EmailConfirmed = true,
-                            FirstName = "Panayot",
                             IsAuthor = false,
                             IsReviewer = false,
-                            LastName = "Ivanov",
                             LastUpdated = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN-LINC@UNI-PLOVDIV.BG",
                             NormalizedUserName = "P.IVANOV",
                             PasswordHash = "CHANGE_ME",
                             PhoneNumberConfirmed = false,
+                            PreferredLanguageId = 2,
                             SecurityStamp = "00000000-0000-0000-0000-000000000000",
                             Subscribed = false,
                             TwoFactorEnabled = false,
                             UserName = "p.ivanov"
+                        });
+                });
+
+            modelBuilder.Entity("linc.Data.ApplicationUserProfile", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("user_id");
+
+                    b.Property<int>("LanguageId")
+                        .HasColumnType("int")
+                        .HasColumnName("language_id");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(1024)
+                        .HasColumnType("varchar(1024)")
+                        .HasColumnName("description");
+
+                    b.Property<string>("FirstName")
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("first_name");
+
+                    b.Property<string>("LastName")
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("last_name");
+
+                    b.HasKey("UserId", "LanguageId")
+                        .HasName("pk_asp_net_user_profiles");
+
+                    b.HasIndex("LanguageId")
+                        .HasDatabaseName("ix_asp_net_user_profiles_language_id");
+
+                    b.ToTable("asp_net_user_profiles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "00000000-0000-0000-0000-000000000000",
+                            LanguageId = 1
+                        },
+                        new
+                        {
+                            UserId = "00000000-0000-0000-0000-000000000000",
+                            LanguageId = 2
                         });
                 });
 
@@ -1128,8 +1173,8 @@ namespace linc.Migrations
                         .HasConstraintName("fk_sources_languages_language_id");
 
                     b.HasOne("linc.Data.ApplicationDocument", "Pdf")
-                        .WithOne("Source")
-                        .HasForeignKey("linc.Data.ApplicationSource", "PdfId")
+                        .WithMany("Sources")
+                        .HasForeignKey("PdfId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("fk_sources_documents_pdf_id");
@@ -1162,6 +1207,39 @@ namespace linc.Migrations
                     b.Navigation("EditedBy");
 
                     b.Navigation("Language");
+                });
+
+            modelBuilder.Entity("linc.Data.ApplicationUser", b =>
+                {
+                    b.HasOne("linc.Data.ApplicationLanguage", "PreferredLanguage")
+                        .WithMany()
+                        .HasForeignKey("PreferredLanguageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_asp_net_users_languages_preferred_language_id");
+
+                    b.Navigation("PreferredLanguage");
+                });
+
+            modelBuilder.Entity("linc.Data.ApplicationUserProfile", b =>
+                {
+                    b.HasOne("linc.Data.ApplicationLanguage", "Language")
+                        .WithMany()
+                        .HasForeignKey("LanguageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_asp_net_user_profiles_languages_language_id");
+
+                    b.HasOne("linc.Data.ApplicationUser", "User")
+                        .WithMany("Profiles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("fk_asp_net_user_profiles_asp_net_users_user_id");
+
+                    b.Navigation("Language");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("linc.Data.DossierJournal", b =>
@@ -1286,7 +1364,7 @@ namespace linc.Migrations
 
             modelBuilder.Entity("linc.Data.ApplicationDocument", b =>
                 {
-                    b.Navigation("Source");
+                    b.Navigation("Sources");
                 });
 
             modelBuilder.Entity("linc.Data.ApplicationDossier", b =>
@@ -1313,6 +1391,8 @@ namespace linc.Migrations
                     b.Navigation("AuthoredDossiers");
 
                     b.Navigation("CreatedDossiers");
+
+                    b.Navigation("Profiles");
                 });
 #pragma warning restore 612, 618
         }

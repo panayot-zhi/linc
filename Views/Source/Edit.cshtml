@@ -52,11 +52,24 @@
             <div asp-validation-summary="All" class="invalid-feedback"></div>
 
             <input type="hidden" asp-for="Id"/>
+            <input type="hidden" asp-for="IssueId" />
+            
+            <div class="form-group form-check text-end">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsTheme" /> @Html.DisplayNameFor(model => model.IsTheme)
+                </label>
+            </div>
 
             <div class="form-floating ">
                 <input asp-for="Title" class="form-control" />
                 <label asp-for="Title" class="form-label"></label>
                 <span asp-validation-for="Title" class="invalid-feedback"></span>
+            </div>
+            
+            <div class="form-group form-check text-end">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsSection" /> @Html.DisplayNameFor(model => model.IsSection)
+                </label>
             </div>
 
             <div class="form-group">
@@ -64,7 +77,7 @@
                 <textarea asp-for="TitleNotes" class="form-control" rows="6"></textarea>
                 <span asp-validation-for="TitleNotes" class="invalid-feedback"></span>
             </div>
-            
+
             <div class="form-group">
                 <label asp-for="DOI" class="form-label"></label> 
                 (<a href="https://www.doi.org/the-identifier/what-is-a-doi/" target="_blank">what-is-a-doi
@@ -96,32 +109,46 @@
                 <textarea asp-for="AuthorNotes" class="form-control" rows="6"></textarea>
                 <span asp-validation-for="AuthorNotes" class="invalid-feedback"></span>
             </div>
-            
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsTheme"/> @Html.DisplayNameFor(model => model.IsTheme)
-                </label>
-            </div>
 
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsSection"/> @Html.DisplayNameFor(model => model.IsSection)
-                </label>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label asp-for="StartingPdfPage" class="form-label"></label>
+                        <input asp-for="StartingPdfPage" class="form-control" readonly="readonly" />
+                        <span asp-validation-for="StartingPdfPage" class="invalid-feedback"></span>
+                    </div>
+                </div>
+                
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="mb-3">
+                            <label asp-for="PdfFile" class="form-label"></label>
+                            <div class="input-group">
+                                <input asp-for="PdfFile" class="form-control" accept=".pdf" readonly="readonly" disabled="disabled" aria-describedby="download-source" />
+                                <a href="@Url.Action("LoadSourceDocument", "Document", new { sourceId = Model.Id })" class="btn btn-outline-secondary" id="download-source" target="_blank">
+                                    @HtmlLocalizer["Download_Button_Label"]
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="form-group">
+                        <label asp-for="LastPdfPage" class="form-label"></label>
+                        <input asp-for="LastPdfPage" class="form-control" readonly="readonly" />
+                        <span asp-validation-for="LastPdfPage" class="invalid-feedback"></span>
+                    </div>
+                </div>
+
             </div>
 
             <div class="row">
                 <div class="col-sm-3">
                     <div class="form-floating">
-                        <input asp-for="StartingPage" class="form-control" readonly="readonly" disabled="disabled" />
-                        <label asp-for="StartingPage" class="form-label"></label>
-                        <span asp-validation-for="StartingPage" class="invalid-feedback"></span>
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="form-floating">
-                        <input asp-for="LastPage" class="form-control" readonly="readonly" disabled="disabled" />
-                        <label asp-for="LastPage" class="form-label"></label>
-                        <span asp-validation-for="LastPage" class="invalid-feedback"></span>
+                        <input asp-for="StartingIndexPage" class="form-control" />
+                        <label asp-for="StartingIndexPage" class="form-label"></label>
+                        <span asp-validation-for="StartingIndexPage" class="invalid-feedback"></span>
                     </div>
                 </div>
                 <div class="col-sm-3">
@@ -132,10 +159,50 @@
                     </div>
                 </div>
                 <div class="col-sm-3">
-                    <div class="form-floating">
-                        <select asp-for="IssueId" asp-items="@Model.Issues" class="form-select"></select>
-                        <label asp-for="IssueId" class="form-label"></label>
-                        <span asp-validation-for="IssueId" class="invalid-feedback"></span>
+                    <div class="form-floating text-end">
+                        <div class="input-group">
+                            <select asp-for="IssueId" asp-items="@Model.Issues" class="form-select" disabled="disabled"></select>
+                            <a type="button" href="@Url.Action("Details", "Issue", new { id = Model.IssueId })" class="btn btn-outline-secondary" target="_blank">@HtmlLocalizer["SourceCreate_IssueId"]</a>
+                        </div>
+                        
+                        @{
+                            var chosenIssue = Model.Issues.First(x => x.Selected).Text;
+                            var issueDetailsLink = Url.Action("Details", "Issue", new { id = Model.IssueId });
+                            var sourceIssueLink = Url.RouteUrl(
+                                routeName: "LoadIssueDocument", 
+                                values: new
+                                {
+                                    controller = "Document",
+                                    action = "LoadIssueDocument",
+                                    issueId = Model.IssueId
+                                },
+                                protocol: Context.Request.Scheme,
+                                host: Context.Request.Host.Value,
+                                fragment: $"page={Model.StartingPdfPage}"
+                            );
+                        }
+
+                        <span class="text-muted">
+                            @HtmlLocalizer["SourceSuggestion_IssueInformation_Template", issueDetailsLink!, chosenIssue, sourceIssueLink!, $"{Model.StartingIndexPage ?? Model.StartingPdfPage}"]
+                        </span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-sm-6 col-lg-3">
+                    <div class="form-group">
+                        <label asp-for="LastUpdated" class="form-label"></label>
+                        <input asp-for="LastUpdated" class="form-control" readonly="readonly" />
+                        <span asp-validation-for="LastUpdated" class="invalid-feedback"></span>
+                        
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3 offset-lg-6">
+                    <div class="form-group">
+                        <label asp-for="DateCreated" class="form-label"></label>
+                        <input asp-for="DateCreated" class="form-control" readonly="readonly" />
+                        <span asp-validation-for="DateCreated" class="invalid-feedback"></span>
                     </div>
                 </div>
             </div>

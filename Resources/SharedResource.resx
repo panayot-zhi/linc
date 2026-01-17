@@ -1187,8 +1187,8 @@
   <data name="SourceCreate_LastName" xml:space="preserve">
     <value>Фамилия</value>
   </data>
-  <data name="SourceCreate_StartingPage" xml:space="preserve">
-    <value>Начална страница</value>
+  <data name="SourceCreate_StartingPdfPage" xml:space="preserve">
+    <value>Начална страница (PDF)</value>
   </data>
   <data name="SourceCreate_Title" xml:space="preserve">
     <value>Заглавие</value>
@@ -1215,7 +1215,7 @@
     <value>Преглед на брой</value>
   </data>
   <data name="Issue_Zoom_Label" xml:space="preserve">
-    <value>Корица на брой №{0}, {1}</value>
+    <value>Корица на брой {0}</value>
   </data>
   <data name="NavItem_Authors" xml:space="preserve">
     <value>Автори</value>
@@ -1290,8 +1290,8 @@
   <data name="Board_Joaquín.García-Medall_MemberWork" xml:space="preserve">
     <value>Университет на Валядолид, Испания</value>
   </data>
-  <data name="SourceCreate_LastPage" xml:space="preserve">
-    <value>Последна страница</value>
+  <data name="SourceCreate_LastPdfPage" xml:space="preserve">
+    <value>Последна страница (PDF)</value>
   </data>
   <data name="Team_EditorialAssistants_SubTitle" xml:space="preserve">
     <value>Технически сътрудник</value>
@@ -1331,13 +1331,12 @@
   </data>
   <data name="Search_Button_Label" xml:space="preserve">
     <value>Търси</value>
-    <comment>Se</comment>
   </data>
   <data name="AuthorsSection_Description" xml:space="preserve">
     <value>Прегледайте авторите от всички броеве или търсете конкретно име/заглавие. Можете да прегледате и &lt;a href="{0}"&gt;всички публикации по години и броеве&lt;/a&gt;.</value>
   </data>
   <data name="Source_IndexPage_SearchDescription" xml:space="preserve">
-    <value>търсене по първа буква от фамилното име</value>
+    <value>търсене по първа буква от &lt;b&gt;фамилното&lt;/b&gt; име</value>
   </data>
   <data name="SourceCreate_PdfFile" xml:space="preserve">
     <value>Прикачете източника като PDF</value>
@@ -1550,7 +1549,7 @@
     <value>Прикачете рецензия</value>
   </data>
   <data name="Dossier_EditPage_UploadReviewDocument_Info" xml:space="preserve">
-    <value>Към досието има прикачена една рецензия, когато прикачите втората, то автоматично ще премине в статус '{0}'.</value>
+    <value>Към досието има прикачена &lt;b&gt;една&lt;/b&gt; рецензия, когато прикачите втората, то автоматично ще премине в статус '{0}'.</value>
   </data>
   <data name="JournalDossier_AssignedTo" xml:space="preserve">
     <value>Назначен {0} за редактор на досието.</value>
@@ -1655,7 +1654,7 @@
     <value>Когато прикачите анонимизиран документ, досието автоматично ще премине в статус '{0}'.</value>
   </data>
   <data name="SourceSuggestion_IssueInformation_Template" xml:space="preserve">
-    <value>&lt;a href="{0}"&gt;брой {1} / {2}&lt;/a&gt; стр. &lt;a target="_blank" href="{3}"&gt;{4}&lt;/a&gt;</value>
+    <value>&lt;a href="{0}"&gt;брой {1}&lt;/a&gt; стр. &lt;a target="_blank" href="{2}"&gt;{3}&lt;/a&gt;</value>
   </data>
   <data name="PublicationAgreement_SuccessMessage" xml:space="preserve">
     <value>Споразумението за публикуване беше успешно прикачено към Вашия ръкопис! Благодаря Ви за съдействието.</value>
@@ -1695,5 +1694,110 @@
   </data>
   <data name="Dossier_ListHeader_HasAgreement" xml:space="preserve">
     <value>Декларация</value>
+  </data>
+  <data name="SourceCreate_StartingIndexPage" xml:space="preserve">
+    <value>Начална страница (по съдържание)</value>
+  </data>
+  <data name="DateCreated_Label" xml:space="preserve">
+    <value>Дата на създаване</value>
+  </data>
+  <data name="LastUpdated_Label" xml:space="preserve">
+    <value>Посл. промяна</value>
+  </data>
+  <data name="DossierEdit_Agreement" xml:space="preserve">
+    <value>Прикачете декларация за публикуване</value>
+  </data>
+  <data name="DossierEdit_ConfirmDeleteAgreement" xml:space="preserve">
+    <value>Сигурни ли сте, че искате да изтриете декларацията свързана към това досие?</value>
+  </data>
+  <data name="DossierEdit_ConfirmDeleteAgreement_Title" xml:space="preserve">
+    <value>Потвърждение</value>
+  </data>
+  <data name="DossierStatus_Published" xml:space="preserve">
+    <value>Публикуван</value>
+  </data>
+  <data name="JournalDossier_DocumentDeleted" xml:space="preserve">
+    <value>Изтрит документ от тип '{0}'.</value>
+  </data>
+  <data name="ManagePreferences_PreferredLanguageId" xml:space="preserve">
+    <value>Предпочитан език</value>
+  </data>
+  <data name="Alphabet_bg_Name" xml:space="preserve">
+    <value>кирилица</value>
+  </data>
+  <data name="Alphabet_en_Name" xml:space="preserve">
+    <value>латиница</value>
+  </data>
+  <data name="InAlphabet_bg_Name" xml:space="preserve">
+    <value>на кирилица</value>
+  </data>
+  <data name="InAlphabet_en_Name" xml:space="preserve">
+    <value>на латиница</value>
+  </data>
+  <data name="Language_bg_Name" xml:space="preserve">
+    <value>български</value>
+  </data>
+  <data name="Language_en_Name" xml:space="preserve">
+    <value>английски</value>
+  </data>
+  <data name="Team_Y.Chankova_Member" xml:space="preserve">
+    <value>доц. д-р Яна Чанкова</value>
+  </data>
+  <data name="DossierStatus_InSuperReview" xml:space="preserve">
+    <value>В арбитражна рецензия</value>
+  </data>
+  <data name="Index_Title" xml:space="preserve">
+    <value>Начало</value>
+  </data>
+  <data name="NavItem_Library_Archive" xml:space="preserve">
+    <value>Архив</value>
+  </data>
+  <data name="Dossier_EditPage_UploadSuperReviewDocument_Info" xml:space="preserve">
+    <value>Към досието има прикачени &lt;b&gt;две&lt;/b&gt; рецензии, когато прикачите арбитражна, то автоматично ще премине в статус '{0}' отново.</value>
+  </data>
+  <data name="Dossier_EditPage_UploadSuperReviewDocument" xml:space="preserve">
+    <value>Прикачете арбитражна рецензия</value>
+  </data>
+  <data name="DocumentType_SuperReview" xml:space="preserve">
+    <value>Арбитражна рецензия</value>
+  </data>
+  <data name="Team_S.Mathewson_MemberDescription" xml:space="preserve">
+    <value>Главен редактор</value>
+  </data>
+  <data name="Team_Y.Chankova_MemberDescription" xml:space="preserve">
+    <value>Редактор</value>
+  </data>
+  <data name="Team_B.Yanev_MemberDescription" xml:space="preserve">
+    <value>Редактор</value>
+  </data>
+  <data name="Team_F.Boykova_MemberDescription" xml:space="preserve">
+    <value>Редактор</value>
+  </data>
+  <data name="Team_I.Peleva_MemberDescription" xml:space="preserve">
+    <value>Главен редактор</value>
+  </data>
+  <data name="Team_Z.Ivanov_MemberDescription" xml:space="preserve">
+    <value>Редактор</value>
+  </data>
+  <data name="Team_M.Vlashki_MemberDescription" xml:space="preserve">
+    <value>Главен редактор</value>
+  </data>
+  <data name="Team_Y.Rowland_MemberDescription" xml:space="preserve">
+    <value>Редактор</value>
+  </data>
+  <data name="Team_G.Krasteva_Member" xml:space="preserve">
+    <value>доц. д-р Гергина Кръстева</value>
+  </data>
+  <data name="Team_G.Krasteva_MemberDescription" xml:space="preserve">
+    <value>Редактор</value>
+  </data>
+  <data name="Team_S.Cherpokova_Member" xml:space="preserve">
+    <value>доц. д-р Светла Черпокова</value>
+  </data>
+  <data name="Team_S.Cherpokova_MemberDescription" xml:space="preserve">
+    <value>Редактор</value>
+  </data>
+  <data name="Team_LiteratureAndCulture_2024-2026" xml:space="preserve">
+    <value>Редакторски екип кн. 1–5, 2024/2026</value>
   </data>
 </root>

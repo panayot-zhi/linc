@@ -29,7 +29,10 @@ namespace linc.Services
             if (sourcesLanguageId.HasValue)
             {
                 query = query.Include(x => x.Sources
-                    .Where(source => source.LanguageId == sourcesLanguageId.Value));
+                    .Where(source => source.LanguageId == sourcesLanguageId.Value)
+                    .OrderBy(source => source.StartingPdfPage)      // order first and foremost by the starting page number
+                    .ThenByDescending(source => source.IsSection)   // some sections begin on the same pages, they should be displayed first
+                    .ThenBy(source => source.DateCreated));         // order additionally by the date created
             }
 
             return await query.FirstOrDefaultAsync();
@@ -54,7 +57,9 @@ namespace linc.Services
 
         public async Task<List<ApplicationIssue>> GetIssuesAsync()
         {
-            return await _context.Issues.ToListAsync();
+            return await _context.Issues
+                .OrderByDescending(x => x.ReleaseDate)
+                .ToListAsync();
         }
 
         public async Task<int> CreateIssueAsync(IssueCreateViewModel input)

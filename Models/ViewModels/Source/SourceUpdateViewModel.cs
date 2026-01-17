@@ -38,11 +38,19 @@ namespace linc.Models.ViewModels.Source
 
 
 
-        [Display(Name = "SourceCreate_StartingPage", ResourceType = typeof(Resources.SharedResource))]
-        public int? StartingPage { get; set; }
+        [Display(Name = "SourceCreate_StartingPdfPage", ResourceType = typeof(Resources.SharedResource))]
+        public int? StartingPdfPage { get; set; }
 
-        [Display(Name = "SourceCreate_LastPage", ResourceType = typeof(Resources.SharedResource))]
-        public int? LastPage { get; set; }
+        [Display(Name = "SourceCreate_LastPdfPage", ResourceType = typeof(Resources.SharedResource))]
+        public int? LastPdfPage { get; set; }
+
+        [Display(Name = "SourceCreate_StartingIndexPage", ResourceType = typeof(Resources.SharedResource))]
+        public int? StartingIndexPage { get; set; }
+
+
+
+        [Display(Name = "SourceCreate_PdfFile", ResourceType = typeof(Resources.SharedResource))]
+        public IFormFile PdfFile { get; set; }
 
 
 
@@ -61,6 +69,13 @@ namespace linc.Models.ViewModels.Source
 
         [Display(Name = "SourceCreate_IsSection", ResourceType = typeof(Resources.SharedResource))]
         public bool IsSection { get; set; }
+
+
+        [Display(Name = "LastUpdated_Label", ResourceType = typeof(Resources.SharedResource))]
+        public DateTime LastUpdated { get; set; }
+
+        [Display(Name = "DateCreated_Label", ResourceType = typeof(Resources.SharedResource))]
+        public DateTime DateCreated { get; set; }
 
 
 

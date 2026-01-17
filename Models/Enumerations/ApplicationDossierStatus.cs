@@ -16,6 +16,8 @@ public enum ApplicationDossierStatus
     [Display(Name = "DossierStatus_Reviewed", ResourceType = typeof(Resources.SharedResource))]
     Reviewed = 25,
 
+    [Display(Name = "DossierStatus_InSuperReview", ResourceType = typeof(Resources.SharedResource))]
+    InSuperReview = 30,
 
     [Display(Name = "DossierStatus_AwaitingCorrections", ResourceType = typeof(Resources.SharedResource))]
     AwaitingCorrections = 40,
@@ -26,6 +28,10 @@ public enum ApplicationDossierStatus
 
     [Display(Name = "DossierStatus_AcceptedWithCorrections", ResourceType = typeof(Resources.SharedResource))]
     AcceptedWithCorrections = 55,
+
+
+    [Display(Name = "DossierStatus_Published", ResourceType = typeof(Resources.SharedResource))]
+    Published = 60,
 
 
     [Display(Name = "DossierStatus_Rejected", ResourceType = typeof(Resources.SharedResource))]

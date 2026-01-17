@@ -131,15 +131,22 @@
                     </td>
                     <td class="col-md-8">
                                 
-                        <a asp-action="LoadDossierDocument" asp-controller="Document" asp-route-dossierId="@Model.Id" , asp-route-documentId="@item.Id">
+                        <a asp-action="LoadDossierDocument" asp-controller="Document" asp-route-dossierId="@Model.Id" asp-route-documentId="@item.Id">
                             @Html.DisplayFor(modelItem => item.OriginalFileName)
                         </a>
 
-                        @if (item.DocumentType == ApplicationDocumentType.Review)
+                        @if (item.DocumentType is ApplicationDocumentType.Review or ApplicationDocumentType.SuperReview)
                         {
                             var dossierReview = Model.Reviews.First(x => x.ReviewId == item.Id);
+
+                            var reviewerUserName = string.Empty;
+                            if (dossierReview.Reviewer != null)
+                            {
+                                reviewerUserName = dossierReview.Reviewer.UserName;
+                            }
+
                             <p>
-                                <small>@HtmlLocalizer["Reviewer_Label"]: @dossierReview.Names (<a href="mailto:@dossierReview.Email" target="_blank">@dossierReview.Email</a>)</small>
+                                <small>@HtmlLocalizer["Reviewer_Label"]: @dossierReview.Names (<a href="mailto:@dossierReview.Email" target="_blank">@dossierReview.Email</a>@(!string.IsNullOrEmpty(reviewerUserName) ? $", {reviewerUserName}" : string.Empty))</small>
                             </p>
                         }
 

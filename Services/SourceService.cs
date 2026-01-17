@@ -14,6 +14,7 @@ namespace linc.Services
 {
     public class SourceService : ISourceService
     {
+        private readonly IApplicationUserStore _applicationUserStore;
         private readonly IDocumentService _documentService;
         private readonly ILogger<SourceService> _logger;
         private readonly ApplicationDbContext _context;
@@ -22,10 +23,12 @@ namespace linc.Services
         public SourceService(ApplicationDbContext context, 
             IOptions<ApplicationConfig> config, 
             ILogger<SourceService> logger,
+            IApplicationUserStore applicationUserStore,
             IDocumentService documentService)
         {
             _context = context;
             _documentService = documentService;
+            _applicationUserStore = applicationUserStore;
             _config = config.Value;
             _logger = logger;
         }
@@ -46,7 +49,6 @@ namespace linc.Services
             var query = sourcesDbSet
                 .Include(x => x.Issue)
                 .Where(x => !x.IsSection)
-                .Where(x => !x.IsTheme)
                 .AsQueryable();
 
             if (issueId.HasValue)
@@ -89,7 +91,7 @@ namespace linc.Services
                 query = query.OrderBy(x => x.LanguageId == languageId ? 0 : 1)
                     .ThenBy(x => x.LanguageId)
                         .ThenBy(x => x.Issue.ReleaseDate)
-                            .ThenBy(x => x.StartingPage);
+                            .ThenBy(x => x.StartingPdfPage);
             }
 
             var count = await query.CountAsync();
@@ -118,11 +120,12 @@ namespace linc.Services
                 .AsQueryable();
 
             query = query
-                .OrderBy(x => x.Issue.ReleaseDate)
-                .ThenBy(x => x.StartingPage);
+                .OrderByDescending(x => x.Issue.ReleaseDate)
+                .ThenBy(source => source.StartingPdfPage)       // order first and foremost by the starting page number
+                .ThenByDescending(source => source.IsSection)   // some sections begin on the same pages, they should be displayed first
+                .ThenBy(source => source.DateCreated);          // order additionally by the date created
 
             var count = await query.CountAsync();
-
             var sources = query
                 .Skip((pageIndex.Value - 1) * pageSize)
                 .Take(pageSize);
@@ -153,7 +156,7 @@ namespace linc.Services
                 .Select(group => new SourceCountByIssues
                 {
                     IssueId = group.Key,
-                    IssueTitle = $"{group.First().Issue.IssueNumber}/{group.First().Issue.DateCreated.Year}",
+                    IssueTitle = IIssueService.DisplayIssueLabelInformation(group.First().Issue.IssueNumber, group.First().Issue.DateCreated.Year),
                     Count = group.Count()
                 }).ToListAsync();
         }
@@ -161,8 +164,8 @@ namespace linc.Services
         public async Task<int> CreateSourceAsync(SourceCreateViewModel input)
         {
             // validation should guard these from being nulls
-            var startingPage = input.StartingPage!.Value;
-            var lastPage = input.LastPage!.Value;
+            var startingPage = input.StartingPdfPage!.Value;
+            var lastPage = input.LastPdfPage!.Value;
             var issueId = input.IssueId!.Value;
 
             await using var transaction = await _context.Database.BeginTransactionAsync();
@@ -171,7 +174,16 @@ namespace linc.Services
                 .Include(x => x.Files)
                 .First(x => x.Id == issueId);
 
-            var authorId = await FindAuthorByNamesAsync(input.FirstName, input.LastName);
+            var author = await _applicationUserStore.FindUserByNamesAsync(input.FirstName, input.LastName);
+
+            string authorId = null;
+            if (author is not null)
+            {
+                _context.Users.Attach(author);
+                author.IsAuthor = true;
+                await _context.SaveChangesAsync();
+                authorId = author.Id;
+            }
 
             ApplicationDocument pdf;
             if (input.PdfFile != null)
@@ -187,15 +199,22 @@ namespace linc.Services
 
             var entity = new ApplicationSource
             {
-                FirstName = input.FirstName,
-                LastName = input.LastName,
+                FirstName = input.FirstName?.Trim(),
+                LastName = input.LastName?.Trim(),
                 AuthorNotes = input.AuthorNotes,
 
-                StartingPage = startingPage,
-                LastPage = lastPage,
+                DOI = input.DOI?.Trim(),
 
-                Title = input.Title,
+                StartingPdfPage = startingPage,
+                LastPdfPage = lastPage,
+
+                StartingIndexPage = input.StartingIndexPage,
+
+                Title = input.Title?.Trim(),
                 TitleNotes = input.TitleNotes,
+
+                IsTheme = input.IsTheme,
+                IsSection = input.IsSection,
 
                 LanguageId = input.LanguageId,
                 IssueId = issueId,
@@ -213,22 +232,33 @@ namespace linc.Services
         public async Task UpdateSourceAsync(SourceUpdateViewModel input)
         {
             var source = await _context.Sources.FindAsync(input.Id);
-            var authorId = await FindAuthorByNamesAsync(input.FirstName, input.LastName);
 
             ArgumentNullException.ThrowIfNull(source);
 
+            var author = await _applicationUserStore.FindUserByNamesAsync(input.FirstName, input.LastName);
+
+            string authorId = null;
+            if (author is not null)
+            {
+                _context.Users.Attach(author);
+                author.IsAuthor = true;
+                await _context.SaveChangesAsync();
+                authorId = author.Id;
+            }
+
             _context.Sources.Attach(source);
 
-            source.Title = input.Title;
+            source.Title = input.Title?.Trim();
             source.TitleNotes = input.TitleNotes;
 
-            source.DOI = input.DOI;
+            source.DOI = input.DOI?.Trim();
 
-            source.FirstName = input.FirstName;
-            source.LastName = input.LastName;
+            source.FirstName = input.FirstName?.Trim();
+            source.LastName = input.LastName?.Trim();
             source.AuthorNotes = input.AuthorNotes;
 
-            source.IssueId = input.IssueId;
+            source.StartingIndexPage = input.StartingIndexPage;
+
             source.LanguageId = input.LanguageId;
 
             source.IsTheme = input.IsTheme;
@@ -241,13 +271,21 @@ namespace linc.Services
 
         public async Task DeleteSourceAsync(int id)
         {
-            // TODO: perform cleanup of everything related to the source
             var source = await _context.Sources.FindAsync(id);
 
             ArgumentNullException.ThrowIfNull(source);
 
-            _context.Sources.Remove(source);
-            await _context.SaveChangesAsync();
+            // If this is the last PDF document connected to a source it
+            // will automatically delete the source because of cascading deletion:
+            // no source can exist without a corresponding pdf file
+            var documentDeleted = await _documentService.DeleteDocumentAsync(source.PdfId);
+            if (!documentDeleted)
+            {
+                // If the document was not deleted, because it is connected to other sources
+                // we need to still perform remove of the source from the database
+                _context.Sources.Remove(source);
+                await _context.SaveChangesAsync();
+            }
         }
 
         private async Task<ApplicationDocument> GenerateSourcePdf(ApplicationIssue issue, int startingPage, int lastPage)
@@ -258,42 +296,45 @@ namespace linc.Services
             var releaseYear = issue.ReleaseYear;
 
             const ApplicationDocumentType type = ApplicationDocumentType.SourcePdf;
-            var fileName = $"{issue.ReleaseYear}-{issueNumber.ToString().PadLeft(3, '0')}-{HelperFunctions.ToKebabCase(type.ToString())}-{startingPage}";
+            var fileName = $"{issue.ReleaseYear}-{issueNumber.ToString().PadLeft(3, '0')}-{HelperFunctions.ToKebabCase(type.ToString())}-{startingPage}-{lastPage}";
 
             var rootFolderPath = Path.Combine(_config.RepositoryPath, SiteConstant.IssuesFolderName);
             var directoryPath = Path.Combine(rootFolderPath, releaseYear.ToString());
             var filePath = Path.Combine(directoryPath, $"{fileName}.pdf");
 
-            if (!File.Exists(filePath))
-            {
-                await using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    var document = new Document();
-                    var issuePdfReader = new PdfReader(issuePdfPath);
-                    var pdfWriter = new PdfCopy(document, stream);
-
-                    document.Open();
-
-                    // Loop through the specified range and add the pages to the new document
-                    for (var pageNumber = startingPage; pageNumber <= lastPage; pageNumber++)
-                    {
-                        var page = pdfWriter.GetImportedPage(issuePdfReader, pageNumber);
-                        pdfWriter.AddPage(page);
-                    }
-
-                    document.Close();
-                    pdfWriter.Close();
-                    issuePdfReader.Close();
-                }
-            }
-            else
-            {
-                _logger.LogWarning("SourcePdf could not be generated, because the file at the specified location already exists {FilePath}.{NewLine}" +
-                                   "This can occur when two sources point to the same part of the pdf.",
-                    filePath, Environment.NewLine);
-            }
-
             var relativePath = Path.Combine(SiteConstant.IssuesFolderName, releaseYear.ToString(), $"{fileName}.pdf");
+
+            if (File.Exists(filePath))
+            {
+                _logger.LogWarning(
+                    "SourcePdf could not be generated, because the file at the specified location already exists {FilePath}.{NewLine}" +
+                    "This can occur when two sources point to the same part of the pdf. Linking the same database document...",
+                    filePath, Environment.NewLine);
+
+                return _context.Documents.First(x =>
+                    x.RelativePath == relativePath);
+
+            }
+
+            await using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                var document = new Document();
+                var issuePdfReader = new PdfReader(issuePdfPath);
+                var pdfWriter = new PdfCopy(document, stream);
+
+                document.Open();
+
+                // Loop through the specified range and add the pages to the new document
+                for (var pageNumber = startingPage; pageNumber <= lastPage; pageNumber++)
+                {
+                    var page = pdfWriter.GetImportedPage(issuePdfReader, pageNumber);
+                    pdfWriter.AddPage(page);
+                }
+
+                document.Close();
+                pdfWriter.Close();
+                issuePdfReader.Close();
+            }
 
             var entry = new ApplicationDocument()
             {
@@ -325,20 +366,21 @@ namespace linc.Services
             var relativePath = Path.Combine(SiteConstant.IssuesFolderName, releaseYear.ToString(),
                 $"{fileName}.{fileExtension}");
 
-            if (!File.Exists(filePath))
+            if (File.Exists(filePath))
             {
-                await using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    await inputFile.CopyToAsync(fileStream);
-                }
-            }
-            else
-            {
-                _logger.LogWarning("SourcePdf could not be saved, because the file at the specified location already exists {FilePath}.{NewLine}" +
-                                   "This can occur when two sources point to the same part of the pdf.",
+                _logger.LogWarning(
+                    "SourcePdf could not be saved, because the file at the specified location already exists {FilePath}.{NewLine}" +
+                    "This can occur when two sources point to the same part of the pdf. Linking the same database document...",
                     filePath, Environment.NewLine);
+
+                return _context.Documents.First(x => 
+                    x.RelativePath == relativePath);
             }
 
+            await using (var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                await inputFile.CopyToAsync(fileStream);
+            }
 
             var entry = new ApplicationDocument()
             {
@@ -355,27 +397,45 @@ namespace linc.Services
             return entityEntry.Entity;
         }
 
-
-        private async Task<string> FindAuthorByNamesAsync(string inputFirstName, string inputLastName)
+        public async Task UpdateAuthorAsync(ApplicationUser user)
         {
-            var user = await _context.Users
-                .FirstOrDefaultAsync(x =>
-                    EF.Functions.Like(x.FirstName, $"{inputFirstName}") &&
-                    EF.Functions.Like(x.LastName, $"{inputLastName}")
-                );
+            var userProfiles = _context.UserProfiles
+                .Where(x => x.UserId == user.Id)
+                .ToList();
 
-            if (user is null)
+            var dbSources = _context.Sources
+                .Where(x => x.AuthorId == null)
+                .Where(x => x.FirstName != null)
+                .Where(x => x.LastName != null)
+                .ToList();
+
+            foreach (var userProfile in userProfiles)
             {
-                return null;
+                var sources = dbSources
+                    .Where(x => string.Equals(x.FirstName, userProfile.FirstName, StringComparison.CurrentCultureIgnoreCase))
+                    .Where(x => string.Equals(x.LastName, userProfile.LastName, StringComparison.CurrentCultureIgnoreCase))
+                    .ToList();
+
+                if (!sources.Any())
+                {
+                    continue;
+                }
+
+                if (!user.IsAuthor)
+                {
+                    _context.Users.Attach(user);
+                    user.IsAuthor = true;
+                }
+
+                foreach (var source in sources)
+                {
+                    _context.Sources.Attach(source);
+                    source.AuthorId = user.Id;
+                }
+
+                await _context.SaveChangesAsync();
             }
-
-            _context.Users.Attach(user);
-            
-            user.IsAuthor = true;
-
-            await _context.SaveChangesAsync();
-
-            return user.Id;
         }
+
     }
 }

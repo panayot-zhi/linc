@@ -29,6 +29,8 @@ namespace linc.Data
         [Required]
         public ApplicationDossierStatus Status { get; set; }
 
+        public bool SuperReviewed { get; set; }
+
 
         #region Navigation
 
