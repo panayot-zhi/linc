@@ -4545,7 +4545,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Редактор.
+        ///   Looks up a localized string similar to Главен редактор.
         /// </summary>
         public static string Team_M_Vlashki_MemberDescription {
             get {
