@@ -136,6 +136,68 @@ namespace linc.Services
             };
         }
 
+        public async Task<SourceIndexViewModel> GetAdminSourcesByIssuePagedAsync(int languageId, int? issuePageIndex)
+        {
+            if (!issuePageIndex.HasValue)
+            {
+                issuePageIndex = 1;
+            }
+
+            // Get all issues ordered by release date (descending - newest first)
+            var allIssues = await _context.Issues
+                .OrderByDescending(x => x.ReleaseDate)
+                .ToListAsync();
+
+            var totalIssues = allIssues.Count;
+
+            if (totalIssues == 0 || issuePageIndex.Value < 1 || issuePageIndex.Value > totalIssues)
+            {
+                return new SourceIndexViewModel(0, issuePageIndex.Value, 1)
+                {
+                    Records = new List<ApplicationSource>()
+                };
+            }
+
+            // Get the issue for the current page (1-indexed)
+            var currentIssue = allIssues[issuePageIndex.Value - 1];
+
+            // Get all sources for this issue with the specified language
+            var sourcesQuery = _context.Sources
+                .Include(x => x.Issue)
+                .Where(x => x.IssueId == currentIssue.Id && x.LanguageId == languageId)
+                .OrderBy(source => source.StartingPdfPage)      // order first and foremost by the starting page number
+                .ThenByDescending(source => source.IsSection)   // some sections begin on the same pages, they should be displayed first
+                .ThenBy(source => source.DateCreated);          // order additionally by the date created
+
+            var sources = await sourcesQuery.ToListAsync();
+            var sourceCount = sources.Count;
+
+            var viewModel = new SourceIndexViewModel(totalIssues, issuePageIndex.Value, 1)
+            {
+                Records = sources,
+                CurrentIssueNumber = currentIssue.IssueNumber,
+                CurrentReleaseYear = currentIssue.ReleaseYear
+            };
+
+            // Set previous issue info
+            if (issuePageIndex.Value > 1)
+            {
+                var previousIssue = allIssues[issuePageIndex.Value - 2];
+                viewModel.PreviousIssueNumber = previousIssue.IssueNumber;
+                viewModel.PreviousIssueYear = previousIssue.ReleaseYear;
+            }
+
+            // Set next issue info
+            if (issuePageIndex.Value < totalIssues)
+            {
+                var nextIssue = allIssues[issuePageIndex.Value];
+                viewModel.NextIssueNumber = nextIssue.IssueNumber;
+                viewModel.NextIssueYear = nextIssue.ReleaseYear;
+            }
+
+            return viewModel;
+        }
+
         public async Task<List<SourceCountByYears>> GetSourcesCountByYears()
         {
             return await _context.Sources
