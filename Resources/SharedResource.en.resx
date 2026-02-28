@@ -1005,7 +1005,7 @@
     <value>Prof. Inna Peleva, DSc</value>
   </data>
   <data name="Team_M.Vlashki_Member" xml:space="preserve">
-    <value>Assoc. Prof. Mladen Vlashki, PhD</value>
+    <value>Assoc. Prof. Mladen Vlashki, DSc</value>
   </data>
   <data name="Team_S.Mathewson_Member" xml:space="preserve">
     <value>Assoc. Prof. Snezha Tsoneva-Mathewson, PhD</value>
@@ -1172,30 +1172,6 @@
   <data name="Issue_DetailsPage_Title" xml:space="preserve">
     <value>View issue</value>
   </data>
-  <data name="SourceCreate_AuthorNotes" xml:space="preserve">
-    <value>Notes for the author</value>
-  </data>
-  <data name="SourceCreate_FirstName" xml:space="preserve">
-    <value>First name</value>
-  </data>
-  <data name="SourceCreate_IssueId" xml:space="preserve">
-    <value>Issue</value>
-  </data>
-  <data name="SourceCreate_LanguageId" xml:space="preserve">
-    <value>Language</value>
-  </data>
-  <data name="SourceCreate_LastName" xml:space="preserve">
-    <value>Last name</value>
-  </data>
-  <data name="SourceCreate_StartingPdfPage" xml:space="preserve">
-    <value>Starting page (PDF)</value>
-  </data>
-  <data name="SourceCreate_Title" xml:space="preserve">
-    <value>Title</value>
-  </data>
-  <data name="SourceCreate_TitleNotes" xml:space="preserve">
-    <value>Notes to the manuscript</value>
-  </data>
   <data name="Source_CreatePage_SubTitle" xml:space="preserve">
     <value>Create a new source from the index page</value>
   </data>
@@ -1289,9 +1265,6 @@
   <data name="Board_Joaquín.García-Medall_MemberWork" xml:space="preserve">
     <value>University of Valladolid, Spain</value>
   </data>
-  <data name="SourceCreate_LastPdfPage" xml:space="preserve">
-    <value>Last page (PDF)</value>
-  </data>
   <data name="Team_EditorialAssistants_SubTitle" xml:space="preserve">
     <value>Editorial Assistant</value>
   </data>
@@ -1336,9 +1309,6 @@
   </data>
   <data name="Source_IndexPage_SearchDescription" xml:space="preserve">
     <value>search by first letter of the author's &lt;b&gt;last&lt;/b&gt; name</value>
-  </data>
-  <data name="SourceCreate_PdfFile" xml:space="preserve">
-    <value>Attach the source as PDF</value>
   </data>
   <data name="PortfolioSection_Description" xml:space="preserve">
     <value>Browse issues of the magazine.</value>
@@ -1676,15 +1646,6 @@ The manuscript file must have a .doc or .docx extension.</value>
   <data name="List_Label" xml:space="preserve">
     <value>List</value>
   </data>
-  <data name="SourceCreate_DOI" xml:space="preserve">
-    <value>DOI</value>
-  </data>
-  <data name="SourceCreate_IsSection" xml:space="preserve">
-    <value>Section</value>
-  </data>
-  <data name="SourceCreate_IsTheme" xml:space="preserve">
-    <value>Topic</value>
-  </data>
   <data name="Source_AdminPage_Title" xml:space="preserve">
     <value>List of sources</value>
   </data>
@@ -1693,9 +1654,6 @@ The manuscript file must have a .doc or .docx extension.</value>
   </data>
   <data name="Dossier_ListHeader_HasAgreement" xml:space="preserve">
     <value>Agreement</value>
-  </data>
-  <data name="SourceCreate_StartingIndexPage" xml:space="preserve">
-    <value>Starting page (in index)</value>
   </data>
   <data name="DateCreated_Label" xml:space="preserve">
     <value>Date created</value>
@@ -1798,5 +1756,47 @@ The manuscript file must have a .doc or .docx extension.</value>
   </data>
   <data name="Team_LiteratureAndCulture_2024-2026" xml:space="preserve">
     <value>Editorial team issues 1-5, 2024/2026</value>
+  </data>
+  <data name="SourceCreate_AuthorNotes" xml:space="preserve">
+    <value>Notes for the author</value>
+  </data>
+  <data name="SourceCreate_FirstName" xml:space="preserve">
+    <value>First name</value>
+  </data>
+  <data name="SourceCreate_IssueId" xml:space="preserve">
+    <value>Issue</value>
+  </data>
+  <data name="SourceCreate_LanguageId" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="SourceCreate_LastName" xml:space="preserve">
+    <value>Last name</value>
+  </data>
+  <data name="SourceCreate_StartingPdfPage" xml:space="preserve">
+    <value>Starting page (PDF)</value>
+  </data>
+  <data name="SourceCreate_Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="SourceCreate_TitleNotes" xml:space="preserve">
+    <value>Notes to the manuscript</value>
+  </data>
+  <data name="SourceCreate_LastPdfPage" xml:space="preserve">
+    <value>Last page (PDF)</value>
+  </data>
+  <data name="SourceCreate_PdfFile" xml:space="preserve">
+    <value>Attach the source as PDF</value>
+  </data>
+  <data name="SourceCreate_DOI" xml:space="preserve">
+    <value>DOI</value>
+  </data>
+  <data name="SourceCreate_IsSection" xml:space="preserve">
+    <value>Section</value>
+  </data>
+  <data name="SourceCreate_IsTheme" xml:space="preserve">
+    <value>Topic</value>
+  </data>
+  <data name="SourceCreate_StartingIndexPage" xml:space="preserve">
+    <value>Starting page (in index)</value>
   </data>
 </root>

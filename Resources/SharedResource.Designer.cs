@@ -4491,7 +4491,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to проф. дфн Инна Пелева.
+        ///   Looks up a localized string similar to проф. д.ф.н. Инна Пелева.
         /// </summary>
         public static string Team_I_Peleva_Member {
             get {
@@ -4536,7 +4536,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to доц. д-р Младен Влашки.
+        ///   Looks up a localized string similar to доц. д.ф.н. Младен Влашки.
         /// </summary>
         public static string Team_M_Vlashki_Member {
             get {
