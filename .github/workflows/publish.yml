@@ -43,7 +43,7 @@ jobs:
       run: dotnet build --no-restore --configuration Release
 
     - name: Install Playwright Browsers
-      run: pwsh Tests/bin/Release/net6.0/playwright.ps1 install
+      run: pwsh Tests/bin/Release/net6.0/playwright.ps1 install --with-deps chromium
 
     - name: Publish Release
       run: |
