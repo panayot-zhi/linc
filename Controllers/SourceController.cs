@@ -47,7 +47,7 @@ namespace linc.Controllers
         public async Task<IActionResult> Admin(int? page)
         {
             var languageId = LocalizationService.GetCurrentLanguageId();
-            var viewModel = await _sourceService.GetAdminSourcesPagedAsync(languageId: languageId, pageIndex: page);
+            var viewModel = await _sourceService.GetAdminSourcesByIssuePagedAsync(languageId: languageId, issuePageIndex: page);
 
             return View(viewModel);
         }

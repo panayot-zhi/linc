@@ -30,6 +30,20 @@ namespace linc.Models.ViewModels.Source
 
         public string CurrentAuthorsFilter { get; set; }
 
+
+        // Issue-based pagination properties
+        public int? CurrentIssueNumber { get; set; }
+
+        public int? CurrentReleaseYear { get; set; }
+
+        public int? PreviousIssueNumber { get; set; }
+
+        public int? PreviousIssueYear { get; set; }
+
+        public int? NextIssueNumber { get; set; }
+
+        public int? NextIssueYear { get; set; }
+
     }
 
 }
