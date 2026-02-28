@@ -16,7 +16,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Check source branch and increment version
+    - name: Update version
       id: update-version
       run: |
 
@@ -47,21 +47,34 @@ jobs:
             echo "Updated major version for release branch."
         elif [[ "$SOURCE_BRANCH" == feature/* ]]; then
             let minor+=1
-            #patch=0
+            patch=0
 
             new_version="$major.$minor.$patch"
             echo "NEW_VERSION=$new_version" >> $GITHUB_OUTPUT
             sed -i "s/<Version>$current_version<\/Version>/<Version>$new_version<\/Version>/" "$csproj_file"
             echo "Updated minor version for feature branch."
-        elif [[ "$SOURCE_BRANCH" == bugfix/* || "$SOURCE_BRANCH" == hotfix/* ]]; then
+        elif [[ "$SOURCE_BRANCH" == fix/* || "$SOURCE_BRANCH" == bugfix/* || "$SOURCE_BRANCH" == hotfix/* ]]; then
             let patch+=1
 
             new_version="$major.$minor.$patch"
             echo "NEW_VERSION=$new_version" >> $GITHUB_OUTPUT
             sed -i "s/<Version>$current_version<\/Version>/<Version>$new_version<\/Version>/" "$csproj_file"
-            echo "Updated patch version for bugfix/hotfix branches."
+            echo "Updated patch version for fix/bugfix/hotfix branches."
+        elif [[ "$SOURCE_BRANCH" == copilot/* ]]; then
+            let patch+=1
+
+            new_version="$major.$minor.$patch"
+            echo "NEW_VERSION=$new_version" >> $GITHUB_OUTPUT
+            sed -i "s/<Version>$current_version<\/Version>/<Version>$new_version<\/Version>/" "$csproj_file"
+            echo "Updated patch version for copilot automated branch."
         else
+            let patch+=1
+            
+            new_version="$major.$minor.$patch"
+            echo "NEW_VERSION=$new_version" >> $GITHUB_OUTPUT
+            sed -i "s/<Version>$current_version<\/Version>/<Version>$new_version<\/Version>/" "$csproj_file"            
             echo "Branch is not part of version automation."
+            echo "Updated patch version by default."
         fi
 
     - name: Commit and push changes
