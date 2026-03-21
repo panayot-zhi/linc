@@ -9,4 +9,4 @@ Staging:
 
 Production:  
 [![Production](https://github.com/panayot-zhi/linc/actions/workflows/publish.yml/badge.svg)](https://github.com/panayot-zhi/linc/actions/workflows/publish.yml)  
-![Static Badge](https://img.shields.io/badge/latest-v.1.34.56.96-blue?label=current)  
+![Static Badge](https://img.shields.io/badge/latest-v.1.34.57.98-blue?label=current)  
