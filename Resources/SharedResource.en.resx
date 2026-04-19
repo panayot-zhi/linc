@@ -254,39 +254,39 @@
   </data>
   <data name="CodexSection_Authors_Content" xml:space="preserve">
     <value>&lt;ul class="mx-2"&gt;
-	&lt;li&gt;
-		may submit to the journal &lt;strong&gt;only their own work&lt;/strong&gt; that has not been either published in or submitted to another journal; 
-	&lt;/li&gt;
-	&lt;li&gt;
-		must have formatted their text in accordance with the LinC Guidelines for Authors; 
-	&lt;/li&gt;
-	&lt;li&gt;
-		is/are responsible for the reliability of the primary data they utilise in their research and for the proposed work’s originality; 
-	&lt;/li&gt;
-	&lt;li&gt;
-		when their text is published again, they must include a correct bibliographical reference to its first publication in LInC; 
-	&lt;/li&gt;
-	&lt;li&gt;
-		must cite accurately and fully all sources used in the writing of the research paper; 
-	&lt;/li&gt;
-	&lt;li&gt;
-		must specify the institutions, organisations, projects, individuals relevant to the preparation of their study (by funding the research that resulted in its production, by providing specific information, working conditions, access to a non-public archive, etc.); 
-	&lt;/li&gt;
-	&lt;li&gt;
-		must report any conflicts of interest; 
-	&lt;/li&gt;
-	&lt;li&gt;
-		must answer the reviewers’ questions, respond to their comments and, if necessary, make changes to the submitted text; in case of disagreement with the proposed corrective options, the author has the right to withdraw the submitted manuscript; 
-	&lt;/li&gt;
-	&lt;li&gt;
-		must promptly inform the Editors if they discover a serious omission or error in their work after submission; 
-	&lt;/li&gt;
-	&lt;li&gt;
-		does/do not disclose details of their collaboration with the editorial board as part of the publication process; 
-	&lt;/li&gt;
-	&lt;li&gt;
-		complies with the journal’s Code of Ethics and with generally accepted academic norms of ethical conduct.
-	&lt;/li&gt;
+ &lt;li&gt;
+  may submit to the journal &lt;strong&gt;only their own work&lt;/strong&gt; that has not been either published in or submitted to another journal; article submissions are routinely screened for plagiarism through the strikeplagiarism panel.
+ &lt;/li&gt;
+ &lt;li&gt;
+  must have formatted their text in accordance with the LinC Guidelines for Authors; 
+ &lt;/li&gt;
+ &lt;li&gt;
+  is/are responsible for the reliability of the primary data they utilise in their research and for the proposed work’s originality; 
+ &lt;/li&gt;
+ &lt;li&gt;
+  when their text is published again, they must include a correct bibliographical reference to its first publication in LInC; 
+ &lt;/li&gt;
+ &lt;li&gt;
+  must cite accurately and fully all sources used in the writing of the research paper; 
+ &lt;/li&gt;
+ &lt;li&gt;
+  must specify the institutions, organisations, projects, individuals relevant to the preparation of their study (by funding the research that resulted in its production, by providing specific information, working conditions, access to a non-public archive, etc.); 
+ &lt;/li&gt;
+ &lt;li&gt;
+  must report any conflicts of interest; 
+ &lt;/li&gt;
+ &lt;li&gt;
+  must answer the reviewers’ questions, respond to their comments and, if necessary, make changes to the submitted text; in case of disagreement with the proposed corrective options, the author has the right to withdraw the submitted manuscript; 
+ &lt;/li&gt;
+ &lt;li&gt;
+  must promptly inform the Editors if they discover a serious omission or error in their work after submission; 
+ &lt;/li&gt;
+ &lt;li&gt;
+  does/do not disclose details of their collaboration with the editorial board as part of the publication process; 
+ &lt;/li&gt;
+ &lt;li&gt;
+  complies with the journal’s Code of Ethics and with generally accepted academic norms of ethical conduct.
+ &lt;/li&gt;
 &lt;/ul&gt;</value>
   </data>
   <data name="CodexSection_Authors_Title" xml:space="preserve">
@@ -1172,6 +1172,30 @@
   <data name="Issue_DetailsPage_Title" xml:space="preserve">
     <value>View issue</value>
   </data>
+  <data name="SourceCreate_AuthorNotes" xml:space="preserve">
+    <value>Notes for the author</value>
+  </data>
+  <data name="SourceCreate_FirstName" xml:space="preserve">
+    <value>First name</value>
+  </data>
+  <data name="SourceCreate_IssueId" xml:space="preserve">
+    <value>Issue</value>
+  </data>
+  <data name="SourceCreate_LanguageId" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="SourceCreate_LastName" xml:space="preserve">
+    <value>Last name</value>
+  </data>
+  <data name="SourceCreate_StartingPdfPage" xml:space="preserve">
+    <value>Starting page (PDF)</value>
+  </data>
+  <data name="SourceCreate_Title" xml:space="preserve">
+    <value>Title</value>
+  </data>
+  <data name="SourceCreate_TitleNotes" xml:space="preserve">
+    <value>Notes to the manuscript</value>
+  </data>
   <data name="Source_CreatePage_SubTitle" xml:space="preserve">
     <value>Create a new source from the index page</value>
   </data>
@@ -1265,6 +1289,9 @@
   <data name="Board_Joaquín.García-Medall_MemberWork" xml:space="preserve">
     <value>University of Valladolid, Spain</value>
   </data>
+  <data name="SourceCreate_LastPdfPage" xml:space="preserve">
+    <value>Last page (PDF)</value>
+  </data>
   <data name="Team_EditorialAssistants_SubTitle" xml:space="preserve">
     <value>Editorial Assistant</value>
   </data>
@@ -1309,6 +1336,9 @@
   </data>
   <data name="Source_IndexPage_SearchDescription" xml:space="preserve">
     <value>search by first letter of the author's &lt;b&gt;last&lt;/b&gt; name</value>
+  </data>
+  <data name="SourceCreate_PdfFile" xml:space="preserve">
+    <value>Attach the source as PDF</value>
   </data>
   <data name="PortfolioSection_Description" xml:space="preserve">
     <value>Browse issues of the magazine.</value>
@@ -1563,7 +1593,7 @@
     <value>The journal provides a platform for researchers with different methods and approaches, belonging to different generations and identifying with different cultural traditions and contexts.</value>
   </data>
   <data name="AboutSection_Publish_Description" xml:space="preserve">
-    <value>Publication in LInC is free of charge for the authors, as well as for the institutions to which they are affiliated. Access to the online edition is free, as is access to the full texts.</value>
+    <value>LInC is an open access journal which means that all content is freely available without charge to its registered users. They are allowed to read, download, copy, distribute, print, search, or link to the full texts of the articles, or use them for any other lawful purpose, without asking prior permission from the publisher or the author. </value>
   </data>
   <data name="AboutSection_Review_Description" xml:space="preserve">
     <value>Submissions to the journal are subject to double-blind peer review by two independent reviewers who are experts in the respective research areas.</value>
@@ -1646,6 +1676,15 @@ The manuscript file must have a .doc or .docx extension.</value>
   <data name="List_Label" xml:space="preserve">
     <value>List</value>
   </data>
+  <data name="SourceCreate_DOI" xml:space="preserve">
+    <value>DOI</value>
+  </data>
+  <data name="SourceCreate_IsSection" xml:space="preserve">
+    <value>Section</value>
+  </data>
+  <data name="SourceCreate_IsTheme" xml:space="preserve">
+    <value>Topic</value>
+  </data>
   <data name="Source_AdminPage_Title" xml:space="preserve">
     <value>List of sources</value>
   </data>
@@ -1654,6 +1693,9 @@ The manuscript file must have a .doc or .docx extension.</value>
   </data>
   <data name="Dossier_ListHeader_HasAgreement" xml:space="preserve">
     <value>Agreement</value>
+  </data>
+  <data name="SourceCreate_StartingIndexPage" xml:space="preserve">
+    <value>Starting page (in index)</value>
   </data>
   <data name="DateCreated_Label" xml:space="preserve">
     <value>Date created</value>
@@ -1756,47 +1798,5 @@ The manuscript file must have a .doc or .docx extension.</value>
   </data>
   <data name="Team_LiteratureAndCulture_2024-2026" xml:space="preserve">
     <value>Editorial team issues 1-5, 2024/2026</value>
-  </data>
-  <data name="SourceCreate_AuthorNotes" xml:space="preserve">
-    <value>Notes for the author</value>
-  </data>
-  <data name="SourceCreate_FirstName" xml:space="preserve">
-    <value>First name</value>
-  </data>
-  <data name="SourceCreate_IssueId" xml:space="preserve">
-    <value>Issue</value>
-  </data>
-  <data name="SourceCreate_LanguageId" xml:space="preserve">
-    <value>Language</value>
-  </data>
-  <data name="SourceCreate_LastName" xml:space="preserve">
-    <value>Last name</value>
-  </data>
-  <data name="SourceCreate_StartingPdfPage" xml:space="preserve">
-    <value>Starting page (PDF)</value>
-  </data>
-  <data name="SourceCreate_Title" xml:space="preserve">
-    <value>Title</value>
-  </data>
-  <data name="SourceCreate_TitleNotes" xml:space="preserve">
-    <value>Notes to the manuscript</value>
-  </data>
-  <data name="SourceCreate_LastPdfPage" xml:space="preserve">
-    <value>Last page (PDF)</value>
-  </data>
-  <data name="SourceCreate_PdfFile" xml:space="preserve">
-    <value>Attach the source as PDF</value>
-  </data>
-  <data name="SourceCreate_DOI" xml:space="preserve">
-    <value>DOI</value>
-  </data>
-  <data name="SourceCreate_IsSection" xml:space="preserve">
-    <value>Section</value>
-  </data>
-  <data name="SourceCreate_IsTheme" xml:space="preserve">
-    <value>Topic</value>
-  </data>
-  <data name="SourceCreate_StartingIndexPage" xml:space="preserve">
-    <value>Starting page (in index)</value>
   </data>
 </root>
