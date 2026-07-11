@@ -404,10 +404,10 @@ namespace linc.Services
             var entry = new ApplicationDocument()
             {
                 DocumentType = type,
-                Extension = "pdf",
+                Extension = SiteConstant.PdfFileExtension,
                 FileName = fileName,
                 MimeType = MediaTypeNames.Application.Pdf,
-                OriginalFileName = fileName,
+                OriginalFileName = $"{fileName}.{SiteConstant.PdfFileExtension}",
                 RelativePath = relativePath
             };
 
