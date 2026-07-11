@@ -4,7 +4,6 @@
 
 @{
     ViewData["Title"] = HtmlLocalizer["Source_AdminPage_Title"];
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @{
@@ -42,7 +41,7 @@
 
     @if (Model.CurrentIssueNumber.HasValue && Model.CurrentReleaseYear.HasValue)
     {
-        @HtmlLocalizer["Issue_Label"].Value.ToLower(CultureInfo.CurrentUICulture)
+        @HtmlLocalizer["Issue_Label"].Value.ToLower(requestCulture?.RequestCulture.UICulture)
         <text>: </text>
         @IIssueService.DisplayIssueLabelInformation(Model.CurrentIssueNumber.Value, Model.CurrentReleaseYear.Value)
     }
@@ -52,10 +51,10 @@
 
 <ul class="list-operations">
     <li>
-        <a asp-area="Identity" asp-page="/Account/Manage/Administration">Administration</a>
+        <a asp-area="Identity" asp-page="/Account/Manage/Administration">@HtmlLocalizer["ManageNavItem_Administration"]</a>
     </li>
     <li>
-        <a asp-action="Create" asp-route-issueId="@Model.CurrentIssueId">Create New</a>
+        <a asp-action="Create" asp-route-issueId="@Model.CurrentIssueId">@HtmlLocalizer["Source_CreatePage_Title"]</a>
     </li>
 </ul>
 
