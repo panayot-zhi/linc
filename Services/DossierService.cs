@@ -729,25 +729,27 @@ namespace linc.Services
 
         public async Task SaveAgreementAsync(ApplicationDossier dossier, byte[] inputFile)
         {
-            const string fileName = "publication_agreement.pdf";
+            const string extension = "pdf";
+            const string fileName = "publication_agreement";
+            const string originalFileName = $"{fileName}.{extension}";
             var rootFolderPath = Path.Combine(_config.RepositoryPath, SiteConstant.DossiersFolderName, dossier.Id.ToString());
-            var filePath = Path.Combine(rootFolderPath, fileName);
+            var filePath = Path.Combine(rootFolderPath, originalFileName);
             var currentUser = GetCurrentUser();
             var currentUserId = currentUser.GetUserId();
 
             Directory.CreateDirectory(rootFolderPath);
 
-            var relativePath = Path.Combine(SiteConstant.DossiersFolderName, dossier.Id.ToString(), fileName);
+            var relativePath = Path.Combine(SiteConstant.DossiersFolderName, dossier.Id.ToString(), originalFileName);
 
             await File.WriteAllBytesAsync(filePath, inputFile);
 
             var entry = new ApplicationDocument()
             {
                 DocumentType = ApplicationDocumentType.Agreement,
-                Extension = "pdf",
+                Extension = extension,
                 FileName = fileName,
                 MimeType = MediaTypeNames.Application.Pdf,
-                OriginalFileName = fileName,
+                OriginalFileName = originalFileName,
                 RelativePath = relativePath
             };
 
