@@ -2322,6 +2322,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Съдържание.
+        /// </summary>
+        public static string Index_Label {
+            get {
+                return ResourceManager.GetString("Index_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Начало.
         /// </summary>
         public static string Index_Title {
@@ -2480,6 +2489,15 @@ namespace linc.Resources {
         public static string Issue_IndexPage_Label {
             get {
                 return ResourceManager.GetString("Issue_IndexPage_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Брой.
+        /// </summary>
+        public static string Issue_Label {
+            get {
+                return ResourceManager.GetString("Issue_Label", resourceCulture);
             }
         }
         
@@ -2651,6 +2669,15 @@ namespace linc.Resources {
         public static string Language_en_Name {
             get {
                 return ResourceManager.GetString("Language_en_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Език.
+        /// </summary>
+        public static string Language_Label {
+            get {
+                return ResourceManager.GetString("Language_Label", resourceCulture);
             }
         }
         

@@ -1799,4 +1799,13 @@ The manuscript file must have a .doc or .docx extension.</value>
   <data name="Team_LiteratureAndCulture_2024-2026" xml:space="preserve">
     <value>Editorial team issues 1-5, 2024/2026</value>
   </data>
+  <data name="Issue_Label" xml:space="preserve">
+    <value>Issue</value>
+  </data>
+  <data name="Language_Label" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Index_Label" xml:space="preserve">
+    <value>Index</value>
+  </data>
 </root>

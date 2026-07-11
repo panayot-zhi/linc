@@ -1800,4 +1800,13 @@
   <data name="Team_LiteratureAndCulture_2024-2026" xml:space="preserve">
     <value>Редакторски екип кн. 1–5, 2024/2026</value>
   </data>
+  <data name="Issue_Label" xml:space="preserve">
+    <value>Брой</value>
+  </data>
+  <data name="Language_Label" xml:space="preserve">
+    <value>Език</value>
+  </data>
+  <data name="Index_Label" xml:space="preserve">
+    <value>Съдържание</value>
+  </data>
 </root>
