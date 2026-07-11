@@ -1200,7 +1200,7 @@
     <value>Създаване на нов източник от съдържанието</value>
   </data>
   <data name="Source_CreatePage_Title" xml:space="preserve">
-    <value>Създаване на източник</value>
+    <value>Създаване на нов запис</value>
   </data>
   <data name="Issue_DetailsPage_InfoTitle" xml:space="preserve">
     <value>Информация за броя</value>
@@ -1687,7 +1687,7 @@
     <value>Тема на броя</value>
   </data>
   <data name="Source_AdminPage_Title" xml:space="preserve">
-    <value>Списък записи в съдържания</value>
+    <value>Списък източници</value>
   </data>
   <data name="Source_EditPage_SubTitle" xml:space="preserve">
     <value>Редакция на източник</value>

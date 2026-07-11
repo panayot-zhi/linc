@@ -4177,7 +4177,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Списък записи в съдържания.
+        ///   Looks up a localized string similar to Списък източници.
         /// </summary>
         public static string Source_AdminPage_Title {
             get {
@@ -4195,7 +4195,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Създаване на източник.
+        ///   Looks up a localized string similar to Създаване на нов запис.
         /// </summary>
         public static string Source_CreatePage_Title {
             get {

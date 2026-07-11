@@ -1197,10 +1197,10 @@
     <value>Notes to the manuscript</value>
   </data>
   <data name="Source_CreatePage_SubTitle" xml:space="preserve">
-    <value>Create a new source from the index page</value>
+    <value>Create a new source to the index page</value>
   </data>
   <data name="Source_CreatePage_Title" xml:space="preserve">
-    <value>Create source</value>
+    <value>Create new index record</value>
   </data>
   <data name="Issue_DetailsPage_InfoTitle" xml:space="preserve">
     <value>Information about the issue</value>
