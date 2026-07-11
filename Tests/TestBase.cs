@@ -21,6 +21,7 @@ namespace linc.E2ETests
         public async Task GlobalOneTimeSetUp()
         {
             var configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
                 .AddEnvironmentVariables()
                 .Build();
 
