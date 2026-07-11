@@ -254,39 +254,39 @@
   </data>
   <data name="CodexSection_Authors_Content" xml:space="preserve">
     <value>&lt;ul class="mx-2"&gt;
-	&lt;li&gt;
-		may submit to the journal &lt;strong&gt;only their own work&lt;/strong&gt; that has not been either published in or submitted to another journal;
-	&lt;/li&gt;
-	&lt;li&gt;
-		must have formatted their text in accordance with the LinC Guidelines for Authors;
-	&lt;/li&gt;
-	&lt;li&gt;
-		is/are responsible for the reliability of the primary data they utilise in their research and for the proposed work’s originality;
-	&lt;/li&gt;
-	&lt;li&gt;
-		when their text is published again, they must include a correct bibliographical reference to its first publication in LInC;
-	&lt;/li&gt;
-	&lt;li&gt;
-		must cite accurately and fully all sources used in the writing of the research paper;
-	&lt;/li&gt;
-	&lt;li&gt;
-		must specify the institutions, organisations, projects, individuals relevant to the preparation of their study (by funding the research that resulted in its production, by providing specific information, working conditions, access to a non-public archive, etc.);
-	&lt;/li&gt;
-	&lt;li&gt;
-		must report any conflicts of interest;
-	&lt;/li&gt;
-	&lt;li&gt;
-		must answer the reviewers’ questions, respond to their comments and, if necessary, make changes to the submitted text; in case of disagreement with the proposed corrective options, the author has the right to withdraw the submitted manuscript;
-	&lt;/li&gt;
-	&lt;li&gt;
-		must promptly inform the Editors if they discover a serious omission or error in their work after submission;
-	&lt;/li&gt;
-	&lt;li&gt;
-		does/do not disclose details of their collaboration with the editorial board as part of the publication process;
-	&lt;/li&gt;
-	&lt;li&gt;
-		complies with the journal’s Code of Ethics and with generally accepted academic norms of ethical conduct.
-	&lt;/li&gt;
+ &lt;li&gt;
+  may submit to the journal &lt;strong&gt;only their own work&lt;/strong&gt; that has not been either published in or submitted to another journal; article submissions are routinely screened for plagiarism through the strikeplagiarism panel.
+ &lt;/li&gt;
+ &lt;li&gt;
+  must have formatted their text in accordance with the LinC Guidelines for Authors;
+ &lt;/li&gt;
+ &lt;li&gt;
+  is/are responsible for the reliability of the primary data they utilise in their research and for the proposed work’s originality;
+ &lt;/li&gt;
+ &lt;li&gt;
+  when their text is published again, they must include a correct bibliographical reference to its first publication in LInC;
+ &lt;/li&gt;
+ &lt;li&gt;
+  must cite accurately and fully all sources used in the writing of the research paper;
+ &lt;/li&gt;
+ &lt;li&gt;
+  must specify the institutions, organisations, projects, individuals relevant to the preparation of their study (by funding the research that resulted in its production, by providing specific information, working conditions, access to a non-public archive, etc.);
+ &lt;/li&gt;
+ &lt;li&gt;
+  must report any conflicts of interest;
+ &lt;/li&gt;
+ &lt;li&gt;
+  must answer the reviewers’ questions, respond to their comments and, if necessary, make changes to the submitted text; in case of disagreement with the proposed corrective options, the author has the right to withdraw the submitted manuscript;
+ &lt;/li&gt;
+ &lt;li&gt;
+  must promptly inform the Editors if they discover a serious omission or error in their work after submission;
+ &lt;/li&gt;
+ &lt;li&gt;
+  does/do not disclose details of their collaboration with the editorial board as part of the publication process;
+ &lt;/li&gt;
+ &lt;li&gt;
+  complies with the journal’s Code of Ethics and with generally accepted academic norms of ethical conduct.
+ &lt;/li&gt;
 &lt;/ul&gt;</value>
   </data>
   <data name="CodexSection_Authors_Title" xml:space="preserve">
@@ -1005,7 +1005,7 @@
     <value>Prof. Inna Peleva, DSc</value>
   </data>
   <data name="Team_M.Vlashki_Member" xml:space="preserve">
-    <value>Assoc. Prof. Mladen Vlashki, PhD</value>
+    <value>Assoc. Prof. Mladen Vlashki, DSc</value>
   </data>
   <data name="Team_S.Mathewson_Member" xml:space="preserve">
     <value>Assoc. Prof. Snezha Tsoneva-Mathewson, PhD</value>
@@ -1191,10 +1191,10 @@
     <value>Notes to the manuscript</value>
   </data>
   <data name="Source_CreatePage_SubTitle" xml:space="preserve">
-    <value>Create a new source from the index page</value>
+    <value>Create a new source to the index page</value>
   </data>
   <data name="Source_CreatePage_Title" xml:space="preserve">
-    <value>Create source</value>
+    <value>Create new index record</value>
   </data>
   <data name="Issue_DetailsPage_InfoTitle" xml:space="preserve">
     <value>Information about the issue</value>
@@ -1587,7 +1587,7 @@
     <value>The journal provides a platform for researchers with different methods and approaches, belonging to different generations and identifying with different cultural traditions and contexts.</value>
   </data>
   <data name="AboutSection_Publish_Description" xml:space="preserve">
-    <value>Publication in LInC is free of charge for the authors, as well as for the institutions to which they are affiliated. Access to the online edition is free, as is access to the full texts.</value>
+    <value>LInC is an open access journal which means that all content is freely available without charge to its registered users. They are allowed to read, download, copy, distribute, print, search, or link to the full texts of the articles, or use them for any other lawful purpose, without asking prior permission from the publisher or the author. </value>
   </data>
   <data name="AboutSection_Review_Description" xml:space="preserve">
     <value>Submissions to the journal are subject to double-blind peer review by two independent reviewers who are experts in the respective research areas.</value>
@@ -1680,7 +1680,7 @@ The manuscript file must have a .doc or .docx extension.</value>
     <value>Topic</value>
   </data>
   <data name="Source_AdminPage_Title" xml:space="preserve">
-    <value>List of sources</value>
+    <value>List of index entries</value>
   </data>
   <data name="Source_EditPage_SubTitle" xml:space="preserve">
     <value>Edit source</value>
@@ -1843,5 +1843,14 @@ The manuscript file must have a .doc or .docx extension.</value>
   </data>
   <data name="Dossier_CreateSource" xml:space="preserve">
     <value>Link publication</value>
+  </data>
+  <data name="Issue_Label" xml:space="preserve">
+    <value>Issue</value>
+  </data>
+  <data name="Language_Label" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Index_Label" xml:space="preserve">
+    <value>Index</value>
   </data>
 </root>

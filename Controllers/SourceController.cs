@@ -19,7 +19,7 @@ namespace linc.Controllers
             ILocalizationService localizationService,
             ILogger<SourceController> logger,
             IDossierService dossierService,
-            ISourceService sourceService, 
+            ISourceService sourceService,
             IIssueService issuesService)
             : base(localizationService)
         {
@@ -33,9 +33,9 @@ namespace linc.Controllers
         {
             filter = System.Net.WebUtility.UrlDecode(filter);
             var languageId = LocalizationService.GetCurrentLanguageId();
-            var viewModel = await _sourceService.GetSourcesPagedAsync(filter: filter, languageId: languageId, 
+            var viewModel = await _sourceService.GetSourcesPagedAsync(filter: filter, languageId: languageId,
                 year: year, issueId: issueId, pageIndex: page);
-            
+
             viewModel.YearFilter = await _sourceService.GetSourcesCountByYears();
             viewModel.IssuesFilter = await _sourceService.GetSourcesCountByIssues();
 
@@ -51,19 +51,19 @@ namespace linc.Controllers
         public async Task<IActionResult> Admin(int? page)
         {
             var languageId = LocalizationService.GetCurrentLanguageId();
-            var viewModel = await _sourceService.GetAdminSourcesPagedAsync(languageId: languageId, pageIndex: page);
+            var viewModel = await _sourceService.GetAdminSourcesByIssuePagedAsync(languageId: languageId, issuePageIndex: page);
 
             return View(viewModel);
         }
 
         [SiteAuthorize(SiteRole.Editor)]
-        public async Task<IActionResult> Create(int? dossierId)
+        public async Task<IActionResult> Create(int? dossierId, int? issueId)
         {
             var vModel = new SourceCreateViewModel
             {
                 DossierId = dossierId,
-
-                Issues = await GetIssuesAsync(),
+                IssueId = issueId,
+                Issues = await GetIssuesAsync(issueId),
                 Languages = GetLanguages(),
 
                 LanguageId = LocalizationService.GetCurrentLanguageId()
@@ -72,7 +72,7 @@ namespace linc.Controllers
             if (dossierId.HasValue)
             {
                 var dossier = await _dossierService.GetDossierAsync(dossierId.Value);
-                
+
                 vModel.Title = dossier.Title;
                 vModel.LanguageId = dossier.LanguageId;
                 vModel.Authors = dossier.Authors.Select(x => new SourceAuthorViewModel()
@@ -93,7 +93,7 @@ namespace linc.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [SiteAuthorize(SiteRole.Editor)]
-        public async Task<IActionResult> Create(SourceCreateViewModel vModel) 
+        public async Task<IActionResult> Create(SourceCreateViewModel vModel)
         {
             if (!ModelState.IsValid)
             {
@@ -105,7 +105,7 @@ namespace linc.Controllers
 
             var sourceId = await _sourceService.CreateSourceAsync(vModel);
 
-            _logger.LogInformation("Source {SourceId} has been created successfully, redirecting...", 
+            _logger.LogInformation("Source {SourceId} has been created successfully, redirecting...",
                 sourceId);
 
             return RedirectToAction("Edit", new { id = sourceId });
@@ -195,7 +195,7 @@ namespace linc.Controllers
         {
             var issues = await _issuesService.GetIssuesAsync();
             return issues.Select(x => new SelectListItem(
-                    IIssueService.DisplayIssueLabelInformation(x.IssueNumber, x.ReleaseYear), 
+                    IIssueService.DisplayIssueLabelInformation(x.IssueNumber, x.ReleaseYear),
                     x.Id.ToString(),
                     x.Id == issueId))
                 .ToList();
@@ -206,7 +206,7 @@ namespace linc.Controllers
             var currentLanguageId = LocalizationService.GetCurrentLanguageId();
             var list = SiteConstant.SupportedCultures.Select(supportedCulture =>
                     new SelectListItem(
-                        supportedCulture.Value, 
+                        supportedCulture.Value,
                         supportedCulture.Key.ToString(),
                         languageId.HasValue ? supportedCulture.Key == languageId :
                             supportedCulture.Key == currentLanguageId))

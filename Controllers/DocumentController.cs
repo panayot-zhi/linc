@@ -22,8 +22,8 @@ namespace linc.Controllers
             ISourceService sourceService,
             IDossierService dossierService,
             IDocumentService documentService,
-            ILocalizationService localizationService, 
-            ILogger<DocumentController> logger) 
+            ILocalizationService localizationService,
+            ILogger<DocumentController> logger)
             : base(localizationService)
         {
             _logger = logger;
@@ -45,7 +45,7 @@ namespace linc.Controllers
                 return NotFound();
             }
 
-            var result = await GetDocumentFile(issueDocument.Id, download);
+            var result = await GetDocumentFile(issueDocument.Id, download, useOriginalFileName: false);
             if (result is null)
             {
                 return NotFound();
@@ -126,7 +126,7 @@ namespace linc.Controllers
             return result;
         }
 
-        private async Task<PhysicalFileResult> GetDocumentFile(int documentId, bool download = false)
+        private async Task<PhysicalFileResult> GetDocumentFile(int documentId, bool download = false, bool useOriginalFileName = true)
         {
             var document = await _documentService.GetDocumentAsync(documentId);
             if (document is null)
@@ -149,7 +149,7 @@ namespace linc.Controllers
             {
                 result = new PhysicalFileResult(path, MediaTypeNames.Application.Octet)
                 {
-                    FileDownloadName = document.OriginalFileName
+                    FileDownloadName = useOriginalFileName ? document.OriginalFileName : document.FileName
                 };
             }
             else

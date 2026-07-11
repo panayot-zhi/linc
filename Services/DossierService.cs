@@ -45,7 +45,7 @@ namespace linc.Services
             IHttpContextAccessor httpContextAccessor,
             ILocalizationService localizationService,
             IDocumentService documentService,
-            IAuthorService authorService, 
+            IAuthorService authorService,
             ISiteEmailSender emailSender,
             ILogger<DossierService> logger,
             LinkGenerator linkGenerator)
