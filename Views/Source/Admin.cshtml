@@ -55,7 +55,7 @@
         <a asp-area="Identity" asp-page="/Account/Manage/Administration">Administration</a>
     </li>
     <li>
-        <a asp-action="Create">Create New</a>
+        <a asp-action="Create" asp-route-issueId="@Model.CurrentIssueId">Create New</a>
     </li>
 </ul>
 

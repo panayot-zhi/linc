@@ -175,6 +175,9 @@ namespace linc.Services
             var viewModel = new SourceIndexViewModel(totalIssues, issuePageIndex.Value, 1)
             {
                 Records = sources,
+
+                CurrentIssueId = currentIssue.Id,
+
                 CurrentIssueNumber = currentIssue.IssueNumber,
                 CurrentReleaseYear = currentIssue.ReleaseYear
             };
