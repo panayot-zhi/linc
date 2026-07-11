@@ -16,5 +16,9 @@ namespace linc.E2ETests.Configuration
         public string? BasicAuthUsername { get; set; } = "admin";
 
         public string? BasicAuthPassword { get; set; } = null!;
+
+        public bool PlaywrightHeadlessMode { get; set; } = true;
+
+        public float? PlaywrightSlowMo { get; set; } = null;
     }
 }
