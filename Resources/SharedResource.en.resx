@@ -1197,10 +1197,10 @@
     <value>Notes to the manuscript</value>
   </data>
   <data name="Source_CreatePage_SubTitle" xml:space="preserve">
-    <value>Create a new source from the index page</value>
+    <value>Create a new source to the index page</value>
   </data>
   <data name="Source_CreatePage_Title" xml:space="preserve">
-    <value>Create source</value>
+    <value>Create new index record</value>
   </data>
   <data name="Issue_DetailsPage_InfoTitle" xml:space="preserve">
     <value>Information about the issue</value>
@@ -1686,7 +1686,7 @@ The manuscript file must have a .doc or .docx extension.</value>
     <value>Topic</value>
   </data>
   <data name="Source_AdminPage_Title" xml:space="preserve">
-    <value>List of sources</value>
+    <value>List of index entries</value>
   </data>
   <data name="Source_EditPage_SubTitle" xml:space="preserve">
     <value>Edit source</value>
@@ -1798,5 +1798,14 @@ The manuscript file must have a .doc or .docx extension.</value>
   </data>
   <data name="Team_LiteratureAndCulture_2024-2026" xml:space="preserve">
     <value>Editorial team issues 1-5, 2024/2026</value>
+  </data>
+  <data name="Issue_Label" xml:space="preserve">
+    <value>Issue</value>
+  </data>
+  <data name="Language_Label" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="Index_Label" xml:space="preserve">
+    <value>Index</value>
   </data>
 </root>

@@ -175,6 +175,9 @@ namespace linc.Services
             var viewModel = new SourceIndexViewModel(totalIssues, issuePageIndex.Value, 1)
             {
                 Records = sources,
+
+                CurrentIssueId = currentIssue.Id,
+
                 CurrentIssueNumber = currentIssue.IssueNumber,
                 CurrentReleaseYear = currentIssue.ReleaseYear
             };
@@ -401,10 +404,10 @@ namespace linc.Services
             var entry = new ApplicationDocument()
             {
                 DocumentType = type,
-                Extension = "pdf",
+                Extension = SiteConstant.PdfFileExtension,
                 FileName = fileName,
                 MimeType = MediaTypeNames.Application.Pdf,
-                OriginalFileName = fileName,
+                OriginalFileName = $"{fileName}.{SiteConstant.PdfFileExtension}",
                 RelativePath = relativePath
             };
 
