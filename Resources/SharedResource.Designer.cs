@@ -4177,7 +4177,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Списък източници.
+        ///   Looks up a localized string similar to Списък записи в съдържания.
         /// </summary>
         public static string Source_AdminPage_Title {
             get {

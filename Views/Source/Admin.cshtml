@@ -3,7 +3,7 @@
 @model SourceIndexViewModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = HtmlLocalizer["Source_AdminPage_Title"];
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -27,7 +27,7 @@
                         <a asp-area="Identity" asp-page="/Account/Manage/Administration">@HtmlLocalizer["ManageNavItem_Administration"]</a>
                     </li>
                     <li>
-                        @HtmlLocalizer["List_Label"]
+                        @HtmlLocalizer["Source_AdminPage_Title"]
                     </li>
                 </ol>
             </div>
