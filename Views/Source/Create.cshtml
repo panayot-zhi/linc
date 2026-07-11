@@ -19,7 +19,7 @@
                         <a asp-area="Identity" asp-page="/Account/Manage/Administration">@HtmlLocalizer["ManageNavItem_Administration"]</a>
                     </li>
                     <li>
-                        <a asp-action="Admin">@HtmlLocalizer["List_Label"]</a>
+                        <a asp-action="Admin">@HtmlLocalizer["Source_AdminPage_Title"]</a>
                     </li>
                     <li>
                         @ViewData["Title"]
@@ -171,4 +171,46 @@
 
 @section Scripts {
     <partial name="_ValidationScripts" />
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const isSectionCheckbox = document.getElementById('IsSection');
+            const fieldsToControl = [
+                'TitleNotes',
+                'DOI',
+                'FirstName',
+                'LastName',
+                'AuthorNotes'
+            ];
+
+            function updateFieldStates() {
+                const isChecked = isSectionCheckbox.checked;
+                fieldsToControl.forEach(fieldName => {
+                    const field = document.getElementById(fieldName);
+                    if (field) {
+
+                        // Disable the input
+                        field.disabled = isChecked;
+
+                        // Clear the value
+                        field.value = '';
+
+                        // Remove validation classes
+                        field.classList.remove('is-valid', 'is-invalid');
+
+                        // Clear validation messages
+                        const validationSpan = field.nextElementSibling;
+                        if (validationSpan && validationSpan.classList.contains('invalid-feedback')) {
+                            validationSpan.textContent = '';
+                        }
+                    }
+                });
+            }
+
+            // Set initial state
+            updateFieldStates();
+
+            // Update state when checkbox changes
+            isSectionCheckbox.addEventListener('change', updateFieldStates);
+        });
+    </script>
 }

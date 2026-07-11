@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!--
-    Microsoft ResX Schema
-
+  <!-- 
+    Microsoft ResX Schema 
+    
     Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
     associated with the data types.
-
+    
     Example:
-
+    
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-
-    There are any number of "resheader" rows that contain simple
+                
+    There are any number of "resheader" rows that contain simple 
     name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
     mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
     read any of the formats listed below.
-
+    
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-
+    
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
+    value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -254,39 +254,39 @@
   </data>
   <data name="CodexSection_Authors_Content" xml:space="preserve">
     <value>&lt;ul class="mx-2"&gt;
-	&lt;li&gt;
-		may submit to the journal &lt;strong&gt;only their own work&lt;/strong&gt; that has not been either published in or submitted to another journal;
-	&lt;/li&gt;
-	&lt;li&gt;
-		must have formatted their text in accordance with the LinC Guidelines for Authors;
-	&lt;/li&gt;
-	&lt;li&gt;
-		is/are responsible for the reliability of the primary data they utilise in their research and for the proposed work’s originality;
-	&lt;/li&gt;
-	&lt;li&gt;
-		when their text is published again, they must include a correct bibliographical reference to its first publication in LInC;
-	&lt;/li&gt;
-	&lt;li&gt;
-		must cite accurately and fully all sources used in the writing of the research paper;
-	&lt;/li&gt;
-	&lt;li&gt;
-		must specify the institutions, organisations, projects, individuals relevant to the preparation of their study (by funding the research that resulted in its production, by providing specific information, working conditions, access to a non-public archive, etc.);
-	&lt;/li&gt;
-	&lt;li&gt;
-		must report any conflicts of interest;
-	&lt;/li&gt;
-	&lt;li&gt;
-		must answer the reviewers’ questions, respond to their comments and, if necessary, make changes to the submitted text; in case of disagreement with the proposed corrective options, the author has the right to withdraw the submitted manuscript;
-	&lt;/li&gt;
-	&lt;li&gt;
-		must promptly inform the Editors if they discover a serious omission or error in their work after submission;
-	&lt;/li&gt;
-	&lt;li&gt;
-		does/do not disclose details of their collaboration with the editorial board as part of the publication process;
-	&lt;/li&gt;
-	&lt;li&gt;
-		complies with the journal’s Code of Ethics and with generally accepted academic norms of ethical conduct.
-	&lt;/li&gt;
+ &lt;li&gt;
+  may submit to the journal &lt;strong&gt;only their own work&lt;/strong&gt; that has not been either published in or submitted to another journal; article submissions are routinely screened for plagiarism through the strikeplagiarism panel.
+ &lt;/li&gt;
+ &lt;li&gt;
+  must have formatted their text in accordance with the LinC Guidelines for Authors; 
+ &lt;/li&gt;
+ &lt;li&gt;
+  is/are responsible for the reliability of the primary data they utilise in their research and for the proposed work’s originality; 
+ &lt;/li&gt;
+ &lt;li&gt;
+  when their text is published again, they must include a correct bibliographical reference to its first publication in LInC; 
+ &lt;/li&gt;
+ &lt;li&gt;
+  must cite accurately and fully all sources used in the writing of the research paper; 
+ &lt;/li&gt;
+ &lt;li&gt;
+  must specify the institutions, organisations, projects, individuals relevant to the preparation of their study (by funding the research that resulted in its production, by providing specific information, working conditions, access to a non-public archive, etc.); 
+ &lt;/li&gt;
+ &lt;li&gt;
+  must report any conflicts of interest; 
+ &lt;/li&gt;
+ &lt;li&gt;
+  must answer the reviewers’ questions, respond to their comments and, if necessary, make changes to the submitted text; in case of disagreement with the proposed corrective options, the author has the right to withdraw the submitted manuscript; 
+ &lt;/li&gt;
+ &lt;li&gt;
+  must promptly inform the Editors if they discover a serious omission or error in their work after submission; 
+ &lt;/li&gt;
+ &lt;li&gt;
+  does/do not disclose details of their collaboration with the editorial board as part of the publication process; 
+ &lt;/li&gt;
+ &lt;li&gt;
+  complies with the journal’s Code of Ethics and with generally accepted academic norms of ethical conduct.
+ &lt;/li&gt;
 &lt;/ul&gt;</value>
   </data>
   <data name="CodexSection_Authors_Title" xml:space="preserve">
@@ -316,19 +316,19 @@
 		is guided strictly by scholarly criteria, aims and objectives in the selection of texts and does not allow any form of discrimination on the grounds of race, ethnicity, religion, gender or age;
 	&lt;/li&gt;
 	&lt;li&gt;
-		abides by the journal’s copyright policy which complies with the Copyright and Neighbouring Rights Act of the Republic of Bulgaria and with the best global practices in the relevant field (see &lt;a href="/docs/publication_agreement.doc"&gt;Publication Agreement&lt;/a&gt;);
+		abides by the journal’s copyright policy which complies with the Copyright and Neighbouring Rights Act of the Republic of Bulgaria and with the best global practices in the relevant field (see &lt;a href="/docs/publication_agreement.doc"&gt;Publication Agreement&lt;/a&gt;); 
 	&lt;/li&gt;
 	&lt;li&gt;
-		counteracts any malpractice (submissions are vetted for plagiarism; fair co-author relationships are guaranteed by requiring a co-author contribution report indicating each author’s contribution to the specific article/study; potential conflicts of interest are monitored);
+		counteracts any malpractice (submissions are vetted for plagiarism; fair co-author relationships are guaranteed by requiring a co-author contribution report indicating each author’s contribution to the specific article/study; potential conflicts of interest are monitored); 
 	&lt;/li&gt;
 	&lt;li&gt;
-		ensures the verifiability of the work done in the process of accepting, reviewing and publishing texts;
+		ensures the verifiability of the work done in the process of accepting, reviewing and publishing texts; 
 	&lt;/li&gt;
 	&lt;li&gt;
-		strictly follows the procedures of double-blind peer review of articles submitted to the Editorial Office;
+		strictly follows the procedures of double-blind peer review of articles submitted to the Editorial Office; 
 	&lt;/li&gt;
 	&lt;li&gt;
-		informs the authors about the pre-publishing stages of the article/study in a timely manner and helps to improve the submitted manuscript;
+		informs the authors about the pre-publishing stages of the article/study in a timely manner and helps to improve the submitted manuscript; 
 	&lt;/li&gt;
 	&lt;li&gt;
 		ensures the confidentiality of authors and reviewers as well as of correspondence concerning the improvement of the manuscript quality;
@@ -337,7 +337,7 @@
 		does not use for personal gain information obtained in the process of working with authors and reviewers;
 	&lt;/li&gt;
 	&lt;li&gt;
-		in case of a signal of any sort of impropriety or dishonesty in a text that has already been published, makes sure that the audience is informed about the problematic content (discloses the editorial position on the case and/or the opposing opinion and/or the respective author’s corrective text);
+		in case of a signal of any sort of impropriety or dishonesty in a text that has already been published, makes sure that the audience is informed about the problematic content (discloses the editorial position on the case and/or the opposing opinion and/or the respective author’s corrective text); 
 	&lt;/li&gt;
 	&lt;li&gt;
 		in collaboration with the publisher, takes care of the journal’s electronic archive, as well as of the published texts’ permanent visibility on the LInC website.
@@ -1005,7 +1005,7 @@
     <value>Prof. Inna Peleva, DSc</value>
   </data>
   <data name="Team_M.Vlashki_Member" xml:space="preserve">
-    <value>Assoc. Prof. Mladen Vlashki, PhD</value>
+    <value>Assoc. Prof. Mladen Vlashki, DSc</value>
   </data>
   <data name="Team_S.Mathewson_Member" xml:space="preserve">
     <value>Assoc. Prof. Snezha Tsoneva-Mathewson, PhD</value>
@@ -1172,29 +1172,35 @@
   <data name="Issue_DetailsPage_Title" xml:space="preserve">
     <value>View issue</value>
   </data>
-  <data name="Source_AuthorsNotes" xml:space="preserve">
-    <value>Notes for the authors</value>
+  <data name="SourceCreate_AuthorNotes" xml:space="preserve">
+    <value>Notes for the author</value>
   </data>
-  <data name="Source_IssueId" xml:space="preserve">
+  <data name="SourceCreate_FirstName" xml:space="preserve">
+    <value>First name</value>
+  </data>
+  <data name="SourceCreate_IssueId" xml:space="preserve">
     <value>Issue</value>
   </data>
-  <data name="Source_LanguageId" xml:space="preserve">
+  <data name="SourceCreate_LanguageId" xml:space="preserve">
     <value>Language</value>
   </data>
-  <data name="Source_StartingPdfPage" xml:space="preserve">
+  <data name="SourceCreate_LastName" xml:space="preserve">
+    <value>Last name</value>
+  </data>
+  <data name="SourceCreate_StartingPdfPage" xml:space="preserve">
     <value>Starting page (PDF)</value>
   </data>
-  <data name="Source_Title" xml:space="preserve">
+  <data name="SourceCreate_Title" xml:space="preserve">
     <value>Title</value>
   </data>
-  <data name="Source_TitleNotes" xml:space="preserve">
+  <data name="SourceCreate_TitleNotes" xml:space="preserve">
     <value>Notes to the manuscript</value>
   </data>
   <data name="Source_CreatePage_SubTitle" xml:space="preserve">
-    <value>Create a new source from the index page</value>
+    <value>Create a new source to the index page</value>
   </data>
   <data name="Source_CreatePage_Title" xml:space="preserve">
-    <value>Create source</value>
+    <value>Create new index record</value>
   </data>
   <data name="Issue_DetailsPage_InfoTitle" xml:space="preserve">
     <value>Information about the issue</value>
@@ -1283,7 +1289,7 @@
   <data name="Board_Joaquín.García-Medall_MemberWork" xml:space="preserve">
     <value>University of Valladolid, Spain</value>
   </data>
-  <data name="Source_LastPdfPage" xml:space="preserve">
+  <data name="SourceCreate_LastPdfPage" xml:space="preserve">
     <value>Last page (PDF)</value>
   </data>
   <data name="Team_EditorialAssistants_SubTitle" xml:space="preserve">
@@ -1331,7 +1337,7 @@
   <data name="Source_IndexPage_SearchDescription" xml:space="preserve">
     <value>search by first letter of the author's &lt;b&gt;last&lt;/b&gt; name</value>
   </data>
-  <data name="Source_PdfFile" xml:space="preserve">
+  <data name="SourceCreate_PdfFile" xml:space="preserve">
     <value>Attach the source as PDF</value>
   </data>
   <data name="PortfolioSection_Description" xml:space="preserve">
@@ -1587,7 +1593,7 @@
     <value>The journal provides a platform for researchers with different methods and approaches, belonging to different generations and identifying with different cultural traditions and contexts.</value>
   </data>
   <data name="AboutSection_Publish_Description" xml:space="preserve">
-    <value>Publication in LInC is free of charge for the authors, as well as for the institutions to which they are affiliated. Access to the online edition is free, as is access to the full texts.</value>
+    <value>LInC is an open access journal which means that all content is freely available without charge to its registered users. They are allowed to read, download, copy, distribute, print, search, or link to the full texts of the articles, or use them for any other lawful purpose, without asking prior permission from the publisher or the author. </value>
   </data>
   <data name="AboutSection_Review_Description" xml:space="preserve">
     <value>Submissions to the journal are subject to double-blind peer review by two independent reviewers who are experts in the respective research areas.</value>
@@ -1670,17 +1676,17 @@ The manuscript file must have a .doc or .docx extension.</value>
   <data name="List_Label" xml:space="preserve">
     <value>List</value>
   </data>
-  <data name="Source_DOI" xml:space="preserve">
+  <data name="SourceCreate_DOI" xml:space="preserve">
     <value>DOI</value>
   </data>
-  <data name="Source_IsSection" xml:space="preserve">
+  <data name="SourceCreate_IsSection" xml:space="preserve">
     <value>Section</value>
   </data>
-  <data name="Source_IsTheme" xml:space="preserve">
+  <data name="SourceCreate_IsTheme" xml:space="preserve">
     <value>Topic</value>
   </data>
   <data name="Source_AdminPage_Title" xml:space="preserve">
-    <value>List of sources</value>
+    <value>List of index entries</value>
   </data>
   <data name="Source_EditPage_SubTitle" xml:space="preserve">
     <value>Edit source</value>
@@ -1688,7 +1694,7 @@ The manuscript file must have a .doc or .docx extension.</value>
   <data name="Dossier_ListHeader_HasAgreement" xml:space="preserve">
     <value>Agreement</value>
   </data>
-  <data name="Source_StartingIndexPage" xml:space="preserve">
+  <data name="SourceCreate_StartingIndexPage" xml:space="preserve">
     <value>Starting page (in index)</value>
   </data>
   <data name="DateCreated_Label" xml:space="preserve">
@@ -1701,7 +1707,7 @@ The manuscript file must have a .doc or .docx extension.</value>
     <value>Attach a publication agreement</value>
   </data>
   <data name="DossierEdit_ConfirmDeleteAgreement" xml:space="preserve">
-    <value>Are you sure you want to delete the declaration attach to this author?</value>
+    <value>Are you sure you want to delete the declaration attach to this dossier?</value>
   </data>
   <data name="DossierEdit_ConfirmDeleteAgreement_Title" xml:space="preserve">
     <value>Confirm</value>
@@ -1711,9 +1717,6 @@ The manuscript file must have a .doc or .docx extension.</value>
   </data>
   <data name="JournalDossier_DocumentDeleted" xml:space="preserve">
     <value>Deleted document of type '{0}'.</value>
-  </data>
-  <data name="JournalDossier_DocumentDeletedFor" xml:space="preserve">
-    <value>Deleted document of type '{0}' for {1}.</value>
   </data>
   <data name="ManagePreferences_PreferredLanguageId" xml:space="preserve">
     <value>Preferred language</value>
@@ -1796,52 +1799,13 @@ The manuscript file must have a .doc or .docx extension.</value>
   <data name="Team_LiteratureAndCulture_2024-2026" xml:space="preserve">
     <value>Editorial team issues 1-5, 2024/2026</value>
   </data>
-  <data name="Author_UserName" xml:space="preserve">
-    <value>Username</value>
+  <data name="Issue_Label" xml:space="preserve">
+    <value>Issue</value>
   </data>
-  <data name="Source_DossierId" xml:space="preserve">
-    <value>Dossier</value>
+  <data name="Language_Label" xml:space="preserve">
+    <value>Language</value>
   </data>
-  <data name="DossierDetails_Authors" xml:space="preserve">
-    <value>Authors</value>
-  </data>
-  <data name="Authors" xml:space="preserve">
-    <value>Authors</value>
-  </data>
-  <data name="Authors_SearchNoResults" xml:space="preserve">
-    <value>No results</value>
-  </data>
-  <data name="Authors_SearchResults" xml:space="preserve">
-    <value>Results</value>
-  </data>
-  <data name="Authors_Add" xml:space="preserve">
-    <value>Add author</value>
-  </data>
-  <data name="Authors_Remove" xml:space="preserve">
-    <value>Remove author</value>
-  </data>
-  <data name="Author_Notes" xml:space="preserve">
-    <value>Notes for the author</value>
-  </data>
-  <data name="Author_FirstName" xml:space="preserve">
-    <value>First name</value>
-  </data>
-  <data name="Author_LastName" xml:space="preserve">
-    <value>Last name</value>
-  </data>
-  <data name="Author_Email" xml:space="preserve">
-    <value>Email</value>
-  </data>
-  <data name="Authors_Search" xml:space="preserve">
-    <value>Search for authors</value>
-  </data>
-  <data name="AuthorRemove_PublicationAgreement" xml:space="preserve">
-    <value>To remove the author, you must first delete the attached publication statement.</value>
-  </data>
-  <data name="JournalDossier_DocumentUploadedFor" xml:space="preserve">
-    <value>Uploaded document of type '{0}' for {1}.</value>
-  </data>
-  <data name="Dossier_CreateSource" xml:space="preserve">
-    <value>Link publication</value>
+  <data name="Index_Label" xml:space="preserve">
+    <value>Index</value>
   </data>
 </root>

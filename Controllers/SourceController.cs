@@ -51,16 +51,17 @@ namespace linc.Controllers
         public async Task<IActionResult> Admin(int? page)
         {
             var languageId = LocalizationService.GetCurrentLanguageId();
-            var viewModel = await _sourceService.GetAdminSourcesPagedAsync(languageId: languageId, pageIndex: page);
+            var viewModel = await _sourceService.GetAdminSourcesByIssuePagedAsync(languageId: languageId, issuePageIndex: page);
 
             return View(viewModel);
         }
 
         [SiteAuthorize(SiteRole.Editor)]
-        public async Task<IActionResult> Create(int? dossierId)
+        public async Task<IActionResult> Create(int? issueId, int? dossierId)
         {
             var vModel = new SourceCreateViewModel
             {
+                IssueId = issueId,
                 DossierId = dossierId,
 
                 Issues = await GetIssuesAsync(),
@@ -99,6 +100,8 @@ namespace linc.Controllers
             {
                 vModel.Issues = await GetIssuesAsync(vModel.IssueId);
                 vModel.Languages = GetLanguages(vModel.LanguageId);
+
+                vModel.LanguageId = LocalizationService.GetCurrentLanguageId();
 
                 return View(vModel);
             }

@@ -1,10 +1,9 @@
-﻿@using linc.Utility
-@using Microsoft.AspNetCore.Localization
+﻿@using Microsoft.AspNetCore.Localization
+@using System.Globalization
 @model SourceIndexViewModel
 
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = HtmlLocalizer["Source_AdminPage_Title"];
 }
 
 @{
@@ -27,7 +26,7 @@
                         <a asp-area="Identity" asp-page="/Account/Manage/Administration">@HtmlLocalizer["ManageNavItem_Administration"]</a>
                     </li>
                     <li>
-                        @HtmlLocalizer["List_Label"]
+                        @HtmlLocalizer["Source_AdminPage_Title"]
                     </li>
                 </ol>
             </div>
@@ -37,16 +36,25 @@
     <!-- End Breadcrumbs -->
 }
 
-<h1>Index</h1>
+<h1>
+    @HtmlLocalizer["Index_Label"]
 
-<small>Language: @currentCulture</small>
+    @if (Model.CurrentIssueNumber.HasValue && Model.CurrentReleaseYear.HasValue)
+    {
+        @HtmlLocalizer["Issue_Label"].Value.ToLower(requestCulture?.RequestCulture.UICulture)
+        <text>: </text>
+        @IIssueService.DisplayIssueLabelInformation(Model.CurrentIssueNumber.Value, Model.CurrentReleaseYear.Value)
+    }
+</h1>
+
+<small>@HtmlLocalizer["Language_Label"]: @currentCulture</small>
 
 <ul class="list-operations">
     <li>
-        <a asp-area="Identity" asp-page="/Account/Manage/Administration">Administration</a>
+        <a asp-area="Identity" asp-page="/Account/Manage/Administration">@HtmlLocalizer["ManageNavItem_Administration"]</a>
     </li>
     <li>
-        <a asp-action="Create">Create New</a>
+        <a asp-action="Create" asp-route-issueId="@Model.CurrentIssueId">@HtmlLocalizer["Source_CreatePage_Title"]</a>
     </li>
 </ul>
 
@@ -55,91 +63,129 @@
 <div class="table-responsive">
     <table class="table">
         <thead class="table-light">
-        <tr>
-            <th>
-                Author
-            </th>
-            <th>
-                Title
-            </th>
-            <th class="text-center">
-                Pages
-            </th>
-            <th class="text-center">
-                Issue
-            </th>
-            <th class="text-center">
-                DOI
-            </th>
-            <th>
-                Created
-            </th>
-        </tr>
+            <tr>
+                <th>
+                    Author
+                </th>
+                <th>
+                    Title
+                </th>
+                <th class="text-center">
+                    Pages
+                </th>
+                <th class="text-center">
+                    Issue
+                </th>
+                <th class="text-center">
+                    DOI
+                </th>
+                <th>
+                    Created
+                </th>
+            </tr>
         </thead>
         <tbody>
-        @foreach (var item in Model.Records)
-        {
-            var rowClass = string.Empty;
-            if (item.IsTheme)
+            @foreach (var item in Model.Records)
             {
-                rowClass = "table-primary";
-            }
-            else if (item.IsSection)
-            {
-                rowClass = "table-light";
-            }
+                var rowClass = string.Empty;
+                if (item.IsTheme)
+                {
+                    rowClass = "table-primary";
+                }
+                else if (item.IsSection)
+                {
+                    rowClass = "table-light";
+                }
 
-            <tr class="@rowClass">
-                <td>
-                    @* TODO: Link to author screen *@
-                    @* TODO: Link to user screen, if UserId *@
-                    @if (item.Authors.Any())
-                    {
-                        foreach (var author in item.Authors)
+                <tr class="@rowClass">
+                    <td>
+                        @* TODO: Link to user admin screen if exist *@
+                        @Html.DisplayFor(modelItem => item.AuthorNames) <br />
+                        @Html.Raw(item.AuthorNotes?.ReplaceLineEndings("<br>"))
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </a>
+                        <br />
+                        @Html.DisplayFor(modelItem => item.TitleNotes)
+                    </td>
+                    <td class="text-center">
+                        @if (@item.StartingIndexPage.HasValue)
                         {
-                            @Html.DisplayFor(modelItem => author.Names)
-                            <br/>
-                            @Html.DisplayFor(modelItem => author.Notes)
-                            <br/>
+                            <a href="@Url.Action("LoadIssueDocument", "Document", new { issueId = item.IssueId })#page=@item.StartingPdfPage" target="_blank">
+                                @item.StartingIndexPage
+                            </a>
+                            <br />
                         }
-
-                        @Html.Raw(item.AuthorsNotes?.ReplaceLineEndings("<br>"))
-                    }
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">
-                        @Html.DisplayFor(modelItem => item.Title) 
-                    </a>
-                    <br/>
-                    @Html.DisplayFor(modelItem => item.TitleNotes)
-                </td>
-                <td class="text-center">
-                    <a href="@Url.Action("LoadIssueDocument", "Document", new { issueId = item.IssueId })#page=@item.StartingPdfPage" target="_blank">
-                        @item.StartingIndexPage
-                    </a>
-                    <br />
-                    <a href="@Url.Action("LoadSourceDocument", "Document", new { sourceId = item.Id })" target="_blank">
-                        @Html.DisplayFor(modelItem => item.StartingPdfPage)-@Html.DisplayFor(modelItem => item.LastPdfPage)
-                    </a>
-                </td>
-                <td class="text-center">
-                    <a asp-action="Details" asp-controller="Issue" asp-route-id="@item.IssueId">
-                        @IIssueService.DisplayIssueLabelInformation(item.Issue.IssueNumber, item.Issue.ReleaseYear)
-                    </a>
-                </td>
-                <td class="text-center">
-                    @Html.DisplayFor(modelItem => item.HasDOI)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.DateCreated)
-                </td>
-            </tr>
-        }
+                        <a href="@Url.Action("LoadSourceDocument", "Document", new { sourceId = item.Id })" target="_blank">
+                            @Html.DisplayFor(modelItem => item.StartingPdfPage)-@Html.DisplayFor(modelItem => item.LastPdfPage)
+                        </a>
+                    </td>
+                    <td class="text-center">
+                        <a asp-action="Details" asp-controller="Issue" asp-route-id="@item.IssueId">
+                            @IIssueService.DisplayIssueLabelInformation(item.Issue.IssueNumber, item.Issue.ReleaseYear)
+                        </a>
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.HasDOI)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateCreated)
+                    </td>
+                </tr>
+            }
         </tbody>
     </table>
-    
+
     @if (Model.TotalPages > 1)
     {
-        <partial name="_Paging" model="Model" />
+        @* Custom issue-based pagination *@
+        <div class="paging text-center">
+
+            @if (Model.HasNextPage && Model.NextIssueNumber.HasValue && Model.NextIssueYear.HasValue)
+            {
+                <a class="older" href="@Url.Action("Admin", new { page = Model.PageIndex + 1 })">
+                    <i class="bi bi-arrow-left"></i>
+                    @HtmlLocalizer["PreviousPage_Label"] (@IIssueService.DisplayIssueLabelInformation(Model.NextIssueNumber.Value, Model.NextIssueYear.Value))
+                </a>
+            }
+            else
+            {
+                <span class="older text-muted">
+                    <i class="bi bi-arrow-left"></i>
+                    @HtmlLocalizer["PreviousPage_Label"]
+                </span>
+            }
+
+            <span>•</span>
+
+            @if (Model.CurrentIssueNumber.HasValue && Model.CurrentReleaseYear.HasValue)
+            {
+                <span class="active">@IIssueService.DisplayIssueLabelInformation(Model.CurrentIssueNumber.Value, Model.CurrentReleaseYear.Value)</span>
+            }
+            else
+            {
+                <span class="active">@Model.PageIndex</span>
+            }
+
+            <span>•</span>
+
+            @if (Model.HasPreviousPage && Model.PreviousIssueNumber.HasValue && Model.PreviousIssueYear.HasValue)
+            {
+                <a class="newer" href="@Url.Action("Admin", new { page = Model.PageIndex - 1 })">
+                    @HtmlLocalizer["NextPage_Label"] (@IIssueService.DisplayIssueLabelInformation(Model.PreviousIssueNumber.Value, Model.PreviousIssueYear.Value))
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            }
+            else
+            {
+                <span class="newer text-muted">
+                    @HtmlLocalizer["NextPage_Label"]
+                    <i class="bi bi-arrow-right"></i>
+                </span>
+            }
+
+        </div>
     }
 </div>

@@ -12,6 +12,8 @@ namespace linc.Contracts
 
         Task<SourceIndexViewModel> GetAdminSourcesPagedAsync(int languageId, int? pageIndex, int pageSize = 10);
 
+        Task<SourceIndexViewModel> GetAdminSourcesByIssuePagedAsync(int languageId, int? issuePageIndex);
+
         Task<List<SourceCountByYears>> GetSourcesCountByYears();
 
         Task<List<SourceCountByIssues>> GetSourcesCountByIssues();

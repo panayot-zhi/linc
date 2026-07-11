@@ -160,7 +160,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Публикуването в „Лингвистика, интерпретация, концепции“ е безплатно за авторите и за институциите, към които те принадлежат. Достъпът до онлайн формата на изданието е свободен, безплатен и до целия текстови обем..
+        ///   Looks up a localized string similar to ЛИнК е научно списание със свободен достъп, което означава, че цялото му съдържание е напълно достъпно безплатно за неговите потребители. Те имат право да четат, свалят, копират, разпространяват, принтират или създават линкове към пълните текстове на статиите, както и да ги използват с други законни цели без изрично позволение на авторите или издателя..
         /// </summary>
         public static string AboutSection_Publish_Description {
             get {
@@ -872,13 +872,14 @@ namespace linc.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;ul class=&quot;mx-2&quot;&gt;
-        ///                                &lt;li&gt;
-        ///                                    може да предложи на списанието &lt;strong&gt;само своя собствена разработка&lt;/strong&gt;, която не е публикувана и не е депозирана в друго издание;
-        ///                                &lt;/li&gt;
-        ///                                &lt;li&gt;
-        ///                                    трябва да е изготвил текста си съобразно техническите изисквания към публикациите в „Лингвистика, интерпретация, концепции“;
-        ///                                &lt;/li&gt;
-        ///   [rest of string was truncated]&quot;;.
+        /// &lt;li&gt;
+        ///  може да предложи на списанието &lt;strong&gt;само своя собствена разработка&lt;/strong&gt;, която не е публикувана и не е депозирана в друго издание; Ръкописите се проверяват за плагиатство посредством платформата strikeplagiarism.
+        /// &lt;/li&gt;
+        /// &lt;li&gt;
+        ///  трябва да е изготвил текста си съобразно техническите изисквания към публикациите в „Лингвистика, интерпретация, концепции“;
+        /// &lt;/li&gt;
+        /// &lt;li&gt;
+        ///  носи отговорност за достоверността на първичните данни, които функционализира в изследването си, и за о [rest of string was truncated]&quot;;.
         /// </summary>
         public static string CodexSection_Authors_Content {
             get {
@@ -2447,6 +2448,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Съдържание.
+        /// </summary>
+        public static string Index_Label {
+            get {
+                return ResourceManager.GetString("Index_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Начало.
         /// </summary>
         public static string Index_Title {
@@ -2605,6 +2615,15 @@ namespace linc.Resources {
         public static string Issue_IndexPage_Label {
             get {
                 return ResourceManager.GetString("Issue_IndexPage_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Брой.
+        /// </summary>
+        public static string Issue_Label {
+            get {
+                return ResourceManager.GetString("Issue_Label", resourceCulture);
             }
         }
         
@@ -2794,6 +2813,15 @@ namespace linc.Resources {
         public static string Language_en_Name {
             get {
                 return ResourceManager.GetString("Language_en_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Език.
+        /// </summary>
+        public static string Language_Label {
+            get {
+                return ResourceManager.GetString("Language_Label", resourceCulture);
             }
         }
         
@@ -4320,7 +4348,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Създаване на източник.
+        ///   Looks up a localized string similar to Създаване на нов запис.
         /// </summary>
         public static string Source_CreatePage_Title {
             get {
@@ -4626,7 +4654,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to проф. дфн Инна Пелева.
+        ///   Looks up a localized string similar to проф. д.ф.н. Инна Пелева.
         /// </summary>
         public static string Team_I_Peleva_Member {
             get {
@@ -4671,7 +4699,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to доц. д-р Младен Влашки.
+        ///   Looks up a localized string similar to доц. д.ф.н. Младен Влашки.
         /// </summary>
         public static string Team_M_Vlashki_Member {
             get {

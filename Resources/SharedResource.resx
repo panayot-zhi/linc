@@ -1,17 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!--
-    Microsoft ResX Schema
-
+  <!-- 
+    Microsoft ResX Schema 
+    
     Version 2.0
-
-    The primary goals of this format is to allow a simple XML format
-    that is mostly human readable. The generation and parsing of the
-    various data types are done through the TypeConverter classes
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
     associated with the data types.
-
+    
     Example:
-
+    
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-
-    There are any number of "resheader" rows that contain simple
+                
+    There are any number of "resheader" rows that contain simple 
     name/value pairs.
-
-    Each data row contains a name, and value. The row also contains a
-    type or mimetype. Type corresponds to a .NET class that support
-    text/value conversion through the TypeConverter architecture.
-    Classes that don't support this are serialized and stored with the
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
     mimetype set.
-
-    The mimetype is used for serialized objects, and tells the
-    ResXResourceReader how to depersist the object. This is currently not
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
     extensible. For a given mimetype the value must be set accordingly:
-
-    Note - application/x-microsoft.net.object.binary.base64 is the format
-    that the ResXResourceWriter will generate, however the reader can
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
     read any of the formats listed below.
-
+    
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-
+    
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with
+    value   : The object must be serialized with 
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array
+    value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -254,40 +254,40 @@
   </data>
   <data name="CodexSection_Authors_Content" xml:space="preserve">
     <value>&lt;ul class="mx-2"&gt;
-                                &lt;li&gt;
-                                    може да предложи на списанието &lt;strong&gt;само своя собствена разработка&lt;/strong&gt;, която не е публикувана и не е депозирана в друго издание;
-                                &lt;/li&gt;
-                                &lt;li&gt;
-                                    трябва да е изготвил текста си съобразно техническите изисквания към публикациите в „Лингвистика, интерпретация, концепции“;
-                                &lt;/li&gt;
-                                &lt;li&gt;
-                                    носи отговорност за достоверността на първичните данни, които функционализира в изследването си, и за оригиналността на предлагания труд;
-                                &lt;/li&gt;
-                                &lt;li&gt;
-                                    при следващо публикуване на текста вмества в него коректна библиографска отпратка към първата му публикация в „Лингвистика, интерпретация, концепции“;
-                                &lt;/li&gt;
-                                &lt;li&gt;
-                                    цитира точно и пълно всички източници, които са ползвани при създаването на научната статия;
-                                &lt;/li&gt;
-                                &lt;li&gt;
-                                    трябва да посочва институциите, организациите, проектите, личностите, които имат отношение към разработката му (чрез финансиране на проучвателната дейност, чийто резултат е тя, чрез предоставяне на специфична информация, условия за работа, достъп до непубличен архив и пр.);
-                                &lt;/li&gt;
-                                &lt;li&gt;
-                                    съобщава при възникване на конфликт на интереси;
-                                &lt;/li&gt;
-                                &lt;li&gt;
-                                    отговаря на въпросите на рецензентите, коментира бележките им и ако е необходимо, осъществява промени в текста си; при несъгласие с предложените опции за коригиране на труда има право да оттегли предложеното за публикация;
-                                &lt;/li&gt;
-                                &lt;li&gt;
-                                    информира своевременно Редакцията, ако след депозирането на текст открие сериозен пропуск или грешка в труда си;
-                                &lt;/li&gt;
-                                &lt;li&gt;
-                                    не оповестява подробности от съвместната си работа с редакторския екип в рамките на публикационния процес;
-                                &lt;/li&gt;
-                                &lt;li&gt;
-                                    спазва Етичния кодекс на изданието и общосподелените академични норми за колегиално поведение.
-                                &lt;/li&gt;
-                            &lt;/ul&gt;</value>
+ &lt;li&gt;
+  може да предложи на списанието &lt;strong&gt;само своя собствена разработка&lt;/strong&gt;, която не е публикувана и не е депозирана в друго издание; Ръкописите се проверяват за плагиатство посредством платформата strikeplagiarism.
+ &lt;/li&gt;
+ &lt;li&gt;
+  трябва да е изготвил текста си съобразно техническите изисквания към публикациите в „Лингвистика, интерпретация, концепции“;
+ &lt;/li&gt;
+ &lt;li&gt;
+  носи отговорност за достоверността на първичните данни, които функционализира в изследването си, и за оригиналността на предлагания труд;
+ &lt;/li&gt;
+ &lt;li&gt;
+  при следващо публикуване на текста вмества в него коректна библиографска отпратка към първата му публикация в „Лингвистика, интерпретация, концепции“;
+ &lt;/li&gt;
+ &lt;li&gt;
+  цитира точно и пълно всички източници, които са ползвани при създаването на научната статия;
+ &lt;/li&gt;
+ &lt;li&gt;
+  трябва да посочва институциите, организациите, проектите, личностите, които имат отношение към разработката му (чрез финансиране на проучвателната дейност, чийто резултат е тя, чрез предоставяне на специфична информация, условия за работа, достъп до непубличен архив и пр.);
+ &lt;/li&gt;
+ &lt;li&gt;
+  съобщава при възникване на конфликт на интереси;
+ &lt;/li&gt;
+ &lt;li&gt;
+  отговаря на въпросите на рецензентите, коментира бележките им и ако е необходимо, осъществява промени в текста си; при несъгласие с предложените опции за коригиране на труда има право да оттегли предложеното за публикация;
+ &lt;/li&gt;
+ &lt;li&gt;
+  информира своевременно Редакцията, ако след депозирането на текст открие сериозен пропуск или грешка в труда си;
+ &lt;/li&gt;
+ &lt;li&gt;
+  не оповестява подробности от съвместната си работа с редакторския екип в рамките на публикационния процес;
+ &lt;/li&gt;
+ &lt;li&gt;
+  спазва Етичния кодекс на изданието и общосподелените академични норми за колегиално поведение.
+ &lt;/li&gt;
+&lt;/ul&gt;</value>
   </data>
   <data name="CodexSection_Authors_Title" xml:space="preserve">
     <value>АВТОРЪТ:</value>
@@ -1002,10 +1002,10 @@
     <value>доц. д-р Фани Бойкова</value>
   </data>
   <data name="Team_I.Peleva_Member" xml:space="preserve">
-    <value>проф. дфн Инна Пелева</value>
+    <value>проф. д.ф.н. Инна Пелева</value>
   </data>
   <data name="Team_M.Vlashki_Member" xml:space="preserve">
-    <value>доц. д-р Младен Влашки</value>
+    <value>доц. д.ф.н. Младен Влашки</value>
   </data>
   <data name="Team_S.Mathewson_Member" xml:space="preserve">
     <value>доц. д-р Снежа Цонева-Матюсън</value>
@@ -1172,29 +1172,35 @@
   <data name="Issue_DetailsPage_Title" xml:space="preserve">
     <value>Преглед на брой</value>
   </data>
-  <data name="Source_AuthorsNotes" xml:space="preserve">
-    <value>Бележки за авторите</value>
+  <data name="SourceCreate_AuthorNotes" xml:space="preserve">
+    <value>Бележки за автора</value>
   </data>
-  <data name="Source_IssueId" xml:space="preserve">
+  <data name="SourceCreate_FirstName" xml:space="preserve">
+    <value>Име</value>
+  </data>
+  <data name="SourceCreate_IssueId" xml:space="preserve">
     <value>Брой</value>
   </data>
-  <data name="Source_LanguageId" xml:space="preserve">
+  <data name="SourceCreate_LanguageId" xml:space="preserve">
     <value>Език</value>
   </data>
-  <data name="Source_StartingPdfPage" xml:space="preserve">
+  <data name="SourceCreate_LastName" xml:space="preserve">
+    <value>Фамилия</value>
+  </data>
+  <data name="SourceCreate_StartingPdfPage" xml:space="preserve">
     <value>Начална страница (PDF)</value>
   </data>
-  <data name="Source_Title" xml:space="preserve">
+  <data name="SourceCreate_Title" xml:space="preserve">
     <value>Заглавие</value>
   </data>
-  <data name="Source_TitleNotes" xml:space="preserve">
+  <data name="SourceCreate_TitleNotes" xml:space="preserve">
     <value>Бележки към ръкописа</value>
   </data>
   <data name="Source_CreatePage_SubTitle" xml:space="preserve">
     <value>Създаване на нов източник от съдържанието</value>
   </data>
   <data name="Source_CreatePage_Title" xml:space="preserve">
-    <value>Създаване на източник</value>
+    <value>Създаване на нов запис</value>
   </data>
   <data name="Issue_DetailsPage_InfoTitle" xml:space="preserve">
     <value>Информация за броя</value>
@@ -1284,7 +1290,7 @@
   <data name="Board_Joaquín.García-Medall_MemberWork" xml:space="preserve">
     <value>Университет на Валядолид, Испания</value>
   </data>
-  <data name="Source_LastPdfPage" xml:space="preserve">
+  <data name="SourceCreate_LastPdfPage" xml:space="preserve">
     <value>Последна страница (PDF)</value>
   </data>
   <data name="Team_EditorialAssistants_SubTitle" xml:space="preserve">
@@ -1332,7 +1338,7 @@
   <data name="Source_IndexPage_SearchDescription" xml:space="preserve">
     <value>търсене по първа буква от &lt;b&gt;фамилното&lt;/b&gt; име</value>
   </data>
-  <data name="Source_PdfFile" xml:space="preserve">
+  <data name="SourceCreate_PdfFile" xml:space="preserve">
     <value>Прикачете източника като PDF</value>
   </data>
   <data name="PortfolioSection_Description" xml:space="preserve">
@@ -1588,7 +1594,7 @@
     <value>Списанието предоставя трибуна на изследователи с различни методологически нагласи, от различни поколения и идентифициращи се с различни културни традиции и контексти.</value>
   </data>
   <data name="AboutSection_Publish_Description" xml:space="preserve">
-    <value>Публикуването в „Лингвистика, интерпретация, концепции“ е безплатно за авторите и за институциите, към които те принадлежат. Достъпът до онлайн формата на изданието е свободен, безплатен и до целия текстови обем.</value>
+    <value>ЛИнК е научно списание със свободен достъп, което означава, че цялото му съдържание е напълно достъпно безплатно за неговите потребители. Те имат право да четат, свалят, копират, разпространяват, принтират или създават линкове към пълните текстове на статиите, както и да ги използват с други законни цели без изрично позволение на авторите или издателя.</value>
   </data>
   <data name="AboutSection_Review_Description" xml:space="preserve">
     <value>Текстовете, постъпили в редакцията на списанието, подлежат на двойно анонимно рецензиране от двама независими рецензенти – експерти в съответната научна област.</value>
@@ -1624,7 +1630,7 @@
     <value>Преди публикуване ще Ви изпратим декларация за съгласие статията да бъде издадена.</value>
   </data>
   <data name="ContactSection_Submit_Guidelines" xml:space="preserve">
-    <value>Предложеният за публикуване текст се изпраща като прикачен файл към email до Редакцията на списанието.
+    <value>Предложеният за публикуване текст се изпраща като прикачен файл към email до Редакцията на списанието. 
 С Вас на този email ще влезе в комуникация редактор на списанието.
 Преди публикуване ще Ви изпратим декларация за съгласие статията/студията да бъде издадена.
 За да приемете декларацията, трябда да сте &lt;strong&gt;регистриран потребител&lt;/strong&gt; в системата.
@@ -1651,7 +1657,7 @@
     <value>&lt;a href="{0}"&gt;брой {1}&lt;/a&gt; стр. &lt;a target="_blank" href="{2}"&gt;{3}&lt;/a&gt;</value>
   </data>
   <data name="PublicationAgreement_SuccessMessage" xml:space="preserve">
-    <value>Споразумението за публикуване беше успешно прикачено към Вашия ръкопис! Благодарим Ви за съдействието.</value>
+    <value>Споразумението за публикуване беше успешно прикачено към Вашия ръкопис! Благодаря Ви за съдействието.</value>
   </data>
   <data name="Agreement_DifferentUser_Warning" xml:space="preserve">
     <value>Споразумението за публикуване е поискано от потребител с имена и email, различни от записаните в досието.</value>
@@ -1671,13 +1677,13 @@
   <data name="List_Label" xml:space="preserve">
     <value>Списък</value>
   </data>
-  <data name="Source_DOI" xml:space="preserve">
+  <data name="SourceCreate_DOI" xml:space="preserve">
     <value>DOI</value>
   </data>
-  <data name="Source_IsSection" xml:space="preserve">
+  <data name="SourceCreate_IsSection" xml:space="preserve">
     <value>Секция</value>
   </data>
-  <data name="Source_IsTheme" xml:space="preserve">
+  <data name="SourceCreate_IsTheme" xml:space="preserve">
     <value>Тема на броя</value>
   </data>
   <data name="Source_AdminPage_Title" xml:space="preserve">
@@ -1689,7 +1695,7 @@
   <data name="Dossier_ListHeader_HasAgreement" xml:space="preserve">
     <value>Декларация</value>
   </data>
-  <data name="Source_StartingIndexPage" xml:space="preserve">
+  <data name="SourceCreate_StartingIndexPage" xml:space="preserve">
     <value>Начална страница (по съдържание)</value>
   </data>
   <data name="DateCreated_Label" xml:space="preserve">
@@ -1702,7 +1708,7 @@
     <value>Прикачете декларация за публикуване</value>
   </data>
   <data name="DossierEdit_ConfirmDeleteAgreement" xml:space="preserve">
-    <value>Сигурни ли сте, че искате да изтриете декларацията свързана към този автор?</value>
+    <value>Сигурни ли сте, че искате да изтриете декларацията свързана към това досие?</value>
   </data>
   <data name="DossierEdit_ConfirmDeleteAgreement_Title" xml:space="preserve">
     <value>Потвърждение</value>
@@ -1712,9 +1718,6 @@
   </data>
   <data name="JournalDossier_DocumentDeleted" xml:space="preserve">
     <value>Изтрит документ от тип '{0}'.</value>
-  </data>
-  <data name="JournalDossier_DocumentDeletedFor" xml:space="preserve">
-    <value>Изтрит документ от тип '{0}' за {1}.</value>
   </data>
   <data name="ManagePreferences_PreferredLanguageId" xml:space="preserve">
     <value>Предпочитан език</value>
@@ -1797,52 +1800,13 @@
   <data name="Team_LiteratureAndCulture_2024-2026" xml:space="preserve">
     <value>Редакторски екип кн. 1–5, 2024/2026</value>
   </data>
-  <data name="Author_UserName" xml:space="preserve">
-    <value>Потребителско име</value>
+  <data name="Issue_Label" xml:space="preserve">
+    <value>Брой</value>
   </data>
-  <data name="Source_DossierId" xml:space="preserve">
-    <value>Досие</value>
+  <data name="Language_Label" xml:space="preserve">
+    <value>Език</value>
   </data>
-  <data name="DossierDetails_Authors" xml:space="preserve">
-    <value>Автори</value>
-  </data>
-  <data name="Authors" xml:space="preserve">
-    <value>Автори</value>
-  </data>
-  <data name="Authors_SearchNoResults" xml:space="preserve">
-    <value>Няма намерени</value>
-  </data>
-  <data name="Authors_SearchResults" xml:space="preserve">
-    <value>Резултати</value>
-  </data>
-  <data name="Authors_Add" xml:space="preserve">
-    <value>Добавяне на автор</value>
-  </data>
-  <data name="Authors_Remove" xml:space="preserve">
-    <value>Премахни автор</value>
-  </data>
-  <data name="Author_Notes" xml:space="preserve">
-    <value>Бележки за автора</value>
-  </data>
-  <data name="Author_FirstName" xml:space="preserve">
-    <value>Име</value>
-  </data>
-  <data name="Author_LastName" xml:space="preserve">
-    <value>Фамилия</value>
-  </data>
-  <data name="Author_Email" xml:space="preserve">
-    <value>Email</value>
-  </data>
-  <data name="Authors_Search" xml:space="preserve">
-    <value>Търси автори</value>
-  </data>
-  <data name="AuthorRemove_PublicationAgreement" xml:space="preserve">
-    <value>За да премахнете автора, първо трябва да изтриете прикачената декларация за публикуване.</value>
-  </data>
-  <data name="JournalDossier_DocumentUploadedFor" xml:space="preserve">
-    <value>Прикачен документ от тип '{0}' за {1}.</value>
-  </data>
-  <data name="Dossier_CreateSource" xml:space="preserve">
-    <value>Свържи публикация</value>
+  <data name="Index_Label" xml:space="preserve">
+    <value>Съдържание</value>
   </data>
 </root>
