@@ -53,10 +53,12 @@ namespace linc.Controllers
         }
 
         [SiteAuthorize(SiteRole.Editor)]
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Create(int? issueId)
         {
             var vModel = new SourceCreateViewModel
             {
+                IssueId = issueId,
+
                 Issues = await GetIssuesAsync(),
                 Languages = GetLanguages(),
 
