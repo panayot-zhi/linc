@@ -249,17 +249,51 @@ namespace linc.Controllers
                 return Forbid();
             }
 
-            if (author.Names != currentUser.Names)
+            var profileNamesMatch = currentUser.Profiles.FirstOrDefault(x =>
+                x.Names.ToUpper().Equals(author.Names.ToUpper()));
+            if (profileNamesMatch == null && author.Email != currentUser.Email)
             {
-                if (author.Email != currentUser.Email)
-                {
-                    // if the emails differ also - deny interaction
-                    AddAlertMessage(LocalizationService["Agreement_DifferentUser_Warning"],
-                        type: AlertMessageType.Warning);
-                    return Redirect("/");
-                }
+                // if we have NOT found names for the current user that match the dossier
+                // if we have NOT found the email of the current user match the dossier
+                // -> deny agreement, log warning
 
-                _logger.LogWarning("Publication agreement was requested by a user with different names than those in the dossier, but the email was the same: {DossierNames} != {CurrentUserNames}, {Email}",
+                _logger.LogWarning("[NO_MATCH] Publication agreement was requested by a user with different names and email than those in the dossier: {DossierNames} != {CurrentUserNames}, {Email}",
+                    author.Names, currentUser.Names, author.Email);
+
+                AddAlertMessage(LocalizationService["Agreement_DifferentUser_Warning"],
+                    type: AlertMessageType.Warning);
+
+                return Redirect("/");
+            } 
+            else if (profileNamesMatch == null && author.Email == currentUser.Email)
+            {
+                // if we have NOT found names for the current user match the dossier
+                // BUT if we HAVE found the email of the current user match the dossier
+                // -> allow agreement, log information
+
+                _logger.LogInformation("[PARTIAL_MATCH] Publication agreement was requested by a user with different names than those in the dossier, but the email was the same: {DossierNames} != {CurrentUserNames}, {Email}",
+                    author.Names, currentUser.Names, author.Email);
+            }
+            else if (profileNamesMatch != null && author.Email != currentUser.Email)
+            {
+                // if we HAVE found names for the current user match the dossier
+                // BUT if we have NOT found the email of the current user match the dossier
+                // -> deny agreement, log warning
+
+                _logger.LogWarning("[PARTIAL_MATCH] Publication agreement was requested by a user with matching names but different email: {DossierNames} == {CurrentUserNames}, {Email}",
+                    author.Names, currentUser.Names, author.Email);
+
+                AddAlertMessage(LocalizationService["Agreement_DifferentUser_Warning"],
+                    type: AlertMessageType.Warning);
+                return Redirect("/");
+            }
+            else if (profileNamesMatch != null && author.Email == currentUser.Email)
+            {
+                // if we HAVE found any of the names for the current user match the agreement
+                // if we HAVE found the email of the current user match the one in the dossier
+                // -> deny agreement
+
+                _logger.LogInformation("[FULL_MATCH] Publication agreement requested by a user with matching names and email: {DossierNames} == {CurrentUserNames}, {Email}",
                     author.Names, currentUser.Names, author.Email);
             }
 
