@@ -142,7 +142,10 @@
                         </a>
                     </td>
                     <td class="text-center">
-                        @Html.DisplayFor(modelItem => item.HasDOI)
+                        @if (!item.IsSection)
+                        {
+                            @Html.DisplayFor(modelItem => item.HasDOI)
+                        }
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.DateCreated)
