@@ -85,22 +85,33 @@ namespace linc.Services
                 return false;
             }
 
-            var repositoryPath = _config.RepositoryPath;
-            var filePath = Path.Combine(repositoryPath, document.RelativePath);
-
-            if (!File.Exists(filePath))
+            if (!DeleteDocumentFile(document.RelativePath))
             {
                 _logger.LogWarning(
                     "Could not find a physical file path for document {DocumentId}, deleting only from the database...",
                     document.Id);
             }
-            else
-            {
-                File.Delete(filePath);
-            }
 
             _context.Documents.Remove(document);
             await _context.SaveChangesAsync();
+
+            return true;
+        }
+
+        public bool DeleteDocumentFile(string documentRelativePath)
+        {
+            var repositoryPath = _config.RepositoryPath;
+            var filePath = Path.Combine(repositoryPath, documentRelativePath);
+
+            if (!File.Exists(filePath))
+            {
+                _logger.LogWarning(
+                    "Could not find file at {DocumentPath}.",
+                    documentRelativePath);
+                return false;
+            }
+
+            File.Delete(filePath);
 
             return true;
         }

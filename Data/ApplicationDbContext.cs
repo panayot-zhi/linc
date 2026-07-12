@@ -260,13 +260,19 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
                 );
         });
 
-        // Configure one-to-one relationships
+        // Configure many-to-one relationships
 
         builder.Entity<ApplicationSource>()
             .HasOne(source => source.Dossier)
-            .WithOne(dossier => dossier.Source)
-            .HasForeignKey<ApplicationSource>(source => source.DossierId)
+            .WithMany(dossier => dossier.Sources)
+            .HasForeignKey(source => source.DossierId)
             .OnDelete(DeleteBehavior.SetNull);
+
+        // enforce uniqueness per dossier + language (one source per language per dossier)
+        builder.Entity<ApplicationSource>()
+            .HasIndex(s => new { s.DossierId, s.LanguageId })
+            .IsUnique();
+
 
         // Configure many-to-many relationships
         // with dedicated mapping extension methods

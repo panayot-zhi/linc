@@ -12,5 +12,7 @@ namespace linc.Contracts
         public Task<ApplicationDocument> SaveDossierDocumentAsync(int dossierId, ApplicationDocumentDescriptor descriptor);
 
         Task<bool> DeleteDocumentAsync(int documentId);
+
+        bool DeleteDocumentFile(string documentRelativePath);
     }
 }

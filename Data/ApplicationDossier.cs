@@ -40,10 +40,8 @@ namespace linc.Data
 
         public virtual ApplicationLanguage Language { get; set; }
 
-        // NOTE: no foreign key here, because the relationship
-        // is controlled by the ApplicationSource entity
-        public ApplicationSource Source { get; set; }
-
+        // NOTE: this is a collection, so the dossier can be linked separately for each sources in the separate languages
+        public virtual ICollection<ApplicationSource> Sources { get; set; } = new List<ApplicationSource>();
 
         public virtual ICollection<ApplicationDossierReview> Reviews { get; set; } = new List<ApplicationDossierReview>();
 
