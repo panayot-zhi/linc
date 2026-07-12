@@ -285,6 +285,7 @@ namespace linc.Controllers
 
                 AddAlertMessage(LocalizationService["Agreement_DifferentUser_Warning"],
                     type: AlertMessageType.Warning);
+
                 return Redirect("/");
             }
             else if (profileNamesMatch != null && author.Email == currentUser.Email)
