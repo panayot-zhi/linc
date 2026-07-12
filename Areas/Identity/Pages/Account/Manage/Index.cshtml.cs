@@ -97,6 +97,8 @@ namespace linc.Areas.Identity.Pages.Account.Manage
                 return Page();
             }
 
+            // todo: check if the user has deleted any of his names and no corresponding name could be found in any other profile
+
             var result = await _userManager.UpdateAsync(user);
             if (!result.Succeeded)
             {
