@@ -175,6 +175,7 @@ namespace linc.Services
 
             // Get all sources for this issue with the specified language
             var sourcesQuery = _context.Sources
+                .Include(x => x.Authors)
                 .Include(x => x.Issue)
                 .Where(x => x.IssueId == currentIssue.Id && x.LanguageId == languageId)
                 .OrderBy(source => source.StartingPdfPage)      // order first and foremost by the starting page number
