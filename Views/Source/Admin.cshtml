@@ -1,5 +1,4 @@
 ﻿@using Microsoft.AspNetCore.Localization
-@using System.Globalization
 @model SourceIndexViewModel
 
 @{
@@ -60,7 +59,7 @@
 
 <hr />
 
-<div class="table-responsive">
+<div id="sources-admin" class="table-responsive">
     <table class="table">
         <thead class="table-light">
             <tr>
@@ -124,7 +123,7 @@
                         <br />
                         @Html.DisplayFor(modelItem => item.TitleNotes)
                     </td>
-                    <td class="text-center">
+                    <td class="text-center pages">
                         @if (item.StartingIndexPage.HasValue)
                         {
                             <a href="@Url.Action("LoadIssueDocument", "Document", new { issueId = item.IssueId })#page=@item.StartingPdfPage" target="_blank">
