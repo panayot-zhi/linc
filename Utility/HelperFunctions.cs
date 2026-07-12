@@ -15,19 +15,25 @@ public static class HelperFunctions
 {
     private static readonly Random RandomNumberGenerator = new();
 
-    public static string GatherInternals(this Exception ex, int introspectionLevel = 3)
+    public static string GatherInternals(this Exception exception, string separator = " ---> ")
     {
-        if (ex == null)
+        if (exception == null)
         {
             return string.Empty;
         }
 
-        if (introspectionLevel == 0)
+        if (exception is AggregateException aggregateException)
         {
-            return "...";
+            var messages = aggregateException.Flatten().InnerExceptions.Select(ex => ex.GatherInternals(separator));
+            return $"{aggregateException.Message}{separator}{string.Join(separator, messages)}";
         }
 
-        return ex.Message + " > " + GatherInternals(ex.InnerException, --introspectionLevel);
+        if (exception.InnerException != null)
+        {
+            return $"{exception.Message}{separator}{exception.InnerException.GatherInternals(separator)}";
+        }
+
+        return exception.Message;
     }
 
     public static bool HasProperty(this EntityEntry entry, string property)
