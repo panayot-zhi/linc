@@ -46,6 +46,11 @@ public static class HelperFunctions
         return $"{me.OriginalPathBase}{me.OriginalPath}{me.OriginalQueryString}";
     }
 
+    public static string GetUserAgent(HttpContext httpContext)
+    {
+        return httpContext.Request.Headers["User-Agent"].ToString();
+    }
+
     public static string GetIp(HttpContext httpContext)
     {
         var result = string.Empty;
