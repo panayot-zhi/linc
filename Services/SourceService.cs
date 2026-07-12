@@ -246,51 +246,73 @@ namespace linc.Services
             var lastPage = input.LastPdfPage!.Value;
             var issueId = input.IssueId!.Value;
 
+            ApplicationDocument pdf = null;
+
             await using var transaction = await _context.Database.BeginTransactionAsync();
 
-            var issue = _context.Issues
-                .Include(x => x.Documents)
-                .First(x => x.Id == issueId);
-
-            ApplicationDocument pdf;
-            if (input.PdfFile != null)
+            try
             {
-                // pdf file was provided, just save it and continue
-                pdf = await SaveSourcePdf(input.PdfFile, startingPage, issue.ReleaseYear, issue.IssueNumber);
+                var issue = _context.Issues
+                    .Include(x => x.Documents)
+                    .First(x => x.Id == issueId);
+
+                if (input.PdfFile != null)
+                {
+                    // pdf file was provided, just save it and continue
+                    pdf = await SaveSourcePdf(input.PdfFile, startingPage, issue.ReleaseYear, issue.IssueNumber);
+                }
+                else
+                {
+                    // no pdf file was provided, generate it from the issue pdf
+                    pdf = await GenerateSourcePdf(issue, startingPage, lastPage);
+                }
+
+                var entity = new ApplicationSource
+                {
+                    AuthorsNotes = input.AuthorsNotes?.Trim(),
+                    DOI = input.DOI?.Trim(),
+                    DossierId = input.DossierId,
+                    IsSection = input.IsSection,
+                    IsTheme = input.IsTheme,
+                    IssueId = issueId,
+                    LanguageId = input.LanguageId,
+                    LastPdfPage = lastPage,
+                    PdfId = pdf.Id,
+                    StartingIndexPage = input.StartingIndexPage,
+                    StartingPdfPage = startingPage,
+                    Title = input.Title?.Trim(),
+                    TitleNotes = input.TitleNotes?.Trim(),
+                };
+
+                var authors = await _authorService.CreateSourceAuthorsAsync(input.LanguageId, input.Authors);
+                foreach (var author in authors)
+                {
+                    entity.Authors.Add(author);
+                }
+
+                var entityEntry = await _context.Sources.AddAsync(entity);
+                await _context.SaveChangesAsync();
+                await transaction.CommitAsync();
+                return entityEntry.Entity.Id;
             }
-            else
+            catch (Exception ex)
             {
-                // no pdf file was provided, generate it from the issue pdf
-                pdf = await GenerateSourcePdf(issue, startingPage, lastPage);
+                _logger.LogError("Exception occurred while trying to save source during a database transaction:{Messages}",
+                    ex.GatherInternals());
+
+                if (input.PdfFile == null && pdf != null)
+                {
+                    // file was not passed -> we have generated it, delete orphaned file
+                    _logger.LogInformation("Deleting generated file: {FilePath}",
+                        pdf.RelativePath);
+
+                    _documentService.DeleteDocumentFile(pdf.RelativePath);
+                }
+
+                await transaction.RollbackAsync();
+
+                throw;
             }
-
-            var entity = new ApplicationSource
-            {
-                AuthorsNotes = input.AuthorsNotes?.Trim(),
-                DOI = input.DOI?.Trim(),
-                DossierId = input.DossierId,
-                IsSection = input.IsSection,
-                IsTheme = input.IsTheme,
-                IssueId = issueId,
-                LanguageId = input.LanguageId,
-                LastPdfPage = lastPage,
-                PdfId = pdf.Id,
-                StartingIndexPage = input.StartingIndexPage,
-                StartingPdfPage = startingPage,
-                Title = input.Title?.Trim(),
-                TitleNotes = input.TitleNotes?.Trim(),
-            };
-
-            var authors = await _authorService.CreateSourceAuthorsAsync(input.LanguageId, input.Authors);
-            foreach (var author in authors)
-            {
-                entity.Authors.Add(author);
-            }
-
-            var entityEntry = await _context.Sources.AddAsync(entity);
-            await _context.SaveChangesAsync();
-            await transaction.CommitAsync();
-            return entityEntry.Entity.Id;
         }
 
         public async Task UpdateSourceAsync(SourceUpdateViewModel input)
