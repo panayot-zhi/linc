@@ -8,7 +8,6 @@ using linc.Models.Enumerations;
 using linc.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Identity;
 using linc.Models.ViewModels.Emails;
 using System.Text;
@@ -20,17 +19,20 @@ namespace linc.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IContentService _contentService;
 
         public HomeController(
             ILogger<HomeController> logger,
             UserManager<ApplicationUser> userManager,
-            ILocalizationService localizationService, 
+            ILocalizationService localizationService,
+            IHttpContextAccessor httpContextAccessor,
             IContentService contentService)
         : base(localizationService)
         {
             _logger = logger;
             _contentService = contentService;
+            _httpContextAccessor = httpContextAccessor;
             _userManager = userManager;
         }
 
@@ -129,7 +131,29 @@ namespace linc.Controllers
         [HttpPost]
         public IActionResult SetLanguage(string culture, string returnUrl = "/")
         {
-            Response.SetCurrentLanguage(culture);
+            try
+            {
+                Response.SetCurrentLanguage(culture);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Failed changing language: {Messages}", 
+                    ex.GatherInternals());
+
+                var httpContext =  _httpContextAccessor.HttpContext;
+
+                if (httpContext != null)
+                {
+                    var userAgent = HelperFunctions.GetUserAgent(httpContext);
+                    var clientIp = HelperFunctions.GetIp(httpContext);
+                    var user = httpContext.User;
+
+                    _logger.LogWarning("UserID='{UserID}', with IP='{ClientIP}' and UserAgent={UserAgent} is being funny.",
+                        user, clientIp, userAgent);
+                }
+
+                return BadRequest();
+            }
 
             return LocalRedirect(returnUrl);
         }
