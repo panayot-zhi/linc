@@ -97,7 +97,13 @@ jobs:
         exit 1
 
     - name: Run E2E Playwright Tests
-      run: dotnet test --environment TestConfig__TestGMailUserPassword="${{ secrets.TEST_GMAIL_USER_PASSWORD }}" --environment TestConfig__BasicAuthPassword="${{ secrets.TEST_BASIC_AUTH_PASSWORD }}"
+      run: >-
+        dotnet test
+        --environment TestConfig__TestGMailUserPassword="${{ secrets.TEST_GMAIL_USER_PASSWORD }}"
+        --environment TestConfig__BasicAuthPassword="${{ secrets.TEST_BASIC_AUTH_PASSWORD }}"
+        --environment TestConfig__AdministratorPassword="${{ secrets.TEST_ADMINISTRATOR_PASSWORD }}"
+        --environment TestConfig__HeadEditorPassword="${{ secrets.TEST_HEAD_EDITOR_PASSWORD }}"
+        --environment TestConfig__EditorPassword="${{ secrets.TEST_EDITOR_PASSWORD }}"
 
   publish-test-prod:
     if: "!endsWith(github.ref, '-test')"
@@ -190,7 +196,13 @@ jobs:
         exit 1
 
     - name: Run E2E Playwright Tests
-      run: dotnet test --environment TestConfig__TestGMailUserPassword="${{ secrets.TEST_GMAIL_USER_PASSWORD }}" --environment TestConfig__BasicAuthPassword="${{ secrets.TEST_BASIC_AUTH_PASSWORD }}"
+      run: >-
+        dotnet test
+        --environment TestConfig__TestGMailUserPassword="${{ secrets.TEST_GMAIL_USER_PASSWORD }}"
+        --environment TestConfig__BasicAuthPassword="${{ secrets.TEST_BASIC_AUTH_PASSWORD }}"
+        --environment TestConfig__AdministratorPassword="${{ secrets.TEST_ADMINISTRATOR_PASSWORD }}"
+        --environment TestConfig__HeadEditorPassword="${{ secrets.TEST_HEAD_EDITOR_PASSWORD }}"
+        --environment TestConfig__EditorPassword="${{ secrets.TEST_EDITOR_PASSWORD }}"
 
     # Push build to production
     - name: Stop Service (linc.service)
