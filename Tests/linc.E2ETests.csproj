@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <!-- gitignored, lives in the repository root, CI passes the same values as environment variables -->
-    <Content Include="../appsettings.Testing.json" Link="appsettings.Testing.json" Condition="Exists('../appsettings.Testing.json')">
+    <!-- gitignored, lives in the repository root, the tests only read its TestConfig section; CI passes the same values as environment variables -->
+    <Content Include="../appsettings.Staging.json" Link="appsettings.Staging.json" Condition="Exists('../appsettings.Staging.json')">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

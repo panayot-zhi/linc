@@ -19,7 +19,7 @@ namespace linc.E2ETests.Configuration
 
         // privileged accounts exist only in linc_db_test,
         // seeded by backup.sh from ~/backups/tests/test_seed.sql,
-        // passwords come from appsettings.Testing.json (gitignored) or CI environment values
+        // passwords come from the TestConfig section of appsettings.Staging.json (gitignored) or CI environment values
 
         public string AdministratorUserName { get; set; } = "test-admin";
 

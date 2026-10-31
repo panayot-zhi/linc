@@ -20,17 +20,17 @@ namespace linc.E2ETests
         [OneTimeSetUp]
         public async Task GlobalOneTimeSetUp()
         {
-            // locally the values come from appsettings.Testing.json (gitignored),
+            // locally the values come from appsettings.Staging.json (gitignored),
             // in CI the file does not exist and the workflow passes TestConfig__* environment variables
             var configuration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.Testing.json", optional: true, reloadOnChange: false)
+                .AddJsonFile("appsettings.Staging.json", optional: true, reloadOnChange: false)
                 .AddEnvironmentVariables()
                 .Build();
 
             // load test configuration to object instance of TestConfig
             Config = configuration.GetSection("TestConfig").Get<TestConfig>() ??
                 throw new InvalidDataException("Could not load test configuration: " +
-                    "add a TestConfig section to appsettings.Testing.json in the repository root, " +
+                    "add a TestConfig section to appsettings.Staging.json in the repository root, " +
                     "or pass TestConfig__* environment variables.");
 
             // validate TestConfig data annotations
