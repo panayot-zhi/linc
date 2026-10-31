@@ -3,7 +3,6 @@ bin/
 obj/
 release/
 backups/
-appsettings.Testing.json
 appsettings.Development.json
 appsettings.Production.json
 appsettings.Staging.json
