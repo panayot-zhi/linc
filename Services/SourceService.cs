@@ -19,23 +19,29 @@ namespace linc.Services
         private readonly ILogger<SourceService> _logger;
         private readonly ApplicationDbContext _context;
         private readonly ApplicationConfig _config;
+        private readonly IAuthorService _authorService;
 
         public SourceService(ApplicationDbContext context, 
             IOptions<ApplicationConfig> config, 
             ILogger<SourceService> logger,
             IApplicationUserStore applicationUserStore,
-            IDocumentService documentService)
+            IDocumentService documentService,
+            IAuthorService authorService)
         {
             _context = context;
             _documentService = documentService;
             _applicationUserStore = applicationUserStore;
             _config = config.Value;
             _logger = logger;
+            _authorService = authorService;
         }
 
         public async Task<ApplicationSource> GetSourceAsync(int id)
         {
-            return await _context.Sources.FindAsync(id);
+            return await _context.Sources
+                .Include(x => x.Authors)
+                    .ThenInclude(x => x.User)
+                .FirstOrDefaultAsync(x => x.Id == id);
         }
 
         public async Task<SourceIndexViewModel> GetSourcesPagedAsync(string filter, int languageId, int? year, int? issueId, int? pageIndex, int pageSize = 10)
@@ -48,6 +54,7 @@ namespace linc.Services
             var sourcesDbSet = _context.Sources;
             var query = sourcesDbSet
                 .Include(x => x.Issue)
+                .Include(x => x.Authors)
                 .Where(x => !x.IsSection)
                 .AsQueryable();
 
@@ -71,14 +78,17 @@ namespace linc.Services
                 {
                     // perform search by
                     query = query.Where(x =>
-                        EF.Functions.Like(x.AuthorNames, $"%{filter}%") ||
-                        EF.Functions.Like(x.AuthorNotes, $"%{filter}%")
+                        x.Authors.Any(a => 
+                            EF.Functions.Like(a.Names, $"%{filter}%") ||
+                            EF.Functions.Like(a.Notes, $"%{filter}%")) ||
+                        EF.Functions.Like(x.AuthorsNotes, $"%{filter}%")
                     );
                 }
                 else
                 {
-                    query = query.Where(x => x.LastName.StartsWith(filter));
-                    query = query.OrderBy(x => x.LastName);
+                    query = query.Where(x => 
+                        x.Authors.Any(a => a.LastName.StartsWith(filter)));
+                    query = query.OrderBy(x => x.Authors.Min(a => a.LastName));
                 }
             }
             else
@@ -116,6 +126,8 @@ namespace linc.Services
             var sourcesDbSet = _context.Sources;
             var query = sourcesDbSet
                 .Include(x => x.Issue)
+                .Include(x => x.Authors)
+                    .ThenInclude(x => x.User)
                 .Where(x => x.LanguageId == languageId)
                 .AsQueryable();
 
@@ -163,6 +175,7 @@ namespace linc.Services
 
             // Get all sources for this issue with the specified language
             var sourcesQuery = _context.Sources
+                .Include(x => x.Authors)
                 .Include(x => x.Issue)
                 .Where(x => x.IssueId == currentIssue.Id && x.LanguageId == languageId)
                 .OrderBy(source => source.StartingPdfPage)      // order first and foremost by the starting page number
@@ -233,65 +246,73 @@ namespace linc.Services
             var lastPage = input.LastPdfPage!.Value;
             var issueId = input.IssueId!.Value;
 
+            ApplicationDocument pdf = null;
+
             await using var transaction = await _context.Database.BeginTransactionAsync();
 
-            var issue = _context.Issues
-                .Include(x => x.Files)
-                .First(x => x.Id == issueId);
-
-            var author = await _applicationUserStore.FindUserByNamesAsync(input.FirstName, input.LastName);
-
-            string authorId = null;
-            if (author is not null)
+            try
             {
-                _context.Users.Attach(author);
-                author.IsAuthor = true;
+                var issue = _context.Issues
+                    .Include(x => x.Documents)
+                    .First(x => x.Id == issueId);
+
+                if (input.PdfFile != null)
+                {
+                    // pdf file was provided, just save it and continue
+                    pdf = await SaveSourcePdf(input.PdfFile, startingPage, issue.ReleaseYear, issue.IssueNumber);
+                }
+                else
+                {
+                    // no pdf file was provided, generate it from the issue pdf
+                    pdf = await GenerateSourcePdf(issue, startingPage, lastPage);
+                }
+
+                var entity = new ApplicationSource
+                {
+                    AuthorsNotes = input.AuthorsNotes?.Trim(),
+                    DOI = input.DOI?.Trim(),
+                    DossierId = input.DossierId,
+                    IsSection = input.IsSection,
+                    IsTheme = input.IsTheme,
+                    IssueId = issueId,
+                    LanguageId = input.LanguageId,
+                    LastPdfPage = lastPage,
+                    PdfId = pdf.Id,
+                    StartingIndexPage = input.StartingIndexPage,
+                    StartingPdfPage = startingPage,
+                    Title = input.Title?.Trim(),
+                    TitleNotes = input.TitleNotes?.Trim(),
+                };
+
+                var authors = await _authorService.CreateSourceAuthorsAsync(input.LanguageId, input.Authors);
+                foreach (var author in authors)
+                {
+                    entity.Authors.Add(author);
+                }
+
+                var entityEntry = await _context.Sources.AddAsync(entity);
                 await _context.SaveChangesAsync();
-                authorId = author.Id;
+                await transaction.CommitAsync();
+                return entityEntry.Entity.Id;
             }
-
-            ApplicationDocument pdf;
-            if (input.PdfFile != null)
+            catch (Exception ex)
             {
-                // pdf file was provided, just save it and continue
-                pdf = await SaveSourcePdf(input.PdfFile, startingPage, issue.ReleaseYear, issue.IssueNumber);
+                _logger.LogError("Exception occurred while trying to save source during a database transaction:{Messages}",
+                    ex.GatherInternals());
+
+                if (input.PdfFile == null && pdf != null)
+                {
+                    // file was not passed -> we have generated it, delete orphaned file
+                    _logger.LogInformation("Deleting generated file: {FilePath}",
+                        pdf.RelativePath);
+
+                    _documentService.DeleteDocumentFile(pdf.RelativePath);
+                }
+
+                await transaction.RollbackAsync();
+
+                throw;
             }
-            else
-            {
-                // no pdf file was provided, generate it from the issue pdf
-                pdf = await GenerateSourcePdf(issue, startingPage, lastPage);
-            }
-
-            var entity = new ApplicationSource
-            {
-                FirstName = input.FirstName?.Trim(),
-                LastName = input.LastName?.Trim(),
-                AuthorNotes = input.AuthorNotes,
-
-                DOI = input.DOI?.Trim(),
-
-                StartingPdfPage = startingPage,
-                LastPdfPage = lastPage,
-
-                StartingIndexPage = input.StartingIndexPage,
-
-                Title = input.Title?.Trim(),
-                TitleNotes = input.TitleNotes,
-
-                IsTheme = input.IsTheme,
-                IsSection = input.IsSection,
-
-                LanguageId = input.LanguageId,
-                IssueId = issueId,
-                AuthorId = authorId,
-
-                PdfId = pdf.Id
-            };
-
-            var entityEntry = await _context.Sources.AddAsync(entity);
-            await _context.SaveChangesAsync();
-            await transaction.CommitAsync();
-            return entityEntry.Entity.Id;
         }
 
         public async Task UpdateSourceAsync(SourceUpdateViewModel input)
@@ -300,36 +321,19 @@ namespace linc.Services
 
             ArgumentNullException.ThrowIfNull(source);
 
-            var author = await _applicationUserStore.FindUserByNamesAsync(input.FirstName, input.LastName);
-
-            string authorId = null;
-            if (author is not null)
-            {
-                _context.Users.Attach(author);
-                author.IsAuthor = true;
-                await _context.SaveChangesAsync();
-                authorId = author.Id;
-            }
-
             _context.Sources.Attach(source);
 
-            source.Title = input.Title?.Trim();
-            source.TitleNotes = input.TitleNotes;
-
+            source.AuthorsNotes = input.AuthorsNotes?.Trim();
             source.DOI = input.DOI?.Trim();
-
-            source.FirstName = input.FirstName?.Trim();
-            source.LastName = input.LastName?.Trim();
-            source.AuthorNotes = input.AuthorNotes;
-
-            source.StartingIndexPage = input.StartingIndexPage;
-
-            source.LanguageId = input.LanguageId;
-
-            source.IsTheme = input.IsTheme;
+            source.DossierId = input.DossierId;
             source.IsSection = input.IsSection;
+            source.IsTheme = input.IsTheme;
+            source.LanguageId = input.LanguageId;
+            source.StartingIndexPage = input.StartingIndexPage;
+            source.Title = input.Title?.Trim();
+            source.TitleNotes = input.TitleNotes?.Trim();
 
-            source.AuthorId = authorId;
+            await _authorService.UpdateSourceAuthorsAsync(source, input.Authors);
 
             await _context.SaveChangesAsync();
         }
@@ -418,7 +422,7 @@ namespace linc.Services
 
         private async Task<ApplicationDocument> SaveSourcePdf(IFormFile inputFile, int startingPage, int releaseYear, int issueNumber)
         {
-            var fileExtension = inputFile.Extension();
+            var fileExtension = inputFile.GetExtension();
             const ApplicationDocumentType type = ApplicationDocumentType.SourcePdf;
             var fileName = $"{releaseYear}-{issueNumber.ToString().PadLeft(3, '0')}-{HelperFunctions.ToKebabCase(type.ToString())}-{startingPage}";
 
@@ -462,6 +466,7 @@ namespace linc.Services
             return entityEntry.Entity;
         }
 
+        /*
         public async Task UpdateAuthorAsync(ApplicationUser user)
         {
             var userProfiles = _context.UserProfiles
@@ -501,6 +506,7 @@ namespace linc.Services
                 await _context.SaveChangesAsync();
             }
         }
+        */
 
     }
 }

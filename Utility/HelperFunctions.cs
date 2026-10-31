@@ -1,14 +1,9 @@
-﻿using System.Globalization;
-using System.Security.Cryptography;
-using System.Text;
+﻿using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using linc.Contracts;
 using linc.Models.Enumerations;
 using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Localization;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -20,24 +15,25 @@ public static class HelperFunctions
 {
     private static readonly Random RandomNumberGenerator = new();
 
-    public static string GatherInternals(this Exception ex, int introspectionLevel = 3)
+    public static string GatherInternals(this Exception exception, string separator = " ---> ")
     {
-        if (ex == null)
+        if (exception == null)
         {
             return string.Empty;
         }
 
-        if (introspectionLevel == 0)
+        if (exception is AggregateException aggregateException)
         {
-            return "...";
+            var messages = aggregateException.Flatten().InnerExceptions.Select(ex => ex.GatherInternals(separator));
+            return $"{aggregateException.Message}{separator}{string.Join(separator, messages)}";
         }
 
-        return ex.Message + " > " + GatherInternals(ex.InnerException, --introspectionLevel);
-    }
+        if (exception.InnerException != null)
+        {
+            return $"{exception.Message}{separator}{exception.InnerException.GatherInternals(separator)}";
+        }
 
-    public static string GetFullPath(this IStatusCodeReExecuteFeature me)
-    {
-        return $"{me.OriginalPathBase}{me.OriginalPath}{me.OriginalQueryString}";
+        return exception.Message;
     }
 
     public static bool HasProperty(this EntityEntry entry, string property)
@@ -45,44 +41,14 @@ public static class HelperFunctions
         return entry.Properties.Any(x => x.Metadata.Name == property);
     }
 
-    public static string Extension(this IFormFile formFile)
+    public static string GetFullPath(this IStatusCodeReExecuteFeature me)
     {
-        return GetFileExtension(formFile.FileName);
+        return $"{me.OriginalPathBase}{me.OriginalPath}{me.OriginalQueryString}";
     }
 
-    public static bool IsAjax(this HttpRequest request, string httpVerb = "")
+    public static string GetUserAgent(HttpContext httpContext)
     {
-        if (request == null)
-        {
-            throw new ArgumentNullException(nameof(request));
-        }
-
-        if (!string.IsNullOrEmpty(httpVerb))
-        {
-            if (request.Method != httpVerb)
-            {
-                return false;
-            }
-        }
-
-        return request.Headers["X-Requested-With"] == "XMLHttpRequest";
-    }
-
-    internal static string Md5Hash(string input)
-    {
-        using (var md5 = MD5.Create())
-        {
-            var bytes = Encoding.UTF8.GetBytes(input);
-            var hash = md5.ComputeHash(bytes);
-
-            var builder = new StringBuilder();
-            foreach (var c in hash)
-            {
-                builder.Append(c.ToString("X2"));
-            }
-
-            return builder.ToString();
-        }
+        return httpContext.Request.Headers["User-Agent"].ToString();
     }
 
     public static string GetIp(HttpContext httpContext)
@@ -90,7 +56,7 @@ public static class HelperFunctions
         var result = string.Empty;
 
         // first try to get IP address from the forwarded header
-        if (httpContext.Request.Headers != null)
+        if (httpContext.Request.Headers.Any())
         {
             // the X-Forwarded-For (XFF) HTTP header field is a de facto standard for identifying the originating IP address of a client
             // connecting to a web server through an HTTP proxy or load balancer
@@ -204,49 +170,6 @@ public static class HelperFunctions
         }
 
         return contentType;
-    }
-
-    public static void SetCurrentLanguage(this HttpResponse response, string culture)
-    {
-        Thread.CurrentThread.CurrentUICulture = new CultureInfo(culture);
-
-        response.Cookies.Append(
-            SiteCookieName.Language,
-            CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
-            new CookieOptions
-            {
-                Expires = DateTimeOffset.UtcNow.AddYears(7)
-            }
-        );
-    }
-
-    public static void SetCurrentLanguage(this HttpResponse response, int languageId)
-    {
-        var culture = SiteConstant.SupportedCultures[languageId];
-        SetCurrentLanguage(response, culture);
-    }
-
-    public static T Get<T>(this ViewDataDictionary viedDataDictionary, string key)
-    {
-        if(viedDataDictionary.TryGetValue(key, out var value))
-        {
-            return (T) value;
-        }
-
-        return default;
-    }
-
-    public static void AddIdentityError(this ModelStateDictionary modelState, IdentityError error)
-    {
-        modelState.AddModelError(error.Code, error.Description);
-    }
-
-    public static void AddIdentityErrors(this ModelStateDictionary modelState, IEnumerable<IdentityError> errors)
-    {
-        foreach (var identityError in errors)
-        {
-            modelState.AddIdentityError(identityError);
-        }
     }
 
     public static void AddAlertMessage(

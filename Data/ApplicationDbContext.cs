@@ -14,6 +14,8 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
 
     public readonly DbContextOptions<ApplicationDbContext> Options;
 
+    
+    public DbSet<ApplicationAuthor> Authors { get; set; }
 
     public DbSet<ApplicationIssue> Issues { get; set; }
 
@@ -51,6 +53,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         TrackCreatedEntities();
         TrackUpdatedEntities();
+        StandardizeAuthorNames();
 
         return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
     }
@@ -90,6 +93,28 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
                 entry.Property(AutoUpdateProperty).CurrentValue = now;
             }
         });
+    }
+
+    private void StandardizeAuthorNames()
+    {
+        var authorEntries = ChangeTracker.Entries<ApplicationAuthor>()
+            .Where(entry => entry.State is EntityState.Added or EntityState.Modified);
+
+        foreach (var entry in authorEntries)
+        {
+            var author = entry.Entity;
+            if (!string.IsNullOrWhiteSpace(author.FirstName))
+            {
+                author.FirstName = author.FirstName.Trim();
+                author.FirstName = char.ToUpper(author.FirstName[0]) + author.FirstName[1..].ToLower();
+            }
+
+            if (!string.IsNullOrWhiteSpace(author.LastName))
+            {
+                author.LastName = author.LastName.Trim();
+                author.LastName = author.LastName.ToUpper();
+            }
+        }
     }
 
     protected override void OnModelCreating(ModelBuilder builder)
@@ -225,15 +250,36 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
         // declare computed columns
         // NOTE: this is database specific (for MySQL)
 
-        builder.Entity<ApplicationSource>(entity =>
+        builder.Entity<ApplicationAuthor>(entity =>
         {
-            entity.Property(e => e.AuthorNames)
+            entity.Property(e => e.Names)
                 .HasComputedColumnSql(
-                    $"CONCAT({HelperFunctions.ToSnakeCase(nameof(ApplicationSource.FirstName))}, " +
+                    $"CONCAT({HelperFunctions.ToSnakeCase(nameof(ApplicationAuthor.FirstName))}, " +
                     "' ', " +
-                    $"{HelperFunctions.ToSnakeCase(nameof(ApplicationSource.LastName))})"
+                    $"{HelperFunctions.ToSnakeCase(nameof(ApplicationAuthor.LastName))})"
                 );
         });
+
+        // Configure many-to-one relationships
+
+        builder.Entity<ApplicationSource>()
+            .HasOne(source => source.Dossier)
+            .WithMany(dossier => dossier.Sources)
+            .HasForeignKey(source => source.DossierId)
+            .OnDelete(DeleteBehavior.SetNull);
+
+        // enforce uniqueness per dossier + language (one source per language per dossier)
+        builder.Entity<ApplicationSource>()
+            .HasIndex(s => new { s.DossierId, s.LanguageId })
+            .IsUnique();
+
+
+        // Configure many-to-many relationships
+        // with dedicated mapping extension methods
+
+        builder.Entity<ApplicationDocument>()
+            .MapDossiersTable()
+            .MapIssuesTable();
     }
 
     private static readonly ValueComparer StringArrayValueComparer = new ValueComparer<string[]>(

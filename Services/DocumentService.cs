@@ -2,6 +2,7 @@
 using linc.Data;
 using linc.Models.ConfigModels;
 using linc.Utility;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
@@ -41,6 +42,35 @@ namespace linc.Services
             return null;
         }
 
+        public async Task<ApplicationDocument> SaveDossierDocumentAsync(int dossierId, ApplicationDocumentDescriptor descriptor)
+        {
+            var fileName = Guid.NewGuid().ToString();
+            var fileExtension = descriptor.Extension;
+
+            var rootFolderPath = Path.Combine(_config.RepositoryPath, SiteConstant.DossiersFolderName, dossierId.ToString());
+            var filePath = Path.Combine(rootFolderPath, $"{fileName}.{fileExtension}");
+
+            Directory.CreateDirectory(rootFolderPath);
+
+            var relativePath = Path.Combine(SiteConstant.DossiersFolderName, dossierId.ToString(), $"{fileName}.{fileExtension}");
+
+            await File.WriteAllBytesAsync(filePath, descriptor.Content);
+
+            var entry = new ApplicationDocument()
+            {
+                DocumentType = descriptor.Type,
+                Extension = fileExtension,
+                FileName = fileName,
+                MimeType = descriptor.ContentType,
+                OriginalFileName = descriptor.FileName,
+                RelativePath = relativePath
+            };
+
+            var entityEntry = await _context.Documents.AddAsync(entry);
+            await _context.SaveChangesAsync();
+            return entityEntry.Entity;
+        }
+
         public async Task<bool> DeleteDocumentAsync(int documentId)
         {
             var document = _context.Documents
@@ -55,13 +85,33 @@ namespace linc.Services
                 return false;
             }
 
-            var repositoryPath = _config.RepositoryPath;
-            var filePath = Path.Combine(repositoryPath, document.RelativePath);
-
-            File.Delete(filePath);
+            if (!DeleteDocumentFile(document.RelativePath))
+            {
+                _logger.LogWarning(
+                    "Could not find a physical file path for document {DocumentId}, deleting only from the database...",
+                    document.Id);
+            }
 
             _context.Documents.Remove(document);
             await _context.SaveChangesAsync();
+
+            return true;
+        }
+
+        public bool DeleteDocumentFile(string documentRelativePath)
+        {
+            var repositoryPath = _config.RepositoryPath;
+            var filePath = Path.Combine(repositoryPath, documentRelativePath);
+
+            if (!File.Exists(filePath))
+            {
+                _logger.LogWarning(
+                    "Could not find file at {DocumentPath}.",
+                    documentRelativePath);
+                return false;
+            }
+
+            File.Delete(filePath);
 
             return true;
         }

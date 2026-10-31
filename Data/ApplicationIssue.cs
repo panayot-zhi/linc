@@ -26,7 +26,7 @@ namespace linc.Data
 
         public ICollection<ApplicationSource> Sources { get; set; } = new List<ApplicationSource>();
 
-        public ICollection<ApplicationDocument> Files { get; set; } = new List<ApplicationDocument>();
+        public ICollection<ApplicationDocument> Documents { get; set; } = new List<ApplicationDocument>();
 
         #endregion Navigation
 
@@ -37,15 +37,15 @@ namespace linc.Data
 
         [NotMapped]
         public List<ApplicationDocument> IndexPages =>
-            Files.Where(x => x.DocumentType == ApplicationDocumentType.IndexPage).ToList();
+            Documents.Where(x => x.DocumentType == ApplicationDocumentType.IndexPage).ToList();
 
         [NotMapped]
         public ApplicationDocument CoverPage =>
-            Files.FirstOrDefault(x => x.DocumentType == ApplicationDocumentType.CoverPage);
+            Documents.FirstOrDefault(x => x.DocumentType == ApplicationDocumentType.CoverPage);
 
         [NotMapped]
         public ApplicationDocument Pdf =>
-            Files.FirstOrDefault(x => x.DocumentType == ApplicationDocumentType.IssuePdf);
+            Documents.FirstOrDefault(x => x.DocumentType == ApplicationDocumentType.IssuePdf);
 
         #endregion NotMapped
 

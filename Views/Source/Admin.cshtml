@@ -1,5 +1,4 @@
 ﻿@using Microsoft.AspNetCore.Localization
-@using System.Globalization
 @model SourceIndexViewModel
 
 @{
@@ -21,9 +20,6 @@
                 <ol>
                     <li>
                         <a href="/">@HtmlLocalizer["NavItem_Home"]</a>
-                    </li>
-                    <li>
-                        <a asp-area="Identity" asp-page="/Account/Manage/Administration">@HtmlLocalizer["ManageNavItem_Administration"]</a>
                     </li>
                     <li>
                         @HtmlLocalizer["Source_AdminPage_Title"]
@@ -51,7 +47,7 @@
 
 <ul class="list-operations">
     <li>
-        <a asp-area="Identity" asp-page="/Account/Manage/Administration">@HtmlLocalizer["ManageNavItem_Administration"]</a>
+        <a asp-controller="Issue" asp-action="Create">@HtmlLocalizer["Admin_CreateIssue"]</a>
     </li>
     <li>
         <a asp-action="Create" asp-route-issueId="@Model.CurrentIssueId">@HtmlLocalizer["Source_CreatePage_Title"]</a>
@@ -60,7 +56,7 @@
 
 <hr />
 
-<div class="table-responsive">
+<div id="sources-admin" class="table-responsive">
     <table class="table">
         <thead class="table-light">
             <tr>
@@ -99,9 +95,23 @@
 
                 <tr class="@rowClass">
                     <td>
-                        @* TODO: Link to user admin screen if exist *@
-                        @Html.DisplayFor(modelItem => item.AuthorNames) <br />
-                        @Html.Raw(item.AuthorNotes?.ReplaceLineEndings("<br>"))
+                        @* Prefer multi-author support when available *@
+                        @if (item.Authors != null && item.Authors.Any())
+                        {
+                            foreach (var author in item.Authors)
+                            {
+                                @Html.DisplayFor(modelItem => author.Names)
+                                <br />
+                                @Html.DisplayFor(modelItem => author.Notes)
+                                <br />
+                            }
+
+                            @Html.Raw(item.AuthorsNotes?.ReplaceLineEndings("<br>"))
+                        }
+                        else
+                        {
+                            @Html.Raw(item.AuthorsNotes?.ReplaceLineEndings("<br>"))
+                        }
                     </td>
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.Id">
@@ -110,8 +120,8 @@
                         <br />
                         @Html.DisplayFor(modelItem => item.TitleNotes)
                     </td>
-                    <td class="text-center">
-                        @if (@item.StartingIndexPage.HasValue)
+                    <td class="text-center pages">
+                        @if (item.StartingIndexPage.HasValue)
                         {
                             <a href="@Url.Action("LoadIssueDocument", "Document", new { issueId = item.IssueId })#page=@item.StartingPdfPage" target="_blank">
                                 @item.StartingIndexPage
@@ -128,7 +138,10 @@
                         </a>
                     </td>
                     <td class="text-center">
-                        @Html.DisplayFor(modelItem => item.HasDOI)
+                        @if (!item.IsSection)
+                        {
+                            @Html.DisplayFor(modelItem => item.HasDOI)
+                        }
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.DateCreated)

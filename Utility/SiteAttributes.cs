@@ -1,20 +1,8 @@
 ﻿using linc.Models.Enumerations;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc.Abstractions;
-using Microsoft.AspNetCore.Mvc.ActionConstraints;
 
 namespace linc.Utility
 {
-    public class AjaxAttribute : ActionMethodSelectorAttribute
-    {
-        public string HttpVerb { get; set; }
-
-        public override bool IsValidForRequest(RouteContext routeContext, ActionDescriptor action)
-        {
-            return routeContext.HttpContext.Request.IsAjax(HttpVerb);
-        }
-    }
-
     // NOTE: ~as class authorization is not easily overridable, we mark actions only~
     // NOTE: but, since page models are classes we must allow the attribute targets to protect them
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class)]

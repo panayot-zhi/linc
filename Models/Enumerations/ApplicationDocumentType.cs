@@ -37,6 +37,7 @@ public enum ApplicationDocumentType
     [Display(Name = "DocumentType_SuperReview", ResourceType = typeof(Resources.SharedResource))]
     SuperReview,
 
+
     [Display(Name = "DocumentType_Agreement", ResourceType = typeof(Resources.SharedResource))]
     Agreement
 

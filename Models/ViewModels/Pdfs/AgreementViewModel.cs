@@ -2,6 +2,8 @@
 {
     public class AgreementViewModel
     {
+        public int AuthorId { get; set; }
+
         public int DossierId { get; set; }
 
         public string Layout { get; set; }

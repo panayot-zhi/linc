@@ -13,18 +13,6 @@ namespace linc.Data
         [MaxLength(1024)]
         public string Title { get; set; }
 
-        [Required]
-        [MaxLength(255)]
-        public string FirstName { get; set; }
-
-        [Required]
-        [MaxLength(255)]
-        public string LastName { get; set; }
-
-        [Required]
-        [MaxLength(255)]
-        public string Email { get; set; }
-
 
         [Required]
         public ApplicationDossierStatus Status { get; set; }
@@ -47,24 +35,25 @@ namespace linc.Data
         public virtual ApplicationUser AssignedTo { get; set; }
 
 
-        [ForeignKey(nameof(Author))]
-        public string AuthorId { get; set; }
+        [ForeignKey(nameof(Language))]
+        public int LanguageId { get; set; }
 
-        public virtual ApplicationUser Author { get; set; }
+        public virtual ApplicationLanguage Language { get; set; }
 
+        // NOTE: this is a collection, so the dossier can be linked separately for each sources in the separate languages
+        public virtual ICollection<ApplicationSource> Sources { get; set; } = new List<ApplicationSource>();
 
         public virtual ICollection<ApplicationDossierReview> Reviews { get; set; } = new List<ApplicationDossierReview>();
 
         public virtual ICollection<ApplicationDocument> Documents { get; set; } = new List<ApplicationDocument>();
+
+        public virtual ICollection<ApplicationAuthor> Authors { get; set; } = new List<ApplicationAuthor>();
 
         public virtual ICollection<DossierJournal> Journals { get; set; } = new HashSet<DossierJournal>();
 
         #endregion Navigation
 
         #region NotMapped
-
-        [NotMapped]
-        public string Names => $"{FirstName} {LastName}";
 
         [NotMapped]
         public ApplicationDocument Original =>
@@ -74,12 +63,14 @@ namespace linc.Data
         public ApplicationDocument Anonymized =>
             Documents.FirstOrDefault(x => x.DocumentType == ApplicationDocumentType.Anonymized);
 
-        [NotMapped]
-        public ApplicationDocument Agreement =>
-            Documents.FirstOrDefault(x => x.DocumentType == ApplicationDocumentType.Agreement);
-
-        [NotMapped]
-        public bool HasAgreement => Agreement != null;
+        // [Obsolete("Moved to Authors")]
+        // [NotMapped]
+        // public ApplicationDocument Agreement =>
+        //     Documents.FirstOrDefault(x => x.DocumentType == ApplicationDocumentType.Agreement);
+        //
+        // [Obsolete("Moved to Authors")]
+        // [NotMapped]
+        // public bool HasAgreement => Agreement != null;
 
         [NotMapped]
         public ApplicationDocument Redacted =>

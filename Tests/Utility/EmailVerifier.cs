@@ -1,7 +1,10 @@
-﻿using linc.E2ETests.Configuration;
+﻿using System.Net;
+using System.Text.RegularExpressions;
+using linc.E2ETests.Configuration;
 using MailKit;
 using MailKit.Net.Imap;
 using MailKit.Search;
+using MimeKit;
 using NUnit.Framework;
 
 namespace linc.E2ETests.Utility
@@ -12,12 +15,22 @@ namespace linc.E2ETests.Utility
         // NOTE: the default email sender for Development is pivanov@uni-plovdiv.bg,
         // because I cannot send mails from home from the above email address
         // NOTE: the default email receiver is pivanov@uni-plovdiv.bg
-        // defined in EmailConfig.OverwriteRecipients
+        // defined in EmailConfig.OverwriteRecipients, so the original recipient
+        // is lost and messages must be matched by a unique token in their body
+
+        private const string TestFolderName = "linc-test";
+
+        private const int MaxRetryTimes = 12;
+
+        private static readonly TimeSpan RetryWaitPeriod = TimeSpan.FromSeconds(5);
+
+        // tolerated difference between the test machine clock and the Gmail receive time
+        private static readonly TimeSpan ClockSkewTolerance = TimeSpan.FromMinutes(2);
+
+        private static readonly Regex HrefRegex = new("href=\"([^\"]+)\"", RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
         private readonly string _testGMailUserName;
         private readonly string _testGMailUserPassword;
-
-        private const string TestFolderName = "linc-test";
 
         private IMailFolder _testFolder = null!;
 
@@ -42,69 +55,107 @@ namespace linc.E2ETests.Utility
             await _testFolder.OpenAsync(FolderAccess.ReadWrite);
         }
 
-        private async Task<UniqueId> GetLastUnseenMessage()
+        /// <summary>
+        /// Waits for an unread message that contains <paramref name="bodyToken"/> in its body
+        /// and was received after <paramref name="sentAfter"/>. Takes the newest match and
+        /// marks only that message as read, so unrelated messages in the folder are left alone.
+        /// </summary>
+        /// <param name="bodyToken">A whole word unique to the test, for example a <see cref="TestRun"/> token.</param>
+        /// <param name="sentAfter">The moment the test triggered the email.</param>
+        /// <param name="predicate">Optional extra check on the message, for example its subject.</param>
+        public async Task<MimeMessage> WaitForMessageAsync(string bodyToken, DateTimeOffset sentAfter,
+            Func<MimeMessage, bool>? predicate = null)
         {
-            const int maxRetryTimes = 12;
-            var retryWaitPeriod = TimeSpan.FromSeconds(5);
-            var retryTimes = 0;
-
-            do
+            if (string.IsNullOrEmpty(bodyToken))
             {
-                var query = SearchQuery.Flagged.And(SearchQuery.NotSeen);
+                throw new ArgumentException("A body token is required.", nameof(bodyToken));
+            }
+
+            var receivedAfter = sentAfter - ClockSkewTolerance;
+
+            // IMAP SINCE only has day granularity, the exact time is checked below
+            var query = SearchQuery.NotSeen
+                .And(SearchQuery.BodyContains(bodyToken))
+                .And(SearchQuery.DeliveredAfter(receivedAfter.UtcDateTime.Date.AddDays(-1)));
+
+            for (var retryTimes = 1; retryTimes <= MaxRetryTimes; retryTimes++)
+            {
+                // let the server report messages that arrived since the last command
+                await _client.NoOpAsync();
+
                 var uniqueIds = await _testFolder.SearchAsync(query);
-
-                if (uniqueIds == null)
+                if (uniqueIds.Count > 0)
                 {
-                    throw new InvalidOperationException($"Could not retrieve messages from Gmail inbox test folder '{TestFolderName}'.");
+                    var summaries = await _testFolder.FetchAsync(uniqueIds,
+                        MessageSummaryItems.UniqueId | MessageSummaryItems.InternalDate);
+
+                    var candidates = summaries
+                        .Where(x => x.InternalDate >= receivedAfter)
+                        .OrderByDescending(x => x.InternalDate);
+
+                    foreach (var candidate in candidates)
+                    {
+                        var message = await _testFolder.GetMessageAsync(candidate.UniqueId);
+                        if (predicate != null && !predicate(message))
+                        {
+                            continue;
+                        }
+
+                        // mark message read and processed
+                        await _testFolder.AddFlagsAsync(candidate.UniqueId, MessageFlags.Seen, true);
+                        await _testFolder.RemoveFlagsAsync(candidate.UniqueId, MessageFlags.Flagged, true);
+
+                        return message;
+                    }
                 }
 
-                if (uniqueIds.Count > 1)
+                if (retryTimes < MaxRetryTimes)
                 {
-                    throw new InvalidOperationException($"Retrieved more than 1 messages from Gmail inbox test folder '{TestFolderName}', please clean your test folder.");
+                    await Task.Delay(RetryWaitPeriod);
                 }
+            }
 
-                if (uniqueIds.Count == 1)
-                {
-                    // mark message read and processed
-
-                    var messageId = uniqueIds.Single();
-
-                    await _testFolder.AddFlagsAsync(messageId, MessageFlags.Seen, true);
-                    await _testFolder.RemoveFlagsAsync(messageId, MessageFlags.Flagged, true);
-
-                    return messageId;
-                }
-
-                retryTimes++;
-
-                if (retryTimes == maxRetryTimes)
-                {
-                    break;
-                }
-
-                await Task.Delay(retryWaitPeriod);
-
-            } while (retryTimes < maxRetryTimes);
-
-            throw new TimeoutException($"Could not retrieve message from Gmail inbox test folder '{TestFolderName}' after {maxRetryTimes} retries (with await time of {retryWaitPeriod:g}).");
+            throw new TimeoutException($"Could not find an unread message containing '{bodyToken}' received after {sentAfter:u} " +
+                                       $"in Gmail folder '{TestFolderName}' after {MaxRetryTimes} retries (with await time of {RetryWaitPeriod:g}).");
         }
 
-
-        public async Task AssertRegisterConfirmationSent(string culture)
+        /// <summary>
+        /// Asserts that a registration confirmation email reached the user whose names contain
+        /// <paramref name="namesToken"/> and returns the confirmation link from it.
+        /// </summary>
+        public async Task<Uri> AssertRegisterConfirmationSent(string culture, string namesToken, DateTimeOffset sentAfter)
         {
-            var messageId = await GetLastUnseenMessage();
-            var message = await _testFolder.GetMessageAsync(messageId);
+            var expectedSubject = culture switch
+            {
+                "bg" => "ЛИнК - Потвърждение на email",
+                "en" => "LInC - Confirm email",
+                _ => throw new ArgumentOutOfRangeException(nameof(culture), culture, "Unsupported culture.")
+            };
 
-            if(culture.Equals("bg"))
-                Assert.That(message.Subject.Equals("ЛИнК - Потвърждение на email"));
-            else if (culture.Equals("en"))
-                Assert.That(message.Subject.Equals("LInC - Confirm email"));
-            else
-                Assert.Fail($"Unsupported culture: '{culture}'");
+            var message = await WaitForMessageAsync(namesToken, sentAfter,
+                x => x.Subject == expectedSubject);
 
-            // todo verify that there's a link containing /identity/account/confirm-email?
+            Assert.That(message.Subject, Is.EqualTo(expectedSubject));
+
+            var confirmationLink = FindLink(message, "/identity/account/confirm-email");
+            Assert.That(confirmationLink, Is.Not.Null, "The confirmation email does not contain a confirmation link.");
+
+            return confirmationLink!;
         }
 
+        /// <summary>
+        /// Returns the first link in the HTML body whose address contains <paramref name="pathFragment"/>.
+        /// </summary>
+        public static Uri? FindLink(MimeMessage message, string pathFragment)
+        {
+            var html = message.HtmlBody ?? string.Empty;
+
+            return HrefRegex.Matches(html)
+                .Select(x => WebUtility.HtmlDecode(x.Groups[1].Value))
+                .Where(x => x.Contains(pathFragment, StringComparison.OrdinalIgnoreCase))
+                .Select(x => Uri.TryCreate(x, UriKind.Absolute, out var uri) ? uri : null)
+                .FirstOrDefault(x => x != null);
+        }
 
         private async Task DisconnectAsync()
         {

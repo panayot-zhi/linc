@@ -22,7 +22,7 @@ namespace linc.Contracts
 
         Task UpdateSourceAsync(SourceUpdateViewModel input);
 
-        Task UpdateAuthorAsync(ApplicationUser user);
+        // Task UpdateAuthorAsync(ApplicationUser user);
 
         Task DeleteSourceAsync(int id);
     }

@@ -1,6 +1,7 @@
 ﻿using linc.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using linc.Models.Enumerations;
+using linc.Models.ViewModels.Author;
 using linc.Utility;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using linc.Models.ViewModels.Source;
@@ -10,28 +11,31 @@ namespace linc.Controllers
     public class SourceController : BaseController
     {
         private readonly ILogger<SourceController> _logger;
+        private readonly IDossierService _dossierService;
         private readonly ISourceService _sourceService;
         private readonly IIssueService _issuesService;
 
         public SourceController(
             ILocalizationService localizationService,
             ILogger<SourceController> logger,
-            ISourceService sourceService, 
+            IDossierService dossierService,
+            ISourceService sourceService,
             IIssueService issuesService)
             : base(localizationService)
         {
             _logger = logger;
             _sourceService = sourceService;
             _issuesService = issuesService;
+            _dossierService = dossierService;
         }
 
         public async Task<IActionResult> Index(int? page, int? year, string filter, int? issueId)
         {
             filter = System.Net.WebUtility.UrlDecode(filter);
             var languageId = LocalizationService.GetCurrentLanguageId();
-            var viewModel = await _sourceService.GetSourcesPagedAsync(filter: filter, languageId: languageId, 
+            var viewModel = await _sourceService.GetSourcesPagedAsync(filter: filter, languageId: languageId,
                 year: year, issueId: issueId, pageIndex: page);
-            
+
             viewModel.YearFilter = await _sourceService.GetSourcesCountByYears();
             viewModel.IssuesFilter = await _sourceService.GetSourcesCountByIssues();
 
@@ -53,17 +57,35 @@ namespace linc.Controllers
         }
 
         [SiteAuthorize(SiteRole.Editor)]
-        public async Task<IActionResult> Create(int? issueId)
+        public async Task<IActionResult> Create(int? dossierId, int? issueId)
         {
             var vModel = new SourceCreateViewModel
             {
+                DossierId = dossierId,
                 IssueId = issueId,
-
-                Issues = await GetIssuesAsync(),
+                Issues = await GetIssuesAsync(issueId),
                 Languages = GetLanguages(),
 
                 LanguageId = LocalizationService.GetCurrentLanguageId()
             };
+
+            if (dossierId.HasValue)
+            {
+                var dossier = await _dossierService.GetDossierAsync(dossierId.Value);
+
+                vModel.Title = dossier.Title;
+                vModel.LanguageId = dossier.LanguageId;
+                vModel.Authors = dossier.Authors.Select(x => new SourceAuthorViewModel()
+                {
+                    Id = x.Id,
+                    DossierId = x.DossierId,
+                    UserId = x.UserId,
+                    FirstName = x.FirstName,
+                    LastName = x.LastName,
+                    Email = x.Email
+
+                }).ToList();
+            }
 
             return View(vModel);
         }
@@ -71,21 +93,19 @@ namespace linc.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [SiteAuthorize(SiteRole.Editor)]
-        public async Task<IActionResult> Create(SourceCreateViewModel vModel) 
+        public async Task<IActionResult> Create(SourceCreateViewModel vModel)
         {
             if (!ModelState.IsValid)
             {
                 vModel.Issues = await GetIssuesAsync(vModel.IssueId);
                 vModel.Languages = GetLanguages(vModel.LanguageId);
 
-                vModel.LanguageId = LocalizationService.GetCurrentLanguageId();
-
                 return View(vModel);
             }
 
             var sourceId = await _sourceService.CreateSourceAsync(vModel);
 
-            _logger.LogInformation("Source {SourceId} has been created successfully, redirecting...", 
+            _logger.LogInformation("Source {SourceId} has been created successfully, redirecting...",
                 sourceId);
 
             return RedirectToAction("Edit", new { id = sourceId });
@@ -110,27 +130,29 @@ namespace linc.Controllers
                 Id = source.Id,
                 Title = source.Title,
                 TitleNotes = source.TitleNotes,
-
                 DOI = source.DOI,
-
-                FirstName = source.FirstName,
-                LastName = source.LastName,
-                AuthorNotes = source.AuthorNotes,
-
+                DossierId = source.DossierId,
+                AuthorsNotes = source.AuthorsNotes,
                 StartingPdfPage = source.StartingPdfPage,
                 LastPdfPage = source.LastPdfPage,
-
                 StartingIndexPage = source.StartingIndexPage,
-
                 IssueId = source.IssueId,
                 LanguageId = source.LanguageId,
-
                 IsTheme = source.IsTheme,
                 IsSection = source.IsSection,
-
+                Authors = source.Authors.Select(a => new SourceAuthorViewModel
+                {
+                    Id = a.Id,
+                    DossierId = a.DossierId,
+                    FirstName = a.FirstName,
+                    LastName = a.LastName,
+                    Notes = a.Notes,
+                    Email = a.Email,
+                    UserId = a.UserId,
+                    UserName = a.User?.UserName
+                }).ToList(),
                 Issues = await GetIssuesAsync(source.IssueId),
                 Languages = GetLanguages(source.LanguageId),
-
                 LastUpdated = source.LastUpdated,
                 DateCreated = source.DateCreated,
             };
@@ -173,7 +195,7 @@ namespace linc.Controllers
         {
             var issues = await _issuesService.GetIssuesAsync();
             return issues.Select(x => new SelectListItem(
-                    IIssueService.DisplayIssueLabelInformation(x.IssueNumber, x.ReleaseYear), 
+                    IIssueService.DisplayIssueLabelInformation(x.IssueNumber, x.ReleaseYear),
                     x.Id.ToString(),
                     x.Id == issueId))
                 .ToList();
@@ -184,7 +206,7 @@ namespace linc.Controllers
             var currentLanguageId = LocalizationService.GetCurrentLanguageId();
             var list = SiteConstant.SupportedCultures.Select(supportedCulture =>
                     new SelectListItem(
-                        supportedCulture.Value, 
+                        supportedCulture.Value,
                         supportedCulture.Key.ToString(),
                         languageId.HasValue ? supportedCulture.Key == languageId :
                             supportedCulture.Key == currentLanguageId))

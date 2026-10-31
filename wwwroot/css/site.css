@@ -11,52 +11,39 @@
     background-image: url(../lib/flag-icons/flags/1x1/gb.svg);
 }
 
-/*
-    These are used from javascript
-*/
-
-input.trim {
-  /* keep */
-}
-
-a.scrollto {
-  /* keep */
-}
-
-a.submit-link {
-  /* keep */
-}
-
-.skills-content {
-  /* keep */
-}
-
-.identity {
-  /* keep */
-}
-
-.annotate {
-    /* keep */
-}
-
-.no-preloader {
-  /* keep */
-}
-
-.inner-page {
-  /* keep */
-}
-
-a.requires-confirm {
-  /* keep */
-}
-
+/* NOTE: Used from javascript only */
+/* ReSharper disable DeclarationIsEmpty */
+input.trim { }
+a.scrollto { }
+a.submit-link { }
+.skills-content { }
+.identity { }
+.annotate { }
+.no-preloader { }
+.no-validate { }
+.inner-page { }
+a.requires-confirm { }
+.remaining-symbols { }
+.search-authors { }
+.search-authors-results-toggle { }
+.search-authors-results { }
+.author-card { }
+.author-first-name { }
+.author-last-name { }
+.author-notes { }
+.author-email { }
+.author-dossier-id { }
+.author-user-id { }
+.author-id { }
+.remove-author { }
+.delete-agreement-button { }
+/* ReSharper restore DeclarationIsEmpty */
 .count-remaining-symbols {
     height: inherit !important;
 }
 
-.remaining-symbols {
-    /* keep */
+.choose-author {
+    cursor: pointer;
 }
 
 /*
@@ -125,9 +112,8 @@ th.sortable::before {
     padding: 20px;
 }
 
-.journal-entry {
-
-}
+/* ReSharper disable once DeclarationIsEmpty */
+.journal-entry { }
 
 /*
     dossier operations ^ promote to list-operations
@@ -254,6 +240,7 @@ th.sortable::before {
     border-radius: 4px;
     width: 36px;
     height: 36px;
+    background: #106eea;
     background: rgba(16, 110, 234, 0.8);
     transition: ease-in-out 0.3s;
     display: none;
@@ -300,6 +287,7 @@ th.sortable::before {
 }
 
 .swal2-container button.swal2-styled.swal2-confirm:focus {
+    box-shadow: 0 0 0 0.25rem #0d6efd;
     box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, .25);
 }
 
@@ -381,7 +369,8 @@ section#testimonials {
 
 .codex .icon-box:hover {
     border-color: #fff;
-    box-shadow: 0px 0 25px 0 rgba(16, 110, 234, 0.1);
+    box-shadow: 0 0 25px 0 #106eea;
+    box-shadow: 0 0 25px 0 rgba(16, 110, 234, 0.1);
 }
 
 .codex .icon-box:hover h4 a,
@@ -465,6 +454,13 @@ section#testimonials {
     padding-top: 20px;
 }
 
+/*--------------------------------------------------------------
+# Sources Admin Table
+--------------------------------------------------------------*/
+#sources-admin td.pages {
+    white-space: nowrap;
+    width: 1%;
+}
 
 /*--------------------------------------------------------------
 # Alphabet icons
@@ -746,6 +742,7 @@ section#testimonials {
 .alphabet-sort .alphabet-letter.active {
     font-weight: bold;
     font-size: 1.5em;
+    line-height: 20px;
 }
 
 .alphabet-sort .alphabet-letter a:hover,
@@ -792,7 +789,8 @@ section#testimonials {
     padding: 6px 10px;
     position: relative;
     border-radius: 4px;
-    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2px 15px #000000;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
     text-align: left;
 }
 
@@ -815,7 +813,8 @@ section#testimonials {
     color: #fff;
     transition: 0.3s;
     border-radius: 0 4px 4px 0;
-    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 15px #000000;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
 }
 
 #sources .authors-search form input[type=submit]:hover {

@@ -36,6 +36,16 @@
 <ul class="list-operations">
     @if (User.IsAtLeast(SiteRole.HeadEditor) || (User.Is(SiteRole.Editor) && User.GetUserId() == Model.AssignedToId))
     {
+        @if (Model.Status is ApplicationDossierStatus.Accepted or ApplicationDossierStatus.AcceptedWithCorrections &&
+             Model.Authors.All(x => x.AgreementId.HasValue))
+        {
+            <li>
+                <a asp-action="Create" asp-controller="Source" asp-route-dossierId="@Model.Id">
+                    @HtmlLocalizer["Dossier_CreateSource"]
+                </a>
+            </li>
+        }
+
         <li>
             <a asp-action="Edit" asp-route-id="@Model.Id">@HtmlLocalizer["Edit_Label"]</a>
         </li>
@@ -61,16 +71,28 @@
     <div class="col-lg-9">
         <dl class="row">
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.AuthorNames)
+                @HtmlLocalizer["DossierDetails_Authors"]
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.AuthorNames)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.AuthorEmail)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.AuthorEmail)
+                <ul>
+                    @foreach (var author in Model.Authors)
+                    {
+                        @* TODO: Link to author screen *@
+                        @* TODO: Link to user screen, if UserId *@
+                        <li>
+                            @author.FirstName @author.LastName
+                            ( <a href="mailto:@author.Email">@author.Email</a>
+                            @if (!string.IsNullOrEmpty(author.UserName))
+                            {
+                                <text>, @author.UserName </text>
+                            })
+                            @if (author.AgreementId.HasValue)
+                            {
+                                <text> + <a href="@Url.Action("LoadAuthorAgreement", "Document", new { dossierId = author.DossierId, authorId = author.Id, download = false })">@HtmlLocalizer["Email_Agreement_Subject"]</a> </text>
+                            }
+                        </li>
+                    }
+                </ul>
             </dd>
 
             @if (string.IsNullOrEmpty(Model.AssignedTo))
@@ -152,7 +174,30 @@
 
                     </td>
                     <td class="text-center col-md-2">
-                        @item.DateCreated.ToString("dd MMM yyyy")
+                        @item.DateCreated.ToString("dd MMM yyyy HH:mm")
+                    </td>
+                </tr>
+            }
+            
+            @foreach (var author in Model.Authors.Where(x => x.AgreementId.HasValue))
+            {
+                var item = author.Agreement;
+
+                <tr>
+                    <td class="col-md-2">
+                        @Html.DisplayFor(modelItem => item.DocumentType) <br/>
+                        @author.FirstName @author.LastName
+
+                    </td>
+                    <td class="col-md-8">
+                                
+                        <a asp-action="LoadAuthorAgreement" asp-controller="Document" asp-route-dossierId="@Model.Id" asp-route-authorId="@author.Id">
+                            @Html.DisplayFor(modelItem => item.OriginalFileName)
+                        </a>
+
+                    </td>
+                    <td class="text-center col-md-2">
+                        @item.DateCreated.ToString("dd MMM yyyy HH:mm")
                     </td>
                 </tr>
             }

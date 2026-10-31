@@ -1,8 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using linc.Models.ViewModels.Author;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace linc.Models.ViewModels.Dossier
 {
-    public class DossierCreateViewModel
+    public class DossierCreateViewModel : IValidatableObject
     {
         [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         [MaxLength(1024, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
@@ -10,23 +13,28 @@ namespace linc.Models.ViewModels.Dossier
         public string Title { get; set; }
 
         [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
-        [MaxLength(255, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
-        [Display(Name = "DossierCreate_FirstName", ResourceType = typeof(Resources.SharedResource))]
-        public string FirstName { get; set; }
-
-        [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
-        [MaxLength(255, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
-        [Display(Name = "DossierCreate_LastName", ResourceType = typeof(Resources.SharedResource))]
-        public string LastName { get; set; }
-
-        [EmailAddress(ErrorMessageResourceName = "EmailAddressAttribute_Invalid", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
-        [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
-        [MaxLength(255, ErrorMessageResourceName = "MaxLengthAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
-        [Display(Name = "DossierCreate_Email", ResourceType = typeof(Resources.SharedResource))]
-        public string Email { get; set; }
-
-        [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
         [Display(Name = "DossierCreate_OriginalFile", ResourceType = typeof(Resources.SharedResource))]
         public IFormFile OriginalFile { get; set; }
+
+        [Display(Name = "Authors", ResourceType = typeof(Resources.SharedResource))]
+        public List<DossierAuthorViewModel> Authors { get; set; } = new();
+
+        [Required(ErrorMessageResourceName = "RequiredAttribute_ValidationError", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
+        [Display(Name = "Source_LanguageId", ResourceType = typeof(Resources.SharedResource))]
+        public int LanguageId { get; set; }
+
+        public List<SelectListItem> Languages { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            const int minimumAuthorsCount = 1;
+            if (Authors == null || Authors.Count < minimumAuthorsCount)
+            {
+                yield return new ValidationResult(
+                    string.Format(Resources.ValidationResource.MinCountAttribute_ValidationError,
+                        Resources.SharedResource.Authors, minimumAuthorsCount),
+                    new[] { nameof(Authors) });
+            }
+        }
     }
 }

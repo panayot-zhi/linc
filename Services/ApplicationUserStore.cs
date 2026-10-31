@@ -40,8 +40,8 @@ public class ApplicationUserStore : UserStore<ApplicationUser>, IApplicationUser
         var userProfiles = await _context.UserProfiles.AsTracking()
             .Include(x => x.User)
             .Where(x =>
-                EF.Functions.Like(x.FirstName, $"{inputFirstName}") &&
-                EF.Functions.Like(x.LastName, $"{inputLastName}")
+                x.FirstName.Equals(inputFirstName) &&
+                x.LastName.Equals(inputLastName)
             )
             .ToArrayAsync();
 

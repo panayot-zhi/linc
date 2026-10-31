@@ -14,9 +14,11 @@ namespace linc.Data
         [PersonalData]
         public bool Subscribed { get; set; }
 
+        [Obsolete("Author flag should be resolved through 'Authors' table with a relationship to 'Users'.")]
         [PersonalData]
         public bool IsAuthor { get; set; }
 
+        [Obsolete("Reviewer flag should be resolved through 'Reviewers' table with a relationship to 'Users'.")]
         [PersonalData]
         public bool IsReviewer { get; set; }
 
@@ -65,9 +67,6 @@ namespace linc.Data
 
         [InverseProperty(nameof(ApplicationDossier.AssignedTo))]
         public ICollection<ApplicationDossier> AssignedDossiers { get; set; }
-
-        [InverseProperty(nameof(ApplicationDossier.Author))]
-        public ICollection<ApplicationDossier> AuthoredDossiers { get; set; }
 
         #endregion Navigation
 

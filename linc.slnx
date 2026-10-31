@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="linc.csproj" />
+  <Project Path="Tests/linc.E2ETests.csproj" />
+</Solution>

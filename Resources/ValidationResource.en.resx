@@ -186,6 +186,9 @@
   <data name="MaxLengthAttribute_ValidationError" xml:space="preserve">
     <value>The field {0} must be a string or array type with a maximum length of '{1}'.</value>
   </data>
+  <data name="MinCountAttribute_ValidationError" xml:space="preserve">
+    <value>The field {0} must have at least {1} record.</value>
+  </data>
   <data name="MinLengthAttribute_InvalidMinLength" xml:space="preserve">
     <value>MinLengthAttribute must have a Length value that is zero or greater.</value>
   </data>

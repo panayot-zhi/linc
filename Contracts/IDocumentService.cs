@@ -1,4 +1,5 @@
 ﻿using linc.Data;
+using linc.Models.ConfigModels;
 
 namespace linc.Contracts
 {
@@ -8,6 +9,10 @@ namespace linc.Contracts
 
         string GetDocumentFilePath(ApplicationDocument document);
 
+        public Task<ApplicationDocument> SaveDossierDocumentAsync(int dossierId, ApplicationDocumentDescriptor descriptor);
+
         Task<bool> DeleteDocumentAsync(int documentId);
+
+        bool DeleteDocumentFile(string documentRelativePath);
     }
 }

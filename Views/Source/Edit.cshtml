@@ -53,6 +53,7 @@
 
             <input type="hidden" asp-for="Id"/>
             <input type="hidden" asp-for="IssueId" />
+            <input type="hidden" asp-for="DossierId" />
             
             <div class="form-group form-check text-end">
                 <label class="form-check-label">
@@ -88,26 +89,15 @@
             </div>
 
             <div class="row">
-                <div class="col-sm-6">
-                    <div class="form-floating ">
-                        <input asp-for="FirstName" class="form-control" />
-                        <label asp-for="FirstName" class="form-label"></label>
-                        <span asp-validation-for="FirstName" class="invalid-feedback"></span>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="form-floating ">
-                        <input asp-for="LastName" class="form-control" />
-                        <label asp-for="LastName" class="form-label"></label>
-                        <span asp-validation-for="LastName" class="invalid-feedback"></span>
-                    </div>
+                <div class="col-sm-12">
+                    <partial name="_Authors" model="Model.Authors.OrderBy(x => x.Id).ToList()" />
                 </div>
             </div>
 
             <div class="form-group">
-                <label asp-for="AuthorNotes" class="form-label"></label>
-                <textarea asp-for="AuthorNotes" class="form-control" rows="6"></textarea>
-                <span asp-validation-for="AuthorNotes" class="invalid-feedback"></span>
+                <label asp-for="AuthorsNotes" class="form-label"></label>
+                <textarea asp-for="AuthorsNotes" class="form-control" rows="6"></textarea>
+                <span asp-validation-for="AuthorsNotes" class="invalid-feedback"></span>
             </div>
 
             <div class="row">
@@ -162,7 +152,7 @@
                     <div class="form-floating text-end">
                         <div class="input-group">
                             <select asp-for="IssueId" asp-items="@Model.Issues" class="form-select" disabled="disabled"></select>
-                            <a type="button" href="@Url.Action("Details", "Issue", new { id = Model.IssueId })" class="btn btn-outline-secondary" target="_blank">@HtmlLocalizer["SourceCreate_IssueId"]</a>
+                            <a type="button" href="@Url.Action("Details", "Issue", new { id = Model.IssueId })" class="btn btn-outline-secondary" target="_blank">@HtmlLocalizer["Source_IssueId"]</a>
                         </div>
                         
                         @{

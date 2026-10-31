@@ -268,6 +268,15 @@ namespace linc.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to За {0}, моля, въведете поне {1}..
+        /// </summary>
+        public static string MinCountAttribute_ValidationError {
+            get {
+                return ResourceManager.GetString("MinCountAttribute_ValidationError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to MinLengthAttribute must have a Length value that is zero or greater..
         /// </summary>
         public static string MinLengthAttribute_InvalidMinLength {

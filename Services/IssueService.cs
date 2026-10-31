@@ -23,16 +23,19 @@ namespace linc.Services
         public async Task<ApplicationIssue> GetIssueAsync(int id, int? sourcesLanguageId = null)
         {
             var query = _context.Issues
-                .Include(x => x.Files)
+                .Include(x => x.Documents)
                 .Where(x => x.Id == id);
 
             if (sourcesLanguageId.HasValue)
             {
-                query = query.Include(x => x.Sources
-                    .Where(source => source.LanguageId == sourcesLanguageId.Value)
-                    .OrderBy(source => source.StartingPdfPage)      // order first and foremost by the starting page number
-                    .ThenByDescending(source => source.IsSection)   // some sections begin on the same pages, they should be displayed first
-                    .ThenBy(source => source.DateCreated));         // order additionally by the date created
+                query = query
+                    .Include(x => x.Sources
+                            .Where(source => source.LanguageId == sourcesLanguageId.Value)
+                            .OrderBy(source => source.StartingPdfPage)      // order first and foremost by the starting page number
+                            .ThenByDescending(source => source.IsSection)   // some sections begin on the same pages, they should be displayed first
+                            .ThenBy(source => source.DateCreated))          // order additionally by the date created
+                        .ThenInclude(s => s.Authors)
+                    .AsSplitQuery();
             }
 
             return await query.FirstOrDefaultAsync();
@@ -41,7 +44,7 @@ namespace linc.Services
         public async Task<ApplicationDocument> GetIssueDocumentAsync(int id, int? documentId)
         {
             var query = _context.Issues
-                .Include(x => x.Files)
+                .Include(x => x.Documents)
                 .Where(x => x.Id == id);
 
             var issue = await query.FirstOrDefaultAsync();
@@ -51,7 +54,7 @@ namespace linc.Services
             }
 
             return documentId.HasValue ? 
-                issue.Files.FirstOrDefault(x => x.Id == documentId) :
+                issue.Documents.FirstOrDefault(x => x.Id == documentId) :
                 issue.Pdf;
         }
 
@@ -82,12 +85,12 @@ namespace linc.Services
                 ReleaseDate = DateOnly.FromDateTime(releaseDate)
             };
 
-            entry.Files.Add(pdf);
-            entry.Files.Add(cover);
+            entry.Documents.Add(pdf);
+            entry.Documents.Add(cover);
 
             foreach (var indexPage in indexPages)
             {
-                entry.Files.Add(indexPage);
+                entry.Documents.Add(indexPage);
             }
 
             var entityEntry = await _context.Issues.AddAsync(entry);
@@ -122,7 +125,7 @@ namespace linc.Services
         private async Task<ApplicationDocument> SaveIssuePage(IFormFile inputFile, ApplicationDocumentType type, 
             int releaseYear, int issueNumber)
         {
-            var fileExtension = inputFile.Extension();
+            var fileExtension = inputFile.GetExtension();
             var fileName = $"{releaseYear}-{issueNumber.ToString().PadLeft(3, '0')}-{HelperFunctions.ToKebabCase(type.ToString())}";
             if (type == ApplicationDocumentType.IndexPage)
             {

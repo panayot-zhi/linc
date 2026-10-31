@@ -1,7 +1,8 @@
-﻿using linc.Data;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using System.ComponentModel.DataAnnotations;
+using linc.Data;
 using linc.Models.Enumerations;
-using System.ComponentModel.DataAnnotations;
+using linc.Models.ViewModels.Author;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using linc.Contracts;
 
 namespace linc.Models.ViewModels.Dossier
@@ -29,15 +30,8 @@ namespace linc.Models.ViewModels.Dossier
         [Display(Name = "DossierCreate_Title", ResourceType = typeof(Resources.SharedResource))]
         public string Title { get; set; }
 
-        [Display(Name = "DossierCreate_FirstName", ResourceType = typeof(Resources.SharedResource))]
-        public string FirstName { get; set; }
-
-        [Display(Name = "DossierCreate_LastName", ResourceType = typeof(Resources.SharedResource))]
-        public string LastName { get; set; }
-
-        [EmailAddress(ErrorMessageResourceName = "EmailAddressAttribute_Invalid", ErrorMessageResourceType = typeof(Resources.ValidationResource))]
-        [Display(Name = "DossierCreate_Email", ResourceType = typeof(Resources.SharedResource))]
-        public string Email { get; set; }
+        [Display(Name = "Authors", ResourceType = typeof(Resources.SharedResource))]
+        public List<DossierAuthorViewModel> Authors { get; set; } = new();
 
 
         public ApplicationDossierStatus Status { get; set; }
@@ -76,9 +70,9 @@ namespace linc.Models.ViewModels.Dossier
         public ApplicationDocument Anonymized =>
             _documents.FirstOrDefault(x => x.DocumentType == ApplicationDocumentType.Anonymized);
 
-        [Display(Name = "DocumentType_Agreement", ResourceType = typeof(Resources.SharedResource))]
-        public ApplicationDocument Agreement =>
-            _documents.FirstOrDefault(x => x.DocumentType == ApplicationDocumentType.Agreement);
+        // [Display(Name = "DocumentType_Agreement", ResourceType = typeof(Resources.SharedResource))]
+        // public ApplicationDocument Agreement =>
+        //     _documents.FirstOrDefault(x => x.DocumentType == ApplicationDocumentType.Agreement);
 
         public ApplicationDocument Redacted =>
             _documents.FirstOrDefault(x => x.DocumentType == ApplicationDocumentType.Redacted);
@@ -87,8 +81,8 @@ namespace linc.Models.ViewModels.Dossier
             _documents.Where(x => x.DocumentType is ApplicationDocumentType.Review or ApplicationDocumentType.SuperReview).ToList();
 
 
-        [Display(Name = "DossierEdit_Agreement", ResourceType = typeof(Resources.SharedResource))]
-        public IFormFile AgreementDocument { get; set; }
+        // [Display(Name = "DossierEdit_Agreement", ResourceType = typeof(Resources.SharedResource))]
+        // public IFormFile AgreementDocument { get; set; }
 
 
         public ApplicationDocumentType DocumentType { get; set; }
@@ -96,9 +90,9 @@ namespace linc.Models.ViewModels.Dossier
         public IFormFile Document { get; set; }
 
 
-        public bool CanAttachAgreement { get; init; }
+        // public bool CanAttachAgreement { get; init; }
 
-        public bool CanDeleteAgreement { get; init; }
+        // public bool CanDeleteAgreement { get; init; }
 
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
@@ -128,7 +122,14 @@ namespace linc.Models.ViewModels.Dossier
                 }
             }
 
-            yield break;
+            const int minimumAuthorsCount = 1;
+            if (Authors == null || Authors.Count < minimumAuthorsCount)
+            {
+                yield return new ValidationResult(
+                    string.Format(Resources.ValidationResource.MinCountAttribute_ValidationError,
+                        Resources.SharedResource.Authors, minimumAuthorsCount),
+                    new[] { nameof(Authors) });
+            }
         }
     }
 }

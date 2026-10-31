@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace linc.E2ETests
 {
-    public abstract class BasePageTests
+    public abstract class TestBase
     {
         protected Uri BaseUri = null!;
         protected TestConfig Config = null!;
@@ -20,13 +20,18 @@ namespace linc.E2ETests
         [OneTimeSetUp]
         public async Task GlobalOneTimeSetUp()
         {
+            // locally the values come from appsettings.Staging.json (gitignored),
+            // in CI the file does not exist and the workflow passes TestConfig__* environment variables
             var configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.Staging.json", optional: true, reloadOnChange: false)
                 .AddEnvironmentVariables()
                 .Build();
 
             // load test configuration to object instance of TestConfig
             Config = configuration.GetSection("TestConfig").Get<TestConfig>() ??
-                throw new InvalidDataException("Could not load test configuration.");
+                throw new InvalidDataException("Could not load test configuration: " +
+                    "add a TestConfig section to appsettings.Staging.json in the repository root, " +
+                    "or pass TestConfig__* environment variables.");
 
             // validate TestConfig data annotations
             Validator.ValidateObject(Config, new ValidationContext(Config), validateAllProperties: true);
@@ -38,9 +43,8 @@ namespace linc.E2ETests
             _playwright = await Playwright.CreateAsync();
             _browser = await _playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions
             {
-                // NOTE: use these for debugging locally
-                // Headless = false,
-                // SlowMo = 500
+                Headless = Config.PlaywrightHeadlessMode,
+                SlowMo = Config.PlaywrightSlowMo
             });
 
             // define usable protected properties for children pages

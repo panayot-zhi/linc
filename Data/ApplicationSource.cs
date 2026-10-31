@@ -5,29 +5,14 @@ using Microsoft.EntityFrameworkCore;
 namespace linc.Data
 {
     [Index(nameof(PdfId), IsUnique = false)]
-    [Index(nameof(FirstName), IsUnique = false)]
-    [Index(nameof(LastName), IsUnique = false)]
-    [Index(nameof(AuthorNames), IsUnique = false)]
-    // [Index(nameof(AuthorNotes), IsUnique = false)]
-
     [Index(nameof(Title), IsUnique = false)]
-    // [Index(nameof(TitleNotes), IsUnique = false)]
     public class ApplicationSource
     {
         public int Id { get; set; }
 
 
-        [MaxLength(255)]
-        public string FirstName { get; set; }
-
-        [MaxLength(255)]
-        public string LastName { get; set; }
-
-        [MaxLength(512)]
-        public string AuthorNames { get; init; }
-
         [MaxLength(1024)]
-        public string AuthorNotes { get; set; }
+        public string AuthorsNotes { get; set; }
 
         /// <summary>
         /// Digital Object Identifier
@@ -80,11 +65,13 @@ namespace linc.Data
         public ApplicationDocument Pdf { get; set; }
 
 
-        [MaxLength(127)]
-        [ForeignKey(nameof(Author))]
-        public string AuthorId { get; set; }
+        [ForeignKey(nameof(Dossier))]
+        public int? DossierId { get; set; }
 
-        public ApplicationUser Author { get; set; }
+        public ApplicationDossier Dossier { get; set; }
+
+
+        public virtual ICollection<ApplicationAuthor> Authors { get; set; } = new List<ApplicationAuthor>();
 
         #endregion Navigation
 
