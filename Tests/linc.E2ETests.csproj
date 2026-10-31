@@ -8,11 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="appsettings.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="appsettings.json">
+    <!-- gitignored, lives in the repository root, CI passes the same values as environment variables -->
+    <Content Include="../appsettings.Testing.json" Link="appsettings.Testing.json" Condition="Exists('../appsettings.Testing.json')">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
