@@ -29,21 +29,21 @@ jobs:
       uses: chetan/git-restore-mtime-action@v2
 
     - name: Setup .NET
-      uses: actions/setup-dotnet@v2
+      uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: 10.0.x
 
     - name: Restore .NET Tools
       run: dotnet tool restore
 
     - name: Restore Dependencies
-      run: dotnet restore
+      run: dotnet restore linc.slnx
 
     - name: Release Build
-      run: dotnet build --no-restore --configuration Release
+      run: dotnet build linc.slnx --no-restore --configuration Release
 
     - name: Install Playwright Browsers
-      run: pwsh Tests/bin/Release/net6.0/playwright.ps1 install --with-deps chromium
+      run: pwsh Tests/bin/Release/net10.0/playwright.ps1 install --with-deps chromium
 
     - name: Publish Release
       run: |
@@ -53,7 +53,7 @@ jobs:
         current_version=$(echo $version_line | sed -n 's/.*<Version>\(.*\)<\/Version>.*/\1/p')
         current_version+=".${{ github.run_number }}"
 
-        dotnet publish /p:PublishProfile=Properties/PublishProfiles/FolderProfile.pubxml /p:Version=$current_version --configuration Release
+        dotnet publish linc.csproj /p:PublishProfile=Properties/PublishProfiles/FolderProfile.pubxml /p:Version=$current_version --configuration Release
 
     # Push build to staging ONLY
     - name: Stop Service (test.linc.service)
@@ -98,7 +98,7 @@ jobs:
 
     - name: Run E2E Playwright Tests
       run: >-
-        dotnet test
+        dotnet test Tests/linc.E2ETests.csproj --configuration Release --no-build
         --environment TestConfig__TestGMailUserPassword="${{ secrets.TEST_GMAIL_USER_PASSWORD }}"
         --environment TestConfig__BasicAuthPassword="${{ secrets.TEST_BASIC_AUTH_PASSWORD }}"
         --environment TestConfig__AdministratorPassword="${{ secrets.TEST_ADMINISTRATOR_PASSWORD }}"
@@ -125,21 +125,21 @@ jobs:
       uses: chetan/git-restore-mtime-action@v2
 
     - name: Setup .NET
-      uses: actions/setup-dotnet@v2
+      uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 6.0.x
+        dotnet-version: 10.0.x
 
     - name: Restore .NET Tools
       run: dotnet tool restore
 
     - name: Restore Dependencies
-      run: dotnet restore
+      run: dotnet restore linc.slnx
 
     - name: Release Build
-      run: dotnet build --no-restore --configuration Release
+      run: dotnet build linc.slnx --no-restore --configuration Release
 
     - name: Install Playwright Browsers
-      run: pwsh Tests/bin/Release/net6.0/playwright.ps1 install
+      run: pwsh Tests/bin/Release/net10.0/playwright.ps1 install
 
     - name: Publish Release
       id: publish-release
@@ -150,7 +150,7 @@ jobs:
         current_version=$(echo $version_line | sed -n 's/.*<Version>\(.*\)<\/Version>.*/\1/p')
         current_version+=".${{ github.run_number }}"
 
-        dotnet publish /p:PublishProfile=Properties/PublishProfiles/FolderProfile.pubxml /p:Version=$current_version --configuration Release
+        dotnet publish linc.csproj /p:PublishProfile=Properties/PublishProfiles/FolderProfile.pubxml /p:Version=$current_version --configuration Release
 
         echo "CURRENT_VERSION=$current_version" >> $GITHUB_OUTPUT
 
@@ -197,7 +197,7 @@ jobs:
 
     - name: Run E2E Playwright Tests
       run: >-
-        dotnet test
+        dotnet test Tests/linc.E2ETests.csproj --configuration Release --no-build
         --environment TestConfig__TestGMailUserPassword="${{ secrets.TEST_GMAIL_USER_PASSWORD }}"
         --environment TestConfig__BasicAuthPassword="${{ secrets.TEST_BASIC_AUTH_PASSWORD }}"
         --environment TestConfig__AdministratorPassword="${{ secrets.TEST_ADMINISTRATOR_PASSWORD }}"
