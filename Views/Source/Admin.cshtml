@@ -22,9 +22,6 @@
                         <a href="/">@HtmlLocalizer["NavItem_Home"]</a>
                     </li>
                     <li>
-                        <a asp-area="Identity" asp-page="/Account/Manage/Administration">@HtmlLocalizer["ManageNavItem_Administration"]</a>
-                    </li>
-                    <li>
                         @HtmlLocalizer["Source_AdminPage_Title"]
                     </li>
                 </ol>
@@ -50,7 +47,7 @@
 
 <ul class="list-operations">
     <li>
-        <a asp-area="Identity" asp-page="/Account/Manage/Administration">@HtmlLocalizer["ManageNavItem_Administration"]</a>
+        <a asp-controller="Issue" asp-action="Create">@HtmlLocalizer["Admin_CreateIssue"]</a>
     </li>
     <li>
         <a asp-action="Create" asp-route-issueId="@Model.CurrentIssueId">@HtmlLocalizer["Source_CreatePage_Title"]</a>

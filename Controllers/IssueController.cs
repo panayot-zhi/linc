@@ -66,7 +66,7 @@ namespace linc.Controllers
             return View(issue);
         }
 
-        [SiteAuthorize(SiteRole.Editor)]
+        [SiteAuthorize(SiteRole.HeadEditor)]
         public IActionResult Create()
         {
             return View();
@@ -74,7 +74,7 @@ namespace linc.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [SiteAuthorize(SiteRole.Editor)]
+        [SiteAuthorize(SiteRole.HeadEditor)]
         public async Task<IActionResult> Create(IssueCreateViewModel vModel) 
         {
             if (!ModelState.IsValid)

@@ -1089,7 +1089,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Предложеният за публикуване текст се изпраща като прикачен файл към email до Редакцията на списанието. 
+        ///   Looks up a localized string similar to Предложеният за публикуване текст се изпраща като прикачен файл към email до Редакцията на списанието.
         ///С Вас на този email ще влезе в комуникация редактор на списанието.
         ///Преди публикуване ще Ви изпратим декларация за съгласие статията/студията да бъде издадена.
         ///За да приемете декларацията, трябда да сте &lt;strong&gt;регистриран потребител&lt;/strong&gt; в системата.
@@ -3717,7 +3717,16 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ръкописи.
+        ///   Looks up a localized string similar to Списък съдържания.
+        /// </summary>
+        public static string NavItem_SourceAdmin {
+            get {
+                return ResourceManager.GetString("NavItem_SourceAdmin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Списък досиета.
         /// </summary>
         public static string NavItem_Submissions {
             get {
@@ -4321,7 +4330,7 @@ namespace linc.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Списък източници.
+        ///   Looks up a localized string similar to Списък записи в съдържания.
         /// </summary>
         public static string Source_AdminPage_Title {
             get {

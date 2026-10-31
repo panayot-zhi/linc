@@ -155,18 +155,22 @@
                                 
                                 @if (User.IsAtLeast(SiteRole.Editor))
                                 {
-                                    if (TempData.ContainsKey(SiteConstant.TempDataEditableKey))
-                                    {
-                                        <li>
-                                            <a asp-controller="Home" asp-action="Edit">@HtmlLocalizer["NavItem_EditModeDisable"]</a>
-                                        </li>
-                                    }
-                                    else
-                                    {
-                                        <li>
-                                            <a asp-controller="Home" asp-action="Edit">@HtmlLocalizer["NavItem_EditModeEnable"]</a>
-                                        </li>
-                                    }
+                                    @* if (TempData.ContainsKey(SiteConstant.TempDataEditableKey)) *@
+                                    @* { *@
+                                    @*     <li> *@
+                                    @*         <a asp-controller="Home" asp-action="Edit">@HtmlLocalizer["NavItem_EditModeDisable"]</a> *@
+                                    @*     </li> *@
+                                    @* } *@
+                                    @* else *@
+                                    @* { *@
+                                    @*     <li> *@
+                                    @*         <a asp-controller="Home" asp-action="Edit">@HtmlLocalizer["NavItem_EditModeEnable"]</a> *@
+                                    @*     </li> *@
+                                    @* } *@
+
+                                    <li>
+                                        <a asp-controller="Source" asp-action="Admin">@HtmlLocalizer["NavItem_SourceAdmin"]</a>
+                                    </li>
 
                                     <li>
                                         <a asp-controller="Dossier" asp-action="Index">@HtmlLocalizer["NavItem_Submissions"]</a>
