@@ -1,5 +1,5 @@
+using linc.E2ETests.Utility;
 using NUnit.Framework;
-using System.Security.Cryptography;
 
 namespace linc.E2ETests.Pages
 {
@@ -20,15 +20,17 @@ namespace linc.E2ETests.Pages
             await SetPageCulture("en");
             await Page.GotoAsync(RegisterPageUrl.ToString());
 
-            // Fill registration form fields
-            var identifier = RandomNumberGenerator.GetInt32(100, 999);
+            // the token is a separate word in the names,
+            // the confirmation email greets the user by names
+            var token = TestRun.NewToken();
+            var startedAt = DateTimeOffset.UtcNow;
 
             await Page.FillAsync("input[name='Input.FirstName']", "Test");
-            await Page.FillAsync("input[name='Input.LastName']", "User");
-            await Page.FillAsync("input[name='Input.UserName']", $"test-{identifier}");
-            await Page.FillAsync("input[name='Input.Email']", $"test-{identifier}@test.com");
-            await Page.FillAsync("input[name='Input.Password']", $"Test{identifier}!");
-            await Page.FillAsync("input[name='Input.ConfirmPassword']", $"Test{identifier}!");
+            await Page.FillAsync("input[name='Input.LastName']", $"User {token}");
+            await Page.FillAsync("input[name='Input.UserName']", $"user-{token}");
+            await Page.FillAsync("input[name='Input.Email']", $"{token}@test.com");
+            await Page.FillAsync("input[name='Input.Password']", $"Test{token}!");
+            await Page.FillAsync("input[name='Input.ConfirmPassword']", $"Test{token}!");
             await Page.CheckAsync("input[name='Input.PrivacyConsent']");
 
             // Submit the form
@@ -39,9 +41,8 @@ namespace linc.E2ETests.Pages
             await Logout();
 
             // Verify email sent
-            using var emailVerifier = new Utility.EmailVerifier(Config);
-            await emailVerifier.AssertRegisterConfirmationSent("en");
-
+            using var emailVerifier = new EmailVerifier(Config);
+            await emailVerifier.AssertRegisterConfirmationSent("en", token, startedAt);
         }
 
         [Test]
@@ -50,15 +51,16 @@ namespace linc.E2ETests.Pages
             await SetPageCulture("bg");
             await Page.GotoAsync(RegisterPageUrl.ToString());
 
-            // Fill registration form fields
-            var identifier = RandomNumberGenerator.GetInt32(100, 999);
+            // the token stays ASCII, email body search is less reliable with Cyrillic
+            var token = TestRun.NewToken();
+            var startedAt = DateTimeOffset.UtcNow;
 
             await Page.FillAsync("input[name='Input.FirstName']", "Тестов");
-            await Page.FillAsync("input[name='Input.LastName']", "Потребител");
-            await Page.FillAsync("input[name='Input.UserName']", $"тест-{identifier}");
-            await Page.FillAsync("input[name='Input.Email']", $"test-{identifier}@test.com");
-            await Page.FillAsync("input[name='Input.Password']", $"Test{identifier}!");
-            await Page.FillAsync("input[name='Input.ConfirmPassword']", $"Test{identifier}!");
+            await Page.FillAsync("input[name='Input.LastName']", $"Потребител {token}");
+            await Page.FillAsync("input[name='Input.UserName']", $"тест-{token}");
+            await Page.FillAsync("input[name='Input.Email']", $"{token}@test.com");
+            await Page.FillAsync("input[name='Input.Password']", $"Test{token}!");
+            await Page.FillAsync("input[name='Input.ConfirmPassword']", $"Test{token}!");
             await Page.CheckAsync("input[name='Input.PrivacyConsent']");
 
             // Submit the form
@@ -69,9 +71,8 @@ namespace linc.E2ETests.Pages
             await Logout();
 
             // Verify email sent
-            using var emailVerifier = new Utility.EmailVerifier(Config);
-            await emailVerifier.AssertRegisterConfirmationSent("bg");
-
+            using var emailVerifier = new EmailVerifier(Config);
+            await emailVerifier.AssertRegisterConfirmationSent("bg", token, startedAt);
         }
     }
 }
