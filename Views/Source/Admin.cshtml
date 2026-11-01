@@ -1,4 +1,6 @@
-﻿@using Microsoft.AspNetCore.Localization
+﻿@using linc.Models.Enumerations
+@using linc.Utility
+@using Microsoft.AspNetCore.Localization
 @model SourceIndexViewModel
 
 @{
@@ -46,9 +48,12 @@
 <small>@HtmlLocalizer["Language_Label"]: @currentCulture</small>
 
 <ul class="list-operations">
-    <li>
-        <a asp-controller="Issue" asp-action="Create">@HtmlLocalizer["Admin_CreateIssue"]</a>
-    </li>
+    @if (User.IsAtLeast(SiteRole.HeadEditor))
+    {
+        <li>
+            <a asp-controller="Issue" asp-action="Create">@HtmlLocalizer["Admin_CreateIssue"]</a>
+        </li>
+    }
     <li>
         <a asp-action="Create" asp-route-issueId="@Model.CurrentIssueId">@HtmlLocalizer["Source_CreatePage_Title"]</a>
     </li>

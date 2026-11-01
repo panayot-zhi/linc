@@ -11,16 +11,16 @@ namespace linc.E2ETests.Utility
 {
     internal class EmailVerifier : IDisposable
     {
-        // NOTE: the default email sender for Testing is no-reply-linc@uni-plovdiv.bg
+        // NOTE: the default email sender for Staging is no-reply-linc@uni-plovdiv.bg
         // NOTE: the default email sender for Development is pivanov@uni-plovdiv.bg,
         // because I cannot send mails from home from the above email address
         // NOTE: the default email receiver is pivanov@uni-plovdiv.bg
         // defined in EmailConfig.OverwriteRecipients, so the original recipient
         // is lost and messages must be matched by a unique token in their body
 
-        private const string TestFolderName = "linc-test";
-
         private const int MaxRetryTimes = 12;
+
+        private const string TestFolderName = "linc-test";
 
         private static readonly TimeSpan RetryWaitPeriod = TimeSpan.FromSeconds(5);
 
@@ -30,6 +30,7 @@ namespace linc.E2ETests.Utility
         private static readonly Regex HrefRegex = new("href=\"([^\"]+)\"", RegexOptions.IgnoreCase | RegexOptions.Compiled);
 
         private readonly string _testGMailUserName;
+
         private readonly string _testGMailUserPassword;
 
         private IMailFolder _testFolder = null!;
@@ -80,7 +81,8 @@ namespace linc.E2ETests.Utility
 
             for (var retryTimes = 1; retryTimes <= MaxRetryTimes; retryTimes++)
             {
-                // let the server report messages that arrived since the last command
+                // let the server report messages
+                // that arrived since the last command
                 await _client.NoOpAsync();
 
                 var uniqueIds = await _testFolder.SearchAsync(query);
@@ -125,12 +127,7 @@ namespace linc.E2ETests.Utility
         /// </summary>
         public async Task<Uri> AssertRegisterConfirmationSent(string culture, string namesToken, DateTimeOffset sentAfter)
         {
-            var expectedSubject = culture switch
-            {
-                "bg" => "ЛИнК - Потвърждение на email",
-                "en" => "LInC - Confirm email",
-                _ => throw new ArgumentOutOfRangeException(nameof(culture), culture, "Unsupported culture.")
-            };
+            var expectedSubject = SiteText.EmailSubject("Email_ConfirmEmail_Subject", culture);
 
             var message = await WaitForMessageAsync(namesToken, sentAfter,
                 x => x.Subject == expectedSubject);

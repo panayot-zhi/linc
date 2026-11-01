@@ -111,7 +111,7 @@ namespace linc.Controllers
             return RedirectToAction("Edit", new { id = sourceId });
         }
 
-        [SiteAuthorize(SiteRole.HeadEditor)]
+        [SiteAuthorize(SiteRole.Editor)]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -162,7 +162,7 @@ namespace linc.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [SiteAuthorize(SiteRole.Administrator)]
+        [SiteAuthorize(SiteRole.Editor)]
         public async Task<IActionResult> Edit(SourceUpdateViewModel vModel)
         {
             if (!ModelState.IsValid)

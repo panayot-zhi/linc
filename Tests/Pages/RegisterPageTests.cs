@@ -14,6 +14,11 @@ namespace linc.E2ETests.Pages
             RegisterPageUrl = new(BaseUri, "/identity/account/register");
         }
 
+        /// <summary>
+        /// Registers a brand new user on the English site, logs out, and waits for the
+        /// "confirm your email" message to arrive in the test Gmail inbox.
+        /// If this fails, registration is broken or the site is not sending emails.
+        /// </summary>
         [Test]
         public async Task en_Register_TestUser_ReceivesConfirmationEmail()
         {
@@ -45,6 +50,10 @@ namespace linc.E2ETests.Pages
             await emailVerifier.AssertRegisterConfirmationSent("en", token, startedAt);
         }
 
+        /// <summary>
+        /// Same as the English test, but on the Bulgarian site with Cyrillic names:
+        /// register, log out, and wait for the Bulgarian confirmation email.
+        /// </summary>
         [Test]
         public async Task bg_Register_TestUser_ReceivesConfirmationEmail()
         {
