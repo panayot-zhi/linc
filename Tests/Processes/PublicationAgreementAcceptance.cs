@@ -14,6 +14,7 @@ namespace linc.E2ETests.Processes;
 ///   - author "email": a registered user with the same email but other names, may sign
 ///   - author "names": a registered user with the same names but another email, is refused
 ///   - a registered user matching no author, is refused
+///   
 /// All email goes to the one test inbox (EmailConfig.OverwriteRecipients), so messages are matched
 /// by the run token in the author names and by the agreement link they contain.
 /// </summary>
