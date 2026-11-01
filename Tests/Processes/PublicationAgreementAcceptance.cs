@@ -97,6 +97,10 @@ public class PublicationAgreementAcceptance : TestBase
         await page.WaitForLoadStateAsync(LoadState.NetworkIdle);
     }
 
+    /// <summary>
+    /// Step 1. When the dossier was accepted (in the setup above), each of the three authors
+    /// must have received an email with their own link to the publication agreement.
+    /// </summary>
     [Test, Order(1)]
     public void EachAuthor_ReceivesOwnAgreementLink()
     {
@@ -106,6 +110,10 @@ public class PublicationAgreementAcceptance : TestBase
         }));
     }
 
+    /// <summary>
+    /// Step 2. The author opens their agreement and submits it without ticking "I agree".
+    /// They must stay on the agreement page and see a warning; nothing is signed.
+    /// </summary>
     [Test, Order(2)]
     public async Task EmptySubmission_ReturnsToFormWithWarning()
     {
@@ -121,6 +129,11 @@ public class PublicationAgreementAcceptance : TestBase
         Assert.That(await GetSwalIconAsync(page), Is.EqualTo("warning"));
     }
 
+    /// <summary>
+    /// Step 3. A user with the same names and email as the author signs the agreement.
+    /// They must be sent home with a success message, the dossier page must show the signed agreement,
+    /// and the author must get an email with the signed copy.
+    /// </summary>
     [Test, Order(3)]
     public async Task FullMatch_Signs_AndReceivesConfirmation()
     {
@@ -144,6 +157,10 @@ public class PublicationAgreementAcceptance : TestBase
         Assert.That(confirmation, Is.Not.Null);
     }
 
+    /// <summary>
+    /// Step 4. A user whose email matches the author (but whose names do not) signs the agreement.
+    /// This must work: the email is enough to prove they are the author.
+    /// </summary>
     [Test, Order(4)]
     public async Task EmailOnlyMatch_Signs()
     {
@@ -155,6 +172,10 @@ public class PublicationAgreementAcceptance : TestBase
         Assert.That(await GetSwalIconAsync(page), Is.EqualTo("success"));
     }
 
+    /// <summary>
+    /// Step 5. A user with the same names as the author but a different email opens the agreement link.
+    /// They must be sent home with a warning and never see the form: names alone are not enough proof.
+    /// </summary>
     [Test, Order(5)]
     public async Task NamesOnlyMatch_IsRedirectedWithWarning()
     {
@@ -166,6 +187,10 @@ public class PublicationAgreementAcceptance : TestBase
         await Assertions.Expect(page.Locator("#agreement-form")).ToHaveCountAsync(0);
     }
 
+    /// <summary>
+    /// Step 6. A user who matches no author at all opens someone else's agreement link.
+    /// They must be sent home with a warning.
+    /// </summary>
     [Test, Order(6)]
     public async Task NoMatch_IsRedirectedWithWarning()
     {
@@ -176,6 +201,11 @@ public class PublicationAgreementAcceptance : TestBase
         Assert.That(await GetSwalIconAsync(page), Is.EqualTo("warning"));
     }
 
+    /// <summary>
+    /// Step 7. Who may download the signed agreement: the author who signed it may (and gets a PDF),
+    /// another ordinary user and an editor not assigned to the dossier get the 403 page,
+    /// and a head editor may download it from the dossier page.
+    /// </summary>
     [Test, Order(7)]
     public async Task SignedAgreement_DownloadRights()
     {
@@ -203,6 +233,10 @@ public class PublicationAgreementAcceptance : TestBase
         Assert.That(download.Status, Is.EqualTo(200));
     }
 
+    /// <summary>
+    /// Step 8. On the dossier edit page, the author who signed must be locked: their names cannot be changed
+    /// and their Remove button is disabled, so a signed agreement cannot end up on a different person.
+    /// </summary>
     [Test, Order(8)]
     public async Task SignedAuthor_IsLockedOnEditForm()
     {
@@ -217,6 +251,10 @@ public class PublicationAgreementAcceptance : TestBase
         await Assertions.Expect(authors.Cards.Nth(index).Locator(".remove-author")).ToHaveClassAsync(new System.Text.RegularExpressions.Regex(@"\bdisabled\b"));
     }
 
+    /// <summary>
+    /// Step 9. A head editor deletes the signed agreement. It must disappear from the dossier page,
+    /// and the author must be able to open the form and sign again.
+    /// </summary>
     [Test, Order(9)]
     public async Task HeadEditor_DeletesAgreement_AuthorSignsAgain()
     {

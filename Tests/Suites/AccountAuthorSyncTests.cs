@@ -22,6 +22,11 @@ namespace linc.E2ETests.Suites
             _dossiers = new DossierPages(BaseUri);
         }
 
+        /// <summary>
+        /// A head editor creates a dossier with an author whose email has no account yet.
+        /// Then someone registers with that email (under other names) and clicks the link in the confirmation email.
+        /// The dossier page must now show that user's account next to the author: the two are linked by email.
+        /// </summary>
         [Test]
         public async Task ConfirmingEmail_LinksUserToAuthorWithSameEmail()
         {
@@ -51,6 +56,10 @@ namespace linc.E2ETests.Suites
             await Assertions.Expect(DossierPages.AuthorLine(headEditor, author.Names)).ToContainTextAsync(user.UserName);
         }
 
+        /// <summary>
+        /// A user registers first. A head editor then creates a dossier with an author with exactly the same names
+        /// (but another email). The dossier page must show the user's account next to the author: they are linked by names.
+        /// </summary>
         [Test]
         public async Task NewAuthor_WithNamesOfExistingUser_IsLinkedOnCreate()
         {

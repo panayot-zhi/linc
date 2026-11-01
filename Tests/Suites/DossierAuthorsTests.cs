@@ -26,6 +26,11 @@ namespace linc.E2ETests.Suites
             return new AuthorInput(firstName, $"Author {token}", $"{token}@test.com");
         }
 
+        /// <summary>
+        /// A head editor creates a dossier with two authors.
+        /// Both authors (with their emails) must show on the dossier page, and both names must show
+        /// next to the title in the dossier list.
+        /// </summary>
         [Test]
         public async Task Create_WithTwoAuthors_ShowsBothOnDetailsAndList()
         {
@@ -48,6 +53,10 @@ namespace linc.E2ETests.Suites
             await Assertions.Expect(row).ToContainTextAsync(second.Names);
         }
 
+        /// <summary>
+        /// A head editor removes every author from the create form and saves.
+        /// The dossier must not be created: the form comes back with an error, because a dossier needs at least one author.
+        /// </summary>
         [Test]
         public async Task Create_WithoutAuthors_ShowsValidationError()
         {
@@ -65,6 +74,10 @@ namespace linc.E2ETests.Suites
             await Assertions.Expect(page.Locator(".validation-summary-errors li")).Not.ToHaveCountAsync(0);
         }
 
+        /// <summary>
+        /// A head editor adds an author without an email and saves.
+        /// The form must come back with the email field marked red; the email is needed to send the agreement.
+        /// </summary>
         [Test]
         public async Task Create_AuthorWithoutEmail_ShowsValidationError()
         {
@@ -79,6 +92,10 @@ namespace linc.E2ETests.Suites
             await Assertions.Expect(page.Locator("#authors-list .author-email.is-invalid")).ToHaveCountAsync(1);
         }
 
+        /// <summary>
+        /// Creates a dossier with two authors, then edits it: removes one author and adds a new one.
+        /// The dossier page must show the kept and the new author, and no longer show the removed one.
+        /// </summary>
         [Test]
         public async Task Edit_AddAndRemoveAuthors_ShowsNewAuthorsOnDetails()
         {
@@ -102,6 +119,10 @@ namespace linc.E2ETests.Suites
             await Assertions.Expect(DossierPages.AuthorLine(page, removed.Names)).ToHaveCountAsync(0);
         }
 
+        /// <summary>
+        /// A head editor creates a dossier and assigns nobody. An editor then tries to edit it
+        /// and must get the 403 page: editors may only edit the dossiers assigned to them.
+        /// </summary>
         [Test]
         public async Task Edit_UnassignedEditor_IsForbidden()
         {
@@ -115,6 +136,10 @@ namespace linc.E2ETests.Suites
             Assert.That(CurrentPath(editor), Is.EqualTo("/home/error/403"));
         }
 
+        /// <summary>
+        /// On the create dossier form, types part of a seeded author's name into the author search
+        /// and picks the suggestion. The author's names and email must be filled in automatically.
+        /// </summary>
         [Test]
         public async Task AuthorSearch_PicksSeededAuthor_FillsCard()
         {
@@ -131,6 +156,10 @@ namespace linc.E2ETests.Suites
             Assert.That(rows[0].Email, Is.EqualTo(SeedData.Author1Email));
         }
 
+        /// <summary>
+        /// Same search, but with the dossier language set to English.
+        /// The seeded author is Bulgarian, so nothing must be suggested: the search only offers authors in the dossier's language.
+        /// </summary>
         [Test]
         public async Task AuthorSearch_OtherLanguage_FindsNothing()
         {

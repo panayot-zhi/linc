@@ -56,6 +56,10 @@ namespace linc.E2ETests.Suites
             }
         }
 
+        /// <summary>
+        /// A head editor creates a dossier with a Word file. The dossier page must list one document,
+        /// and its download link must return the file.
+        /// </summary>
         [Test]
         public async Task OriginalDocument_IsDownloadable()
         {
@@ -71,6 +75,11 @@ namespace linc.E2ETests.Suites
             Assert.That(response.Status, Is.EqualTo(200));
         }
 
+        /// <summary>
+        /// A head editor uploads an anonymized (names removed) version of the article, then uploads another one to replace it.
+        /// Only the newest anonymized file must remain: the old download link must stop working (404) and the new one must work.
+        /// Currently fails: the server crashes (500) on the second upload.
+        /// </summary>
         [Test]
         public async Task ReplacingAnonymizedDocument_RemovesThePreviousOne()
         {

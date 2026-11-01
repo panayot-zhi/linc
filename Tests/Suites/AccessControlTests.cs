@@ -31,6 +31,10 @@ namespace linc.E2ETests.Suites
 
         // ---------- issues ----------
 
+        /// <summary>
+        /// An editor opens the "create issue" page and must get the "access denied" (403) page.
+        /// Only head editors and administrators may create issues.
+        /// </summary>
         [Test]
         public async Task CreateIssue_Editor_IsForbidden()
         {
@@ -38,6 +42,9 @@ namespace linc.E2ETests.Suites
             Assert.That(await OpenAsync(page, Url("/issue/create")), Is.EqualTo(AccessDeniedPath));
         }
 
+        /// <summary>
+        /// A head editor opens the "create issue" page and must see the form (the issue number field).
+        /// </summary>
         [Test]
         public async Task CreateIssue_HeadEditor_SeesForm()
         {
@@ -46,6 +53,10 @@ namespace linc.E2ETests.Suites
             await Assertions.Expect(page.Locator("input#IssueNumber")).ToBeVisibleAsync();
         }
 
+        /// <summary>
+        /// A visitor who is not logged in opens the seeded hidden issue and must get "not found" (404).
+        /// Hidden issues are drafts and must not leak to the public.
+        /// </summary>
         [Test]
         public async Task HiddenIssue_Anonymous_IsNotFound()
         {
@@ -54,6 +65,9 @@ namespace linc.E2ETests.Suites
             Assert.That(response?.Status, Is.EqualTo(404));
         }
 
+        /// <summary>
+        /// An editor opens the same hidden issue and must see it, so editors can prepare it before release.
+        /// </summary>
         [Test]
         public async Task HiddenIssue_Editor_IsVisible()
         {
@@ -64,6 +78,9 @@ namespace linc.E2ETests.Suites
 
         // ---------- dossiers ----------
 
+        /// <summary>
+        /// A visitor who is not logged in opens the dossier list and must be sent to the login page.
+        /// </summary>
         [Test]
         public async Task DossierList_Anonymous_RedirectsToLogin()
         {
@@ -71,12 +88,19 @@ namespace linc.E2ETests.Suites
             Assert.That(await OpenAsync(page, Url("/dossier")), Is.EqualTo(LoginPath));
         }
 
+        /// <summary>
+        /// A logged in user with no role (an ordinary reader) opens the dossier list and must get the 403 page.
+        /// Dossiers hold unpublished articles, only editors may see them.
+        /// </summary>
         [Test]
         public async Task DossierList_PlainUser_IsForbidden()
         {
             Assert.That(await OpenAsync(_plainUser.Page, Url("/dossier")), Is.EqualTo(AccessDeniedPath));
         }
 
+        /// <summary>
+        /// An editor opens the dossier list and must stay on it.
+        /// </summary>
         [Test]
         public async Task DossierList_Editor_IsAllowed()
         {
@@ -84,6 +108,10 @@ namespace linc.E2ETests.Suites
             Assert.That(await OpenAsync(page, Url("/dossier")), Is.EqualTo("/dossier"));
         }
 
+        /// <summary>
+        /// An editor opens the "create dossier" page and must get the 403 page.
+        /// Only head editors and administrators may create dossiers.
+        /// </summary>
         [Test]
         public async Task CreateDossier_Editor_IsForbidden()
         {
@@ -91,6 +119,9 @@ namespace linc.E2ETests.Suites
             Assert.That(await OpenAsync(page, Url("/dossier/create")), Is.EqualTo(AccessDeniedPath));
         }
 
+        /// <summary>
+        /// A head editor opens the "create dossier" page and must see the form (the title field).
+        /// </summary>
         [Test]
         public async Task CreateDossier_HeadEditor_SeesForm()
         {
@@ -99,6 +130,9 @@ namespace linc.E2ETests.Suites
             await Assertions.Expect(page.Locator("input#Title")).ToBeVisibleAsync();
         }
 
+        /// <summary>
+        /// An ordinary logged in user opens the seeded dossier and must get the 403 page.
+        /// </summary>
         [Test]
         public async Task SeededDossierDetails_PlainUser_IsForbidden()
         {
@@ -106,6 +140,9 @@ namespace linc.E2ETests.Suites
                 Is.EqualTo(AccessDeniedPath));
         }
 
+        /// <summary>
+        /// The test editor is assigned to the seeded dossier, so they must be able to open its edit page.
+        /// </summary>
         [Test]
         public async Task SeededDossierEdit_AssignedEditor_IsAllowed()
         {
@@ -117,6 +154,10 @@ namespace linc.E2ETests.Suites
 
         // ---------- dossier documents ----------
 
+        /// <summary>
+        /// A visitor who is not logged in follows the download link of the seeded dossier's Word document
+        /// and must be sent to the login page instead of getting the file.
+        /// </summary>
         [Test]
         public async Task DossierDocument_Anonymous_RedirectsToLogin()
         {
@@ -125,6 +166,9 @@ namespace linc.E2ETests.Suites
             Assert.That(await OpenDownloadAsync(page, url), Is.EqualTo(LoginPath));
         }
 
+        /// <summary>
+        /// An ordinary logged in user follows the same download link and must get the 403 page, not the file.
+        /// </summary>
         [Test]
         public async Task DossierDocument_PlainUser_IsForbidden()
         {
@@ -132,6 +176,10 @@ namespace linc.E2ETests.Suites
             Assert.That(await OpenDownloadAsync(_plainUser.Page, url), Is.EqualTo(AccessDeniedPath));
         }
 
+        /// <summary>
+        /// An editor follows the same download link and must get the file.
+        /// If this fails, the backup script probably did not copy the seeded files to the test server.
+        /// </summary>
         [Test]
         public async Task DossierDocument_Editor_Downloads()
         {
@@ -146,12 +194,18 @@ namespace linc.E2ETests.Suites
 
         // ---------- sources ----------
 
+        /// <summary>
+        /// An ordinary logged in user opens the index admin list (/source/admin) and must get the 403 page.
+        /// </summary>
         [Test]
         public async Task SourceAdmin_PlainUser_IsForbidden()
         {
             Assert.That(await OpenAsync(_plainUser.Page, Url("/source/admin")), Is.EqualTo(AccessDeniedPath));
         }
 
+        /// <summary>
+        /// An editor opens the index admin list and must stay on it.
+        /// </summary>
         [Test]
         public async Task SourceAdmin_Editor_IsAllowed()
         {
@@ -159,12 +213,19 @@ namespace linc.E2ETests.Suites
             Assert.That(await OpenAsync(page, Url("/source/admin")), Is.EqualTo("/source/admin"));
         }
 
+        /// <summary>
+        /// An ordinary logged in user opens the edit page of the seeded index entry and must get the 403 page.
+        /// </summary>
         [Test]
         public async Task SourceEdit_PlainUser_IsForbidden()
         {
             Assert.That(await OpenAsync(_plainUser.Page, Url($"/source/edit/{SeedData.SourceId}")), Is.EqualTo(AccessDeniedPath));
         }
 
+        /// <summary>
+        /// An editor opens the edit page of the seeded index entry: they must see the form,
+        /// but not the Delete button, because only administrators may delete entries.
+        /// </summary>
         [Test]
         public async Task SourceEdit_Editor_IsAllowed_WithoutDelete()
         {
@@ -177,6 +238,9 @@ namespace linc.E2ETests.Suites
             await Assertions.Expect(page.Locator("#submit-delete-form")).ToHaveCountAsync(0);
         }
 
+        /// <summary>
+        /// An administrator opens the same edit page and must see the Delete button.
+        /// </summary>
         [Test]
         public async Task SourceEdit_Administrator_SeesDelete()
         {

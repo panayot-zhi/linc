@@ -15,6 +15,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <!-- the app's texts, read by Utility/SiteText; the .en file becomes the English satellite assembly -->
+    <EmbeddedResource Include="../Resources/SharedResource.resx" Link="Resources/SharedResource.resx" />
+    <EmbeddedResource Include="../Resources/SharedResource.en.resx" Link="Resources/SharedResource.en.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
     <!-- small upload fixtures: a one page PDF and a one paragraph Word document -->
     <None Update="Fixtures/**/*">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

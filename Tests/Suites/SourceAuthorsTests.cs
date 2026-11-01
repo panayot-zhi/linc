@@ -42,6 +42,10 @@ namespace linc.E2ETests.Suites
             return new AuthorInput(firstName, $"Author {token}", Notes: notes);
         }
 
+        /// <summary>
+        /// An editor creates an index entry with two authors in the hidden test issue.
+        /// Both authors must show in the public library list (searched by author) and on the issue page.
+        /// </summary>
         [Test]
         public async Task Create_WithTwoAuthors_ShowsBothInLibraryAndIssue()
         {
@@ -63,6 +67,10 @@ namespace linc.E2ETests.Suites
             Assert.That(issueAuthors.Select(x => x.Trim()), Does.Contain(first.Names).And.Contain(second.Names));
         }
 
+        /// <summary>
+        /// An editor creates an index entry and, after saving, must land on its edit page.
+        /// Before the fix editors got the 403 page here, even though the entry was saved.
+        /// </summary>
         [Test]
         public async Task Create_Editor_LandsOnEditForm()
         {
@@ -73,6 +81,10 @@ namespace linc.E2ETests.Suites
             await Assertions.Expect(editor.Locator("input#Title")).ToBeVisibleAsync();
         }
 
+        /// <summary>
+        /// An editor creates an index entry with a note on its author.
+        /// Opening the edit page afterwards must show the same note: notes must not be lost on save.
+        /// </summary>
         [Test]
         public async Task Create_KeepsAuthorNotesOnEditForm()
         {
@@ -87,6 +99,10 @@ namespace linc.E2ETests.Suites
             Assert.That(rows.Single(x => x.Names == author.Names).Notes, Is.EqualTo(author.Notes));
         }
 
+        /// <summary>
+        /// An editor creates an index entry with two authors, then edits it: removes one and adds another.
+        /// Saving must return to the index admin list, and the library must show the new author and not the removed one.
+        /// </summary>
         [Test]
         public async Task Edit_Editor_ReplacesAuthor()
         {
@@ -113,6 +129,10 @@ namespace linc.E2ETests.Suites
             Assert.That(listed, Does.Not.Contain(removed.Names));
         }
 
+        /// <summary>
+        /// An editor creates an index entry and an administrator deletes it.
+        /// The entry must disappear from the public library.
+        /// </summary>
         [Test]
         public async Task Delete_Administrator_RemovesFromLibrary()
         {
@@ -128,6 +148,11 @@ namespace linc.E2ETests.Suites
             Assert.That(listed.Select(x => x.Trim()), Does.Not.Contain(author.Names));
         }
 
+        /// <summary>
+        /// A head editor creates a dossier with two authors, then starts an index entry from that dossier.
+        /// The form must already contain the dossier's authors. Then one entry in Bulgarian and one in English
+        /// are created for the same dossier; both must save (one entry per language is allowed).
+        /// </summary>
         [Test]
         public async Task CreateFromDossier_PrefillsDossierAuthors_AndAllowsOneSourcePerLanguage()
         {
