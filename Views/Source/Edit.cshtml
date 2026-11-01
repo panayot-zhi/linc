@@ -1,4 +1,6 @@
-﻿@model SourceUpdateViewModel
+﻿@using linc.Models.Enumerations
+@using linc.Utility
+@model SourceUpdateViewModel
 
 @* TODO: Localize *@
 
@@ -200,9 +202,12 @@
             <hr/>
 
             <div class="text-end">
-                <a id="submit-delete-form" class="btn btn-lg btn-danger submit-link" href="#">
-                    @HtmlLocalizer["Delete_Button_Label"]
-                </a>
+                @if (User.IsAtLeast(SiteRole.Administrator))
+                {
+                    <a id="submit-delete-form" class="btn btn-lg btn-danger submit-link" href="#">
+                        @HtmlLocalizer["Delete_Button_Label"]
+                    </a>
+                }
 
                 <button id="change-password-button" type="submit" class="w-50 btn btn-lg btn-primary">
                     @HtmlLocalizer["Save_Button_Label"]
@@ -222,7 +227,7 @@
 
     <script>
         window.addEventListener('DOMContentLoaded', (event) => {
-            document.getElementById('submit-delete-form').addEventListener('click', (e) => {
+            document.getElementById('submit-delete-form')?.addEventListener('click', (e) => {
 
                 e.preventDefault();
                 e.stopPropagation();
