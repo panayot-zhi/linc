@@ -73,7 +73,10 @@ namespace linc.Services
 
         public async Task<bool> DeleteDocumentAsync(int documentId)
         {
+            // tracking query: if the caller already tracks this document (e.g. through dossier.Documents),
+            // EF returns that same instance, so Remove does not clash with a second copy
             var document = _context.Documents
+                .AsTracking()
                 .Include(x => x.Sources)
                 .FirstOrDefault(x => x.Id == documentId);
 
