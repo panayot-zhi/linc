@@ -177,8 +177,7 @@ namespace linc.E2ETests.Suites
         }
 
         /// <summary>
-        /// An editor follows the same download link and must get the file.
-        /// If this fails, the backup script probably did not copy the seeded files to the test server.
+        /// An editor follows the same download link and must get the file.        
         /// </summary>
         [Test]
         public async Task DossierDocument_Editor_Downloads()
@@ -188,8 +187,7 @@ namespace linc.E2ETests.Suites
 
             var response = await page.APIRequest.GetAsync(url);
             Assert.That(response.Status, Is.EqualTo(200),
-                "The seeded dossier document could not be downloaded. " +
-                "Check that backup.sh copied the fixture files into /srv/www/test.linc/test/.");
+                "The seeded dossier document could not be downloaded.");
         }
 
         // ---------- sources ----------
